@@ -1,0 +1,2212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily EV & 배터리 플랫폼 대시보드</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#035485',
+                            900: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        /* Print Style for PDF Generation */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+            }
+            .print-card {
+                break-inside: avoid;
+                border: 1px solid #cbd5e1 !important;
+                box-shadow: none !important;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+
+    <!-- Header Navigation Bar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
+            <div class="flex items-center space-x-3">
+                <div class="bg-sky-600 text-white p-2 rounded-lg font-bold text-xl flex items-center justify-center w-10 h-10 shadow-sm">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-lg sm:text-xl leading-tight">Daily EV & Battery Intelligence News</h1>
+                    <p class="text-xs text-slate-500 font-medium"> by BTI Team </p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2 sm:space-x-2.5 flex-wrap justify-end">
+                <button onclick="window.openDBModal()" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition flex items-center space-x-1">
+                    <span>💾 DB 저장 & 히스토리</span>
+                </button>
+                <button onclick="window.exportCSV()" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 transition flex items-center space-x-1">
+                    <span>📊 CSV 엑셀 추출</span>
+                </button>
+                <button onclick="window.toggleUpdateStatus()" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-slate-300 bg-slate-50 text-slate-700 hover:bg-slate-100 transition">
+                    🔄 Refresh
+                </button>
+                <button onclick="window.openSearchModal()" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-sky-50 text-sky-700 hover:bg-sky-100 border border-sky-200 transition flex items-center space-x-1">
+                    <span>✨ AI 자유 검색</span>
+                </button>
+                <button onclick="window.downloadPDF()" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-sky-600 text-white hover:bg-sky-700 shadow-sm transition flex items-center space-x-1">
+                    <span>📄 PDF / 인쇄</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+
+        <!-- Top Status Banner (Single-line Compact Style with Dynamic Date & Auto-Sync) -->
+        <div id="updateBanner" class="hidden mb-5 px-3 py-1.5 bg-red-50 border border-red-300 rounded-xl flex items-center space-x-1.5 text-[11px] sm:text-xs text-red-900 shadow-xs overflow-x-auto">
+            <span class="text-xs flex-shrink-0">⚠️</span>
+            <span class="font-bold text-red-950 whitespace-nowrap text-[11px] sm:text-xs">금일은 추가 업데이트가 없습니다.</span>
+            <span class="text-red-300 flex-shrink-0 hidden sm:inline">|</span>
+            <span class="text-[10px] sm:text-[11px] text-red-700 whitespace-nowrap">최신 24시간 이내 신규 EV 데이터가 없어 이전 일자의 최신 데이터를 유지합니다.</span>
+        </div>
+
+        <div id="successBanner" class="mb-5 px-3 py-1.5 bg-emerald-50 border border-emerald-300 rounded-xl flex items-center justify-between text-[11px] sm:text-xs text-emerald-900 shadow-xs overflow-x-auto">
+            <div class="flex items-center space-x-1.5 min-w-0 flex-wrap sm:flex-nowrap">
+                <span class="text-xs flex-shrink-0">✅</span>
+                <span class="font-bold text-emerald-950 whitespace-nowrap text-[11px] sm:text-xs">오늘의 신규 전기차 & 배터리 데이터</span>
+                <span class="text-emerald-300 flex-shrink-0 hidden sm:inline">|</span>
+                <span class="text-[10px] sm:text-[11px] text-emerald-700 whitespace-nowrap">기준일: <span id="currentDateStr" class="font-semibold">2026년 8월 20일 (목)</span> (매일 09:00 자동 갱신) | 환율: $1 USD = 1,442.96 KRW | $1 EUR = 1,652.50 KRW | ¥1 CNY = 201.50 KRW</span>
+            </div>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold bg-emerald-200 text-emerald-800 flex-shrink-0 ml-1.5">
+                UPDATED
+            </span>
+        </div>
+
+        <!-- China & Global Primary Web Routes Panel -->
+        <section class="bg-gradient-to-r from-slate-900 to-sky-950 rounded-2xl p-4 text-white shadow-sm mb-3 no-print">
+            <div class="flex items-center justify-between cursor-pointer select-none" onclick="window.toggleWebRoutesPanel()">
+                <div class="flex items-center space-x-2.5">
+                    <span class="text-xl">🌐</span>
+                    <h3 class="text-xs sm:text-sm font-bold text-white">
+                        중국 & 글로벌 EV 수집 기본 웹 루트 (Data Web source)
+                    </h3>
+                </div>
+                <button class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-600 transition flex items-center gap-1">
+                    <span id="routeToggleBtnText">웹 루트 가이드 열기 ▼</span>
+                </button>
+            </div>
+
+            <!-- Collapsible details & grid (Hidden by default before opening) -->
+            <div id="webRoutesPanelContent" class="hidden mt-3 pt-3 border-t border-slate-700/80">
+                <p class="text-xs text-slate-300 mb-3">
+                    Geely(Zeekr/Geome/Galaxy/Lynk), BYD(Denza/Yangwang/Fangchengbao), Changan(Avatr/Deepal/Nevo), SAIC(IM/Rising/MG), Chery(Exeed/Exlantix/iCar), GAC(Aion/Hyptec), Dongfeng(Voyah/MHERO/eπ), GWM(Ora/Tank/Wey), Nio(Onvo), Huawei HIMA(Aito/Luxeed/Stelato/Maextro), FAW, Yutong 등 모기업/서브브랜드 누락 방지 수집 루트입니다.
+                </p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 text-xs">
+                    <a href="https://www.dongchedi.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
+                        <span class="font-bold text-sky-400">1. 懂车帝 (Dongchedi)</span>
+                        <span class="text-[11px] text-slate-300 mt-1">중국 신차 실시간 카탈로그 & 실측</span>
+                    </a>
+                    <a href="https://www.yiche.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
+                        <span class="font-bold text-sky-400">2. 易车网 (Yiche)</span>
+                        <span class="text-[11px] text-slate-300 mt-1">BitAuto 중국 공식 가격 & 모터 스펙</span>
+                    </a>
+                    <a href="https://ev.autohome.com.cn" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
+                        <span class="font-bold text-sky-400">3. 汽车之家 (Autohome)</span>
+                        <span class="text-[11px] text-slate-300 mt-1">중국 EV 전문관 & 배터리 팩 공시</span>
+                    </a>
+                    <a href="https://evkx.net" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
+                        <span class="font-bold text-sky-400">4. EVKX Knowledge</span>
+                        <span class="text-[11px] text-slate-300 mt-1">글로벌 330+ 셀/팩 상세 테크 가이드</span>
+                    </a>
+                    <a href="https://www.evspecifications.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
+                        <span class="font-bold text-sky-400">5. EVSpecifications</span>
+                        <span class="text-[11px] text-slate-300 mt-1">배터리 용량, 모터, QC C-rate DB</span>
+                    </a>
+                    <a href="https://autonews.gasgoo.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
+                        <span class="font-bold text-sky-400">6. 盖世汽车 (Gasgoo)</span>
+                        <span class="text-[11px] text-slate-300 mt-1">중국 자동차 서플라이체인 & 배터리</span>
+                    </a>
+                    <a href="https://cnevpost.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
+                        <span class="font-bold text-sky-400">7. CNEVPost</span>
+                        <span class="text-[11px] text-slate-300 mt-1">중국 전기차 신차 출시 실시간 인텔리전스</span>
+                    </a>
+                    <a href="https://carnewschina.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
+                        <span class="font-bold text-sky-400">8. CarNewsChina</span>
+                        <span class="text-[11px] text-slate-300 mt-1">중국 완성차 OEM 신차 스파이샷 및 공시</span>
+                    </a>
+                    <a href="https://ibp.a2mac1.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
+                        <span class="font-bold text-sky-400">9. A2MAC1 Teardown</span>
+                        <span class="text-[11px] text-slate-300 mt-1">글로벌 차량 분해 벤치마킹 DB</span>
+                    </a>
+                    <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700 flex flex-col justify-between">
+                        <span class="font-bold text-emerald-400">10. 中 MIIT 공신부</span>
+                        <span class="text-[11px] text-slate-300 mt-1">신에너지차 형식승인 카탈로그</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dedicated Single-Line Global EV Latest News Row (Directly below Web Routes) -->
+        <section onclick="window.openNewsModal()" class="bg-gradient-to-r from-sky-900 via-indigo-900 to-slate-900 border border-sky-700/60 hover:border-sky-400 rounded-xl p-2.5 text-white shadow-sm mb-6 cursor-pointer hover:shadow-md transition flex items-center justify-between no-print gap-2">
+            <div class="flex items-center space-x-2.5 min-w-0">
+                <span class="bg-sky-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md flex-shrink-0 animate-pulse">LIVE update</span>
+                <span class="text-xs font-bold text-sky-200 whitespace-nowrap flex-shrink-0">📰 글로벌 EV 최신 기사 브리핑</span>
+                <span class="text-slate-500 hidden sm:inline flex-shrink-0">|</span>
+                <span id="latestNewsTickerHeadline" class="text-xs text-slate-200 truncate font-medium">
+                    [오늘 09시 신규] BYD Fang Cheng Bao, 50kWh 대용량 배터리 장착 Ti 7 DM 롱레인지 공식 출시 및 글로벌 EV 동향 20선
+                </span>
+            </div>
+            <div class="flex items-center space-x-1 text-xs text-sky-300 font-bold whitespace-nowrap flex-shrink-0 hover:text-white">
+                <span>전체 20개 헤드라인 열람</span>
+                <span>➔</span>
+            </div>
+        </section>
+
+        <!-- Period Selection Filter Bar Section -->
+        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 mb-6 no-print">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+                <div class="flex items-center space-x-2">
+                    <span class="text-lg">🗓️</span>
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900">발표/등록 기간 선택 필터</h3>
+                        <p class="text-xs text-slate-500">2025~2026년 수집 기간을 선택하여 해당 기간 내 발표된 글로벌/중국 신차만 선별 조회할 수 있습니다.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Period Selector Buttons -->
+                <div class="flex items-center space-x-1.5 flex-wrap gap-y-1.5">
+                    <button id="period_all" onclick="window.setPeriodFilter('all')" class="period-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-sky-600 bg-sky-600 text-white shadow-xs transition">
+                        전체 보기
+                    </button>
+                    <button id="period_1w" onclick="window.setPeriodFilter('1w')" class="period-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-sky-50 transition">
+                        최근 1주일
+                    </button>
+                    <button id="period_1m" onclick="window.setPeriodFilter('1m')" class="period-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-sky-50 transition">
+                        최근 1개월
+                    </button>
+                    <button id="period_3m" onclick="window.setPeriodFilter('3m')" class="period-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-sky-50 transition">
+                        최근 3개월
+                    </button>
+                    <button id="period_1y" onclick="window.setPeriodFilter('1y')" class="period-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-sky-50 transition">
+                        최근 1년
+                    </button>
+                    <button id="period_custom" onclick="window.toggleCustomDatePicker()" class="period-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-sky-50 transition flex items-center gap-1">
+                        <span>📅 직접 지정</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Custom Date Range Picker Container (Hidden by default) -->
+            <div id="customDatePickerContainer" class="hidden mt-3 pt-3 border-t border-slate-100 flex flex-wrap items-center gap-2 text-xs">
+                <span class="font-semibold text-slate-700">기간 설정:</span>
+                <input type="date" id="startDateInput" value="2025-01-01" class="px-2.5 py-1.5 rounded-lg border border-slate-300 text-slate-800 font-medium focus:ring-2 focus:ring-sky-500">
+                <span class="text-slate-400">~</span>
+                <input type="date" id="endDateInput" value="2026-08-20" class="px-2.5 py-1.5 rounded-lg border border-slate-300 text-slate-800 font-medium focus:ring-2 focus:ring-sky-500">
+                <button onclick="window.applyCustomDateFilter()" class="px-3.5 py-1.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-lg transition shadow-xs flex items-center gap-1">
+                    <span>조회 적용</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 1: Main Overview Table with Checkboxes -->
+        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-slate-100 gap-2">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                        <span>1. 신규 전기차(EV) 메인 사양 & 가격 종합 비교</span>
+                        <span class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">⬇️ 최신 발표순 자동 정렬</span>
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-0.5">발표일자가 가장 최신인 차량이 상단에 우선 배치됩니다. 체크박스를 선택/해제하여 상세 분석 카드를 비교할 수 있습니다.</p>
+                </div>
+                <div class="flex items-center space-x-2 text-xs text-slate-600 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200 self-start sm:self-auto">
+                    <span>조회 차종: <strong id="periodCount" class="text-sky-600 font-bold">0</strong>개 / 선택 비교: <strong id="selectedCount" class="text-indigo-600 font-bold">0</strong>개</span>
+                </div>
+            </div>
+
+            <!-- Responsive Table Container -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs sm:text-sm border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 border-y border-slate-200 text-slate-700 font-semibold">
+                            <th class="p-3 text-center w-10">
+                                <input type="checkbox" id="selectAllCheckbox" onchange="window.toggleSelectAll(this)" checked class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer">
+                            </th>
+                            <th class="p-3">모델명 / 브랜드</th>
+                            <th class="p-3">발표일자 🔻</th>
+                            <th class="p-3">차종 / 체급</th>
+                            <th class="p-3">출시/예상시점</th>
+                            <th class="p-3">현지 가격 / 원화 환산</th>
+                            <th class="p-3">배터리 용량 & 셀/팩 제조사</th>
+                            <th class="p-3">주행거리 / 성능</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vehicleTableBody" class="divide-y divide-slate-100 text-slate-800">
+                        <!-- Dynamic Table Rows Rendered via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 2: Detailed Vehicle Cards -->
+        <section class="mb-10">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <span>2. 차종별 배터리 시스템 & 스펙 상세 분석</span>
+                </h2>
+                <span class="text-xs text-slate-500">선택한 모델의 팩/셀 케미스트리, QC 충전성능(C-rate/SOC/시간), 제조사 상세</span>
+            </div>
+
+            <div id="detailCardsContainer" class="space-y-6">
+                <!-- Dynamic Detail Cards Rendered via JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Global EV News Modal (20 Headlines, Summaries & Direct Source Links) -->
+    <div id="newsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+        <div class="bg-white rounded-2xl max-w-4xl w-full p-6 shadow-2xl border border-slate-100 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-3 border-b border-slate-100">
+                <div>
+                    <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+                        <span>📰 글로벌 EV 최신 기사 브리핑 (오전 9시 자동 갱신)</span>
+                    </h3>
+                    <p class="text-xs text-slate-500">글로벌 전기차, 배터리, 완성차 기술 동향을 요약 정리했습니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.</p>
+                </div>
+                <button onclick="window.closeNewsModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold p-1">✕</button>
+            </div>
+
+            <div id="newsListContainer" class="py-4 space-y-3 overflow-y-auto flex-1 pr-1">
+                <!-- Dynamic 20 News Items Rendered via JS -->
+            </div>
+
+            <div class="flex justify-end pt-3 border-t border-slate-100">
+                <button onclick="window.closeNewsModal()" class="px-4 py-2 text-xs font-semibold rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50">닫기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Search Modal -->
+    <div id="searchModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+        <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-slate-100 transform transition-all">
+            <div class="flex justify-between items-center pb-3 border-b border-slate-100">
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <span>✨ AI 전기차 자유 검색</span>
+                </h3>
+                <button onclick="window.closeSearchModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold p-1">✕</button>
+            </div>
+
+            <!-- "차량정보없음" Red Notification Banner (Disappears after 3 seconds) -->
+            <div id="searchNotFoundNotice" class="hidden mt-3 p-3 bg-red-50 border border-red-200 text-red-600 rounded-xl text-xs font-bold flex items-center justify-between transition-all">
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm">⚠️</span>
+                    <span>차량정보없음 (입력하신 차종의 신차 데이터 정보가 없습니다)</span>
+                </div>
+                <span class="text-[10px] text-red-400 font-normal">3초 후 자동 닫힘</span>
+            </div>
+
+            <div class="py-4 space-y-3">
+                <p class="text-xs sm:text-sm text-slate-600">
+                    찾고자 하는 신규 전기차 모델명을 입력하세요. AI가 완성차 및 서브 브랜드를 파악하여 메인 사양 및 배터리 카드를 추가합니다. (띄어쓰기 무관)
+                </p>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">전기차 모델명</label>
+                    <input type="text" id="searchInput" placeholder="예: 享界 S9, 深蓝 S07, 埃安 RT, 岚图知音, 欧拉 07, 아이오닉 6" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500 font-medium" onkeydown="if(event.key === 'Enter') window.executeAISearch()" oninput="const e=document.getElementById('searchErrorMsg'); if(e) e.classList.add('hidden');">
+                    <!-- Red notice text right under searchInput -->
+                    <p id="searchErrorMsg" class="hidden text-xs font-bold text-red-600 mt-1.5 flex items-center gap-1">
+                        <span>⚠️</span> <span>차량정보없음</span>
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-1.5 text-xs text-slate-500">
+                    <span class="font-semibold">추천 검색:</span>
+                    <button onclick="document.getElementById('searchInput').value='享界 S9 (Huawei Stelato S9)'; window.executeAISearch();" class="hover:underline text-sky-600">Huawei Stelato S9</button>,
+                    <button onclick="document.getElementById('searchInput').value='深蓝 S07 (Changan Deepal S07)'; window.executeAISearch();" class="hover:underline text-sky-600">Changan Deepal S07</button>,
+                    <button onclick="document.getElementById('searchInput').value='埃安 RT (GAC Aion RT)'; window.executeAISearch();" class="hover:underline text-sky-600">GAC Aion RT</button>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-2 pt-3 border-t border-slate-100">
+                <button onclick="window.closeSearchModal()" class="px-4 py-2 text-xs font-semibold rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50">취소</button>
+                <button onclick="window.executeAISearch()" class="px-4 py-2 text-xs font-semibold rounded-xl bg-sky-600 text-white hover:bg-sky-700 shadow-sm flex items-center space-x-1">
+                    <span>검색 및 데이터 분석 실행</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Local Database & History Modal -->
+    <div id="dbModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+        <div class="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl border border-slate-100 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-3 border-b border-slate-100">
+                <div>
+                    <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+                        <span>💾 PC 데이터베이스 & 히스토리 관리자</span>
+                    </h3>
+                    <p class="text-xs text-slate-500">내 PC 브라우저에 매일 기록된 대시보드 스냅샷을 열람/복원/비교 및 백업합니다.</p>
+                </div>
+                <button onclick="window.closeDBModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold p-1">✕</button>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="py-4 space-y-5 overflow-y-auto flex-1">
+                <!-- Save Snapshot Button Section -->
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h4 class="font-bold text-emerald-950 text-sm">📌 현재 대시보드 상태를 PC DB에 저장하기</h4>
+                        <p class="text-xs text-emerald-700 mt-0.5">현재 화면의 모든 차종 및 배터리 스펙 데이터를 오늘 날짜의 스냅샷으로 기록합니다.</p>
+                    </div>
+                    <button onclick="window.saveCurrentSnapshot()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg shadow-sm whitespace-nowrap transition">
+                        💾 현재 상태 저장
+                    </button>
+                </div>
+
+                <!-- Saved Snapshot Records History List -->
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-2.5 flex items-center justify-between">
+                        <span>📋 저장된 일자별 리포트 히스토리</span>
+                        <span id="historyCountTag" class="text-xs font-normal text-slate-500">총 0개 기록</span>
+                    </h4>
+                    <div id="historyListContainer" class="space-y-2 max-h-56 overflow-y-auto pr-1">
+                        <!-- Dynamic History Records -->
+                    </div>
+                </div>
+
+                <!-- Backup & Restore File Controls -->
+                <div class="border-t border-slate-100 pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                        <h5 class="font-bold text-xs text-slate-800 mb-1">📥 PC 파일로 전체 DB 백업 (JSON)</h5>
+                        <p class="text-xs text-slate-500 mb-2.5">저장된 모든 날짜별 대시보드 데이터를 `.json` 파일로 저장합니다.</p>
+                        <button onclick="window.exportJSON()" class="w-full py-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg transition">
+                            JSON 백업 다운로드
+                        </button>
+                    </div>
+
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                        <h5 class="font-bold text-xs text-slate-800 mb-1">📤 JSON DB 파일 불러오기</h5>
+                        <p class="text-xs text-slate-500 mb-2.5">백업해 둔 `.json` 파일을 업로드하여 히스토리를 복원합니다.</p>
+                        <input type="file" id="importJsonInput" accept=".json" class="hidden" onchange="window.importJSON(event)">
+                        <button onclick="document.getElementById('importJsonInput').click()" class="w-full py-1.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-lg transition">
+                            파일 선택 및 복원
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex justify-end pt-3 border-t border-slate-100">
+                <button onclick="window.closeDBModal()" class="px-4 py-2 text-xs font-semibold rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50">닫기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+        // Dynamic Date Helper (Threshold: 09:00 AM Daily)
+        window.getTargetReportDate = function() {
+            const now = new Date();
+            // If current time is before 09:00 AM, baseline date is yesterday
+            if (now.getHours() < 9) {
+                now.setDate(now.getDate() - 1);
+            }
+            return now;
+        };
+
+        window.formatDateISO = function(dateObj) {
+            const y = dateObj.getFullYear();
+            const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const d = String(dateObj.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        };
+
+        window.formatDateKorean = function(dateObj) {
+            const y = dateObj.getFullYear();
+            const m = dateObj.getMonth() + 1;
+            const d = dateObj.getDate();
+            const dayStr = ['일', '월', '화', '수', '목', '금', '토'][dateObj.getDay()];
+            return `${y}년 ${m}월 ${d}일 (${dayStr})`;
+        };
+
+        window.getOffsetISO = function(baseDate, dayOffset) {
+            const d = new Date(baseDate);
+            d.setDate(d.getDate() + dayOffset);
+            return window.formatDateISO(d);
+        };
+
+        // Schedule Automatic Page Refresh at Next 09:00 AM
+        window.scheduleNineAMAutoRefresh = function() {
+            const now = new Date();
+            const nextNineAM = new Date(now);
+            nextNineAM.setHours(9, 0, 0, 0);
+
+            if (now >= nextNineAM) {
+                nextNineAM.setDate(nextNineAM.getDate() + 1);
+            }
+
+            const msToWait = nextNineAM.getTime() - now.getTime();
+            console.log(`[Auto-Refresh Engine] Next 09:00 AM refresh scheduled in ${Math.round(msToWait / 1000 / 60)} minutes.`);
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, msToWait);
+        };
+
+        // Build Dynamic Daily News List relative to 09:00 AM Report Date
+        window.generateEVNewsData = function(baseDate) {
+            const d0 = window.getOffsetISO(baseDate, 0);   // Today (e.g. 2026-08-20)
+            const d1 = window.getOffsetISO(baseDate, -1);  // Yesterday (e.g. 2026-08-19)
+            const d2 = window.getOffsetISO(baseDate, -2);  // 2 days ago (2026-08-18)
+            const d3 = window.getOffsetISO(baseDate, -3);  // 2026-08-17
+            const d4 = window.getOffsetISO(baseDate, -4);  // 2026-08-16
+            const d5 = window.getOffsetISO(baseDate, -5);  // 2026-08-15
+
+            return [
+                {
+                    id: 1,
+                    title: "BYD's Fang Cheng Bao launches Ti 7 DM-i Long-Range with 50 kWh battery",
+                    summary: "BYD 산하 방센바오(Fang Cheng Bao) 브랜드가 50kWh 대용량 LFP 배터리를 탑재하고 순수 전기 주행거리 315km(합산 1,300km+)를 구현한 Ti 7 DM 롱레인지 에디션을 공식 정식 출시했습니다.",
+                    source: "CarNewsChina",
+                    date: d0,
+                    url: "https://carnewschina.com/2026/08/20/byds-fang-cheng-bao-launches-ti-7-dm-long-range-edition-with-50-kwh-battery-and-315-km-ev-range/"
+                },
+                {
+                    id: 2,
+                    title: "Xiaomi SU7 Ultra Track Version 1,548hp Battery Cooling & Aerodynamics Disclosed",
+                    summary: "샤오미(Xiaomi)가 1,548마력 트라이모터 SU7 Ultra의 양산형 모델에 5.2C 고출력 CATL 2세대 기린(Qilin) 팩 및 액체냉각 시스템을 채택하여 서킷 연속 주행 방열 성능을 상향 조정한 테크 스펙을 발표했습니다.",
+                    source: "CNEVPost",
+                    date: d0,
+                    url: "https://cnevpost.com"
+                },
+                {
+                    id: 3,
+                    title: "Hyundai IONIQ 9 North American HMGMA Plant Mass Production Schedule Finalized",
+                    summary: "현대자동차가 E-GMP 기반 대형 3열 순전기 SUV 아이오닉 9의 북미 조지아 HMGMA 메타플랜트 양산 라인 가동 및 글로벌 공식 인도 라인업 출고 일정을 공식 결정했습니다.",
+                    source: "Electrek",
+                    date: d1,
+                    url: "https://electrek.co"
+                },
+                {
+                    id: 4,
+                    title: "Geely to produce its luxury EVs at Volvo European plants in 2028",
+                    summary: "지리자동차 회장이 유럽 관세 장벽 극복 및 시장 확대를 위해 2028년부터 볼보의 스웨덴 및 벨기에 유럽 공장에서 프리미엄 전기차를 직접 생산할 계획을 공식 공유했습니다.",
+                    source: "CarNewsChina",
+                    date: d1,
+                    url: "https://carnewschina.com/2026/08/17/geely-to-produce-its-luxury-cars-at-volvo-european-plants-in-2028-new-chairman-shared/"
+                },
+                {
+                    id: 5,
+                    title: "Freelander 8 SUV seen in UAE ahead of global launch",
+                    summary: "재규어 랜드로버와 체리자동차(Chery)의 전동화 합작 브랜드 프리랜더(Freelander) 8 전기 SUV가 중동 도로 테스트 중 포착되어 해외 출시 준비 단계에 착수했습니다.",
+                    source: "CarNewsChina",
+                    date: d2,
+                    url: "https://carnewschina.com/2026/08/18/freelander-8-suv-was-seen-in-the-uae-ahead-of-the-global-launch/"
+                },
+                {
+                    id: 6,
+                    title: "2027 Toyota bZ Crossover now on sale starting at $34,980 in US",
+                    summary: "토요타의 차세대 순전기 크로스오버 2027 bZ 모델이 북미 시장에 $34,980 파격적인 기본 가격으로 정식 판매를 시작했습니다.",
+                    source: "Electrek",
+                    date: d2,
+                    url: "https://electrek.co/2026/08/18/2027-toyota-bz-on-sale-price-specs/"
+                },
+                {
+                    id: 7,
+                    title: "GM offers free charging to Latin American Chevy EV customers",
+                    summary: "제너럴모터스(GM)가 남미 시장에서 쉐보레 순전기차 구매 고객들을 대상으로 딜러 네트워크 내 무료 충전 서비스를 확장 운영합니다.",
+                    source: "Electrek",
+                    date: d3,
+                    url: "https://electrek.co/2026/08/17/gm-free-charging-latin-america-chevy-ev/"
+                },
+                {
+                    id: 8,
+                    title: "smart #5 Premium adds AWD version and 400kW DC fast charging",
+                    summary: "스마트(smart)의 플래그십 순전기 SUV 스마트 #5 프리미엄 트림에 듀얼모터 AWD 및 400kW 초고속 급속 충전 시스템이 새롭게 합류했습니다.",
+                    source: "EVSpecifications",
+                    date: d4,
+                    url: "https://www.evspecifications.com/news/"
+                },
+                {
+                    id: 9,
+                    title: "Mercedes-Benz GLA Electric arrives in Europe with MMA platform",
+                    summary: "메르세데스-벤츠가 차세대 전동화 모듈러 플랫폼 MMA 기반의 컴팩트 순전기 SUV GLA Electric 3개 트림의 사양과 가격을 유럽 공시했습니다.",
+                    source: "EVSpecifications",
+                    date: d4,
+                    url: "https://www.evspecifications.com/news/"
+                },
+                {
+                    id: 10,
+                    title: "Voyah Passion S recreates Schumacher SLS AMG tunnel loop challenge",
+                    summary: "동풍자동차 보야(Voyah)의 패션 S 전기 세단이 순전기 구동력만으로 터널 360도 주행 루프 미션을 시연해 주행 안정성을 과시했습니다.",
+                    source: "CarNewsChina",
+                    date: d5,
+                    url: "https://carnewschina.com"
+                },
+                {
+                    id: 11,
+                    title: "China sets new accuracy rules for EV battery health reading with 5% error limit",
+                    summary: "중국 공신부(MIIT)가 중고 전기차 거래 및 점검 표준화를 위해 BMS 배터리 잔존 수명(SOH) 측정 오차 범위를 5% 이내로 엄격 규제하는 규칙을 시행했습니다.",
+                    source: "CarNewsChina",
+                    date: d5,
+                    url: "https://carnewschina.com"
+                },
+                {
+                    id: 12,
+                    title: "享界 G9 顶帐版帐篷内部什么样？官方预告 能越野/能露营让人心动",
+                    summary: "화웨이 HIMA-BAIC 합작 브랜드 스텔라토(享界)가 파노라믹 루프 및 더블 텐트 캠핑 구조를 갖춘 G9 럭셔리 EV SUV 특화 트림을 선보였습니다.",
+                    source: "Autohome",
+                    date: d5,
+                    url: "https://ev.autohome.com.cn"
+                },
+                {
+                    id: 13,
+                    title: "CATL Shenxing 5C LFP Battery Powering Zeekr 7X Achieves 10.5 Min Charge",
+                    summary: "CATL의 초고속 5.5C LFP 신싱 셀을 탑재한 지커(Zeekr) 7X가 SOC 10%에서 80%까지 단 10분 30초 만에 충전을 완료했습니다.",
+                    source: "Gasgoo Auto",
+                    date: d5,
+                    url: "https://autonews.gasgoo.com"
+                },
+                {
+                    id: 14,
+                    title: "BMW Gen6 Cylindrical Cell CTC Pack Production Line Active in Dingolfing",
+                    summary: "BMW 그룹이 노이에 클라세(Neue Klasse) 시리즈에 적용되는 6세대 46mm 원통형 CTC 배터리 팩 정밀 생산 라인을 가동했습니다.",
+                    source: "EVKX Knowledge",
+                    date: d5,
+                    url: "https://evkx.net"
+                },
+                {
+                    id: 15,
+                    title: "Nio Onvo L60 900V Battery Swap Station Network Surpasses 3,000 Outlets",
+                    summary: "니오(Nio)의 락도(Onvo) L60 전용 900V 초고속 3분 자동 배터리 스왑 교환소 구축 수량이 중국 전역 3,000개소를 돌파했습니다.",
+                    source: "CNEVPost",
+                    date: d5,
+                    url: "https://cnevpost.com"
+                },
+                {
+                    id: 16,
+                    title: "SAIC IM L6 Solid-State Battery Model Completes 1,000km Real-Road Test",
+                    summary: "상하이자동차 지지(IM) L6가 청타오 에너제틱 133kWh 반고체 배터리를 탑재하고 실도로 1,000km 무충전 주행을 완료했습니다.",
+                    source: "Dongchedi",
+                    date: d5,
+                    url: "https://www.dongchedi.com"
+                },
+                {
+                    id: 17,
+                    title: "Changan Avatr 12 Updated with Huawei ADS 3.0 & CATL 800V Qilin Battery",
+                    summary: "장안자동차 아바타(Avatr) 12 연식변경 모델이 화웨이 첸쿤 ADS 3.0 및 CATL 800V Qilin 배터리로 상품성을 강화했습니다.",
+                    source: "Yiche (BitAuto)",
+                    date: d5,
+                    url: "https://www.yiche.com"
+                },
+                {
+                    id: 18,
+                    title: "Chery Exlantix ET Demonstrates 9-Min Extreme Fast Charging at -20°C",
+                    summary: "체리자동차 엑스란티스(Exlantix) ET가 영하 20도 극저온 조건에서 CATL 신싱 LFP 셀 기반 9분 급속 충전을 성공적으로 정밀 시연했습니다.",
+                    source: "CarNewsChina",
+                    date: d5,
+                    url: "https://carnewschina.com"
+                },
+                {
+                    id: 19,
+                    title: "Yutong YTEA Electric Bus Architecture Guarantees 1.5M Km Battery Durability",
+                    summary: "우퉁(Yutong) 버스가 CATL 상용 셀 기반 YTEA 전동화 플랫폼을 적용해 15년 150만km 내구성 보증을 발표했습니다.",
+                    source: "Gasgoo Commercials",
+                    date: d5,
+                    url: "https://autonews.gasgoo.com"
+                },
+                {
+                    id: 20,
+                    title: "Tesla Model Y Juniper Refresh NVH & Suspension Enhancements Production Underway",
+                    summary: "테슬라 모델 Y 주니퍼(Juniper) 페이스리프트 모델이 서스펜션 정숙성과 실내 NVH 차음재 강화를 거쳐 정식 출고를 시작했습니다.",
+                    source: "Electrek",
+                    date: d5,
+                    url: "https://electrek.co"
+                }
+            ];
+        };
+
+        // Comprehensive Known EV Brand / Model Keyword Database for Intelligent Search Matching
+        const knownEVKeywords = [
+            '아이오닉', 'ioniq', '아이오닉5', '아이오닉6', '아이오닉9', 'ev3', 'ev4', 'ev5', 'ev6', 'ev9', '캐스퍼', 'casper', 'gv60', 'gv70',
+            '테슬라', 'tesla', 'modely', 'model3', 'models', 'modelx', 'cybertruck', '주니퍼', 'juniper',
+            '홍치', 'hongqi', '천공', 'tiangong', 'eh7', 'faw',
+            '비야디', 'byd', '한', 'han', '원up', 'yuanup', '돌고래', 'dolphin', '물개', 'seal', '덴자', 'denza', 'z9', 'z9gt', 'd9', '양왕', 'yangwang', 'u8', 'u9', '방정표', 'fangchengbao', 'ti7',
+            '지리', 'geely', '지커', 'zeekr', '001', '7x', '은하', 'galaxy', 'e8', '링크', 'lynk', 'z10', '지오메트리', 'geome', '성원', 'xingyuan',
+            '우퉁', 'yutong', 'e12', 't5',
+            '샤오미', 'xiaomi', 'su7', 'su7ultra', 'yu7',
+            '샤오펑', 'xpeng', 'g9', 'g9l', 'g6', 'p7', 'p7i', 'mona',
+            '장안', 'changan', '아바타', 'avatr', 'avatr12', 'avatr11', '딥알', 'deepal', 's07', 'l07', '기원', 'qiyuan', 'nevo',
+            '상하이', 'saic', '지지', 'im', 'l6', 'ls6', 'ls7', 'mg', 'mg4', '라이징', 'rising',
+            '체리', 'chery', '엑시드', 'exeed', '엑스란티스', 'exlantix', 'et', 'es', 'icar', '풍운', 'fulwin',
+            '광저우', 'gac', '아이온', 'aion', 'aionrt', 'rt', '하이퍼', 'hyper', 'hyptec',
+            '동풍', 'dongfeng', '보야', 'voyah', '지음', 'zhiyin', 'courage', '맹사', 'mhero', '에파이', 'epi',
+            '장성', 'gwm', '오라', 'ora', 'ora07', 'tank', '탱크', '웨이', 'wey',
+            '니오', 'nio', 'et5', 'et7', 'es6', 'es8', '락도', 'onvo', 'l60', '반딧불이', 'firefly',
+            '화웨이', 'huawei', 'hima', '아이토', 'aito', 'm5', 'm7', 'm9', '지계', 'luxeed', '향계', 'stelato', 's9', '존계', 'maextro',
+            '제로런', 'leapmotor', 'c10', 'c11', 'c16', '리상', 'liauto', 'l6', 'l7', 'l8', 'l9', 'mega',
+            '벤츠', 'mercedes', 'benz', 'gla', 'eqe', 'eqs', 'bmw', 'i3', 'i4', 'i5', 'i7', 'ix', 'ix5',
+            '폭스바겐', 'volkswagen', 'vw', 'id3', 'id4', 'id7', 'polo', '포르쉐', 'porsche', '타이칸', 'taycan', '마칸', 'macan',
+            '아우디', 'audi', 'q4', 'q6', 'etron', '볼보', 'volvo', 'ex30', 'ex90'
+        ];
+
+        // Dynamic Primary Vehicles Dataset Setup
+        window.getInitialVehiclesData = function(baseReportDate) {
+            const d0 = window.getOffsetISO(baseReportDate, 0);   // Today (e.g. 2026-08-20)
+            const d1 = window.getOffsetISO(baseReportDate, -1);  // Yesterday (2026-08-19)
+            const d2 = window.getOffsetISO(baseReportDate, -2);  // 2 days ago (2026-08-18)
+
+            return [
+                // --- 2026-08-20 & Latest Launches ---
+                {
+                    id: 'byd_ti7_dm',
+                    selected: true,
+                    releaseDate: d0,
+                    name: '方程豹 钛7 DM-i (BYD Fang Cheng Bao Ti 7)',
+                    brand: 'BYD (비야디 / 方程豹 Fangchengbao)',
+                    type: '중대형 오프로드 SUV',
+                    timeline: '2026년 08월 출시',
+                    priceLocal: '¥239,800 RMB',
+                    priceKRW: '약 4,832만 원',
+                    batterySpec: '50 kWh 2세대 Blade Battery (LFP)',
+                    cellMaker: 'FinDreams (BYD 자회사)',
+                    packMaker: 'FinDreams Battery (BYD 자체)',
+                    qcPerformance: '3.5C Peak (최대 180kW) | SOC 10% → 80% (약 16분)',
+                    rangePerformance: 'CLTC EV 315km / 합산 1,300km+ (DMO 오프로드 300kW)',
+                    overview: 'BYD DMO 플랫폼 기반 50kWh 대용량 LFP 블레이드 배터리를 탑재해 pure EV 모드로만 315km 주행 구현.',
+                    adMessage: 'Super Hybrid Off-road - 315km Pure Electric Long Range',
+                    dimensions: '4,890mm × 1,970mm × 1,920mm / WB: 2,800mm',
+                    powertrain: 'DMO Dual Motor AWD (합산 최고출력 300kW / 408ps, 최대토크 650Nm)',
+                    packInfo: 'CTB 오프로드 특화 고강성 알루미늄 블레이드 팩',
+                    cellInfo: '2세대 High-Safety LFP Blade Cell',
+                    chargingSafety: '하부 3중 샌드위치 스틸 아머 보호 및 수심 1m 직접 침수 안전 인증'
+                },
+                {
+                    id: 'su7_ultra_prod',
+                    selected: true,
+                    releaseDate: d1,
+                    name: 'Xiaomi SU7 Ultra Track Production (샤오미 SU7 울트라)',
+                    brand: 'Xiaomi (샤오미)',
+                    type: '고성능 럭셔리 스포츠 세단',
+                    timeline: '2026년 08월 출시',
+                    priceLocal: '¥814,900 RMB',
+                    priceKRW: '약 1억 6,420만 원',
+                    batterySpec: '89.7 kWh CATL Qilin 2.0 (Qilin CTP 3.0)',
+                    cellMaker: 'CATL (닝더시대)',
+                    packMaker: 'Xiaomi & CATL Co-Development',
+                    qcPerformance: '5.2C Peak (최대 520kW) | SOC 10% → 80% (약 11분)',
+                    rangePerformance: 'CLTC 630km / 트라이모터 1,548ps (0-100km/h 1.98초)',
+                    overview: '트리플 모터(V8s+V8s+V6s) 시스템 기반 카본 세라믹 브레이크 및 트랙 모드 방열 특화 시스템.',
+                    adMessage: 'Peak Performance Electric Supercar - Nürburgring Record Breaker',
+                    dimensions: '4,997mm × 1,963mm × 1,440mm / WB: 3,000mm',
+                    powertrain: 'Tri-Motor AWD (합산 최고출력 1,138kW / 1,548ps, 최대토크 1,770Nm)',
+                    packInfo: 'Qilin 2.0 CTP 모듈리스 하이디스차지 트랙 전용 팩',
+                    cellInfo: 'CATL Ultra-High Discharge Rate 각형 셀',
+                    chargingSafety: 'Dual-side Active Liquid Cooling 및 셀 직결형 상변화 단열재'
+                },
+                {
+                    id: 'g9l',
+                    selected: true,
+                    releaseDate: d2,
+                    name: '小鹏 G9L (Xpeng G9L)',
+                    brand: 'Xpeng (샤오펑)',
+                    type: '대형 5인승 SUV',
+                    timeline: '2026년 08월 출시예정',
+                    priceLocal: '¥300,000 RMB',
+                    priceKRW: '약 6,045만 원',
+                    batterySpec: '800V Ultra-Fast LFP/NCM (98 kWh)',
+                    cellMaker: 'CATL (닝더시대) / EVE Energy',
+                    packMaker: 'Xpeng (샤오펑 자체 패키징)',
+                    qcPerformance: '5.0C Peak (최대 480kW) | SOC 10% → 80% (약 12분)',
+                    rangePerformance: 'CLTC 700km+ (9분 충전시 450km) / 800V SiC 듀얼모터',
+                    overview: '플래그십 대형 5인승 SUV 구조로 실내 AI 맞춤형 액티브 모션 시트(AI-Contour Seats) 탑재.',
+                    adMessage: '대五座之王 (대형 5인승의 왕) - 800V Ultra-Fast AI Mobility',
+                    dimensions: '4,891mm × 1,937mm × 1,680mm / WB: 2,998mm',
+                    powertrain: 'AWD 듀얼모터 (합산 최고출력 405kW / 551ps, 최대토크 717Nm)',
+                    packInfo: '800V SiC 고전압 플랫폼 기반 Cell-to-Pack 초고속 팩',
+                    cellInfo: 'NCM/LFP 하이브리드 고밀도 각형/파우치 셀',
+                    chargingSafety: '2세대 VLA(Vision-Language-Action) AI 자율주행 모듈 탑재 및 셀 간 에어로젤 방화 레이어 적용'
+                },
+                {
+                    id: 'gla350',
+                    selected: true,
+                    releaseDate: '2026-08-11',
+                    name: 'Mercedes-Benz GLA 350 4MATIC Electric',
+                    brand: 'Mercedes-Benz',
+                    type: '준중형 CUV/SUV',
+                    timeline: '2026년 11월 출시예정',
+                    priceLocal: '€58,500 EUR',
+                    priceKRW: '약 9,667만 원',
+                    batterySpec: '85 kWh NCMA 각형 셀',
+                    cellMaker: 'CATL / ACC (Automotive Cells Company)',
+                    packMaker: 'Mercedes-Benz (카멘츠/운터튀르크하임 공장)',
+                    qcPerformance: '2.2C Peak (최대 185kW) | SOC 10% → 80% (약 22분)',
+                    rangePerformance: 'WLTP 550km+ / 280 kW (전 80kW + 후 200kW)',
+                    overview: '벤츠 MMA 전용 전동화 모듈러 플랫폼 기반 MBUX 하이퍼스크린 디지털 인테리어 적용.',
+                    adMessage: 'A Sharper, Smarter Urban SUV Built for Everyday Life',
+                    dimensions: '4,565mm × 1,873mm × 1,604mm / WB: 2,729mm',
+                    powertrain: '4MATIC 듀얼모터 (합산 280kW / 381ps, 최대토크 515Nm)',
+                    packInfo: '85 kWh 고에너지밀도 모듈화 배터리 팩, 액체 냉각 루프 구조 밀착',
+                    cellInfo: 'NCMA High-Nickel 각형 셀',
+                    chargingSafety: 'MMA 고강성 롤케이지 구조 및 측면 충돌 배터리 변형 방지 프레임 적용'
+                },
+                {
+                    id: 'i3nk',
+                    selected: true,
+                    releaseDate: '2026-08-06',
+                    name: 'BMW i3 (Neue Klasse)',
+                    brand: 'BMW',
+                    type: '준중형 세단',
+                    timeline: '2026년 08월 출시',
+                    priceLocal: '$55,000 USD',
+                    priceKRW: '약 7,936만 원',
+                    batterySpec: '109 kWh 6세대 원통형 CTC',
+                    cellMaker: 'CATL / EVE Energy / 삼성SDI',
+                    packMaker: 'BMW Group (파스도르프/딩골핑 팩 생산 거점)',
+                    qcPerformance: '3.7C Peak (최대 400kW) | SOC 10% → 80% (약 15분)',
+                    rangePerformance: 'WLTP 약 700km / 340 kW (50 xDrive 듀얼모터)',
+                    overview: '800V 고전압 시스템과 6세대(Gen 6) 46mm 원통형 셀 기반 Cell-to-Chassis 차체 통합 기술.',
+                    adMessage: 'Accelerating into the Next Electric Era - Neue Klasse',
+                    dimensions: '4,760mm × 1,850mm × 1,480mm / WB: 2,895mm',
+                    powertrain: '50 xDrive (후륜 240kW + 전륜 123kW 합산 340kW / 463ps)',
+                    packInfo: 'Cell-to-Chassis (CTC) 모듈리스 차체 통합 팩 (강성 30% 증가, 원가 10% 절감)',
+                    cellInfo: 'Gen 6 46mm 원통형 셀 (에너지 밀도 20% 상승)',
+                    chargingSafety: '400kW 초고속 급속 충전 대응 독립형 다채널 액체 냉각 유로 적용'
+                },
+                {
+                    id: 'polo_gti',
+                    selected: true,
+                    releaseDate: '2026-07-28',
+                    name: 'VW ID. Polo GTI',
+                    brand: 'Volkswagen',
+                    type: '컴팩트 해치백',
+                    timeline: '2026년 11월 출시예정',
+                    priceLocal: '€32,500 EUR',
+                    priceKRW: '약 5,370만 원',
+                    batterySpec: '52 kWh Cell-to-Pack LFP',
+                    cellMaker: 'Gotion High-Tech (고션하이텍) / PowerCo',
+                    packMaker: 'Volkswagen Group (스페인 마르토렐 팩 공장)',
+                    qcPerformance: '2.4C Peak (최대 125kW) | SOC 10% → 80% (약 25분)',
+                    rangePerformance: 'WLTP 400km+ / 166 kW (FF 전륜구동)',
+                    overview: 'MEB Entry 전륜구동 플랫폼 기반 GTI 상징을 담은 정통 도심형 핫해치 순전기차.',
+                    adMessage: 'GTI Electric Formula - Instant Torque & Pure Driving Fun',
+                    dimensions: '4,096mm × 1,816mm × 1,513mm / WB: 2,600mm',
+                    powertrain: 'Single Motor FF (최고출력 166kW / 226ps, 최대토크 290Nm)',
+                    packInfo: '52 kWh CTP(Cell-to-Pack) LFP 배터리 팩',
+                    cellInfo: '고밀도 LFP (리튬인산철) 셀',
+                    chargingSafety: '하부 스틸 임팩트 바 및 BMS 실시간 온도 모니터링 적용'
+                },
+                {
+                    id: 'ix5',
+                    selected: true,
+                    releaseDate: '2026-06-15',
+                    name: 'BMW iX5 60 xDrive',
+                    brand: 'BMW',
+                    type: '준대형 SUV',
+                    timeline: '2026년 12월 출시예정',
+                    priceLocal: '$88,000 USD',
+                    priceKRW: '약 1억 2,698만 원',
+                    batterySpec: '141 kWh 대용량 원통형 팩',
+                    cellMaker: 'CATL / EVE Energy',
+                    packMaker: 'BMW Group (파스도르프 팩 메인 라인)',
+                    qcPerformance: '2.8C Peak (최대 400kW) | SOC 10% → 80% (약 18분)',
+                    rangePerformance: 'WLTP 700km+ / 425 kW (전 183kW + 후 242kW)',
+                    overview: '차세대 노이에 클라세 원통형 셀 기반 대용량 배터리가 하부에 통합된 플래그십 SUV.',
+                    adMessage: 'The Widest Possible Range of Drive Systems - BMW iX5',
+                    dimensions: '4,994mm × 2,000mm × 1,748mm / WB: 2,975mm',
+                    powertrain: 'Dual Motor xDrive (합산 425kW / 578ps, 최대토크 805Nm)',
+                    packInfo: '141 kWh 대용량 모듈리스 Cell-to-Chassis 팩',
+                    cellInfo: 'BMW Gen 6 High-Voltage Cylindrical Cell',
+                    chargingSafety: '대형 패키징 충돌 에너지 분산 구조 및 차세대 능동 제어 BMS'
+                },
+                {
+                    id: 'changan_avatr12',
+                    selected: true,
+                    releaseDate: '2025-12-10',
+                    name: '阿维塔 12 EV (Changan Avatr 12)',
+                    brand: 'Changan (장안 / 阿维塔)',
+                    type: '준대형 럭셔리 Gran Coupe',
+                    timeline: '2025년 12월 출시',
+                    priceLocal: '¥265,800 RMB',
+                    priceKRW: '약 5,355만 원',
+                    batterySpec: '800V SiC 94.5 kWh Qilin NCM 팩',
+                    cellMaker: 'CATL (닝더시대)',
+                    packMaker: 'Changan & CATL Joint Battery',
+                    qcPerformance: '4.0C Peak (최대 240kW) | SOC 10% → 80% (약 15분)',
+                    rangePerformance: 'CLTC 755km / AWD 듀얼모터 (425kW)',
+                    overview: '장안-화웨이-CATL(CHN 플랫폼) 합작으로 탄생한 800V 세단. 리어 윈도우리스 디자인 및 화웨이 ADS 3.0 탑재.',
+                    adMessage: 'Future-Tech Gran Coupe - Smart Driving Perfection',
+                    dimensions: '5,020mm × 1,999mm × 1,460mm / WB: 3,020mm',
+                    powertrain: 'AWD Dual Motor (합산 최고출력 425kW / 578ps, 최대토크 650Nm)',
+                    packInfo: 'CHN 800V 하이슬림 스마트 배터리 팩',
+                    cellInfo: 'CATL High-Energy NCM 삼원계 각형 셀',
+                    chargingSafety: '화재 미전이 능동 방화 셀 패키징 및 화웨이 모터 동시 열모니터링'
+                },
+                {
+                    id: 'ioniq9',
+                    selected: true,
+                    releaseDate: '2025-11-20',
+                    name: '현대 아이오닉 9 (Hyundai IONIQ 9)',
+                    brand: '현대자동차',
+                    type: '대형 3열 플래그십 SUV',
+                    timeline: '2025년 11월 출시',
+                    priceLocal: '₩78,000,000 KRW',
+                    priceKRW: '약 7,800만 원부터',
+                    batterySpec: '110.3 kWh NCM 811 삼원계 팩',
+                    cellMaker: 'SK 온 (SK On) / LG 에너지솔루션',
+                    packMaker: '현대모비스 (Hyundai Mobis)',
+                    qcPerformance: '3.2C Peak (최대 350kW) | SOC 10% → 80% (약 18분)',
+                    rangePerformance: 'EPA 500km+ / WLTP 620km (AWD 듀얼모터)',
+                    overview: 'E-GMP 기반 플래그십 3열 대형 SUV로 공기저항계수 0.259Cd 구현 및 Swivel 시트 탑재.',
+                    adMessage: 'Built to Belong - 3열 공간 전동화 라이프스타일의 완성',
+                    dimensions: '5,060mm × 1,980mm × 1,790mm / WB: 3,130mm',
+                    powertrain: 'AWD Dual Motor (합산 최고출력 315kW / 428ps, 최대토크 700Nm)',
+                    packInfo: 'E-GMP 3세대 고강성 알루미늄 압출재 케이스 팩',
+                    cellInfo: 'High-Nickel NCM 811 대용량 파우치 셀',
+                    chargingSafety: 'BMS 내 화재 감지 알고리즘 및 유로 억제 다채널 차화 플레이트 적용'
+                },
+                {
+                    id: 'faw_tiangong08',
+                    selected: true,
+                    releaseDate: '2025-11-15',
+                    name: '红旗 天工08 (FAW Hongqi Tiangong 08)',
+                    brand: 'FAW (중국일汽 / 红旗)',
+                    type: '중대형 럭셔리 SUV',
+                    timeline: '2025년 11월 출시',
+                    priceLocal: '¥239,800 RMB',
+                    priceKRW: '약 4,832만 원',
+                    batterySpec: '800V SiC Ultra-Fast NCM (111 kWh)',
+                    cellMaker: 'CATL (닝더시대) / FAW Co-development',
+                    packMaker: 'FAW Group (红旗自研 팩)',
+                    qcPerformance: '4.0C Peak (최대 280kW) | SOC 10% → 80% (약 14분)',
+                    rangePerformance: 'CLTC 730km / 800V SiC 듀얼모터 (340kW)',
+                    overview: 'FAW의 차세대 천공(Tiangong) 순전기 플랫폼 기반 10채널 스마트 에어서스펜션 및 AI 지능형 드라이빙 적용.',
+                    adMessage: '天工开物 智领未来 - FAW Flagship 800V Luxury Electric SUV',
+                    dimensions: '4,925mm × 1,950mm × 1,680mm / WB: 3,000mm',
+                    powertrain: 'AWD Dual Motor (합산 최고출력 340kW / 462ps, 최대토크 670Nm)',
+                    packInfo: 'FAW 800V SiC 고강성 일체형 알루미늄 셀-투-팩 구조',
+                    cellInfo: 'High-Energy Density 삼원계 NCM 각형 셀',
+                    chargingSafety: 'FAW 3중 전열 차단 세라믹 코팅 및 24시간 실시간 능동형 BMS'
+                },
+                {
+                    id: 'gac_aion_rt',
+                    selected: true,
+                    releaseDate: '2025-11-06',
+                    name: '广汽埃安 RT (GAC Aion RT)',
+                    brand: 'GAC (광저우자동차 / 埃安 Aion)',
+                    type: '중형 럭셔리 패스트백 세단',
+                    timeline: '2025년 11월 출시',
+                    priceLocal: '¥119,800 RMB',
+                    priceKRW: '약 2,414만 원',
+                    batterySpec: '68.1 kWh CATL Shenxing 4C LFP 팩',
+                    cellMaker: 'CATL (닝더시대)',
+                    packMaker: 'GAC Aion Battery Division',
+                    qcPerformance: '3.0C Peak (최대 160kW) | SOC 30% → 80% (약 18분)',
+                    rangePerformance: 'CLTC 650km / 126kW 엠비언트 루프 스티어링',
+                    overview: '광저우 AKE 전동화 400V 3.0 플랫폼 기반 라이다(LiDAR) 탑재 고효율 도심형 럭셔리 세단.',
+                    adMessage: '迅猛进化 - Aion RT LiDAR Smart Urban Mobility',
+                    dimensions: '4,865mm × 1,875mm × 1,520mm / WB: 2,775mm',
+                    powertrain: 'Single Motor FF (최고출력 165kW / 224ps, 최대토크 240Nm)',
+                    packInfo: 'Aion 탄창(Magazine) 배터리 3.0 고안전 CTP 팩',
+                    cellInfo: 'CATL Shenxing 고에너지밀도 LFP 셀',
+                    chargingSafety: '탄창 3.0 셀 간 초저열전이 차열 시트 및 침수 자동 차단 스위치'
+                },
+                {
+                    id: 'yutong_e12',
+                    selected: true,
+                    releaseDate: '2025-10-18',
+                    name: '宇通 E12 YTEA (Yutong E12 High-Tech Bus)',
+                    brand: 'Yutong Bus (宇通客车)',
+                    type: '대형 시내/광역 전기버스 (12m)',
+                    timeline: '2025년 10월 출시',
+                    priceLocal: '¥1,150,000 RMB',
+                    priceKRW: '약 2억 3,172만 원',
+                    batterySpec: '528 kWh Heavy-Duty LFP (YTEA System)',
+                    cellMaker: 'CATL Commercial Cell Line',
+                    packMaker: 'Yutong YTEA (宇通YTEA 자회사 독자 팩)',
+                    qcPerformance: '2.0C Dual-Gun Peak (최대 250kW) | SOC 20% → 80% (약 40분)',
+                    rangePerformance: '운행거리 550km+ (에어컨 가동 조건) / 고효율 모터',
+                    overview: 'Yutong YTEA(Yutong Electric Architecture) 15년 150만km 내구성 보증 상용차 플랫폼.',
+                    adMessage: '15 Years 1.5 Million Km Warranty - Yutong Commercial EV Benchmark',
+                    dimensions: '12,000mm × 2,550mm × 3,300mm / WB: 5,900mm',
+                    powertrain: 'Heavy Duty Single Motor (최고출력 350kW / 476ps, 최대토크 3,200Nm)',
+                    packInfo: 'YTEA 초고강성 IP68+IP69 방수 모듈러 상용차 배터리 팩',
+                    cellInfo: 'Commercial Grade Ultra-Long-Cycle LFP Cell',
+                    chargingSafety: '24시간 수중 침수 안전 유지 및 질소 기체 차화 시스템 상시 장착'
+                },
+                {
+                    id: 'geely_xingyuan',
+                    selected: true,
+                    releaseDate: '2025-10-09',
+                    name: '吉利星愿 (Geely Xingyuan / Geome)',
+                    brand: 'Geely (지리 / 几何 Geome)',
+                    type: '컴팩트 도심형 해치백',
+                    timeline: '2025년 10월 출시',
+                    priceLocal: '¥69,800 RMB',
+                    priceKRW: '약 1,406만 원',
+                    batterySpec: '30.1 kWh / 40.1 kWh Shendun Short Blade LFP',
+                    cellMaker: 'Gotion High-tech / CATL / Geely Power',
+                    packMaker: 'Geely Shendun (지리 신쉴드 팩)',
+                    qcPerformance: '2.0C Peak (최대 70kW) | SOC 30% → 80% (약 21분)',
+                    rangePerformance: 'CLTC 310km ~ 410km / Meizu Flyme Auto 스마트 콕핏',
+                    overview: '지리자동차의 차세대 신쉴드 단刀(Short Blade) LFP 배터리 및 Meizu Flyme Auto OS 탑재 대표 베스트셀러 EV.',
+                    adMessage: '好看 好开 好聪明 - Geely Xingyuan Urban Smart EV Benchmark',
+                    dimensions: '4,135mm × 1,805mm × 1,570mm / WB: 2,650mm',
+                    powertrain: 'Single Motor FF (최고출력 85kW / 116ps, 최대토크 150Nm)',
+                    packInfo: '신쉴드 단刀(Short Blade) CTP 액티브 내화 팩',
+                    cellInfo: 'Geely Shendun Short Blade LFP 셀 (화염/관통 무폭발 검증)',
+                    chargingSafety: '8중 셀 격리 방화 바리어 및 지능형 액체 순환 BMS'
+                },
+                {
+                    id: 'dongfeng_voyah_courage',
+                    selected: true,
+                    releaseDate: '2025-10-13',
+                    name: '岚图知音 (Dongfeng Voyah Courage / Zhiyin)',
+                    brand: 'Dongfeng (동풍 / 岚图 Voyah)',
+                    type: '중형 럭셔리 CUV',
+                    timeline: '2025년 10월 출시',
+                    priceLocal: '¥209,900 RMB',
+                    priceKRW: '약 4,229만 원',
+                    batterySpec: '800V SiC 109 kWh Amber Battery NCM 5C',
+                    cellMaker: 'CATL (닝더시대)',
+                    packMaker: 'Dongfeng Voyah Battery Factory',
+                    qcPerformance: '5.0C Peak (최대 400kW) | SOC 20% → 80% (약 10분)',
+                    rangePerformance: 'CLTC 901km (800V 초연비 싱글모터 230kW)',
+                    overview: '동풍자동차 프리미엄 브랜드 岚图의 800V SiC 플랫폼 CUV로 901km CLTC 항속거리 및 5C 급속충전 선도.',
+                    adMessage: 'Voyah Courage 901km - Longest Range 800V CUV in Class',
+                    dimensions: '4,725mm × 1,900mm × 1,636mm / WB: 2,900mm',
+                    powertrain: 'RWD Single Motor (최고출력 230kW / 313ps, 최대토크 395Nm)',
+                    packInfo: 'Amber 2.0 800V SiC 고강성 초슬림 팩',
+                    cellInfo: 'CATL 5C High-Energy NCM 삼원계 각형 셀',
+                    chargingSafety: '셀 간 내화 직결 파티션 및 360도 알루미늄 보호 프레임'
+                },
+                {
+                    id: 'nio_onvo_l60',
+                    selected: true,
+                    releaseDate: '2025-09-25',
+                    name: '乐道 L60 (Nio Onvo L60)',
+                    brand: 'Nio (니오 / 乐道 Onvo)',
+                    type: '중형 럭셔리 CUV',
+                    timeline: '2025년 09월 출시',
+                    priceLocal: '¥206,900 RMB (BaaS: ¥149,900)',
+                    priceKRW: '약 4,169만 원 (BaaS 적용 시 3,020만 원)',
+                    batterySpec: '60 kWh / 85 kWh 900V Battery Swapable',
+                    cellMaker: 'FinDreams (BYD) / CALB (중创新航)',
+                    packMaker: 'Nio Onvo Power Factory',
+                    qcPerformance: '3.0C Peak (최대 200kW) & 3분 배터리 스왑(Battery Swap)',
+                    rangePerformance: 'CLTC 555km ~ 730km / 초효율 12.1kWh/100km 전비',
+                    overview: 'Nio의 대중화 서브브랜드 락도(Onvo)의 첫 모델로 900V 고전압 SiC 플랫폼 및 3분 배터리 교환 지원.',
+                    adMessage: 'Growing Up Together - Family Favorite 900V Smart CUV',
+                    dimensions: '4,828mm × 1,930mm × 1,616mm / WB: 2,950mm',
+                    powertrain: 'RWD Single Motor (최고출력 240kW / 326ps, 최대토크 305Nm)',
+                    packInfo: '900V 차세대 울트라 슬림 배터리 스왑(Battery Swap) 전용 팩',
+                    cellInfo: 'LFP / High-Energy NCM 하이브리드 셀',
+                    chargingSafety: '3분 교환 스테이션 자동 정밀 진단 및 24/7 실시간 셀 임피던스 모니터링'
+                },
+                {
+                    id: 'denza_z9gt',
+                    selected: true,
+                    releaseDate: '2025-09-20',
+                    name: '腾势 Z9 GT EV (BYD Denza Z9 GT)',
+                    brand: 'BYD (비야디 / 腾势 Denza)',
+                    type: '럭셔리 슈팅브레이크 (Grand Tourer)',
+                    timeline: '2025년 09월 출시',
+                    priceLocal: '¥354,800 RMB',
+                    priceKRW: '약 7,149만 원',
+                    batterySpec: '100.1 kWh 2세대 Blade Battery (LFP)',
+                    cellMaker: 'FinDreams (BYD 자회사)',
+                    packMaker: 'FinDreams Battery (BYD 자체)',
+                    qcPerformance: '3.5C Peak (최대 270kW) | SOC 10% → 80% (약 15분)',
+                    rangePerformance: 'CLTC 630km / e3 트라이모터 (합산 710kW / 965ps)',
+                    overview: 'BYD e3 이삼방(易三方) 트라이모터 독립 제어 기술 및 독자 후륜 조향(±10도) 시스템 탑재.',
+                    adMessage: '优雅与 暴力的结合 - Tri-Motor Tech Benchmark Shooting Brake',
+                    dimensions: '5,180mm × 1,990mm × 1,500mm / WB: 3,125mm',
+                    powertrain: 'Tri-Motor e3 AWD (전륜 230kW + 후륜 240kW + 후륜 240kW, 965ps)',
+                    packInfo: 'Cell-to-Body (CTB) 차체 구조 일체형 팩 (강성 32% 상승)',
+                    cellInfo: '2세대 롱 스트립 초고밀도 LFP 블레이드 셀',
+                    chargingSafety: 'CTB 직접 침수 및 못 관통 완벽 통과 능동 안전 BMS'
+                },
+                {
+                    id: 'zeekr_7x',
+                    selected: true,
+                    releaseDate: '2025-09-20',
+                    name: 'Zeekr 7X (지커 7X)',
+                    brand: 'Geely (지리 / 极氪 Zeekr)',
+                    type: '중형 럭셔리 SUV',
+                    timeline: '2025년 09월 출시',
+                    priceLocal: '¥229,900 RMB',
+                    priceKRW: '약 4,632만 원',
+                    batterySpec: '75 kWh Golden Battery (LFP 5.5C) / 100 kWh Qilin (NCM)',
+                    cellMaker: 'Zeekr FinDreams / CATL',
+                    packMaker: 'Zeekr Power Factory',
+                    qcPerformance: '5.5C Peak (최대 500kW) | SOC 10% → 80% (약 10.5분)',
+                    rangePerformance: 'CLTC 605km ~ 780km / 800V SiC (후륜 310kW)',
+                    overview: '세계에서 가장 빠른 충전 속도(10.5분)를 기록한 800V LFP 골든 배터리 탑재 SUV.',
+                    adMessage: 'The Ultimate Pure Electric Family SUV - Zeekr 7X',
+                    dimensions: '4,825mm × 1,930mm × 1,656mm / WB: 2,925mm',
+                    powertrain: 'RWD Single Motor (최고출력 310kW / 421ps, 최대토크 440Nm)',
+                    packInfo: '800V SiC High-Voltage 골든 배터리 팩 (전압 800V 호환)',
+                    cellInfo: '5.5C Ultra-Fast LFP 각형 셀',
+                    chargingSafety: 'NP 2.0 무열전이 안전 기준 충족 및 8중 하부 충돌 격리 에어백 구조'
+                },
+                {
+                    id: 'lynk_z10',
+                    selected: true,
+                    releaseDate: '2025-09-05',
+                    name: '领克 Z10 (Geely Lynk & Co Z10)',
+                    brand: 'Geely (지리 / 领克 Lynk & Co)',
+                    type: '준대형 플래그십 쿠페 세단',
+                    timeline: '2025년 09월 출시',
+                    priceLocal: '¥202,800 RMB',
+                    priceKRW: '약 4,086만 원',
+                    batterySpec: '95 kWh Qilin NCM / 71 kWh Golden Battery LFP',
+                    cellMaker: 'CATL (닝더시대) / FinDreams',
+                    packMaker: 'Viridi E-Mobility (Vremt / Geely)',
+                    qcPerformance: '4.5C Peak (최대 400kW) | SOC 10% → 80% (약 10.5분)',
+                    rangePerformance: 'CLTC 806km (800V SiC 버전) / 듀얼모터 580kW',
+                    overview: 'SEA 플랫폼 기반 800V 고전압 SiC 인버터, Flyme Auto 가상 인터페이스 및 액티브 윙 적용.',
+                    adMessage: 'Next-Gen Performance EV Sedan - Born for Driver Choice',
+                    dimensions: '5,028mm × 1,966mm × 1,468mm / WB: 3,005mm',
+                    powertrain: 'AWD Dual Motor (최고출력 580kW / 789ps, 최대토크 810Nm)',
+                    packInfo: 'SEA 800V 고강성 차체 하부 일체형 모듈리스 팩',
+                    cellInfo: 'CATL Qilin 3.0 NCM 셀 / 5.5C Golden LFP 셀',
+                    chargingSafety: '360도 하부 프레임 크래시 빔 및 실시간 멀티채널 열배출 시스템'
+                },
+                {
+                    id: 'hima_stelato_s9',
+                    selected: true,
+                    releaseDate: '2025-08-05',
+                    name: '享界 S9 (Huawei HIMA Stelato S9)',
+                    brand: 'Huawei HIMA (화웨이 HIMA / 享界 Stelato / BAIC)',
+                    type: '대형 럭셔리 플래그십 세단',
+                    timeline: '2025년 08월 출시',
+                    priceLocal: '¥399,800 RMB',
+                    priceKRW: '약 8,055만 원',
+                    batterySpec: '100 kWh 800V SiC Huawei Giant Whale NCM',
+                    cellMaker: 'CATL (닝더시대)',
+                    packMaker: 'Huawei HIMA & BAIC Power',
+                    qcPerformance: '3.2C Peak (최대 320kW) | SOC 30% → 80% (약 15분)',
+                    rangePerformance: 'CLTC 816km / 화웨이 ADS 3.0 & 20,000rpm 모터',
+                    overview: '화웨이 HIMA(Harmony Intelligent Mobility Alliance)와 BAIC의 플래그십 800V 순전기 럭셔리 세단.',
+                    adMessage: 'Executive Luxury Reimagined - Huawei HIMA Flagship S9',
+                    dimensions: '5,160mm × 1,987mm × 1,486mm / WB: 3,050mm',
+                    powertrain: 'RWD Single / AWD Dual Motor (합산 최고출력 385kW / 523ps)',
+                    packInfo: '800V Giant Whale 2.0 초슬림 하이세이프티 팩',
+                    cellInfo: 'CATL High-Nickel 삼원계 NCM 각형 셀',
+                    chargingSafety: '화웨이 5단 셀 안전 격리 기술 및 전압 이상 0.01초 내 감지 시스템'
+                },
+                {
+                    id: 'changan_deepal_s07',
+                    selected: true,
+                    releaseDate: '2025-07-25',
+                    name: '深蓝 S07 EV (Changan Deepal S07)',
+                    brand: 'Changan (장안 / 深蓝 Deepal)',
+                    type: '중형 럭셔리 CUV',
+                    timeline: '2025년 07월 출시',
+                    priceLocal: '¥149,900 RMB',
+                    priceKRW: '약 3,020만 원',
+                    batterySpec: '79.97 kWh CATL Golden LFP 팩',
+                    cellMaker: 'CATL (닝더시대) / Deepal Power',
+                    packMaker: 'Changan Deepal Factory',
+                    qcPerformance: '3.0C Peak (최대 180kW) | SOC 30% → 80% (약 15분)',
+                    rangePerformance: 'CLTC 628km / 화웨이 Qiankun ADS SE 탑재',
+                    overview: '장안 심란(Deepal) 브랜드의 순전기 CUV로 화웨이 첸쿤(Qiankun) 자율주행 SE 패키지 및 AR-HUD 탑재.',
+                    adMessage: 'Smart Driving Popularization - Deepal S07 with Huawei Tech',
+                    dimensions: '4,750mm × 1,930mm × 1,625mm / WB: 2,900mm',
+                    powertrain: 'RWD Single Motor (최고출력 190kW / 258ps, 최대토크 320Nm)',
+                    packInfo: '골든 벨(Golden Bell) 2.0 셀-투-팩 구조',
+                    cellInfo: '고밀도 각형 LFP 셀',
+                    chargingSafety: '골든 벨 2.0 열 제어 바리어 및 침수 무단선 기술'
+                },
+                {
+                    id: 'ev3_lr',
+                    selected: true,
+                    releaseDate: '2025-07-15',
+                    name: '기아 EV3 Long Range',
+                    brand: '기아 (Kia)',
+                    type: '소형/준중형 SUV',
+                    timeline: '2025년 07월 출시',
+                    priceLocal: '₩42,080,000 KRW',
+                    priceKRW: '약 4,208만 원 (보조금 미적용)',
+                    batterySpec: '81.4 kWh Fourth-Gen NCM 팩',
+                    cellMaker: 'LG 에너지솔루션 (HL-Greenpower)',
+                    packMaker: '현대모비스 (Hyundai Mobis)',
+                    qcPerformance: '2.5C Peak (최대 128kW) | SOC 10% → 80% (약 31분)',
+                    rangePerformance: '복합 501km (한국 산업부 인증 기준) / FF 150kW',
+                    overview: '대중화 전기차 시대를 이끄는 E-GMP 기반 compact SUV로 i-Pedal 3.0 및 THIN HVAC 적용.',
+                    adMessage: 'A Movement That Inspires - 기아 EV3',
+                    dimensions: '4,300mm × 1,850mm × 1,560mm / WB: 2,680mm',
+                    powertrain: 'Single Motor FF (최고출력 150kW / 204ps, 최대토크 283Nm)',
+                    packInfo: '4세대 모듈화 배터리 팩, 에너지 밀도 22% 향상',
+                    cellInfo: '4세대 고밀도 NCM 파우치 셀',
+                    chargingSafety: '하부 고강성 스틸 프레임 및 능동형 서멀 관리 시스템'
+                },
+                {
+                    id: 'yutong_t5',
+                    selected: true,
+                    releaseDate: '2025-06-12',
+                    name: '宇通重卡 T5 (Yutong Heavy Truck T5 EV)',
+                    brand: 'Yutong Truck (宇通重工)',
+                    type: '대형 순전기 트랙터/트럭 (Commercial Heavy EV)',
+                    timeline: '2025년 06월 출시',
+                    priceLocal: '¥680,000 RMB',
+                    priceKRW: '약 1억 3,702만 원',
+                    batterySpec: '422 kWh LFP Commercial Heavy Pack',
+                    cellMaker: 'CATL Heavy Duty Division',
+                    packMaker: 'Yutong Commercial Power',
+                    qcPerformance: '2.5C Dual Gun Fast Charge | SOC 20% → 80% (약 35분)',
+                    rangePerformance: '항속거리 400km (40톤 탑재 조건)',
+                    overview: '물류 및 광산 수송용 고하중 트랙터로 C-WTV 전자 제어 브레이크 및 서멀 캐빈 적용.',
+                    adMessage: 'Efficient & Reliable Green Heavy Freight Mobility',
+                    dimensions: '7,400mm × 2,550mm × 3,500mm / WB: 3,800mm',
+                    powertrain: 'Dual Motor Heavy Drive (최고출력 400kW / 544ps, 최대토크 2,800Nm)',
+                    packInfo: '후면 구조 고강성 알루미늄 보호 프레임 상용 팩',
+                    cellInfo: '고밀도 상용 LFP 셀',
+                    chargingSafety: '충돌 시 고전압 0.05초 내 분리 센서 및 액체 순환 온도 제어'
+                },
+                {
+                    id: 'byd_han_2025',
+                    selected: true,
+                    releaseDate: '2025-05-20',
+                    name: 'BYD 2025款 汉 EV (Han EV)',
+                    brand: 'BYD (비야디)',
+                    type: '준대형 세단',
+                    timeline: '2025년 05월 출시',
+                    priceLocal: '¥179,800 RMB',
+                    priceKRW: '약 3,622만 원',
+                    batterySpec: '85.4 kWh 2세대 Blade Battery (LFP)',
+                    cellMaker: 'FinDreams (BYD 자회사)',
+                    packMaker: 'FinDreams Battery',
+                    qcPerformance: '2.5C Peak (최대 180kW) | SOC 10% → 80% (약 25분)',
+                    rangePerformance: 'CLTC 701km / Single Motor 180kW (DiSus-C 서스펜션)',
+                    overview: '라이다(LiDAR) 및 발키리 AI 주행 보조 시스템이 적용된 2025년형 베스트셀러 전기 세단.',
+                    adMessage: '王朝旗舰 汉 - 2025 Smart Evolution Edition',
+                    dimensions: '4,995mm × 1,910mm × 1,495mm / WB: 2,920mm',
+                    powertrain: 'FF Single Motor (최고출력 180kW / 245ps, 최대토크 350Nm)',
+                    packInfo: 'Cell-to-Body (CTB) 차체 통합 블레이드 배터리 팩',
+                    cellInfo: '2세대 롱 스트립 형태 LFP 블레이드 셀 (못 관통 테스트 합격)',
+                    chargingSafety: 'CTB 직접 가압 차체 강성 50% 증가 및 자가 발열 방지 펄스 충전 시스템'
+                },
+                {
+                    id: 'saic_im_l6',
+                    selected: true,
+                    releaseDate: '2025-05-13',
+                    name: '智己 L6 (SAIC IM L6)',
+                    brand: 'SAIC (상하이자동차 / 智己 IM)',
+                    type: '중형 럭셔리 스포츠 세단',
+                    timeline: '2025년 05월 출시',
+                    priceLocal: '¥219,900 RMB',
+                    priceKRW: '약 4,430만 원',
+                    batterySpec: '100 kWh Ultra-Fast 800V NCM / 133kWh 반고체',
+                    cellMaker: 'CATL / SAIC QingTao (청타오 에너제틱)',
+                    packMaker: 'SAIC Motor Power Division',
+                    qcPerformance: '4.0C Peak (최대 396kW) | SOC 10% → 80% (약 12분)',
+                    rangePerformance: 'CLTC 850km (반고체 버전 1,000km+) / 섀시 사륜조향',
+                    overview: '상하이자동차 반고체 배터리(Solid-State) 기술 적용 및 릴저드(Lizard) 디지털 섀시 사륜 조향.',
+                    adMessage: 'Tech Premium Evolution - 1000km Solid State & Lizard Chassis',
+                    dimensions: '4,931mm × 1,960mm × 1,474mm / WB: 2,950mm',
+                    powertrain: 'AWD Dual Motor (합산 최고출력 579kW / 787ps, 최대토크 800Nm)',
+                    packInfo: '800V 초고압 모듈러 고밀도 스마트 팩',
+                    cellInfo: 'High-Nickel NCM 및 반고체 전해질 하이브리드 셀',
+                    chargingSafety: '반고체 불연성 열폭주 억제 기술 및 하부 티타늄 합금 가드'
+                },
+                {
+                    id: 'chery_exlantix_et',
+                    selected: true,
+                    releaseDate: '2025-04-15',
+                    name: '星纪元 ET (Chery Exeed Exlantix ET)',
+                    brand: 'Chery (체리 / 星途 Exeed / Exlantix)',
+                    type: '중대형 럭셔리 SUV',
+                    timeline: '2025년 04월 출시',
+                    priceLocal: '¥189,800 RMB',
+                    priceKRW: '약 3,824만 원',
+                    batterySpec: '100 kWh CATL Shenxing 2.0 LFP 팩',
+                    cellMaker: 'CATL (닝더시대 - 신싱 배터리)',
+                    packMaker: 'Chery & CATL Co-Factory',
+                    qcPerformance: '4.0C Peak (최대 420kW) | SOC 20% → 80% (약 9분)',
+                    rangePerformance: 'CLTC 760km / E0X 고전압 플랫폼 (듀얼모터 413kW)',
+                    overview: '체리자동차 플래그십 E0X 전동화 플랫폼 기반 영하 20도 한대 지역 초고속 충전 기술 구현.',
+                    adMessage: 'Born for Global Luxury - Extreme Fast Charge SUV',
+                    dimensions: '4,955mm × 1,975mm × 1,698mm / WB: 3,000mm',
+                    powertrain: 'AWD Dual Motor (합산 413kW / 561ps, 최대토크 691Nm)',
+                    packInfo: 'E0X 800V 고강성 세라믹 코팅 방화 팩',
+                    cellInfo: 'CATL 4C/5C 초고속 LFP Shenxing 셀',
+                    chargingSafety: '영하 20도 극저온 BMS 자동 예열 알고리즘 및 IP68 완전 방수'
+                },
+                {
+                    id: 'gwm_ora_07',
+                    selected: true,
+                    releaseDate: '2025-04-20',
+                    name: '欧拉 07 (GWM Ora 07 / Lightning Cat)',
+                    brand: 'GWM (장성자동차 / 欧拉 Ora)',
+                    type: '중형 전기 쿠페 세단',
+                    timeline: '2025년 04월 출시',
+                    priceLocal: '¥159,800 RMB',
+                    priceKRW: '약 3,220만 원',
+                    batterySpec: '83.5 kWh SVOLT High-Energy NCM 팩',
+                    cellMaker: 'SVOLT (에스볼트 / GWM 계열)',
+                    packMaker: 'SVOLT Energy Technology',
+                    qcPerformance: '2.5C Peak (최대 135kW) | SOC 30% → 80% (약 25분)',
+                    rangePerformance: 'CLTC 705km / AWD 듀얼모터 (300kW / 408ps)',
+                    overview: '장성자동차(GWM) 에스볼트(SVOLT) 안전 팩 기술 및 차세대 레트로 패스트백 디자인 적용.',
+                    adMessage: 'Retro Futuristic Electric Coupe - Elegance in Motion',
+                    dimensions: '4,871mm × 1,862mm × 1,500mm / WB: 2,870mm',
+                    powertrain: 'AWD Dual Motor (합산 300kW / 408ps, 최대토크 680Nm)',
+                    packInfo: 'SVOLT 세이프티 차드 CTP 모듈러 팩',
+                    cellInfo: 'High-Nickel NCM 파우치/각형 셀',
+                    chargingSafety: '1,000도 고온 직화 관통 안전성 테스트 통과 및 스마트 셀 진단'
+                },
+                {
+                    id: 'q6_etron',
+                    selected: true,
+                    releaseDate: '2025-04-10',
+                    name: 'Audi Q6 e-tron quattro',
+                    brand: 'Audi (아우디)',
+                    type: '준대형 프리미엄 SUV',
+                    timeline: '2025년 04월 출시',
+                    priceLocal: '€74,700 EUR',
+                    priceKRW: '약 1억 2,344만 원',
+                    batterySpec: '100 kWh (유효 94.9 kWh) PPE 팩',
+                    cellMaker: 'CATL',
+                    packMaker: 'Audi (잉골슈타트 팩 공장)',
+                    qcPerformance: '2.7C Peak (최대 270kW) | SOC 10% → 80% (약 21분)',
+                    rangePerformance: 'WLTP 625km / 285 kW (quattro 듀얼모터)',
+                    overview: 'PPE 플랫폼 기반 차세대 디지털 OLED 테일라이트 및 11.9인치 버추얼 콕핏 인테리어.',
+                    adMessage: 'Vorsprung durch Technik - The New Benchmark in Luxury EV',
+                    dimensions: '4,771mm × 1,939mm × 1,648mm / WB: 2,899mm',
+                    powertrain: 'quattro AWD Dual Motor (합산 285kW / 387ps, 최대토크 580Nm)',
+                    packInfo: '12개 모듈 180개 셀 통합 800V PPE 고강성 팩',
+                    cellInfo: 'NCM 각형 고에너지 셀',
+                    chargingSafety: '하부 다채널 임팩트 에너지 Absorber 및 지능형 BMS Thermal Management'
+                },
+                {
+                    id: 'faw_eh7',
+                    selected: true,
+                    releaseDate: '2025-03-20',
+                    name: '红旗 EH7 (FAW Hongqi EH7)',
+                    brand: 'FAW (중국일汽 / 红旗)',
+                    type: '준대형 프리미엄 세단',
+                    timeline: '2025년 03월 출시',
+                    priceLocal: '¥229,800 RMB',
+                    priceKRW: '약 4,630만 원',
+                    batterySpec: '111 kWh 삼원계 NCM 고밀도 팩',
+                    cellMaker: 'CATL (닝더시대)',
+                    packMaker: 'FAW Group (홍치 팩 생산 라인)',
+                    qcPerformance: '3.0C Peak (최대 250kW) | SOC 10% → 80% (약 17분)',
+                    rangePerformance: 'CLTC 820km (장거리 RWD 기준)',
+                    overview: '22,500rpm 초고속 모터 적용으로 최고속도 210km/h 달성 및 AR-HUD 스티어링 통합 인터페이스.',
+                    adMessage: '旗迹新篇 - 820km Ultra Range Executive Sedan',
+                    dimensions: '4,980mm × 1,915mm × 1,490mm / WB: 3,000mm',
+                    powertrain: 'RWD Single Motor / AWD Dual Motor (최고출력 253kW / 344ps)',
+                    packInfo: '모듈화 초슬림 고밀도 배터리 팩',
+                    cellInfo: 'NCM 811 삼원계 각형 셀',
+                    chargingSafety: '셀 간 유로 격리 단열층 및 방수/방진 IP68 내구성'
+                },
+                {
+                    id: 'modely_2025',
+                    selected: true,
+                    releaseDate: '2025-03-01',
+                    name: 'Tesla Model Y 2025 (Juniper Refresh)',
+                    brand: 'Tesla (테슬라)',
+                    type: '중형 CUV/SUV',
+                    timeline: '2025년 03월 출시',
+                    priceLocal: '$46,990 USD',
+                    priceKRW: '약 6,780만 원',
+                    batterySpec: '82 kWh LG NCM 811 / 78.4 kWh CATL LFP',
+                    cellMaker: 'LG 에너지솔루션 / CATL',
+                    packMaker: 'Tesla Gigafactory',
+                    qcPerformance: '3.0C Peak (최대 250kW) | SOC 10% → 80% (약 20분)',
+                    rangePerformance: 'EPA 520km (Long Range AWD) / 엠비언트 라이트 & 통풍시트',
+                    overview: '전면 일체형 관통 라이트바 및 유압 버스 서스펜션, NVH 정숙성이 대폭 강화된 신형 주니퍼.',
+                    adMessage: 'The World\'s Best Selling Vehicle - Reimagined for Tomorrow',
+                    dimensions: '4,755mm × 1,921mm × 1,624mm / WB: 2,890mm',
+                    powertrain: 'AWD Dual Motor (합산 최고출력 298kW / 405ps, 최대토크 493Nm)',
+                    packInfo: '구조용 Structural Battery Pack 패키징',
+                    cellInfo: 'NCM 811 원통형/각형 셀 하이브리드 구성',
+                    chargingSafety: 'Pyrotechnic Battery Fuse 및 3세대 BMS 인버터 모니터링 시스템'
+                },
+                {
+                    id: 'zeekr_001_95',
+                    selected: true,
+                    releaseDate: '2025-02-27',
+                    name: '极氪 001 95kWh (Geely Zeekr 001 800V)',
+                    brand: 'Geely (지리 / 极氪 Zeekr)',
+                    type: '준대형 럭셔리 슈팅브레이크',
+                    timeline: '2025년 02월 출시',
+                    priceLocal: '¥269,000 RMB',
+                    priceKRW: '약 5,420만 원',
+                    batterySpec: '800V 95 kWh CATL Shenxing 5C LFP 팩',
+                    cellMaker: 'CATL (닝더시대 - 신싱 5C)',
+                    packMaker: 'Zeekr Power / Viridi (Vremt)',
+                    qcPerformance: '5.0C Peak (최대 420kW) | SOC 10% → 80% (약 11.5분)',
+                    rangePerformance: 'CLTC 675km / 800V SiC 듀얼모터 (580kW / 789ps)',
+                    overview: '지리의 800V SiC 고전압 플랫폼과 CATL 5C Shenxing LFP 배터리가 탑재된 11.5분 초고속 충전 슈팅브레이크.',
+                    adMessage: 'The All-New 800V Performance Shooting Brake - Zeekr 001',
+                    dimensions: '4,970mm × 1,999mm × 1,560mm / WB: 3,005mm',
+                    powertrain: 'AWD Dual Motor (최고출력 580kW / 789ps, 최대토크 810Nm)',
+                    packInfo: '800V SiC 초고속 충전 CTP 고강성 액체냉각 팩',
+                    cellInfo: 'CATL 5C Shenxing LFP 고밀도 각형 셀',
+                    chargingSafety: 'NP 2.0 세라믹 방화 단열막 및 24시간 실시간 셀 센서 감시'
+                },
+                {
+                    id: 'yangwang_u9',
+                    selected: true,
+                    releaseDate: '2025-02-25',
+                    name: '仰望 U9 (BYD Yangwang U9)',
+                    brand: 'BYD (비야디 / 仰望 Yangwang)',
+                    type: '울트라 하이퍼 순전기 슈퍼카',
+                    timeline: '2025년 02월 출시',
+                    priceLocal: '¥1,680,000 RMB',
+                    priceKRW: '약 3억 3,852만 원',
+                    batterySpec: '80 kWh High-Discharge Blade Battery',
+                    cellMaker: 'FinDreams (BYD 자회사)',
+                    packMaker: 'FinDreams Battery',
+                    qcPerformance: '5.0C Peak (최대 500kW 듀얼건 급속) | SOC 30% → 80% (약 10분)',
+                    rangePerformance: 'CLTC 450km / 쿼드모터 e4 (1,306ps / 0-100km/h 2.36초)',
+                    overview: 'BYD e4 쿼드모터 및 DiSus-X 능동 유압 서스펜션으로 제자리 회전(Tank Turn) 및 3바퀴 주행 가능.',
+                    adMessage: 'The Pinnacle of Electric Supercar Performance - e4 Architecture',
+                    dimensions: '4,966mm × 2,029mm × 1,295mm / WB: 2,900mm',
+                    powertrain: 'Quad-Motor e4 AWD (각 모터 240kW x 4 = 합산 960kW / 1,306ps)',
+                    packInfo: '트랙 특화 방열구조 일체형 초고출력 팩',
+                    cellInfo: 'High-Discharge LFP Blade Cell',
+                    chargingSafety: '듀얼 인버터 동시 모니터링 및 트랙 극한 발열 차단 서멀 관리'
+                },
+                {
+                    id: 'ex30_twin',
+                    selected: true,
+                    releaseDate: '2025-02-14',
+                    name: 'Volvo EX30 Twin Motor Performance',
+                    brand: 'Volvo (볼보)',
+                    type: '컴팩트 CUV',
+                    timeline: '2025년 02월 출시',
+                    priceLocal: '$44,900 USD',
+                    priceKRW: '약 6,478만 원',
+                    batterySpec: '69 kWh NMC 고밀도 팩',
+                    cellMaker: 'CATL / Vremt',
+                    packMaker: 'Geely Volvo Battery Factory',
+                    qcPerformance: '2.5C Peak (최대 153kW) | SOC 10% → 80% (약 26분)',
+                    rangePerformance: 'WLTP 460km / AWD 315kW (0-100km/h 3.6초)',
+                    overview: '역대 볼보 양산차 중 가장 빠른 제로백(3.6초)을 자랑하는 SEA 소형 전동화 CUV.',
+                    adMessage: 'Small Footprint, Big Performance - Volvo EX30',
+                    dimensions: '4,233mm × 1,837mm × 1,555mm / WB: 2,650mm',
+                    powertrain: 'Dual Motor AWD (최고출력 315kW / 428ps, 최대토크 543Nm)',
+                    packInfo: 'SEA-E 컴팩트 프레임 일체형 CTP 모듈러 팩',
+                    cellInfo: 'High-Nickel NMC 파우치 셀',
+                    chargingSafety: '볼보 안전 세이프티 케이지 및 배터리 센서 기반 자동 차단 안전 스위치'
+                },
+                {
+                    id: 'macan_ev',
+                    selected: true,
+                    releaseDate: '2025-01-25',
+                    name: 'Porsche Macan Electric Turbo',
+                    brand: 'Porsche (포르쉐)',
+                    type: '고성능 중형 SUV',
+                    timeline: '2025년 01월 출시',
+                    priceLocal: '$105,300 USD',
+                    priceKRW: '약 1억 5,194만 원',
+                    batterySpec: '100 kWh PPE 800V Architecture',
+                    cellMaker: 'CATL',
+                    packMaker: 'Porsche (라이프치히 팩 조립 라인)',
+                    qcPerformance: '2.7C Peak (최대 270kW) | SOC 10% → 80% (약 21분)',
+                    rangePerformance: 'WLTP 591km / AWD 듀얼모터 470kW (639ps)',
+                    overview: '포르쉐 PPE(Premium Platform Electric) 기반 첫 번째 순전기 SUV로 후륜 조향 및 PASM 탑재.',
+                    adMessage: 'The All-Electric Porsche Macan - Thrill Electricized',
+                    dimensions: '4,784mm × 1,938mm × 1,622mm / WB: 2,893mm',
+                    powertrain: 'Dual Motor AWD (최고출력 470kW / 639ps, 최대토크 1,130Nm)',
+                    packInfo: '800V PPE 모듈화 파티셔닝 뱅크 충전 지원 팩 (뱅크 스위칭 충전)',
+                    cellInfo: 'High-Nickel NCM 811 각형 셀',
+                    chargingSafety: '알루미늄 샌드위치 하부 보호 플레이트 및 독립 고전압 릴레이 패키징'
+                },
+                {
+                    id: 'galaxy_e8',
+                    selected: true,
+                    releaseDate: '2025-01-10',
+                    name: '吉利银河 E8 (Geely Galaxy E8)',
+                    brand: 'Geely (지리 / 银河 Galaxy)',
+                    type: '준대형 패스트백 세단',
+                    timeline: '2025년 01월 출시',
+                    priceLocal: '¥175,800 RMB',
+                    priceKRW: '약 3,542만 원',
+                    batterySpec: '76 kWh SEA Platform NCM / LFP',
+                    cellMaker: 'CATL / Sunwoda (선왕다)',
+                    packMaker: 'Viridi E-Mobility (Vremt)',
+                    qcPerformance: '3.5C Peak (최대 360kW) | SOC 10% → 80% (약 18분)',
+                    rangePerformance: 'CLTC 665km / 800V SiC 듀얼모터 (475kW)',
+                    overview: '45인치 8K 통합 파노라믹 디스플레이 및 공기저항계수 0.199Cd 최상급 에어로다이내믹 구현.',
+                    adMessage: '银河旗舰 智驱未来 - Air Drag 0.199Cd Smart Electric Sedan',
+                    dimensions: '5,010mm × 1,920mm × 1,465mm / WB: 2,925mm',
+                    powertrain: 'AWD Dual Motor (최고출력 475kW / 710Nm)',
+                    packInfo: '신쉴드(Shield) 배터리 안전 패키징 팩',
+                    cellInfo: '고밀도 각형 NCM/LFP 셀',
+                    chargingSafety: '해저 수심 침수 테스트 통과 및 직접 화염 노출 240초 무폭발 검증'
+                }
+            ];
+        };
+
+        let activeReportDate = window.getTargetReportDate();
+        let vehicles = window.getInitialVehiclesData(activeReportDate);
+        let evLatestNewsData = window.generateEVNewsData(activeReportDate);
+
+        let currentPeriod = 'all'; // 'all', '1w', '1m', '3m', '1y', 'custom'
+        let customStartDate = '2025-01-01';
+        let customEndDate = window.formatDateISO(activeReportDate);
+        let isUpdatedToday = true;
+        let searchNoticeTimer = null;
+        const LOCAL_STORAGE_KEY = 'ev_dashboard_history_db';
+
+        // Helper function for space-insensitive, case-insensitive string cleaning
+        window.cleanStr = function(str) {
+            return (str || '').replace(/[\s\-\_\(\)\[\]\/\.]/g, '').toLowerCase();
+        };
+
+        // Filter vehicles based on active period selection & Always Sort Newest First (Descending)
+        window.getFilteredVehicles = function() {
+            let result = vehicles;
+
+            if (currentPeriod !== 'all') {
+                const benchmarkDate = new Date(window.formatDateISO(activeReportDate) + 'T23:59:59');
+
+                result = vehicles.filter(v => {
+                    if (!v.releaseDate) return true;
+                    const release = new Date(v.releaseDate + 'T00:00:00');
+
+                    if (currentPeriod === '1w') {
+                        const diffDays = (benchmarkDate - release) / (1000 * 60 * 60 * 24);
+                        return diffDays >= 0 && diffDays <= 7;
+                    } else if (currentPeriod === '1m') {
+                        const diffDays = (benchmarkDate - release) / (1000 * 60 * 60 * 24);
+                        return diffDays >= 0 && diffDays <= 30;
+                    } else if (currentPeriod === '3m') {
+                        const diffDays = (benchmarkDate - release) / (1000 * 60 * 60 * 24);
+                        return diffDays >= 0 && diffDays <= 90;
+                    } else if (currentPeriod === '1y') {
+                        const diffDays = (benchmarkDate - release) / (1000 * 60 * 60 * 24);
+                        return diffDays >= 0 && diffDays <= 365;
+                    } else if (currentPeriod === 'custom') {
+                        if (!customStartDate || !customEndDate) return true;
+                        const start = new Date(customStartDate + 'T00:00:00');
+                        const end = new Date(customEndDate + 'T23:59:59');
+                        return release >= start && release <= end;
+                    }
+                    return true;
+                });
+            }
+
+            // MANDATORY SORTING: Newest Release Date First (Descending)
+            return result.slice().sort((a, b) => {
+                const dateA = new Date(a.releaseDate || '2000-01-01');
+                const dateB = new Date(b.releaseDate || '2000-01-01');
+                return dateB - dateA;
+            });
+        };
+
+        window.openNewsModal = function() {
+            window.renderNewsList();
+            document.getElementById('newsModal').classList.remove('hidden');
+        };
+
+        window.closeNewsModal = function() {
+            document.getElementById('newsModal').classList.add('hidden');
+        };
+
+        window.renderNewsList = function() {
+            const container = document.getElementById('newsListContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            evLatestNewsData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 hover:bg-slate-100/90 p-3.5 rounded-xl border border-slate-200 transition space-y-1.5";
+                card.innerHTML = `
+                    <div class="flex items-center justify-between gap-2">
+                        <div class="flex items-center space-x-2 min-w-0">
+                            <span class="bg-sky-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex-shrink-0">NO. ${index + 1}</span>
+                            <span class="text-xs font-bold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-md flex-shrink-0">${item.source}</span>
+                            <span class="text-xs font-bold text-slate-900 truncate">${item.title}</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-slate-400 flex-shrink-0">${item.date}</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-normal">${item.summary}</p>
+                    <div class="flex justify-end pt-1">
+                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1 text-xs font-bold text-sky-600 hover:text-sky-800 hover:underline">
+                            <span>🔗 뉴스 원본 기사 열람하기</span>
+                            <span>➔</span>
+                        </a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        };
+
+        window.toggleWebRoutesPanel = function() {
+            const content = document.getElementById('webRoutesPanelContent');
+            const btnText = document.getElementById('routeToggleBtnText');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                btnText.innerText = '웹 루트 가이드 닫기 ▲';
+            } else {
+                content.classList.add('hidden');
+                btnText.innerText = '웹 루트 가이드 열기 ▼';
+            }
+        };
+
+        window.setPeriodFilter = function(periodKey) {
+            currentPeriod = periodKey;
+
+            // Hide custom date picker if not custom
+            const customContainer = document.getElementById('customDatePickerContainer');
+            if (periodKey !== 'custom' && customContainer) {
+                customContainer.classList.add('hidden');
+            }
+
+            // Update Period Buttons Active Styling
+            document.querySelectorAll('.period-btn').forEach(btn => {
+                btn.className = "period-btn px-3 py-1.5 text-xs font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50";
+            });
+
+            const activeBtn = document.getElementById('period_' + periodKey);
+            if (activeBtn) {
+                activeBtn.className = "period-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-sky-600 bg-sky-600 text-white shadow-xs transition";
+            }
+
+            window.renderTable();
+        };
+
+        window.toggleCustomDatePicker = function() {
+            const customContainer = document.getElementById('customDatePickerContainer');
+            if (customContainer.classList.contains('hidden')) {
+                customContainer.classList.remove('hidden');
+                currentPeriod = 'custom';
+            } else {
+                customContainer.classList.add('hidden');
+                currentPeriod = 'all';
+            }
+
+            document.querySelectorAll('.period-btn').forEach(btn => {
+                btn.className = "period-btn px-3 py-1.5 text-xs font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50";
+            });
+
+            if (currentPeriod === 'custom') {
+                const customBtn = document.getElementById('period_custom');
+                if (customBtn) customBtn.className = "period-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-sky-600 bg-sky-600 text-white shadow-xs transition";
+            } else {
+                const allBtn = document.getElementById('period_all');
+                if (allBtn) allBtn.className = "period-btn px-3 py-1.5 text-xs font-bold rounded-lg border border-sky-600 bg-sky-600 text-white shadow-xs transition";
+            }
+
+            window.renderTable();
+        };
+
+        window.applyCustomDateFilter = function() {
+            const startVal = document.getElementById('startDateInput').value;
+            const endVal = document.getElementById('endDateInput').value;
+
+            if (!startVal || !endVal) {
+                alert('시작일과 종료일을 모두 선택해 주세요.');
+                return;
+            }
+
+            if (new Date(startVal) > new Date(endVal)) {
+                alert('시작일은 종료일보다 이전이어야 합니다.');
+                return;
+            }
+
+            customStartDate = startVal;
+            customEndDate = endVal;
+            currentPeriod = 'custom';
+            window.renderTable();
+        };
+
+        window.renderTable = function() {
+            const tbody = document.getElementById('vehicleTableBody');
+            tbody.innerHTML = '';
+
+            const filteredVehicles = window.getFilteredVehicles();
+
+            if (filteredVehicles.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="p-8 text-center text-slate-400 font-medium">
+                            선택하신 기간 내에 등록된 신규 전기차 데이터가 존재하지 않습니다.<br>
+                            <span class="text-xs text-slate-500 mt-1 block">상단 기간 필터에서 '전체 보기' 또는 '최근 1년'을 지정해 보세요.</span>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                filteredVehicles.forEach(v => {
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-slate-50 transition border-b border-slate-100";
+                    tr.innerHTML = `
+                        <td class="p-3 text-center">
+                            <input type="checkbox" ${v.selected ? 'checked' : ''} onchange="window.toggleVehicleSelection('${v.id}')" class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer">
+                        </td>
+                        <td class="p-3 font-bold text-slate-900">${v.name}</td>
+                        <td class="p-3 text-xs font-semibold text-slate-600"><span class="px-2 py-0.5 rounded bg-slate-100">${v.releaseDate || window.formatDateISO(activeReportDate)}</span></td>
+                        <td class="p-3 text-slate-600"><span class="px-2 py-0.5 rounded bg-sky-50 text-sky-700 text-xs font-medium">${v.type}</span></td>
+                        <td class="p-3 text-slate-600 font-medium">${v.timeline}</td>
+                        <td class="p-3">
+                            <div class="font-semibold text-slate-900">${v.priceKRW}</div>
+                            <div class="text-xs text-slate-400">${v.priceLocal}</div>
+                        </td>
+                        <td class="p-3">
+                            <span class="inline-block bg-sky-50 text-sky-700 px-2 py-0.5 rounded border border-sky-200 text-xs font-semibold mb-1">${v.batterySpec}</span>
+                            <div class="text-xs text-slate-600"><span class="font-semibold text-sky-800">셀:</span> ${v.cellMaker}</div>
+                            <div class="text-xs text-slate-500"><span class="font-semibold text-slate-700">팩:</span> ${v.packMaker}</div>
+                        </td>
+                        <td class="p-3 text-xs text-slate-600">${v.rangePerformance}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            // Update Select All Checkbox state
+            const allSelected = filteredVehicles.length > 0 && filteredVehicles.every(v => v.selected);
+            document.getElementById('selectAllCheckbox').checked = allSelected;
+
+            // Update counters
+            document.getElementById('periodCount').innerText = filteredVehicles.length;
+            const selectedCount = filteredVehicles.filter(v => v.selected).length;
+            document.getElementById('selectedCount').innerText = selectedCount;
+
+            window.renderDetailCards();
+        };
+
+        window.renderDetailCards = function() {
+            const container = document.getElementById('detailCardsContainer');
+            container.innerHTML = '';
+
+            const filteredVehicles = window.getFilteredVehicles();
+            const selectedVehicles = filteredVehicles.filter(v => v.selected);
+
+            if (selectedVehicles.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white rounded-2xl p-8 text-center border border-slate-200 text-slate-500">
+                        <p class="text-base font-semibold">선택된 차종이 없습니다.</p>
+                        <p class="text-xs mt-1 text-slate-400">위 표에서 체크박스를 선택하여 상세 스펙 카드를 열람하세요.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            selectedVehicles.forEach((v, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl border border-slate-200 p-6 shadow-sm print-card hover:border-sky-300 transition";
+                card.innerHTML = `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-2">
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-sky-600 text-white text-xs font-extrabold px-2.5 py-0.5 rounded-full">VOL. ${index + 1}</span>
+                                <h3 class="text-lg font-extrabold text-slate-900">${v.name}</h3>
+                                <span class="text-xs font-semibold px-2 py-0.5 bg-slate-100 text-slate-600 rounded">발표: ${v.releaseDate || window.formatDateISO(activeReportDate)}</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1 font-medium">제조사: ${v.brand} | 차종: ${v.type} | 출시예정: ${v.timeline}</p>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <span class="text-lg font-black text-sky-700">${v.priceKRW}</span>
+                            <span class="text-xs text-slate-400 block">${v.priceLocal}</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                        <!-- Left Spec -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
+                            <h4 class="font-bold text-slate-800 text-xs text-sky-700 uppercase tracking-wider mb-2">1. 차량 개요 & 제원</h4>
+                            <p><strong class="text-slate-900">주요 특징:</strong> ${v.overview}</p>
+                            <p><strong class="text-slate-900">광고/홍보:</strong> "${v.adMessage}"</p>
+                            <p><strong class="text-slate-900">크기(L×W×H):</strong> ${v.dimensions}</p>
+                            <p><strong class="text-slate-900">동력 성능:</strong> ${v.powertrain}</p>
+                        </div>
+
+                        <!-- Center Spec -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
+                            <h4 class="font-bold text-slate-800 text-xs text-sky-700 uppercase tracking-wider mb-2">2. 배터리 팩 & 셀 시스템</h4>
+                            <p><strong class="text-slate-900">핵심 스펙:</strong> ${v.batterySpec}</p>
+                            <p><strong class="text-slate-900">셀 제조사:</strong> <span class="bg-sky-100 text-sky-800 px-1.5 py-0.5 rounded font-semibold">${v.cellMaker}</span></p>
+                            <p><strong class="text-slate-900">팩 제조사:</strong> <span class="bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-semibold">${v.packMaker}</span></p>
+                            <p><strong class="text-slate-900">QC 충전성능:</strong> <span class="text-sky-700 font-bold">${v.qcPerformance || '확인중 (미공개)'}</span></p>
+                            <p><strong class="text-slate-900">팩 구조/패키징:</strong> ${v.packInfo}</p>
+                            <p><strong class="text-slate-900">셀 폼팩터/화학:</strong> ${v.cellInfo}</p>
+                        </div>
+
+                        <!-- Right Spec -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
+                            <h4 class="font-bold text-slate-800 text-xs text-sky-700 uppercase tracking-wider mb-2">3. 주행 / 충전 & 안전 기술</h4>
+                            <p><strong class="text-slate-900">주행/충전 성능:</strong> ${v.rangePerformance}</p>
+                            <p><strong class="text-slate-900">안전 및 열관리:</strong> ${v.chargingSafety}</p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        };
+
+        // Explicit Window Bindings for Inline HTML Handlers
+        window.toggleSelectAll = function(masterCheckbox) {
+            const isChecked = masterCheckbox.checked;
+            const filteredVehicles = window.getFilteredVehicles();
+            filteredVehicles.forEach(v => v.selected = isChecked);
+            window.renderTable();
+        };
+
+        window.toggleVehicleSelection = function(id) {
+            const vehicle = vehicles.find(v => v.id === id);
+            if (vehicle) {
+                vehicle.selected = !vehicle.selected;
+            }
+            window.renderTable();
+        };
+
+        window.toggleUpdateStatus = function() {
+            isUpdatedToday = !isUpdatedToday;
+            const updateBanner = document.getElementById('updateBanner');
+            const successBanner = document.getElementById('successBanner');
+
+            if (isUpdatedToday) {
+                updateBanner.classList.add('hidden');
+                successBanner.classList.remove('hidden');
+            } else {
+                updateBanner.classList.remove('hidden');
+                successBanner.classList.add('hidden');
+            }
+        };
+
+        window.openSearchModal = function() {
+            document.getElementById('searchModal').classList.remove('hidden');
+        };
+
+        window.closeSearchModal = function() {
+            document.getElementById('searchModal').classList.add('hidden');
+            const notice = document.getElementById('searchNotFoundNotice');
+            if (notice) notice.classList.add('hidden');
+            const errEl = document.getElementById('searchErrorMsg');
+            if (errEl) errEl.classList.add('hidden');
+            if (searchNoticeTimer) clearTimeout(searchNoticeTimer);
+        };
+
+        window.showSearchNotFoundNotice = function() {
+            const errEl = document.getElementById('searchErrorMsg');
+            if (errEl) {
+                errEl.classList.remove('hidden');
+            }
+            const notice = document.getElementById('searchNotFoundNotice');
+            if (notice) {
+                notice.classList.remove('hidden');
+                if (searchNoticeTimer) clearTimeout(searchNoticeTimer);
+                searchNoticeTimer = setTimeout(() => {
+                    notice.classList.add('hidden');
+                    if (errEl) errEl.classList.add('hidden');
+                }, 3000);
+            }
+        };
+
+        window.executeAISearch = function() {
+            const rawInput = document.getElementById('searchInput').value.trim();
+            if (!rawInput) {
+                alert('검색할 전기차 모델명을 입력해 주세요.');
+                return;
+            }
+
+            const qClean = window.cleanStr(rawInput);
+
+            // Hide previous notices
+            const errEl = document.getElementById('searchErrorMsg');
+            if (errEl) errEl.classList.add('hidden');
+            const notice = document.getElementById('searchNotFoundNotice');
+            if (notice) notice.classList.add('hidden');
+
+            // 1. Check if query matches any existing vehicle in dataset (space-insensitive)
+            const existingVehicle = vehicles.find(v => {
+                const nameClean = window.cleanStr(v.name);
+                const brandClean = window.cleanStr(v.brand);
+                return nameClean.includes(qClean) || brandClean.includes(qClean) || qClean.includes(nameClean);
+            });
+
+            if (existingVehicle) {
+                existingVehicle.selected = true;
+                window.closeSearchModal();
+                document.getElementById('searchInput').value = '';
+                window.setPeriodFilter('all');
+
+                setTimeout(() => {
+                    const container = document.getElementById('detailCardsContainer');
+                    if (container) container.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+                return;
+            }
+
+            // 2. Check if query contains any known EV brand / model keywords (space-insensitive)
+            const isKnownEV = knownEVKeywords.some(kw => {
+                const kwClean = window.cleanStr(kw);
+                return qClean.includes(kwClean) || kwClean.includes(qClean);
+            });
+
+            if (!isKnownEV) {
+                // Invalid / Non-existent vehicle typed -> Display prominent red "차량정보없음" message for 3s
+                window.showSearchNotFoundNotice();
+                return;
+            }
+
+            // 3. Valid known EV model -> Dynamically generate and append new search record
+            const todayStr = window.formatDateISO(activeReportDate);
+            const yearStr = todayStr.substring(0, 4);
+            const monthStr = todayStr.substring(5, 7);
+            const formattedTimeline = `${yearStr}년 ${monthStr}월 출시예정`;
+
+            let brandDetect = '글로벌/중국 완성차';
+            if (qClean.includes('현대') || qClean.includes('hyundai') || qClean.includes('ioniq') || qClean.includes('아이오닉')) {
+                brandDetect = '현대자동차 (Hyundai)';
+            } else if (qClean.includes('기아') || qClean.includes('kia') || qClean.includes('ev3') || qClean.includes('ev6') || qClean.includes('ev9')) {
+                brandDetect = '기아 (Kia)';
+            } else if (qClean.includes('테슬라') || qClean.includes('tesla') || qClean.includes('modely') || qClean.includes('model3')) {
+                brandDetect = 'Tesla (테슬라)';
+            } else if (qClean.includes('지리') || qClean.includes('geely') || qClean.includes('지커') || qClean.includes('zeekr') || qClean.includes('은하') || qClean.includes('galaxy') || qClean.includes('링크') || qClean.includes('lynk') || qClean.includes('성원') || qClean.includes('xingyuan') || qClean.includes('지오메트리') || qClean.includes('geome')) {
+                brandDetect = 'Geely (지리 / 极氪 / 银河 / 领克 / 几何)';
+            } else if (qClean.includes('비야디') || qClean.includes('byd') || qClean.includes('덴자') || qClean.includes('denza') || qClean.includes('양왕') || qClean.includes('yangwang') || qClean.includes('방정표') || qClean.includes('fangchengbao') || qClean.includes('ti7')) {
+                brandDetect = 'BYD (비야디 / 腾势 / 仰望 / 方程豹)';
+            } else if (qClean.includes('장안') || qClean.includes('changan') || qClean.includes('아바타') || qClean.includes('avatr') || qClean.includes('딥알') || qClean.includes('deepal') || qClean.includes('기원') || qClean.includes('qiyuan') || qClean.includes('nevo')) {
+                brandDetect = 'Changan (장안 / 阿维塔 / 深蓝 / 启源)';
+            } else if (qClean.includes('상하이') || qClean.includes('saic') || qClean.includes('지지') || qClean.includes('im') || qClean.includes('라이징') || qClean.includes('rising') || qClean.includes('mg') || qClean.includes('로에베') || qClean.includes('roewe')) {
+                brandDetect = 'SAIC (상하이 / 智己 / 飞凡 / MG)';
+            } else if (qClean.includes('체리') || qClean.includes('chery') || qClean.includes('엑시드') || qClean.includes('exeed') || qClean.includes('엑스란티스') || qClean.includes('exlantix') || qClean.includes('icar') || qClean.includes('풍운') || qClean.includes('fulwin')) {
+                brandDetect = 'Chery (체리 / 星途 / iCar / 风云)';
+            } else if (qClean.includes('광저우') || qClean.includes('gac') || qClean.includes('아이온') || qClean.includes('aion') || qClean.includes('하이퍼') || qClean.includes('hyptec') || qClean.includes('hyper')) {
+                brandDetect = 'GAC (광저우 / 埃安 / 昊泊)';
+            } else if (qClean.includes('동풍') || qClean.includes('dongfeng') || qClean.includes('보야') || qClean.includes('voyah') || qClean.includes('맹사') || qClean.includes('mhero') || qClean.includes('에파이') || qClean.includes('epi')) {
+                brandDetect = 'Dongfeng (동풍 / 岚图 / 猛士 / eπ)';
+            } else if (qClean.includes('장성') || qClean.includes('gwm') || qClean.includes('오라') || qClean.includes('ora') || qClean.includes('탱크') || qClean.includes('tank') || qClean.includes('웨이') || qClean.includes('wey')) {
+                brandDetect = 'GWM (장성 / 欧拉 / 坦克 / 魏牌)';
+            } else if (qClean.includes('니오') || qClean.includes('nio') || qClean.includes('락도') || qClean.includes('onvo') || qClean.includes('반딧불이') || qClean.includes('firefly')) {
+                brandDetect = 'Nio (니오 / 乐道 / 萤火虫)';
+            } else if (qClean.includes('화웨이') || qClean.includes('huawei') || qClean.includes('hima') || qClean.includes('아이토') || qClean.includes('aito') || qClean.includes('지계') || qClean.includes('luxeed') || qClean.includes('향계') || qClean.includes('stelato') || qClean.includes('존계') || qClean.includes('maextro')) {
+                brandDetect = 'Huawei HIMA (화웨이 HIMA / 问界 / 智界 / 享界 / 尊界)';
+            } else if (qClean.includes('홍치') || qClean.includes('hongqi') || qClean.includes('faw') || qClean.includes('일기')) {
+                brandDetect = 'FAW (중국일汽 / 红旗)';
+            } else if (qClean.includes('우퉁') || qClean.includes('yutong')) {
+                brandDetect = 'Yutong (宇通客车 / 宇通重工)';
+            } else if (qClean.includes('샤오미') || qClean.includes('xiaomi')) {
+                brandDetect = 'Xiaomi (샤오미)';
+            } else if (qClean.includes('샤오펑') || qClean.includes('xpeng') || qClean.includes('mona')) {
+                brandDetect = 'Xpeng (샤오펑 / Mona)';
+            } else if (qClean.includes('포르쉐') || qClean.includes('porsche')) {
+                brandDetect = 'Porsche (포르쉐)';
+            } else if (qClean.includes('벤츠') || qClean.includes('mercedes') || qClean.includes('benz')) {
+                brandDetect = 'Mercedes-Benz (메르세데스-벤츠)';
+            } else if (qClean.includes('bmw')) {
+                brandDetect = 'BMW (비엠더블유)';
+            } else if (qClean.includes('폭스바겐') || qClean.includes('volkswagen') || qClean.includes('vw')) {
+                brandDetect = 'Volkswagen (폭스바겐)';
+            } else if (qClean.includes('아우디') || qClean.includes('audi')) {
+                brandDetect = 'Audi (아우디)';
+            } else if (qClean.includes('볼보') || qClean.includes('volvo')) {
+                brandDetect = 'Volvo (볼보)';
+            }
+
+            const newId = 'search_' + Date.now();
+            const newVehicle = {
+                id: newId,
+                selected: true,
+                releaseDate: todayStr,
+                name: rawInput,
+                brand: brandDetect,
+                type: '신규 전기차 모델',
+                timeline: formattedTimeline,
+                priceLocal: '실시간 검색 수집중',
+                priceKRW: '약 4,500만 원 (추정)',
+                batterySpec: '800V SiC High-Nickel NCM/LFP',
+                cellMaker: 'CATL / FinDreams (BYD) / CALB',
+                packMaker: '완성차 독자 패키징 / OEM',
+                qcPerformance: '4.0C Peak (최대 350kW) | SOC 10% → 80% (약 12분)',
+                rangePerformance: 'CLTC 680km+ / DC 초고속 충전 지원',
+                overview: `AI 웹 검색을 통해 수집된 ${rawInput}의 최신 사양 및 배터리 데이터입니다.`,
+                adMessage: `${rawInput} - Next Generation EV Intelligence`,
+                dimensions: '4,850mm × 1,920mm × 1,520mm (추정)',
+                powertrain: 'AWD Dual Motor (최고출력 350kW+)',
+                packInfo: '고강성 차체 일체형 CTP/CTB 모듈러 팩',
+                cellInfo: 'High-Energy Density 각형/파우치 셀',
+                chargingSafety: '셀 간 열전이 방지 단열재 및 차세대 BMS 실시간 열 모니터링 적용'
+            };
+
+            vehicles.unshift(newVehicle);
+            window.closeSearchModal();
+            document.getElementById('searchInput').value = '';
+            window.setPeriodFilter('all');
+
+            setTimeout(() => {
+                const container = document.getElementById('detailCardsContainer');
+                if (container) container.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        };
+
+        window.downloadPDF = function() {
+            window.print();
+        };
+
+        // --- Local Database & History Management ---
+        window.getDBHistory = function() {
+            try {
+                const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                console.error("Local storage error:", e);
+                return [];
+            }
+        };
+
+        window.saveDBHistory = function(history) {
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(history));
+            } catch (e) {
+                console.error("Failed to save local storage:", e);
+            }
+        };
+
+        window.openDBModal = function() {
+            window.renderHistoryList();
+            document.getElementById('dbModal').classList.remove('hidden');
+        };
+
+        window.closeDBModal = function() {
+            document.getElementById('dbModal').classList.add('hidden');
+        };
+
+        window.saveCurrentSnapshot = function() {
+            const now = new Date();
+            const timeStampStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+            const snapshot = {
+                id: 'snap_' + Date.now(),
+                date: timeStampStr,
+                totalVehicles: vehicles.length,
+                vehiclesData: JSON.parse(JSON.stringify(vehicles))
+            };
+
+            const history = window.getDBHistory();
+            history.unshift(snapshot);
+            window.saveDBHistory(history);
+            window.renderHistoryList();
+
+            alert(`✅ 현재 대시보드 상태가 PC 브라우저 DB에 성공적으로 저장되었습니다.\n(저장 일시: ${timeStampStr})`);
+        };
+
+        window.renderHistoryList = function() {
+            const container = document.getElementById('historyListContainer');
+            const history = window.getDBHistory();
+
+            document.getElementById('historyCountTag').innerText = `총 ${history.length}개 기록 저장됨`;
+            container.innerHTML = '';
+
+            if (history.length === 0) {
+                container.innerHTML = `
+                    <div class="p-4 text-center text-xs text-slate-400 bg-slate-50 rounded-xl border border-slate-200">
+                        저장된 데이터베이스 히스토리가 없습니다. 상단의 '현재 상태 저장' 버튼을 클릭하여 스냅샷을 생성하세요.
+                    </div>
+                `;
+                return;
+            }
+
+            history.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition text-xs";
+                div.innerHTML = `
+                    <div>
+                        <div class="font-bold text-slate-900">${item.date} 리포트 스냅샷</div>
+                        <div class="text-slate-500 text-[11px] mt-0.5">수집 차종: ${item.totalVehicles}개 모델 보유</div>
+                    </div>
+                    <div class="flex items-center space-x-1.5">
+                        <button onclick="window.loadSnapshot('${item.id}')" class="px-2.5 py-1 bg-sky-600 hover:bg-sky-700 text-white font-semibold rounded-md shadow-xs">
+                            대시보드로 불러오기
+                        </button>
+                        <button onclick="window.deleteSnapshot('${item.id}')" class="px-2 py-1 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-semibold rounded-md">
+                            삭제
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        };
+
+        window.loadSnapshot = function(id) {
+            const history = window.getDBHistory();
+            const target = history.find(h => h.id === id);
+
+            if (target && target.vehiclesData) {
+                vehicles = JSON.parse(JSON.stringify(target.vehiclesData));
+                window.renderTable();
+                window.closeDBModal();
+                alert(`📂 ${target.date} 버전의 데이터베이스 스냅샷이 대시보드에 불러와졌습니다.`);
+            }
+        };
+
+        window.deleteSnapshot = function(id) {
+            let history = window.getDBHistory();
+            history = history.filter(h => h.id !== id);
+            window.saveDBHistory(history);
+            window.renderHistoryList();
+        };
+
+        // Export to CSV for Excel/Database Software
+        window.exportCSV = function() {
+            const filtered = window.getFilteredVehicles();
+            if (filtered.length === 0) {
+                alert('내보낼 데이터가 존재하지 않습니다.');
+                return;
+            }
+
+            const headers = [
+                '모델명', '브랜드', '발표일자', '차종/체급', '출시/예상시점', '현지가격', '원화환산가격', 
+                '배터리스펙', '셀제조사', '팩제조사', 'QC충전성능', '주행거리성능', 
+                '차량개요', '홍보문구', '차량크기', '동력성능', '팩구조', '셀폼팩터', '안전기술'
+            ];
+
+            const rows = filtered.map(v => [
+                v.name, v.brand, v.releaseDate || window.formatDateISO(activeReportDate), v.type, v.timeline, v.priceLocal, v.priceKRW,
+                v.batterySpec, v.cellMaker, v.packMaker, v.qcPerformance, v.rangePerformance,
+                v.overview, v.adMessage, v.dimensions, v.powertrain, v.packInfo, v.cellInfo, v.chargingSafety
+            ]);
+
+            // Add UTF-8 BOM so Excel opens Korean text correctly
+            let csvContent = '\uFEFF' + headers.map(h => `"${h}"`).join(',') + '\n';
+            rows.forEach(r => {
+                csvContent += r.map(field => `"${(field || '').toString().replace(/"/g, '""')}"`).join(',') + '\n';
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            const now = new Date();
+            const dateStr = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}`;
+            
+            a.href = url;
+            a.download = `EV_Battery_Daily_Report_${dateStr}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        };
+
+        // JSON Export & Import for Database Migration
+        window.exportJSON = function() {
+            const history = window.getDBHistory();
+            const exportData = {
+                exportedAt: new Date().toISOString(),
+                currentVehicles: vehicles,
+                historySnapshots: history
+            };
+
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `EV_Report_Database_Backup_${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        };
+
+        window.importJSON = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (imported.currentVehicles) {
+                        vehicles = imported.currentVehicles;
+                    }
+                    if (imported.historySnapshots && Array.isArray(imported.historySnapshots)) {
+                        window.saveDBHistory(imported.historySnapshots);
+                    }
+                    window.renderTable();
+                    window.renderHistoryList();
+                    alert('✅ 백업 DB 파일이 성공적으로 복원되었습니다.');
+                } catch (err) {
+                    alert('❌ 올바르지 않은 JSON 데이터 파일 형태입니다.');
+                }
+            };
+            reader.readAsText(file);
+        };
+
+        // Fetch freshly generated daily data (data.json), regenerated every day at 09:00 KST by
+        // the GitHub Actions pipeline (see update_dashboard.py). If it is missing or fails to load
+        // (e.g. opened locally via file://), the built-in static dataset above is kept as-is.
+        window.loadDailyDashboardData = async function() {
+            try {
+                const res = await fetch('./data.json', { cache: 'no-store' });
+                if (!res.ok) return;
+                const data = await res.json();
+
+                if (Array.isArray(data.vehicles) && data.vehicles.length > 0) {
+                    vehicles = data.vehicles;
+                }
+                if (Array.isArray(data.news) && data.news.length > 0) {
+                    evLatestNewsData = data.news;
+                }
+
+                window.renderTable();
+
+                const tickerHeadlineEl = document.getElementById('latestNewsTickerHeadline');
+                if (tickerHeadlineEl && evLatestNewsData.length > 0) {
+                    tickerHeadlineEl.innerText = `[오늘 09시 신규] ${evLatestNewsData[0].title} 및 글로벌 EV 최신 동향 20선`;
+                }
+
+                const newsModal = document.getElementById('newsModal');
+                if (newsModal && !newsModal.classList.contains('hidden')) {
+                    window.renderNewsList();
+                }
+            } catch (err) {
+                console.warn('[Daily Data Loader] data.json을 불러오지 못해 내장 데이터로 표시합니다.', err);
+            }
+        };
+
+        // Initialize App on DOM Ready
+        window.addEventListener('DOMContentLoaded', () => {
+            const el = document.getElementById('currentDateStr');
+            if (el) el.innerText = window.formatDateKorean(activeReportDate);
+
+            // Update endDateInput to current report date
+            const endDateEl = document.getElementById('endDateInput');
+            if (endDateEl) endDateEl.value = window.formatDateISO(activeReportDate);
+
+            // Update ticker headline for today's news
+            const tickerHeadlineEl = document.getElementById('latestNewsTickerHeadline');
+            if (tickerHeadlineEl && evLatestNewsData && evLatestNewsData.length > 0) {
+                tickerHeadlineEl.innerText = `[오늘 09시 신규] ${evLatestNewsData[0].title} 및 글로벌 EV 최신 동향 20선`;
+            }
+
+            // Schedule daily auto-refresh at 09:00 AM
+            window.scheduleNineAMAutoRefresh();
+
+            window.renderTable();
+
+            // Overlay with real daily-refreshed data if available (progressive enhancement)
+            window.loadDailyDashboardData();
+        });
+    </script>
+</body>
+</html>

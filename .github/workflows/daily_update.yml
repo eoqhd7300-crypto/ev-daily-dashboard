@@ -1,0 +1,60 @@
+name: Daily EV Dashboard Auto Update
+
+on:
+  schedule:
+    # 매일 KST 오전 9시 (UTC 00:00) 자동 실행
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Actions 탭에서 수동 실행 버튼 활성화
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Script & Regenerate data.json
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python update_dashboard.py
+
+      - name: Commit and Push data.json
+        run: |
+          git config --global user.name "EV-Dashboard-Bot"
+          git config --global user.email "bot@github.com"
+          git add data.json
+          git commit -m "Auto Update: Daily EV Dashboard Data [$(date +'%Y-%m-%d')]" || echo "No changes to commit"
+          git push
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: update-data
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
