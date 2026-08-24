@@ -71,16 +71,26 @@ def build_prompt(today_str: str) -> str:
 규칙:
 - 추정/허구 데이터 금지. 실제 검색으로 확인되지 않는 수치는 만들지 말고 해당 필드에 "정보 없음"을 넣으세요.
 - releaseDate/date 는 실제 발표일(YYYY-MM-DD)로 채우세요.
-- url 은 검색으로 확인한 실제 기사 원문 링크를 넣으세요.
+- url 은 검색으로 확인한 실제 기사 원문 링크를 넣으세요. 검색 도구를 쓸 수 없다면 네가 학습한 지식 중 가장 최근 정보로 채우고 url은 해당 매체의 대표 도메인 URL을 넣으세요.
 - id 값은 모두 서로 달라야 합니다.
+- 어떤 경우에도 사과, 거절, 설명 문구를 출력하지 말고 위 JSON 구조만 응답하세요. 실시간 검색이 불가능하더라도 거부하지 말고 보유한 지식 중 가장 최근 정보로 추론해서 채우세요.
 """
 
 
 def extract_json(text: str) -> dict:
-    cleaned = re.sub(r"^```json\s*", "", text.strip(), flags=re.IGNORECASE)
+    cleaned = re.sub(r"^```json\s*", "", (text or "").strip(), flags=re.IGNORECASE)
     cleaned = re.sub(r"^```\s*", "", cleaned)
     cleaned = re.sub(r"```\s*$", "", cleaned)
-    return json.loads(cleaned)
+    cleaned = cleaned.strip()
+    try:
+        return json.loads(cleaned)
+    except json.JSONDecodeError:
+        # 모델이 설명/거절 문구를 섞어 보낸 경우, 첫 { 부터 마지막 } 까지만 추출해 재시도
+        start = cleaned.find("{")
+        end = cleaned.rfind("}")
+        if start == -1 or end == -1 or end <= start:
+            raise
+        return json.loads(cleaned[start : end + 1])
 
 
 def main() -> None:
@@ -112,9 +122,11 @@ def main() -> None:
                 model="gemini-3.6-flash",
                 contents=prompt,
             )
-            payload = extract_json(response.text)
+            raw_text = response.text or ""
+            payload = extract_json(raw_text)
         except Exception as exc2:  # noqa: BLE001 - keep the last known good data.json on any failure
             print(f"Gemini 호출/파싱 실패로 data.json 갱신을 건너뜁니다: {exc2}")
+            print(f"응답 원문(디버깅용, 최대 500자): {raw_text[:500] if 'raw_text' in locals() else '(응답 없음)'}")
             return
 
     vehicles = payload.get("vehicles") or []
