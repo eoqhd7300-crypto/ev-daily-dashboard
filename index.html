@@ -1483,6 +1483,38 @@
             return (str || '').replace(/[\s\-\_\(\)\[\]\/\.]/g, '').toLowerCase();
         };
 
+        // Split "모델명 (괄호 표기)" into a main line + a wrapped-to-next-line parenthetical part
+        window.splitParenLine = function(text) {
+            const raw = text || '';
+            const idx = raw.indexOf('(');
+            if (idx === -1) return { main: raw.trim(), sub: '' };
+            return { main: raw.slice(0, idx).trim(), sub: raw.slice(idx).trim() };
+        };
+
+        // Format 출시/예상시점 as a fixed "YY/MM 출시" or "YY/MM 출시예정" single-line label
+        window.formatLaunchShort = function(v) {
+            const isPlanned = /예정/.test(v.timeline || '');
+            let year = null, month = null;
+
+            const m = (v.timeline || '').match(/(\d{4})\s*년\s*(\d{1,2})\s*월/);
+            if (m) {
+                year = m[1];
+                month = m[2];
+            } else if (v.releaseDate) {
+                const parts = v.releaseDate.split('-');
+                if (parts.length >= 2) {
+                    year = parts[0];
+                    month = parts[1];
+                }
+            }
+
+            if (!year || !month) return v.timeline || '';
+
+            const yy = year.slice(2);
+            const mm = String(month).padStart(2, '0');
+            return `${yy}/${mm} ${isPlanned ? '출시예정' : '출시'}`;
+        };
+
         // Filter vehicles based on active period selection & Always Sort Newest First (Descending)
         window.getFilteredVehicles = function() {
             let result = vehicles;
@@ -1660,14 +1692,19 @@
                 filteredVehicles.forEach(v => {
                     const tr = document.createElement('tr');
                     tr.className = "hover:bg-slate-50 transition border-b border-slate-100";
+                    const nameParts = window.splitParenLine(v.name);
+                    const launchShort = window.formatLaunchShort(v);
                     tr.innerHTML = `
                         <td class="p-3 text-center">
                             <input type="checkbox" ${v.selected ? 'checked' : ''} onchange="window.toggleVehicleSelection('${v.id}')" class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer">
                         </td>
-                        <td class="p-3 font-bold text-slate-900">${v.name}</td>
-                        <td class="p-3 text-xs font-semibold text-slate-600"><span class="px-2 py-0.5 rounded bg-slate-100">${v.releaseDate || window.formatDateISO(activeReportDate)}</span></td>
-                        <td class="p-3 text-slate-600"><span class="px-2 py-0.5 rounded bg-sky-50 text-sky-700 text-xs font-medium">${v.type}</span></td>
-                        <td class="p-3 text-slate-600 font-medium">${v.timeline}</td>
+                        <td class="p-3 font-bold text-slate-900">
+                            <div class="whitespace-nowrap">${nameParts.main}</div>
+                            ${nameParts.sub ? `<div class="text-xs font-normal text-slate-500 mt-0.5 whitespace-nowrap">${nameParts.sub}</div>` : ''}
+                        </td>
+                        <td class="p-3 text-xs font-semibold text-slate-600"><span class="px-2 py-0.5 rounded bg-slate-100 whitespace-nowrap">${v.releaseDate || window.formatDateISO(activeReportDate)}</span></td>
+                        <td class="p-3 text-slate-600"><span title="${v.type}" class="inline-block max-w-[140px] truncate align-bottom px-2 py-0.5 rounded bg-sky-50 text-sky-700 text-xs font-medium">${v.type}</span></td>
+                        <td class="p-3 text-slate-600 font-medium whitespace-nowrap">${launchShort}</td>
                         <td class="p-3">
                             <div class="font-semibold text-slate-900">${v.priceKRW}</div>
                             <div class="text-xs text-slate-400">${v.priceLocal}</div>
