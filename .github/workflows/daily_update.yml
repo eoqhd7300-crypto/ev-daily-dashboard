@@ -37,6 +37,10 @@ jobs:
 
       - name: Commit and Push data.json
         run: |
+          if [ ! -f data.json ]; then
+            echo "data.json이 생성되지 않아 커밋을 건너뜁니다 (예: Gemini API 할당량 초과)."
+            exit 0
+          fi
           git config --global user.name "EV-Dashboard-Bot"
           git config --global user.email "bot@github.com"
           git add data.json
