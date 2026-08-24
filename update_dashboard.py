@@ -55,8 +55,8 @@ NEWS_SCHEMA_EXAMPLE = {
 def build_prompt(today_str: str) -> str:
     return f"""
 당신은 글로벌 전기차(EV) 및 배터리 산업 전문 애널리스트입니다.
-오늘 날짜는 {today_str} (KST) 입니다. Google Search 도구를 사용해 최근 7일 이내의
-실제 글로벌/중국 전기차 신차 발표 및 EV·배터리 관련 뉴스만 조사하여 아래 JSON 스키마에
+오늘 날짜는 {today_str} (KST) 입니다. (검색 도구가 제공되면 이를 활용해) 최근 7일 이내의
+실제 글로벌/중국 전기차 신차 발표 및 EV·배터리 관련 뉴스를 바탕으로 아래 JSON 스키마에
 맞춰 순수 JSON 한 개만 응답하세요. 마크다운 코드블록이나 설명 문장은 절대 포함하지 마세요.
 
 {{
@@ -93,19 +93,29 @@ def main() -> None:
     today_str = now_kst.strftime("%Y-%m-%d")
 
     client = genai.Client(api_key=api_key)
+    prompt = build_prompt(today_str)
 
+    # 1차 시도: Google Search grounding 사용 (무료 티어는 별도의 낮은 할당량이 적용될 수 있음)
     try:
         response = client.models.generate_content(
             model="gemini-3.6-flash",
-            contents=build_prompt(today_str),
+            contents=prompt,
             config=types.GenerateContentConfig(
                 tools=[types.Tool(google_search=types.GoogleSearch())],
             ),
         )
         payload = extract_json(response.text)
-    except Exception as exc:  # noqa: BLE001 - keep the last known good data.json on any failure
-        print(f"Gemini 호출/파싱 실패로 data.json 갱신을 건너뜁니다: {exc}")
-        return
+    except Exception as exc:  # noqa: BLE001
+        print(f"Grounding 호출 실패({exc}), 검색 도구 없이 재시도합니다.")
+        try:
+            response = client.models.generate_content(
+                model="gemini-3.6-flash",
+                contents=prompt,
+            )
+            payload = extract_json(response.text)
+        except Exception as exc2:  # noqa: BLE001 - keep the last known good data.json on any failure
+            print(f"Gemini 호출/파싱 실패로 data.json 갱신을 건너뜁니다: {exc2}")
+            return
 
     vehicles = payload.get("vehicles") or []
     news = payload.get("news") or []
