@@ -18,6 +18,9 @@ from google.genai import types
 KST = timezone(timedelta(hours=9))
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json")
 
+MAX_VEHICLES = 40  # 누적 상한 (무한 증식 방지)
+MAX_NEWS = 20       # 항상 최신 20건만 유지 (기존 대시보드 사양과 동일)
+
 VEHICLE_SCHEMA_EXAMPLE = {
     "id": "brand_model_slug",
     "selected": True,
@@ -93,6 +96,54 @@ def extract_json(text: str) -> dict:
         return json.loads(cleaned[start : end + 1])
 
 
+def load_existing_data() -> dict:
+    if not os.path.exists(DATA_PATH):
+        return {"vehicles": [], "news": []}
+    try:
+        with open(DATA_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return {
+            "vehicles": data.get("vehicles") or [],
+            "news": data.get("news") or [],
+        }
+    except Exception:  # noqa: BLE001 - 손상된 파일이면 빈 값으로 시작
+        return {"vehicles": [], "news": []}
+
+
+def _norm(text: str) -> str:
+    return re.sub(r"[\s\-_()\[\]/.]", "", (text or "")).lower()
+
+
+def merge_vehicles(old_vehicles: list, new_vehicles: list) -> list:
+    merged: dict[str, dict] = {}
+    for v in old_vehicles + new_vehicles:
+        key = _norm(v.get("name") or v.get("id") or "")
+        if not key:
+            continue
+        # 동일 차량이면 더 최신 releaseDate를 가진 항목(주로 새로 생성된 쪽)으로 덮어씀
+        existing = merged.get(key)
+        if existing is None or (v.get("releaseDate") or "") >= (existing.get("releaseDate") or ""):
+            merged[key] = v
+    result = sorted(merged.values(), key=lambda v: v.get("releaseDate") or "", reverse=True)
+    return result[:MAX_VEHICLES]
+
+
+def merge_news(old_news: list, new_news: list) -> list:
+    merged: dict[str, dict] = {}
+    for n in old_news + new_news:
+        key = _norm(n.get("url") or n.get("title") or "")
+        if not key:
+            continue
+        existing = merged.get(key)
+        if existing is None or (n.get("date") or "") >= (existing.get("date") or ""):
+            merged[key] = n
+    result = sorted(merged.values(), key=lambda n: n.get("date") or "", reverse=True)
+    result = result[:MAX_NEWS]
+    for idx, item in enumerate(result, start=1):
+        item["id"] = idx
+    return result
+
+
 def main() -> None:
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -136,16 +187,23 @@ def main() -> None:
         print("생성된 데이터가 비어 있어 data.json 갱신을 건너뜁니다.")
         return
 
+    existing = load_existing_data()
+    merged_vehicles = merge_vehicles(existing["vehicles"], vehicles)
+    merged_news = merge_news(existing["news"], news)
+
     output = {
         "generatedAt": now_kst.isoformat(),
-        "vehicles": vehicles,
-        "news": news,
+        "vehicles": merged_vehicles,
+        "news": merged_news,
     }
 
     with open(DATA_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print(f"data.json 갱신 완료 (vehicles: {len(vehicles)}, news: {len(news)})")
+    print(
+        f"data.json 갱신 완료 (신규 vehicles: {len(vehicles)} / 누적 vehicles: {len(merged_vehicles)}, "
+        f"news: {len(merged_news)})"
+    )
 
 
 if __name__ == "__main__":
