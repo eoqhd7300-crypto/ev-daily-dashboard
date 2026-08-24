@@ -18,7 +18,7 @@ from google.genai import types
 KST = timezone(timedelta(hours=9))
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json")
 
-MAX_VEHICLES = 40  # 누적 상한 (무한 증식 방지)
+MAX_VEHICLES = 80  # 누적 상한 (최근 1년치 데이터를 충분히 보유)
 MAX_NEWS = 20       # 항상 최신 20건만 유지 (기존 대시보드 사양과 동일)
 
 VEHICLE_SCHEMA_EXAMPLE = {
@@ -58,12 +58,11 @@ NEWS_SCHEMA_EXAMPLE = {
 def build_prompt(today_str: str) -> str:
     return f"""
 당신은 글로벌 전기차(EV) 및 배터리 산업 전문 애널리스트입니다.
-오늘 날짜는 {today_str} (KST) 입니다. (검색 도구가 제공되면 이를 활용해) 최근 7일 이내의
-실제 글로벌/중국 전기차 신차 발표 및 EV·배터리 관련 뉴스를 바탕으로 아래 JSON 스키마에
+오늘 날짜는 {today_str} (KST) 입니다. (검색 도구가 제공되면 이를 활용해) 아래 JSON 스키마에
 맞춰 순수 JSON 한 개만 응답하세요. 마크다운 코드블록이나 설명 문장은 절대 포함하지 마세요.
 
 {{
-  "vehicles": [ /* 최근 7일 이내 발표/출시된 신규 전기차 6~10건, 아래 필드 형식 예시 */
+  "vehicles": [ /* 최근 12개월(1년) 이내에 발표/출시된 주요 글로벌/중국 신규 전기차를 발표일이 고르게 분산되도록 15~25건, 아래 필드 형식 예시 */
     {json.dumps(VEHICLE_SCHEMA_EXAMPLE, ensure_ascii=False)}
   ],
   "news": [ /* 최근 7일 이내 글로벌 EV/배터리 뉴스 헤드라인 정확히 20건, 최신순 정렬 */
@@ -74,6 +73,7 @@ def build_prompt(today_str: str) -> str:
 규칙:
 - 추정/허구 데이터 금지. 실제 검색으로 확인되지 않는 수치는 만들지 말고 해당 필드에 "정보 없음"을 넣으세요.
 - releaseDate/date 는 실제 발표일(YYYY-MM-DD)로 채우세요.
+- vehicles는 최근 1개월에만 몰리지 않고 지난 12개월 전체 기간에 골고루 분포되도록 구성하세요 (예: 각 월마다 1~2건씩).
 - url 은 검색으로 확인한 실제 기사 원문 링크를 넣으세요. 검색 도구를 쓸 수 없다면 네가 학습한 지식 중 가장 최근 정보로 채우고 url은 해당 매체의 대표 도메인 URL을 넣으세요.
 - id 값은 모두 서로 달라야 합니다.
 - 어떤 경우에도 사과, 거절, 설명 문구를 출력하지 말고 위 JSON 구조만 응답하세요. 실시간 검색이 불가능하더라도 거부하지 말고 보유한 지식 중 가장 최근 정보로 추론해서 채우세요.
