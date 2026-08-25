@@ -1,12 +1,16 @@
 name: Deploy Dashboard to GitHub Pages
 
 # master 브랜치에 어떤 변경(코드 수정, data.json 갱신 등)이 push될 때마다 즉시 배포합니다.
-# Gemini 데이터 생성(daily_update.yml)과 별개로 동작하므로, 코드만 수정해도
-# 다음 예약 실행을 기다리지 않고 바로 사이트에 반영됩니다.
+# 주의: Daily EV Dashboard Auto Update가 GITHUB_TOKEN으로 자동 커밋/push하는 경우
+# GitHub Actions 정책상 push 이벤트가 발생하지 않으므로(무한 루프 방지), 그 워크플로우가
+# "완료"되는 시점을 workflow_run으로 별도 감지해서 배포를 트리거합니다.
 on:
   push:
     branches:
       - master
+  workflow_run:
+    workflows: ["Daily EV Dashboard Auto Update"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -20,6 +24,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -27,6 +32,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          ref: master
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
