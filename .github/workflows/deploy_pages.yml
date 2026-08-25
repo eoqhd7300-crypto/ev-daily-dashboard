@@ -1,0 +1,38 @@
+name: Deploy Dashboard to GitHub Pages
+
+# master 브랜치에 어떤 변경(코드 수정, data.json 갱신 등)이 push될 때마다 즉시 배포합니다.
+# Gemini 데이터 생성(daily_update.yml)과 별개로 동작하므로, 코드만 수정해도
+# 다음 예약 실행을 기다리지 않고 바로 사이트에 반영됩니다.
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
