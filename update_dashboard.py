@@ -31,11 +31,11 @@ VEHICLE_SCHEMA_EXAMPLE = {
     "timeline": "출시/예상시점 (예: 2026년 08월 출시)",
     "priceLocal": "현지 통화 가격",
     "priceKRW": "원화 환산 가격",
-    "batterySpec": "배터리 용량 & 기술",
-    "cellMaker": "셀 제조사",
-    "packMaker": "팩 제조사",
-    "qcPerformance": "급속충전 성능",
-    "rangePerformance": "주행거리 / 성능",
+    "batterySpec": "배터리 용량 & 기술 (예: 800V SiC Ultra-Fast NCM (98 kWh))",
+    "cellMaker": "셀 제조사 - 반드시 '영문사명 (한글표기)' 형식 (예: CATL (닝더시대))",
+    "packMaker": "팩 제조사 - 반드시 '영문사명 (한글표기)' 형식 (예: Hyundai Mobis (현대모비스))",
+    "qcPerformance": "급속충전 성능 - 반드시 'X.XC Peak (최대 XXXkW) | SOC 10% → 80% (약 XX분)' 형식",
+    "rangePerformance": "주행거리/성능 - CLTC/EPA/WLTP 수치와 가속성능(0-100km/h)/모터 출력 등 추가 정보 포함 (예: CLTC 700km+ (9분 충전시 450km) / 800V SiC 듀얼모터)",
     "overview": "한글 개요 2~3문장",
     "adMessage": "마케팅 슬로건",
     "dimensions": "제원 (전장×전폭×전고 / 휠베이스)",
@@ -74,6 +74,9 @@ def build_prompt(today_str: str) -> str:
 - 추정/허구 데이터 금지. 실제 검색으로 확인되지 않는 수치는 만들지 말고 해당 필드에 "정보 없음"을 넣으세요.
 - releaseDate/date 는 실제 발표일(YYYY-MM-DD)로 채우세요.
 - vehicles는 최근 1개월에만 몰리지 않고 지난 12개월 전체 기간에 골고루 분포되도록 구성하세요 (예: 각 월마다 1~2건씩).
+- cellMaker/packMaker는 반드시 '영문사명 (한글표기)' 형식으로 상세히 표기하세요 (예: 'CATL (닝더시대)', 'LG 에너지솔루션'). 간략화나 생략 금지.
+- qcPerformance는 반드시 'X.XC Peak (최대 XXXkW) | SOC 10% → 80% (약 XX분)' 형식으로 C-rate, 최대 출력(kW), 충전시간을 모두 포함해 상세히 작성하세요.
+- rangePerformance는 주행거리 수치 외에 가속성능/모터 출력/충전방식 등 추가 기술 정보를 함께 포함해 상세히 작성하세요. 단순 수치 한 개만 쓰는 요약형 문장은 금지.
 - url 은 검색으로 확인한 실제 기사 원문 링크를 넣으세요. 검색 도구를 쓸 수 없다면 네가 학습한 지식 중 가장 최근 정보로 채우고 url은 해당 매체의 대표 도메인 URL을 넣으세요.
 - id 값은 모두 서로 달라야 합니다.
 - 어떤 경우에도 사과, 거절, 설명 문구를 출력하지 말고 위 JSON 구조만 응답하세요. 실시간 검색이 불가능하더라도 거부하지 말고 보유한 지식 중 가장 최근 정보로 추론해서 채우세요.
