@@ -32,11 +32,11 @@ VEHICLE_SCHEMA_EXAMPLE = {
     "timeline": "출시/예상시점 (예: 2026년 08월 출시)",
     "priceLocal": "현지 통화 가격",
     "priceKRW": "원화 환산 가격",
-    "batterySpec": "배터리 용량 & 기술 (예: 800V SiC Ultra-Fast NCM (98 kWh))",
-    "cellMaker": "셀 제조사 - 반드시 '영문사명 (한글표기)' 형식 (예: CATL (닝더시대))",
-    "packMaker": "팩 제조사 - 반드시 '영문사명 (한글표기)' 형식 (예: Hyundai Mobis (현대모비스))",
-    "qcPerformance": "급속충전 성능 - 반드시 'X.XC Peak (최대 XXXkW) | SOC 10% → 80% (약 XX분)' 형식",
-    "rangePerformance": "주행거리/성능 - CLTC/EPA/WLTP 수치와 가속성능(0-100km/h)/모터 출력 등 추가 정보 포함 (예: CLTC 700km+ (9분 충전시 450km) / 800V SiC 듀얼모터)",
+    "batterySpec": "배터리 용량 & 기술",
+    "cellMaker": "셀 제조사",
+    "packMaker": "팩 제조사",
+    "qcPerformance": "급속충전 성능",
+    "rangePerformance": "주행거리 / 성능",
     "overview": "한글 개요 2~3문장",
     "adMessage": "마케팅 슬로건",
     "dimensions": "제원 (전장×전폭×전고 / 휠베이스)",
@@ -44,6 +44,31 @@ VEHICLE_SCHEMA_EXAMPLE = {
     "packInfo": "배터리 팩 구조 설명",
     "cellInfo": "셀 케미스트리/형태 설명",
     "chargingSafety": "충전/안전 관련 특징",
+}
+
+# 실제로 채워 넣은 예시 1건 - 모델이 이 스타일/디테일 수준을 그대로 모방하도록 함
+VEHICLE_FILLED_EXAMPLE = {
+    "id": "byd_fangchengbao_ti7_dmi",
+    "selected": True,
+    "releaseDate": "2026-01-14",
+    "name": "方程豹 钛7 DM-i (BYD Fang Cheng Bao Ti 7)",
+    "brand": "BYD (비야디 / 方程豹 Fangchengbao)",
+    "type": "중대형 오프로드 SUV",
+    "timeline": "2026년 01월 출시",
+    "priceLocal": "¥239,800 RMB",
+    "priceKRW": "약 4,832만 원",
+    "batterySpec": "50 kWh 2세대 Blade Battery (LFP)",
+    "cellMaker": "FinDreams (BYD 자회사)",
+    "packMaker": "FinDreams Battery (BYD 자체)",
+    "qcPerformance": "3.5C Peak (최대 180kW) | SOC 10% → 80% (약 16분)",
+    "rangePerformance": "CLTC EV 315km / 합산 1,300km+ (DMO 오프로드 300kW)",
+    "overview": "BYD DMO 플랫폼 기반 50kWh 대용량 LFP 블레이드 배터리를 탑재해 pure EV 모드로만 315km 주행 구현.",
+    "adMessage": "Super Hybrid Off-road - 315km Pure Electric Long Range",
+    "dimensions": "4,890mm × 1,970mm × 1,920mm / WB: 2,800mm",
+    "powertrain": "DMO Dual Motor AWD (합산 최고출력 300kW / 408ps, 최대토크 650Nm)",
+    "packInfo": "CTB 오프로드 특화 고강성 알루미늄 블레이드 팩",
+    "cellInfo": "2세대 High-Safety LFP Blade Cell",
+    "chargingSafety": "하부 3중 샌드위치 스틸 아머 보호 및 수심 1m 직접 침수 안전 인증",
 }
 
 NEWS_SCHEMA_EXAMPLE = {
@@ -56,28 +81,47 @@ NEWS_SCHEMA_EXAMPLE = {
 }
 
 
+def _last_12_months(today_str: str) -> list:
+    year, month = int(today_str[:4]), int(today_str[5:7])
+    labels = []
+    for i in range(12):
+        m = month - i
+        y = year
+        while m <= 0:
+            m += 12
+            y -= 1
+        labels.append(f"{y}-{m:02d}")
+    return list(reversed(labels))
+
+
 def build_prompt(today_str: str) -> str:
+    months = _last_12_months(today_str)
+    months_list = ", ".join(months)
     return f"""
 당신은 글로벌 전기차(EV) 및 배터리 산업 전문 애널리스트입니다.
 오늘 날짜는 {today_str} (KST) 입니다. (검색 도구가 제공되면 이를 활용해) 아래 JSON 스키마에
 맞춰 순수 JSON 한 개만 응답하세요. 마크다운 코드블록이나 설명 문장은 절대 포함하지 마세요.
 
+vehicles 배열의 각 항목은 반드시 아래 예시와 동일한 수준의 상세함을 갖춰야 합니다 (이 예시의 문장 형식과 정보량을 그대로 모방하세요):
+{json.dumps(VEHICLE_FILLED_EXAMPLE, ensure_ascii=False, indent=2)}
+
+news 배열의 각 항목 형식:
+{json.dumps(NEWS_SCHEMA_EXAMPLE, ensure_ascii=False)}
+
+응답 JSON 구조:
 {{
-  "vehicles": [ /* 최근 12개월(1년) 이내에 발표/출시된 주요 글로벌/중국 신규 전기차를 발표일이 고르게 분산되도록 15~25건, 아래 필드 형식 예시 */
-    {json.dumps(VEHICLE_SCHEMA_EXAMPLE, ensure_ascii=False)}
-  ],
-  "news": [ /* 최근 7일 이내 글로벌 EV/배터리 뉴스 헤드라인 정확히 20건, 최신순 정렬 */
-    {json.dumps(NEWS_SCHEMA_EXAMPLE, ensure_ascii=False)}
-  ]
+  "vehicles": [ 위 예시와 같은 형식의 객체 15~25건 ],
+  "news": [ 위 형식의 객체 정확히 20건, 최신순 정렬 ]
 }}
 
 규칙:
-- 추정/허구 데이터 금지. 실제 검색으로 확인되지 않는 수치는 만들지 말고 해당 필드에 "정보 없음"을 넣으세요.
-- releaseDate/date 는 실제 발표일(YYYY-MM-DD)로 채우세요.
-- vehicles는 최근 1개월에만 몰리지 않고 지난 12개월 전체 기간에 골고루 분포되도록 구성하세요 (예: 각 월마다 1~2건씩).
-- cellMaker/packMaker는 반드시 '영문사명 (한글표기)' 형식으로 상세히 표기하세요 (예: 'CATL (닝더시대)', 'LG 에너지솔루션'). 간략화나 생략 금지.
-- qcPerformance는 반드시 'X.XC Peak (최대 XXXkW) | SOC 10% → 80% (약 XX분)' 형식으로 C-rate, 최대 출력(kW), 충전시간을 모두 포함해 상세히 작성하세요.
-- rangePerformance는 주행거리 수치 외에 가속성능/모터 출력/충전방식 등 추가 기술 정보를 함께 포함해 상세히 작성하세요. 단순 수치 한 개만 쓰는 요약형 문장은 금지.
+- vehicles는 아래 12개 월(YYYY-MM) 전체를 반드시 커버해야 합니다. 각 월마다 최소 1건 이상의 서로 다른 실제 차량을 배정하세요 (한 달에만 몰아넣지 마세요):
+  {months_list}
+  releaseDate의 연-월(YYYY-MM)이 위 12개 월 중 하나와 일치해야 합니다.
+- cellMaker/packMaker는 반드시 '영문사명 (한글표기)' 형식으로 예시처럼 상세히 표기하세요 (예: 'CATL (닝더시대)'). 간략화나 생략 금지.
+- qcPerformance는 반드시 예시처럼 'X.XC Peak (최대 XXXkW) | SOC 10% → 80% (약 XX분)' 형식으로 C-rate, 최대 출력(kW), 충전시간을 모두 포함하세요.
+- rangePerformance는 예시처럼 주행거리 수치 외에 가속성능/모터 출력/충전방식 등 추가 기술 정보를 함께 포함하세요. 단순 수치 한 개만 쓰는 요약형 문장은 금지.
+- 추정/허구 데이터 금지. 실제로 확인되지 않는 수치는 만들지 말고 "정보 없음"을 넣으세요.
 - url 은 검색으로 확인한 실제 기사 원문 링크를 넣으세요. 검색 도구를 쓸 수 없다면 네가 학습한 지식 중 가장 최근 정보로 채우고 url은 해당 매체의 대표 도메인 URL을 넣으세요.
 - id 값은 모두 서로 달라야 합니다.
 - 어떤 경우에도 사과, 거절, 설명 문구를 출력하지 말고 위 JSON 구조만 응답하세요. 실시간 검색이 불가능하더라도 거부하지 말고 보유한 지식 중 가장 최근 정보로 추론해서 채우세요.
