@@ -11,6 +11,7 @@ import json
 import os
 import re
 from datetime import datetime, timedelta, timezone
+from urllib.parse import quote_plus
 
 from google import genai
 from google.genai import types
@@ -147,6 +148,19 @@ def merge_news(old_news: list, new_news: list) -> list:
     return result
 
 
+def apply_link_safety(news: list, used_grounding: bool) -> list:
+    """grounding 없이 생성된 기사 url은 실제 존재 여부가 검증되지 않아 404(Not Found) 가능성이 높기때문에,
+    항상 접속 가능한 구글 검색 결과 링크로 대체한다. grounding으로 얻은 url은 그대로 유지한다."""
+    for item in news:
+        if used_grounding:
+            item["linkType"] = "verified"
+        else:
+            query = quote_plus(f'{item.get("title", "")} {item.get("source", "")}'.strip())
+            item["url"] = f"https://www.google.com/search?q={query}"
+            item["linkType"] = "search"
+    return news
+
+
 def main() -> None:
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -159,6 +173,7 @@ def main() -> None:
     client = genai.Client(api_key=api_key)
     prompt = build_prompt(today_str)
 
+    used_grounding = True
     # 1차 시도: Google Search grounding 사용 (무료 티어는 별도의 낮은 할당량이 적용될 수 있음)
     try:
         response = client.models.generate_content(
@@ -171,6 +186,7 @@ def main() -> None:
         payload = extract_json(response.text)
     except Exception as exc:  # noqa: BLE001
         print(f"Grounding 호출 실패({exc}), 검색 도구 없이 재시도합니다.")
+        used_grounding = False
         try:
             response = client.models.generate_content(
                 model="gemini-3.6-flash",
@@ -189,6 +205,8 @@ def main() -> None:
     if not vehicles or not news:
         print("생성된 데이터가 비어 있어 data.json 갱신을 건너뜁니다.")
         return
+
+    news = apply_link_safety(news, used_grounding)
 
     existing = load_existing_data()
     merged_vehicles = merge_vehicles(existing["vehicles"], vehicles)

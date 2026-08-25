@@ -1573,6 +1573,8 @@
             evLatestNewsData.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = "bg-slate-50 hover:bg-slate-100/90 p-4 rounded-xl border border-slate-200 transition space-y-2";
+                const isSearchLink = item.linkType === 'search';
+                const linkLabel = isSearchLink ? '🔎 관련 기사 검색결과 보기' : '🔗 뉴스 원본 기사 열람하기';
                 card.innerHTML = `
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center space-x-2 min-w-0">
@@ -1585,7 +1587,7 @@
                     <p class="text-sm text-slate-600 leading-relaxed font-normal line-clamp-2">${item.summary}</p>
                     <div class="flex justify-end pt-1">
                         <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1 text-sm font-bold text-sky-600 hover:text-sky-800 hover:underline">
-                            <span>🔗 뉴스 원본 기사 열람하기</span>
+                            <span>${linkLabel}</span>
                             <span>➔</span>
                         </a>
                     </div>
