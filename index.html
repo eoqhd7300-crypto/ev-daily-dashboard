@@ -246,8 +246,13 @@
                     </h2>
                     <p class="text-xs text-slate-500 mt-0.5">발표일자가 가장 최신인 차량이 상단에 우선 배치됩니다. 체크박스를 선택/해제하여 상세 분석 카드를 비교할 수 있습니다.</p>
                 </div>
-                <div class="flex items-center space-x-2 text-xs text-slate-600 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200 self-start sm:self-auto">
-                    <span>조회 차종: <strong id="periodCount" class="text-sky-600 font-bold">0</strong>개 / 선택 비교: <strong id="selectedCount" class="text-indigo-600 font-bold">0</strong>개</span>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 self-start sm:self-auto">
+                    <div class="flex items-center space-x-2 text-xs text-slate-600 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
+                        <span>조회 차종: <strong id="periodCount" class="text-sky-600 font-bold">0</strong>개 / 선택 비교: <strong id="selectedCount" class="text-indigo-600 font-bold">0</strong>개</span>
+                    </div>
+                    <button onclick="window.openSpecCompareModal()" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm flex items-center justify-center gap-1.5 whitespace-nowrap transition">
+                        <span>🔋 배터리 스펙 비교표</span>
+                    </button>
                 </div>
             </div>
 
@@ -357,6 +362,29 @@
                 <button onclick="window.executeAISearch()" class="px-4 py-2 text-xs font-semibold rounded-xl bg-sky-600 text-white hover:bg-sky-700 shadow-sm flex items-center space-x-1">
                     <span>검색 및 데이터 분석 실행</span>
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Battery Spec Comparison Modal (PPTX-style spec sheet, side-by-side per selected vehicle) -->
+    <div id="specCompareModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+        <div class="bg-white rounded-2xl w-full max-w-[96vw] p-6 shadow-2xl border border-slate-100 max-h-[94vh] flex flex-col">
+            <div class="flex justify-between items-center pb-3 border-b border-slate-100">
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+                        <span>🔋 배터리 스펙 기본 정보표 (선택 차량 비교)</span>
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">상단 표에서 체크한 차량들의 배터리 팬/셀 기본 정보를 나란히 비교합니다. 데이터가 없는 항목은 '-'로 표기됩니다.</p>
+                </div>
+                <button onclick="window.closeSpecCompareModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold p-1">✕</button>
+            </div>
+
+            <div id="specCompareContainer" class="py-4 overflow-auto flex-1">
+                <!-- Dynamic Comparison Table Rendered via JS -->
+            </div>
+
+            <div class="flex justify-end pt-3 border-t border-slate-100">
+                <button onclick="window.closeSpecCompareModal()" class="px-4 py-2 text-sm font-semibold rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50">닫기</button>
             </div>
         </div>
     </div>
@@ -1824,6 +1852,84 @@
                 vehicle.selected = !vehicle.selected;
             }
             window.renderTable();
+        };
+
+        // '기본양식.pptx' 스타일 배터리 스펙 비교표 항목 정의 (데이터가 없으면 '-' 표기)
+        const SPEC_COMPARE_ROWS = [
+            { label: '차량사진', get: v => v.imageUrl ? `<img src="${v.imageUrl}" alt="${v.name}" class="w-full h-20 object-cover rounded-lg mx-auto">` : '-' },
+            { label: '모델', get: v => v.name || '-' },
+            { label: 'Trim', get: v => v.trim || '-' },
+            { label: '출시일', get: v => v.releaseDate || '-' },
+            { label: 'Pack 에너지', get: v => v.packEnergy || v.batterySpec || '-' },
+            { label: '최대 출력', get: v => v.maxOutput || '-' },
+            { label: '주행거리', get: v => v.rangePerformance || '-' },
+            { label: '최대속도', get: v => v.topSpeed || '-' },
+            { label: '0-100', get: v => v.zeroToHundred || '-' },
+            { label: '가격', get: v => v.priceKRW || '-' },
+            { label: '급속충전', get: v => v.qcPerformance || '-' },
+            { label: 'Max 충전출력', get: v => v.maxChargePower || '-' },
+            { label: 'Pack 제조사', get: v => v.packMaker || '-' },
+            { label: 'Pack 타입', get: v => v.packType || '-' },
+            { label: 'Cell 제조사', get: v => v.cellMaker || '-' },
+            { label: 'Cell 타입', get: v => v.cellType || '-' },
+            { label: '팩 공칭 전압', get: v => v.packVoltage || '-' },
+            { label: '팩 용량 (Nom.)', get: v => v.packCapacityAh || '-' },
+            { label: '팩 치수', get: v => v.packDimensions || '-' },
+            { label: '팩 중량', get: v => v.packWeight || '-' },
+            { label: '팩-Cell 중량', get: v => v.packMinusCellWeight || '-' },
+            { label: 'Cell/Pack 중량', get: v => v.cellToPackWeightRatio || '-' },
+            { label: '팩 ED', get: v => v.packEnergyDensity || '-' },
+            { label: '셀 구성', get: v => v.cellConfiguration || '-' },
+            { label: 'Cell 에너지 (Nom.)', get: v => v.cellEnergy || '-' },
+            { label: 'Cell 용량 (Nom.)', get: v => v.cellCapacityAh || '-' },
+            { label: 'Cell 조성', get: v => v.cellComposition || '-' },
+            { label: 'Cell 치수 (실측)', get: v => v.cellDimensionsMeasured || '-' },
+            { label: 'Cell 중량 (실측)', get: v => v.cellWeightMeasured || '-' },
+            { label: 'Cell ED (Nominal)', get: v => v.cellEnergyDensity || '-' },
+            { label: '냉각 방식', get: v => v.coolingMethod || '-' },
+        ];
+
+        window.openSpecCompareModal = function() {
+            const selectedVehicles = vehicles.filter(v => v.selected);
+            if (selectedVehicles.length === 0) {
+                alert('비교할 차량을 상단 표의 체크박스에서 먼저 선택해 주세요.');
+                return;
+            }
+            window.renderSpecCompareTable(selectedVehicles);
+            document.getElementById('specCompareModal').classList.remove('hidden');
+        };
+
+        window.closeSpecCompareModal = function() {
+            document.getElementById('specCompareModal').classList.add('hidden');
+        };
+
+        window.renderSpecCompareTable = function(selectedVehicles) {
+            const container = document.getElementById('specCompareContainer');
+
+            const headerCells = selectedVehicles.map(v => `
+                <th class="p-3 bg-indigo-50 text-indigo-900 font-bold text-xs sm:text-sm border border-slate-200 min-w-[180px] whitespace-nowrap">${v.name}</th>
+            `).join('');
+
+            const bodyRows = SPEC_COMPARE_ROWS.map(row => `
+                <tr class="even:bg-slate-50">
+                    <td class="p-3 font-bold text-slate-700 bg-slate-100 border border-slate-200 text-xs sm:text-sm whitespace-nowrap sticky left-0">${row.label}</td>
+                    ${selectedVehicles.map(v => `<td class="p-3 text-center text-xs sm:text-sm text-slate-800 border border-slate-200">${row.get(v)}</td>`).join('')}
+                </tr>
+            `).join('');
+
+            container.innerHTML = `
+                <table class="border-collapse text-left w-full">
+                    <thead>
+                        <tr>
+                            <th class="p-3 bg-slate-100 border border-slate-200 text-xs sm:text-sm sticky left-0 z-10">항목</th>
+                            ${headerCells}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${bodyRows}
+                    </tbody>
+                </table>
+            `;
         };
 
         window.toggleUpdateStatus = function() {
