@@ -276,6 +276,95 @@ def merge_vehicles(old_vehicles: list, new_vehicles: list) -> list:
     return result[:MAX_VEHICLES]
 
 
+# Tier1(공식 발표/보도자료 기반) / Tier2(차량 분해 실측 기반, UI에서 미검증 배지 표시) 필드 목록
+TIER1_SPEC_FIELDS = [
+    "trim", "topSpeed", "zeroToHundred", "maxOutput", "maxChargePower",
+    "packVoltage", "packType", "cellType", "coolingMethod",
+]
+TIER2_SPEC_FIELDS = [
+    "packCapacityAh", "packDimensions", "packWeight", "packMinusCellWeight",
+    "cellToPackWeightRatio", "packEnergyDensity", "cellConfiguration",
+    "cellEnergy", "cellCapacityAh", "cellComposition",
+    "cellDimensionsMeasured", "cellWeightMeasured", "cellEnergyDensity",
+]
+BACKFILL_BATCH_SIZE = 20  # 하루에 보강할 기존 차량 수 (토큰/시간 절약을 위해 점진적으로 진행)
+
+
+def select_backfill_candidates(vehicles: list, limit: int = BACKFILL_BATCH_SIZE) -> list:
+    """trim 필드가 없는(=아직 Tier1/Tier2 스펙을 한 번도 보강받지 못한) 차량을 오래된 순으로 뽑는다."""
+    candidates = [v for v in vehicles if "trim" not in v]
+    candidates.sort(key=lambda v: v.get("releaseDate") or "")
+    return candidates[:limit]
+
+
+def build_spec_backfill_prompt(candidates: list) -> str:
+    slim = [
+        {
+            "id": v.get("id"),
+            "name": v.get("name"),
+            "brand": v.get("brand"),
+            "type": v.get("type"),
+            "batterySpec": v.get("batterySpec"),
+            "qcPerformance": v.get("qcPerformance"),
+            "rangePerformance": v.get("rangePerformance"),
+            "dimensions": v.get("dimensions"),
+            "powertrain": v.get("powertrain"),
+        }
+        for v in candidates
+    ]
+    return f"""
+당신은 글로벌 전기차 스펙 데이터베이스 관리자입니다. 아래는 이미 대시보드에 등록된 차량 목록(간략 정보 포함)입니다.
+각 차량에 대해 당신이 알고 있는 지식 범위 내에서 추가 스펙 필드를 채워 JSON 배열로만 응답하세요.
+
+대상 차량 목록:
+{json.dumps(slim, ensure_ascii=False, indent=2)}
+
+각 차량에 대해 아래 필드를 채우세요:
+- Tier 1 (제조사 공식 발표/보도자료에 흔히 명시되는 정보): trim, topSpeed, zeroToHundred, maxOutput, maxChargePower, packVoltage, packType, cellType, coolingMethod
+  실제로 알고 있는 값이면 채우고, 모르면 "-"를 넣으세요.
+- Tier 2 (차량 분해 실측 데이터, 공식 자료에 거의 공개되지 않음): packCapacityAh, packDimensions, packWeight, packMinusCellWeight, cellToPackWeightRatio, packEnergyDensity, cellConfiguration, cellEnergy, cellCapacityAh, cellComposition, cellDimensionsMeasured, cellWeightMeasured, cellEnergyDensity
+  매우 유명하고 널리 보도된 차량에 대해서만, 실제로 신뢰할 수 있게 알고 있는 값이 있으면 채우고, 조금이라도 불확실하면 절대 임의로 만들지 말고 "-"를 넣으세요.
+
+응답 형식 (배열, 각 원소는 id와 위 필드들만 포함, 원본 name/brand 등은 반복하지 마세요):
+[
+  {{"id": "차량id", "trim": "...", "topSpeed": "...", "zeroToHundred": "...", "maxOutput": "...", "maxChargePower": "...", "packVoltage": "...", "packType": "...", "cellType": "...", "coolingMethod": "...", "packCapacityAh": "-", "packDimensions": "-", "packWeight": "-", "packMinusCellWeight": "-", "cellToPackWeightRatio": "-", "packEnergyDensity": "-", "cellConfiguration": "-", "cellEnergy": "-", "cellCapacityAh": "-", "cellComposition": "-", "cellDimensionsMeasured": "-", "cellWeightMeasured": "-", "cellEnergyDensity": "-"}}
+]
+
+마크다운 코드블록이나 설명 문장 없이 순수 JSON 배열만 응답하세요. 모든 차량의 id를 빠짐없이 포함하세요.
+"""
+
+
+def backfill_tier1_specs(client: "genai.Client", vehicles: list) -> int:
+    """trim 등 Tier1 필드가 없는 기존 차량들에 한해, 매일 일부씩 점진적으로 스펙을 보강한다."""
+    candidates = select_backfill_candidates(vehicles)
+    if not candidates:
+        return 0
+
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=build_spec_backfill_prompt(candidates),
+        )
+        filled = extract_json(response.text)
+    except Exception as exc:  # noqa: BLE001
+        print(f"기존 차량 스펙 보강 실패, 다음 실행에서 재시도합니다: {exc}")
+        return 0
+
+    if not isinstance(filled, list):
+        return 0
+
+    by_id = {item.get("id"): item for item in filled if isinstance(item, dict) and item.get("id")}
+    updated = 0
+    for v in candidates:
+        patch = by_id.get(v.get("id"))
+        if not patch:
+            continue
+        for field in TIER1_SPEC_FIELDS + TIER2_SPEC_FIELDS:
+            v[field] = patch.get(field) or "-"
+        updated += 1
+    return updated
+
+
 def merge_news(old_news: list, new_news: list) -> list:
     # 과거 grounding 실패 시 생성됐던 가짜 검색링크(placeholder, linkType == "search")는
     # 실제 RSS 기사가 아니므로 새 RSS 결과가 있으면 더 이상 유지하지 않고 버린다.
@@ -370,6 +459,8 @@ def main() -> None:
     merged_vehicles = merge_vehicles(existing["vehicles"], vehicles)
     merged_news = merge_news(existing["news"], news)
 
+    backfilled_count = backfill_tier1_specs(client, merged_vehicles)
+
     output = {
         "generatedAt": now_kst.isoformat(),
         "vehicles": merged_vehicles,
@@ -381,7 +472,7 @@ def main() -> None:
 
     print(
         f"data.json 갱신 완료 (신규 vehicles: {len(vehicles)} / 누적 vehicles: {len(merged_vehicles)}, "
-        f"신규 news: {len(news)} / 누적 news: {len(merged_news)})"
+        f"신규 news: {len(news)} / 누적 news: {len(merged_news)}, 스펙 보강: {backfilled_count}건)"
     )
 
 
