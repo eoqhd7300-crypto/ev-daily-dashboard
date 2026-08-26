@@ -1,20 +1,28 @@
 """
 Daily EV & Battery Dashboard Data Updater
 ------------------------------------------
-매일 실행되어 Gemini(Google Search grounding)로 최신 글로벌 EV 신차 정보와
-뉴스 헤드라인을 수집한 뒤 data.json 을 재생성합니다.
+매일 실행되어 다음 두 단계로 data.json 을 재생성합니다.
+1) 뉴스: Google News RSS(무료, API 키/과금 불필요)에서 실제 기사 링크/발행일을 그대로 가져오고,
+   Gemini에는 "이미 가져온 기사 내용을 한글로 요약"만 시킵니다 (검색 도구 미사용).
+2) 차량 스펙: Gemini에 알고 있는 최신 지식으로 신차 스펙을 정리하게 합니다 (검색 도구 미사용).
+
+Google Search grounding 도구를 전혀 사용하지 않으므로, 별도 결제(billing) 연결 없이도
+무료 티어 할당량 안에서 안정적으로 매일 동작합니다.
 index.html 은 이 data.json 을 fetch 하여 화면을 갱신합니다.
-(GEMINI_API_KEY 가 없거나 호출이 실패하면 기존 data.json 을 그대로 두고 종료합니다.)
+(GEMINI_API_KEY 가 없거나 호출이 모두 실패하면 기존 data.json 을 그대로 두고 종료합니다.)
 """
 
+import html
 import json
 import os
 import re
+import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 from urllib.parse import quote_plus
 
 from google import genai
-from google.genai import types
 
 KST = timezone(timedelta(hours=9))
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json")
@@ -22,29 +30,14 @@ DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json"
 MAX_VEHICLES = 80  # 누적 상한 (최근 1년치 데이터를 충분히 보유)
 MAX_NEWS = 20       # 항상 최신 20건만 유지 (기존 대시보드 사양과 동일)
 
-VEHICLE_SCHEMA_EXAMPLE = {
-    "id": "brand_model_slug",
-    "selected": True,
-    "releaseDate": "YYYY-MM-DD",
-    "name": "모델명 (영문/현지어 병기)",
-    "brand": "브랜드명",
-    "type": "차종/체급",
-    "timeline": "출시/예상시점 (예: 2026년 08월 출시)",
-    "priceLocal": "현지 통화 가격",
-    "priceKRW": "원화 환산 가격",
-    "batterySpec": "배터리 용량 & 기술",
-    "cellMaker": "셀 제조사",
-    "packMaker": "팩 제조사",
-    "qcPerformance": "급속충전 성능",
-    "rangePerformance": "주행거리 / 성능",
-    "overview": "한글 개요 2~3문장",
-    "adMessage": "마케팅 슬로건",
-    "dimensions": "제원 (전장×전폭×전고 / 휠베이스)",
-    "powertrain": "파워트레인 요약",
-    "packInfo": "배터리 팩 구조 설명",
-    "cellInfo": "셀 케미스트리/형태 설명",
-    "chargingSafety": "충전/안전 관련 특징",
-}
+MODEL_NAME = "gemini-3.6-flash"
+
+# Google News RSS 검색 쿼리 (실제 기사 링크/발행일을 그대로 가져오기 위함)
+GOOGLE_NEWS_QUERIES = [
+    "전기차 신차 출시",
+    "전기차 배터리",
+    "EV battery",
+]
 
 # 실제로 채워 넣은 예시 1건 - 모델이 이 스타일/디테일 수준을 그대로 모방하도록 함
 VEHICLE_FILLED_EXAMPLE = {
@@ -94,24 +87,20 @@ def _last_12_months(today_str: str) -> list:
     return list(reversed(labels))
 
 
-def build_prompt(today_str: str) -> str:
+def build_vehicle_prompt(today_str: str) -> str:
     months = _last_12_months(today_str)
     months_list = ", ".join(months)
     return f"""
 당신은 글로벌 전기차(EV) 및 배터리 산업 전문 애널리스트입니다.
-오늘 날짜는 {today_str} (KST) 입니다. (검색 도구가 제공되면 이를 활용해) 아래 JSON 스키마에
+오늘 날짜는 {today_str} (KST) 입니다. 당신이 알고 있는 지식 범위 내에서 아래 JSON 스키마에
 맞춰 순수 JSON 한 개만 응답하세요. 마크다운 코드블록이나 설명 문장은 절대 포함하지 마세요.
 
 vehicles 배열의 각 항목은 반드시 아래 예시와 동일한 수준의 상세함을 갖춰야 합니다 (이 예시의 문장 형식과 정보량을 그대로 모방하세요):
 {json.dumps(VEHICLE_FILLED_EXAMPLE, ensure_ascii=False, indent=2)}
 
-news 배열의 각 항목 형식:
-{json.dumps(NEWS_SCHEMA_EXAMPLE, ensure_ascii=False)}
-
 응답 JSON 구조:
 {{
-  "vehicles": [ 위 예시와 같은 형식의 객체 15~25건 ],
-  "news": [ 위 형식의 객체 정확히 20건, 최신순 정렬 ]
+  "vehicles": [ 위 예시와 같은 형식의 객체 15~25건 ]
 }}
 
 규칙:
@@ -123,13 +112,34 @@ news 배열의 각 항목 형식:
 - qcPerformance는 반드시 예시처럼 'X.XC Peak (최대 XXXkW) | SOC 10% → 80% (약 XX분)' 형식으로 C-rate, 최대 출력(kW), 충전시간을 모두 포함하세요.
 - rangePerformance는 예시처럼 주행거리 수치 외에 가속성능/모터 출력/충전방식 등 추가 기술 정보를 함께 포함하세요. 단순 수치 한 개만 쓰는 요약형 문장은 금지.
 - 추정/허구 데이터 금지. 실제로 확인되지 않는 수치는 만들지 말고 "정보 없음"을 넣으세요.
-- url 은 검색으로 확인한 실제 기사 원문 링크를 넣으세요. 검색 도구를 쓸 수 없다면 네가 학습한 지식 중 가장 최근 정보로 채우고 url은 해당 매체의 대표 도메인 URL을 넣으세요.
 - id 값은 모두 서로 달라야 합니다.
-- 어떤 경우에도 사과, 거절, 설명 문구를 출력하지 말고 위 JSON 구조만 응답하세요. 실시간 검색이 불가능하더라도 거부하지 말고 보유한 지식 중 가장 최근 정보로 추론해서 채우세요.
+- 어떤 경우에도 사과, 거절, 설명 문구를 출력하지 말고 위 JSON 구조만 응답하세요. 보유한 지식 중 가장 최근 정보로 추론해서 채우세요.
 """
 
 
-def extract_json(text: str) -> dict:
+def build_news_summary_prompt(raw_items: list) -> str:
+    items_json = json.dumps(raw_items, ensure_ascii=False, indent=2)
+    return f"""
+아래는 RSS로 수집한 실제 전기차/배터리 관련 뉴스 원본 목록입니다 (title, url, date, source, description 포함).
+이 목록의 각 항목에 대해 한글 요약(summary)을 1~2문장으로 작성해서 JSON 배열로만 응답하세요.
+
+- title, url, date, source 값은 절대 변경하지 말고 원본 그대로 유지하세요.
+- summary는 description 내용을 바탕으로 자연스러운 한글 뉴스 요약 문장으로 작성하세요 (직역이 아니라 핵심 내용 요약).
+- description이 비어있거나 정보가 부족하면 title을 근거로 합리적으로 요약하세요.
+- 마크다운 코드블록이나 설명 문장 없이 순수 JSON 배열만 응답하세요.
+
+원본 목록:
+{items_json}
+
+응답 형식 (배열, 각 원소는 아래 5개 필드만 포함):
+[
+  {{"title": "...", "summary": "...", "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+]
+"""
+
+
+def extract_json(text):
+    """모델 응답에서 JSON(dict 또는 list)을 추출한다. 마크다운 펜스/부연설명을 허용한다."""
     cleaned = re.sub(r"^```json\s*", "", (text or "").strip(), flags=re.IGNORECASE)
     cleaned = re.sub(r"^```\s*", "", cleaned)
     cleaned = re.sub(r"```\s*$", "", cleaned)
@@ -137,12 +147,81 @@ def extract_json(text: str) -> dict:
     try:
         return json.loads(cleaned)
     except json.JSONDecodeError:
-        # 모델이 설명/거절 문구를 섞어 보낸 경우, 첫 { 부터 마지막 } 까지만 추출해 재시도
-        start = cleaned.find("{")
-        end = cleaned.rfind("}")
-        if start == -1 or end == -1 or end <= start:
+        # 모델이 설명/거절 문구를 섞어 보낸 경우, JSON 시작/종료 문자만 추출해 재시도
+        first_brace = cleaned.find("{")
+        first_bracket = cleaned.find("[")
+        candidates = [i for i in (first_brace, first_bracket) if i != -1]
+        if not candidates:
+            raise
+        start = min(candidates)
+        closing = "}" if cleaned[start] == "{" else "]"
+        end = cleaned.rfind(closing)
+        if end <= start:
             raise
         return json.loads(cleaned[start : end + 1])
+
+
+def _strip_html(text: str) -> str:
+    text = re.sub(r"<[^>]+>", " ", text or "")
+    return html.unescape(re.sub(r"\s+", " ", text)).strip()
+
+
+def fetch_google_news_rss(query: str, max_items: int = 10) -> list:
+    """Google News RSS(무료, API 키 불필요)에서 실제 기사 목록을 가져온다."""
+    url = f"https://news.google.com/rss/search?q={quote_plus(query)}&hl=ko&gl=KR&ceid=KR:ko"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = resp.read()
+    except Exception as exc:  # noqa: BLE001
+        print(f"RSS fetch 실패 ({query}): {exc}")
+        return []
+
+    try:
+        root = ET.fromstring(data)
+    except ET.ParseError as exc:
+        print(f"RSS 파싱 실패 ({query}): {exc}")
+        return []
+
+    items = []
+    for item in root.findall(".//item")[:max_items]:
+        title = (item.findtext("title") or "").strip()
+        link = (item.findtext("link") or "").strip()
+        pub_date_raw = item.findtext("pubDate") or ""
+        source_el = item.find("source")
+        source = (source_el.text or "").strip() if source_el is not None else ""
+        description = _strip_html(item.findtext("description") or "")
+        try:
+            pub_dt = parsedate_to_datetime(pub_date_raw).astimezone(KST)
+            date_str = pub_dt.strftime("%Y-%m-%d")
+        except Exception:  # noqa: BLE001
+            date_str = ""
+        if not title or not link or not date_str:
+            continue
+        items.append(
+            {
+                "title": title,
+                "url": link,
+                "date": date_str,
+                "source": source or "Google News",
+                "description": description,
+            }
+        )
+    return items
+
+
+def collect_recent_news_raw(max_total: int = MAX_NEWS) -> list:
+    collected = []
+    seen = set()
+    for query in GOOGLE_NEWS_QUERIES:
+        for item in fetch_google_news_rss(query, max_items=10):
+            key = _norm(item["url"])
+            if not key or key in seen:
+                continue
+            seen.add(key)
+            collected.append(item)
+    collected.sort(key=lambda x: x["date"], reverse=True)
+    return collected[:max_total]
 
 
 def load_existing_data() -> dict:
@@ -193,16 +272,56 @@ def merge_news(old_news: list, new_news: list) -> list:
     return result
 
 
-def apply_link_safety(news: list, used_grounding: bool) -> list:
-    """grounding 없이 생성된 기사 url은 실제 존재 여부가 검증되지 않아 404(Not Found) 가능성이 높기때문에,
-    항상 접속 가능한 구글 검색 결과 링크로 대체한다. grounding으로 얻은 url은 그대로 유지한다."""
-    for item in news:
-        if used_grounding:
-            item["linkType"] = "verified"
-        else:
-            query = quote_plus(f'{item.get("title", "")} {item.get("source", "")}'.strip())
-            item["url"] = f"https://www.google.com/search?q={query}"
-            item["linkType"] = "search"
+def generate_vehicles(client: "genai.Client", today_str: str) -> list:
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=build_vehicle_prompt(today_str),
+        )
+        payload = extract_json(response.text)
+        vehicles = payload.get("vehicles") or []
+        if not vehicles:
+            print("차량 데이터 응답이 비어 있어 차량 목록 갱신을 건너뜁니다.")
+        return vehicles
+    except Exception as exc:  # noqa: BLE001 - 실패해도 기존 vehicles 유지
+        print(f"차량 데이터 생성 실패, 차량 목록 갱신을 건너뜁니다: {exc}")
+        return []
+
+
+def generate_news(client: "genai.Client") -> list:
+    raw_items = collect_recent_news_raw(MAX_NEWS)
+    if not raw_items:
+        print("RSS 뉴스 수집 실패(0건) - 뉴스 갱신을 건너뜁니다.")
+        return []
+
+    summaries_by_key = {}
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=build_news_summary_prompt(raw_items),
+        )
+        summarized = extract_json(response.text)
+        if isinstance(summarized, list):
+            for entry in summarized:
+                if isinstance(entry, dict) and entry.get("url"):
+                    summaries_by_key[_norm(entry["url"])] = entry.get("summary")
+    except Exception as exc:  # noqa: BLE001 - 요약 실패해도 원문 설명으로 대체
+        print(f"뉴스 요약 생성 실패, 원문 설명을 그대로 사용합니다: {exc}")
+
+    news = []
+    for raw in raw_items:
+        key = _norm(raw["url"])
+        summary = summaries_by_key.get(key) or raw.get("description") or raw["title"]
+        news.append(
+            {
+                "title": raw["title"],
+                "summary": summary,
+                "source": raw["source"],
+                "date": raw["date"],
+                "url": raw["url"],
+                "linkType": "rss",
+            }
+        )
     return news
 
 
@@ -216,42 +335,13 @@ def main() -> None:
     today_str = now_kst.strftime("%Y-%m-%d")
 
     client = genai.Client(api_key=api_key)
-    prompt = build_prompt(today_str)
 
-    used_grounding = True
-    # 1차 시도: Google Search grounding 사용 (무료 티어는 별도의 낮은 할당량이 적용될 수 있음)
-    try:
-        response = client.models.generate_content(
-            model="gemini-3.6-flash",
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search=types.GoogleSearch())],
-            ),
-        )
-        payload = extract_json(response.text)
-    except Exception as exc:  # noqa: BLE001
-        print(f"Grounding 호출 실패({exc}), 검색 도구 없이 재시도합니다.")
-        used_grounding = False
-        try:
-            response = client.models.generate_content(
-                model="gemini-3.6-flash",
-                contents=prompt,
-            )
-            raw_text = response.text or ""
-            payload = extract_json(raw_text)
-        except Exception as exc2:  # noqa: BLE001 - keep the last known good data.json on any failure
-            print(f"Gemini 호출/파싱 실패로 data.json 갱신을 건너뜁니다: {exc2}")
-            print(f"응답 원문(디버깅용, 최대 500자): {raw_text[:500] if 'raw_text' in locals() else '(응답 없음)'}")
-            return
+    vehicles = generate_vehicles(client, today_str)
+    news = generate_news(client)
 
-    vehicles = payload.get("vehicles") or []
-    news = payload.get("news") or []
-
-    if not vehicles or not news:
-        print("생성된 데이터가 비어 있어 data.json 갱신을 건너뜁니다.")
+    if not vehicles and not news:
+        print("신규로 생성/수집된 데이터가 없어 data.json 갱신을 건너뜁니다.")
         return
-
-    news = apply_link_safety(news, used_grounding)
 
     existing = load_existing_data()
     merged_vehicles = merge_vehicles(existing["vehicles"], vehicles)
@@ -268,7 +358,7 @@ def main() -> None:
 
     print(
         f"data.json 갱신 완료 (신규 vehicles: {len(vehicles)} / 누적 vehicles: {len(merged_vehicles)}, "
-        f"news: {len(merged_news)})"
+        f"신규 news: {len(news)} / 누적 news: {len(merged_news)})"
     )
 
 
