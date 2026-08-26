@@ -33,10 +33,18 @@ MAX_NEWS = 20       # 항상 최신 20건만 유지 (기존 대시보드 사양�
 MODEL_NAME = "gemini-3.6-flash"
 
 # Google News RSS 검색 쿼리 (실제 기사 링크/발행일을 그대로 가져오기 위함)
+# 쿼리를 다양화해 하루 20건 이상의 고유 기사를 안정적으로 확보한다.
 GOOGLE_NEWS_QUERIES = [
     "전기차 신차 출시",
     "전기차 배터리",
+    "전기차 배터리 기술",
+    "전기차 화재",
+    "배터리 공장",
     "EV battery",
+    "electric vehicle battery",
+    "solid-state battery",
+    "EV charging technology",
+    "battery recycling",
 ]
 
 # 실제로 채워 넣은 예시 1건 - 모델이 이 스타일/디테일 수준을 그대로 모방하도록 함
@@ -63,16 +71,6 @@ VEHICLE_FILLED_EXAMPLE = {
     "cellInfo": "2세대 High-Safety LFP Blade Cell",
     "chargingSafety": "하부 3중 샌드위치 스틸 아머 보호 및 수심 1m 직접 침수 안전 인증",
 }
-
-NEWS_SCHEMA_EXAMPLE = {
-    "id": 1,
-    "title": "영문 원제목",
-    "summary": "한글 요약 1~2문장",
-    "source": "출처 매체명",
-    "date": "YYYY-MM-DD",
-    "url": "원본 기사 URL",
-}
-
 
 def _last_12_months(today_str: str) -> list:
     year, month = int(today_str[:4]), int(today_str[5:7])
@@ -166,7 +164,7 @@ def _strip_html(text: str) -> str:
     return html.unescape(re.sub(r"\s+", " ", text)).strip()
 
 
-def fetch_google_news_rss(query: str, max_items: int = 10) -> list:
+def fetch_google_news_rss(query: str, max_items: int = 15) -> list:
     """Google News RSS(무료, API 키 불필요)에서 실제 기사 목록을 가져온다."""
     url = f"https://news.google.com/rss/search?q={quote_plus(query)}&hl=ko&gl=KR&ceid=KR:ko"
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -214,7 +212,7 @@ def collect_recent_news_raw(max_total: int = MAX_NEWS) -> list:
     collected = []
     seen = set()
     for query in GOOGLE_NEWS_QUERIES:
-        for item in fetch_google_news_rss(query, max_items=10):
+        for item in fetch_google_news_rss(query, max_items=15):
             key = _norm(item["url"])
             if not key or key in seen:
                 continue
@@ -257,8 +255,11 @@ def merge_vehicles(old_vehicles: list, new_vehicles: list) -> list:
 
 
 def merge_news(old_news: list, new_news: list) -> list:
+    # 과거 grounding 실패 시 생성됐던 가짜 검색링크(placeholder, linkType == "search")는
+    # 실제 RSS 기사가 아니므로 새 RSS 결과가 있으면 더 이상 유지하지 않고 버린다.
+    old_real_news = [n for n in old_news if n.get("linkType") != "search"]
     merged: dict[str, dict] = {}
-    for n in old_news + new_news:
+    for n in old_real_news + new_news:
         key = _norm(n.get("url") or n.get("title") or "")
         if not key:
             continue
