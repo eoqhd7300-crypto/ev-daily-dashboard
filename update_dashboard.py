@@ -69,8 +69,28 @@ VEHICLE_FILLED_EXAMPLE = {
     "powertrain": "DMO Dual Motor AWD (합산 최고출력 300kW / 408ps, 최대토크 650Nm)",
     "packInfo": "CTB 오프로드 특화 고강성 알루미늄 블레이드 팩",
     "cellInfo": "2세대 High-Safety LFP Blade Cell",
-    "chargingSafety": "하부 3중 샌드위치 스틸 아머 보호 및 수심 1m 직접 침수 안전 인증",
-}
+    "chargingSafety": "하부 3중 샌드위치 스틸 아머 보호 및 수심 1m 직접 침수 안전 인증",    "trim": "Premium AWD",
+    "topSpeed": "180km/h",
+    "zeroToHundred": "4.8초",
+    "maxOutput": "300kW / 408ps",
+    "maxChargePower": "180kW",
+    "packVoltage": "400V",
+    "packType": "CTB (Cell-to-Body)",
+    "cellType": "각형 (Prismatic)",
+    "coolingMethod": "액체 냉각 (Cooling Plate)",
+    "packCapacityAh": "-",
+    "packDimensions": "-",
+    "packWeight": "-",
+    "packMinusCellWeight": "-",
+    "cellToPackWeightRatio": "-",
+    "packEnergyDensity": "-",
+    "cellConfiguration": "-",
+    "cellEnergy": "-",
+    "cellCapacityAh": "-",
+    "cellComposition": "-",
+    "cellDimensionsMeasured": "-",
+    "cellWeightMeasured": "-",
+    "cellEnergyDensity": "-",}
 
 def _last_12_months(today_str: str) -> list:
     year, month = int(today_str[:4]), int(today_str[5:7])
@@ -111,6 +131,8 @@ vehicles 배열의 각 항목은 반드시 아래 예시와 동일한 수준의 
 - rangePerformance는 예시처럼 주행거리 수치 외에 가속성능/모터 출력/충전방식 등 추가 기술 정보를 함께 포함하세요. 단순 수치 한 개만 쓰는 요약형 문장은 금지.
 - 추정/허구 데이터 금지. 실제로 확인되지 않는 수치는 만들지 말고 "정보 없음"을 넣으세요.
 - id 값은 모두 서로 달라야 합니다.
+- 이러한 필드(trim, topSpeed, zeroToHundred, maxOutput, maxChargePower, packVoltage, packType, cellType, coolingMethod)는 제조사 공식 보도자료/언론에 흔히 명시되는 정보이므로, 실제로 알고 있는 값을 최대한 채우고 모르면 "-"를 넣으세요.
+- 이러한 필드(packCapacityAh, packDimensions, packWeight, packMinusCellWeight, cellToPackWeightRatio, packEnergyDensity, cellConfiguration, cellEnergy, cellCapacityAh, cellComposition, cellDimensionsMeasured, cellWeightMeasured, cellEnergyDensity)는 차량을 실제 분해해야만 알 수 있는 실측치로, 공식 자료에는 거의 공개되지 않습니다. 매우 유명하고 기술적으로 널리 보도된 차량(예: Tesla, BYD Blade Battery 등)에 대해서만, 실제로 신뢰할 수 있게 알고 있는 값이 있으면 채우고, 조금이라도 불확실하면 절대 임의로 만들지 말고 "-"를 넣으세요. 이 필드들은 대시보드에 "미검증(AI 추정)" 배지가 자동 표시되므로, 확신 없는 값은 절대 넣지 마세요.
 - 어떤 경우에도 사과, 거절, 설명 문구를 출력하지 말고 위 JSON 구조만 응답하세요. 보유한 지식 중 가장 최근 정보로 추론해서 채우세요.
 """
 

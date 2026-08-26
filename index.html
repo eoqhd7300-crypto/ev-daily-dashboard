@@ -375,6 +375,9 @@
                         <span>🔋 배터리 스펙 기본 정보표 (선택 차량 비교)</span>
                     </h3>
                     <p class="text-xs sm:text-sm text-slate-500 mt-0.5">상단 표에서 체크한 차량들의 배터리 팬/셀 기본 정보를 나란히 비교합니다. 데이터가 없는 항목은 '-'로 표기됩니다.</p>
+                    <p class="text-[11px] sm:text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-2.5 py-1 mt-2 inline-flex items-center gap-1">
+                        <span>⚠️ 미검증</span> 백지가 붙은 값은 공식 보도자료가 아닌 AI 학습 지식 기반 추정치입니다 (실시간 교차검증 안 됨). 참고용으로만 활용하세요.
+                    </p>
                 </div>
                 <button onclick="window.closeSpecCompareModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold p-1">✕</button>
             </div>
@@ -1855,6 +1858,7 @@
         };
 
         // '기본양식.pptx' 스타일 배터리 스펙 비교표 항목 정의 (데이터가 없으면 '-' 표기)
+        // tier: 2 로 표시된 항목은 공식 자료가 아닌 AI 추정치(미검증)로, 값이 있을 때 배지를 함께 표시함
         const SPEC_COMPARE_ROWS = [
             { label: '차량사진', get: v => v.imageUrl ? `<img src="${v.imageUrl}" alt="${v.name}" class="w-full h-20 object-cover rounded-lg mx-auto">` : '-' },
             { label: '모델', get: v => v.name || '-' },
@@ -1873,19 +1877,19 @@
             { label: 'Cell 제조사', get: v => v.cellMaker || '-' },
             { label: 'Cell 타입', get: v => v.cellType || '-' },
             { label: '팩 공칭 전압', get: v => v.packVoltage || '-' },
-            { label: '팩 용량 (Nom.)', get: v => v.packCapacityAh || '-' },
-            { label: '팩 치수', get: v => v.packDimensions || '-' },
-            { label: '팩 중량', get: v => v.packWeight || '-' },
-            { label: '팩-Cell 중량', get: v => v.packMinusCellWeight || '-' },
-            { label: 'Cell/Pack 중량', get: v => v.cellToPackWeightRatio || '-' },
-            { label: '팩 ED', get: v => v.packEnergyDensity || '-' },
-            { label: '셀 구성', get: v => v.cellConfiguration || '-' },
-            { label: 'Cell 에너지 (Nom.)', get: v => v.cellEnergy || '-' },
-            { label: 'Cell 용량 (Nom.)', get: v => v.cellCapacityAh || '-' },
-            { label: 'Cell 조성', get: v => v.cellComposition || '-' },
-            { label: 'Cell 치수 (실측)', get: v => v.cellDimensionsMeasured || '-' },
-            { label: 'Cell 중량 (실측)', get: v => v.cellWeightMeasured || '-' },
-            { label: 'Cell ED (Nominal)', get: v => v.cellEnergyDensity || '-' },
+            { label: '팩 용량 (Nom.)', get: v => v.packCapacityAh || '-', tier: 2 },
+            { label: '팩 치수', get: v => v.packDimensions || '-', tier: 2 },
+            { label: '팩 중량', get: v => v.packWeight || '-', tier: 2 },
+            { label: '팩-Cell 중량', get: v => v.packMinusCellWeight || '-', tier: 2 },
+            { label: 'Cell/Pack 중량', get: v => v.cellToPackWeightRatio || '-', tier: 2 },
+            { label: '팩 ED', get: v => v.packEnergyDensity || '-', tier: 2 },
+            { label: '셀 구성', get: v => v.cellConfiguration || '-', tier: 2 },
+            { label: 'Cell 에너지 (Nom.)', get: v => v.cellEnergy || '-', tier: 2 },
+            { label: 'Cell 용량 (Nom.)', get: v => v.cellCapacityAh || '-', tier: 2 },
+            { label: 'Cell 조성', get: v => v.cellComposition || '-', tier: 2 },
+            { label: 'Cell 치수 (실측)', get: v => v.cellDimensionsMeasured || '-', tier: 2 },
+            { label: 'Cell 중량 (실측)', get: v => v.cellWeightMeasured || '-', tier: 2 },
+            { label: 'Cell ED (Nominal)', get: v => v.cellEnergyDensity || '-', tier: 2 },
             { label: '냉각 방식', get: v => v.coolingMethod || '-' },
         ];
 
@@ -1910,10 +1914,21 @@
                 <th class="p-3 bg-indigo-50 text-indigo-900 font-bold text-xs sm:text-sm border border-slate-200 min-w-[180px] whitespace-nowrap">${v.name}</th>
             `).join('');
 
+            const unverifiedBadge = '<span class="inline-flex items-center gap-0.5 text-[9px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded-full whitespace-nowrap mt-1">⚠️ 미검증</span>';
+
             const bodyRows = SPEC_COMPARE_ROWS.map(row => `
                 <tr class="even:bg-slate-50">
                     <td class="p-3 font-bold text-slate-700 bg-slate-100 border border-slate-200 text-xs sm:text-sm whitespace-nowrap sticky left-0">${row.label}</td>
-                    ${selectedVehicles.map(v => `<td class="p-3 text-center text-xs sm:text-sm text-slate-800 border border-slate-200">${row.get(v)}</td>`).join('')}
+                    ${selectedVehicles.map(v => {
+                        const val = row.get(v);
+                        const showBadge = row.tier === 2 && val && val !== '-';
+                        return `<td class="p-3 text-center text-xs sm:text-sm text-slate-800 border border-slate-200">
+                            <div class="flex flex-col items-center gap-0.5">
+                                <span>${val}</span>
+                                ${showBadge ? unverifiedBadge : ''}
+                            </div>
+                        </td>`;
+                    }).join('')}
                 </tr>
             `).join('');
 
