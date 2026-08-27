@@ -288,13 +288,42 @@ TIER2_SPEC_FIELDS = [
     "cellDimensionsMeasured", "cellWeightMeasured", "cellEnergyDensity",
 ]
 BACKFILL_BATCH_SIZE = 20  # 하루에 보강할 기존 차량 수 (토큰/시간 절약을 위해 점진적으로 진행)
+RECHECK_INTERVAL_DAYS = 14  # 이미 확인했지만 여전히 "-"인 필드가 있는 차량을 재확인하는 주기(일)
 
 
-def select_backfill_candidates(vehicles: list, limit: int = BACKFILL_BATCH_SIZE) -> list:
-    """trim 필드가 없는(=아직 Tier1/Tier2 스펙을 한 번도 보강받지 못한) 차량을 오래된 순으로 뽑는다."""
-    candidates = [v for v in vehicles if "trim" not in v]
-    candidates.sort(key=lambda v: v.get("releaseDate") or "")
-    return candidates[:limit]
+def _has_missing_spec_values(v: dict) -> bool:
+    """Tier1/Tier2 필드 중 하나라도 아직 미확인(필드 없음 또는 "-")이면 True."""
+    for field in TIER1_SPEC_FIELDS + TIER2_SPEC_FIELDS:
+        if v.get(field, "-") == "-":
+            return True
+    return False
+
+
+def _days_since(date_str: str, today_str: str) -> int:
+    try:
+        d1 = datetime.strptime(date_str, "%Y-%m-%d")
+        d2 = datetime.strptime(today_str, "%Y-%m-%d")
+        return (d2 - d1).days
+    except Exception:  # noqa: BLE001 - 날짜 형식이 깨져있으면 재확인 대상으로 간주
+        return RECHECK_INTERVAL_DAYS
+
+
+def select_backfill_candidates(vehicles: list, today_str: str, limit: int = BACKFILL_BATCH_SIZE) -> list:
+    """우선순위: (1) 한 번도 확인한 적 없는 차량 → (2) 이전에 확인했지만 여전히 "-" 필드가 남아있고
+    RECHECK_INTERVAL_DAYS 이상 지난 차량(새로 공개된 정보가 있을 수 있으므로 주기적으로 재확인).
+    """
+    never_checked = [v for v in vehicles if "specLastCheckedAt" not in v]
+    never_checked.sort(key=lambda v: v.get("releaseDate") or "")
+
+    stale_incomplete = [
+        v for v in vehicles
+        if "specLastCheckedAt" in v
+        and _has_missing_spec_values(v)
+        and _days_since(v["specLastCheckedAt"], today_str) >= RECHECK_INTERVAL_DAYS
+    ]
+    stale_incomplete.sort(key=lambda v: v.get("specLastCheckedAt") or "")
+
+    return (never_checked + stale_incomplete)[:limit]
 
 
 def build_spec_backfill_prompt(candidates: list) -> str:
@@ -334,9 +363,9 @@ def build_spec_backfill_prompt(candidates: list) -> str:
 """
 
 
-def backfill_tier1_specs(client: "genai.Client", vehicles: list) -> int:
-    """trim 등 Tier1 필드가 없는 기존 차량들에 한해, 매일 일부씩 점진적으로 스펙을 보강한다."""
-    candidates = select_backfill_candidates(vehicles)
+def backfill_tier1_specs(client: "genai.Client", vehicles: list, today_str: str) -> int:
+    """아직 확인 안 했거나, 확인했지만 여전히 "-"가 남은 기존 차량들에 한해, 매일 일부씩 스펙을 보강/재확인한다."""
+    candidates = select_backfill_candidates(vehicles, today_str)
     if not candidates:
         return 0
 
@@ -359,8 +388,14 @@ def backfill_tier1_specs(client: "genai.Client", vehicles: list) -> int:
         patch = by_id.get(v.get("id"))
         if not patch:
             continue
+        # 이미 실제 값이 확인된 필드는 절대 덮어쓰지 않고(다운그레이드 방지), "-"/미존재 필드만 새로 발견된 값으로 업그레이드한다.
         for field in TIER1_SPEC_FIELDS + TIER2_SPEC_FIELDS:
-            v[field] = patch.get(field) or "-"
+            new_val = patch.get(field)
+            if new_val and new_val != "-":
+                v[field] = new_val
+            elif field not in v:
+                v[field] = "-"
+        v["specLastCheckedAt"] = today_str
         updated += 1
     return updated
 
@@ -459,7 +494,7 @@ def main() -> None:
     merged_vehicles = merge_vehicles(existing["vehicles"], vehicles)
     merged_news = merge_news(existing["news"], news)
 
-    backfilled_count = backfill_tier1_specs(client, merged_vehicles)
+    backfilled_count = backfill_tier1_specs(client, merged_vehicles, today_str)
 
     output = {
         "generatedAt": now_kst.isoformat(),
