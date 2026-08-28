@@ -67,7 +67,8 @@
                 </div>
             </div>
 
-            <div class="flex items-center space-x-2 sm:space-x-2.5 flex-wrap justify-end">
+            <!-- 기존 우측 액션 버튼 그룹: 코드는 유지하되 화면에서만 숨김 처리 (id="legacyHeaderActions") -->
+            <div id="legacyHeaderActions" class="hidden items-center space-x-2 sm:space-x-2.5 flex-wrap justify-end">
                 <button onclick="window.openDBModal()" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition flex items-center space-x-1">
                     <span>💾 DB 저장 & 히스토리</span>
                 </button>
@@ -84,6 +85,18 @@
                     <span>📄 PDF / 인쇄</span>
                 </button>
             </div>
+
+            <!-- 신규 상단 메뉴 (표시 전용, 아직 동작 미연결) -->
+            <nav class="flex items-center space-x-1 sm:space-x-2 flex-wrap justify-end">
+                <button type="button" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">New EV Models</button>
+                <button type="button" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">기본사양비교</button>
+                <button type="button" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Teardown Data</button>
+                <button type="button" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">EV News</button>
+                <select class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-600 hover:bg-slate-100 transition cursor-pointer">
+                    <option>Others</option>
+                    <option>Data web Source</option>
+                </select>
+            </nav>
         </div>
     </header>
 
