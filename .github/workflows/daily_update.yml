@@ -2,8 +2,10 @@ name: Daily EV Dashboard Auto Update
 
 on:
   schedule:
-    # 매일 KST 오전 9시 (UTC 00:00) 자동 실행
-    - cron: '0 0 * * *'
+    # 매일 KST 오전 9시 10분 (UTC 00:10) 자동 실행
+    # 주의: GitHub Actions는 매 정시(0분)에 예약된 워크플로우가 몰려 지연되는 경우가 많아
+    # 정시(0분)를 피해 10분으로 오프셋을 두어 실행 지연 가능성을 낮춥니다.
+    - cron: '10 0 * * *'
   workflow_dispatch: # Actions 탭에서 수동 실행 버튼 활성화
 
 permissions:
