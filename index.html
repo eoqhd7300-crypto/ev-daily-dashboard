@@ -92,9 +92,9 @@
                 <button type="button" onclick="window.openSpecCompareModal()" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">기본사양비교</button>
                 <button type="button" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Teardown Data</button>
                 <a href="news.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">EV News</a>
-                <select class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-600 hover:bg-slate-100 transition cursor-pointer">
-                    <option>Others</option>
-                    <option>Data web Source</option>
+                <select onchange="if (this.value === 'data_web_source') { window.location.href = 'data-web-source.html'; }" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-600 hover:bg-slate-100 transition cursor-pointer">
+                    <option value="">Others</option>
+                    <option value="data_web_source">Data web Source</option>
                 </select>
             </nav>
         </div>
@@ -133,70 +133,6 @@
                 UPDATED
             </span>
         </div>
-
-        <!-- China & Global Primary Web Routes Panel -->
-        <section class="bg-gradient-to-r from-slate-900 to-sky-950 rounded-2xl p-4 text-white shadow-sm mb-3 no-print">
-            <div class="flex items-center justify-between cursor-pointer select-none" onclick="window.toggleWebRoutesPanel()">
-                <div class="flex items-center space-x-2.5">
-                    <span class="text-xl">🌐</span>
-                    <h3 class="text-xs sm:text-sm font-bold text-white">
-                        중국 & 글로벌 EV 수집 기본 웹 루트 (Data Web source)
-                    </h3>
-                </div>
-                <button class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-600 transition flex items-center gap-1">
-                    <span id="routeToggleBtnText">웹 루트 가이드 열기 ▼</span>
-                </button>
-            </div>
-
-            <!-- Collapsible details & grid (Hidden by default before opening) -->
-            <div id="webRoutesPanelContent" class="hidden mt-3 pt-3 border-t border-slate-700/80">
-                <p class="text-xs text-slate-300 mb-3">
-                    Geely(Zeekr/Geome/Galaxy/Lynk), BYD(Denza/Yangwang/Fangchengbao), Changan(Avatr/Deepal/Nevo), SAIC(IM/Rising/MG), Chery(Exeed/Exlantix/iCar), GAC(Aion/Hyptec), Dongfeng(Voyah/MHERO/eπ), GWM(Ora/Tank/Wey), Nio(Onvo), Huawei HIMA(Aito/Luxeed/Stelato/Maextro), FAW, Yutong 등 모기업/서브브랜드 누락 방지 수집 루트입니다.
-                </p>
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 text-xs">
-                    <a href="https://www.dongchedi.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
-                        <span class="font-bold text-sky-400">1. 懂车帝 (Dongchedi)</span>
-                        <span class="text-[11px] text-slate-300 mt-1">중국 신차 실시간 카탈로그 & 실측</span>
-                    </a>
-                    <a href="https://www.yiche.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
-                        <span class="font-bold text-sky-400">2. 易车网 (Yiche)</span>
-                        <span class="text-[11px] text-slate-300 mt-1">BitAuto 중국 공식 가격 & 모터 스펙</span>
-                    </a>
-                    <a href="https://ev.autohome.com.cn" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
-                        <span class="font-bold text-sky-400">3. 汽车之家 (Autohome)</span>
-                        <span class="text-[11px] text-slate-300 mt-1">중국 EV 전문관 & 배터리 팩 공시</span>
-                    </a>
-                    <a href="https://evkx.net" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
-                        <span class="font-bold text-sky-400">4. EVKX Knowledge</span>
-                        <span class="text-[11px] text-slate-300 mt-1">글로벌 330+ 셀/팩 상세 테크 가이드</span>
-                    </a>
-                    <a href="https://www.evspecifications.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
-                        <span class="font-bold text-sky-400">5. EVSpecifications</span>
-                        <span class="text-[11px] text-slate-300 mt-1">배터리 용량, 모터, QC C-rate DB</span>
-                    </a>
-                    <a href="https://autonews.gasgoo.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
-                        <span class="font-bold text-sky-400">6. 盖世汽车 (Gasgoo)</span>
-                        <span class="text-[11px] text-slate-300 mt-1">중국 자동차 서플라이체인 & 배터리</span>
-                    </a>
-                    <a href="https://cnevpost.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
-                        <span class="font-bold text-sky-400">7. CNEVPost</span>
-                        <span class="text-[11px] text-slate-300 mt-1">중국 전기차 신차 출시 실시간 인텔리전스</span>
-                    </a>
-                    <a href="https://carnewschina.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
-                        <span class="font-bold text-sky-400">8. CarNewsChina</span>
-                        <span class="text-[11px] text-slate-300 mt-1">중국 완성차 OEM 신차 스파이샷 및 공시</span>
-                    </a>
-                    <a href="https://ibp.a2mac1.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800/80 hover:bg-sky-900/60 p-2.5 rounded-xl border border-slate-700 transition flex flex-col justify-between">
-                        <span class="font-bold text-sky-400">9. A2MAC1 Teardown</span>
-                        <span class="text-[11px] text-slate-300 mt-1">글로벌 차량 분해 벤치마킹 DB</span>
-                    </a>
-                    <div class="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700 flex flex-col justify-between">
-                        <span class="font-bold text-emerald-400">10. 中 MIIT 공신부</span>
-                        <span class="text-[11px] text-slate-300 mt-1">신에너지차 형식승인 카탈로그</span>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Global EV Latest News Briefing: Top 3 Preview (Full list moved to news.html / "EV News" nav) -->
         <section class="bg-gradient-to-r from-sky-900 via-indigo-900 to-slate-900 border border-sky-700/60 rounded-2xl p-4 text-white shadow-sm mb-6 no-print">
@@ -1615,18 +1551,6 @@
                 `;
                 container.appendChild(card);
             });
-        };
-
-        window.toggleWebRoutesPanel = function() {
-            const content = document.getElementById('webRoutesPanelContent');
-            const btnText = document.getElementById('routeToggleBtnText');
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                btnText.innerText = '웹 루트 가이드 닫기 ▲';
-            } else {
-                content.classList.add('hidden');
-                btnText.innerText = '웹 루트 가이드 열기 ▼';
-            }
         };
 
         window.setPeriodFilter = function(periodKey) {

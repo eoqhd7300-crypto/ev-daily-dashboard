@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Web Source | Daily EV & 배터리 플랫폼 대시보드</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#035485',
+                            900: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+
+    <!-- Header Navigation Bar (동일 구성, 현재 페이지인 Data Web Source만 강조) -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="bg-sky-600 text-white p-2 rounded-lg font-bold text-xl flex items-center justify-center w-10 h-10 shadow-sm">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-lg sm:text-xl leading-tight">Daily EV & Battery Intelligence News</h1>
+                    <p class="text-xs text-slate-500 font-medium"> by BTI Team </p>
+                </div>
+            </a>
+
+            <nav class="flex items-center space-x-1 sm:space-x-2 flex-wrap justify-end">
+                <a href="index.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">New EV Models</a>
+                <a href="index.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">기본사양비교</a>
+                <button type="button" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Teardown Data</button>
+                <a href="news.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">EV News</a>
+                <select onchange="if (this.value === 'data_web_source') { window.location.href = 'data-web-source.html'; }" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg border border-sky-300 bg-sky-50 text-sky-700 transition cursor-pointer">
+                    <option value="">Others</option>
+                    <option value="data_web_source" selected>Data web Source</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+
+        <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
+            <div>
+                <h2 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <span>🌐 중국 & 글로벌 EV 수집 기본 웹 루트 (Data Web Source)</span>
+                </h2>
+                <p class="text-xs text-slate-500 mt-0.5 max-w-3xl">
+                    Geely(Zeekr/Geome/Galaxy/Lynk), BYD(Denza/Yangwang/Fangchengbao), Changan(Avatr/Deepal/Nevo), SAIC(IM/Rising/MG), Chery(Exeed/Exlantix/iCar), GAC(Aion/Hyptec), Dongfeng(Voyah/MHERO/eπ), GWM(Ora/Tank/Wey), Nio(Onvo), Huawei HIMA(Aito/Luxeed/Stelato/Maextro), FAW, Yutong 등 모기업/서브브랜드 누락 방지 수집 루트입니다. 각 사이트를 클릭하면 새 탭에서 원본 페이지로 이동합니다.
+                </p>
+            </div>
+            <a href="index.html" class="text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition flex items-center gap-1 whitespace-nowrap">
+                <span>◀ 메인 페이지로 돌아가기</span>
+            </a>
+        </div>
+
+        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <a href="https://www.dongchedi.com" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 p-4 rounded-xl border border-slate-700 transition flex flex-col justify-between text-white">
+                    <span class="font-bold text-sky-400 text-sm">1. 懂车帝 (Dongchedi)</span>
+                    <span class="text-xs text-slate-300 mt-1.5 leading-relaxed">중국 신차 실시간 카탈로그 & 실측 정보를 주로 공개</span>
+                </a>
+                <a href="https://www.yiche.com" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 p-4 rounded-xl border border-slate-700 transition flex flex-col justify-between text-white">
+                    <span class="font-bold text-sky-400 text-sm">2. 易车网 (Yiche)</span>
+                    <span class="text-xs text-slate-300 mt-1.5 leading-relaxed">BitAuto 중국 공식 가격 & 모터 스펙 정보를 주로 공개</span>
+                </a>
+                <a href="https://ev.autohome.com.cn" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 p-4 rounded-xl border border-slate-700 transition flex flex-col justify-between text-white">
+                    <span class="font-bold text-sky-400 text-sm">3. 汽车之家 (Autohome)</span>
+                    <span class="text-xs text-slate-300 mt-1.5 leading-relaxed">중국 EV 전문관 & 배터리 팩 공시 정보를 주로 공개</span>
+                </a>
+                <a href="https://evkx.net" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 p-4 rounded-xl border border-slate-700 transition flex flex-col justify-between text-white">
+                    <span class="font-bold text-sky-400 text-sm">4. EVKX Knowledge</span>
+                    <span class="text-xs text-slate-300 mt-1.5 leading-relaxed">글로벌 330여종 셀/팩 상세 테크 가이드를 주로 공개</span>
+                </a>
+                <a href="https://www.evspecifications.com" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 p-4 rounded-xl border border-slate-700 transition flex flex-col justify-between text-white">
+                    <span class="font-bold text-sky-400 text-sm">5. EVSpecifications</span>
+                    <span class="text-xs text-slate-300 mt-1.5 leading-relaxed">배터리 용량, 모터, QC C-rate DB 정보를 주로 공개</span>
+                </a>
+                <a href="https://autonews.gasgoo.com" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 p-4 rounded-xl border border-slate-700 transition flex flex-col justify-between text-white">
+                    <span class="font-bold text-sky-400 text-sm">6. 盖世汽车 (Gasgoo)</span>
+                    <span class="text-xs text-slate-300 mt-1.5 leading-relaxed">중국 자동차 서플라이체인 & 배터리 산업 뉴스를 주로 공개</span>
+                </a>
+                <a href="https://cnevpost.com" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 p-4 rounded-xl border border-slate-700 transition flex flex-col justify-between text-white">
+                    <span class="font-bold text-sky-400 text-sm">7. CNEVPost</span>
+                    <span class="text-xs text-slate-300 mt-1.5 leading-relaxed">중국 전기차 신차 출시 실시간 인텔리전스를 주로 공개</span>
+                </a>
+                <a href="https://carnewschina.com" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 p-4 rounded-xl border border-slate-700 transition flex flex-col justify-between text-white">
+                    <span class="font-bold text-sky-400 text-sm">8. CarNewsChina</span>
+                    <span class="text-xs text-slate-300 mt-1.5 leading-relaxed">중국 완성차 OEM 신차 스파이샷 및 공시 정보를 주로 공개</span>
+                </a>
+                <a href="https://ibp.a2mac1.com" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 p-4 rounded-xl border border-slate-700 transition flex flex-col justify-between text-white">
+                    <span class="font-bold text-sky-400 text-sm">9. A2MAC1 Teardown</span>
+                    <span class="text-xs text-slate-300 mt-1.5 leading-relaxed">글로벌 차량 분해 벤치마킹 DB를 주로 공개</span>
+                </a>
+                <a href="https://www.miit.gov.cn" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-slate-800 p-4 rounded-xl border border-slate-700 transition flex flex-col justify-between text-white">
+                    <span class="font-bold text-emerald-400 text-sm">10. 中 MIIT 공신부</span>
+                    <span class="text-xs text-slate-300 mt-1.5 leading-relaxed">신에너지차(NEV) 형식승인 카탈로그를 주로 공개</span>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
