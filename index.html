@@ -89,7 +89,7 @@
             <!-- 신규 상단 메뉴 (표시 전용, 아직 동작 미연결) -->
             <nav class="flex items-center space-x-1 sm:space-x-2 flex-wrap justify-end">
                 <button type="button" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">New EV Models</button>
-                <button type="button" onclick="window.openSpecCompareModal()" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">기본사양비교</button>
+                <button type="button" onclick="window.goToSpecCompare()" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">기본사양비교</button>
                 <button type="button" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Teardown Data</button>
                 <a href="news.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">EV News</a>
                 <select onchange="if (this.value === 'data_web_source') { window.location.href = 'data-web-source.html'; }" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-600 hover:bg-slate-100 transition cursor-pointer">
@@ -299,32 +299,6 @@
                 <button onclick="window.executeAISearch()" class="px-4 py-2 text-xs font-semibold rounded-xl bg-sky-600 text-white hover:bg-sky-700 shadow-sm flex items-center space-x-1">
                     <span>검색 및 데이터 분석 실행</span>
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Battery Spec Comparison Modal (PPTX-style spec sheet, side-by-side per selected vehicle) -->
-    <div id="specCompareModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
-        <div class="bg-white rounded-2xl w-full max-w-[96vw] p-6 shadow-2xl border border-slate-100 max-h-[94vh] flex flex-col">
-            <div class="flex justify-between items-center pb-3 border-b border-slate-100">
-                <div>
-                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-                        <span>🔋 배터리 스펙 기본 정보표 (선택 차량 비교)</span>
-                    </h3>
-                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">상단 표에서 체크한 차량들의 배터리 팬/셀 기본 정보를 나란히 비교합니다. 데이터가 없는 항목은 '-'로 표기됩니다.</p>
-                    <p class="text-[11px] sm:text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-2.5 py-1 mt-2 inline-flex items-center gap-1">
-                        <span>⚠️ 미검증</span> 백지가 붙은 값은 공식 보도자료가 아닌 AI 학습 지식 기반 추정치입니다 (실시간 교차검증 안 됨). 참고용으로만 활용하세요.
-                    </p>
-                </div>
-                <button onclick="window.closeSpecCompareModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold p-1">✕</button>
-            </div>
-
-            <div id="specCompareContainer" class="py-4 overflow-auto flex-1">
-                <!-- Dynamic Comparison Table Rendered via JS -->
-            </div>
-
-            <div class="flex justify-end pt-3 border-t border-slate-100">
-                <button onclick="window.closeSpecCompareModal()" class="px-4 py-2 text-sm font-semibold rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50">닫기</button>
             </div>
         </div>
     </div>
@@ -1771,94 +1745,16 @@
             window.renderTable();
         };
 
-        // '기본양식.pptx' 스타일 배터리 스펙 비교표 항목 정의 (데이터가 없으면 '-' 표기)
-        // tier: 2 로 표시된 항목은 공식 자료가 아닌 AI 추정치(미검증)로, 값이 있을 때 배지를 함께 표시함
-        const SPEC_COMPARE_ROWS = [
-            { label: '차량사진', get: v => v.imageUrl ? `<img src="${v.imageUrl}" alt="${v.name}" class="w-full h-20 object-cover rounded-lg mx-auto">` : '-' },
-            { label: '모델', get: v => v.name || '-' },
-            { label: 'Trim', get: v => v.trim || '-' },
-            { label: '출시일', get: v => v.releaseDate || '-' },
-            { label: 'Pack 에너지', get: v => v.packEnergy || v.batterySpec || '-' },
-            { label: '최대 출력', get: v => v.maxOutput || '-' },
-            { label: '주행거리', get: v => v.rangePerformance || '-' },
-            { label: '최대속도', get: v => v.topSpeed || '-' },
-            { label: '0-100', get: v => v.zeroToHundred || '-' },
-            { label: '가격', get: v => v.priceKRW || '-' },
-            { label: '급속충전', get: v => v.qcPerformance || '-' },
-            { label: 'Max 충전출력', get: v => v.maxChargePower || '-' },
-            { label: 'Pack 제조사', get: v => v.packMaker || '-' },
-            { label: 'Pack 타입', get: v => v.packType || '-' },
-            { label: 'Cell 제조사', get: v => v.cellMaker || '-' },
-            { label: 'Cell 타입', get: v => v.cellType || '-' },
-            { label: '팩 공칭 전압', get: v => v.packVoltage || '-' },
-            { label: '팩 용량 (Nom.)', get: v => v.packCapacityAh || '-', tier: 2 },
-            { label: '팩 치수', get: v => v.packDimensions || '-', tier: 2 },
-            { label: '팩 중량', get: v => v.packWeight || '-', tier: 2 },
-            { label: '팩-Cell 중량', get: v => v.packMinusCellWeight || '-', tier: 2 },
-            { label: 'Cell/Pack 중량', get: v => v.cellToPackWeightRatio || '-', tier: 2 },
-            { label: '팩 ED', get: v => v.packEnergyDensity || '-', tier: 2 },
-            { label: '셀 구성', get: v => v.cellConfiguration || '-', tier: 2 },
-            { label: 'Cell 에너지 (Nom.)', get: v => v.cellEnergy || '-', tier: 2 },
-            { label: 'Cell 용량 (Nom.)', get: v => v.cellCapacityAh || '-', tier: 2 },
-            { label: 'Cell 조성', get: v => v.cellComposition || '-', tier: 2 },
-            { label: 'Cell 치수 (실측)', get: v => v.cellDimensionsMeasured || '-', tier: 2 },
-            { label: 'Cell 중량 (실측)', get: v => v.cellWeightMeasured || '-', tier: 2 },
-            { label: 'Cell ED (Nominal)', get: v => v.cellEnergyDensity || '-', tier: 2 },
-            { label: '냉각 방식', get: v => v.coolingMethod || '-' },
-        ];
-
-        window.openSpecCompareModal = function() {
+        // Battery spec comparison now lives on its own page (spec-compare.html).
+        // Selected vehicles (checked in the main table) are handed off via sessionStorage.
+        window.goToSpecCompare = function() {
             const selectedVehicles = vehicles.filter(v => v.selected);
             if (selectedVehicles.length === 0) {
                 alert('비교할 차량을 상단 표의 체크박스에서 먼저 선택해 주세요.');
                 return;
             }
-            window.renderSpecCompareTable(selectedVehicles);
-            document.getElementById('specCompareModal').classList.remove('hidden');
-        };
-
-        window.closeSpecCompareModal = function() {
-            document.getElementById('specCompareModal').classList.add('hidden');
-        };
-
-        window.renderSpecCompareTable = function(selectedVehicles) {
-            const container = document.getElementById('specCompareContainer');
-
-            const headerCells = selectedVehicles.map(v => `
-                <th class="p-3 bg-indigo-50 text-indigo-900 font-bold text-xs sm:text-sm border border-slate-200 min-w-[180px] whitespace-nowrap">${v.name}</th>
-            `).join('');
-
-            const unverifiedBadge = '<span class="inline-flex items-center gap-0.5 text-[9px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded-full whitespace-nowrap mt-1">⚠️ 미검증</span>';
-
-            const bodyRows = SPEC_COMPARE_ROWS.map(row => `
-                <tr class="even:bg-slate-50">
-                    <td class="p-3 font-bold text-slate-700 bg-slate-100 border border-slate-200 text-xs sm:text-sm whitespace-nowrap sticky left-0">${row.label}</td>
-                    ${selectedVehicles.map(v => {
-                        const val = row.get(v);
-                        const showBadge = row.tier === 2 && val && val !== '-';
-                        return `<td class="p-3 text-center text-xs sm:text-sm text-slate-800 border border-slate-200">
-                            <div class="flex flex-col items-center gap-0.5">
-                                <span>${val}</span>
-                                ${showBadge ? unverifiedBadge : ''}
-                            </div>
-                        </td>`;
-                    }).join('')}
-                </tr>
-            `).join('');
-
-            container.innerHTML = `
-                <table class="border-collapse text-left w-full">
-                    <thead>
-                        <tr>
-                            <th class="p-3 bg-slate-100 border border-slate-200 text-xs sm:text-sm sticky left-0 z-10">항목</th>
-                            ${headerCells}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${bodyRows}
-                    </tbody>
-                </table>
-            `;
+            sessionStorage.setItem('specCompareVehicles', JSON.stringify(selectedVehicles));
+            window.location.href = 'spec-compare.html';
         };
 
         window.toggleUpdateStatus = function() {
