@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV News | Daily EV & 배터리 플랫폼 대시보드</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#035485',
+                            900: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+
+    <!-- Header Navigation Bar (동일 구성, 현재 페이지인 EV News 메뉴만 활성 표시) -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="bg-sky-600 text-white p-2 rounded-lg font-bold text-xl flex items-center justify-center w-10 h-10 shadow-sm">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-lg sm:text-xl leading-tight">Daily EV & Battery Intelligence News</h1>
+                    <p class="text-xs text-slate-500 font-medium"> by BTI Team </p>
+                </div>
+            </a>
+
+            <nav class="flex items-center space-x-1 sm:space-x-2 flex-wrap justify-end">
+                <a href="index.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">New EV Models</a>
+                <a href="index.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">기본사양비교</a>
+                <button type="button" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Teardown Data</button>
+                <a href="news.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-sky-50 text-sky-700 border border-sky-200 transition">EV News</a>
+                <select class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-600 hover:bg-slate-100 transition cursor-pointer">
+                    <option>Others</option>
+                    <option>Data web Source</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+
+        <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
+            <div>
+                <h2 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <span>📰 글로벌 EV 최신 기사 브리핑</span>
+                    <span class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">오전 9시 자동 갱신</span>
+                </h2>
+                <p class="text-xs text-slate-500 mt-0.5">글로벌 전기차, 배터리, 완성차 기술 동향 헤드라인을 요약 정리했습니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.</p>
+            </div>
+            <a href="index.html" class="text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition flex items-center gap-1 whitespace-nowrap">
+                <span>◀ 메인 페이지로 돌아가기</span>
+            </a>
+        </div>
+
+        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+            <div id="newsListContainer" class="space-y-3">
+                <!-- Dynamic Full News List Rendered via JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+        // Dynamic Date Helper (Threshold: 09:00 AM Daily) - kept in sync with index.html
+        window.getTargetReportDate = function() {
+            const now = new Date();
+            if (now.getHours() < 9) {
+                now.setDate(now.getDate() - 1);
+            }
+            return now;
+        };
+
+        window.formatDateISO = function(dateObj) {
+            const y = dateObj.getFullYear();
+            const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const d = String(dateObj.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        };
+
+        window.getOffsetISO = function(baseDate, dayOffset) {
+            const d = new Date(baseDate);
+            d.setDate(d.getDate() + dayOffset);
+            return window.formatDateISO(d);
+        };
+
+        // Built-in Fallback News Dataset (used only if data.json is unavailable, e.g. opened via file://)
+        window.generateEVNewsData = function(baseDate) {
+            const d0 = window.getOffsetISO(baseDate, 0);
+            const d1 = window.getOffsetISO(baseDate, -1);
+            const d2 = window.getOffsetISO(baseDate, -2);
+            const d3 = window.getOffsetISO(baseDate, -3);
+            const d4 = window.getOffsetISO(baseDate, -4);
+            const d5 = window.getOffsetISO(baseDate, -5);
+
+            return [
+                { id: 1, title: "BYD's Fang Cheng Bao launches Ti 7 DM-i Long-Range with 50 kWh battery", summary: "BYD 산하 방센바오(Fang Cheng Bao) 브랜드가 50kWh 대용량 LFP 배터리를 탑재하고 순수 전기 주행거리 315km(합산 1,300km+)를 구현한 Ti 7 DM 롱레인지 에디션을 공식 정식 출시했습니다.", source: "CarNewsChina", date: d0, url: "https://carnewschina.com/2026/08/20/byds-fang-cheng-bao-launches-ti-7-dm-long-range-edition-with-50-kwh-battery-and-315-km-ev-range/" },
+                { id: 2, title: "Xiaomi SU7 Ultra Track Version 1,548hp Battery Cooling & Aerodynamics Disclosed", summary: "샤오미(Xiaomi)가 1,548마력 트라이모터 SU7 Ultra의 양산형 모델에 5.2C 고출력 CATL 2세대 기린(Qilin) 팩 및 액체냉각 시스템을 채택하여 서킷 연속 주행 방열 성능을 상향 조정한 테크 스펙을 발표했습니다.", source: "CNEVPost", date: d0, url: "https://cnevpost.com" },
+                { id: 3, title: "Hyundai IONIQ 9 North American HMGMA Plant Mass Production Schedule Finalized", summary: "현대자동차가 E-GMP 기반 대형 3열 순전기 SUV 아이오닉 9의 북미 조지아 HMGMA 메타플랜트 양산 라인 가동 및 글로벌 공식 인도 라인업 출고 일정을 공식 결정했습니다.", source: "Electrek", date: d1, url: "https://electrek.co" },
+                { id: 4, title: "Geely to produce its luxury EVs at Volvo European plants in 2028", summary: "지리자동차 회장이 유럽 관세 장벽 극복 및 시장 확대를 위해 2028년부터 볼보의 스웨덴 및 벨기에 유럽 공장에서 프리미엄 전기차를 직접 생산할 계획을 공식 공유했습니다.", source: "CarNewsChina", date: d1, url: "https://carnewschina.com/2026/08/17/geely-to-produce-its-luxury-cars-at-volvo-european-plants-in-2028-new-chairman-shared/" },
+                { id: 5, title: "Freelander 8 SUV seen in UAE ahead of global launch", summary: "재규어 랜드로버와 체리자동차(Chery)의 전동화 합작 브랜드 프리랜더(Freelander) 8 전기 SUV가 중동 도로 테스트 중 포착되어 해외 출시 준비 단계에 착수했습니다.", source: "CarNewsChina", date: d2, url: "https://carnewschina.com/2026/08/18/freelander-8-suv-was-seen-in-the-uae-ahead-of-the-global-launch/" },
+                { id: 6, title: "2027 Toyota bZ Crossover now on sale starting at $34,980 in US", summary: "토요타의 차세대 순전기 크로스오버 2027 bZ 모델이 북미 시장에 $34,980 파격적인 기본 가격으로 정식 판매를 시작했습니다.", source: "Electrek", date: d2, url: "https://electrek.co/2026/08/18/2027-toyota-bz-on-sale-price-specs/" },
+                { id: 7, title: "GM offers free charging to Latin American Chevy EV customers", summary: "제너럴모터스(GM)가 남미 시장에서 쉐보레 순전기차 구매 고객들을 대상으로 딜러 네트워크 내 무료 충전 서비스를 확장 운영합니다.", source: "Electrek", date: d3, url: "https://electrek.co/2026/08/17/gm-free-charging-latin-america-chevy-ev/" },
+                { id: 8, title: "smart #5 Premium adds AWD version and 400kW DC fast charging", summary: "스마트(smart)의 플래그십 순전기 SUV 스마트 #5 프리미엄 트림에 듀얼모터 AWD 및 400kW 초고속 급속 충전 시스템이 새롭게 합류했습니다.", source: "EVSpecifications", date: d4, url: "https://www.evspecifications.com/news/" },
+                { id: 9, title: "Mercedes-Benz GLA Electric arrives in Europe with MMA platform", summary: "메르세데스-벤츠가 차세대 전동화 모듈러 플랫폼 MMA 기반의 컴팩트 순전기 SUV GLA Electric 3개 트림의 사양과 가격을 유럽 공시했습니다.", source: "EVSpecifications", date: d4, url: "https://www.evspecifications.com/news/" },
+                { id: 10, title: "Voyah Passion S recreates Schumacher SLS AMG tunnel loop challenge", summary: "동풍자동차 보야(Voyah)의 패션 S 전기 세단이 순전기 구동력만으로 터널 360도 주행 루프 미션을 시연해 주행 안정성을 과시했습니다.", source: "CarNewsChina", date: d5, url: "https://carnewschina.com" },
+                { id: 11, title: "China sets new accuracy rules for EV battery health reading with 5% error limit", summary: "중국 공신부(MIIT)가 중고 전기차 거래 및 점검 표준화를 위해 BMS 배터리 잔존 수명(SOH) 측정 오차 범위를 5% 이내로 엄격 규제하는 규칙을 시행했습니다.", source: "CarNewsChina", date: d5, url: "https://carnewschina.com" },
+                { id: 12, title: "享界 G9 顶帐版帐篷内部什么样？官方预告 能越野/能露营让人心动", summary: "화웨이 HIMA-BAIC 합작 브랜드 스텔라토(享界)가 파노라믹 루프 및 더블 텐트 캠핑 구조를 갖춘 G9 럭셔리 EV SUV 특화 트림을 선보였습니다.", source: "Autohome", date: d5, url: "https://ev.autohome.com.cn" },
+                { id: 13, title: "CATL Shenxing 5C LFP Battery Powering Zeekr 7X Achieves 10.5 Min Charge", summary: "CATL의 초고속 5.5C LFP 신싱 셀을 탑재한 지커(Zeekr) 7X가 SOC 10%에서 80%까지 단 10분 30초 만에 충전을 완료했습니다.", source: "Gasgoo Auto", date: d5, url: "https://autonews.gasgoo.com" },
+                { id: 14, title: "BMW Gen6 Cylindrical Cell CTC Pack Production Line Active in Dingolfing", summary: "BMW 그룹이 노이에 클라세(Neue Klasse) 시리즈에 적용되는 6세대 46mm 원통형 CTC 배터리 팩 정밀 생산 라인을 가동했습니다.", source: "EVKX Knowledge", date: d5, url: "https://evkx.net" },
+                { id: 15, title: "Nio Onvo L60 900V Battery Swap Station Network Surpasses 3,000 Outlets", summary: "니오(Nio)의 락도(Onvo) L60 전용 900V 초고속 3분 자동 배터리 스왑 교환소 구축 수량이 중국 전역 3,000개소를 돌파했습니다.", source: "CNEVPost", date: d5, url: "https://cnevpost.com" },
+                { id: 16, title: "SAIC IM L6 Solid-State Battery Model Completes 1,000km Real-Road Test", summary: "상하이자동차 지지(IM) L6가 청타오 에너제틱 133kWh 반고체 배터리를 탑재하고 실도로 1,000km 무충전 주행을 완료했습니다.", source: "Dongchedi", date: d5, url: "https://www.dongchedi.com" },
+                { id: 17, title: "Changan Avatr 12 Updated with Huawei ADS 3.0 & CATL 800V Qilin Battery", summary: "장안자동차 아바타(Avatr) 12 연식변경 모델이 화웨이 첸쿤 ADS 3.0 및 CATL 800V Qilin 배터리로 상품성을 강화했습니다.", source: "Yiche (BitAuto)", date: d5, url: "https://www.yiche.com" },
+                { id: 18, title: "Chery Exlantix ET Demonstrates 9-Min Extreme Fast Charging at -20°C", summary: "체리자동차 엑스란티스(Exlantix) ET가 영하 20도 극저온 조건에서 CATL 신싱 LFP 셀 기반 9분 급속 충전을 성공적으로 정밀 시연했습니다.", source: "CarNewsChina", date: d5, url: "https://carnewschina.com" },
+                { id: 19, title: "Yutong YTEA Electric Bus Architecture Guarantees 1.5M Km Battery Durability", summary: "우퉁(Yutong) 버스가 CATL 상용 셀 기반 YTEA 전동화 플랫폼을 적용해 15년 150만km 내구성 보증을 발표했습니다.", source: "Gasgoo Commercials", date: d5, url: "https://autonews.gasgoo.com" },
+                { id: 20, title: "Tesla Model Y Juniper Refresh NVH & Suspension Enhancements Production Underway", summary: "테슬라 모델 Y 주니퍼(Juniper) 페이스리프트 모델이 서스펜션 정숙성과 실내 NVH 차음재 강화를 거쳐 정식 출고를 시작했습니다.", source: "Electrek", date: d5, url: "https://electrek.co" }
+            ];
+        };
+
+        window.renderNewsList = function(newsData) {
+            const container = document.getElementById('newsListContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            newsData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 hover:bg-slate-100/90 p-4 rounded-xl border border-slate-200 transition space-y-2";
+                const isSearchLink = item.linkType === 'search';
+                const linkLabel = isSearchLink ? '🔎 관련 기사 검색결과 보기' : '🔗 뉴스 원본 기사 열람하기';
+                card.innerHTML = `
+                    <div class="flex items-center justify-between gap-2">
+                        <div class="flex items-center space-x-2 min-w-0">
+                            <span class="bg-sky-600 text-white text-xs font-bold px-2 py-0.5 rounded-md flex-shrink-0">NO. ${index + 1}</span>
+                            <span class="text-sm font-bold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-md flex-shrink-0">${item.source}</span>
+                            <span class="text-sm font-bold text-slate-900 truncate">${item.title}</span>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-400 flex-shrink-0">${item.date}</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed font-normal line-clamp-2">${item.summary}</p>
+                    <div class="flex justify-end pt-1">
+                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1 text-sm font-bold text-sky-600 hover:text-sky-800 hover:underline">
+                            <span>${linkLabel}</span>
+                            <span>➔</span>
+                        </a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        };
+
+        // Initialize: render built-in fallback data first, then overlay with data.json if available
+        window.addEventListener('DOMContentLoaded', async () => {
+            const activeReportDate = window.getTargetReportDate();
+            let newsData = window.generateEVNewsData(activeReportDate);
+            window.renderNewsList(newsData);
+
+            try {
+                const res = await fetch('./data.json', { cache: 'no-store' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (Array.isArray(data.news) && data.news.length > 0) {
+                        window.renderNewsList(data.news);
+                    }
+                }
+            } catch (err) {
+                console.warn('[EV News] data.json을 불러오지 못해 내장 데이터로 표시합니다.', err);
+            }
+        });
+    </script>
+</body>
+</html>
