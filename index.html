@@ -199,15 +199,15 @@
             </div>
         </section>
 
-        <!-- Section 1: Main Overview Table with Checkboxes -->
+        <!-- Section 1: Main Overview Table + Inline Expandable Detail (merged with former Section 2) -->
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-slate-100 gap-2">
                 <div>
                     <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                        <span>1. 신규 전기차(EV) 메인 사양 & 가격 종합 비교</span>
+                        <span>신규 전기차(EV) 메인 사양 & 가격 종합 비교</span>
                         <span class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">⬇️ 최신 발표순 자동 정렬</span>
                     </h2>
-                    <p class="text-xs text-slate-500 mt-0.5">발표일자가 가장 최신인 차량이 상단에 우선 배치됩니다. 체크박스를 선택/해제하여 상세 분석 카드를 비교할 수 있습니다.</p>
+                    <p class="text-xs text-slate-500 mt-0.5">발표일자가 가장 최신인 차량이 상단에 우선 배치됩니다. 행을 클릭(또는 ▼ 버튼)하면 배터리 시스템 & 스펙 상세 분석이 바로 아래에 펼쳐집니다. 체크박스는 "기본사양비교" 비교 대상 선택용입니다.</p>
                 </div>
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 self-start sm:self-auto">
                     <div class="flex items-center space-x-2 text-xs text-slate-600 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
@@ -231,26 +231,13 @@
                             <th class="p-3">배터리 용량 & 셀/팩 제조사</th>
                             <th class="p-3">주행거리 / 성능</th>
                             <th class="p-3 text-center">AI 검색</th>
+                            <th class="p-3 text-center w-16">상세</th>
                         </tr>
                     </thead>
                     <tbody id="vehicleTableBody" class="divide-y divide-slate-100 text-slate-800">
-                        <!-- Dynamic Table Rows Rendered via JS -->
+                        <!-- Dynamic Table Rows (+ Inline Expandable Detail Rows) Rendered via JS -->
                     </tbody>
                 </table>
-            </div>
-        </section>
-
-        <!-- Section 2: Detailed Vehicle Cards -->
-        <section class="mb-10">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                    <span>2. 차종별 배터리 시스템 & 스펙 상세 분석</span>
-                </h2>
-                <span class="text-xs text-slate-500">선택한 모델의 팩/셀 케미스트리, QC 충전성능(C-rate/SOC/시간), 제조사 상세</span>
-            </div>
-
-            <div id="detailCardsContainer" class="space-y-6">
-                <!-- Dynamic Detail Cards Rendered via JS -->
             </div>
         </section>
     </main>
@@ -1418,6 +1405,7 @@
         let customEndDate = window.formatDateISO(activeReportDate);
         let isUpdatedToday = true;
         let searchNoticeTimer = null;
+        let expandedVehicleIds = new Set(); // Row-level inline detail expand state (independent from compare-checkbox selection)
         const LOCAL_STORAGE_KEY = 'ev_dashboard_history_db';
 
         // Helper function for space-insensitive, case-insensitive string cleaning
@@ -1603,7 +1591,7 @@
             if (filteredVehicles.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="8" class="p-8 text-center text-slate-400 font-medium">
+                        <td colspan="9" class="p-8 text-center text-slate-400 font-medium">
                             선택하신 기간 내에 등록된 신규 전기차 데이터가 존재하지 않습니다.<br>
                             <span class="text-xs text-slate-500 mt-1 block">상단 기간 필터에서 '전체 보기' 또는 '최근 1년'을 지정해 보세요.</span>
                         </td>
@@ -1611,13 +1599,16 @@
                 `;
             } else {
                 filteredVehicles.forEach(v => {
+                    const isExpanded = expandedVehicleIds.has(v.id);
                     const tr = document.createElement('tr');
-                    tr.className = "hover:bg-slate-50 transition border-b border-slate-100";
+                    tr.id = `vehicle-row-${v.id}`;
+                    tr.className = `border-b border-slate-100 transition cursor-pointer ${isExpanded ? 'bg-sky-50/70 hover:bg-sky-50' : 'hover:bg-slate-50'}`;
+                    tr.onclick = () => window.toggleRowExpand(v.id);
                     const nameParts = window.splitParenLine(v.name);
                     const launchShort = window.formatLaunchShort(v);
                     tr.innerHTML = `
                         <td class="p-3 text-center">
-                            <input type="checkbox" ${v.selected ? 'checked' : ''} onchange="window.toggleVehicleSelection('${v.id}')" class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer">
+                            <input type="checkbox" ${v.selected ? 'checked' : ''} onclick="event.stopPropagation()" onchange="window.toggleVehicleSelection('${v.id}')" class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer">
                         </td>
                         <td class="p-3 font-bold text-slate-900">
                             <div class="whitespace-nowrap">${nameParts.main}</div>
@@ -1639,12 +1630,28 @@
                         </td>
                         <td class="p-3 text-xs text-slate-600">${v.rangePerformance}</td>
                         <td class="p-3 text-center">
-                            <a href="https://www.google.com/search?q=${encodeURIComponent(v.name)}" target="_blank" rel="noopener noreferrer" title="Google 검색으로 이 차량 검색하기" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-600 transition">
+                            <a href="https://www.google.com/search?q=${encodeURIComponent(v.name)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Google 검색으로 이 차량 검색하기" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-600 transition">
                                 <span class="text-sm">✨</span>
                             </a>
                         </td>
+                        <td class="p-3 text-center">
+                            <button type="button" onclick="event.stopPropagation(); window.toggleRowExpand('${v.id}')" title="배터리 시스템 & 스펙 상세 분석 펼치기/접기" class="inline-flex items-center justify-center w-8 h-8 rounded-lg ${isExpanded ? 'bg-indigo-600 text-white' : 'bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-500'} transition">
+                                <span class="text-xs transition-transform ${isExpanded ? 'rotate-180' : ''}">▼</span>
+                            </button>
+                        </td>
                     `;
                     tbody.appendChild(tr);
+
+                    if (isExpanded) {
+                        const detailTr = document.createElement('tr');
+                        detailTr.className = "bg-sky-50/40 border-b border-slate-100";
+                        const detailTd = document.createElement('td');
+                        detailTd.colSpan = 9;
+                        detailTd.className = "p-0";
+                        detailTd.innerHTML = window.buildDetailPanelHTML(v);
+                        detailTr.appendChild(detailTd);
+                        tbody.appendChild(detailTr);
+                    }
                 });
             }
 
@@ -1656,35 +1663,26 @@
             document.getElementById('periodCount').innerText = filteredVehicles.length;
             const selectedCount = filteredVehicles.filter(v => v.selected).length;
             document.getElementById('selectedCount').innerText = selectedCount;
-
-            window.renderDetailCards();
         };
 
-        window.renderDetailCards = function() {
-            const container = document.getElementById('detailCardsContainer');
-            container.innerHTML = '';
-
-            const filteredVehicles = window.getFilteredVehicles();
-            const selectedVehicles = filteredVehicles.filter(v => v.selected);
-
-            if (selectedVehicles.length === 0) {
-                container.innerHTML = `
-                    <div class="bg-white rounded-2xl p-8 text-center border border-slate-200 text-slate-500">
-                        <p class="text-base font-semibold">선택된 차종이 없습니다.</p>
-                        <p class="text-xs mt-1 text-slate-400">위 표에서 체크박스를 선택하여 상세 스펙 카드를 열람하세요.</p>
-                    </div>
-                `;
-                return;
+        // Toggle inline "배터리 시스템 & 스펙 상세 분석" panel directly below a table row (no separate window/modal)
+        window.toggleRowExpand = function(id) {
+            if (expandedVehicleIds.has(id)) {
+                expandedVehicleIds.delete(id);
+            } else {
+                expandedVehicleIds.add(id);
             }
+            window.renderTable();
+        };
 
-            selectedVehicles.forEach((v, index) => {
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl border border-slate-200 p-6 shadow-sm print-card hover:border-sky-300 transition";
-                card.innerHTML = `
+        // Builds the "2. 차종별 배터리 시스템 & 스펙 상세 분석" content, now rendered inline under the clicked row
+        window.buildDetailPanelHTML = function(v) {
+            return `
+                <div class="p-5 border-t-2 border-indigo-200">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-2">
                         <div>
                             <div class="flex items-center space-x-2">
-                                <span class="bg-sky-600 text-white text-xs font-extrabold px-2.5 py-0.5 rounded-full">VOL. ${index + 1}</span>
+                                <span class="bg-indigo-600 text-white text-xs font-extrabold px-2.5 py-0.5 rounded-full">🔋 배터리 시스템 & 스펙 상세 분석</span>
                                 <h3 class="text-lg font-extrabold text-slate-900">${v.name}</h3>
                                 <span class="text-xs font-semibold px-2 py-0.5 bg-slate-100 text-slate-600 rounded">발표: ${v.releaseDate || window.formatDateISO(activeReportDate)}</span>
                             </div>
@@ -1698,7 +1696,7 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
                         <!-- Left Spec -->
-                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
                             <h4 class="font-bold text-slate-800 text-xs text-sky-700 uppercase tracking-wider mb-2">1. 차량 개요 & 제원</h4>
                             <p><strong class="text-slate-900">주요 특징:</strong> ${v.overview}</p>
                             <p><strong class="text-slate-900">광고/홍보:</strong> "${v.adMessage}"</p>
@@ -1707,7 +1705,7 @@
                         </div>
 
                         <!-- Center Spec -->
-                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
                             <h4 class="font-bold text-slate-800 text-xs text-sky-700 uppercase tracking-wider mb-2">2. 배터리 팩 & 셀 시스템</h4>
                             <p><strong class="text-slate-900">핵심 스펙:</strong> ${v.batterySpec}</p>
                             <p><strong class="text-slate-900">셀 제조사:</strong> <span class="bg-sky-100 text-sky-800 px-1.5 py-0.5 rounded font-semibold">${v.cellMaker}</span></p>
@@ -1718,15 +1716,14 @@
                         </div>
 
                         <!-- Right Spec -->
-                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
                             <h4 class="font-bold text-slate-800 text-xs text-sky-700 uppercase tracking-wider mb-2">3. 주행 / 충전 & 안전 기술</h4>
                             <p><strong class="text-slate-900">주행/충전 성능:</strong> ${v.rangePerformance}</p>
                             <p><strong class="text-slate-900">안전 및 열관리:</strong> ${v.chargingSafety}</p>
                         </div>
                     </div>
-                `;
-                container.appendChild(card);
-            });
+                </div>
+            `;
         };
 
         // Explicit Window Bindings for Inline HTML Handlers
@@ -1824,13 +1821,14 @@
 
             if (existingVehicle) {
                 existingVehicle.selected = true;
+                expandedVehicleIds.add(existingVehicle.id);
                 window.closeSearchModal();
                 document.getElementById('searchInput').value = '';
                 window.setPeriodFilter('all');
 
                 setTimeout(() => {
-                    const container = document.getElementById('detailCardsContainer');
-                    if (container) container.scrollIntoView({ behavior: 'smooth' });
+                    const row = document.getElementById(`vehicle-row-${existingVehicle.id}`);
+                    if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 100);
                 return;
             }
@@ -1928,13 +1926,14 @@
             };
 
             vehicles.unshift(newVehicle);
+            expandedVehicleIds.add(newVehicle.id);
             window.closeSearchModal();
             document.getElementById('searchInput').value = '';
             window.setPeriodFilter('all');
 
             setTimeout(() => {
-                const container = document.getElementById('detailCardsContainer');
-                if (container) container.scrollIntoView({ behavior: 'smooth' });
+                const row = document.getElementById(`vehicle-row-${newVehicle.id}`);
+                if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
         };
 
