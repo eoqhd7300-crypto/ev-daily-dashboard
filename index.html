@@ -28,16 +28,17 @@
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
         body {
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            /* Fade-through gradient: continues the hero video's dark tone, then fades to the
-               light content background before the dark "글로벌 EV 최신 기사 브리핑" card appears,
-               so that card keeps clean contrast instead of blending into an equally dark backdrop.
+            /* Fade-through gradient: continues the hero video's dark navy tone, then settles into
+               a sustained pale navy-blue wash for the rest of the page (instead of fading back to
+               near-white) so white cards visibly float on top, and the dark "글로벌 EV 최신 기사
+               브리핑" card still reads cleanly since it's the same hue family, just darker.
                Pixel stops (not %) keep the fade anchored near the top regardless of page length. */
             background: linear-gradient(180deg,
                 #0f172a 0px,
-                #334155 180px,
-                #cbd5e1 320px,
-                #f8fafc 420px,
-                #f8fafc 100%
+                #1e3a8a 180px,
+                #a5b4fc 320px,
+                #e0e7ff 420px,
+                #e0e7ff 100%
             );
             color: #0f172a;
         }
