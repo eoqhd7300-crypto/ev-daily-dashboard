@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teardown Data | Daily EV & 배터리 플랫폼 대시보드</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#035485',
+                            900: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+
+    <!-- Header Navigation Bar (동일 구성, 현재 페이지인 Teardown Data만 강조) -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="bg-sky-600 text-white p-2 rounded-lg font-bold text-xl flex items-center justify-center w-10 h-10 shadow-sm">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-lg sm:text-xl leading-tight">Daily EV & Battery Intelligence News</h1>
+                    <p class="text-xs text-slate-500 font-medium"> by BTI Team </p>
+                </div>
+            </a>
+
+            <nav class="flex items-center space-x-1 sm:space-x-2 flex-wrap justify-end">
+                <a href="index.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">New EV Models</a>
+                <a href="spec-compare.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">기본사양비교</a>
+                <a href="teardown.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-sky-50 text-sky-700 border border-sky-200 transition">Teardown Data</a>
+                <a href="news.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">EV News</a>
+                <select onchange="if (this.value === 'data_web_source') { window.location.href = 'data-web-source.html'; }" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg border border-slate-300 bg-white text-slate-600 hover:bg-slate-100 transition cursor-pointer">
+                    <option value="">Others</option>
+                    <option value="data_web_source">Data web Source</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+
+        <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
+            <div>
+                <h2 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <span>🔧 xEV Battery Pack Teardown Data</span>
+                    <span id="vehicleCountBadge" class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">0대 수록</span>
+                </h2>
+                <p class="text-xs text-slate-500 mt-0.5 max-w-3xl">A2MAC1 xEV Battery Pack 분해(teardown) 데이터를 기반으로 Cell/Module/Pack 스펙과 실물 사진을 차량별로 비교합니다. 아래 목록에서 비교할 차량을 선택하세요.</p>
+            </div>
+            <a href="index.html" class="text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition flex items-center gap-1 whitespace-nowrap">
+                <span>◀ 메인 페이지로 돌아가기</span>
+            </a>
+        </div>
+
+        <div id="loadingNotice" class="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center text-slate-400 text-sm mb-8">
+            teardown_data.json 로딩 중...
+        </div>
+
+        <div id="loadErrorNotice" class="hidden bg-red-50 border border-red-200 rounded-2xl p-8 text-center text-red-600 text-sm mb-8">
+            teardown_data.json을 불러오지 못했습니다. 로컬에서 <code class="bg-red-100 px-1 rounded">build_teardown_data.py</code>를 실행해 데이터를 먼저 생성했는지 확인해 주세요.
+        </div>
+
+        <div id="teardownAppRoot" class="hidden">
+            <!-- Section A: Vehicle Picker -->
+            <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-slate-100 gap-2">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900">차량 선택 (비교 대상)</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">체크박스로 비교할 차량을 선택하세요. 검색창으로 모델명을 필터링할 수 있습니다.</p>
+                    </div>
+                    <input id="vehicleSearchInput" type="text" placeholder="🔍 모델명 검색..." class="px-3 py-1.5 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 w-full sm:w-64">
+                </div>
+                <div class="overflow-x-auto max-h-96 overflow-y-auto border border-slate-100 rounded-xl">
+                    <table class="w-full text-left text-xs sm:text-sm border-collapse">
+                        <thead class="sticky top-0 bg-slate-50 z-10">
+                            <tr class="border-b border-slate-200 text-slate-700 font-semibold">
+                                <th class="p-2.5 text-center w-10"></th>
+                                <th class="p-2.5">모델명 / 연식</th>
+                                <th class="p-2.5">셀 제조사</th>
+                                <th class="p-2.5 text-center">폼팩터</th>
+                                <th class="p-2.5 text-right">팩 무게 [kg]</th>
+                                <th class="p-2.5 text-right">팩 에너지 [kWh]</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vehiclePickerBody" class="divide-y divide-slate-100"></tbody>
+                    </table>
+                </div>
+                <div class="flex items-center justify-between mt-3">
+                    <span class="text-xs text-slate-500">선택됨: <strong id="selectedVehicleCount" class="text-sky-600">0</strong>개</span>
+                    <button onclick="window.clearTeardownSelection()" class="text-xs font-semibold text-slate-500 hover:text-slate-700 underline">선택 초기화</button>
+                </div>
+            </section>
+
+            <!-- Section B: Comparison Output -->
+            <div id="teardownCompareOutput"></div>
+        </div>
+    </main>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+        let teardownVehicles = [];
+        let selectedTeardownIds = new Set();
+
+        // Curated display order (fields not listed here still show, appended alphabetically as fallback)
+        const CELL_FIELD_ORDER = [
+            'Cell Manufacturer', 'Cell Format', 'Cell Internal Assembly Process', 'Cell Casing Material',
+            'Cell Casing Thickness [µm]', 'Cell Nominal Voltage [V]', 'Cell Nominal Voltage OEM [V]',
+            'Cell Capacity [Ah]', 'Cell Capacity OEM [Ah]', 'Cell Energy [Wh]', 'Cell Energy OEM [Wh]',
+            'Cell Weight [kg]', 'Cell Length [mm]', 'Cell Height [mm]', 'Cell Width / Thickness [mm]',
+            'Cell length/height ratio', 'Cell Box Volume [L]', 'Cell 3D Volume [L]',
+            'Cell Volumetric Energy Density [Wh/L]', 'Cell Gravimetric Energy Density [Wh/kg]',
+        ];
+        const MODULE_FIELD_ORDER = [
+            'Number of modules', 'Cells in Module', 'Cells in Series in Module', 'Cells in Parallel in Module',
+            'Module Configuration', 'Module Nominal Voltage [V]', 'Module Nominal Voltage OEM [V]',
+            'Module Capacity [Ah]', 'Module Energy [kWh]', 'Module Weight [kg]', 'Module Length [mm]',
+            'Module Width [mm]', 'Module Height [mm]', 'Module Box Volume [L]', 'Module 3D Volume [L]',
+            'Module Volumetric Energy Density [Wh/L]', 'Module Gravimetric Energy Density [Wh/kg]',
+        ];
+        const PACK_FIELD_ORDER = [
+            'Presence of physically compartmentalized modules ', 'Modules in Battery Pack', 'Cells in Battery Pack',
+            'Cells in Series in Battery Pack', 'Cells in Parallel in Battery Pack', 'Battery Pack Configuration',
+            'Battery Pack Thermal Management Fluid', 'Battery Pack Weight [kg] ', 'Battery Pack Nominal Voltage [V]',
+            'Battery Pack Nominal Voltage OEM [V]', 'Battery Pack Capacity [Ah]', 'Battery Pack Capacity OEM [Ah]',
+            'Battery Pack Energy [kWh]', 'Battery Pack Energy OEM [kWh]', 'Battery Pack Length [mm]',
+            'Battery Pack Width [mm]', 'Battery Pack Height [mm]', 'Battery Pack Box Volume [L]',
+            'Battery Pack 3D Volume [L]', 'Battery Pack Volumetric Energy Density [Wh/L]',
+            'Battery Pack Gravimetric Energy Density [Wh/kg]', 'Battery Pack Scaled Energy Volumetric Density [%]',
+            'Battery Pack Scaled Energy Gravimetric Density [%]',
+        ];
+        const PACK_OVERVIEW_FIELD_ORDER = [
+            'Total Weight (kg)', 'Width [mm]', 'Height [mm]', 'Depth [mm]', 'Number of Parts',
+            'Number of Fasteners', 'Fastener(s) Weight (kg)', 'OEM/Tiers', 'Part Code', 'Marking',
+            'Number of Inserted Nuts', 'Number of Inserted Studs', 'Number of Free Screws', 'System',
+        ];
+
+        function orderedKeys(obj, order) {
+            const keys = Object.keys(obj || {});
+            const ordered = order.filter(k => keys.includes(k));
+            const extra = keys.filter(k => !order.includes(k)).sort();
+            return [...ordered, ...extra];
+        }
+
+        function fmtVal(v) {
+            if (v === null || v === undefined || v === '') return '-';
+            if (typeof v === 'number') {
+                return Number.isInteger(v) ? v.toLocaleString() : v.toLocaleString(undefined, { maximumFractionDigits: 2 });
+            }
+            return String(v);
+        }
+
+        window.loadTeardownData = async function() {
+            try {
+                const res = await fetch('./teardown_data.json', { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                teardownVehicles = data.vehicles || [];
+                document.getElementById('vehicleCountBadge').innerText = `${teardownVehicles.length}대 수록`;
+                document.getElementById('loadingNotice').classList.add('hidden');
+                document.getElementById('teardownAppRoot').classList.remove('hidden');
+                window.renderVehiclePicker();
+            } catch (err) {
+                console.error('[Teardown] load failed', err);
+                document.getElementById('loadingNotice').classList.add('hidden');
+                document.getElementById('loadErrorNotice').classList.remove('hidden');
+            }
+        };
+
+        window.renderVehiclePicker = function() {
+            const tbody = document.getElementById('vehiclePickerBody');
+            const query = (document.getElementById('vehicleSearchInput').value || '').toLowerCase();
+            tbody.innerHTML = '';
+
+            teardownVehicles
+                .filter(v => `${v.name} ${v.year}`.toLowerCase().includes(query))
+                .forEach(v => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-slate-50 transition cursor-pointer';
+                    tr.onclick = (e) => {
+                        if (e.target.tagName === 'INPUT') return;
+                        window.toggleTeardownVehicle(v.id);
+                    };
+                    const isChecked = selectedTeardownIds.has(v.id);
+                    tr.innerHTML = `
+                        <td class="p-2.5 text-center">
+                            <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="window.toggleTeardownVehicle('${v.id}')" class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer">
+                        </td>
+                        <td class="p-2.5 font-semibold text-slate-900">${v.name} <span class="text-slate-400 font-normal">(${v.year || '-'})</span></td>
+                        <td class="p-2.5 text-slate-600">${fmtVal(v.cell['Cell Manufacturer'])}</td>
+                        <td class="p-2.5 text-center text-slate-600">${fmtVal(v.cell['Cell Format'])}</td>
+                        <td class="p-2.5 text-right text-slate-600">${fmtVal(v.pack['Battery Pack Weight [kg] '])}</td>
+                        <td class="p-2.5 text-right text-slate-600">${fmtVal(v.pack['Battery Pack Energy [kWh]'])}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+            document.getElementById('selectedVehicleCount').innerText = selectedTeardownIds.size;
+        };
+
+        window.toggleTeardownVehicle = function(id) {
+            if (selectedTeardownIds.has(id)) {
+                selectedTeardownIds.delete(id);
+            } else {
+                selectedTeardownIds.add(id);
+            }
+            window.renderVehiclePicker();
+            window.renderTeardownComparison();
+        };
+
+        window.clearTeardownSelection = function() {
+            selectedTeardownIds.clear();
+            window.renderVehiclePicker();
+            window.renderTeardownComparison();
+        };
+
+        function buildFieldTable(title, selectedVehicles, getObj, order, colorClass) {
+            const objs = selectedVehicles.map(v => getObj(v) || {});
+            const allKeysSet = new Set();
+            objs.forEach(o => Object.keys(o).forEach(k => allKeysSet.add(k)));
+            const keys = orderedKeys(Object.fromEntries([...allKeysSet].map(k => [k, true])), order);
+
+            if (keys.length === 0) {
+                return `<div class="text-xs text-slate-400 italic py-3">데이터 없음</div>`;
+            }
+
+            const headerCells = selectedVehicles.map(v => `<th class="p-2.5 ${colorClass} font-bold text-xs border border-slate-200 min-w-[160px] whitespace-nowrap">${v.name} (${v.year || '-'})</th>`).join('');
+            const rows = keys.map(k => `
+                <tr class="even:bg-slate-50">
+                    <td class="p-2.5 font-semibold text-slate-700 bg-slate-100 border border-slate-200 text-xs whitespace-nowrap sticky left-0">${k.trim()}</td>
+                    ${objs.map(o => `<td class="p-2.5 text-center text-xs text-slate-800 border border-slate-200">${fmtVal(o[k])}</td>`).join('')}
+                </tr>
+            `).join('');
+
+            return `
+                <div class="overflow-x-auto">
+                    <table class="border-collapse text-left w-full text-xs">
+                        <thead><tr><th class="p-2.5 bg-slate-100 border border-slate-200 sticky left-0 z-10">항목</th>${headerCells}</tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function buildPhotoRow(label, selectedVehicles, images) {
+            const hasAny = selectedVehicles.some(v => images(v));
+            if (!hasAny) return '';
+            return `
+                <div class="mb-4">
+                    <h5 class="text-xs font-bold text-slate-600 mb-2">${label}</h5>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                        ${selectedVehicles.map(v => {
+                            const src = images(v);
+                            if (!src) return `<div class="bg-slate-50 border border-dashed border-slate-200 rounded-lg h-24 flex items-center justify-center text-[10px] text-slate-300">사진 없음</div>`;
+                            return `
+                                <a href="${src}" target="_blank" rel="noopener noreferrer" class="block bg-slate-50 border border-slate-200 rounded-lg overflow-hidden hover:border-sky-400 transition">
+                                    <img src="${src}" alt="${v.name} ${label}" class="w-full h-24 object-cover">
+                                    <div class="text-[10px] text-slate-500 text-center py-1 truncate px-1">${v.name}</div>
+                                </a>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildBomSummary(selectedVehicles) {
+            return selectedVehicles.map(v => {
+                if (!v.bomTree || v.bomTree.length === 0) {
+                    return `<div class="mb-3"><h5 class="text-xs font-bold text-slate-700 mb-1">${v.name}</h5><p class="text-xs text-slate-400 italic">BOM 데이터 없음</p></div>`;
+                }
+                const groups = {};
+                v.bomTree.forEach(node => {
+                    const group = node.levels[1] || node.levels[0] || '기타';
+                    if (!groups[group]) groups[group] = { count: 0, weight: 0, parts: 0 };
+                    groups[group].count += 1;
+                    groups[group].weight += (typeof node.weightKg === 'number' ? node.weightKg : 0);
+                    groups[group].parts += (typeof node.partCount === 'number' ? node.partCount : 0);
+                });
+                const rows = Object.entries(groups)
+                    .sort((a, b) => b[1].weight - a[1].weight)
+                    .map(([g, s]) => `
+                        <tr class="even:bg-slate-50">
+                            <td class="p-2 border border-slate-200 text-xs font-medium text-slate-700">${g}</td>
+                            <td class="p-2 border border-slate-200 text-xs text-center text-slate-600">${s.count}</td>
+                            <td class="p-2 border border-slate-200 text-xs text-center text-slate-600">${s.parts}</td>
+                            <td class="p-2 border border-slate-200 text-xs text-right text-slate-600">${s.weight.toFixed(2)}</td>
+                        </tr>
+                    `).join('');
+                return `
+                    <div class="mb-4">
+                        <h5 class="text-xs font-bold text-slate-700 mb-1.5">${v.name} <span class="text-slate-400 font-normal">(BOM 노드 ${v.bomTree.length}건)</span></h5>
+                        <table class="border-collapse text-left w-full text-xs">
+                            <thead><tr class="bg-slate-100">
+                                <th class="p-2 border border-slate-200">서브시스템 (Part Level 1)</th>
+                                <th class="p-2 border border-slate-200 text-center">BOM 노드 수</th>
+                                <th class="p-2 border border-slate-200 text-center">부품 수 합계</th>
+                                <th class="p-2 border border-slate-200 text-right">중량 합계 [kg]</th>
+                            </tr></thead>
+                            <tbody>${rows}</tbody>
+                        </table>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        window.renderTeardownComparison = function() {
+            const output = document.getElementById('teardownCompareOutput');
+            const selected = teardownVehicles.filter(v => selectedTeardownIds.has(v.id));
+
+            if (selected.length === 0) {
+                output.innerHTML = '';
+                return;
+            }
+
+            const primaryModule = v => (v.modules && v.modules[0]) ? v.modules[0] : {};
+
+            output.innerHTML = `
+                <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                        <span>🔋 Cell 스펙 비교</span>
+                    </h3>
+                    ${buildFieldTable('Cell', selected, v => v.cell, CELL_FIELD_ORDER, 'bg-sky-50 text-sky-900')}
+
+                    <div class="mt-4">
+                        ${buildPhotoRow('Cell 실물 사진', selected, v => (v.cellImages && v.cellImages[0]) || null)}
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                        <span>🧩 Module 스펙 비교</span>
+                        <span class="text-xs font-normal text-slate-400">(CTP/Cell-to-Pack 구조 차량은 모듈이 없어 '-'로 표기됩니다)</span>
+                    </h3>
+                    ${buildFieldTable('Module', selected, primaryModule, MODULE_FIELD_ORDER, 'bg-indigo-50 text-indigo-900')}
+                </section>
+
+                <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                        <span>📦 Battery Pack 스펙 비교</span>
+                    </h3>
+                    ${buildFieldTable('Pack', selected, v => v.pack, PACK_FIELD_ORDER, 'bg-emerald-50 text-emerald-900')}
+                </section>
+
+                <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                        <span>📐 Pack 개요 & 실물 사진</span>
+                    </h3>
+                    ${buildFieldTable('PackOverview', selected, v => v.packOverview, PACK_OVERVIEW_FIELD_ORDER, 'bg-slate-100 text-slate-900')}
+                    <div class="mt-4 space-y-3">
+                        ${buildPhotoRow('Front', selected, v => v.packImages.front)}
+                        ${buildPhotoRow('Back', selected, v => v.packImages.back)}
+                        ${buildPhotoRow('Left', selected, v => v.packImages.left)}
+                        ${buildPhotoRow('Right', selected, v => v.packImages.right)}
+                        ${buildPhotoRow('Top', selected, v => v.packImages.top)}
+                        ${buildPhotoRow('Profile', selected, v => Array.isArray(v.packImages.profile) ? v.packImages.profile[0] : v.packImages.profile)}
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+                    <h3 class="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
+                        <span>🗂️ BOM(부품 구성) 요약</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-3">서브시스템별 부품 수/중량 합계입니다. 부품 단위 상세 사진 연동은 추후 업데이트 예정입니다.</p>
+                    ${buildBomSummary(selected)}
+                </section>
+            `;
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            window.loadTeardownData();
+            document.getElementById('vehicleSearchInput').addEventListener('input', window.renderVehiclePicker);
+        });
+    </script>
+</body>
+</html>
