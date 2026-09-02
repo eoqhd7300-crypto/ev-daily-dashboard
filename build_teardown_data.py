@@ -28,6 +28,7 @@ build_teardown_data.py
 """
 
 import argparse
+import io
 import json
 import os
 import re
@@ -35,12 +36,17 @@ import sys
 from datetime import datetime, timedelta, timezone
 
 import openpyxl
+from PIL import Image as PILImage
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_SOURCE_DIR = r"D:\AX data\AtoMac1 Pack\xEV Battery Pack"
 ASSETS_ROOT = os.path.join(BASE_DIR, "assets", "teardown")
 OUTPUT_JSON = os.path.join(BASE_DIR, "teardown_data.json")
 KST = timezone(timedelta(hours=9))
+
+# Saved images are downscaled + re-compressed to keep the repo lean (see save_image()).
+MAX_IMAGE_WIDTH = 480
+JPEG_QUALITY = 72
 
 # --- Filename parsing -------------------------------------------------------
 
@@ -54,7 +60,9 @@ TYPE1_RE = re.compile(
 )
 YEAR_RE = re.compile(r'^(?P<name>.+?)\s+(?P<year>(?:19|20)\d{2})$')
 
-TOP_VIEW_LABELS = {"Location", "Front", "Back", "Left", "Right", "Top", "Profile"}
+TOP_VIEW_LABELS = {"Location", "Front", "Back", "Left", "Right", "Top", "Bottom", "Profile"}
+# Same set, used when scoping per-part (BOM node) photo extraction under the 'Global' media gallery.
+ORIENTATION_LABELS = TOP_VIEW_LABELS
 SECTION_HEADER_RE = re.compile(
     r'^(Cell Overview|Cell Characteristics|Module Characteristics.*|Battery Pack Characteristics|'
     r'Energy Densities|Metalwork Properties|System and Function|Media Gallery)$',
@@ -147,24 +155,44 @@ def find_type1_boundary_row(ws):
     return ws.max_row
 
 
-def extract_all_part_fields(ws):
+def enrich_bom_tree_from_overview(ws, bom_tree, asset_dir):
     """Walks the ENTIRE Overview sheet (every nested Sub-Pack/part breadcrumb block, not just
-    the top-level pack) and collects each part's own raw label:value fields (Part Code,
-    Number of Parts, Total Weight (kg), Width/Height/Depth [mm], Material Type(s), OEM/Tiers,
-    Marking, ...), keyed by its full hierarchy path (tuple of breadcrumb segments).
+    the top-level pack) and, for each block whose hierarchy path matches a node already present
+    in `bom_tree` (i.e. a part actually shown in the BOM table), enriches that node with:
+      - Part Code, Width/Height/Depth [mm], Marking (fields the Navigation sheet does not carry)
+      - Representative photos: every 'Global' sub-view (Location/Front/Back/Left/Right/Top/
+        Bottom/Profile) plus only the FIRST 'Fastener' photo. Measurements/Code/Other views and
+        anything else are intentionally skipped to keep the image count bounded.
 
-    Used to enrich the Navigation-sheet BOM tree with Part Code + physical size, which the
-    Navigation sheet itself does not carry.
+    Blocks that don't match any bom_tree node (e.g. individual per-instance items like each of
+    32 physical cells inside a module, which aren't their own BOM line item) are parsed but
+    discarded - no images are saved for them, keeping disk usage scoped to what the UI displays.
     """
-    parts_by_path = {}
-    current_path = None
+    nodes_by_path = {}
+    for node in bom_tree:
+        path = tuple(lvl for lvl in node['levels'] if lvl)
+        nodes_by_path.setdefault(path, node)
+
+    row_to_image = {}
+    for img in getattr(ws, '_images', []):
+        r = img.anchor._from.row + 1
+        c = img.anchor._from.col + 1
+        if c == 2:
+            row_to_image[r] = img
+
+    current_node = None
     current_fields = {}
+    current_fastener_taken = False
+    current_view_counts = {}
 
     def flush():
-        if current_path is not None and current_fields:
-            # First occurrence wins (deeper per-instance repeats of the same path are rare;
-            # keeping the first keeps the 'aggregate part' entry rather than a later duplicate).
-            parts_by_path.setdefault(current_path, current_fields)
+        if current_node is None:
+            return
+        current_node['partCode'] = current_fields.get('Part Code')
+        current_node['widthMm'] = current_fields.get('Width [mm]')
+        current_node['heightMm'] = current_fields.get('Height [mm]')
+        current_node['depthMm'] = current_fields.get('Depth [mm]')
+        current_node['marking'] = current_fields.get('Marking')
 
     for i in range(1, ws.max_row + 1):
         col_a = ws.cell(row=i, column=1).value
@@ -172,17 +200,42 @@ def extract_all_part_fields(ws):
 
         if col_a is None and isinstance(col_b, str) and '>' in col_b:
             flush()
-            current_path = tuple(seg.strip() for seg in col_b.split('>'))
+            path = tuple(seg.strip() for seg in col_b.split('>'))
+            current_node = nodes_by_path.get(path)
             current_fields = {}
+            current_fastener_taken = False
+            current_view_counts = {}
             continue
 
-        if col_a is None or col_b is None:
-            continue  # section header / photo placeholder row
+        if col_a is None:
+            continue
+        label = str(col_a).strip()
 
-        current_fields[str(col_a).strip()] = clean_value(col_b)
+        if col_b is not None:
+            current_fields[label] = clean_value(col_b)
+            continue
+
+        # col_b is None here -> either a section header or a photo placeholder row.
+        if current_node is None or i not in row_to_image:
+            continue
+
+        take_image = False
+        if label in ORIENTATION_LABELS:
+            take_image = True
+        elif label == 'Fastener' and not current_fastener_taken:
+            take_image = True
+            current_fastener_taken = True
+
+        if not take_image:
+            continue
+
+        current_view_counts[label] = current_view_counts.get(label, 0) + 1
+        suffix = f'_{current_view_counts[label]}' if current_view_counts[label] > 1 else ''
+        file_base = f"part_{slugify(current_node['nodeId'])}_{slugify(label)}{suffix}"
+        rel_path = os.path.relpath(save_image(row_to_image[i], asset_dir, file_base), BASE_DIR).replace('\\', '/')
+        current_node.setdefault('images', []).append({'view': label, 'path': rel_path})
 
     flush()
-    return parts_by_path
 
 
 def collect_row_images(ws, rows_of_interest):
@@ -197,12 +250,30 @@ def collect_row_images(ws, rows_of_interest):
 
 
 def save_image(img, out_dir, base_name):
+    """Saves an embedded xlsx image to disk, downscaled to MAX_IMAGE_WIDTH and re-encoded as a
+    compressed JPEG to keep the repository lightweight. Falls back to a raw byte dump for the rare
+    format Pillow cannot decode."""
     os.makedirs(out_dir, exist_ok=True)
-    ext = (img.format or 'jpeg').lower()
-    ext = 'jpg' if ext == 'jpeg' else ext
-    out_path = os.path.join(out_dir, f'{base_name}.{ext}')
-    with open(out_path, 'wb') as fh:
-        fh.write(img._data())
+    data = img._data()
+    try:
+        pil_img = PILImage.open(io.BytesIO(data))
+        pil_img.load()
+        if pil_img.mode in ('RGBA', 'P', 'LA'):
+            pil_img = pil_img.convert('RGB')
+        elif pil_img.mode != 'RGB':
+            pil_img = pil_img.convert('RGB')
+        if pil_img.width > MAX_IMAGE_WIDTH:
+            ratio = MAX_IMAGE_WIDTH / pil_img.width
+            pil_img = pil_img.resize((MAX_IMAGE_WIDTH, max(1, round(pil_img.height * ratio))), PILImage.LANCZOS)
+        out_path = os.path.join(out_dir, f'{base_name}.jpg')
+        pil_img.save(out_path, 'JPEG', quality=JPEG_QUALITY, optimize=True)
+    except Exception as e:
+        print(f'  [WARN] Could not re-compress image ({e}); saving raw bytes instead.')
+        ext = (img.format or 'jpeg').lower()
+        ext = 'jpg' if ext == 'jpeg' else ext
+        out_path = os.path.join(out_dir, f'{base_name}.{ext}')
+        with open(out_path, 'wb') as fh:
+            fh.write(data)
     return out_path
 
 
@@ -335,23 +406,13 @@ def parse_type1(path, slug, asset_dir):
                     'material': clean_value(nav.cell(row=i, column=material_col).value) if material_col else None,
                     'oemTiers': clean_value(nav.cell(row=i, column=oem_col).value) if oem_col else None,
                     'partCount': nav.cell(row=i, column=partcount_col).value if partcount_col else None,
-                    # NOTE: 'Part Link' cells carry no resolvable hyperlink/photo in this export today.
-                    # Field kept so a future per-part photo extractor can populate `imagePath` here.
-                    'imagePath': None,
                 })
 
         # Enrich each BOM node with Part Code + physical size (Width/Height/Depth) + Marking,
-        # parsed directly from the Overview sheet's per-part breadcrumb blocks (Navigation alone
-        # does not carry these fields). Matched by exact hierarchy path.
-        part_fields_by_path = extract_all_part_fields(ws)
-        for node in bom_tree:
-            path_key = tuple(lvl for lvl in node['levels'] if lvl)
-            fields = part_fields_by_path.get(path_key)
-            node['partCode'] = fields.get('Part Code') if fields else None
-            node['widthMm'] = fields.get('Width [mm]') if fields else None
-            node['heightMm'] = fields.get('Height [mm]') if fields else None
-            node['depthMm'] = fields.get('Depth [mm]') if fields else None
-            node['marking'] = fields.get('Marking') if fields else None
+        # plus scoped representative photos (all orientation views + first Fastener only),
+        # parsed directly from the Overview sheet's per-part breadcrumb blocks. Matched by
+        # exact hierarchy path; images are only saved for nodes actually shown in the BOM table.
+        enrich_bom_tree_from_overview(ws, bom_tree, asset_dir)
 
     return {'packOverview': pack_overview, 'packImages': pack_images, 'bomTree': bom_tree}
 

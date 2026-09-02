@@ -127,10 +127,29 @@
         </div>
     </main>
 
+    <!-- Part Photo Lightbox (opened via the 🔍 icon in the BOM detail table) -->
+    <div id="partLightboxModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" onclick="if (event.target === this) window.closePartLightbox()">
+        <div class="bg-white rounded-2xl max-w-3xl w-full p-4 shadow-2xl relative">
+            <button onclick="window.closePartLightbox()" class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-600 text-2xl font-bold">✕</button>
+            <div class="flex items-center justify-center gap-2">
+                <button onclick="window.navigateLightbox(-1)" title="이전 사진" class="flex-shrink-0 text-xl px-2 py-8 text-slate-300 hover:text-sky-600 transition">◀</button>
+                <img id="lightboxImage" src="" alt="부품 사진" class="max-h-[65vh] max-w-full object-contain rounded-lg border border-slate-100 bg-slate-50">
+                <button onclick="window.navigateLightbox(1)" title="다음 사진" class="flex-shrink-0 text-xl px-2 py-8 text-slate-300 hover:text-sky-600 transition">▶</button>
+            </div>
+            <div class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100 gap-2">
+                <p id="lightboxCaption" class="text-xs text-slate-600 font-semibold truncate"></p>
+                <a id="lightboxOriginalLink" href="#" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-sky-600 hover:underline whitespace-nowrap flex-shrink-0">새 탭에서 원본 보기 ➔</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Application JavaScript Logic -->
     <script>
         let teardownVehicles = [];
         let selectedTeardownIds = new Set();
+        window.__partGalleries = {}; // galleryKey -> { images: [{view, path}], title } for the part-photo lightbox
+        let currentGalleryKey = null;
+        let currentGalleryIndex = 0;
 
         // Curated display order (fields not listed here still show, appended alphabetically as fallback)
         const CELL_FIELD_ORDER = [
@@ -318,7 +337,7 @@
                         </tr>
                     `).join('');
 
-                // Detailed per-part table: Part Code / quantity / weight / size / material / OEM
+                // Detailed per-part table: Part Code / quantity / weight / size / material / OEM / photo
                 const detailRows = v.bomTree
                     .slice()
                     .sort((a, b) => (b.weightKg || 0) - (a.weightKg || 0))
@@ -327,8 +346,21 @@
                         const size = (node.widthMm || node.heightMm || node.depthMm)
                             ? `${fmtVal(node.widthMm)} × ${fmtVal(node.heightMm)} × ${fmtVal(node.depthMm)}`
                             : '-';
+
+                        let photoCell = '<span class="text-slate-300">-</span>';
+                        if (node.images && node.images.length > 0) {
+                            const galleryKey = `${v.id}__${node.nodeId}`;
+                            window.__partGalleries[galleryKey] = { images: node.images, title: `${partName} · ${v.name}` };
+                            photoCell = `
+                                <button type="button" onclick="window.openPartLightbox('${galleryKey}', 0)" title="부품 사진 보기 (${node.images.length}장)" class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-600 transition">
+                                    <span class="text-xs">🔍</span>
+                                </button>
+                            `;
+                        }
+
                         return `
                             <tr class="even:bg-slate-50">
+                                <td class="p-1.5 border border-slate-200 text-center">${photoCell}</td>
                                 <td class="p-1.5 border border-slate-200 text-slate-700">${partName}</td>
                                 <td class="p-1.5 border border-slate-200 text-slate-500 whitespace-nowrap">${fmtVal(node.partCode)}</td>
                                 <td class="p-1.5 border border-slate-200 text-center text-slate-600">${fmtVal(node.partCount)}</td>
@@ -354,11 +386,12 @@
                         </table>
                         <details class="border border-slate-200 rounded-lg">
                             <summary class="cursor-pointer select-none px-3 py-2 text-xs font-bold text-sky-700 bg-sky-50 rounded-lg">
-                                📋 부품별 상세 목록 보기 (Part Code / 수량 / 무게 / 사이즈 / 재질)
+                                📋 부품별 상세 목록 보기 (Part Code / 수량 / 무게 / 사이즈 / 재질 / 🔍 사진)
                             </summary>
                             <div class="max-h-96 overflow-y-auto overflow-x-auto">
                                 <table class="border-collapse text-left w-full text-[11px]">
                                     <thead class="sticky top-0"><tr class="bg-slate-100">
+                                        <th class="p-1.5 border border-slate-200 text-center">사진</th>
                                         <th class="p-1.5 border border-slate-200">부품명</th>
                                         <th class="p-1.5 border border-slate-200">Part Code</th>
                                         <th class="p-1.5 border border-slate-200 text-center">수량</th>
@@ -375,6 +408,35 @@
                 `;
             }).join('');
         }
+
+        // Part Photo Lightbox: opened from the 🔍 icon in the BOM detail table
+        window.openPartLightbox = function(galleryKey, index) {
+            currentGalleryKey = galleryKey;
+            currentGalleryIndex = index;
+            window.renderLightbox();
+            document.getElementById('partLightboxModal').classList.remove('hidden');
+        };
+
+        window.closePartLightbox = function() {
+            document.getElementById('partLightboxModal').classList.add('hidden');
+        };
+
+        window.navigateLightbox = function(delta) {
+            const gallery = window.__partGalleries[currentGalleryKey];
+            if (!gallery) return;
+            const len = gallery.images.length;
+            currentGalleryIndex = (currentGalleryIndex + delta + len) % len;
+            window.renderLightbox();
+        };
+
+        window.renderLightbox = function() {
+            const gallery = window.__partGalleries[currentGalleryKey];
+            if (!gallery) return;
+            const img = gallery.images[currentGalleryIndex];
+            document.getElementById('lightboxImage').src = img.path;
+            document.getElementById('lightboxCaption').innerText = `${gallery.title} — ${img.view} (${currentGalleryIndex + 1}/${gallery.images.length})`;
+            document.getElementById('lightboxOriginalLink').href = img.path;
+        };
 
         window.renderTeardownComparison = function() {
             const output = document.getElementById('teardownCompareOutput');
@@ -442,6 +504,14 @@
         window.addEventListener('DOMContentLoaded', () => {
             window.loadTeardownData();
             document.getElementById('vehicleSearchInput').addEventListener('input', window.renderVehiclePicker);
+
+            document.addEventListener('keydown', (e) => {
+                const modal = document.getElementById('partLightboxModal');
+                if (modal.classList.contains('hidden')) return;
+                if (e.key === 'Escape') window.closePartLightbox();
+                else if (e.key === 'ArrowLeft') window.navigateLightbox(-1);
+                else if (e.key === 'ArrowRight') window.navigateLightbox(1);
+            });
         });
     </script>
 </body>
