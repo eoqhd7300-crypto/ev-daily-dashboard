@@ -317,10 +317,33 @@
                             <td class="p-2 border border-slate-200 text-xs text-right text-slate-600">${s.weight.toFixed(2)}</td>
                         </tr>
                     `).join('');
+
+                // Detailed per-part table: Part Code / quantity / weight / size / material / OEM
+                const detailRows = v.bomTree
+                    .slice()
+                    .sort((a, b) => (b.weightKg || 0) - (a.weightKg || 0))
+                    .map(node => {
+                        const partName = [...node.levels].reverse().find(l => l) || '-';
+                        const size = (node.widthMm || node.heightMm || node.depthMm)
+                            ? `${fmtVal(node.widthMm)} × ${fmtVal(node.heightMm)} × ${fmtVal(node.depthMm)}`
+                            : '-';
+                        return `
+                            <tr class="even:bg-slate-50">
+                                <td class="p-1.5 border border-slate-200 text-slate-700">${partName}</td>
+                                <td class="p-1.5 border border-slate-200 text-slate-500 whitespace-nowrap">${fmtVal(node.partCode)}</td>
+                                <td class="p-1.5 border border-slate-200 text-center text-slate-600">${fmtVal(node.partCount)}</td>
+                                <td class="p-1.5 border border-slate-200 text-right text-slate-600">${fmtVal(node.weightKg)}</td>
+                                <td class="p-1.5 border border-slate-200 text-center text-slate-600 whitespace-nowrap">${size}</td>
+                                <td class="p-1.5 border border-slate-200 text-slate-600">${fmtVal(node.material)}</td>
+                                <td class="p-1.5 border border-slate-200 text-slate-600">${fmtVal(node.oemTiers)}</td>
+                            </tr>
+                        `;
+                    }).join('');
+
                 return `
                     <div class="mb-4">
                         <h5 class="text-xs font-bold text-slate-700 mb-1.5">${v.name} <span class="text-slate-400 font-normal">(BOM 노드 ${v.bomTree.length}건)</span></h5>
-                        <table class="border-collapse text-left w-full text-xs">
+                        <table class="border-collapse text-left w-full text-xs mb-2">
                             <thead><tr class="bg-slate-100">
                                 <th class="p-2 border border-slate-200">서브시스템 (Part Level 1)</th>
                                 <th class="p-2 border border-slate-200 text-center">BOM 노드 수</th>
@@ -329,6 +352,25 @@
                             </tr></thead>
                             <tbody>${rows}</tbody>
                         </table>
+                        <details class="border border-slate-200 rounded-lg">
+                            <summary class="cursor-pointer select-none px-3 py-2 text-xs font-bold text-sky-700 bg-sky-50 rounded-lg">
+                                📋 부품별 상세 목록 보기 (Part Code / 수량 / 무게 / 사이즈 / 재질)
+                            </summary>
+                            <div class="max-h-96 overflow-y-auto overflow-x-auto">
+                                <table class="border-collapse text-left w-full text-[11px]">
+                                    <thead class="sticky top-0"><tr class="bg-slate-100">
+                                        <th class="p-1.5 border border-slate-200">부품명</th>
+                                        <th class="p-1.5 border border-slate-200">Part Code</th>
+                                        <th class="p-1.5 border border-slate-200 text-center">수량</th>
+                                        <th class="p-1.5 border border-slate-200 text-right">무게 [kg]</th>
+                                        <th class="p-1.5 border border-slate-200 text-center">사이즈 W×H×D [mm]</th>
+                                        <th class="p-1.5 border border-slate-200">재질</th>
+                                        <th class="p-1.5 border border-slate-200">OEM/Tiers</th>
+                                    </tr></thead>
+                                    <tbody>${detailRows}</tbody>
+                                </table>
+                            </div>
+                        </details>
                     </div>
                 `;
             }).join('');
@@ -391,7 +433,7 @@
                     <h3 class="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
                         <span>🗂️ BOM(부품 구성) 요약</span>
                     </h3>
-                    <p class="text-xs text-slate-500 mb-3">서브시스템별 부품 수/중량 합계입니다. 부품 단위 상세 사진 연동은 추후 업데이트 예정입니다.</p>
+                    <p class="text-xs text-slate-500 mb-3">서브시스템별 부품 수/중량 합계이며, "부품별 상세 목록"을 펼치면 Part Code·수량·무게·사이즈·재질·OEM을 부품 단위로 확인할 수 있습니다. 부품 단위 사진 연동은 추후 업데이트 예정입니다.</p>
                     ${buildBomSummary(selected)}
                 </section>
             `;

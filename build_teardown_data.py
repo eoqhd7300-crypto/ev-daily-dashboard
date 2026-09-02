@@ -147,6 +147,44 @@ def find_type1_boundary_row(ws):
     return ws.max_row
 
 
+def extract_all_part_fields(ws):
+    """Walks the ENTIRE Overview sheet (every nested Sub-Pack/part breadcrumb block, not just
+    the top-level pack) and collects each part's own raw label:value fields (Part Code,
+    Number of Parts, Total Weight (kg), Width/Height/Depth [mm], Material Type(s), OEM/Tiers,
+    Marking, ...), keyed by its full hierarchy path (tuple of breadcrumb segments).
+
+    Used to enrich the Navigation-sheet BOM tree with Part Code + physical size, which the
+    Navigation sheet itself does not carry.
+    """
+    parts_by_path = {}
+    current_path = None
+    current_fields = {}
+
+    def flush():
+        if current_path is not None and current_fields:
+            # First occurrence wins (deeper per-instance repeats of the same path are rare;
+            # keeping the first keeps the 'aggregate part' entry rather than a later duplicate).
+            parts_by_path.setdefault(current_path, current_fields)
+
+    for i in range(1, ws.max_row + 1):
+        col_a = ws.cell(row=i, column=1).value
+        col_b = ws.cell(row=i, column=2).value
+
+        if col_a is None and isinstance(col_b, str) and '>' in col_b:
+            flush()
+            current_path = tuple(seg.strip() for seg in col_b.split('>'))
+            current_fields = {}
+            continue
+
+        if col_a is None or col_b is None:
+            continue  # section header / photo placeholder row
+
+        current_fields[str(col_a).strip()] = clean_value(col_b)
+
+    flush()
+    return parts_by_path
+
+
 def collect_row_images(ws, rows_of_interest):
     """Maps row index -> saved image bytes/format for images anchored in column B (col idx 1, 0-based)."""
     result = {}
@@ -288,6 +326,8 @@ def parse_type1(path, slug, asset_dir):
                 if not node_id:
                     continue
                 levels = [clean_value(nav.cell(row=i, column=c).value) or '' if c else '' for c in level_cols]
+                if not any(levels):
+                    continue  # stray footer row (e.g. "Powered by A2MAC1"), not an actual part
                 bom_tree.append({
                     'nodeId': node_id,
                     'levels': levels,
@@ -299,6 +339,19 @@ def parse_type1(path, slug, asset_dir):
                     # Field kept so a future per-part photo extractor can populate `imagePath` here.
                     'imagePath': None,
                 })
+
+        # Enrich each BOM node with Part Code + physical size (Width/Height/Depth) + Marking,
+        # parsed directly from the Overview sheet's per-part breadcrumb blocks (Navigation alone
+        # does not carry these fields). Matched by exact hierarchy path.
+        part_fields_by_path = extract_all_part_fields(ws)
+        for node in bom_tree:
+            path_key = tuple(lvl for lvl in node['levels'] if lvl)
+            fields = part_fields_by_path.get(path_key)
+            node['partCode'] = fields.get('Part Code') if fields else None
+            node['widthMm'] = fields.get('Width [mm]') if fields else None
+            node['heightMm'] = fields.get('Height [mm]') if fields else None
+            node['depthMm'] = fields.get('Depth [mm]') if fields else None
+            node['marking'] = fields.get('Marking') if fields else None
 
     return {'packOverview': pack_overview, 'packImages': pack_images, 'bomTree': bom_tree}
 
