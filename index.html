@@ -216,6 +216,26 @@
                 </div>
             </div>
 
+            <!-- Form Factor & Composition Filter Bar (groups same-type battery cells together) -->
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 pb-4 mb-4 border-b border-slate-100">
+                <div class="flex items-center flex-wrap gap-1.5">
+                    <span class="text-xs font-bold text-slate-600 mr-0.5">폼팩터:</span>
+                    <button data-value="all" onclick="window.setFormFactorFilter('all')" class="form-factor-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border border-sky-600 bg-sky-600 text-white shadow-xs transition">전체</button>
+                    <button data-value="원통형" onclick="window.setFormFactorFilter('원통형')" class="form-factor-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50">원통형</button>
+                    <button data-value="각형" onclick="window.setFormFactorFilter('각형')" class="form-factor-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50">각형</button>
+                    <button data-value="파우치" onclick="window.setFormFactorFilter('파우치')" class="form-factor-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50">파우치</button>
+                </div>
+                <div class="flex items-center flex-wrap gap-1.5">
+                    <span class="text-xs font-bold text-slate-600 mr-0.5">조성:</span>
+                    <button data-value="all" onclick="window.setCompositionFilter('all')" class="composition-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border border-indigo-600 bg-indigo-600 text-white shadow-xs transition">전체</button>
+                    <button data-value="LFP" onclick="window.setCompositionFilter('LFP')" class="composition-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-indigo-50">LFP</button>
+                    <button data-value="NCM" onclick="window.setCompositionFilter('NCM')" class="composition-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-indigo-50">NCM</button>
+                    <button data-value="NCMA" onclick="window.setCompositionFilter('NCMA')" class="composition-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-indigo-50">NCMA</button>
+                    <button data-value="NCA" onclick="window.setCompositionFilter('NCA')" class="composition-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-indigo-50">NCA</button>
+                    <button data-value="반고체/전고체" onclick="window.setCompositionFilter('반고체/전고체')" class="composition-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-indigo-50">반고체/전고체</button>
+                </div>
+            </div>
+
             <!-- Responsive Table Container -->
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs sm:text-sm border-collapse">
@@ -227,9 +247,10 @@
                             <th class="p-3">모델명 / 브랜드</th>
                             <th class="p-3">발표일자/출시 🔻</th>
                             <th class="p-3">차종 / 체급</th>
-                            <th class="p-3">현지 가격 / 원화 환산</th>
-                            <th class="p-3">배터리 용량 & 셀/팩 제조사</th>
-                            <th class="p-3">주행거리 / 성능</th>
+                            <th class="p-3">가격</th>
+                            <th class="p-3 text-center">폼팩터</th>
+                            <th class="p-3 text-center">조성</th>
+                            <th class="p-3">셀/팩 제조사</th>
                             <th class="p-3 text-center">AI 검색</th>
                             <th class="p-3 text-center w-16">상세</th>
                         </tr>
@@ -1406,6 +1427,8 @@
         let isUpdatedToday = true;
         let searchNoticeTimer = null;
         let expandedVehicleIds = new Set(); // Row-level inline detail expand state (independent from compare-checkbox selection)
+        let currentFormFactor = 'all'; // 'all', '원통형', '각형', '파우치'
+        let currentComposition = 'all'; // 'all', 'LFP', 'NCM', 'NCMA', 'NCA', '반고체/전고체'
         const LOCAL_STORAGE_KEY = 'ev_dashboard_history_db';
 
         // Helper function for space-insensitive, case-insensitive string cleaning
@@ -1419,6 +1442,28 @@
             const idx = raw.indexOf('(');
             if (idx === -1) return { main: raw.trim(), sub: '' };
             return { main: raw.slice(0, idx).trim(), sub: raw.slice(idx).trim() };
+        };
+
+        // Derive cell 폼팩터 (원통형/각형/파우치) from structured fields (cellType/packType) or free-text (cellInfo)
+        window.extractFormFactor = function(v) {
+            const text = `${v.cellType || ''} ${v.cellInfo || ''} ${v.packType || ''}`;
+            const found = [];
+            if (/원통형|cylindrical/i.test(text)) found.push('원통형');
+            if (/각형|prismatic/i.test(text)) found.push('각형');
+            if (/파우치|pouch/i.test(text)) found.push('파우치');
+            return found.length > 0 ? [...new Set(found)].join(' / ') : '-';
+        };
+
+        // Derive cell 조성 (LFP/NCM/NCMA/NCA/반고체 등) from structured/free-text battery fields
+        window.extractComposition = function(v) {
+            const text = `${v.batterySpec || ''} ${v.cellInfo || ''} ${v.cellComposition || ''}`;
+            const found = [];
+            if (/LFP|리튬인산철/i.test(text)) found.push('LFP');
+            if (/NCMA/i.test(text)) found.push('NCMA');
+            if (/NCA(?!M)/i.test(text)) found.push('NCA');
+            if (/NCM|NMC|삼원계/i.test(text)) found.push('NCM');
+            if (/전고체|반고체|solid-state/i.test(text)) found.push('반고체/전고체');
+            return found.length > 0 ? [...new Set(found)].join(' / ') : '-';
         };
 
         // Format 출시/예상시점 as a fixed "YY/MM 출시" or "YY/MM 출시예정" single-line label
@@ -1476,6 +1521,14 @@
                     }
                     return true;
                 });
+            }
+
+            if (currentFormFactor !== 'all') {
+                result = result.filter(v => window.extractFormFactor(v).includes(currentFormFactor));
+            }
+
+            if (currentComposition !== 'all') {
+                result = result.filter(v => window.extractComposition(v).includes(currentComposition));
             }
 
             // MANDATORY SORTING: Newest Release Date First (Descending)
@@ -1537,6 +1590,32 @@
             window.renderTable();
         };
 
+        window.setFormFactorFilter = function(key) {
+            currentFormFactor = key;
+
+            document.querySelectorAll('.form-factor-btn').forEach(btn => {
+                const isActive = btn.dataset.value === key;
+                btn.className = isActive
+                    ? "form-factor-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border border-sky-600 bg-sky-600 text-white shadow-xs transition"
+                    : "form-factor-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50";
+            });
+
+            window.renderTable();
+        };
+
+        window.setCompositionFilter = function(key) {
+            currentComposition = key;
+
+            document.querySelectorAll('.composition-btn').forEach(btn => {
+                const isActive = btn.dataset.value === key;
+                btn.className = isActive
+                    ? "composition-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border border-indigo-600 bg-indigo-600 text-white shadow-xs transition"
+                    : "composition-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-indigo-50";
+            });
+
+            window.renderTable();
+        };
+
         window.toggleCustomDatePicker = function() {
             const customContainer = document.getElementById('customDatePickerContainer');
             if (customContainer.classList.contains('hidden')) {
@@ -1591,7 +1670,7 @@
             if (filteredVehicles.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="9" class="p-8 text-center text-slate-400 font-medium">
+                        <td colspan="10" class="p-8 text-center text-slate-400 font-medium">
                             선택하신 기간 내에 등록된 신규 전기차 데이터가 존재하지 않습니다.<br>
                             <span class="text-xs text-slate-500 mt-1 block">상단 기간 필터에서 '전체 보기' 또는 '최근 1년'을 지정해 보세요.</span>
                         </td>
@@ -1623,12 +1702,12 @@
                             <div class="font-semibold text-slate-900">${v.priceKRW}</div>
                             <div class="text-xs text-slate-400">${v.priceLocal}</div>
                         </td>
+                        <td class="p-3 text-center text-xs text-slate-700 font-medium">${window.extractFormFactor(v)}</td>
+                        <td class="p-3 text-center text-xs text-slate-700 font-medium">${window.extractComposition(v)}</td>
                         <td class="p-3">
-                            <span class="inline-block bg-sky-50 text-sky-700 px-2 py-0.5 rounded border border-sky-200 text-xs font-semibold mb-1">${v.batterySpec}</span>
                             <div class="text-xs text-slate-600"><span class="font-semibold text-sky-800">셀:</span> ${v.cellMaker}</div>
                             <div class="text-xs text-slate-500"><span class="font-semibold text-slate-700">팩:</span> ${v.packMaker}</div>
                         </td>
-                        <td class="p-3 text-xs text-slate-600">${v.rangePerformance}</td>
                         <td class="p-3 text-center">
                             <a href="https://www.google.com/search?q=${encodeURIComponent(v.name)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Google 검색으로 이 차량 검색하기" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-600 transition">
                                 <span class="text-sm">✨</span>
@@ -1646,7 +1725,7 @@
                         const detailTr = document.createElement('tr');
                         detailTr.className = "bg-sky-50/40 border-b border-slate-100";
                         const detailTd = document.createElement('td');
-                        detailTd.colSpan = 9;
+                        detailTd.colSpan = 10;
                         detailTd.className = "p-0";
                         detailTd.innerHTML = window.buildDetailPanelHTML(v);
                         detailTr.appendChild(detailTd);
