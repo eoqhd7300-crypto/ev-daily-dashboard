@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T13:19:23.116509+09:00",
+  "generatedAt": "2026-09-03T13:14:57.135503+09:00",
   "vehicles": [
     {
       "id": "rivian_r2_suv",
@@ -3684,22 +3684,76 @@
   ],
   "news": [
     {
-      "title": "[기획]\"캐즘 끝났다\"…전기차·배터리 반등 노림수 - 매일일보",
-      "summary": "전기차 수요 둔화(캐즘) 국면이 점차 지나가면서 전기차 및 배터리 업계가 실적 반등을 적극 모색하고 있습니다.",
-      "source": "매일일보",
-      "date": "2026-09-02",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9GV25oVVU5S01tMHJfSEZUWHE0QmJWbHB5d28zNGdRVmF6MkRTMlR5ektHYzNPcUlRUTlVSW1rcVd3NUl0ODB3ZXlLMlMtNlpNZ3gwNzRSRllDS0VrSmpDNjEtbGQ?oc=5",
+      "title": "전기차 배터리·태양광 패널서 광물 캔다… 기후부, 핵심광물 순환 체계 구축 속도 - 산업일보",
+      "summary": "기후부가 전기차 폐배터리와 태양광 패널 등 폐자원에서 핵심 광물을 추출하여 재활용하는 순환 체계 구축을 가속화합니다.",
+      "source": "산업일보",
+      "date": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFBHcmlGRVZ3QWZyUUhoWHZuRUN4OEF5SUl5bWlZSHZIVlFFZ0xVR2lWQ2xrMS1sS0JtOXZPcUQ2d00xU2FX?oc=5",
       "linkType": "rss",
       "id": 1
     },
     {
+      "title": "현대모비스, 슬로바키아서 '전기차 심장' 만든다…유럽 전동화 거점 3각 체제 - 네이트",
+      "summary": "현대모비스가 슬로바키아에 전기차 핵심 부품 생산 거점을 구축하며 유럽 내 전동화 3각 생산 체제를 완성합니다.",
+      "source": "네이트",
+      "date": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFA3aXhhNDlFeE1RN2dSV3hrV3FpNDVVWFpKSklHSVV0eU1yaUdGUXJYOUY0bmduQlJnMU5VU2JSZG4zdkQ0ZTdualY0eXdKWVR2cnVZ?oc=5",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "건국대·국토부·ITF, 전기차 화재부터 자율주행 윤리까지…'2026 GMC'서 모빌리티 규범 설계 본격화 - 뉴스N연합",
+      "summary": "건국대와 국토부, ITF가 '2026 GMC'를 통해 전기차 화재 안전 및 자율주행 윤리 등 미래 모빌리티 관련 국제 규범 구체화에 나섰습니다.",
+      "source": "뉴스N연합",
+      "date": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE15dms4Y0hmd280RjRkY2w1c1dFVnlKY2dBYjdGQmZ3RzNiTi02ajJTX0hBYXNFSkR4bUxLYk5BUVZ5ajcyTnJpRG16WU1jRGM?oc=5",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
+      "title": "김경진 도의원, “멈춰 선 전기차 충전시설 지상이전 사업, 전면 재점검해야” - 전북엔비전",
+      "summary": "김경진 도의원이 화재 위험을 줄이기 위한 전기차 충전시설의 지상 이전 사업이 지연되고 있음을 지적하며 사업의 전면 재점검을 촉구했습니다.",
+      "source": "전북엔비전",
+      "date": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBqNW83azF1N1p6UURWVC1hekRrMk11NDRvNlhCLWpkYnIwU0Roakl1Q0otTFJxUTF4TUt4c01uZm5rQ1d3OUxjbmI1SXV0RmFVM1g4RkZPa2M5RDcwTVJLblhOR2Nxdw?oc=5",
+      "linkType": "rss",
+      "id": 4
+    },
+    {
+      "title": "\"추가 투자 없다더니\"… 中 CATL, 헝가리 데브레첸에 또 신규 배터리 공장 추진 논란 - 글로벌이코노믹",
+      "summary": "중국 CATL이 추가 투자가 없다던 기존 방침을 뒤집고 헝가리 데브레첸에 신규 배터리 공장 증설을 추진하면서 현지에서 논란이 일어나고 있습니다.",
+      "source": "글로벌이코노믹",
+      "date": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNU0ZkRDBzSTV4Q21ZSC1wWEF3bm1NSlhkZDQxMVNJWjFtbDBlTjdyQ1dkZzRpalZPOU1wbHQ3aEZzSklsUHlPaXpaR1FObWpCVWlGTFNuTWxtUldWY0RfVzB5eEpibm9qRHd3UVlMUEx6MVAtTzBzWWpZbExjU1YxNlFVVVNpQm5w?oc=5",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
+      "title": "中이 주도하는 전고체 배터리 국제 표준 작업…9부 능선 넘었다 - 네이트",
+      "summary": "중국이 주도하는 차세대 전고체 배터리의 국제 표준 제정 작업이 마무리 단계에 접어들었습니다.",
+      "source": "네이트",
+      "date": "2026-09-03",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5Xc3ExVms4RnNjaVEtbmFyRXZMOUdKNUhEN0dZMzdzd0JTOE1YNm5TeEhHMFVtcWRtWnlzVHNyNXYyeDdIZnFTdXlJVi1oLUZiNzdr?oc=5",
+      "linkType": "rss",
+      "id": 6
+    },
+    {
+      "title": "[기획]\"캐즘 끝났다\"…전기차·배터리 반등 노림수 - 매일일보",
+      "summary": "전기차 시장의 캐즘(일시적 수요 둔화) 현상이 해소될 기미를 보이면서 관련 업계가 시장 반등을 도모하고 있습니다.",
+      "source": "매일일보",
+      "date": "2026-09-02",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9GV25oVVU5S01tMHJfSEZUWHE0QmJWbHB5d28zNGdRVmF6MkRTMlR5ektHYzNPcUlRUTlVSW1rcVd3NUl0ODB3ZXlLMlMtNlpNZ3gwNzRSRllDS0VrSmpDNjEtbGQ?oc=5",
+      "linkType": "rss",
+      "id": 7
+    },
+    {
       "title": "[Q&AI] 충전기를 계속 꽂아둬도 괜찮을까? - 포스코그룹 뉴스룸",
-      "summary": "전기차 완충 후에도 충전기를 계속 연결해 둘 때 배터리 수명과 안전성에 미치는 영향 및 올바른 관리 방법을 설명합니다.",
+      "summary": "[Q&AI] 충전기를 계속 꽂아둬도 괜찮을까?    포스코그룹 뉴스룸",
       "source": "포스코그룹 뉴스룸",
       "date": "2026-09-02",
       "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOTWFSamVtQ283Y2JoTDk2amcyelo1TXNyUWZ5MHo3dUlvVjhfa1k4djAzQTN5d2k0UnlVSEVnMjVLb3NHVnFtTzJCVkx5WEFZRHdyNW10ci0tMVVPNFNCWDI1eG80N0pJcHhNczdibGFwbi1yV2JNZ3k0bHlrNEY0ZkRlMXljbTA1eHdzQkpBWTIyajUtd3RrZmRoNkVuTXBJd3F5UUlIYWZzQWV2ZVQ0TWRFeVNtRVRtU292QmJPVGNqNkh5WmpDZDFCMUVTM2duaFBwdE4xS0pPeGRqR19KeTkxWVFwOGFQZGR6WHhrRE93bFJyVFc4?oc=5",
       "linkType": "rss",
-      "id": 2
+      "id": 8
     },
     {
       "title": "[기자수첩] 트럼프의 배터리 '죽이고 살리기' - thelec.kr",
@@ -3708,7 +3762,7 @@
       "date": "2026-09-02",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5GVk9rNHR5U3M1QlF4U0VCdmVrSzFsMzhDWWdVanhlZDBZbldyU2MxZGZvUndNeHhsck52TG5XaV9wZ1UtOFpIakVXcUdJOE8yOVV3ZVJaR1k1al9rZ181eGhsZmlpdw?oc=5",
       "linkType": "rss",
-      "id": 3
+      "id": 9
     },
     {
       "title": "전기차에서 지게차로 번진 中 배터리 굴기 - 한국경제",
@@ -3717,7 +3771,7 @@
       "date": "2026-09-02",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5pTGtFNzNmYy1XQzlUVlliSTVlQTJVZjRWWm1kd3pId0M5Z1lHV2w3cUk5dHd1SXdSZFktb2t5MDdNXzZ2bUg2bmJKbC1Dc0hPeDVrWXlxNGJFQQ?oc=5",
       "linkType": "rss",
-      "id": 4
+      "id": 10
     },
     {
       "title": "EU ‘탈중국 배터리’ 해법으로 韓 3사 부상 - 글로벌이코노믹",
@@ -3726,16 +3780,16 @@
       "date": "2026-09-02",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNeGhyVEQ5bjI0ZTI4NVduNEs0U28wWHBzMG8wcTEtNGp0WUVEcHh6SnNEVmUzaXM1M08wS0otVTQzY3dwWlpiNkJNUTctSVFWQVJZUGVfVnk1U2o0WlN5NGJwdTlmbElXdDRXcVZkdXM4Vnp1andsb2p4SVBpWG9sLUlNQTMxSzFl?oc=5",
       "linkType": "rss",
-      "id": 5
+      "id": 11
     },
     {
       "title": "[현장] 전기차 충전, ‘많이 설치’에서 ‘똑똑하게 쓰기’로 - 스트레이트뉴스",
-      "summary": "전기차 충전 시장이 단순 설치 수량 확대에서 효율성과 지능형 관리를 중심으로 한 스마트 충전 방식으로 전환되고 있습니다.",
+      "summary": "전기차 충전 인프라 정책이 양적 확대를 넘어 스마트 충전 등 효율적인 관리와 이용자 편의 중심으로 전환되고 있습니다.",
       "source": "스트레이트뉴스",
       "date": "2026-09-02",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFA2MlBNZEJzRTBEQWJsdG9Ha0dtSldxOXJackd4UmsyRG5sNFN5TW9EZU9kVWhLa0U0dXRfUk03MnRncmRUSFEwTk56UUxwN194Y2MzeTdqVEJNelBNODluTmZfQ09fa2JrMEk1ZGx2WDJmVDjSAXdBVV95cUxNOFdHdTIyNmI3d1ZBVnVrMjduamdZWTdGbzE4QnFtdXE0dnFEYlpSTDBVaXpKcGhrRlFPUlBsWTRwNGFoR1ZaaV9tS1E4RjlMemR3OU8xSWZBeVdmSXVHMGpIcVVHd0RCczgyZEdNZVRNcXVvUHU5bw?oc=5",
       "linkType": "rss",
-      "id": 6
+      "id": 12
     },
     {
       "title": "무더위가 바꾼 산업지형도, 폭염 대응 기술이 車·배터리 경쟁력 좌우 - 네이트",
@@ -3744,7 +3798,7 @@
       "date": "2026-09-02",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1xTHU2Mmlfb2EzS3JHaTRsc0s1WDVZdkJuY3RWTnVBYzY1WmNmbHlsSmdZQnIxRXdoaXpLYXNaZTRuMlhZQVJkWEgyMW1XaEFzaW1R?oc=5",
       "linkType": "rss",
-      "id": 7
+      "id": 13
     },
     {
       "title": "1.5조 뚫은 SK온의 사투···‘포드 공장 가동’에 달렸다 - 뉴스프리존",
@@ -3753,7 +3807,7 @@
       "date": "2026-09-02",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5PcGlDdFF3YVROcm9ycFZHWjdOMHR1REtsQmVGLU9wdmZZc0FTenFhR2RFc2tlYVFMeXEzWjlRYk9YTVVZX1FlcmdwbUJDYlJEWUh2MjRPZ2VTaWRueVRhcERUdE9xUlI4QXE3V1pyRFVnbEXSAXdBVV95cUxPUkhpRlVvbGMwNUI5c2dLcDhzZUl2ZXF3OC1XVGc0UVNWdy1Cemo1Z0FBR0lLZkVOREtGS0FFZEJPYVhneXRlODdtemVmVF9ZQ2dnSnQ0bVk5Y1VIYk5SWjZETEcxdmFiYU5CclVHYUExb0hIUkFOOA?oc=5",
       "linkType": "rss",
-      "id": 8
+      "id": 14
     },
     {
       "title": "'600km 달린다'…레인지로버, 브랜드 첫 순수전기차 공개 - 월요신문",
@@ -3762,16 +3816,16 @@
       "date": "2026-09-02",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE41RmxqRFNIMDlzbFFpUWFsa3pyS2FtS2F6RkVIMzA0NFdLV2xSQnVUemduR2JqcXc0Y18wN2pUZkFnLVVha3IzSEhicXlXWEt0TjFsWGFqTzEySzd6aWlrbXdTVjR5SHlweGc?oc=5",
       "linkType": "rss",
-      "id": 9
+      "id": 15
     },
     {
-      "title": "“불꽃보다 먼저 연기 본다” 슈퍼브에이아이, 전기차 화재 조기감지 AI 개발 - 더에이아이",
-      "summary": "“불꽃보다 먼저 연기 본다” 슈퍼브에이아이, 전기차 화재 조기감지 AI 개발    더에이아이",
-      "source": "더에이아이",
+      "title": "“불꽃보다 먼저 연기 본다” 슈퍼브에이아이, 전기차 화재 조기감지 AI 개발 - newstheai.com",
+      "summary": "슈퍼브에이아이가 불꽃이 발생하기 전 연기를 감지하여 전기차 화재를 조기에 예방할 수 있는 AI 솔루션을 개발했습니다.",
+      "source": "newstheai.com",
       "date": "2026-09-02",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4xblByRDl1UzJPTWNxNmJNZERIeXBmeU1NTlRMWVVGTWo3WjBtM2xCVFN5TjMwdi0tTVVXV0JfMWswN0JUTVhGbDliNXMwME43RmxVb05ydEZ5YVZCS1NwSDBOQTlNMFpaOVE?oc=5",
       "linkType": "rss",
-      "id": 10
+      "id": 16
     },
     {
       "title": "'한국인 317명 체포' 1년…조지아 HMGMA 상처 딛고 한인사회·상권 복원 - jnilbo.com",
@@ -3780,86 +3834,32 @@
       "date": "2026-09-02",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA0RlhURURvOTdSc0J4WWduLXNjcEhuY2R5a3pCNlI1NHBWMGUtbmtVd2lCMGtYOHZhXzFEeENrWFZuWFluQnRLQ2dpOVY5bGNaeDVLR3dUQkdfelN4T1FEay1ncUhyS2NWLUdNdWlmVQ?oc=5",
       "linkType": "rss",
-      "id": 11
-    },
-    {
-      "title": "\"전기차만 봐선 안 보인다\"…복잡해진 K-배터리 '실적 셈법' - 디지털투데이",
-      "summary": "전기차 수요 외에도 ESS 및 신사업 비중이 늘면서 국내 배터리 기업들의 실적 분석 구조가 한층 다변화되고 있습니다.",
-      "source": "디지털투데이",
-      "date": "2026-09-01",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9ta1BxZkpVX3haWjN4b1VkdF9BdTZEbDVBT3huZEVYbV94LWotcURHQ2UwRUlPa29hUTY3WE45MngzclpoNUd5YWxLRVZVeEVZSjNRT002MVQ0S1JPYXBvTEZJclZMNFlOWjEyc0hHYUY0Q2c?oc=5",
-      "linkType": "rss",
-      "id": 12
-    },
-    {
-      "title": "오리엔트정공, 전기차 열관리 소재 시장 진출…고성능 MgO 갭필러 개발 - 뉴스핌",
-      "summary": "오리엔트정공, 전기차 열관리 소재 시장 진출…고성능 MgO 갭필러 개발    뉴스핌",
-      "source": "뉴스핌",
-      "date": "2026-09-01",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE40dkI3cmo2Q1JKaTNaSkNtcXZjdW9DckppX1dmZ0dRSUpaek4yeTk3TXNDVXpiQnc5YWEyVklMcy1HWGtZS2d1MEo2TDdFY3VSUV9OS1FsVlhnNzJW?oc=5",
-      "linkType": "rss",
-      "id": 13
-    },
-    {
-      "title": "SK온, 美 네오볼타에 9GWh 배터리 셀 공급…ESS 승부수 : 네이버 블로그 - Naver Blog",
-      "summary": "SK온이 미국 네오볼타에 9GWh 규모의 배터리 셀을 공급하며 에너지저장장치(ESS) 시장 공략에 박차를 가합니다.",
-      "source": "Naver Blog",
-      "date": "2026-09-01",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQbWw2NzV6cGgwdmVCYmd0MDZrZHo2Z1pUcUNCdXp2V0hGNWRLSlBpdzZ6RGdZdjBxdmpELWtPNTZ1ZGxaUkdEaEF5bjlSX0Vyck81dmdFQXFVd0xFMzlCRHdNaG0ydnBiSV9fZS1FMGIxMThSb1BNaVNfVVlYUVE5ejlFNlhkRHQtRERGYXpVbw?oc=5",
-      "linkType": "rss",
-      "id": 14
-    },
-    {
-      "title": "[헷갈리면 손해] 삼성전자 vs 삼성SDI… 2025년 방향 정반대로 갈린 이유 - theconnectmoney.com",
-      "summary": "[헷갈리면 손해] 삼성전자 vs 삼성SDI… 2025년 방향 정반대로 갈린 이유    theconnectmoney.com",
-      "source": "theconnectmoney.com",
-      "date": "2026-09-01",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE8yWVI0bGluWThvOGdweG9RVHM0Q0NfMjFjX0hhd0F5cUV1OUg0QVU5b055dTVxTUZySDFzNmU3dUJhZFVfZmFmMGNPR05tbEM5OVROTVp1RXdBODF0c0txcw?oc=5",
-      "linkType": "rss",
-      "id": 15
-    },
-    {
-      "title": "오리엔트정공, 고성능 산화마그네슘 갭필러 개발…전기차 열관리 사업 가속 - 이투데이",
-      "summary": "오리엔트정공, 고성능 산화마그네슘 갭필러 개발…전기차 열관리 사업 가속    이투데이",
-      "source": "이투데이",
-      "date": "2026-09-01",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5HdnNLNzF2OWZpVVNma0NXU2duaURacGJUdFVNZnJNVWRfdmVIVUdFVmVIVmE3eG1xLWdYbS1ZblNSaVFVeEF2eUVPVGtYbEtmT2ZtcQ?oc=5",
-      "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "\"中 가성비 공세에 맞불\"…현대차, '미드니켈' 전기차로 점유율 방어 총력 - 뉴시스",
-      "summary": "\"中 가성비 공세에 맞불\"…현대차, '미드니켈' 전기차로 점유율 방어 총력    뉴시스",
-      "source": "뉴시스",
-      "date": "2026-09-01",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE82Qkc4SFJmZ1FlS2JLRWU4dWNUUWQwdmJjTDB6U2V2a00xcUdEcTlWVW1PZTgwTXNMT1VfRmhDaXh0aWxRUWMyTFI5NVMwb0JJWGNkdGI5Wm9obkF4dkFPY9IBeEFVX3lxTFBXMmw1b1hwU2FiMlMydmg2dDJkaXNBM3lJYUotalZKUU9UdzlfMUdoQlNCdzhLNjQ3eHlRa1Z6cXZhNlZHcV9lcGNQdzFaeWZoWDN3aERfdmxNdTAxaXlOS1pHR0ZNeGRyWEx2QVA2WXdldk9Lc0dLQQ?oc=5",
-      "linkType": "rss",
       "id": 17
     },
     {
-      "title": "국립소방연구원·슈퍼브에이아이, AI로 전기차 화재 조기 감지…감지시간 65% 단축 - 네이트",
-      "summary": "국립소방연구원·슈퍼브에이아이, AI로 전기차 화재 조기 감지…감지시간 65% 단축    네이트",
-      "source": "네이트",
-      "date": "2026-09-01",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE82WG5Nanl5OHNBbmt5WGsxSGJRdGQ3MDNVclkxNnBWa2JvLVRXZ185dXdxdkV2SG5wdENhb3RKdWR0eTF4b29iVjFwZU9lNGYxb09Z?oc=5",
+      "title": "전기차 캐즘 끝나가는데…K-배터리 3년째 ‘후진 중’ - v.daum.net",
+      "summary": "글로벌 전기차 수요 회복세에도 불구하고 국내 배터리 기업들은 글로벌 시장 점유율에서 3년 연속 하락세를 이어가고 있습니다.",
+      "source": "v.daum.net",
+      "date": "2026-09-02",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9OaGRlbkRQa2pwVHI5MGtZd1FpYXprbkUtcFJlbnRqVnMzQVkxazJueFBEMFJDNEcyck9TTUdUSC0yanNBMDZKLVQ0WUs0XzA?oc=5",
       "linkType": "rss",
       "id": 18
     },
     {
-      "title": "슈퍼브에이아이, 전기차 화재 AI로 잡는다…\"오경보 80%↓\" - 지디넷코리아",
-      "summary": "슈퍼브에이아이, 전기차 화재 AI로 잡는다…\"오경보 80%↓\"    지디넷코리아",
-      "source": "지디넷코리아",
-      "date": "2026-09-01",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBYSkpFMU9hUFF0NnhnLUtqeWI2MUFhemFrWHlzeFdZU3BrYVpWSDU4aXZGTUZIT1JiRTIxYkI4V2xEWk9ESXRaYy0ydmktQTlRTVQycHZ3?oc=5",
+      "title": "전기차 화재부터 폐섬유·수자원까지 …DB손해보험, 소셜벤처 5곳 선발 - 더글로벌기빙뉴스",
+      "summary": "DB손해보험이 전기차 화재 대응 및 환경 문제를 해결하는 소셜벤처 5곳을 선발해 지원에 나섭니다.",
+      "source": "더글로벌기빙뉴스",
+      "date": "2026-09-02",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5yTmxKczJzQzRnWWc4RDVNb0lUbUh2STVBNWJpa1Y0R0dZdkFTWGd5OGpBS3Baa3lMZ180WnNfOVQ0WWs1R2dJaEhaQkU2MTJFYTRaMA?oc=5",
       "linkType": "rss",
       "id": 19
     },
     {
-      "title": "\"지하주차장 전기차 화재 골든타임 잡는다\"…슈퍼브AI, 감지 AI 모델 개발 - 뉴스1",
-      "summary": "\"지하주차장 전기차 화재 골든타임 잡는다\"…슈퍼브AI, 감지 AI 모델 개발    뉴스1",
-      "source": "뉴스1",
-      "date": "2026-09-01",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1KWjkwZ3lLblloT25MNjZqQUJXeWo3c3hmNEdfWmp6eDJUb09fYTBSSWVZS05ZWkdtMTgycVNxMzlxZEllS1NDbVVSRUw4NTlra0JwdW1VdGhSeWNj0gFiQVVfeXFMT1V0blR2UUFqZjNIMlIxbzJnY3JxYVU4QXI3dy1adDdMUUhYYjZqdHVNRHZvb0NNWm1zOTQ4RWpwRnBOUXpxaTNudlFwcXRQX25YSDhkMG5QSzk0VkNta3Jjd2c?oc=5",
+      "title": "[기획]캐즘에 멈췄던 공장 다시 돌린다…배터리업계도 기대감 - 매일일보",
+      "summary": "전기차 수요 침체로 가동을 멈췄던 공장들이 재가동에 들어가며 배터리 업계의 실적 개선 기대감이 높아지고 있습니다.",
+      "source": "매일일보",
+      "date": "2026-09-02",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBWbTBKUjE2S2RWaURYNmZQcVV2LXhTMlJFWDktdXE5ajhQLXhIN0ladkN6Y1ZCanpxelJIN3UzUTU0c0FMU0xILXZVSmhkYUFwaDFWaXNHZ0Z4MTBkd3RsdWhSdF_SAWhBVV95cUxNNXdMd3RBcWkwMkxlM01EQWFHV0NuM1oxOEhYQ0xDN2c2Z3Y3aTBlZUJLaWVLVlFfVXZHVENwZXJpOURzU2Z1SzBJTVk4cDVjajZ2UWd4RHZqYVhtbFpLdkY1QXczT2cxVQ?oc=5",
       "linkType": "rss",
       "id": 20
     }
