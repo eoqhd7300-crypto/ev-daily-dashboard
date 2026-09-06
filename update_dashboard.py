@@ -45,7 +45,22 @@ GOOGLE_NEWS_QUERIES = [
     "solid-state battery",
     "EV charging technology",
     "battery recycling",
+    # 국내 주요 매체 8곳 지정 수집 (site: 연산자로 해당 매체 도메인의 기사만 조회)
+    "site:joongang.co.kr 전기차 OR 배터리",
+    "site:donga.com 전기차 OR 배터리",
+    "site:chosun.com 전기차 OR 배터리",
+    "site:mk.co.kr 전기차 OR 배터리",
+    "site:sedaily.com 전기차 OR 배터리",
+    "site:dt.co.kr 전기차 OR 배터리",
+    "site:hankyung.com 전기차 OR 배터리",
+    "site:edaily.co.kr 전기차 OR 배터리",
 ]
+
+# Google News RSS의 <source url="..."> 도메인이 아래 패턴에 매칭되면, 계열사/서브도메인 바이라인
+# (예: 한경매거진&북, 모바일한경)을 대표 매체명으로 통일해 하나의 매체로 인식되게 한다.
+SOURCE_NAME_OVERRIDES = {
+    "hankyung.com": "한국경제",
+}
 
 # 실제로 채워 넣은 예시 1건 - 모델이 이 스타일/디테일 수준을 그대로 모방하도록 함
 VEHICLE_FILLED_EXAMPLE = {
@@ -210,6 +225,11 @@ def fetch_google_news_rss(query: str, max_items: int = 15) -> list:
         pub_date_raw = item.findtext("pubDate") or ""
         source_el = item.find("source")
         source = (source_el.text or "").strip() if source_el is not None else ""
+        source_domain = (source_el.get("url") or "") if source_el is not None else ""
+        for domain, override_name in SOURCE_NAME_OVERRIDES.items():
+            if domain in source_domain:
+                source = override_name
+                break
         description = _strip_html(item.findtext("description") or "")
         try:
             pub_dt = parsedate_to_datetime(pub_date_raw).astimezone(KST)
