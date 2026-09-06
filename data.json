@@ -1,5 +1,11 @@
 {
   "generatedAt": "2026-09-06T13:26:23.113155+09:00",
+  "fx": {
+    "usdKrw": 1349.84,
+    "eurKrw": 1567.64,
+    "cnyKrw": 200.44,
+    "updatedAt": "2026-09-07T00:00:00+09:00"
+  },
   "vehicles": [
     {
       "id": "genesis_gv90_magma",

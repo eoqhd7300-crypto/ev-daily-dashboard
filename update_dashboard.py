@@ -266,16 +266,50 @@ def collect_recent_news_raw(max_total: int = MAX_NEWS) -> list:
 
 def load_existing_data() -> dict:
     if not os.path.exists(DATA_PATH):
-        return {"vehicles": [], "news": []}
+        return {"vehicles": [], "news": [], "fx": None}
     try:
         with open(DATA_PATH, "r", encoding="utf-8") as f:
             data = json.load(f)
         return {
             "vehicles": data.get("vehicles") or [],
             "news": data.get("news") or [],
+            "fx": data.get("fx"),
         }
     except Exception:  # noqa: BLE001 - 손상된 파일이면 빈 값으로 시작
-        return {"vehicles": [], "news": []}
+        return {"vehicles": [], "news": [], "fx": None}
+
+
+# 환율 조회에 실패했을 때 사용할 최종 안전값 (사이트에 기존에 표시되던 값과 동일)
+FALLBACK_FX = {"usdKrw": 1442.96, "eurKrw": 1652.50, "cnyKrw": 201.50}
+
+
+def fetch_fx_rates(existing_fx: dict | None) -> dict:
+    """무료/무키 환율 API(open.er-api.com, 매일 갱신)에서 USD/EUR/CNY -> KRW 환율을 가져온다.
+    실패 시 기존 data.json에 저장돼 있던 값, 그마저 없으면 최종 안전값을 사용한다."""
+    fallback = existing_fx if isinstance(existing_fx, dict) and existing_fx.get("usdKrw") else FALLBACK_FX
+    url = "https://open.er-api.com/v6/latest/USD"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            payload = json.loads(resp.read())
+        rates = payload.get("rates") or {}
+        usd_krw = float(rates["KRW"])
+        eur_krw = usd_krw / float(rates["EUR"])
+        cny_krw = usd_krw / float(rates["CNY"])
+        return {
+            "usdKrw": round(usd_krw, 2),
+            "eurKrw": round(eur_krw, 2),
+            "cnyKrw": round(cny_krw, 2),
+            "updatedAt": datetime.now(KST).isoformat(),
+        }
+    except Exception as exc:  # noqa: BLE001
+        print(f"환율 조회 실패, 기존/기본값 유지: {exc}")
+        return {
+            "usdKrw": fallback["usdKrw"],
+            "eurKrw": fallback["eurKrw"],
+            "cnyKrw": fallback["cnyKrw"],
+            "updatedAt": fallback.get("updatedAt", ""),
+        }
 
 
 def _norm(text: str) -> str:
@@ -503,14 +537,24 @@ def main() -> None:
 
     client = genai.Client(api_key=api_key)
 
+    existing = load_existing_data()
+    fx = fetch_fx_rates(existing.get("fx"))
+
     vehicles = generate_vehicles(client, today_str)
     news = generate_news(client)
 
     if not vehicles and not news:
-        print("신규로 생성/수집된 데이터가 없어 data.json 갱신을 건너뜁니다.")
+        print("신규로 생성/수집된 차량/뉴스 데이터가 없어 해당 항목은 건너뛰지만, 환율 정보는 갱신합니다.")
+        output = {
+            "generatedAt": now_kst.isoformat(),
+            "vehicles": existing["vehicles"],
+            "news": existing["news"],
+            "fx": fx,
+        }
+        with open(DATA_PATH, "w", encoding="utf-8") as f:
+            json.dump(output, f, ensure_ascii=False, indent=2)
         return
 
-    existing = load_existing_data()
     merged_vehicles = merge_vehicles(existing["vehicles"], vehicles)
     merged_news = merge_news(existing["news"], news)
 
@@ -520,6 +564,7 @@ def main() -> None:
         "generatedAt": now_kst.isoformat(),
         "vehicles": merged_vehicles,
         "news": merged_news,
+        "fx": fx,
     }
 
     with open(DATA_PATH, "w", encoding="utf-8") as f:

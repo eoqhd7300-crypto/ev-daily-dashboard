@@ -140,7 +140,7 @@
                 <span class="text-xs flex-shrink-0">✅</span>
                 <span class="font-bold text-emerald-950 whitespace-nowrap text-[11px] sm:text-xs">오늘의 신규 전기차 & 배터리 데이터</span>
                 <span class="text-emerald-300 flex-shrink-0 hidden sm:inline">|</span>
-                <span class="text-[10px] sm:text-[11px] text-emerald-700 whitespace-nowrap">기준일: <span id="currentDateStr" class="font-semibold">2026년 8월 20일 (목)</span> (매일 09:00 자동 갱신) | 환율: $1 USD = 1,442.96 KRW | $1 EUR = 1,652.50 KRW | ¥1 CNY = 201.50 KRW</span>
+                <span class="text-[10px] sm:text-[11px] text-emerald-700 whitespace-nowrap">기준일: <span id="currentDateStr" class="font-semibold">2026년 8월 20일 (목)</span> (매일 09:00 자동 갱신) | <span id="fxRateStr">환율: $1 USD = 1,442.96 KRW | $1 EUR = 1,652.50 KRW | ¥1 CNY = 201.50 KRW</span></span>
             </div>
             <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold bg-emerald-200 text-emerald-800 flex-shrink-0 ml-1.5">
                 UPDATED
@@ -2222,6 +2222,17 @@
         // Fetch freshly generated daily data (data.json), regenerated every day at 09:00 KST by
         // the GitHub Actions pipeline (see update_dashboard.py). If it is missing or fails to load
         // (e.g. opened locally via file://), the built-in static dataset above is kept as-is.
+        window.renderFxRate = function(fx) {
+            const el = document.getElementById('fxRateStr');
+            if (!el) return;
+            const usd = Number(fx.usdKrw);
+            const eur = Number(fx.eurKrw);
+            const cny = Number(fx.cnyKrw);
+            if (!usd || !eur || !cny) return;
+            const fmt = (n) => n.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            el.innerText = `환율: $1 USD = ${fmt(usd)} KRW | $1 EUR = ${fmt(eur)} KRW | ¥1 CNY = ${fmt(cny)} KRW`;
+        };
+
         window.loadDailyDashboardData = async function() {
             try {
                 const res = await fetch('./data.json', { cache: 'no-store' });
@@ -2233,6 +2244,9 @@
                 }
                 if (Array.isArray(data.news) && data.news.length > 0) {
                     evLatestNewsData = data.news;
+                }
+                if (data.fx && typeof data.fx === 'object') {
+                    window.renderFxRate(data.fx);
                 }
 
                 window.renderTable();
