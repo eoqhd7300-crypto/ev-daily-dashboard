@@ -257,15 +257,15 @@
                             <th class="p-3 text-center w-10">
                                 <input type="checkbox" id="selectAllCheckbox" onchange="window.toggleSelectAll(this)" checked class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer">
                             </th>
-                            <th class="p-3">모델명 / 브랜드</th>
-                            <th class="p-3">발표일자/출시 🔻</th>
-                            <th class="p-3">차종 / 체급</th>
-                            <th class="p-3">가격</th>
-                            <th class="p-3 text-center">폼팩터</th>
-                            <th class="p-3 text-center">조성</th>
-                            <th class="p-3">셀/팩 제조사</th>
-                            <th class="p-3 text-center">AI 검색</th>
-                            <th class="p-3 text-center w-16">상세</th>
+                            <th class="p-3 text-center whitespace-nowrap">모델명 / 브랜드</th>
+                            <th class="p-3 text-center whitespace-nowrap">발표일자/출시 🔻</th>
+                            <th class="p-3 text-center whitespace-nowrap">차종 / 체급</th>
+                            <th class="p-3 text-center whitespace-nowrap">가격</th>
+                            <th class="p-3 text-center whitespace-nowrap">폼팩터</th>
+                            <th class="p-3 text-center whitespace-nowrap">조성</th>
+                            <th class="p-3 text-center whitespace-nowrap">셀/팩 제조사</th>
+                            <th class="p-3 text-center whitespace-nowrap">AI 검색</th>
+                            <th class="p-3 text-center w-16 whitespace-nowrap">상세</th>
                         </tr>
                     </thead>
                     <tbody id="vehicleTableBody" class="divide-y divide-slate-100 text-slate-800">
@@ -1701,22 +1701,22 @@
                         <td class="p-3 text-center">
                             <input type="checkbox" ${v.selected ? 'checked' : ''} onclick="event.stopPropagation()" onchange="window.toggleVehicleSelection('${v.id}')" class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer">
                         </td>
-                        <td class="p-3 font-bold text-slate-900">
+                        <td class="p-3 font-bold text-slate-900 text-center">
                             <div class="whitespace-nowrap">${nameParts.main}</div>
                             ${nameParts.sub ? `<div class="text-xs font-normal text-slate-500 mt-0.5 whitespace-nowrap">${nameParts.sub}</div>` : ''}
                         </td>
-                        <td class="p-3 text-xs font-semibold text-slate-600">
+                        <td class="p-3 text-xs font-semibold text-slate-600 text-center">
                             <div class="whitespace-nowrap"><span class="px-2 py-0.5 rounded bg-slate-100">${v.releaseDate || window.formatDateISO(activeReportDate)}</span></div>
                             <div class="whitespace-nowrap text-slate-500 font-medium mt-1">${launchShort}</div>
                         </td>
-                        <td class="p-3 text-slate-600"><span title="${v.type}" class="inline-block max-w-[140px] truncate align-bottom px-2 py-0.5 rounded bg-sky-50 text-sky-700 text-xs font-medium">${v.type}</span></td>
-                        <td class="p-3">
+                        <td class="p-3 text-slate-600 text-center"><span title="${v.type}" class="inline-block max-w-[140px] truncate align-bottom px-2 py-0.5 rounded bg-sky-50 text-sky-700 text-xs font-medium">${v.type}</span></td>
+                        <td class="p-3 text-center">
                             <div class="font-semibold text-slate-900">${v.priceKRW}</div>
                             <div class="text-xs text-slate-400">${v.priceLocal}</div>
                         </td>
                         <td class="p-3 text-center text-xs text-slate-700 font-medium">${window.extractFormFactor(v)}</td>
                         <td class="p-3 text-center text-xs text-slate-700 font-medium">${window.extractComposition(v)}</td>
-                        <td class="p-3">
+                        <td class="p-3 text-center">
                             <div class="text-xs text-slate-600"><span class="font-semibold text-sky-800">셀:</span> ${v.cellMaker}</div>
                             <div class="text-xs text-slate-500"><span class="font-semibold text-slate-700">팩:</span> ${v.packMaker}</div>
                         </td>
