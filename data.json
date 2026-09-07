@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T10:46:50.011989+09:00",
+  "generatedAt": "2026-09-07T11:27:04.166766+09:00",
   "vehicles": [
     {
       "id": "genesis_gv90_magma",
@@ -115,15 +115,15 @@
       "packInfo": "Structural Battery Pack (차체 구조 일체형 팩)",
       "cellInfo": "High-Density LFP Prismatic Cell",
       "chargingSafety": "통합 열관리 실린더 다이캐스팅 단열 방열재",
-      "trim": "Standard Range RWD",
+      "trim": "Standard RWD",
       "topSpeed": "180km/h",
       "zeroToHundred": "6.5초",
-      "maxOutput": "150kW / 204ps",
-      "maxChargePower": "170kW",
+      "maxOutput": "150 kW (204 PS)",
+      "maxChargePower": "170 kW",
       "packVoltage": "400V",
       "packType": "Structural Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "하부 바닥 통합 액체 냉각 (Cold Plate)",
+      "cellType": "Prismatic / Cylindrical",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -136,7 +136,8 @@
       "cellComposition": "LFP",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
-      "cellEnergyDensity": "-"
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-09-07"
     },
     {
       "id": "rivian_r2_suv",
@@ -1264,15 +1265,15 @@
       "packInfo": "PMA2+ 800V 전용 고강도 알루미늄 배터리 프레임",
       "cellInfo": "CATL Kirin 4.5C High-Power Cell",
       "chargingSafety": "액체 가스 분리 통로 및 전극 실시간 분격 과열 방지층",
-      "trim": "4WD Sport GT",
-      "topSpeed": "240km/h",
-      "zeroToHundred": "2.84초",
-      "maxOutput": "475kW / 646ps",
-      "maxChargePower": "400kW",
+      "trim": "GT Performance AWD",
+      "topSpeed": "210 km/h",
+      "zeroToHundred": "2.84 s",
+      "maxOutput": "475 kW (646 PS)",
+      "maxChargePower": "400 kW",
       "packVoltage": "800V",
-      "packType": "CTP (Cell-to-Pack)",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "대면적 양면 액체 냉각 (Large Area Cold Plate)",
+      "packType": "CTP 3.0 (Qilin)",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -1285,7 +1286,8 @@
       "cellComposition": "NCM",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
-      "cellEnergyDensity": "-"
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-09-07"
     },
     {
       "id": "tesla_cybercab_prod",
@@ -2183,15 +2185,15 @@
       "packInfo": "CIB (Cell Integrated Body) 일체형 차체 팩",
       "cellInfo": "CALB High-Voltage Prismatic Cell",
       "chargingSafety": "3000톤 기가캐스팅 하우징 일체형 압출 방화 격벽",
-      "trim": "750 Max RWD",
-      "topSpeed": "202km/h",
-      "zeroToHundred": "5.9초",
-      "maxOutput": "218kW / 296ps",
-      "maxChargePower": "280kW",
+      "trim": "750 Long Range Ultra",
+      "topSpeed": "202 km/h",
+      "zeroToHundred": "5.9 s",
+      "maxOutput": "218 kW (296 PS)",
+      "maxChargePower": "280 kW",
       "packVoltage": "800V",
-      "packType": "CIB (Cell Integrated Body)",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "직접 액체 순환 냉각 (Liquid Cooling)",
+      "packType": "CIB (Cell-in-Body)",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -2201,10 +2203,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM",
+      "cellComposition": "NCM / LFP",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
-      "cellEnergyDensity": "-"
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-09-07"
     },
     {
       "id": "volvo_ex60_2026",
@@ -2504,15 +2507,15 @@
       "packInfo": "K1 플랫폼 특화 하부 보호 스틸 보강 팩",
       "cellInfo": "High-Density NCM Pouch Cell",
       "chargingSafety": "실시간 배터리 모니터링 BMS 및 하부 2중 강판 가드",
-      "trim": "Cross Edition",
-      "topSpeed": "150km/h",
-      "zeroToHundred": "10.1초",
-      "maxOutput": "85kW / 115ps",
-      "maxChargePower": "120kW",
-      "packVoltage": "400V",
-      "packType": "Modular Pack",
-      "cellType": "파우치형 (Pouch)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "trim": "Cross Long Range",
+      "topSpeed": "150 km/h",
+      "zeroToHundred": "10.6 s",
+      "maxOutput": "85 kW (115 PS)",
+      "maxChargePower": "120 kW",
+      "packVoltage": "310V",
+      "packType": "Battery Pack Assembly",
+      "cellType": "Pouch",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -2522,10 +2525,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM",
+      "cellComposition": "NCM 622",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
-      "cellEnergyDensity": "-"
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-09-07"
     },
     {
       "id": "volvo_ex60_2026",
@@ -3331,15 +3335,15 @@
       "packInfo": "MEB Entry 파워코 전용 규격화 팩 하우징",
       "cellInfo": "PowerCo Unified Prismatic Cell",
       "chargingSafety": "중앙 집중식 냉각 플레이트 및 셀 충격 분산 하부 프레임",
-      "trim": "Pro Style",
-      "topSpeed": "160km/h",
-      "zeroToHundred": "7.0초",
-      "maxOutput": "166kW / 226ps",
-      "maxChargePower": "125kW",
+      "trim": "Base / Entry",
+      "topSpeed": "160 km/h",
+      "zeroToHundred": "7.0 s",
+      "maxOutput": "166 kW (226 PS)",
+      "maxChargePower": "125 kW",
       "packVoltage": "400V",
-      "packType": "Unified Cell Pack",
-      "cellType": "각형 (Prismatic Unified)",
-      "coolingMethod": "하부 바닥면 액체 냉각 (Bottom Cold Plate)",
+      "packType": "MEB Entry Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -3352,7 +3356,8 @@
       "cellComposition": "LFP / NCM",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
-      "cellEnergyDensity": "-"
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-09-07"
     },
     {
       "id": "audi_a6_etron_avant",
@@ -3724,40 +3729,22 @@
       "id": 5
     },
     {
-      "title": "1∼7월 전기차 배터리 사용량 20%↑…중국 업체 점유율 73% - v.daum.net",
-      "summary": "1∼7월 전기차 배터리 사용량 20%↑…중국 업체 점유율 73%    v.daum.net",
-      "source": "v.daum.net",
-      "date": "2026-09-07",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1CT1hIS1E3eUh4RTlNVXBJNHo5Q3o1TU9mb1BDNFpqenNBZWdycGE4LVpQNDFPcDZVcnh1MHlWalNZTWV0aHYzZFVvSDNzVm8?oc=5",
-      "linkType": "rss",
-      "id": 6
-    },
-    {
       "title": "전기차 배터리 725.2GWh…중국계 7개사 점유율 72.8% - 리드경제",
       "summary": "전기차 배터리 725.2GWh…중국계 7개사 점유율 72.8%    리드경제",
       "source": "리드경제",
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5Vc3FncDk1cU9OdzNjT2JMdjBxNThZX2lpamI3SEgwNmNLRWE5cm9VN0Jpc1Mwak1tTHNPZ3VpeXdZMU9aZUNyMkNBSi0yNXlzc3l4MEloY2dVYmlyZkRVWTFQa0hkUUNBMFpiSlpRTQ?oc=5",
       "linkType": "rss",
-      "id": 7
+      "id": 6
     },
     {
       "title": "S&K폴리텍, 세계 최대 中 배터리사 퀄 테스트 통과…\"현지 전기차 공급망 진입 \" - 프라임경제",
-      "summary": "S&K폴리텍, 세계 최대 中 배터리사 퀄 테스트 통과…\"현지 전기차 공급망 진입 \"    프라임경제",
+      "summary": "S&K폴리텍이 세계 최대 중국 배터리 제조사의 품질 인증(퀄 테스트)을 통과하여 현지 전기차 배터리 부품 공급망 진입에 성공했습니다.",
       "source": "프라임경제",
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE00WUlNZ21KcG8yTkpTZGc1aTdfbWY1ajdhc2k1TklpRFFHblZKaHZtSnkxeDh3V2RCamxwZDRHTlFRQ0NhdzVWMzJLSkI0bW9jZkh4ZEwtV0U2enZNaGFudXR1SQ?oc=5",
       "linkType": "rss",
-      "id": 8
-    },
-    {
-      "title": "S&K폴리텍, 中 글로벌 배터리사 품질검증 통과 - 뉴스핌",
-      "summary": "S&K폴리텍, 中 글로벌 배터리사 품질검증 통과    뉴스핌",
-      "source": "뉴스핌",
-      "date": "2026-09-07",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1CUkNjVzczRHROTUI4WVlCRklWNlVkQVdNQ2FDc255MkpBbE5QVUJYTkx0dWZZcjAzTktNRjN1TEhvZlVUZWUybUphb2h3bTZCb2l1MkVXa2hiRnpa?oc=5",
-      "linkType": "rss",
-      "id": 9
+      "id": 7
     },
     {
       "title": "LG엔솔·서울대, ‘LMR 배터리’ 대형 셀 난제 풀었다…‘전기차 상용화’ 성큼 - 뉴시안",
@@ -3766,7 +3753,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBINlZWQm9ycWNLVkl2dUtnS2lBeUlSU28zZXBFYUtRTnFWbEZaWlpJMGVMSnV3TlFybnBwQXM1Wmp2NFdrQ1UxamFrUVBfQUFqanJBbEhZOWdSc0ZyUkJYNWNJZmV2VlYyTVRz0gFuQVVfeXFMTTkwTWxiM0cyNzdqZ3h6NER2Uk1LdkZpLWkzeklhRG0wSGVvZldPbUpKUk1ad0lzT0FWX0x4V2pNdmhNekpyV1loRWJfV2RHSFZ6V1JIb19wLVMyY090d0xVX3NHVy1kNXJHU2ZIQkE?oc=5",
       "linkType": "rss",
-      "id": 10
+      "id": 8
     },
     {
       "title": "양주 고속도로서 전기차 화재…2명 연기흡입 - LG헬로비전",
@@ -3775,7 +3762,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5jaEZ6djJoX3h2VkNOMGxkbTJoaGk2MTNiMEpvNkNJd1FOeHNvNklCaHNqM2lkVXVHcFdQVjFuSUdickthTmp0WDBqS2pRY0FrYkRrRWtTcDc4NnRuLW5Xcmd6akNRSWxpYVNoLVU2ZkNJQdIBdkFVX3lxTE9nVlB0eERhLWNPZUNkWGYxeDhKVHlfZUFfV0JzUWNIalV5SDZwVi1iTEJ0a3RzaXZhdHZrZjE1cl96bDV6a2xtRk5WazhGS0Rab1kzY1NFZldOaTV6MUxSZk9aemVqQUVxYm5ETWhsMWRjcU9qRGc?oc=5",
       "linkType": "rss",
-      "id": 11
+      "id": 9
     },
     {
       "title": "정보현 인천시의원, 전기차 화재·지반침하 대응체계 점검 - 세계뉴스통신",
@@ -3784,7 +3771,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5fQVdWb2h6MkhPMEFiQ1U0OXpDdk9NRDJpTElWVU15SzNjcW9FdFVhRkZKNFJDbUhQUkM2LUFFRFUwQllVYW1MOFNhYUdubUFvQlJvemFrYjd3UUlxdkdTVk0zOEtVMDk2SjRQbndNR1NrV1FC?oc=5",
       "linkType": "rss",
-      "id": 12
+      "id": 10
     },
     {
       "title": "LG엔솔, 캐즘 탈출…북미·ESS 쌍끌이 반등 - 뉴스토마토",
@@ -3793,7 +3780,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5EUWVHcXl6eFZBMzZudEtjVFcyeFBnTFdrOTVYWV9kbS1IOTN4VTlnNWsxMUZfM0llTEt5X29temYzVV9ZeFZRaTNsajlxS2N1TWljV1VfZjhCUXYyYWpueQ?oc=5",
       "linkType": "rss",
-      "id": 13
+      "id": 11
     },
     {
       "title": "[사진] ‘싸게 싸게’ 전기차 충전하는 법 - 중앙일보",
@@ -3802,7 +3789,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE44WUliaG1LWW4tZVZqVFo5RGhZYkhUY2ZEd3A0NjNLc3k1c3ljdktWS1RrWFVPVk15bGpNN0VQa1pFeXNCOEM0ZVY2SU5jcjM2S3dNRk9n?oc=5",
       "linkType": "rss",
-      "id": 14
+      "id": 12
     },
     {
       "title": "손준호, ♥김소현에 고가 전기차 선물…“자랑거리도 아냐” - 스포츠동아",
@@ -3811,7 +3798,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5SSHhmU2FCYXVNV3ZkZC1FTmlKbDE5UGVsMHVoXzhtZkxONUp1WDdzV0k4alh1SE9GREV0SVBfci1MNExLMjFuOUFRQXl5Ny12TXU2NnRTaHVrRjlNbzgwWDBIYXhORXJ1eG1VZmV3?oc=5",
       "linkType": "rss",
-      "id": 15
+      "id": 13
     },
     {
       "title": "“AI 데이터센터 발열 잡아라”… 정유사 ‘액체냉각’ 새 시장 경쟁 - 동아일보",
@@ -3820,7 +3807,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8tcHNqNzA5OXRTQVhWZU94NllraF9feVZOeUFBODM3aUVpMktsR0NiQUFZNTh4U25zekVxaWJocERHY0RSRnVuc2VMNXFKaUxSYTg4T1NWTldqcFJZRzFGcXc2andfc0poRXBTUUlFUTBVYXpOQlHSAWZBVV95cUxPR21QaHFqSWxUa0szOGJ4RWZTSmRva3c3SGY2MHBRT1k2U2FLdXp3WDN6clhTSmo0TUVXYjgtM2RMZzZwTGp6NzF4VmR3c1BMeGllTm1vUG5QYVhEMGpQMzZKUzhNSVE?oc=5",
       "linkType": "rss",
-      "id": 16
+      "id": 14
     },
     {
       "title": "LG에너지솔루션·서울대, 차세대 리튬망간리치 배터리 상용화 난제 해결 - 조선비즈 - Chosunbiz",
@@ -3829,7 +3816,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNWVVCNm9waGtCOXhMMmlBRlRfaG5TRWlQeXA1MVZLZFlPUzVUYXduVkVCLUloNzkySHY1b0FYTHoxVFQ0TDVEMGVJcFZ6TkNEMWk4UnRBUGFaS0pqcmpIaW4yc19pNDRkUGMtV1VhamdJeTZjd0ZvdjJVelNDc0E5VzNacjjSAZgBQVVfeXFMTWJyTlZwTGl1OWU2S0t1Q0RzeHRISkhHVHJKQjVQSDlEdkthWjZ0cnM2MjNsLURYdTJtZ1hkMmpaZjR3OFlZRWhkRmg4enZQWFhkc3hHaXZoaWZxeVUybnJpaUs4VjBzOTQzTVF2aFRwczY2OTdHT1VlTDEydGJKYWNGT2tkMWJYVWNjYmlzVmpEUlpBUHUxWWc?oc=5",
       "linkType": "rss",
-      "id": 17
+      "id": 15
     },
     {
       "title": "자동차 배터리의 강자… 고온다습한 날씨에도 강한 내구성 - 조선일보",
@@ -3838,16 +3825,16 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNalB6T3l3TzNOMFJuMWdldHpVbUR1RF9FbXdXY0J0Z0s4T0Z3NHJITnhscHl6N1JEcTRVRDNZdVNFc3k1Y1pfR00xOXM1Z2ViM3NjTTJFRl83bFdWcVhJYXBteWN0TTI0Rk1qSGhURlVKZk5oYnd5T053US04SUp3bXVFek9aSTU1ekVsX0V3?oc=5",
       "linkType": "rss",
-      "id": 18
+      "id": 16
     },
     {
       "title": "LG엔솔·서울대, LMR 배터리 가스 발생 원인 규명…대형 셀 적용 가능성 확인 - IT조선",
-      "summary": "LG엔솔·서울대, LMR 배터리 가스 발생 원인 규명…대형 셀 적용 가능성 확인    IT조선",
+      "summary": "LG에너지솔루션과 서울대 공동 연구팀이 차세대 리튬망간리치(LMR) 배터리 상용화의 최대 난제였던 가스 발생 원인을 밝혀내고 대형 셀 적용 가능성을 확인했습니다.",
       "source": "IT조선",
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Vc1daWkd1Z2M1RXNvaHI1Y0xtNm9xX2I0VXZkbjNTR0FzTVhNYURKWm1HcnZKSzVKNXpoYWJnQ2pEMS13dlhHV1UzemFDSGU0cm12eThsSmtkNFFycG1jMTBrVklYWDdWaTJtaEdyZm7SAXRBVV95cUxOWUhlaFJLbnN4N1FPY3NSWEx0NHVWU21HVXMyYjF0S3lrQ0o2TG05NGJIMHA4N1FUVDI4dkhuTmpWYnlqYUNKWmlpZlRSLU1zbTJfZGZkckJYaTN4alNSNlQ0eFQ3aG5fbUlqWElPNW9GSUVCeQ?oc=5",
       "linkType": "rss",
-      "id": 19
+      "id": 17
     },
     {
       "title": "LG엔솔, ‘가스 발생’ 난제 풀었다…LMR 배터리 대형 셀 상용화 성큼 - 디지틀조선TV",
@@ -3856,6 +3843,24 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxObnd0ZC1DVVEwNWdEMkRrRkFiS2lTeWc0RkV1YXZFdFg3TEhON19JVGVXSnBsZlNtb2VQdGZwQlV2cDhqZVBUY0Z6UHRDRmduVlY5bUFUNmo1THp6Q3V6dS1Fd05FTTUzNWo1bmxGM01XMEkxaXJCNFBrSHJCendpWHVfSFZ5dw?oc=5",
       "linkType": "rss",
+      "id": 18
+    },
+    {
+      "title": "아우디, 中 SAIC와 '혁신기술센터' 설립…전용 전기차 브랜드 개발 현지화 | 더구루 - 뷰타임즈",
+      "summary": "아우디가 중국 SAIC와 합작하여 혁신기술센터를 설립하고, 현지 시장에 특화된 차세대 전기차 전용 플랫폼 및 신기술 개발을 추진합니다.",
+      "source": "뷰타임즈",
+      "date": "2026-09-07",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1jTWF5b0ttR01PZHlYYktmZjVLTGlDU1ZoeWdsXzJKUHp2UVBPNXJTcUdtelNyc25WdGJ5RC1ZdkVLY3lXcTdSaUpPN1JqYWdPTXlUNVJqX3JrUdIBX0FVX3lxTE5VaFhFNHVwWGdhN2lsUW5rN3cteW1UUEFNNXl6aF9fb0VzcVhfNWNoV01FM1VSM1FFUUk5dGlpUGNkM0FYb0xxMFNyazlkYWcwY3V1c2dFRzBjZEtJdFh3?oc=5",
+      "linkType": "rss",
+      "id": 19
+    },
+    {
+      "title": "배터리 내 ‘가짜 신호’ 확 줄인다…“차세대 배터리 개발에 기여” - 서울경제",
+      "summary": "국내 연구진이 배터리 내부 이온 이동 분석 시 발생하는 가짜 신호의 원인을 규명하여 고성능 차세대 배터리 분석 정밀도를 향상시켰습니다.",
+      "source": "서울경제",
+      "date": "2026-09-07",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9mVUJGUy1FdnlvNDJDb19sX0szVkQ3REgwdkVUR2phM05pU3h3RW9FSF9ra2VmbU81T2dUZmN5WUlXTW9JR3JNYlpsS0QtWEYySXfSAVNBVV95cUxPM1daREh5R2s3d1ZHODR1LVhpbWhIMk9LUkROaUtmOURzWk1DUkRxZ1Z1MzdrX0xxdUtZV1VnMUVPZ3QzTUVTZFptbGZJemJZSzR6VQ?oc=5",
+      "linkType": "rss",
       "id": 20
     }
   ],
@@ -3863,6 +3868,6 @@
     "usdKrw": 1346.56,
     "eurKrw": 1563.82,
     "cnyKrw": 200.4,
-    "updatedAt": "2026-09-07T10:46:50.137737+09:00"
+    "updatedAt": "2026-09-07T11:27:04.339221+09:00"
   }
 }
