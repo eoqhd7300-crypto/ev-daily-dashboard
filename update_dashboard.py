@@ -83,9 +83,14 @@ SOURCE_NAME_OVERRIDES = {
 
 # site: 지정 검색이 원하는 본지(종합지/경제지) 기사 외에, 같은 도메인의 스포츠/연예 서브브랜드까지
 # 함께 가져오는 경우가 있어(예: 스포츠동아), 기술과 무관한 이런 매체는 출처명 기준으로 원천 제외한다.
+# 또한 일반(비 site:) 키워드 검색은 전국의 모든 매체를 대상으로 하므로, 지역 케이블방송/보도자료
+# 배포 전문 군소 통신사처럼 편집 품질이 낮은 매체도 함께 섞여 들어온다 - 이런 매체도 함께 제외한다.
 EXCLUDED_SOURCE_NAMES = {
+    # 스포츠/연예 서브브랜드
     "스포츠동아", "스포츠조선", "스포츠경향", "스포츠서울", "일간스포츠",
     "스타투데이", "마이데일리", "OSEN", "뉴스엔", "톱스타뉴스", "텐아시아",
+    # 지역 케이블방송/보도자료 배포 전문 매체 (기술 기사 편집 품질이 낮음)
+    "LG헬로비전", "세계뉴스통신", "HCN", "딜라이브",
 }
 
 # "OO년 O월 배터리 사용량/점유율 순위" 류의 SNE Research 시장리포트는 거의 매달 수십개 매체가
@@ -728,6 +733,9 @@ def merge_news(old_news: list, new_news: list) -> list:
         if existing is None or (n.get("date") or "") >= (existing.get("date") or ""):
             merged[key] = n
     result = sorted(merged.values(), key=lambda n: n.get("date") or "", reverse=True)
+    # EXCLUDED_SOURCE_NAMES는 그동안 계속 확장되어 왔으므로, 과거에 누적된 기사 중에도 현재
+    # 기준으로 제외 대상인 출처가 남아있을 수 있다 - 매 실행마다 다시 걸러내 자동으로 정리한다.
+    result = [n for n in result if n.get("source") not in EXCLUDED_SOURCE_NAMES]
     result = dedup_similar_titles(result)[:MAX_NEWS]
     for idx, item in enumerate(result, start=1):
         item["id"] = idx
