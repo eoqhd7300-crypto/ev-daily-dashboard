@@ -81,6 +81,30 @@ SOURCE_NAME_OVERRIDES = {
     "hankyung.com": "한국경제",
 }
 
+# site: 지정 검색이 원하는 본지(종합지/경제지) 기사 외에, 같은 도메인의 스포츠/연예 서브브랜드까지
+# 함께 가져오는 경우가 있어(예: 스포츠동아), 기술과 무관한 이런 매체는 출처명 기준으로 원천 제외한다.
+EXCLUDED_SOURCE_NAMES = {
+    "스포츠동아", "스포츠조선", "스포츠경향", "스포츠서울", "일간스포츠",
+    "스타투데이", "마이데일리", "OSEN", "뉴스엔", "톱스타뉴스", "텐아시아",
+}
+
+# "OO년 O월 배터리 사용량/점유율 순위" 류의 SNE Research 시장리포트는 거의 매달 수십개 매체가
+# 거의 동일한 내용을 제목만 바꿔 재게재한다. 제목 유사도만으로는 거러내지 못하므로 주제 단위로 따로 감지한다.
+MARKET_SHARE_REPORT_TRIGGERS = ["점유율", "사용량", "판매량 순위", "랑킹", "top10", "톱10"]
+
+
+def _market_share_topic_key(title: str, date: str) -> str | None:
+    """제목이 반복적으로 재게재되는 '배터리 사용량/점유율 순위' 류 리포트면 해당 월(YYYY-MM)을 키로 만든다.
+    헤드라인마다 강조된 제조사가 다르더라도 같은 월의 동일 리포트로 보고 중복 제거한다.
+    해당되지 않으면 None을 반환해 일반 제목 유사도 비교만 적용되게 한다."""
+    lowered = (title or "").lower()
+    if "배터리" not in lowered and "battery" not in lowered:
+        return None
+    if not any(trigger in lowered for trigger in MARKET_SHARE_REPORT_TRIGGERS):
+        return None
+    month = (date or "")[:7]  # YYYY-MM
+    return f"market_share|{month}"
+
 # 실제로 채워 넣은 예시 1건 - 모델이 이 스타일/디테일 수준을 그대로 모방하도록 함
 VEHICLE_FILLED_EXAMPLE = {
     "id": "byd_fangchengbao_ti7_dmi",
@@ -259,6 +283,8 @@ def fetch_google_news_rss(query: str, max_items: int = 15) -> list:
             if domain in source_domain:
                 source = override_name
                 break
+        if source in EXCLUDED_SOURCE_NAMES:
+            continue  # 기술과 무관한 스포츠/연예 서브브랜드 기사는 원천 제외
         description = _strip_html(item.findtext("description") or "")
         try:
             pub_dt = parsedate_to_datetime(pub_date_raw).astimezone(KST)
@@ -293,15 +319,23 @@ def _is_similar_title(a: str, b: str) -> bool:
 
 def dedup_similar_titles(items: list) -> list:
     """서로 다른 매체가 같은 사건을 보도해 제목만 비슷한 '유사 기사'를 걸러낸다.
-    items는 최신순으로 정렬되어 있다고 가정하고, 먼저(=더 최신) 등장한 기사를 남긴다."""
+    items는 최신순으로 정렬되어 있다고 가정하고, 먼저(=더 최신) 등장한 기사를 남긴다.
+    일반 제목 유사도 비교 외에, '배터리 사용량/점유율 순위'처럼 매달 여러 매체가 거의 동일한
+    내용을 제목만 바꿔(강조하는 제조사가 달라도) 반복 보도하는 리포트성 기사는 월 단위 주제 키로 추가 중복 제거한다."""
     kept = []
     kept_norms = []
+    kept_topic_keys = set()
     for item in items:
+        topic_key = _market_share_topic_key(item["title"], item.get("date", ""))
+        if topic_key is not None and topic_key in kept_topic_keys:
+            continue
         norm = _normalize_title_for_dedup(item["title"])
         if any(_is_similar_title(norm, existing) for existing in kept_norms):
             continue
         kept.append(item)
         kept_norms.append(norm)
+        if topic_key is not None:
+            kept_topic_keys.add(topic_key)
     return kept
 
 
