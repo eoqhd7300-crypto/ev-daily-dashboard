@@ -93,6 +93,15 @@ EXCLUDED_SOURCE_NAMES = {
     "LG헬로비전", "세계뉴스통신", "HCN", "딜라이브",
 }
 
+
+def _is_excluded_source(source: str, source_domain: str = "") -> bool:
+    """기술과 무관한 스포츠/연예 서브브랜드 매체인지 판단한다. Google이 출처를 사람이 읽는
+    매체명 대신 원시 도메인으로 줄 때도 있으므로(예: "sports.donga.com"), 이름 기준 목록
+    (EXCLUDED_SOURCE_NAMES) 매칭뿐 아니라 도메인/이름에 남은 sports./star. 패턴도 함께 검사한다."""
+    combined = f"{source} {source_domain}".lower()
+    return source in EXCLUDED_SOURCE_NAMES or bool(re.search(r"(?:^|[./])(sports|star)\.", combined))
+
+
 # "OO년 O월 배터리 사용량/점유율 순위" 류의 SNE Research 시장리포트는 거의 매달 수십개 매체가
 # 거의 동일한 내용을 제목만 바꿔 재게재한다. 제목 유사도만으로는 거러내지 못하므로 주제 단위로 따로 감지한다.
 MARKET_SHARE_REPORT_TRIGGERS = ["점유율", "사용량", "판매량 순위", "랑킹", "top10", "톱10"]
@@ -289,7 +298,9 @@ def fetch_google_news_rss(query: str, max_items: int = 15) -> list:
             if domain in source_domain:
                 source = override_name
                 break
-        if source in EXCLUDED_SOURCE_NAMES:
+        # Google이 출처를 사람이 읽는 매체명 대신 원시 도메인으로 줄 때도 있음(예: "sports.donga.com").
+        # 이런 경우 EXCLUDED_SOURCE_NAMES(친숙한 이름 기준) 매칭을 우회하므로, 도메인 자체도 함께 검사한다.
+        if _is_excluded_source(source, source_domain):
             continue  # 기술과 무관한 스포츠/연예 서브브랜드 기사는 원천 제외
         description = _strip_html(item.findtext("description") or "")
         try:
@@ -735,7 +746,7 @@ def merge_news(old_news: list, new_news: list) -> list:
     result = sorted(merged.values(), key=lambda n: n.get("date") or "", reverse=True)
     # EXCLUDED_SOURCE_NAMES는 그동안 계속 확장되어 왔으므로, 과거에 누적된 기사 중에도 현재
     # 기준으로 제외 대상인 출처가 남아있을 수 있다 - 매 실행마다 다시 걸러내 자동으로 정리한다.
-    result = [n for n in result if n.get("source") not in EXCLUDED_SOURCE_NAMES]
+    result = [n for n in result if not _is_excluded_source(n.get("source") or "")]
     result = dedup_similar_titles(result)[:MAX_NEWS]
     for idx, item in enumerate(result, start=1):
         item["id"] = idx
