@@ -160,13 +160,22 @@ def enrich_bom_tree_from_overview(ws, bom_tree, asset_dir):
     the top-level pack) and, for each block whose hierarchy path matches a node already present
     in `bom_tree` (i.e. a part actually shown in the BOM table), enriches that node with:
       - Part Code, Width/Height/Depth [mm], Marking (fields the Navigation sheet does not carry)
+      - Quantity/weight fallback (Number of Parts, Part(s) Weight (kg)) when the Navigation sheet
+        did not already provide them
+      - Capacity [Ah] / Energy [Wh] / Voltage [V], parsed from the 'Marking' text (e.g. a cell's
+        printed label "CBE05 / 191Ah / 607Wh / 3.2V") or from an explicit 'Voltage [V]' field
       - Representative photos: every 'Global' sub-view (Location/Front/Back/Left/Right/Top/
         Bottom/Profile) plus only the FIRST 'Fastener' photo. Measurements/Code/Other views and
         anything else are intentionally skipped to keep the image count bounded.
 
-    Blocks that don't match any bom_tree node (e.g. individual per-instance items like each of
-    32 physical cells inside a module, which aren't their own BOM line item) are parsed but
-    discarded - no images are saved for them, keeping disk usage scoped to what the UI displays.
+    Blocks whose breadcrumb path ends in "Cell" (the individual cell spec block nested inside a
+    Cell Module) usually have NO corresponding Navigation-sheet line item of their own - the
+    Navigation sheet only lists the module/assembly as a part, not the cell inside it. Since this
+    is the only place such vehicles (whose HV Battery - Data.xlsx Type2 file is empty/missing)
+    expose any Cell-level spec at all, a synthetic BOM node is created for these so the data is
+    still shown in the BOM detail table. Other unmatched blocks (e.g. one row per individual
+    physical cell instance) are still parsed but discarded, to keep the BOM table scoped to real
+    parts only.
     """
     nodes_by_path = {}
     for node in bom_tree:
@@ -193,6 +202,21 @@ def enrich_bom_tree_from_overview(ws, bom_tree, asset_dir):
         current_node['heightMm'] = current_fields.get('Height [mm]')
         current_node['depthMm'] = current_fields.get('Depth [mm]')
         current_node['marking'] = current_fields.get('Marking')
+        if current_node.get('weightKg') is None:
+            current_node['weightKg'] = current_fields.get('Part(s) Weight (kg)')
+        if current_node.get('partCount') is None:
+            current_node['partCount'] = current_fields.get('Number of Parts')
+        if current_node.get('material') is None:
+            current_node['material'] = current_fields.get('Material Type(s)')
+
+        marking_text = current_fields.get('Marking') or ''
+        ah_match = re.search(r'(\d+(?:\.\d+)?)\s*Ah', marking_text, re.IGNORECASE)
+        wh_match = re.search(r'(\d+(?:\.\d+)?)\s*Wh', marking_text, re.IGNORECASE)
+        v_match = re.search(r'(\d+(?:\.\d+)?)\s*V\b', marking_text, re.IGNORECASE)
+        current_node['capacityAh'] = float(ah_match.group(1)) if ah_match else None
+        current_node['energyWh'] = float(wh_match.group(1)) if wh_match else None
+        voltage_field = current_fields.get('Voltage [V]')
+        current_node['voltageV'] = voltage_field if voltage_field is not None else (float(v_match.group(1)) if v_match else None)
 
     for i in range(1, ws.max_row + 1):
         col_a = ws.cell(row=i, column=1).value
@@ -202,6 +226,19 @@ def enrich_bom_tree_from_overview(ws, bom_tree, asset_dir):
             flush()
             path = tuple(seg.strip() for seg in col_b.split('>'))
             current_node = nodes_by_path.get(path)
+            if current_node is None and path and path[-1].strip().lower() == 'cell':
+                # Synthetic node: this vehicle's Navigation sheet has no dedicated BOM line for
+                # the individual cell, but its spec block still exists in the Overview sheet.
+                current_node = {
+                    'nodeId': f"synthetic-{slugify('-'.join(path))}",
+                    'levels': (list(path) + [''] * 6)[:6],
+                    'weightKg': None,
+                    'material': None,
+                    'oemTiers': None,
+                    'partCount': None,
+                }
+                bom_tree.append(current_node)
+                nodes_by_path[path] = current_node
             current_fields = {}
             current_fastener_taken = False
             current_view_counts = {}
@@ -236,6 +273,7 @@ def enrich_bom_tree_from_overview(ws, bom_tree, asset_dir):
         current_node.setdefault('images', []).append({'view': label, 'path': rel_path})
 
     flush()
+
 
 
 def collect_row_images(ws, rows_of_interest):

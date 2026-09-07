@@ -425,6 +425,12 @@
                             `;
                         }
 
+                        const specParts = [];
+                        if (node.capacityAh != null) specParts.push(`${fmtVal(node.capacityAh)}Ah`);
+                        if (node.energyWh != null) specParts.push(`${fmtVal(node.energyWh)}Wh`);
+                        if (node.voltageV != null) specParts.push(`${fmtVal(node.voltageV)}V`);
+                        const specCell = specParts.length > 0 ? specParts.join(' / ') : '<span class="text-slate-300">-</span>';
+
                         return `
                             <tr class="even:bg-slate-50">
                                 <td class="p-1.5 border border-slate-200 text-center">${photoCell}</td>
@@ -435,6 +441,7 @@
                                 <td class="p-1.5 border border-slate-200 text-center text-slate-600 whitespace-nowrap">${size}</td>
                                 <td class="p-1.5 border border-slate-200 text-slate-600">${fmtVal(node.material)}</td>
                                 <td class="p-1.5 border border-slate-200 text-slate-600">${fmtVal(node.oemTiers)}</td>
+                                <td class="p-1.5 border border-slate-200 text-slate-600 whitespace-nowrap">${specCell}</td>
                             </tr>
                         `;
                     }).join('');
@@ -453,7 +460,7 @@
                         </table>
                         <details class="border border-slate-200 rounded-lg">
                             <summary class="cursor-pointer select-none px-3 py-2 text-xs font-bold text-sky-700 bg-sky-50 rounded-lg">
-                                📋 부품별 상세 목록 보기 (Part Code / 수량 / 무게 / 사이즈 / 재질 / 🔍 사진)
+                                📋 부품별 상세 목록 보기 (Part Code / 수량 / 무게 / 사이즈 / 재질 / 기본사양 / 🔍 사진)
                             </summary>
                             <div class="max-h-96 overflow-y-auto overflow-x-auto">
                                 <table class="border-collapse text-left w-full text-[11px]">
@@ -466,6 +473,7 @@
                                         <th class="p-1.5 border border-slate-200 text-center">사이즈 W×H×D [mm]</th>
                                         <th class="p-1.5 border border-slate-200">재질</th>
                                         <th class="p-1.5 border border-slate-200">OEM/Tiers</th>
+                                        <th class="p-1.5 border border-slate-200">Remark</th>
                                     </tr></thead>
                                     <tbody>${detailRows}</tbody>
                                 </table>
