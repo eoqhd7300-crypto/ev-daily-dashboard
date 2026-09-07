@@ -19,6 +19,7 @@ import re
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
+from difflib import SequenceMatcher
 from email.utils import parsedate_to_datetime
 from urllib.parse import quote_plus
 
@@ -29,6 +30,24 @@ DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json"
 
 MAX_VEHICLES = 80  # 누적 상한 (최근 1년치 데이터를 충분히 보유)
 MAX_NEWS = 20       # 항상 최신 20건만 유지 (기존 대시보드 사양과 동일)
+NEWS_POOL_SIZE = 60  # 유사기사/비기술 기사 필터링 전, RSS에서 확보해 둘 후보 기사 풀 크기
+
+# 서로 다른 매체가 동일 사건을 보도해 제목만 비슷한 "유사 기사"를 걸러내기 위한 임계값
+TITLE_DUP_SIMILARITY_THRESHOLD = 0.72
+
+# 엔지니어 관점(전기차/배터리팩/셀 기술) 관련성 판단용 키워드.
+# Gemini 필터링이 실패했을 때의 최후 안전망(fallback)으로만 사용한다.
+ENGINEERING_KEYWORDS = [
+    "배터리", "셀", "팩", "모듈", "전고체", "반고체", "양극재", "음극재", "전해질", "분리막",
+    "에너지밀도", "에너지 밀도", "급속충전", "완속충전", "열관리", "냉각", "발화", "화재 원인",
+    "안전성", "BMS", "재활용", "리사이클", "특허", "기술 개발", "양산", "파일럿 라인", "기가팩토리",
+    "리튬", "니켈", "코발트", "실리콘 음극", "리튬인산철", "LFP", "NCM", "NCMA", "NCA", "나트륨이온",
+    "폼팩터", "각형", "원통형", "파우치", "에너지저장", "ESS", "사이클 수명", "초고속충전", "800V",
+    "kWh", "Wh/kg", "battery", "cell chemistry", "solid-state", "semi-solid", "cathode", "anode",
+    "electrolyte", "separator", "energy density", "thermal management", "cooling system",
+    "recycling", "patent", "gigafactory", "silicon anode", "sodium-ion", "cylindrical", "prismatic",
+    "pouch cell", "cycle life", "fast charging", "teardown", "분해",
+]
 
 MODEL_NAME = "gemini-3.6-flash"
 
@@ -155,18 +174,28 @@ vehicles 배열의 각 항목은 반드시 아래 예시와 동일한 수준의 
 def build_news_summary_prompt(raw_items: list) -> str:
     items_json = json.dumps(raw_items, ensure_ascii=False, indent=2)
     return f"""
-아래는 RSS로 수집한 실제 전기차/배터리 관련 뉴스 원본 목록입니다 (title, url, date, source, description 포함).
-이 목록의 각 항목에 대해 한글 요약(summary)을 1~2문장으로 작성해서 JSON 배열로만 응답하세요.
+아래는 RSS로 수집한 실제 전기차/배터리 관련 뉴스 원본 후보 목록입니다 (title, url, date, source, description 포함).
+당신은 배터리/전기차 엔지니어를 위한 뉴스 큐레이터입니다. 이 목록에서 "엔지니어 관점에서 기술적으로 의미 있는 기사"만 선별하고,
+같은 사건을 다룬 유사 기사는 1건만 남긴 뒤, 선택한 기사에 한글 요약(summary)을 작성해 JSON 배열로만 응답하세요.
 
-- title, url, date, source 값은 절대 변경하지 말고 원본 그대로 유지하세요.
-- summary는 description 내용을 바탕으로 자연스러운 한글 뉴스 요약 문장으로 작성하세요 (직역이 아니라 핵심 내용 요약).
-- description이 비어있거나 정보가 부족하면 title을 근거로 합리적으로 요약하세요.
+선별 기준 (반드시 지킬 것):
+- 포함: 배터리 셀/모듈/팩 기술(화학조성, 폼팩터, 에너지밀도, 열관리/냉각, BMS), 충전 기술(급속/초고속/충전속도),
+  소재/공정(양극재·음극재·전해질·분리막, 실리콘음극, 전고체/반고체), 안전성/화재 원인 분석, 리사이클링/재활용 기술,
+  특허/R&D/양산 기술, 분해(teardown)/실측 분석, 배터리 공장/생산기술 등 기술적 내용이 있는 기사.
+- 제외: 단순 판매량/가격/할인/프로모션/시승기/색상·옵션 소개/이벤트/딜러 소식 등 기술적 내용이 없는 순수 마케팅·영업성 기사.
+  기사 제목에 차종명과 함께 배터리 용량(kWh) 등 스펙이 언급되더라도, 기사 전체가 신차 출시/가격 안내 위주라면 제외하세요.
+- 같은 사건(예: 특정 업체의 신기술 발표, 리콜, 화재 사고)을 서로 다른 매체가 보도해 제목이 유사한 경우, 가장 정보가
+  상세한 1건만 선택하고 나머지는 제외하세요 (언론사가 다르다는 이유만으로 중복 포함하지 마세요).
+- title, url, date, source 값은 선택한 항목에 대해 절대 변경하지 말고 원본 그대로 유지하세요.
+- summary는 description 내용을 바탕으로 자연스러운 한글 뉴스 요약 문장(1~2문장)으로 작성하세요 (직역이 아니라 핵심 내용 요약).
+  description이 비어있거나 정보가 부족하면 title을 근거로 합리적으로 요약하세요.
+- 최대 {MAX_NEWS}건까지, 최신순으로 선택하세요. 기준을 통과하는 기사가 적으면 그보다 적은 건수만 반환해도 됩니다.
 - 마크다운 코드블록이나 설명 문장 없이 순수 JSON 배열만 응답하세요.
 
-원본 목록:
+원본 후보 목록:
 {items_json}
 
-응답 형식 (배열, 각 원소는 아래 5개 필드만 포함):
+응답 형식 (배열, 각 원소는 아래 5개 필드만 포함, 선택된 기사만):
 [
   {{"title": "...", "summary": "...", "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
 ]
@@ -250,7 +279,40 @@ def fetch_google_news_rss(query: str, max_items: int = 15) -> list:
     return items
 
 
-def collect_recent_news_raw(max_total: int = MAX_NEWS) -> list:
+def _normalize_title_for_dedup(title: str) -> str:
+    """제목 유사도 비교용 정규화: 언론사 접미사/괄호/구두점/공백을 제거하고 소문자로 통일."""
+    text = re.sub(r"\s*-\s*[^-]{1,20}$", "", title or "")  # Google 뉴스가 붙이는 "- 언론사명" 접미사 제거
+    text = re.sub(r"[\[\](){}<>'\"“”‘’.,!?…·|]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip().lower()
+    return text
+
+
+def _is_similar_title(a: str, b: str) -> bool:
+    return SequenceMatcher(None, a, b).ratio() >= TITLE_DUP_SIMILARITY_THRESHOLD
+
+
+def dedup_similar_titles(items: list) -> list:
+    """서로 다른 매체가 같은 사건을 보도해 제목만 비슷한 '유사 기사'를 걸러낸다.
+    items는 최신순으로 정렬되어 있다고 가정하고, 먼저(=더 최신) 등장한 기사를 남긴다."""
+    kept = []
+    kept_norms = []
+    for item in items:
+        norm = _normalize_title_for_dedup(item["title"])
+        if any(_is_similar_title(norm, existing) for existing in kept_norms):
+            continue
+        kept.append(item)
+        kept_norms.append(norm)
+    return kept
+
+
+def is_engineering_relevant(item: dict) -> bool:
+    """전기차/배터리팩/셀 기술 관점에서 의미 있는 기사인지 키워드 기반으로 판단한다.
+    Gemini의 의미 기반 필터링이 실패했을 때의 최후 안전망(fallback)으로만 사용한다."""
+    haystack = f"{item.get('title', '')} {item.get('description', '')}".lower()
+    return any(kw.lower() in haystack for kw in ENGINEERING_KEYWORDS)
+
+
+def collect_recent_news_raw(pool_size: int = NEWS_POOL_SIZE) -> list:
     collected = []
     seen = set()
     for query in GOOGLE_NEWS_QUERIES:
@@ -261,7 +323,8 @@ def collect_recent_news_raw(max_total: int = MAX_NEWS) -> list:
             seen.add(key)
             collected.append(item)
     collected.sort(key=lambda x: x["date"], reverse=True)
-    return collected[:max_total]
+    collected = dedup_similar_titles(collected)
+    return collected[:pool_size]
 
 
 def load_existing_data() -> dict:
@@ -467,7 +530,7 @@ def merge_news(old_news: list, new_news: list) -> list:
         if existing is None or (n.get("date") or "") >= (existing.get("date") or ""):
             merged[key] = n
     result = sorted(merged.values(), key=lambda n: n.get("date") or "", reverse=True)
-    result = result[:MAX_NEWS]
+    result = dedup_similar_titles(result)[:MAX_NEWS]
     for idx, item in enumerate(result, start=1):
         item["id"] = idx
     return result
@@ -490,12 +553,13 @@ def generate_vehicles(client: "genai.Client", today_str: str) -> list:
 
 
 def generate_news(client: "genai.Client") -> list:
-    raw_items = collect_recent_news_raw(MAX_NEWS)
+    raw_items = collect_recent_news_raw()
     if not raw_items:
         print("RSS 뉴스 수집 실패(0건) - 뉴스 갱신을 건너뜁니다.")
         return []
+    raw_by_key = {_norm(raw["url"]): raw for raw in raw_items}
 
-    summaries_by_key = {}
+    selected = []
     try:
         response = client.models.generate_content(
             model=MODEL_NAME,
@@ -504,26 +568,43 @@ def generate_news(client: "genai.Client") -> list:
         summarized = extract_json(response.text)
         if isinstance(summarized, list):
             for entry in summarized:
-                if isinstance(entry, dict) and entry.get("url"):
-                    summaries_by_key[_norm(entry["url"])] = entry.get("summary")
-    except Exception as exc:  # noqa: BLE001 - 요약 실패해도 원문 설명으로 대체
-        print(f"뉴스 요약 생성 실패, 원문 설명을 그대로 사용합니다: {exc}")
+                if not isinstance(entry, dict) or not entry.get("url"):
+                    continue
+                raw = raw_by_key.get(_norm(entry["url"]))
+                if raw is None:
+                    continue  # 모델이 원본에 없는 url을 만들어낸 경우 방어적으로 제외
+                selected.append(
+                    {
+                        "title": raw["title"],
+                        "summary": entry.get("summary") or raw.get("description") or raw["title"],
+                        "source": raw["source"],
+                        "date": raw["date"],
+                        "url": raw["url"],
+                        "linkType": "rss",
+                    }
+                )
+    except Exception as exc:  # noqa: BLE001 - 선별/요약 실패 시 키워드 기반 필터로 대체
+        print(f"뉴스 선별/요약 생성 실패, 키워드 기반 필터로 대체합니다: {exc}")
 
-    news = []
-    for raw in raw_items:
-        key = _norm(raw["url"])
-        summary = summaries_by_key.get(key) or raw.get("description") or raw["title"]
-        news.append(
-            {
-                "title": raw["title"],
-                "summary": summary,
-                "source": raw["source"],
-                "date": raw["date"],
-                "url": raw["url"],
-                "linkType": "rss",
-            }
-        )
-    return news
+    if not selected:
+        # Gemini 필터링이 실패했을 때의 최후 안전망: 키워드 기반 엔지니어 관련성 필터만 적용
+        for raw in raw_items:
+            if not is_engineering_relevant(raw):
+                continue
+            selected.append(
+                {
+                    "title": raw["title"],
+                    "summary": raw.get("description") or raw["title"],
+                    "source": raw["source"],
+                    "date": raw["date"],
+                    "url": raw["url"],
+                    "linkType": "rss",
+                }
+            )
+
+    selected.sort(key=lambda n: n["date"], reverse=True)
+    return dedup_similar_titles(selected)[:MAX_NEWS]
+
 
 
 def main() -> None:
