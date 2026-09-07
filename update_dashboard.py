@@ -30,7 +30,9 @@ DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json"
 
 MAX_VEHICLES = 80  # 누적 상한 (최근 1년치 데이터를 충분히 보유)
 MAX_NEWS = 20       # 항상 최신 20건만 유지 (기존 대시보드 사양과 동일)
-NEWS_POOL_SIZE = 60  # 유사기사/비기술 기사 필터링 전, RSS에서 확보해 둘 후보 기사 풀 크기
+NEWS_POOL_SIZE = 120  # 유사기사/비기술 기사 필터링 전, RSS에서 확보해 둘 후보 기사 풀 크기
+# (엔지니어 관심 타겟 쿼리 추가 + 엄격한 기술 관련성 필터링으로 걸러내는 양이 늘어난 만큼,
+# 필터링 후에도 최대한 20건에 근접하게 채울 수 있도록 후보 풀을 넘리 확보한다)
 
 # 서로 다른 매체가 동일 사건을 보도해 제목만 비슷한 "유사 기사"를 걸러내기 위한 임계값
 TITLE_DUP_SIMILARITY_THRESHOLD = 0.72
@@ -47,6 +49,17 @@ ENGINEERING_KEYWORDS = [
     "electrolyte", "separator", "energy density", "thermal management", "cooling system",
     "recycling", "patent", "gigafactory", "silicon anode", "sodium-ion", "cylindrical", "prismatic",
     "pouch cell", "cycle life", "fast charging", "teardown", "분해",
+]
+
+# 기술 콘텐츠 없이 시장/실적/소비자 팁 위주인 기사를 걸러내기 위한 제외 키워드.
+# ENGINEERING_KEYWORDS의 "배터리" 같은 단어가 워낙 광범위해서, 시장점유율/실적 발표 기사도
+# 함께 통과되는 문제가 있었다 - 아래 키워드가 하나라도 있으면 기술 기사가 아닌 것으로 간주한다.
+NON_TECHNICAL_EXCLUDE_KEYWORDS = [
+    "점유율", "판매량", "판매 순위", "베스트셀링", "매출", "영업이익", "실적", "주가", "캐즘",
+    "순위", "랭킹", "top10", "톱10", "할인", "프로모션", "이벤트", "사전예약", "시승기",
+    "충전하는 법", "충전 요령", "가격 비교", "가성비", "색상 공개", "트림 구성", "리스", "렌트",
+    "딜러", "인수합병", "지분 투자", "상장", "배당", "혁신기술센터 설립", "브랜드 개발 현지화",
+    "고금리", "금리 인상", "환율",
 ]
 
 MODEL_NAME = "gemini-3.6-flash"
@@ -73,6 +86,14 @@ GOOGLE_NEWS_QUERIES = [
     "site:dt.co.kr 전기차 OR 배터리",
     "site:hankyung.com 전기차 OR 배터리",
     "site:edaily.co.kr 전기차 OR 배터리",
+    # 엔지니어 관심사(안전/성능/환경/소재/신기술/개발) 타겟 검색어 - 일반 키워드 검색보다 기술 기사 획득률이 높다.
+    "배터리 안전성 연구",
+    "배터리 열관리 OR 열폭주",
+    "배터리 성능 시험 OR 성능 향상",
+    "배터리 재활용 OR 환경규제",
+    "양극재 OR 음극재 OR 전해질 신소재",
+    "전고체배터리 개발",
+    "배터리 연구개발 OR R&D",
 ]
 
 # Google News RSS의 <source url="..."> 도메인이 아래 패턴에 매칭되면, 계열사/서브도메인 바이라인
@@ -220,11 +241,19 @@ def build_news_summary_prompt(raw_items: list) -> str:
 선별 기준 (반드시 지킬 것):
 - 포함: 배터리 셀/모듈/팩 기술(화학조성, 폼팩터, 에너지밀도, 열관리/냉각, BMS), 충전 기술(급속/초고속/충전속도),
   소재/공정(양극재·음극재·전해질·분리막, 실리콘음극, 전고체/반고체), 안전성/화재 원인 분석, 리사이클링/재활용 기술,
-  특허/R&D/양산 기술, 분해(teardown)/실측 분석, 배터리 공장/생산기술 등 기술적 내용이 있는 기사.
-- 제외: 단순 판매량/가격/할인/프로모션/시승기/색상·옵션 소개/이벤트/딜러 소식 등 기술적 내용이 없는 순수 마케팅·영업성 기사.
+  특허/R&D/양산 기술, 분해(teardown)/실측 분석, 배터리 공장/생산기술, 환경(용매·유해물질 검출 등 제조 공정 이슈) 등
+  실제 전기차/배터리 산업 엔지니어(안전·성능·환경·소재·신기술·개발 담당)에게 실질적으로 유용한 기술적 내용이 있는 기사.
+- 제외(기술 콘텐츠가 없는 기사는 "배터리"라는 단어가 제목에 있어도 반드시 제외):
+  * 시장점유율/판매량 순위/베스트셀링 통계 기사 (예: "OO월 배터리 사용량 20%↑…중국 점유율 73%")
+  * 실적/매출/영업이익/주가/캐즘 탈출 등 재무·경영 관점 기사 (예: "LG엔솔, 캐즘 탈출…북미 반등")
+  * 금리/거시경제 관점에서 배터리 업계를 다루는 기사 (예: "고금리에 전기차 부담…배터리 3사 ESS로 돌파구")
+  * 단순 판매량/가격/할인/프로모션/시승기/색상·옵션 소개/이벤트/사전예약/딜러 소식 등 순수 마케팅·영업성 기사
+  * 소비자 팁/생활 정보성 기사 (예: "싸게 전기차 충전하는 법", "고온다습한 날씨에도 강한 내구성" 같은 소비자 대상 홍보성 기사)
+  * 합작법인/브랜드 현지화 등 사업 제휴 발표이지만 구체적 기술 내용이 없는 기사 (예: "OO와 혁신기술센터 설립…브랜드 개발 현지화")
   기사 제목에 차종명과 함께 배터리 용량(kWh) 등 스펙이 언급되더라도, 기사 전체가 신차 출시/가격 안내 위주라면 제외하세요.
-- 같은 사건(예: 특정 업체의 신기술 발표, 리콜, 화재 사고)을 서로 다른 매체가 보도해 제목이 유사한 경우, 가장 정보가
-  상세한 1건만 선택하고 나머지는 제외하세요 (언론사가 다르다는 이유만으로 중복 포함하지 마세요).
+- 같은 사건이나 같은 연구/발표(예: 특정 대학·기업의 공동 연구 결과, 리콜, 화재 사고)를 서로 다른 매체가 다른 제목/각도로
+  보도한 경우, 제목이 크게 달라 보여도 같은 사건이면 가장 정보가 상세한 1건만 선택하고 나머지는 제외하세요
+  (언론사가 다르다는 이유만으로 중복 포함하지 마세요. 같은 보도자료를 바탕으로 한 기사는 모두 "같은 사건"입니다).
 - title, url, date, source 값은 선택한 항목에 대해 절대 변경하지 말고 원본 그대로 유지하세요.
 - summary는 description 내용을 바탕으로 자연스러운 한글 뉴스 요약 문장(1~2문장)으로 작성하세요 (직역이 아니라 핵심 내용 요약).
   description이 비어있거나 정보가 부족하면 title을 근거로 합리적으로 요약하세요.
@@ -358,8 +387,12 @@ def dedup_similar_titles(items: list) -> list:
 
 def is_engineering_relevant(item: dict) -> bool:
     """전기차/배터리팩/셀 기술 관점에서 의미 있는 기사인지 키워드 기반으로 판단한다.
-    Gemini의 의미 기반 필터링이 실패했을 때의 최후 안전망(fallback)으로만 사용한다."""
+    시장점유율/실적/소비자 팁 위주 기사는 "배터리" 등 일반적인 단어가 섞여 있어도 제외한다.
+    Gemini의 의미 기반 필터링이 실패했을 때의 최후 안전망(fallback)이자, Gemini가 선택한
+    결과에 대해서도 한 번 더 적용하는 최종 방어선으로 사용한다."""
     haystack = f"{item.get('title', '')} {item.get('description', '')}".lower()
+    if any(kw.lower() in haystack for kw in NON_TECHNICAL_EXCLUDE_KEYWORDS):
+        return False
     return any(kw.lower() in haystack for kw in ENGINEERING_KEYWORDS)
 
 
@@ -367,7 +400,7 @@ def collect_recent_news_raw(pool_size: int = NEWS_POOL_SIZE) -> list:
     collected = []
     seen = set()
     for query in GOOGLE_NEWS_QUERIES:
-        for item in fetch_google_news_rss(query, max_items=15):
+        for item in fetch_google_news_rss(query, max_items=20):
             key = _norm(item["url"])
             if not key or key in seen:
                 continue
@@ -744,9 +777,11 @@ def merge_news(old_news: list, new_news: list) -> list:
         if existing is None or (n.get("date") or "") >= (existing.get("date") or ""):
             merged[key] = n
     result = sorted(merged.values(), key=lambda n: n.get("date") or "", reverse=True)
-    # EXCLUDED_SOURCE_NAMES는 그동안 계속 확장되어 왔으므로, 과거에 누적된 기사 중에도 현재
-    # 기준으로 제외 대상인 출처가 남아있을 수 있다 - 매 실행마다 다시 걸러내 자동으로 정리한다.
+    # EXCLUDED_SOURCE_NAMES/NON_TECHNICAL_EXCLUDE_KEYWORDS는 그동안 계속 확장되어 왔으므로,
+    # 과거에 누적된 기사 중에도 현재 기준으로 제외 대상이 남아있을 수 있다 - 매 실행마다
+    # 다시 걸러내 자동으로 정리한다(출처 기준 + 기술 관련성 기준 모두 재검사).
     result = [n for n in result if not _is_excluded_source(n.get("source") or "")]
+    result = [n for n in result if is_engineering_relevant({"title": n.get("title", ""), "description": n.get("summary", "")})]
     result = dedup_similar_titles(result)[:MAX_NEWS]
     for idx, item in enumerate(result, start=1):
         item["id"] = idx
@@ -820,6 +855,9 @@ def generate_news(client: "genai.Client") -> list:
             )
 
     selected.sort(key=lambda n: n["date"], reverse=True)
+    # Gemini가 선택한 결과라도, 시장점유율/실적/소비자 팁 위주 기사가 섞여 들어올 수 있으므로
+    # 제목+요약 기준으로 한 번 더 최종 필터링한다 (Gemini 판단에만 의존하지 않는 방어선).
+    selected = [n for n in selected if is_engineering_relevant({"title": n["title"], "description": n.get("summary", "")})]
     return dedup_similar_titles(selected)[:MAX_NEWS]
 
 
