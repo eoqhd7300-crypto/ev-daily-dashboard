@@ -340,18 +340,22 @@
                 return `<div class="text-xs text-slate-400 italic py-3">데이터 없음</div>`;
             }
 
-            const headerCells = selectedVehicles.map(v => `<th class="p-2.5 ${colorClass} font-bold text-xs border border-slate-200 min-w-[160px] whitespace-nowrap">${v.name} (${v.year || '-'})</th>`).join('');
+            const LABEL_COL_WIDTH = 180;
+            const VEHICLE_COL_WIDTH = 160;
+            const totalWidth = LABEL_COL_WIDTH + selectedVehicles.length * VEHICLE_COL_WIDTH;
+
+            const headerCells = selectedVehicles.map(v => `<th class="p-2.5 ${colorClass} font-bold text-xs border border-slate-200 text-center w-[160px] break-words">${v.name} (${v.year || '-'})</th>`).join('');
             const rows = keys.map(k => `
                 <tr class="even:bg-slate-50">
-                    <td class="p-2.5 font-semibold text-slate-700 bg-slate-100 border border-slate-200 text-xs whitespace-nowrap sticky left-0">${k.trim()}</td>
-                    ${objs.map(o => `<td class="p-2.5 text-center text-xs text-slate-800 border border-slate-200">${fmtVal(o[k])}</td>`).join('')}
+                    <td class="p-2.5 font-semibold text-slate-700 bg-slate-100 border border-slate-200 text-xs whitespace-nowrap sticky left-0 w-[180px]">${k.trim()}</td>
+                    ${objs.map(o => `<td class="p-2.5 text-center text-xs text-slate-800 border border-slate-200 w-[160px]">${fmtVal(o[k])}</td>`).join('')}
                 </tr>
             `).join('');
 
             return `
                 <div class="overflow-x-auto">
-                    <table class="border-collapse text-left w-full text-xs">
-                        <thead><tr><th class="p-2.5 bg-slate-100 border border-slate-200 sticky left-0 z-10">항목</th>${headerCells}</tr></thead>
+                    <table class="border-collapse text-left text-xs table-fixed" style="width: ${totalWidth}px;">
+                        <thead><tr><th class="p-2.5 bg-slate-100 border border-slate-200 sticky left-0 z-10 w-[180px]">항목</th>${headerCells}</tr></thead>
                         <tbody>${rows}</tbody>
                     </table>
                 </div>
