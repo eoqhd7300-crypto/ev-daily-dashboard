@@ -185,6 +185,7 @@ vehicles 배열의 각 항목은 반드시 아래 예시와 동일한 수준의 
   releaseDate의 연-월(YYYY-MM)이 위 12개 월 중 하나와 일치해야 합니다.
 - releaseDate(발표일)와 timeline(출시/예상시점)은 서로 다른 개념입니다. releaseDate는 언론/업계에 공식 공개된 날짜이고, timeline은 실제 판매가 시작되거나 시작될 시점입니다. 실제로 알려진 차량은 발표와 출시 사이에 수주~수개월의 시차가 있는 경우가 많으므로, 이 둘을 동일한 달로 기계적으로 맞추지 말고 실제 맥락을 반영하세요 (예시처럼 발표후 수개월 뒤에 출시되는 경우가 흔함). 아직 출시되지 않았다면 timeline에 "출시예정"을 명시하세요.
 - cellMaker/packMaker는 반드시 '영문사명 (한글표기)' 형식으로 예시처럼 상세히 표기하세요 (예: 'CATL (닝더시대)'). 간략화나 생략 금지.
+- cellMaker는 특히 실수가 잦은 필드입니다. "이 브랜드는 보통 OO사를 쓴다"는 식으로 다른 차종의 공급사를 유추해 넣지 말고, 반드시 해당 "이 정확한 모델/트림"에 대해 실제로 확인된 공급 계약·보도자료가 있는 경우에만 기재하세요. 확신이 없으면 추측하지 말고 "확인 필요"라고 쓰세요.
 - qcPerformance는 반드시 예시처럼 'X.XC Peak (최대 XXXkW) | SOC 10% → 80% (약 XX분)' 형식으로 C-rate, 최대 출력(kW), 충전시간을 모두 포함하세요.
 - rangePerformance는 예시처럼 주행거리 수치 외에 가속성능/모터 출력/충전방식 등 추가 기술 정보를 함께 포함하세요. 단순 수치 한 개만 쓰는 요약형 문장은 금지.
 - 추정/허구 데이터 금지. 실제로 확인되지 않는 수치는 만들지 말고 "정보 없음"을 넣으세요.
@@ -427,6 +428,92 @@ def merge_vehicles(old_vehicles: list, new_vehicles: list) -> list:
     return result[:MAX_VEHICLES]
 
 
+# A2MAC1 teardown_data.json의 Cell Manufacturer 원문 표기 -> 대시보드 표기 규칙('영문사명 (한글표기)')으로 변환
+TEARDOWN_CELL_MAKER_DISPLAY_NAMES = {
+    "CATL": "CATL (닝더시대)",
+    "CATL-FAW": "CATL-FAW (합작법인)",
+    "LG Chem": "LG Energy Solution (LG에너지솔루션)",
+    "Samsung SDI": "Samsung SDI (삼성SDI)",
+    "SK Innovation": "SK On (SK온)",
+    "Panasonic": "Panasonic (파나소닉)",
+    "AESC": "AESC (에이이에스씨)",
+    "CALB": "CALB (중항리튬)",
+    "EVE": "EVE Energy (이브에너지)",
+    "Farasis": "Farasis Energy (파라시스)",
+    "FinDreams Battery (BYD)": "FinDreams Battery (BYD 자회사)",
+    "Gotion": "Gotion High-Tech (궈쉬안)",
+    "REPT Saike": "REPT BATTERO (REPT)",
+    "SVOLT": "SVOLT (스보르트)",
+    "Sunwoda": "Sunwoda (순시다)",
+    "Tesla": "Tesla (테슬라 자체)",
+    "Ultium Cells": "Ultium Cells (얼티엄셀즈)",
+    "Zeekr": "Zeekr (지커 자체)",
+}
+
+
+def _extract_english_name(name: str) -> str:
+    """대시보드 vehicle name은 보통 '한글명 (English Name)' 형식이므로 괄호 안 영문명을 추출한다."""
+    match = re.search(r"\(([^)]+)\)", name or "")
+    return match.group(1) if match else (name or "")
+
+
+def _model_line_key(english_name: str) -> str:
+    """브랜드 + 모델명(숫자/코드)까지만 추출해 트림/버전 차이를 무시하는 매칭 키를 만든다.
+    예: 'Tesla Model Y RWD' -> 'tesla model y', 'Kia EV3 GT-Line' -> 'kia ev3',
+    'Hyundai Ioniq 9' -> 'hyundai ioniq 9' (Ioniq 5/6/9는 서로 다른 모델이므로 반드시 구분).
+    3번째 단어는 그 자체로 모델을 구분짓는 숫자/단일 문자(예: Y, 9)일 때만 포함하고,
+    'GT'/'Line' 같은 트림 명칭은 제외한다."""
+    words = re.findall(r"[a-zA-Z0-9]+", english_name or "")
+    if len(words) < 2:
+        return ""
+    key_words = words[:2]
+    if len(words) > 2 and (words[2].isdigit() or len(words[2]) == 1):
+        key_words.append(words[2])
+    return " ".join(w.lower() for w in key_words)
+
+
+def load_teardown_cell_maker_lookup() -> dict:
+    """실제 분해(teardown) 데이터로 확인된 Cell Manufacturer를 모델 라인 단위로 조회할 수 있게 로드한다.
+    teardown_data.json은 로컬 전용 빌드 산출물이라 없을 수도 있으므로, 없으면 빈 딕셔너리를 반환한다."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "teardown_data.json")
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:  # noqa: BLE001
+        return {}
+    lookup = {}
+    for v in data.get("vehicles") or []:
+        raw_maker = (v.get("cell") or {}).get("Cell Manufacturer")
+        if not raw_maker or raw_maker == "-":
+            continue
+        key = _model_line_key(v.get("name") or "")
+        if key:
+            lookup.setdefault(key, raw_maker)
+    return lookup
+
+
+def apply_teardown_verified_cell_makers(vehicles: list) -> int:
+    """실제 분해 데이터(teardown_data.json)로 확인된 셀 제조사가 있으면, Gemini가 생성한
+    cellMaker 추정값을 검증된 값으로 덮어써 모델 오귀속 오류(예: 실제 CATL인데 LG로 잘못 기재)를
+    방지한다. 모델 라인(브랜드+모델명)이 일치하는 경우에만 적용해 다른 차량이 잘못 매칭되지 않게 한다."""
+    lookup = load_teardown_cell_maker_lookup()
+    if not lookup:
+        return 0
+    updated = 0
+    for v in vehicles:
+        key = _model_line_key(_extract_english_name(v.get("name") or ""))
+        raw_maker = lookup.get(key)
+        if not raw_maker:
+            continue
+        verified = TEARDOWN_CELL_MAKER_DISPLAY_NAMES.get(raw_maker, raw_maker) + " (실측 검증)"
+        if v.get("cellMaker") != verified:
+            v["cellMaker"] = verified
+            updated += 1
+    return updated
+
+
 # Tier1(공식 발표/보도자료 기반) / Tier2(차량 분해 실측 기반, UI에서 미검증 배지 표시) 필드 목록
 TIER1_SPEC_FIELDS = [
     "trim", "topSpeed", "zeroToHundred", "maxOutput", "maxChargePower",
@@ -440,6 +527,83 @@ TIER2_SPEC_FIELDS = [
 ]
 BACKFILL_BATCH_SIZE = 20  # 하루에 보강할 기존 차량 수 (토큰/시간 절약을 위해 점진적으로 진행)
 RECHECK_INTERVAL_DAYS = 14  # 이미 확인했지만 여전히 "-"인 필드가 있는 차량을 재확인하는 주기(일)
+
+# teardown 실측 데이터가 없는 신차(예: 아직 분해 전인 신형 모델)의 cellMaker를 무료 Google News
+# RSS 검색으로 교차검증하기 위한 설정. 유료 Google Search grounding 없이, 이미 확보한 뉴스 수집
+# 인프라(fetch_google_news_rss)를 재사용해 실제 보도에서 언급된 공급사를 찾아낸다.
+CELL_MAKER_NEWS_CHECK_BATCH_SIZE = 15  # 하루에 교차검증할 차량 수 (RSS 요청량 제한)
+CELL_MAKER_SEARCH_TERMS = [
+    ("LG에너지솔루션", "LG Energy Solution (LG에너지솔루션)"),
+    ("LG엔솔", "LG Energy Solution (LG에너지솔루션)"),
+    ("삼성SDI", "Samsung SDI (삼성SDI)"),
+    ("SK온", "SK On (SK온)"),
+    ("CATL", "CATL (닝더시대)"),
+    ("파나소닉", "Panasonic (파나소닉)"),
+    ("비야디", "BYD (비야디)"),
+    ("궈쉬안", "Gotion High-Tech (궈쉬안)"),
+]
+
+
+def _extract_korean_prefix(name: str) -> str:
+    """대시보드 vehicle name('한글명 (English Name)')에서 괄호 앞 한글 표기를 추출한다."""
+    return re.sub(r"\s*\([^)]*\)\s*$", "", name or "").strip()
+
+
+def cross_check_cell_maker_via_news(vehicle_name: str) -> tuple | None:
+    """무료 Google News RSS로 '이 차량의 배터리 셀 공급사'를 언급한 실제 보도가 있는지 찾는다.
+    검색 결과에 여러 매체가 동일한 공급사를 언급하면 그 값을 반환하고, 결과가 없거나 서로 다른
+    공급사가 섞여 나와 확신할 수 없으면 None을 반환해 함부로 덮어쓰지 않는다."""
+    korean_name = _extract_korean_prefix(vehicle_name) or vehicle_name
+    maker_keywords = " OR ".join(kw for kw, _ in CELL_MAKER_SEARCH_TERMS)
+    query = f'"{korean_name}" 배터리 셀 공급 ({maker_keywords})'
+    items = fetch_google_news_rss(query, max_items=8)
+
+    found = {}
+    source_url = None
+    for item in items:
+        haystack = f"{item.get('title', '')} {item.get('description', '')}"
+        if korean_name not in haystack:
+            continue  # 이 차량명이 실제로 언급된 기사만 근거로 인정 (엉뚱한 기사의 오매칭 방지)
+        for kw, display in CELL_MAKER_SEARCH_TERMS:
+            if kw in haystack:
+                found[display] = found.get(display, 0) + 1
+                if source_url is None:
+                    source_url = item.get("url")
+    if len(found) != 1:
+        return None  # 결과 없음 또는 서로 다른 공급사가 섞여 나옴 -> 신뢰도 부족, 적용하지 않음
+    (only_maker,) = found.keys()
+    return only_maker, source_url
+
+
+def select_cell_maker_check_candidates(vehicles: list, limit: int = CELL_MAKER_NEWS_CHECK_BATCH_SIZE) -> list:
+    """teardown 실측으로 이미 확정된("(실측 검증)") 차량과, 최근에 이미 뉴스 교차검증을 시도한
+    차량은 제외하고, 아직 한 번도 확인해보지 않은 차량 위주로 하루 batch를 선정한다."""
+    candidates = [
+        v for v in vehicles
+        if "(실측 검증)" not in (v.get("cellMaker") or "")
+        and "cellMakerCheckedAt" not in v
+    ]
+    candidates.sort(key=lambda v: v.get("releaseDate") or "")
+    return candidates[:limit]
+
+
+def apply_news_cross_checked_cell_makers(vehicles: list, today_str: str) -> int:
+    """teardown 실측 데이터가 없는 차량에 대해, 무료 뉴스 검색으로 확인 가능한 만큼 cellMaker를
+    교차검증한다. 확실한 근거를 찾은 경우에만 "(뉴스 교차검증)" 표시와 함께 갱신한다."""
+    updated = 0
+    for v in select_cell_maker_check_candidates(vehicles):
+        v["cellMakerCheckedAt"] = today_str  # 결과 유무와 관계없이 기록해 매일 재검색하지 않게 함
+        result = cross_check_cell_maker_via_news(v.get("name") or "")
+        if result is None:
+            continue
+        maker, source_url = result
+        verified = f"{maker} (뉴스 교차검증)"
+        if v.get("cellMaker") != verified:
+            v["cellMaker"] = verified
+            if source_url:
+                v["cellMakerSource"] = source_url
+            updated += 1
+    return updated
 
 
 def _has_missing_spec_values(v: dict) -> bool:
@@ -674,6 +838,8 @@ def main() -> None:
     merged_news = merge_news(existing["news"], news)
 
     backfilled_count = backfill_tier1_specs(client, merged_vehicles, today_str)
+    verified_count = apply_teardown_verified_cell_makers(merged_vehicles)
+    news_checked_count = apply_news_cross_checked_cell_makers(merged_vehicles, today_str)
 
     output = {
         "generatedAt": now_kst.isoformat(),
@@ -687,7 +853,8 @@ def main() -> None:
 
     print(
         f"data.json 갱신 완료 (신규 vehicles: {len(vehicles)} / 누적 vehicles: {len(merged_vehicles)}, "
-        f"신규 news: {len(news)} / 누적 news: {len(merged_news)}, 스펙 보강: {backfilled_count}건)"
+        f"신규 news: {len(news)} / 누적 news: {len(merged_news)}, 스펙 보강: {backfilled_count}건, "
+        f"teardown 검증 적용: {verified_count}건, 뉴스 교차검증 적용: {news_checked_count}건)"
     )
 
 

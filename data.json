@@ -886,7 +886,7 @@
       "priceLocal": "₩55,000,000 KRW",
       "priceKRW": "약 5,500만 원",
       "batterySpec": "81.4 kWh 400V 고밀도 팩",
-      "cellMaker": "LG Energy Solution (LG에너지솔루션)",
+      "cellMaker": "LG Energy Solution (LG에너지솔루션) (실측 검증)",
       "packMaker": "Hyundai Mobis (현대모비스)",
       "qcPerformance": "3.0C Peak (최대 150kW) | SOC 10% → 80% (약 22분)",
       "rangePerformance": "AER 460km | 0-100km/h 4.8초 | 전자식 차별 제한 장치(e-LSD)",
@@ -978,7 +978,7 @@
       "priceLocal": "€28,000 EUR",
       "priceKRW": "약 4,100만 원",
       "batterySpec": "42 kWh LFP 도심형 배터리 팩",
-      "cellMaker": "LG Energy Solution (LG에너지솔루션)",
+      "cellMaker": "CATL (닝더시대)",
       "packMaker": "Hyundai Mobis (현대모비스)",
       "qcPerformance": "2.5C Peak (최대 100kW) | SOC 10% → 80% (약 29분)",
       "rangePerformance": "WLTP 380km / 유럽 도심에 특화된 400V 고효율 모터 (전륜 싱글모터 110kW)",
@@ -987,7 +987,7 @@
       "dimensions": "4,060mm × 1,770mm × 1,560mm / WB: 2,560mm",
       "powertrain": "Single Motor FWD (최고출력 110kW / 150ps, 최대토크 220Nm)",
       "packInfo": "E-GMP 엔트리 컴팩트 배터리 하우징",
-      "cellInfo": "LG엔솔 고밀도 LFP 파우치 셀",
+      "cellInfo": "CATL LFP 파우치 셀",
       "chargingSafety": "스마트 충전 가이던스 및 과전압 과류 센서 차단",
       "trim": "City FWD",
       "topSpeed": "150km/h",
@@ -1208,7 +1208,7 @@
       "priceLocal": "¥138,000 RMB",
       "priceKRW": "약 2,780만 원",
       "batterySpec": "42.0 kWh Compact Swappable Battery Pack (LFP)",
-      "cellMaker": "CALB (중创新航) / CATL (닝더시대)",
+      "cellMaker": "Sunwoda (순시다) (실측 검증)",
       "packMaker": "Nio Power (니오 파워)",
       "qcPerformance": "2.5C Peak (최대 110kW) | SOC 10% → 80% (약 25분 / 배터리 교환 3분)",
       "rangePerformance": "CLTC 420km (싱글모터 FWD 130kW / 4세대 배터리 스왑 스테이션 지원)",
@@ -1254,7 +1254,7 @@
       "priceLocal": "¥229,900 RMB",
       "priceKRW": "약 4,630만 원",
       "batterySpec": "100.0 kWh CATL Qilin NCM Battery",
-      "cellMaker": "CATL (닝더시대)",
+      "cellMaker": "Zeekr (지커 자체) (실측 검증)",
       "packMaker": "Viridi E-Mobility Technology (VET / 지커 자회사)",
       "qcPerformance": "4.5C Peak (최대 400kW) | SOC 10% → 80% (약 12분)",
       "rangePerformance": "CLTC 870km / 800V 아키텍처 / 듀얼모터 AWD 475kW / 4.5C 초고속 충전",
@@ -1944,7 +1944,7 @@
       "priceLocal": "$48,990 USD",
       "priceKRW": "약 6,700만 원",
       "batterySpec": "78.1 kWh 2170 Structural Battery Pack (NCM 400V)",
-      "cellMaker": "LG Energy Solution (LG에너지솔루션)",
+      "cellMaker": "CATL (닝더시대) (실측 검증)",
       "packMaker": "Tesla (테슬라 자체)",
       "qcPerformance": "3.2C Peak (최대 250kW) | SOC 10% → 80% (약 25분)",
       "rangePerformance": "EPA EV 510km / WLTP 560km (공기역학 개선 0.22Cd 및 HW4.0 탑재)",
@@ -2128,7 +2128,7 @@
       "priceLocal": "$79,900 USD",
       "priceKRW": "약 1억 780만 원",
       "batterySpec": "118 kWh 초고밀도 900V NCM 배터리",
-      "cellMaker": "LG Energy Solution (LG에너지솔루션)",
+      "cellMaker": "Panasonic (파나소닉) (실측 검증)",
       "packMaker": "Lucid Motors (루시드 모터스)",
       "qcPerformance": "3.0C Peak (최대 350kW) | SOC 10% → 80% (약 15분)",
       "rangePerformance": "EPA 708km (440miles / 듀얼모터 AWD 597kW / 812ps 초고효율 드라이브 유닛)",
@@ -2358,7 +2358,7 @@
       "priceLocal": "¥800,000 RMB",
       "priceKRW": "약 1억 6,100만 원",
       "batterySpec": "120.0 kWh 900V Large Cylindrical Battery",
-      "cellMaker": "CALB (중혁항리)",
+      "cellMaker": "CATL (닝더시대) (실측 검증)",
       "packMaker": "Nio (니오 자체)",
       "qcPerformance": "5.0C Peak (최대 600kW) | SOC 10% → 80% (약 9분)",
       "rangePerformance": "CLTC 720km / 900V 고전압 아키텍처 및 3분 배터리 스왑(교환) 시스템 지원 / 듀얼모터 520kW",
@@ -2634,7 +2634,7 @@
       "priceLocal": "$79,900 USD",
       "priceKRW": "약 1억 1,000만 원",
       "batterySpec": "120 kWh 900V 초고전압 NCM 배터리",
-      "cellMaker": "Panasonic (파나소닉)",
+      "cellMaker": "Panasonic (파나소닉) (실측 검증)",
       "packMaker": "Lucid Powertrain (루시드)",
       "qcPerformance": "4.2C Peak (최대 350kW) | SOC 10% → 80% (약 15분)",
       "rangePerformance": "EPA 708km / 900V 아키텍처, 듀얼 모터 595kW (800ps), 0-60mph 3.5초 이하",
@@ -2805,7 +2805,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-29"
+      "specLastCheckedAt": "2026-08-29",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "hyundai_ioniq6_n_2026",
@@ -2897,7 +2898,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-29"
+      "specLastCheckedAt": "2026-08-29",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "audi_a6_etron_performance",
@@ -2943,7 +2945,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-05"
+      "specLastCheckedAt": "2026-09-05",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "volvo_ex90_2026",
@@ -2989,7 +2992,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-29"
+      "specLastCheckedAt": "2026-08-29",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "porsche_macan_ev_rwd_2026_05",
@@ -3035,7 +3039,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-29"
+      "specLastCheckedAt": "2026-08-29",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "mercedes_cla_ev_2026",
@@ -3081,7 +3086,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-29"
+      "specLastCheckedAt": "2026-08-29",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "porsche_macan_ev_gts_2026",
@@ -3127,7 +3133,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-29"
+      "specLastCheckedAt": "2026-08-29",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "genesis_gv90_magma",
@@ -3173,7 +3180,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-29"
+      "specLastCheckedAt": "2026-08-29",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "zeekr_007_gt_2026",
@@ -3219,7 +3227,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-28"
+      "specLastCheckedAt": "2026-08-28",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "tesla_model_y_juniper_per_2026",
@@ -3232,7 +3241,7 @@
       "priceLocal": "$57,990 USD",
       "priceKRW": "약 7,950만 원",
       "batterySpec": "82 kWh 4680 V2 원통형 셀 배터리 팩",
-      "cellMaker": "LG Energy Solution (LG에너지솔루션)",
+      "cellMaker": "CATL (닝더시대) (실측 검증)",
       "packMaker": "Tesla Inc. (테슬라)",
       "qcPerformance": "3.2C Peak (최대 250kW) | SOC 10% → 80% (약 19분)",
       "rangePerformance": "EPA 515km / WLTP 580km (Dual Motor AWD 393kW, 0-100km/h 3.3초, V4 슈퍼차저 대응)",
@@ -3278,7 +3287,7 @@
       "priceLocal": "¥259,900 RMB",
       "priceKRW": "약 5,230만 원",
       "batterySpec": "101.7 kWh Qilin Battery (NCM)",
-      "cellMaker": "CATL (닝더시대)",
+      "cellMaker": "FinDreams Battery (BYD 자회사) (실측 검증)",
       "packMaker": "Xiaomi (샤오미)",
       "qcPerformance": "4.0C Peak (최대 400kW) | SOC 10% → 80% (약 13분)",
       "rangePerformance": "CLTC 800km / 800V CTB 기술 (Dual Motor AWD 495kW / 673ps)",
@@ -3357,7 +3366,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-07"
+      "specLastCheckedAt": "2026-09-07",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "audi_a6_etron_avant",
@@ -3403,7 +3413,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-28"
+      "specLastCheckedAt": "2026-08-28",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "audi_q6_etron_quattro",
@@ -3449,7 +3460,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-30"
+      "specLastCheckedAt": "2026-08-30",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "volvo_ex90_excellence_2026_05",
@@ -3462,7 +3474,7 @@
       "priceLocal": "$120,000 USD",
       "priceKRW": "약 1억 6,200만 원",
       "batterySpec": "111 kWh SPA2 대용량 배터리 팩",
-      "cellMaker": "CATL (닝더시대)",
+      "cellMaker": "CATL (닝더시대) (실측 검증)",
       "packMaker": "Volvo Cars (볼보)",
       "qcPerformance": "3.2C Peak (최대 250kW) | SOC 10% → 80% (약 30분)",
       "rangePerformance": "EPA 300miles / WLTP 600km (0-100km/h 4.9초, Twin Motor 380kW)",
@@ -3541,7 +3553,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-28"
+      "specLastCheckedAt": "2026-08-28",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "mercedes_cla_ev_2026",
@@ -3587,7 +3600,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-28"
+      "specLastCheckedAt": "2026-08-28",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "genesis_gv60_facelift_2026",
@@ -3633,7 +3647,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-08-28"
+      "specLastCheckedAt": "2026-08-28",
+      "cellMakerCheckedAt": "2026-09-07"
     },
     {
       "id": "zeekr_007_touring_2026",
@@ -3646,7 +3661,7 @@
       "priceLocal": "¥229,900 RMB",
       "priceKRW": "약 4,630만 원",
       "batterySpec": "75 kWh Golden Shield Battery (LFP 800V)",
-      "cellMaker": "Geely VRE (길리 VRE)",
+      "cellMaker": "Zeekr (지커 자체) (실측 검증)",
       "packMaker": "Zeekr Power (지커 파워)",
       "qcPerformance": "4.5C Peak (최대 500kW) | SOC 10% → 80% (약 10.5분)",
       "rangePerformance": "CLTC 688km / 800V 4.5C 골든 배터리, 싱글모터 후륜 310kW (0-100km/h 5.0초)",
@@ -3702,40 +3717,13 @@
       "id": 2
     },
     {
-      "title": "中, 1~7월 전기차 배터리 점유율 70% 넘겨 - 지디넷코리아",
-      "summary": "中, 1~7월 전기차 배터리 점유율 70% 넘겨    지디넷코리아",
-      "source": "지디넷코리아",
-      "date": "2026-09-07",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBPeG1TaEZCdnBWaDJZTkJpbjRINTZXREpmX0N6WDBnejdLOE9rT3N6VkJ1T2M1R2NVaXFzZDlfcW5NdDFtanJWNGgyd2VGVnNRRGJvMXV3?oc=5",
-      "linkType": "rss",
-      "id": 3
-    },
-    {
-      "title": "전기차 배터리 점유율 中 73%, LG엔솔8.3%로 3위 - SBS Biz",
-      "summary": "전기차 배터리 점유율 中 73%, LG엔솔8.3%로 3위    SBS Biz",
-      "source": "SBS Biz",
-      "date": "2026-09-07",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5sQ2pHRWVjVi1xRkZkc2RSTjRJeXBiVGdOSy13c2pSNmxjM3JZd2RJS0U5QWFDTzZRZmt6QTR1OHZHanR5SmpuNy1LSUtFVE1LNEc00gFYQVVfeXFMT0NzeWYycl9BUDhHcHBVcWh6SEdXcnJYRzMzVHh0ajRyVTIyYmlScV9Oa2xEb18zaUR6SzY3OWs5aV92VVo5bHBtbHN2emJrVTdjMlBEUFlCbw?oc=5",
-      "linkType": "rss",
-      "id": 4
-    },
-    {
       "title": "[고금리의 귀환③] 고금리에 전기차 부담…배터리 3사, ESS로 '돌파구' - 연합인포맥스",
       "summary": "[고금리의 귀환③] 고금리에 전기차 부담…배터리 3사, ESS로 '돌파구'    연합인포맥스",
       "source": "연합인포맥스",
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE0zU2VJVWxmNDctY3d6UWVqUWNuTXBMZTlHdWJaRDVoZV9jV0ZhdGNSRjFtTHpRY1BXNldaajRlSGxDRkg2b1ExekNBTWszYml3Zy04dDZsNVVCUVk2WGdSazREcnlDNDVCUzdQWUxyM3M?oc=5",
       "linkType": "rss",
-      "id": 5
-    },
-    {
-      "title": "전기차 배터리 725.2GWh…중국계 7개사 점유율 72.8% - 리드경제",
-      "summary": "전기차 배터리 725.2GWh…중국계 7개사 점유율 72.8%    리드경제",
-      "source": "리드경제",
-      "date": "2026-09-07",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5Vc3FncDk1cU9OdzNjT2JMdjBxNThZX2lpamI3SEgwNmNLRWE5cm9VN0Jpc1Mwak1tTHNPZ3VpeXdZMU9aZUNyMkNBSi0yNXlzc3l4MEloY2dVYmlyZkRVWTFQa0hkUUNBMFpiSlpRTQ?oc=5",
-      "linkType": "rss",
-      "id": 6
+      "id": 3
     },
     {
       "title": "S&K폴리텍, 세계 최대 中 배터리사 퀄 테스트 통과…\"현지 전기차 공급망 진입 \" - 프라임경제",
@@ -3744,7 +3732,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE00WUlNZ21KcG8yTkpTZGc1aTdfbWY1ajdhc2k1TklpRFFHblZKaHZtSnkxeDh3V2RCamxwZDRHTlFRQ0NhdzVWMzJLSkI0bW9jZkh4ZEwtV0U2enZNaGFudXR1SQ?oc=5",
       "linkType": "rss",
-      "id": 7
+      "id": 4
     },
     {
       "title": "LG엔솔·서울대, ‘LMR 배터리’ 대형 셀 난제 풀었다…‘전기차 상용화’ 성큼 - 뉴시안",
@@ -3753,7 +3741,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBINlZWQm9ycWNLVkl2dUtnS2lBeUlSU28zZXBFYUtRTnFWbEZaWlpJMGVMSnV3TlFybnBwQXM1Wmp2NFdrQ1UxamFrUVBfQUFqanJBbEhZOWdSc0ZyUkJYNWNJZmV2VlYyTVRz0gFuQVVfeXFMTTkwTWxiM0cyNzdqZ3h6NER2Uk1LdkZpLWkzeklhRG0wSGVvZldPbUpKUk1ad0lzT0FWX0x4V2pNdmhNekpyV1loRWJfV2RHSFZ6V1JIb19wLVMyY090d0xVX3NHVy1kNXJHU2ZIQkE?oc=5",
       "linkType": "rss",
-      "id": 8
+      "id": 5
     },
     {
       "title": "양주 고속도로서 전기차 화재…2명 연기흡입 - LG헬로비전",
@@ -3762,7 +3750,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5jaEZ6djJoX3h2VkNOMGxkbTJoaGk2MTNiMEpvNkNJd1FOeHNvNklCaHNqM2lkVXVHcFdQVjFuSUdickthTmp0WDBqS2pRY0FrYkRrRWtTcDc4NnRuLW5Xcmd6akNRSWxpYVNoLVU2ZkNJQdIBdkFVX3lxTE9nVlB0eERhLWNPZUNkWGYxeDhKVHlfZUFfV0JzUWNIalV5SDZwVi1iTEJ0a3RzaXZhdHZrZjE1cl96bDV6a2xtRk5WazhGS0Rab1kzY1NFZldOaTV6MUxSZk9aemVqQUVxYm5ETWhsMWRjcU9qRGc?oc=5",
       "linkType": "rss",
-      "id": 9
+      "id": 6
     },
     {
       "title": "정보현 인천시의원, 전기차 화재·지반침하 대응체계 점검 - 세계뉴스통신",
@@ -3771,7 +3759,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5fQVdWb2h6MkhPMEFiQ1U0OXpDdk9NRDJpTElWVU15SzNjcW9FdFVhRkZKNFJDbUhQUkM2LUFFRFUwQllVYW1MOFNhYUdubUFvQlJvemFrYjd3UUlxdkdTVk0zOEtVMDk2SjRQbndNR1NrV1FC?oc=5",
       "linkType": "rss",
-      "id": 10
+      "id": 7
     },
     {
       "title": "LG엔솔, 캐즘 탈출…북미·ESS 쌍끌이 반등 - 뉴스토마토",
@@ -3780,7 +3768,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5EUWVHcXl6eFZBMzZudEtjVFcyeFBnTFdrOTVYWV9kbS1IOTN4VTlnNWsxMUZfM0llTEt5X29temYzVV9ZeFZRaTNsajlxS2N1TWljV1VfZjhCUXYyYWpueQ?oc=5",
       "linkType": "rss",
-      "id": 11
+      "id": 8
     },
     {
       "title": "[사진] ‘싸게 싸게’ 전기차 충전하는 법 - 중앙일보",
@@ -3789,7 +3777,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE44WUliaG1LWW4tZVZqVFo5RGhZYkhUY2ZEd3A0NjNLc3k1c3ljdktWS1RrWFVPVk15bGpNN0VQa1pFeXNCOEM0ZVY2SU5jcjM2S3dNRk9n?oc=5",
       "linkType": "rss",
-      "id": 12
+      "id": 9
     },
     {
       "title": "손준호, ♥김소현에 고가 전기차 선물…“자랑거리도 아냐” - 스포츠동아",
@@ -3798,7 +3786,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5SSHhmU2FCYXVNV3ZkZC1FTmlKbDE5UGVsMHVoXzhtZkxONUp1WDdzV0k4alh1SE9GREV0SVBfci1MNExLMjFuOUFRQXl5Ny12TXU2NnRTaHVrRjlNbzgwWDBIYXhORXJ1eG1VZmV3?oc=5",
       "linkType": "rss",
-      "id": 13
+      "id": 10
     },
     {
       "title": "“AI 데이터센터 발열 잡아라”… 정유사 ‘액체냉각’ 새 시장 경쟁 - 동아일보",
@@ -3807,7 +3795,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8tcHNqNzA5OXRTQVhWZU94NllraF9feVZOeUFBODM3aUVpMktsR0NiQUFZNTh4U25zekVxaWJocERHY0RSRnVuc2VMNXFKaUxSYTg4T1NWTldqcFJZRzFGcXc2andfc0poRXBTUUlFUTBVYXpOQlHSAWZBVV95cUxPR21QaHFqSWxUa0szOGJ4RWZTSmRva3c3SGY2MHBRT1k2U2FLdXp3WDN6clhTSmo0TUVXYjgtM2RMZzZwTGp6NzF4VmR3c1BMeGllTm1vUG5QYVhEMGpQMzZKUzhNSVE?oc=5",
       "linkType": "rss",
-      "id": 14
+      "id": 11
     },
     {
       "title": "LG에너지솔루션·서울대, 차세대 리튬망간리치 배터리 상용화 난제 해결 - 조선비즈 - Chosunbiz",
@@ -3816,7 +3804,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNWVVCNm9waGtCOXhMMmlBRlRfaG5TRWlQeXA1MVZLZFlPUzVUYXduVkVCLUloNzkySHY1b0FYTHoxVFQ0TDVEMGVJcFZ6TkNEMWk4UnRBUGFaS0pqcmpIaW4yc19pNDRkUGMtV1VhamdJeTZjd0ZvdjJVelNDc0E5VzNacjjSAZgBQVVfeXFMTWJyTlZwTGl1OWU2S0t1Q0RzeHRISkhHVHJKQjVQSDlEdkthWjZ0cnM2MjNsLURYdTJtZ1hkMmpaZjR3OFlZRWhkRmg4enZQWFhkc3hHaXZoaWZxeVUybnJpaUs4VjBzOTQzTVF2aFRwczY2OTdHT1VlTDEydGJKYWNGT2tkMWJYVWNjYmlzVmpEUlpBUHUxWWc?oc=5",
       "linkType": "rss",
-      "id": 15
+      "id": 12
     },
     {
       "title": "자동차 배터리의 강자… 고온다습한 날씨에도 강한 내구성 - 조선일보",
@@ -3825,7 +3813,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNalB6T3l3TzNOMFJuMWdldHpVbUR1RF9FbXdXY0J0Z0s4T0Z3NHJITnhscHl6N1JEcTRVRDNZdVNFc3k1Y1pfR00xOXM1Z2ViM3NjTTJFRl83bFdWcVhJYXBteWN0TTI0Rk1qSGhURlVKZk5oYnd5T053US04SUp3bXVFek9aSTU1ekVsX0V3?oc=5",
       "linkType": "rss",
-      "id": 16
+      "id": 13
     },
     {
       "title": "LG엔솔·서울대, LMR 배터리 가스 발생 원인 규명…대형 셀 적용 가능성 확인 - IT조선",
@@ -3834,7 +3822,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Vc1daWkd1Z2M1RXNvaHI1Y0xtNm9xX2I0VXZkbjNTR0FzTVhNYURKWm1HcnZKSzVKNXpoYWJnQ2pEMS13dlhHV1UzemFDSGU0cm12eThsSmtkNFFycG1jMTBrVklYWDdWaTJtaEdyZm7SAXRBVV95cUxOWUhlaFJLbnN4N1FPY3NSWEx0NHVWU21HVXMyYjF0S3lrQ0o2TG05NGJIMHA4N1FUVDI4dkhuTmpWYnlqYUNKWmlpZlRSLU1zbTJfZGZkckJYaTN4alNSNlQ0eFQ3aG5fbUlqWElPNW9GSUVCeQ?oc=5",
       "linkType": "rss",
-      "id": 17
+      "id": 14
     },
     {
       "title": "LG엔솔, ‘가스 발생’ 난제 풀었다…LMR 배터리 대형 셀 상용화 성큼 - 디지틀조선TV",
@@ -3843,7 +3831,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxObnd0ZC1DVVEwNWdEMkRrRkFiS2lTeWc0RkV1YXZFdFg3TEhON19JVGVXSnBsZlNtb2VQdGZwQlV2cDhqZVBUY0Z6UHRDRmduVlY5bUFUNmo1THp6Q3V6dS1Fd05FTTUzNWo1bmxGM01XMEkxaXJCNFBrSHJCendpWHVfSFZ5dw?oc=5",
       "linkType": "rss",
-      "id": 18
+      "id": 15
     },
     {
       "title": "아우디, 中 SAIC와 '혁신기술센터' 설립…전용 전기차 브랜드 개발 현지화 | 더구루 - 뷰타임즈",
@@ -3852,7 +3840,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1jTWF5b0ttR01PZHlYYktmZjVLTGlDU1ZoeWdsXzJKUHp2UVBPNXJTcUdtelNyc25WdGJ5RC1ZdkVLY3lXcTdSaUpPN1JqYWdPTXlUNVJqX3JrUdIBX0FVX3lxTE5VaFhFNHVwWGdhN2lsUW5rN3cteW1UUEFNNXl6aF9fb0VzcVhfNWNoV01FM1VSM1FFUUk5dGlpUGNkM0FYb0xxMFNyazlkYWcwY3V1c2dFRzBjZEtJdFh3?oc=5",
       "linkType": "rss",
-      "id": 19
+      "id": 16
     },
     {
       "title": "배터리 내 ‘가짜 신호’ 확 줄인다…“차세대 배터리 개발에 기여” - 서울경제",
@@ -3861,7 +3849,7 @@
       "date": "2026-09-07",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9mVUJGUy1FdnlvNDJDb19sX0szVkQ3REgwdkVUR2phM05pU3h3RW9FSF9ra2VmbU81T2dUZmN5WUlXTW9JR3JNYlpsS0QtWEYySXfSAVNBVV95cUxPM1daREh5R2s3d1ZHODR1LVhpbWhIMk9LUkROaUtmOURzWk1DUkRxZ1Z1MzdrX0xxdUtZV1VnMUVPZ3QzTUVTZFptbGZJemJZSzR6VQ?oc=5",
       "linkType": "rss",
-      "id": 20
+      "id": 17
     }
   ],
   "fx": {
