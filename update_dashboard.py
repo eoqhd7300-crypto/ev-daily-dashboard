@@ -805,7 +805,9 @@ def generate_vehicles(client: "genai.Client", today_str: str) -> list:
 
 
 def generate_news(client: "genai.Client") -> list:
+    print("뉴스 RSS 수집 시작...")
     raw_items = collect_recent_news_raw()
+    print(f"뉴스 RSS 수집 완료: 후보 {len(raw_items)}건")
     if not raw_items:
         print("RSS 뉴스 수집 실패(0건) - 뉴스 갱신을 건너뜁니다.")
         return []
@@ -895,8 +897,20 @@ def main() -> None:
     merged_news = merge_news(existing["news"], news)
 
     backfilled_count = backfill_tier1_specs(client, merged_vehicles, today_str)
-    verified_count = apply_teardown_verified_cell_makers(merged_vehicles)
-    news_checked_count = apply_news_cross_checked_cell_makers(merged_vehicles, today_str)
+
+    # 아래 두 단계는 부가적인 "검증 강화" 기능일 뿐이므로, 여기서 예기치 못한 오류가 나더라도
+    # 이미 만든 vehicles/news 결과를 data.json에 저장하는 것까지 막지는 않는다 (파이프라인 전체
+    # 중단으로 인해 며칠씩 갱신이 멈추는 사고를 방지하기 위한 방어선).
+    try:
+        verified_count = apply_teardown_verified_cell_makers(merged_vehicles)
+    except Exception as exc:  # noqa: BLE001
+        print(f"teardown 검증 적용 실패, 건너뜁니다: {exc}")
+        verified_count = 0
+    try:
+        news_checked_count = apply_news_cross_checked_cell_makers(merged_vehicles, today_str)
+    except Exception as exc:  # noqa: BLE001
+        print(f"뉴스 교차검증 적용 실패, 건너뜁니다: {exc}")
+        news_checked_count = 0
 
     output = {
         "generatedAt": now_kst.isoformat(),

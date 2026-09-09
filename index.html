@@ -154,15 +154,15 @@
                     <span class="bg-sky-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md flex-shrink-0 animate-pulse">LIVE update</span>
                     <span class="text-xs sm:text-sm font-bold text-sky-200 whitespace-nowrap">📰 글로벌 EV 최신 기사 브리핑</span>
                     <span class="text-slate-500 hidden sm:inline">|</span>
-                    <span class="text-[11px] text-slate-300 hidden sm:inline">상위 3개 헤드라인 미리보기</span>
+                    <span class="text-[11px] text-slate-300 hidden sm:inline">기술 뉴스 전체 요약 브리핑</span>
                 </div>
                 <a href="news.html" class="flex items-center space-x-1 text-xs font-bold text-sky-300 hover:text-white whitespace-nowrap flex-shrink-0 transition">
                     <span>전체 뉴스 보기 (EV News)</span>
                     <span>➔</span>
                 </a>
             </div>
-            <div id="topNewsPreviewContainer" class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                <!-- Dynamic Top 3 News Preview Cards Rendered via JS -->
+            <div id="topNewsPreviewContainer">
+                <!-- Dynamic Full-List Title-Based Briefing Text Rendered via JS -->
             </div>
         </section>
 
@@ -592,36 +592,33 @@
         };
 
         // Render Top 3 News Preview Cards on Main Page (full 20-item list lives on news.html / "EV News" nav)
+        // 제목 기반으로 전체 뉴스를 빠르게 요약하는 간단한 브리핑 텍스트 생성 (여러 문장으로 분할).
+        // 별도 AI 요약 호출 없이, 뉴스 제목들을 그룹으로 묶어 자연스럽게 이어지는 문장으로 재구성한다.
+        window.buildNewsBriefingText = function(newsData) {
+            const cleanTitle = (title) => (title || '').replace(/\s*-\s*[^-]{1,30}$/, '').trim();
+            const titles = newsData.map(item => cleanTitle(item.title)).filter(Boolean);
+            if (titles.length === 0) return '';
+
+            const chunkSize = 4;
+            const sentences = [];
+            for (let i = 0; i < titles.length; i += chunkSize) {
+                const chunk = titles.slice(i, i + chunkSize);
+                sentences.push(chunk.join(', ') + ' 등의 소식이 있습니다.');
+            }
+            return sentences.join(' ');
+        };
+
         window.renderTopNewsPreview = function() {
             const container = document.getElementById('topNewsPreviewContainer');
             if (!container) return;
-            container.innerHTML = '';
 
             if (!evLatestNewsData || evLatestNewsData.length === 0) {
-                container.innerHTML = '<p class="col-span-full text-xs text-slate-400 text-center py-4">뉴스를 불러오는 중입니다...</p>';
+                container.innerHTML = '<p class="text-xs text-slate-400 text-center py-4">뉴스를 불러오는 중입니다...</p>';
                 return;
             }
 
-            evLatestNewsData.slice(0, 3).forEach((item) => {
-                const isSearchLink = item.linkType === 'search';
-                const linkLabel = isSearchLink ? '🔎 관련 기사 검색결과 보기' : '🔗 원본 기사 보기';
-                const card = document.createElement('div');
-                card.className = "bg-slate-800/70 hover:bg-slate-800 p-3 rounded-xl border border-slate-700 transition flex flex-col justify-between space-y-2";
-                card.innerHTML = `
-                    <div class="space-y-1.5">
-                        <div class="flex items-center justify-end gap-2">
-                            <span class="text-[11px] font-semibold text-slate-400 flex-shrink-0">${item.date}</span>
-                        </div>
-                        <p class="text-xs font-bold text-white leading-snug line-clamp-2">${item.title}</p>
-                        <p class="text-[11px] text-slate-300 leading-relaxed line-clamp-2">${item.summary}</p>
-                    </div>
-                    <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1 text-[11px] font-bold text-sky-300 hover:text-white hover:underline self-start">
-                        <span>${linkLabel}</span>
-                        <span>➔</span>
-                    </a>
-                `;
-                container.appendChild(card);
-            });
+            const briefingText = window.buildNewsBriefingText(evLatestNewsData);
+            container.innerHTML = `<p class="text-[11px] sm:text-xs text-slate-200 leading-relaxed">${briefingText}</p>`;
         };
 
         window.setPeriodFilter = function(periodKey) {

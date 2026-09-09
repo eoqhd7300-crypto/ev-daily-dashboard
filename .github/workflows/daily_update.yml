@@ -14,6 +14,7 @@ permissions:
 jobs:
   update-data:
     runs-on: ubuntu-latest
+    timeout-minutes: 20  # RSS 수집량 증가로 실행 시간이 길어질 수 있어, 무한 행 방지용 안전장치
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
