@@ -133,7 +133,12 @@
                 </div>
                 <div class="flex items-center justify-between mt-3">
                     <span class="text-xs text-slate-500">선택됨: <strong id="selectedVehicleCount" class="text-sky-600">0</strong>개</span>
-                    <button onclick="window.clearTeardownSelection()" class="text-xs font-semibold text-slate-500 hover:text-slate-700 underline">선택 초기화</button>
+                    <div class="flex items-center gap-3">
+                        <button id="exportTeardownExcelBtn" onclick="window.exportTeardownToExcel()" class="flex items-center gap-1 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-lg shadow-xs transition">
+                            <span>📥</span><span>엑셀로 내보내기</span>
+                        </button>
+                        <button onclick="window.clearTeardownSelection()" class="text-xs font-semibold text-slate-500 hover:text-slate-700 underline">선택 초기화</button>
+                    </div>
                 </div>
             </section>
 
@@ -157,6 +162,9 @@
             </div>
         </div>
     </div>
+
+    <!-- ExcelJS (서식이 적용된 .xlsx 내보내기용) -->
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
 
     <!-- Application JavaScript Logic -->
     <script>
@@ -515,6 +523,275 @@
             document.getElementById('lightboxImage').src = img.path;
             document.getElementById('lightboxCaption').innerText = `${gallery.title} — ${img.view} (${currentGalleryIndex + 1}/${gallery.images.length})`;
             document.getElementById('lightboxOriginalLink').href = img.path;
+        };
+
+        // ---------------------------------------------------------------------
+        // Excel Export (.xlsx) — Cell/Module/Battery Pack 스펙 비교 + Pack 개요/사진
+        // (BOM 요약은 추출 범위에서 제외)
+        // ---------------------------------------------------------------------
+        const XLSX_HEADER_FILL = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFE6EEF8' } };
+        const XLSX_BORDER_THIN = {
+            top: { style: 'thin', color: { argb: 'FFBFBFBF' } },
+            left: { style: 'thin', color: { argb: 'FFBFBFBF' } },
+            bottom: { style: 'thin', color: { argb: 'FFBFBFBF' } },
+            right: { style: 'thin', color: { argb: 'FFBFBFBF' } },
+        };
+
+        function xlsxStyleHeaderRow(row) {
+            row.eachCell(cell => {
+                cell.fill = XLSX_HEADER_FILL;
+                cell.font = { bold: true };
+                cell.alignment = { vertical: 'middle', horizontal: 'center' };
+                cell.border = XLSX_BORDER_THIN;
+            });
+        }
+
+        // 셀 값의 데이터 타입에 맞춰 정렬/서식을 적용한다.
+        // - 숫자: 우측 정렬 + 천 단위 콤마 서식 (정수는 #,##0, 소수는 #,##0.00로 소수점 유실 방지)
+        // - 결측값("-"): 상태값으로 간주해 중앙 정렬
+        // - 그 외 일반 텍스트: 좌측 정렬
+        function xlsxApplyValueCell(cell, rawValue) {
+            cell.border = XLSX_BORDER_THIN;
+            if (typeof rawValue === 'number' && isFinite(rawValue)) {
+                cell.value = rawValue;
+                cell.numFmt = Number.isInteger(rawValue) ? '#,##0' : '#,##0.00';
+                cell.alignment = { vertical: 'middle', horizontal: 'right' };
+                return;
+            }
+            const isMissing = rawValue === null || rawValue === undefined || rawValue === '' || rawValue === '-';
+            cell.value = isMissing ? '-' : String(rawValue);
+            cell.alignment = { vertical: 'middle', horizontal: isMissing ? 'center' : 'left' };
+        }
+
+        function xlsxAutoFitColumns(ws) {
+            ws.columns.forEach(col => {
+                let maxLen = 12;
+                col.eachCell({ includeEmpty: true }, cell => {
+                    const v = cell.value;
+                    let text = '';
+                    if (v && typeof v === 'object' && 'text' in v) text = String(v.text);
+                    else if (v !== null && v !== undefined) text = String(v);
+                    maxLen = Math.max(maxLen, text.length + 2);
+                });
+                // 이미지가 삽입된 사진 열은 미리 넓게 고정해둔 값(col.width)이 있을 수 있으므로,
+                // 그보다 작을 때만 덮어쓴다.
+                col.width = Math.max(col.width || 0, maxLen);
+            });
+        }
+
+        // 사진 URL을 실제 이미지 버퍼/확장자로 변환한다. 지원하지 않는 형식(webp 등)이나 오류 시 null 반환(하이퍼링크로 폴백).
+        const XLSX_IMAGE_EXT_MAP = { jpg: 'jpeg', jpeg: 'jpeg', png: 'png', gif: 'gif' };
+        async function xlsxFetchImageBuffer(url) {
+            try {
+                const extMatch = (url.match(/\.([a-zA-Z0-9]+)(?:\?|#|$)/) || [])[1];
+                const extension = extMatch ? XLSX_IMAGE_EXT_MAP[extMatch.toLowerCase()] : null;
+                if (!extension) return null; // exceljs는 jpeg/png/gif만 지원
+                const res = await fetch(url, { cache: 'no-store' });
+                if (!res.ok) return null;
+                const buffer = await res.arrayBuffer();
+                return { buffer, extension };
+            } catch (err) {
+                console.warn('[Teardown] 사진 로드 실패(엑셀에는 링크로 대체):', url, err);
+                return null;
+            }
+        }
+
+        const XLSX_PHOTO_COL_WIDTH = 20;              // 사진이 잘리지 않도록 사진 열은 충분히 넓게 고정
+        const XLSX_PHOTO_ROW_HEIGHT = 78;              // pt 단위 (이미지 높이 약 88px에 맞춰 여유 확보)
+        const XLSX_PHOTO_IMAGE_EXT = { width: 118, height: 88 }; // px 단위 삽입 이미지 크기
+
+        // 시트에 "실물 사진" 행(들)을 추가한다. photoRowDefs: [[라벨, v => 이미지URL|null], ...]
+        // 각 행 안에서는 선택된 차량들의 이미지를 병렬로 fetch해 속도를 확보한다.
+        async function xlsxAddPhotoRows(workbook, ws, selectedVehicles, photoRowDefs) {
+            for (const [label, getUrl] of photoRowDefs) {
+                const row = ws.addRow([label, ...selectedVehicles.map(() => null)]);
+                row.height = XLSX_PHOTO_ROW_HEIGHT;
+                const rowNumber = row.number;
+                const labelCell = row.getCell(1);
+                labelCell.border = XLSX_BORDER_THIN;
+                labelCell.font = { bold: true };
+                labelCell.alignment = { vertical: 'middle', horizontal: 'left' };
+
+                const urls = selectedVehicles.map(v => getUrl(v) || null);
+                const images = await Promise.all(urls.map(u => (u ? xlsxFetchImageBuffer(u) : Promise.resolve(null))));
+
+                selectedVehicles.forEach((v, i) => {
+                    const cell = row.getCell(i + 2);
+                    cell.border = XLSX_BORDER_THIN;
+                    cell.alignment = { vertical: 'middle', horizontal: 'center' };
+                    const url = urls[i];
+                    const img = images[i];
+                    if (!url) {
+                        cell.value = '-';
+                        return;
+                    }
+                    if (!img) {
+                        // 이미지 다운로드/포맷 실패 시 최소한 원본 링크는 열람 가능하도록 폴백
+                        cell.value = { text: '사진 보기', hyperlink: url };
+                        cell.font = { color: { argb: 'FF0369A1' }, underline: true };
+                        return;
+                    }
+                    const imageId = workbook.addImage({ buffer: img.buffer, extension: img.extension });
+                    ws.addImage(imageId, {
+                        tl: { col: i + 1, row: rowNumber - 1 },
+                        ext: XLSX_PHOTO_IMAGE_EXT,
+                    });
+                    const col = ws.getColumn(i + 2);
+                    col.width = Math.max(col.width || 0, XLSX_PHOTO_COL_WIDTH);
+                });
+            }
+        }
+
+        // Cell/Module/Battery Pack 3개 스펙 비교 시트 공용 빌더 (buildFieldTable과 동일한 항목 순서/범위 사용)
+        // photoRowDefs(선택): 필드 표 아래에 이어 붙일 실물 사진 행 정의 (예: Cell 실물 사진)
+        async function xlsxAddSpecSheet(workbook, sheetName, selectedVehicles, getObj, order, photoRowDefs) {
+            const ws = workbook.addWorksheet(sheetName);
+            const objs = selectedVehicles.map(v => getObj(v) || {});
+            const allKeysSet = new Set();
+            objs.forEach(o => Object.keys(o).forEach(k => allKeysSet.add(k)));
+            const keys = orderedKeys(Object.fromEntries([...allKeysSet].map(k => [k, true])), order);
+
+            const headerRow = ws.addRow(['항목', ...selectedVehicles.map(v => `${v.name} (${v.year || '-'})`)]);
+            xlsxStyleHeaderRow(headerRow);
+
+            if (keys.length === 0) {
+                const row = ws.addRow(['데이터 없음', ...selectedVehicles.map(() => '-')]);
+                row.eachCell((cell, colNumber) => {
+                    if (colNumber === 1) {
+                        cell.border = XLSX_BORDER_THIN;
+                        cell.font = { bold: true };
+                        cell.alignment = { vertical: 'middle', horizontal: 'left' };
+                    } else {
+                        xlsxApplyValueCell(cell, '-');
+                    }
+                });
+            } else {
+                keys.forEach(k => {
+                    const row = ws.addRow([k.trim(), ...objs.map(o => o[k])]);
+                    row.eachCell((cell, colNumber) => {
+                        if (colNumber === 1) {
+                            cell.border = XLSX_BORDER_THIN;
+                            cell.font = { bold: true };
+                            cell.alignment = { vertical: 'middle', horizontal: 'left' };
+                        } else {
+                            xlsxApplyValueCell(cell, objs[colNumber - 2][k]);
+                        }
+                    });
+                });
+            }
+            if (photoRowDefs && photoRowDefs.length > 0) {
+                await xlsxAddPhotoRows(workbook, ws, selectedVehicles, photoRowDefs);
+            }
+            xlsxAutoFitColumns(ws);
+        }
+
+        // Pack 개요 & 실물 사진 시트 (PACK_OVERVIEW_FIELD_ORDER 항목 + Front/Back/Left/Right/Top/Profile 실물 사진 삽입)
+        async function xlsxAddPackOverviewSheet(workbook, selectedVehicles) {
+            const ws = workbook.addWorksheet('Pack 개요 & 실물사진');
+            const objs = selectedVehicles.map(v => v.packOverview || {});
+            const allKeysSet = new Set();
+            objs.forEach(o => Object.keys(o).forEach(k => allKeysSet.add(k)));
+            const keys = orderedKeys(Object.fromEntries([...allKeysSet].map(k => [k, true])), PACK_OVERVIEW_FIELD_ORDER);
+
+            const headerRow = ws.addRow(['항목', ...selectedVehicles.map(v => `${v.name} (${v.year || '-'})`)]);
+            xlsxStyleHeaderRow(headerRow);
+
+            if (keys.length === 0) {
+                const row = ws.addRow(['데이터 없음', ...selectedVehicles.map(() => '-')]);
+                row.eachCell((cell, colNumber) => {
+                    if (colNumber === 1) {
+                        cell.border = XLSX_BORDER_THIN;
+                        cell.font = { bold: true };
+                        cell.alignment = { vertical: 'middle', horizontal: 'left' };
+                    } else {
+                        xlsxApplyValueCell(cell, '-');
+                    }
+                });
+            } else {
+                keys.forEach(k => {
+                    const row = ws.addRow([k.trim(), ...objs.map(o => o[k])]);
+                    row.eachCell((cell, colNumber) => {
+                        if (colNumber === 1) {
+                            cell.border = XLSX_BORDER_THIN;
+                            cell.font = { bold: true };
+                            cell.alignment = { vertical: 'middle', horizontal: 'left' };
+                        } else {
+                            xlsxApplyValueCell(cell, objs[colNumber - 2][k]);
+                        }
+                    });
+                });
+            }
+
+            await xlsxAddPhotoRows(workbook, ws, selectedVehicles, [
+                ['Front 사진', v => v.packImages && v.packImages.front],
+                ['Back 사진', v => v.packImages && v.packImages.back],
+                ['Left 사진', v => v.packImages && v.packImages.left],
+                ['Right 사진', v => v.packImages && v.packImages.right],
+                ['Top 사진', v => v.packImages && v.packImages.top],
+                ['Profile 사진', v => v.packImages && (Array.isArray(v.packImages.profile) ? v.packImages.profile[0] : v.packImages.profile)],
+            ]);
+
+            xlsxAutoFitColumns(ws);
+        }
+
+        window.exportTeardownToExcel = async function() {
+            const selected = teardownVehicles.filter(v => selectedTeardownIds.has(v.id));
+            if (selected.length === 0) {
+                alert('먼저 비교할 차량을 하나 이상 선택해 주세요.');
+                return;
+            }
+            if (typeof ExcelJS === 'undefined') {
+                alert('엑셀 내보내기 라이브러리를 불러오지 못했습니다. 인터넷 연결을 확인한 뒤 새로고침 후 다시 시도해 주세요.');
+                return;
+            }
+
+            const btn = document.getElementById('exportTeardownExcelBtn');
+            const originalHtml = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.disabled = true;
+                btn.classList.add('opacity-60', 'cursor-not-allowed');
+                btn.innerHTML = '<span>⏳</span><span>생성 중...</span>';
+            }
+
+            try {
+                const primaryModule = v => (v.modules && v.modules[0]) ? v.modules[0] : {};
+                const workbook = new ExcelJS.Workbook();
+                workbook.creator = 'Daily EV & Battery Intelligence Dashboard';
+                workbook.created = new Date();
+
+                await xlsxAddSpecSheet(workbook, 'Cell 스펙 비교', selected, v => v.cell, CELL_FIELD_ORDER, [
+                    ['Cell 실물 사진', v => (v.cellImages && v.cellImages[0]) || null],
+                ]);
+                await xlsxAddSpecSheet(workbook, 'Module 스펙 비교', selected, primaryModule, MODULE_FIELD_ORDER);
+                await xlsxAddSpecSheet(workbook, 'Battery Pack 스펙 비교', selected, v => v.pack, PACK_FIELD_ORDER);
+                await xlsxAddPackOverviewSheet(workbook, selected);
+
+                const buffer = await workbook.xlsx.writeBuffer();
+                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const url = URL.createObjectURL(blob);
+
+                const now = new Date();
+                const yyyy = now.getFullYear();
+                const mm = String(now.getMonth() + 1).padStart(2, '0');
+                const dd = String(now.getDate()).padStart(2, '0');
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `[Teardown Data]_${yyyy}${mm}${dd}.xlsx`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } catch (err) {
+                console.error('[Teardown] Excel export failed', err);
+                alert('엑셀 파일 생성 중 오류가 발생했습니다. 다시 시도해 주세요.');
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-60', 'cursor-not-allowed');
+                    btn.innerHTML = originalHtml;
+                }
+            }
         };
 
         window.renderTeardownComparison = function() {
