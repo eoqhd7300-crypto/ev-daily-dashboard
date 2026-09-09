@@ -530,9 +530,10 @@
 
             output.innerHTML = `
                 <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
-                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <h3 class="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
                         <span>🔋 Cell 스펙 비교</span>
                     </h3>
+                    <p class="text-[11px] text-slate-400 mb-3">※ 'OEM'이 붙은 항목(예: Cell Nominal Voltage OEM [V])은 실측치가 아니라 완성차 업체(OEM)가 공식 발표한 <span class="font-semibold text-slate-500">제조사 라벨값</span>입니다.</p>
                     ${buildFieldTable('Cell', selected, v => v.cell, CELL_FIELD_ORDER, 'bg-sky-50 text-sky-900')}
 
                     <div class="mt-4">
@@ -541,17 +542,19 @@
                 </section>
 
                 <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
-                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <h3 class="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
                         <span>🧩 Module 스펙 비교</span>
                         <span class="text-xs font-normal text-slate-400">(CTP/Cell-to-Pack 구조 차량은 모듈이 없어 '-'로 표기됩니다)</span>
                     </h3>
+                    <p class="text-[11px] text-slate-400 mb-3">※ 'OEM'이 붙은 항목(예: Module Nominal Voltage OEM [V])은 실측치가 아니라 완성차 업체(OEM)가 공식 발표한 <span class="font-semibold text-slate-500">제조사 라벨값</span>입니다.</p>
                     ${buildFieldTable('Module', selected, primaryModule, MODULE_FIELD_ORDER, 'bg-indigo-50 text-indigo-900')}
                 </section>
 
                 <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
-                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <h3 class="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
                         <span>📦 Battery Pack 스펙 비교</span>
                     </h3>
+                    <p class="text-[11px] text-slate-400 mb-3">※ 'OEM'이 붙은 항목(예: Battery Pack Nominal Voltage OEM [V])은 실측치가 아니라 완성차 업체(OEM)가 공식 발표한 <span class="font-semibold text-slate-500">제조사 라벨값</span>입니다.</p>
                     ${buildFieldTable('Pack', selected, v => v.pack, PACK_FIELD_ORDER, 'bg-emerald-50 text-emerald-900')}
                 </section>
 
