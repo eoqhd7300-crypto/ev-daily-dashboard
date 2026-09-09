@@ -270,6 +270,58 @@ def build_news_summary_prompt(raw_items: list) -> str:
 """
 
 
+def build_news_briefing_prompt(news_items: list) -> str:
+    items_json = json.dumps(
+        [
+            {
+                "title": n.get("title", ""),
+                "summary": n.get("summary", ""),
+                "source": n.get("source", ""),
+                "date": n.get("date", ""),
+                "url": n.get("url", ""),
+            }
+            for n in news_items
+        ],
+        ensure_ascii=False,
+        indent=2,
+    )
+    return f"""
+아래는 오늘 대시보드에 실릴 전기차/배터리 기술 뉴스 목록입니다 (이미 엔지니어 관점으로 선별된 최종 기사들입니다).
+당신은 배터리/전기차 산업 전문 애널리스트입니다. 이 기사들을 바탕으로 메인 대시보드에 표시할 "카테고리별 브리핑 리포트"를
+아래 JSON 스키마에 맞춰 작성하세요.
+
+작성 규칙:
+1. categories: 기사들을 "기술/소재", "기업 동향/공급망", "시장/산업/규제", "안전성/열관리" 등 주제별로 2~4개 그룹으로 묶으세요.
+   각 그룹 이름(name)은 기사 내용에 맞게 자유롭게 지어도 됩니다. 한 기사는 가장 적합한 그룹 하나에만 배치하세요.
+2. 각 그룹의 items는 해당 그룹에 속한 기사 각각에 대해 아래 필드를 작성하세요.
+   - headline: 기사 제목을 그대로 쓰지 말고, 핵심을 압축한 짧은 소제목(15자 내외)
+   - summary: 기사 내용을 1문장으로 핵심만 요약 (원본 summary를 참고해 더 간결하게)
+   - tags: 이 기사의 핵심 키워드 2~4개를 "#키워드" 형태 문자열 배열로 작성 (예: "#전고체", "#LG엔솔", "#열관리")
+   - source, date, url: 입력값을 그대로 유지 (변경 금지)
+3. keyTakeaways: 오늘 전체 기사를 관통하는 핵심 흐름 2~3개를 한 문장씩 배열로 작성하세요 (제목 나열이 아니라 종합적 인사이트).
+4. implications: "이 뉴스들이 배터리 산업에 미치는 영향"을 2줄 이내(공백 포함 약 120자 이내)로 종합 분석하세요.
+5. 모든 기사(url 기준)를 반드시 어느 한 카테고리에는 포함시키세요 (누락 금지). 순서는 최신순을 우선하되 카테고리 응집성을 우선하세요.
+6. 마크다운 코드블록이나 설명 문장 없이 순수 JSON 객체만 응답하세요.
+
+원본 기사 목록:
+{items_json}
+
+응답 형식 (JSON 객체 하나):
+{{
+  "keyTakeaways": ["...", "..."],
+  "categories": [
+    {{
+      "name": "...",
+      "items": [
+        {{"headline": "...", "summary": "...", "tags": ["#...", "#..."], "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+      ]
+    }}
+  ],
+  "implications": "..."
+}}
+"""
+
+
 def extract_json(text):
     """모델 응답에서 JSON(dict 또는 list)을 추출한다. 마크다운 펜스/부연설명을 허용한다."""
     cleaned = re.sub(r"^```json\s*", "", (text or "").strip(), flags=re.IGNORECASE)
@@ -413,7 +465,7 @@ def collect_recent_news_raw(pool_size: int = NEWS_POOL_SIZE) -> list:
 
 def load_existing_data() -> dict:
     if not os.path.exists(DATA_PATH):
-        return {"vehicles": [], "news": [], "fx": None}
+        return {"vehicles": [], "news": [], "fx": None, "newsBriefing": None}
     try:
         with open(DATA_PATH, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -421,9 +473,10 @@ def load_existing_data() -> dict:
             "vehicles": data.get("vehicles") or [],
             "news": data.get("news") or [],
             "fx": data.get("fx"),
+            "newsBriefing": data.get("newsBriefing"),
         }
     except Exception:  # noqa: BLE001 - 손상된 파일이면 빈 값으로 시작
-        return {"vehicles": [], "news": [], "fx": None}
+        return {"vehicles": [], "news": [], "fx": None, "newsBriefing": None}
 
 
 # 환율 조회에 실패했을 때 사용할 최종 안전값 (사이트에 기존에 표시되던 값과 동일)
@@ -863,6 +916,48 @@ def generate_news(client: "genai.Client") -> list:
     return dedup_similar_titles(selected)[:MAX_NEWS]
 
 
+def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | None:
+    """최종 확정된 뉴스 목록을 바탕으로 카테고리별 브리핑(키워드 태깅/시사점 포함)을 생성한다.
+    실패 시 None을 반환하며, 호출부에서는 기존 briefing을 유지하거나 프론트가 구버전 문장형으로 대체 표시한다."""
+    if not news_items:
+        return None
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=build_news_briefing_prompt(news_items),
+        )
+        payload = extract_json(response.text)
+        if not isinstance(payload, dict):
+            return None
+        categories = payload.get("categories")
+        if not isinstance(categories, list) or not categories:
+            return None
+        # url 기준으로 원본 기사 존재 여부를 검증해, 모델이 지어낸 항목을 방어적으로 제거한다.
+        valid_urls = {_norm(n.get("url") or "") for n in news_items}
+        cleaned_categories = []
+        for cat in categories:
+            if not isinstance(cat, dict):
+                continue
+            items = cat.get("items")
+            if not isinstance(items, list):
+                continue
+            cleaned_items = [
+                item for item in items
+                if isinstance(item, dict) and _norm(item.get("url") or "") in valid_urls
+            ]
+            if cleaned_items:
+                cleaned_categories.append({"name": cat.get("name") or "기타", "items": cleaned_items})
+        if not cleaned_categories:
+            return None
+        return {
+            "keyTakeaways": [t for t in (payload.get("keyTakeaways") or []) if isinstance(t, str)],
+            "categories": cleaned_categories,
+            "implications": payload.get("implications") if isinstance(payload.get("implications"), str) else "",
+        }
+    except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
+        print(f"뉴스 브리핑(카테고리/시사점) 생성 실패, 건너뜁니다: {exc}")
+        return None
+
 
 def main() -> None:
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -888,6 +983,7 @@ def main() -> None:
             "vehicles": existing["vehicles"],
             "news": existing["news"],
             "fx": fx,
+            "newsBriefing": existing.get("newsBriefing"),
         }
         with open(DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
@@ -912,11 +1008,21 @@ def main() -> None:
         print(f"뉴스 교차검증 적용 실패, 건너뜁니다: {exc}")
         news_checked_count = 0
 
+    try:
+        news_briefing = generate_news_briefing(client, merged_news)
+    except Exception as exc:  # noqa: BLE001
+        print(f"뉴스 브리핑 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        news_briefing = None
+    if news_briefing is None:
+        # 생성 실패 시 어제 버전을 그대로 유지해 프론트가 갑자기 구도없이 문장형으로 후퇴하는 사태를 최소화한다.
+        news_briefing = existing.get("newsBriefing")
+
     output = {
         "generatedAt": now_kst.isoformat(),
         "vehicles": merged_vehicles,
         "news": merged_news,
         "fx": fx,
+        "newsBriefing": news_briefing,
     }
 
     with open(DATA_PATH, "w", encoding="utf-8") as f:
