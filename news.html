@@ -161,11 +161,11 @@
             const titleEl = document.getElementById('newsPageTitle');
             const subtitleEl = document.getElementById('newsPageSubtitle');
             if (tab === 'china') {
-                if (titleEl) titleEl.innerHTML = '<span>📰 China EV 최신 기사 브리핑</span><span class="text-xs font-normal text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-md">오전 9시 자동 갱신</span>';
+                if (titleEl) titleEl.innerHTML = '<span>📰 China EV 최신 기사 브리핑</span><span class="text-xs font-normal text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-md">Daily update</span>';
                 if (subtitleEl) subtitleEl.innerText = 'CnEVPost · CarNewsChina RSS 기반 중국 전기차/배터리 산업 동향입니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.';
                 window.renderNewsList(chinaNewsDataAll, 'bg-rose-600');
             } else {
-                if (titleEl) titleEl.innerHTML = '<span>📰 글로벌 EV 최신 기사 브리핑</span><span class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">오전 9시 자동 갱신</span>';
+                if (titleEl) titleEl.innerHTML = '<span>📰 글로벌 EV 최신 기사 브리핑</span><span class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">Daily update</span>';
                 if (subtitleEl) subtitleEl.innerText = '글로벌 전기차, 배터리, 완성차 기술 동향 헤드라인을 요약 정리했습니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.';
                 window.renderNewsList(domesticNewsData, 'bg-sky-600');
             }
