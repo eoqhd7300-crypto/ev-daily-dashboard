@@ -34,6 +34,15 @@ NEWS_POOL_SIZE = 120  # 유사기사/비기술 기사 필터링 전, RSS에서 �
 # (엔지니어 관심 타겟 쿼리 추가 + 엄격한 기술 관련성 필터링으로 걸러내는 양이 늘어난 만큼,
 # 필터링 후에도 최대한 20건에 근접하게 채울 수 있도록 후보 풀을 넘리 확보한다)
 
+# China EV & 배터리 뉴스: 정보 출처를 아래 2개 사이트로 한정 (공식 RSS 피드 사용 - 웹 스크래핑 대비
+# UI 개편에 안전하고 봇 차단 위험이 없음)
+CHINA_NEWS_FEEDS = [
+    ("CnEVPost", "https://cnevpost.com/feed/"),
+    ("CarNewsChina", "https://carnewschina.com/category/electric-vehicles/feed/"),
+]
+MAX_CHINA_NEWS = 20
+CHINA_NEWS_POOL_SIZE = 40
+
 # 서로 다른 매체가 동일 사건을 보도해 제목만 비슷한 "유사 기사"를 걸러내기 위한 임계값
 TITLE_DUP_SIMILARITY_THRESHOLD = 0.72
 
@@ -322,6 +331,89 @@ def build_news_briefing_prompt(news_items: list) -> str:
 """
 
 
+def build_china_news_summary_prompt(raw_items: list) -> str:
+    items_json = json.dumps(raw_items, ensure_ascii=False, indent=2)
+    return f"""
+아래는 CnEVPost, CarNewsChina(둘 다 중국 전기차/배터리 산업 전문 영어 매체) 공식 RSS 피드에서 수집한 실제 기사
+후보 목록입니다 (title, url, date, source, description 포함, 원문은 영어입니다).
+당신은 한국 배터리/완성차 업계 실무자를 위한 "중국 EV/배터리 산업 동향" 큐레이터입니다. 아래 기준에 따라 기사를 선별한 뒤,
+선택한 기사의 title과 summary를 자연스러운 한국어로 번역/요약해 JSON 배열로만 응답하세요.
+
+선별 기준:
+- 포함: 중국 브랜드(BYD, CATL, Nio, Xpeng, Li Auto, Xiaomi, Zeekr, Huawei/Aito, Geely 등)의 신차/신기술 발표,
+  배터리 셀/소재/생산기술, 공급망(해외 진출/합작투자/수출), 산업 정책/규제, 경쟁 구도를 보여주는 시장 동향(점유율/수출 등),
+  자율주행/소프트웨어 등 한국 업계 실무자가 경쟁 동향 파악에 참고할 만한 내용.
+- 제외: 단순 가격 할인/프로모션/이벤트성 기사, 정보가 거의 없는 스팟성 가십, 같은 사건을 다룬 중복 기사
+  (그 중 가장 정보가 상세한 1건만 유지).
+- title은 한국어로 자연스럽게 의역(직역 금지, 핵심이 드러나게 재구성), summary는 description을 바탕으로
+  1~2문장 한국어 요약으로 작성하세요. description이 비어있으면 title을 근거로 합리적으로 요약하세요.
+- url, date, source 값은 선택한 항목에 대해 절대 변경하지 말고 원본 그대로 유지하세요.
+- 최대 {MAX_CHINA_NEWS}건까지, 최신순으로 선택하세요. 기준을 통과하는 기사가 적으면 그보다 적은 건수만 반환해도 됩니다.
+- 마크다운 코드블록이나 설명 문장 없이 순수 JSON 배열만 응답하세요.
+
+원본 후보 목록:
+{items_json}
+
+응답 형식 (배열, 각 원소는 아래 5개 필드만 포함, 선택된 기사만):
+[
+  {{"title": "...(한국어)", "summary": "...(한국어)", "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+]
+"""
+
+
+def build_china_news_briefing_prompt(news_items: list) -> str:
+    items_json = json.dumps(
+        [
+            {
+                "title": n.get("title", ""),
+                "summary": n.get("summary", ""),
+                "source": n.get("source", ""),
+                "date": n.get("date", ""),
+                "url": n.get("url", ""),
+            }
+            for n in news_items
+        ],
+        ensure_ascii=False,
+        indent=2,
+    )
+    return f"""
+아래는 오늘 대시보드에 실릴 "중국 EV/배터리 산업 동향" 뉴스 목록입니다 (CnEVPost/CarNewsChina에서 선별 및
+한국어로 번역된 기사들입니다). 당신은 중국 전기차/배터리 산업 전문 애널리스트입니다. 이 기사들을 바탕으로
+"카테고리별 브리핑 리포트"를 아래 JSON 스키마에 맞춰 작성하세요.
+
+작성 규칙:
+1. categories: 기사들을 "중국 브랜드 신차/기술", "배터리·소재·공급망", "시장·정책·수출" 등 주제별로 2~4개
+   그룹으로 묶으세요. 그룹 이름은 기사 내용에 맞게 자유롭게 지어도 됩니다. 한 기사는 가장 적합한 그룹 하나에만 배치하세요.
+2. 각 그룹의 items는 아래 필드를 작성:
+   - headline: 핵심을 압축한 짧은 소제목(15자 내외, 한국어)
+   - summary: 1문장 핵심 요약(한국어)
+   - tags: 핵심 키워드 2~4개를 "#키워드" 형태 문자열 배열로 작성 (예: "#BYD", "#해외진출", "#CATL")
+   - source, date, url: 입력값을 그대로 유지 (변경 금지)
+3. keyTakeaways: 오늘 중국 EV/배터리 산업 전체를 관통하는 핵심 흐름 2~3개를, 가능하면 한국 업계 관점의 시사점을
+   담아 한 문장씩 배열로 작성하세요.
+4. implications: "이 중국 동향이 한국 배터리/완성차 업계에 미치는 영향"을 2줄 이내(공백 포함 약 120자 이내)로 분석하세요.
+5. 모든 기사(url 기준)를 반드시 어느 한 카테고리에는 포함시키세요 (누락 금지).
+6. 마크다운 코드블록이나 설명 문장 없이 순수 JSON 객체만 응답하세요.
+
+원본 기사 목록:
+{items_json}
+
+응답 형식 (JSON 객체 하나):
+{{
+  "keyTakeaways": ["...", "..."],
+  "categories": [
+    {{
+      "name": "...",
+      "items": [
+        {{"headline": "...", "summary": "...", "tags": ["#...", "#..."], "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+      ]
+    }}
+  ],
+  "implications": "..."
+}}
+"""
+
+
 def extract_json(text):
     """모델 응답에서 JSON(dict 또는 list)을 추출한다. 마크다운 펜스/부연설명을 허용한다."""
     cleaned = re.sub(r"^```json\s*", "", (text or "").strip(), flags=re.IGNORECASE)
@@ -403,6 +495,67 @@ def fetch_google_news_rss(query: str, max_items: int = 15) -> list:
     return items
 
 
+def fetch_generic_rss(source_name: str, url: str, max_items: int = 20) -> list:
+    """표준 WordPress RSS 2.0 피드(CnEVPost/CarNewsChina 등, source 태그 없이 title/link/pubDate/description만
+    있는 형식)에서 기사 목록을 가져온다. Google News RSS와 달리 매체명이 피드 자체에 없으므로 source_name을
+    호출부에서 직접 지정한다."""
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = resp.read()
+    except Exception as exc:  # noqa: BLE001
+        print(f"China RSS fetch 실패 ({source_name}): {exc}")
+        return []
+
+    try:
+        root = ET.fromstring(data)
+    except ET.ParseError as exc:
+        print(f"China RSS 파싱 실패 ({source_name}): {exc}")
+        return []
+
+    items = []
+    for item in root.findall(".//item")[:max_items]:
+        title = (item.findtext("title") or "").strip()
+        link = (item.findtext("link") or "").strip()
+        pub_date_raw = item.findtext("pubDate") or ""
+        description = _strip_html(item.findtext("description") or "")
+        try:
+            pub_dt = parsedate_to_datetime(pub_date_raw).astimezone(KST)
+            date_str = pub_dt.strftime("%Y-%m-%d")
+        except Exception:  # noqa: BLE001
+            date_str = ""
+        if not title or not link or not date_str:
+            continue
+        items.append(
+            {
+                "title": title,
+                "url": link,
+                "date": date_str,
+                "source": source_name,
+                "description": description,
+            }
+        )
+    return items
+
+
+def collect_china_news_raw(pool_size: int = CHINA_NEWS_POOL_SIZE) -> list:
+    """CnEVPost/CarNewsChina 공식 RSS 피드에서만 기사를 수집한다 (정보 출처를 이 2개 사이트로 한정)."""
+    collected = []
+    for source_name, url in CHINA_NEWS_FEEDS:
+        collected.extend(fetch_generic_rss(source_name, url, max_items=pool_size))
+
+    seen = set()
+    deduped = []
+    for item in collected:
+        key = _norm(item["url"])
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(item)
+    deduped.sort(key=lambda n: n["date"], reverse=True)
+    return dedup_similar_titles(deduped)[:pool_size]
+
+
 def _normalize_title_for_dedup(title: str) -> str:
     """제목 유사도 비교용 정규화: 언론사 접미사/괄호/구두점/공백을 제거하고 소문자로 통일."""
     text = re.sub(r"\s*-\s*[^-]{1,20}$", "", title or "")  # Google 뉴스가 붙이는 "- 언론사명" 접미사 제거
@@ -465,7 +618,7 @@ def collect_recent_news_raw(pool_size: int = NEWS_POOL_SIZE) -> list:
 
 def load_existing_data() -> dict:
     if not os.path.exists(DATA_PATH):
-        return {"vehicles": [], "news": [], "fx": None, "newsBriefing": None}
+        return {"vehicles": [], "news": [], "fx": None, "newsBriefing": None, "chinaNews": [], "chinaNewsBriefing": None}
     try:
         with open(DATA_PATH, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -474,9 +627,11 @@ def load_existing_data() -> dict:
             "news": data.get("news") or [],
             "fx": data.get("fx"),
             "newsBriefing": data.get("newsBriefing"),
+            "chinaNews": data.get("chinaNews") or [],
+            "chinaNewsBriefing": data.get("chinaNewsBriefing"),
         }
     except Exception:  # noqa: BLE001 - 손상된 파일이면 빈 값으로 시작
-        return {"vehicles": [], "news": [], "fx": None, "newsBriefing": None}
+        return {"vehicles": [], "news": [], "fx": None, "newsBriefing": None, "chinaNews": [], "chinaNewsBriefing": None}
 
 
 # 환율 조회에 실패했을 때 사용할 최종 안전값 (사이트에 기존에 표시되던 값과 동일)
@@ -841,6 +996,25 @@ def merge_news(old_news: list, new_news: list) -> list:
     return result
 
 
+def merge_china_news(old_news: list, new_news: list) -> list:
+    """China EV/배터리 뉴스(CnEVPost/CarNewsChina) 병합. 국내 뉴스 파이프라인과 달리 출처가 이미
+    2개 사이트로 고정돼 있고 콘텐츠 자체가 EV 산업 전문지라, merge_news처럼 별도의
+    출처 제외/엔지니어링 관련성 재검증 없이 url 기준 중복 제거 + 최신순 상한만 적용한다."""
+    merged: dict[str, dict] = {}
+    for n in old_news + new_news:
+        key = _norm(n.get("url") or n.get("title") or "")
+        if not key:
+            continue
+        existing = merged.get(key)
+        if existing is None or (n.get("date") or "") >= (existing.get("date") or ""):
+            merged[key] = n
+    result = sorted(merged.values(), key=lambda n: n.get("date") or "", reverse=True)
+    result = dedup_similar_titles(result)[:MAX_CHINA_NEWS]
+    for idx, item in enumerate(result, start=1):
+        item["id"] = idx
+    return result
+
+
 def generate_vehicles(client: "genai.Client", today_str: str) -> list:
     try:
         response = client.models.generate_content(
@@ -959,6 +1133,102 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
         return None
 
 
+def generate_china_news(client: "genai.Client") -> list:
+    """CnEVPost/CarNewsChina 공식 RSS(2개 사이트로 정보 출처 한정)에서 수집한 뒤,
+    Gemini로 선별 + 한국어 번역/요약한다."""
+    print("China EV 뉴스 RSS 수집 시작...")
+    raw_items = collect_china_news_raw()
+    print(f"China EV 뉴스 RSS 수집 완료: 후보 {len(raw_items)}건")
+    if not raw_items:
+        print("China RSS 뉴스 수집 실패(0건) - China 뉴스 갱신을 건너뜁니다.")
+        return []
+    raw_by_key = {_norm(raw["url"]): raw for raw in raw_items}
+
+    selected = []
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=build_china_news_summary_prompt(raw_items),
+        )
+        summarized = extract_json(response.text)
+        if isinstance(summarized, list):
+            for entry in summarized:
+                if not isinstance(entry, dict) or not entry.get("url"):
+                    continue
+                raw = raw_by_key.get(_norm(entry["url"]))
+                if raw is None:
+                    continue  # 모델이 원본에 없는 url을 만들어낸 경우 방어적으로 제외
+                selected.append(
+                    {
+                        "title": entry.get("title") or raw["title"],
+                        "summary": entry.get("summary") or raw.get("description") or raw["title"],
+                        "source": raw["source"],
+                        "date": raw["date"],
+                        "url": raw["url"],
+                        "linkType": "rss",
+                    }
+                )
+    except Exception as exc:  # noqa: BLE001 - 실패 시 원문(영어) 그대로 최소한의 결과라도 유지
+        print(f"China 뉴스 선별/번역 생성 실패, 원문 기반으로 대체합니다: {exc}")
+
+    if not selected:
+        for raw in raw_items[:MAX_CHINA_NEWS]:
+            selected.append(
+                {
+                    "title": raw["title"],
+                    "summary": raw.get("description") or raw["title"],
+                    "source": raw["source"],
+                    "date": raw["date"],
+                    "url": raw["url"],
+                    "linkType": "rss",
+                }
+            )
+
+    selected.sort(key=lambda n: n["date"], reverse=True)
+    return dedup_similar_titles(selected)[:MAX_CHINA_NEWS]
+
+
+def generate_china_news_briefing(client: "genai.Client", news_items: list) -> dict | None:
+    """China EV/배터리 뉴스 최종 목록을 바탕으로 카테고리별 브리핑(키워드 태깅/시사점 포함)을 생성한다."""
+    if not news_items:
+        return None
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=build_china_news_briefing_prompt(news_items),
+        )
+        payload = extract_json(response.text)
+        if not isinstance(payload, dict):
+            return None
+        categories = payload.get("categories")
+        if not isinstance(categories, list) or not categories:
+            return None
+        valid_urls = {_norm(n.get("url") or "") for n in news_items}
+        cleaned_categories = []
+        for cat in categories:
+            if not isinstance(cat, dict):
+                continue
+            items = cat.get("items")
+            if not isinstance(items, list):
+                continue
+            cleaned_items = [
+                item for item in items
+                if isinstance(item, dict) and _norm(item.get("url") or "") in valid_urls
+            ]
+            if cleaned_items:
+                cleaned_categories.append({"name": cat.get("name") or "기타", "items": cleaned_items})
+        if not cleaned_categories:
+            return None
+        return {
+            "keyTakeaways": [t for t in (payload.get("keyTakeaways") or []) if isinstance(t, str)],
+            "categories": cleaned_categories,
+            "implications": payload.get("implications") if isinstance(payload.get("implications"), str) else "",
+        }
+    except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
+        print(f"China 뉴스 브리핑(카테고리/시사점) 생성 실패, 건너뜁니다: {exc}")
+        return None
+
+
 def main() -> None:
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -976,14 +1246,32 @@ def main() -> None:
     vehicles = generate_vehicles(client, today_str)
     news = generate_news(client)
 
+    # China EV/배터리 뉴스는 국내 차량/뉴스 파이프라인과 완전히 독립적인 별도 소스(CnEVPost/CarNewsChina)이므로,
+    # 여기서 오류가 나더라도 위 vehicles/news 결과 저장을 막지 않도록 별도로 격리한다.
+    try:
+        china_news = generate_china_news(client)
+    except Exception as exc:  # noqa: BLE001
+        print(f"China 뉴스 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        china_news = []
+    merged_china_news = merge_china_news(existing.get("chinaNews") or [], china_news)
+    try:
+        china_news_briefing = generate_china_news_briefing(client, merged_china_news)
+    except Exception as exc:  # noqa: BLE001
+        print(f"China 뉴스 브리핑 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        china_news_briefing = None
+    if china_news_briefing is None:
+        china_news_briefing = existing.get("chinaNewsBriefing")
+
     if not vehicles and not news:
-        print("신규로 생성/수집된 차량/뉴스 데이터가 없어 해당 항목은 건너뛰지만, 환율 정보는 갱신합니다.")
+        print("신규로 생성/수집된 차량/뉴스 데이터가 없어 해당 항목은 건너뛰지만, 환율/China 뉴스 정보는 갱신합니다.")
         output = {
             "generatedAt": now_kst.isoformat(),
             "vehicles": existing["vehicles"],
             "news": existing["news"],
             "fx": fx,
             "newsBriefing": existing.get("newsBriefing"),
+            "chinaNews": merged_china_news,
+            "chinaNewsBriefing": china_news_briefing,
         }
         with open(DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
@@ -1023,6 +1311,8 @@ def main() -> None:
         "news": merged_news,
         "fx": fx,
         "newsBriefing": news_briefing,
+        "chinaNews": merged_china_news,
+        "chinaNewsBriefing": china_news_briefing,
     }
 
     with open(DATA_PATH, "w", encoding="utf-8") as f:
@@ -1031,7 +1321,8 @@ def main() -> None:
     print(
         f"data.json 갱신 완료 (신규 vehicles: {len(vehicles)} / 누적 vehicles: {len(merged_vehicles)}, "
         f"신규 news: {len(news)} / 누적 news: {len(merged_news)}, 스펙 보강: {backfilled_count}건, "
-        f"teardown 검증 적용: {verified_count}건, 뉴스 교차검증 적용: {news_checked_count}건)"
+        f"teardown 검증 적용: {verified_count}건, 뉴스 교차검증 적용: {news_checked_count}건, "
+        f"China 신규 news: {len(china_news)} / 누적 China news: {len(merged_china_news)})"
     )
 
 
