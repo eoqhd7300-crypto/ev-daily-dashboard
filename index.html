@@ -439,6 +439,50 @@
             return window.formatDateISO(d);
         };
 
+        // priceKRW는 데이터 소스마다 표기 형식이 제각각이다 (예: "36,500,000원", "약 3,650만 원",
+        // "1억 2,500만원 ~ 1억 5,000만원"). 실제 원(KRW) 정수값으로 환산한 뒤 항상
+        // "약 X억 X,XXX만원" 형식으로 통일해서 표시한다 (범위 표기는 "약 ~ ~" 형태로 유지).
+        window.formatKrwPriceDisplay = function(priceKRWRaw) {
+            if (!priceKRWRaw || typeof priceKRWRaw !== 'string') return priceKRWRaw;
+
+            const parseSegmentToWon = (segment) => {
+                const text = (segment || '').trim();
+                if (!text) return null;
+
+                let won = 0;
+                let matchedUnit = false;
+                const eokMatch = text.match(/([\d,]+(?:\.\d+)?)\s*억/);
+                if (eokMatch) {
+                    won += parseFloat(eokMatch[1].replace(/,/g, '')) * 100000000;
+                    matchedUnit = true;
+                }
+                const manMatch = text.match(/([\d,]+(?:\.\d+)?)\s*만/);
+                if (manMatch) {
+                    won += parseFloat(manMatch[1].replace(/,/g, '')) * 10000;
+                    matchedUnit = true;
+                }
+                if (matchedUnit) return Math.round(won);
+
+                // 억/만 단위 표기가 없으면 순수 숫자(원) 표기로 간주 (예: "36,500,000원")
+                const plainMatch = text.match(/([\d,]+(?:\.\d+)?)/);
+                if (plainMatch) return Math.round(parseFloat(plainMatch[1].replace(/,/g, '')));
+                return null;
+            };
+
+            const formatWon = (won) => {
+                if (won === null || won === undefined || isNaN(won) || won <= 0) return null;
+                const eok = Math.floor(won / 100000000);
+                const man = Math.round((won % 100000000) / 10000);
+                if (eok > 0 && man > 0) return `${eok}억 ${man.toLocaleString('ko-KR')}만원`;
+                if (eok > 0) return `${eok}억원`;
+                return `${man.toLocaleString('ko-KR')}만원`;
+            };
+
+            const formatted = priceKRWRaw.split('~').map(seg => formatWon(parseSegmentToWon(seg))).filter(Boolean);
+            if (formatted.length === 0) return priceKRWRaw; // 파싱 실패 시 원본 그대로 표시 (안전한 폴백)
+            return `약 ${formatted.join(' ~ ')}`;
+        };
+
         // Schedule Automatic Page Refresh at Next 09:00 AM
         window.scheduleNineAMAutoRefresh = function() {
             const now = new Date();
@@ -893,7 +937,7 @@
                         </td>
                         <td class="p-3 text-slate-600 text-center"><span title="${v.type}" class="inline-block max-w-[140px] truncate align-bottom px-2 py-0.5 rounded bg-sky-50 text-sky-700 text-xs font-medium">${v.type}</span></td>
                         <td class="p-3 text-center">
-                            <div class="font-semibold text-slate-900">${v.priceKRW}</div>
+                            <div class="font-semibold text-slate-900">${window.formatKrwPriceDisplay(v.priceKRW)}</div>
                             <div class="text-xs text-slate-400">${v.priceLocal}</div>
                         </td>
                         <td class="p-3 text-center text-xs text-slate-700 font-medium">${window.extractFormFactor(v)}</td>
@@ -962,7 +1006,7 @@
                             <p class="text-xs text-slate-500 mt-1 font-medium">제조사: ${v.brand} | 차종: ${v.type} | 출시예정: ${v.timeline}</p>
                         </div>
                         <div class="text-left sm:text-right">
-                            <span class="text-lg font-black text-sky-700">${v.priceKRW}</span>
+                            <span class="text-lg font-black text-sky-700">${window.formatKrwPriceDisplay(v.priceKRW)}</span>
                             <span class="text-xs text-slate-400 block">${v.priceLocal}</span>
                         </div>
                     </div>
