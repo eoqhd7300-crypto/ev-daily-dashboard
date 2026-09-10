@@ -77,15 +77,25 @@
 
         <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
             <div>
-                <h2 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+                <h2 id="newsPageTitle" class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
                     <span>📰 글로벌 EV 최신 기사 브리핑</span>
                     <span class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">오전 9시 자동 갱신</span>
                 </h2>
-                <p class="text-xs text-slate-500 mt-0.5">글로벌 전기차, 배터리, 완성차 기술 동향 헤드라인을 요약 정리했습니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.</p>
+                <p id="newsPageSubtitle" class="text-xs text-slate-500 mt-0.5">글로벌 전기차, 배터리, 완성차 기술 동향 헤드라인을 요약 정리했습니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.</p>
             </div>
             <a href="index.html" class="text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition flex items-center gap-1 whitespace-nowrap">
                 <span>◀ 메인 페이지로 돌아가기</span>
             </a>
+        </div>
+
+        <!-- 국내기사 / 중국기사 선택 탭 (메인 페이지 폼팩터/조성 선택 버튼과 동일한 스타일) -->
+        <div class="flex items-center gap-1.5 mb-4">
+            <button id="newsTab_domestic" data-tab="domestic" onclick="window.setNewsTab('domestic')" class="news-tab-btn px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg border border-sky-600 bg-sky-600 text-white shadow-xs transition">
+                🌐 국내기사
+            </button>
+            <button id="newsTab_china" data-tab="china" onclick="window.setNewsTab('china')" class="news-tab-btn px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-sky-50 transition">
+                🌐 중국기사
+            </button>
         </div>
 
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
@@ -97,10 +107,15 @@
 
     <!-- Application JavaScript Logic -->
     <script>
-        window.renderNewsList = function(newsData) {
+        let domesticNewsData = [];
+        let chinaNewsDataAll = [];
+        let activeNewsTab = 'domestic'; // 'domestic' | 'china' - 두 기사 출처를 섞지 않고 탭으로 분리
+
+        window.renderNewsList = function(newsData, badgeClass) {
             const container = document.getElementById('newsListContainer');
             if (!container) return;
             container.innerHTML = '';
+            const badge = badgeClass || 'bg-sky-600';
 
             if (!newsData || newsData.length === 0) {
                 container.innerHTML = '<p class="text-sm text-slate-400 text-center py-8">표시할 뉴스가 없습니다.</p>';
@@ -115,7 +130,7 @@
                 card.innerHTML = `
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center space-x-2 min-w-0">
-                            <span class="bg-sky-600 text-white text-xs font-bold px-2 py-0.5 rounded-md flex-shrink-0">NO. ${index + 1}</span>
+                            <span class="${badge} text-white text-xs font-bold px-2 py-0.5 rounded-md flex-shrink-0">NO. ${index + 1}</span>
                             <span class="text-sm font-bold text-slate-900 truncate">${item.title}</span>
                         </div>
                         <span class="text-xs font-semibold text-slate-400 flex-shrink-0">${item.date}</span>
@@ -132,22 +147,49 @@
             });
         };
 
+        // 국내기사/중국기사 탭 전환: 두 출처를 한 목록에 섞지 않고 선택한 쪽만 렌더링한다.
+        window.setNewsTab = function(tab) {
+            activeNewsTab = tab;
+
+            document.querySelectorAll('.news-tab-btn').forEach(btn => {
+                const isActive = btn.dataset.tab === tab;
+                btn.className = isActive
+                    ? "news-tab-btn px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg border border-sky-600 bg-sky-600 text-white shadow-xs transition"
+                    : "news-tab-btn px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50";
+            });
+
+            const titleEl = document.getElementById('newsPageTitle');
+            const subtitleEl = document.getElementById('newsPageSubtitle');
+            if (tab === 'china') {
+                if (titleEl) titleEl.innerHTML = '<span>📰 China EV 최신 기사 브리핑</span><span class="text-xs font-normal text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-md">오전 9시 자동 갱신</span>';
+                if (subtitleEl) subtitleEl.innerText = 'CnEVPost · CarNewsChina RSS 기반 중국 전기차/배터리 산업 동향입니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.';
+                window.renderNewsList(chinaNewsDataAll, 'bg-rose-600');
+            } else {
+                if (titleEl) titleEl.innerHTML = '<span>📰 글로벌 EV 최신 기사 브리핑</span><span class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">오전 9시 자동 갱신</span>';
+                if (subtitleEl) subtitleEl.innerText = '글로벌 전기차, 배터리, 완성차 기술 동향 헤드라인을 요약 정리했습니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.';
+                window.renderNewsList(domesticNewsData, 'bg-sky-600');
+            }
+        };
+
         // Initialize: fetch the real (data.json) news list. No hardcoded fallback dataset is
         // rendered anymore (it used to flash foreign/Chinese placeholder articles briefly before
         // being replaced by real data on every refresh) - only actual collected news is shown.
+        // URL의 ?tab=china 파라미터로 진입하면(메인 페이지 China 카드의 "전체 뉴스 보기" 링크) 중국기사 탭이
+        // 기본 선택된다.
         window.addEventListener('DOMContentLoaded', async () => {
             try {
                 const res = await fetch('./data.json', { cache: 'no-store' });
                 if (res.ok) {
                     const data = await res.json();
-                    window.renderNewsList(Array.isArray(data.news) ? data.news : []);
-                } else {
-                    window.renderNewsList([]);
+                    domesticNewsData = Array.isArray(data.news) ? data.news : [];
+                    chinaNewsDataAll = Array.isArray(data.chinaNews) ? data.chinaNews : [];
                 }
             } catch (err) {
                 console.warn('[EV News] data.json을 불러오지 못했습니다.', err);
-                window.renderNewsList([]);
             }
+
+            const requestedTab = new URLSearchParams(window.location.search).get('tab');
+            window.setNewsTab(requestedTab === 'china' ? 'china' : 'domestic');
         });
     </script>
 </body>
