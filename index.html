@@ -1474,7 +1474,9 @@
                 const data = await res.json();
 
                 if (Array.isArray(data.vehicles) && data.vehicles.length > 0) {
-                    vehicles = data.vehicles;
+                    // data.json에 저장된 selected 값과 무관하게, 페이지 최초 접속 시에는 항상
+                    // 체크박스가 해제된 상태로 시작한다 (사용자가 직접 선택해야만 비교 대상에 포함됨).
+                    vehicles = data.vehicles.map(v => ({ ...v, selected: false }));
                 }
                 if (Array.isArray(data.news) && data.news.length > 0) {
                     evLatestNewsData = data.news;
