@@ -960,7 +960,7 @@
                             </a>
                         </td>
                         <td class="p-3 text-center">
-                            <button type="button" onclick="event.stopPropagation(); window.toggleRowExpand('${v.id}')" title="배터리 시스템 & 스펙 상세 분석 펼치기/접기" class="inline-flex items-center justify-center w-8 h-8 rounded-lg ${isExpanded ? 'bg-indigo-600 text-white' : 'bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-500'} transition">
+                            <button type="button" onclick="event.stopPropagation(); window.toggleRowExpand('${v.id}')" title="차량 개요 및 배터리 시스템 기본 정보 펼치기/접기" class="inline-flex items-center justify-center w-8 h-8 rounded-lg ${isExpanded ? 'bg-indigo-600 text-white' : 'bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-500'} transition">
                                 <span class="text-xs transition-transform ${isExpanded ? 'rotate-180' : ''}">▼</span>
                             </button>
                         </td>
@@ -990,7 +990,7 @@
             document.getElementById('selectedCount').innerText = selectedCount;
         };
 
-        // Toggle inline "차량 & 배터리 기본 시스템 정보" panel directly below a table row (no separate window/modal)
+        // Toggle inline "차량 개요 및 배터리 시스템 기본 정보" panel directly below a table row (no separate window/modal)
         window.toggleRowExpand = function(id) {
             if (expandedVehicleIds.has(id)) {
                 expandedVehicleIds.delete(id);
@@ -1000,7 +1000,7 @@
             window.renderTable();
         };
 
-        // Builds the "2. 차량 & 배터리 기본 시스템 정보" content, now rendered inline under the clicked row
+        // Builds the "2. 차량 개요 및 배터리 시스템 기본 정보" content, now rendered inline under the clicked row
         window.buildDetailPanelHTML = function(v) {
             return `
                 <div class="p-5 border-t-2 border-indigo-200">
