@@ -439,6 +439,14 @@
             return window.formatDateISO(d);
         };
 
+        // cellMaker/packMaker 값 뒤에는 검증 근거를 알려주는 부가 메모("(실측 검증)", "(뉴스 교차검증)" 등)가
+        // 붙어있는 경우가 있다. 제조사명 자체와는 무관한 내부 검증 메타데이터이므로 화면 표시에서는 숨긴다
+        // (데이터 자체는 그대로 유지 - 검증 로직/CSV 백업 등에는 영향 없음).
+        window.stripMakerVerificationNote = function(makerStr) {
+            if (!makerStr || typeof makerStr !== 'string') return makerStr;
+            return makerStr.replace(/\s*\([^()]*검증[^()]*\)\s*$/, '').trim();
+        };
+
         // priceKRW는 데이터 소스마다 표기 형식이 제각각이다 (예: "36,500,000원", "약 3,650만 원",
         // "1억 2,500만원 ~ 1억 5,000만원"). 실제 원(KRW) 정수값으로 환산한 뒤 항상
         // "약 X억 X,XXX만원" 형식으로 통일해서 표시한다 (범위 표기는 "약 ~ ~" 형태로 유지).
@@ -943,8 +951,8 @@
                         <td class="p-3 text-center text-xs text-slate-700 font-medium">${window.extractFormFactor(v)}</td>
                         <td class="p-3 text-center text-xs text-slate-700 font-medium">${window.extractComposition(v)}</td>
                         <td class="p-3 text-center">
-                            <div class="text-xs text-slate-600"><span class="font-semibold text-sky-800">셀:</span> ${v.cellMaker}</div>
-                            <div class="text-xs text-slate-500"><span class="font-semibold text-slate-700">팩:</span> ${v.packMaker}</div>
+                            <div class="text-xs text-slate-600"><span class="font-semibold text-sky-800">셀:</span> ${window.stripMakerVerificationNote(v.cellMaker)}</div>
+                            <div class="text-xs text-slate-500"><span class="font-semibold text-slate-700">팩:</span> ${window.stripMakerVerificationNote(v.packMaker)}</div>
                         </td>
                         <td class="p-3 text-center">
                             <a href="https://www.google.com/search?q=${encodeURIComponent(v.name)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Google 검색으로 이 차량 검색하기" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-600 transition">
@@ -1025,8 +1033,8 @@
                         <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
                             <h4 class="font-bold text-slate-800 text-xs text-sky-700 uppercase tracking-wider mb-2">2. 배터리 팩 & 셀 시스템</h4>
                             <p><strong class="text-slate-900">핵심 스펙:</strong> ${v.batterySpec}</p>
-                            <p><strong class="text-slate-900">셀 제조사:</strong> <span class="bg-sky-100 text-sky-800 px-1.5 py-0.5 rounded font-semibold">${v.cellMaker}</span></p>
-                            <p><strong class="text-slate-900">팩 제조사:</strong> <span class="bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-semibold">${v.packMaker}</span></p>
+                            <p><strong class="text-slate-900">셀 제조사:</strong> <span class="bg-sky-100 text-sky-800 px-1.5 py-0.5 rounded font-semibold">${window.stripMakerVerificationNote(v.cellMaker)}</span></p>
+                            <p><strong class="text-slate-900">팩 제조사:</strong> <span class="bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-semibold">${window.stripMakerVerificationNote(v.packMaker)}</span></p>
                             <p><strong class="text-slate-900">QC 충전성능:</strong> <span class="text-sky-700 font-bold">${v.qcPerformance || '확인중 (미공개)'}</span></p>
                             <p><strong class="text-slate-900">팩 구조/패키징:</strong> ${v.packInfo}</p>
                             <p><strong class="text-slate-900">셀 폼팩터/화학:</strong> ${v.cellInfo}</p>
