@@ -1318,7 +1318,10 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
 
 def should_refresh_patent_trends(now_kst: datetime) -> bool:
     """특허 데이터는 매일 유의미하게 바뀌지 않고 BigQuery 무료 할당량(월 1TB)도 아껴야 하므로,
-    주 1회(월요일)에만 갱신한다."""
+    주 1회(월요일)에만 갱신한다. FORCE_PATENT_REFRESH=true 환경변수가 설정되면(수동 강제 실행)
+    요일과 무관하게 즉시 갱신한다."""
+    if os.environ.get("FORCE_PATENT_REFRESH", "").strip().lower() == "true":
+        return True
     return now_kst.weekday() == 0  # 0 = Monday
 
 

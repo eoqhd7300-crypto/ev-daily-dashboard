@@ -7,6 +7,12 @@ on:
     # 정시(0분)를 피해 10분으로 오프셋을 두어 실행 지연 가능성을 낮춥니다.
     - cron: '10 0 * * *'
   workflow_dispatch: # Actions 탭에서 수동 실행 버튼 활성화
+    inputs:
+      force_patent_refresh:
+        description: '특허 동향(BigQuery) 강제 갱신 - 체크 시 요일과 무관하게 즉시 조회'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -31,6 +37,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GCP_SA_KEY_JSON: ${{ secrets.GCP_SA_KEY_JSON }}
+          FORCE_PATENT_REFRESH: ${{ github.event.inputs.force_patent_refresh }}
         run: python update_dashboard.py
 
       - name: Commit and Push data.json
