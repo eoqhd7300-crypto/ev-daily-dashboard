@@ -43,6 +43,88 @@ CHINA_NEWS_FEEDS = [
 MAX_CHINA_NEWS = 20
 CHINA_NEWS_POOL_SIZE = 40
 
+# CATL/BYD/Geely 배터리 특허 동향(BigQuery `patents-public-data.patents.publications` 공개 데이터셋).
+# 특허 공개 데이터는 매일 유의미하게 바뀌지 않고 BigQuery 무료 할당량(월 1TB)도 아껴야 하므로,
+# main()에서 매일이 아니라 주 1회(월요일)만 조회한다. GCP_SA_KEY_JSON 환경변수(서비스 계정 키 JSON)가
+# 없으면 이 기능 전체를 건너뛴다 (다른 무료 파이프라인에는 영향 없음).
+MAX_PATENT_ITEMS = 80
+BATTERY_PATENT_SQL = """
+WITH filtered_patents AS (
+  SELECT
+    publication_number,
+    PARSE_DATE('%Y%m%d', CAST(publication_date AS STRING)) AS pub_date,
+    (SELECT name FROM UNNEST(assignee_harmonized) LIMIT 1) AS primary_assignee,
+    ARRAY(SELECT name FROM UNNEST(assignee_harmonized)) AS assignees,
+    COALESCE(
+      (SELECT text FROM UNNEST(title_localized) WHERE language = 'en' LIMIT 1),
+      (SELECT text FROM UNNEST(title_localized) LIMIT 1)
+    ) AS title,
+    COALESCE(
+      (SELECT text FROM UNNEST(abstract_localized) WHERE language = 'en' LIMIT 1),
+      (SELECT text FROM UNNEST(abstract_localized) LIMIT 1)
+    ) AS abstract,
+    ARRAY(SELECT code FROM UNNEST(ipc)) AS ipc_codes,
+    CONCAT('https://patents.google.com/patent/', publication_number, '/en') AS google_patent_url
+  FROM
+    `patents-public-data.patents.publications`
+  WHERE
+    publication_date >= 20240101
+    AND EXISTS (
+      SELECT 1
+      FROM UNNEST(assignee_harmonized) a
+      WHERE REGEXP_CONTAINS(
+        LOWER(a.name),
+        r'(contemporary amperex|catl|byd|findreams|geely|viridi|zeekr|宁德时代|比亚迪|弗迪|吉利|威睿|极氪)'
+      )
+    )
+    AND (
+      EXISTS (
+        SELECT 1
+        FROM UNNEST(ipc) i
+        WHERE STARTS_WITH(i.code, 'H01M4')
+           OR STARTS_WITH(i.code, 'H01M10')
+           OR STARTS_WITH(i.code, 'H01M50')
+           OR STARTS_WITH(i.code, 'B60L50')
+      )
+      OR
+      EXISTS (
+        SELECT 1
+        FROM UNNEST(title_localized) t
+        WHERE REGEXP_CONTAINS(
+          LOWER(t.text),
+          r'(cathode|anode|electrolyte|separator|solid-state|sodium-ion|na-ion|lfp|lmfp|silicon anode|electrode|coating|slurry|jelly roll|tab|current collector|cell-to-pack|ctp|ctb|blade battery|battery pack|cooling|thermal runaway)'
+        )
+      )
+    )
+)
+SELECT
+  publication_number,
+  pub_date,
+  CASE
+    WHEN REGEXP_CONTAINS(LOWER(ARRAY_TO_STRING(assignees, ' ')), r'contemporary amperex|catl|宁德时代') THEN 'CATL'
+    WHEN REGEXP_CONTAINS(LOWER(ARRAY_TO_STRING(assignees, ' ')), r'byd|findreams|比亚迪|弗迪') THEN 'BYD'
+    WHEN REGEXP_CONTAINS(LOWER(ARRAY_TO_STRING(assignees, ' ')), r'geely|viridi|zeekr|吉利|威睿|极氪') THEN 'Geely'
+    ELSE 'Other'
+  END AS company_name,
+  CASE
+    WHEN EXISTS(SELECT 1 FROM UNNEST(ipc_codes) code WHERE STARTS_WITH(code, 'H01M4')) THEN '소재 & 전극 (Cathode/Anode/Active Material)'
+    WHEN EXISTS(SELECT 1 FROM UNNEST(ipc_codes) code WHERE STARTS_WITH(code, 'H01M10/056')) THEN '전해질 & 전고체 (Electrolyte/Solid-State)'
+    WHEN EXISTS(SELECT 1 FROM UNNEST(ipc_codes) code WHERE STARTS_WITH(code, 'H01M10/04') OR STARTS_WITH(code, 'H01M10/058')) THEN '셀 제조 & 공정 (Cell Mfg/Winding/Stacking)'
+    WHEN EXISTS(SELECT 1 FROM UNNEST(ipc_codes) code WHERE STARTS_WITH(code, 'H01M50') OR STARTS_WITH(code, 'B60L50')) THEN '팩 구조 & CTP & 열관리 (Pack/CTP/Safety)'
+    ELSE '기타 배터리 기술 (Other Battery Tech)'
+  END AS primary_tech_category,
+  primary_assignee,
+  title,
+  abstract,
+  ARRAY_TO_STRING(ipc_codes, ', ') AS ipc_list,
+  google_patent_url
+FROM
+  filtered_patents
+ORDER BY
+  pub_date DESC
+LIMIT {max_items}
+""".format(max_items=MAX_PATENT_ITEMS)
+
 # 서로 다른 매체가 동일 사건을 보도해 제목만 비슷한 "유사 기사"를 걸러내기 위한 임계값
 TITLE_DUP_SIMILARITY_THRESHOLD = 0.72
 
@@ -617,8 +699,12 @@ def collect_recent_news_raw(pool_size: int = NEWS_POOL_SIZE) -> list:
 
 
 def load_existing_data() -> dict:
+    empty = {
+        "vehicles": [], "news": [], "fx": None, "newsBriefing": None,
+        "chinaNews": [], "chinaNewsBriefing": None, "patentTrends": None,
+    }
     if not os.path.exists(DATA_PATH):
-        return {"vehicles": [], "news": [], "fx": None, "newsBriefing": None, "chinaNews": [], "chinaNewsBriefing": None}
+        return dict(empty)
     try:
         with open(DATA_PATH, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -629,9 +715,10 @@ def load_existing_data() -> dict:
             "newsBriefing": data.get("newsBriefing"),
             "chinaNews": data.get("chinaNews") or [],
             "chinaNewsBriefing": data.get("chinaNewsBriefing"),
+            "patentTrends": data.get("patentTrends"),
         }
     except Exception:  # noqa: BLE001 - 손상된 파일이면 빈 값으로 시작
-        return {"vehicles": [], "news": [], "fx": None, "newsBriefing": None, "chinaNews": [], "chinaNewsBriefing": None}
+        return dict(empty)
 
 
 # 환율 조회에 실패했을 때 사용할 최종 안전값 (사이트에 기존에 표시되던 값과 동일)
@@ -1229,6 +1316,155 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
         return None
 
 
+def should_refresh_patent_trends(now_kst: datetime) -> bool:
+    """특허 데이터는 매일 유의미하게 바뀌지 않고 BigQuery 무료 할당량(월 1TB)도 아껴야 하므로,
+    주 1회(월요일)에만 갱신한다."""
+    return now_kst.weekday() == 0  # 0 = Monday
+
+
+def run_battery_patent_query() -> list:
+    """BigQuery 공개 특허 데이터셋에서 CATL/BYD/Geely 배터리 관련 특허를 조회한다.
+    GCP_SA_KEY_JSON(서비스 계정 키 JSON 전체 내용) 환경변수가 없으면 건너뛴다."""
+    sa_key_json = os.environ.get("GCP_SA_KEY_JSON")
+    if not sa_key_json:
+        print("GCP_SA_KEY_JSON 이 설정되지 않아 특허 동향 조회를 건너뜁니다.")
+        return []
+    try:
+        from google.cloud import bigquery
+        from google.oauth2 import service_account
+
+        info = json.loads(sa_key_json)
+        credentials = service_account.Credentials.from_service_account_info(
+            info, scopes=["https://www.googleapis.com/auth/cloud-platform"]
+        )
+        client = bigquery.Client(credentials=credentials, project=info.get("project_id"))
+        rows = client.query(BATTERY_PATENT_SQL, location="US").result()
+
+        patents = []
+        for row in rows:
+            pub_date = row["pub_date"]
+            patents.append(
+                {
+                    "title": row["title"] or "",
+                    "abstract": (row["abstract"] or "")[:500],  # 프롬프트 용량 절약을 위해 초록은 500자로 절단
+                    "company_name": row["company_name"] or "",
+                    "primary_assignee": row["primary_assignee"] or "",
+                    "primary_tech_category": row["primary_tech_category"] or "",
+                    "ipc_list": row["ipc_list"] or "",
+                    "pub_date": pub_date.isoformat() if pub_date else "",
+                    "google_patent_url": row["google_patent_url"] or "",
+                }
+            )
+        return patents
+    except Exception as exc:  # noqa: BLE001 - BigQuery 연동 실패는 이 기능만 건너뛰고 나머지 파이프라인은 유지
+        print(f"BigQuery 특허 조회 실패, 건너뜁니다: {exc}")
+        return []
+
+
+def build_patent_trend_prompt(patents: list) -> str:
+    items_json = json.dumps(
+        [
+            {
+                "title": p.get("title", ""),
+                "abstract": p.get("abstract", ""),
+                "company_name": p.get("company_name", ""),
+                "primary_tech_category": p.get("primary_tech_category", ""),
+                "ipc_list": p.get("ipc_list", ""),
+                "pub_date": p.get("pub_date", ""),
+                "google_patent_url": p.get("google_patent_url", ""),
+            }
+            for p in patents
+        ],
+        ensure_ascii=False,
+        indent=2,
+    )
+    return f"""
+아래는 Google BigQuery 공개 특허 데이터셋(patents-public-data)에서 조회한 CATL/BYD/Geely(및 계열사)의
+최근 배터리 관련 공개 특허 목록입니다 (title, abstract 일부, company_name, primary_tech_category, ipc_list,
+pub_date, google_patent_url 포함, 원문은 영문입니다).
+
+당신은 배터리 산업 특허 애널리스트입니다. 개별 특허를 전부 나열하지 말고, 아래 JSON 스키마에 맞춰
+"기업별·기술영역별 특허 트렌드 리포트"를 한국어로 작성하세요.
+
+작성 규칙:
+1. categories: 특허들을 기술 영역별로 2~4개 그룹으로 묶으세요 (예: "소재 & 전극", "전해질 & 전고체",
+   "셀 제조·공정", "팩 구조 & CTP & 열관리"). primary_tech_category 필드를 참고하되, 자연스러운 한국어
+   그룹명으로 재구성해도 됩니다.
+2. 각 그룹의 items는 그룹을 대표할 만한 특허 2~4건만 선별하여 아래 필드를 작성하세요 (전체 나열 금지):
+   - headline: 특허의 핵심 기술 내용을 압축한 짧은 소제목(15자 내외, 한국어)
+   - summary: title/abstract를 바탕으로 1문장 핵심 요약(한국어) - 청구항 직역이 아니라 "무엇을 개선/해결하는
+     기술인지" 위주로 요약
+   - tags: 핵심 키워드 2~4개를 "#키워드" 형태 문자열 배열로 작성 (예: "#전고체", "#탭용접", "#CATL")
+   - source: company_name 값을 그대로 사용 (예: "CATL", "BYD", "Geely")
+   - date: pub_date 값을 그대로 사용 (YYYY-MM-DD, 변경 금지)
+   - url: google_patent_url 값을 그대로 사용 (변경 금지)
+3. keyTakeaways: 전체 특허 목록을 관통하는 "기업별 기술 전략 방향" 인사이트 2~3개를 한 문장씩 배열로
+   작성하세요 (예: 어느 기업이 어떤 기술에 집중하는지, 최근 급증한 기술 분야 등 - 개별 특허 제목 나열 금지).
+4. implications: "이 특허 트렌드가 한국 배터리 업계에 주는 시사점"을 2줄 이내(공백 포함 약 120자 이내)로 분석하세요.
+5. url 값은 반드시 입력된 google_patent_url 중에서만 선택하세요 (지어내지 마세요).
+6. 마크다운 코드블록이나 설명 문장 없이 순수 JSON 객체만 응답하세요.
+
+원본 특허 목록:
+{items_json}
+
+응답 형식 (JSON 객체 하나):
+{{
+  "keyTakeaways": ["...", "..."],
+  "categories": [
+    {{
+      "name": "...",
+      "items": [
+        {{"headline": "...", "summary": "...", "tags": ["#...", "#..."], "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+      ]
+    }}
+  ],
+  "implications": "..."
+}}
+"""
+
+
+def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None:
+    """조회된 특허 목록을 바탕으로 카테고리별 기술 트렌드 브리핑을 생성한다. 실패 시 None을 반환하며,
+    호출부에서는 지난주 버전을 그대로 유지한다."""
+    if not patents:
+        return None
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=build_patent_trend_prompt(patents),
+        )
+        payload = extract_json(response.text)
+        if not isinstance(payload, dict):
+            return None
+        categories = payload.get("categories")
+        if not isinstance(categories, list) or not categories:
+            return None
+        valid_urls = {_norm(p.get("google_patent_url") or "") for p in patents}
+        cleaned_categories = []
+        for cat in categories:
+            if not isinstance(cat, dict):
+                continue
+            items = cat.get("items")
+            if not isinstance(items, list):
+                continue
+            cleaned_items = [
+                item for item in items
+                if isinstance(item, dict) and _norm(item.get("url") or "") in valid_urls
+            ]
+            if cleaned_items:
+                cleaned_categories.append({"name": cat.get("name") or "기타", "items": cleaned_items})
+        if not cleaned_categories:
+            return None
+        return {
+            "keyTakeaways": [t for t in (payload.get("keyTakeaways") or []) if isinstance(t, str)],
+            "categories": cleaned_categories,
+            "implications": payload.get("implications") if isinstance(payload.get("implications"), str) else "",
+        }
+    except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
+        print(f"특허 트렌드 브리핑 생성 실패, 건너뜁니다: {exc}")
+        return None
+
+
 def main() -> None:
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -1262,6 +1498,22 @@ def main() -> None:
     if china_news_briefing is None:
         china_news_briefing = existing.get("chinaNewsBriefing")
 
+    # 배터리 특허 동향(BigQuery, CATL/BYD/Geely): 주 1회(월요일)만 조회 + GCP_SA_KEY_JSON 없으면 자동 스킵.
+    # 다른 무료 파이프라인과 완전히 독립적으로 격리해, 여기서 오류가 나도 나머지 저장에는 영향 없다.
+    try:
+        if should_refresh_patent_trends(now_kst):
+            print("특허 동향 갱신 시작 (주 1회, 월요일)...")
+            patents = run_battery_patent_query()
+            print(f"BigQuery 특허 조회 완료: {len(patents)}건")
+            patent_trends = generate_patent_trends(client, patents)
+        else:
+            patent_trends = None
+    except Exception as exc:  # noqa: BLE001
+        print(f"특허 동향 갱신 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        patent_trends = None
+    if patent_trends is None:
+        patent_trends = existing.get("patentTrends")
+
     if not vehicles and not news:
         print("신규로 생성/수집된 차량/뉴스 데이터가 없어 해당 항목은 건너뛰지만, 환율/China 뉴스 정보는 갱신합니다.")
         output = {
@@ -1272,6 +1524,7 @@ def main() -> None:
             "newsBriefing": existing.get("newsBriefing"),
             "chinaNews": merged_china_news,
             "chinaNewsBriefing": china_news_briefing,
+            "patentTrends": patent_trends,
         }
         with open(DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
@@ -1313,6 +1566,7 @@ def main() -> None:
         "newsBriefing": news_briefing,
         "chinaNews": merged_china_news,
         "chinaNewsBriefing": china_news_briefing,
+        "patentTrends": patent_trends,
     }
 
     with open(DATA_PATH, "w", encoding="utf-8") as f:

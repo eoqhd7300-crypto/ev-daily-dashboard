@@ -30,6 +30,7 @@ jobs:
       - name: Run Script & Regenerate data.json
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GCP_SA_KEY_JSON: ${{ secrets.GCP_SA_KEY_JSON }}
         run: python update_dashboard.py
 
       - name: Commit and Push data.json
