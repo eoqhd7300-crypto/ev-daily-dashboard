@@ -68,7 +68,9 @@ WITH filtered_patents AS (
       (SELECT text FROM UNNEST(abstract_localized) LIMIT 1)
     ) AS abstract,
     ARRAY(SELECT code FROM UNNEST(ipc)) AS ipc_codes,
-    CONCAT('https://patents.google.com/patent/', publication_number, '/en') AS google_patent_url
+    -- publication_number는 'EP-4726839-A1'처럼 하이픈이 포함된 형식이지만, Google Patents 페이지
+    -- URL은 하이픈 없는 'EP4726839A1' 형식을 요구하므로 REPLACE로 제거한 뒤 링크를 구성한다.
+    CONCAT('https://patents.google.com/patent/', REPLACE(publication_number, '-', ''), '/en') AS google_patent_url
   FROM
     `patents-public-data.patents.publications`
   WHERE
