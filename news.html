@@ -78,7 +78,7 @@
                     <span>📰 글로벌 EV 최신 기사 브리핑</span>
                     <span class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">Daily update</span>
                 </h2>
-                <p id="newsPageSubtitle" class="text-xs text-slate-500 mt-0.5">글로벌 전기차, 배터리, 완성차 기술 동향 헤드라인을 요약 정리했습니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.</p>
+                <p id="newsPageSubtitle" class="text-xs text-slate-500 mt-0.5">글로벌 전기차/배터리 기술 관련 기사 헤드라인을 요약 합니다.(원본 링크를 클릭하면 출처 페이지로 이동, 매일 오전/오후 총 2회 업데이트)</p>
             </div>
             <a href="index.html" class="text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition flex items-center gap-1 whitespace-nowrap">
                 <span>◀ 메인 페이지로 돌아가기</span>
@@ -159,11 +159,11 @@
             const subtitleEl = document.getElementById('newsPageSubtitle');
             if (tab === 'china') {
                 if (titleEl) titleEl.innerHTML = '<span>📰 China EV 최신 기사 브리핑</span><span class="text-xs font-normal text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-md">Daily update</span>';
-                if (subtitleEl) subtitleEl.innerText = 'CnEVPost · CarNewsChina RSS 기반 중국 전기차/배터리 산업 동향입니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.';
+                if (subtitleEl) subtitleEl.innerText = '중국 전기차/배터리 산업 관련 기사 헤드라인 요약 입니다.(원본 링크를 클릭하면 출처 페이지로 이동, 매일 오전/오후 총 2회 업데이트)';
                 window.renderNewsList(chinaNewsDataAll, 'bg-rose-600');
             } else {
                 if (titleEl) titleEl.innerHTML = '<span>📰 글로벌 EV 최신 기사 브리핑</span><span class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">Daily update</span>';
-                if (subtitleEl) subtitleEl.innerText = '글로벌 전기차, 배터리, 완성차 기술 동향 헤드라인을 요약 정리했습니다. 원본 링크를 클릭하면 출처 페이지로 이동합니다.';
+                if (subtitleEl) subtitleEl.innerText = '글로벌 전기차/배터리 기술 관련 기사 헤드라인을 요약 합니다.(원본 링크를 클릭하면 출처 페이지로 이동, 매일 오전/오후 총 2회 업데이트)';
                 window.renderNewsList(domesticNewsData, 'bg-sky-600');
             }
         };
