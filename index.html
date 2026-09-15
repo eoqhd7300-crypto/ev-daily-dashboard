@@ -153,10 +153,10 @@
                 <div class="flex items-center space-x-2.5 min-w-0">
                     <span class="bg-sky-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md flex-shrink-0 animate-pulse">Daily update</span>
                     <span class="text-xs sm:text-sm font-bold text-sky-200 whitespace-nowrap">📰 글로벌 EV & 배터리 최신 동향 리포트</span>
-                </div>
-                <a href="news.html" class="flex items-center space-x-2 text-xs font-bold text-sky-300 hover:text-white whitespace-nowrap flex-shrink-0 transition group">
-                    <span id="globalNewsSourceCite" class="text-[10px] sm:text-[11px] font-normal text-slate-400 group-hover:text-slate-300 hidden sm:inline"></span>
                     <span class="text-slate-500 hidden sm:inline">|</span>
+                    <span id="globalNewsSourceCite" class="text-[11px] text-slate-400 hidden sm:inline"></span>
+                </div>
+                <a href="news.html" class="flex items-center space-x-1 text-xs font-bold text-sky-300 hover:text-white whitespace-nowrap flex-shrink-0 transition">
                     <span>전체 뉴스 보기 (EV News)</span>
                     <span>➔</span>
                 </a>
@@ -799,7 +799,8 @@
             `;
         };
 
-        // 대표 출처 2곳 + "외 N개" 형태의 출처 표기 텍스트를 만든다 (가장 많이 등장한 매체 2곳을 대표로 노출).
+        // 대표 매체 2곳 + "외 N개 매체" 형태의 출처 표기 텍스트를 만든다 (가장 많이 등장한 매체 2곳을 대표로 노출).
+        // "N개"가 기사 건수가 아니라 매체(출처) 개수임을 명확히 하고, 전체 기사 건수도 함께 표기한다.
         window.buildSourceCitationText = function(newsData) {
             if (!newsData || newsData.length === 0) return '';
             const counts = {};
@@ -812,7 +813,8 @@
             if (sorted.length === 0) return '';
             const top2 = sorted.slice(0, 2);
             const remaining = sorted.length - top2.length;
-            return remaining > 0 ? `출처: ${top2.join(' · ')} 외 ${remaining}개` : `출처: ${top2.join(' · ')}`;
+            const sourcesLabel = remaining > 0 ? `${top2.join(' · ')} 외 매체 ${remaining}곳` : top2.join(' · ');
+            return `출처: ${sourcesLabel} (전체 기사 ${newsData.length}건)`;
         };
 
         window.renderTopNewsPreview = function() {
