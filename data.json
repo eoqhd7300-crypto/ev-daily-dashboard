@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T16:28:03.847607+09:00",
+  "generatedAt": "2026-09-15T16:42:06.820834+09:00",
   "vehicles": [
     {
       "id": "polestar_5_gt",
@@ -916,15 +916,15 @@
       "packInfo": "Structural Battery Pack (팩-차체 일체형)",
       "cellInfo": "4695 지름 원통형 하이니켈 셀",
       "chargingSafety": "충돌 차단 퓨즈 제어 및 오프로드 하부 스키드 플레이트 일체형 방호",
-      "trim": "Dual-Motor All-Wheel Drive",
-      "topSpeed": "200km/h",
-      "zeroToHundred": "4.5초",
-      "maxOutput": "300kW / 408ps",
-      "maxChargePower": "220kW",
+      "trim": "Dual Motor AWD",
+      "topSpeed": "200 km/h",
+      "zeroToHundred": "3.5초 미만",
+      "maxOutput": "300 kW (408 ps)",
+      "maxChargePower": "220 kW",
       "packVoltage": "400V",
-      "packType": "Cell-to-Chassis (CTC)",
-      "cellType": "원통형 (Cylindrical 4695)",
-      "coolingMethod": "셀 방사형 사이드 충진 액체 냉각",
+      "packType": "구조용 배터리 팩 (Structural Pack)",
+      "cellType": "4695 원통형 (Cylindrical)",
+      "coolingMethod": "수랭식 (Liquid Cooling)",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -934,12 +934,60 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM High-Nickel",
-      "cellDimensionsMeasured": "-",
+      "cellComposition": "NCM",
+      "cellDimensionsMeasured": "Ø46mm × 95mm",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
       "cellMakerCheckedAt": "2026-09-15",
-      "cellMakerSource": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQUXZ3aVBiQkFUWDR4V1BYdGhELWtOREZ2cVJIbVBiYUIzNFZIckRSQm1ZZzlvZjNlU25WLWtIRGpUeUFXUW43SkZWaTdaUjlLSGlrX1Vna2NDTU5vcDBCMnRiYlk4ZkpPalBpdUtQdDFRczdvbldYMDVOd29nckZ2OTRxT0JBZVp3X1ZPek5wUWxZRmVxNDJ2YXhvWFltZFk5dlBBWUdvOWVTcU9sZHdnag?oc=5"
+      "cellMakerSource": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQUXZ3aVBiQkFUWDR4V1BYdGhELWtOREZ2cVJIbVBiYUIzNFZIckRSQm1ZZzlvZjNlU25WLWtIRGpUeUFXUW43SkZWaTdaUjlLSGlrX1Vna2NDTU5vcDBCMnRiYlk4ZkpPalBpdUtQdDFRczdvbldYMDVOd29nckZ2OTRxT0JBZVp3X1ZPek5wUWxZRmVxNDJ2YXhvWFltZFk5dlBBWUdvOWVTcU9sZHdnag?oc=5",
+      "specLastCheckedAt": "2026-09-15"
+    },
+    {
+      "id": "renault_twingo_etech",
+      "selected": false,
+      "releaseDate": "2026-09-02",
+      "name": "르노 트윙고 E-Tech (Renault Twingo E-Tech Electric)",
+      "brand": "Renault (르노)",
+      "type": "경형 전동화 해치백",
+      "timeline": "2026년 12월 출시 예정",
+      "priceLocal": "€19,900 EUR",
+      "priceKRW": "약 2,940만 원",
+      "batterySpec": "37.5 kWh LFP 배터리 (AmpR Small 400V)",
+      "cellMaker": "AESC (에이엔에스씨 / 엔비전에이엔에스씨)",
+      "packMaker": "Ampere (암페어 / 르노 자회사)",
+      "qcPerformance": "2.1C Peak (최대 85kW) | SOC 10% → 80% (약 28분)",
+      "rangePerformance": "WLTP 300km / 0-100km/h 9.5초 / 전륜구동 FWD 60kW / 도심 특화 초효율 전비 (10kWh/100km)",
+      "overview": "2만 유로 이하의 압도적 가격 경쟁력을 선사하는 AmpR Small 플랫폼 기반 도심형 초소형 순수 전기차.",
+      "adMessage": "Legendary City Car Reborn - Pure Electric Under €20,000",
+      "dimensions": "3,750mm × 1,720mm × 1,470mm / WB: 2,490mm",
+      "powertrain": "Single Motor FWD (최고출력 60kW / 82ps, 최대토크 165Nm)",
+      "packInfo": "AmpR Compact Ultra-light Pack",
+      "cellInfo": "AESC High-Safety LFP Cell",
+      "chargingSafety": "Fireman Access(화재 진압용 충수 수구) 및 통합 열차단 베이스",
+      "trim": "E-Tech Electric",
+      "topSpeed": "130 km/h",
+      "zeroToHundred": "9.5초",
+      "maxOutput": "60 kW (82 ps)",
+      "maxChargePower": "85 kW",
+      "packVoltage": "400V",
+      "packType": "AmpR Small 통합형 팩",
+      "cellType": "각형/파우치형",
+      "coolingMethod": "수랭식 (Liquid Cooling)",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "LFP",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-09-15",
+      "cellMakerCheckedAt": "2026-09-15"
     },
     {
       "id": "porsche_718_cayman_ev_2026",
@@ -2350,36 +2398,36 @@
       "cellMakerCheckedAt": "2026-09-08"
     },
     {
-      "id": "polestar_5_gt",
+      "id": "polestar_5",
       "selected": false,
       "releaseDate": "2026-08-11",
       "name": "폴스타 5 (Polestar 5)",
       "brand": "Polestar (폴스타)",
-      "type": "4도어 럭셔리 전동 5도어 GT",
-      "timeline": "2027년 01월 출시예정",
-      "priceLocal": "$105,000",
-      "priceKRW": "약 1억 4,200만 원",
-      "batterySpec": "103 kWh 800V NCM 배터리 (초고속 차징 셀)",
+      "type": "대형 4도어 전동화 럭셔리 GT",
+      "timeline": "2027년 02월 출시 예정",
+      "priceLocal": "$100,000 USD",
+      "priceKRW": "약 1억 3,800만 원",
+      "batterySpec": "103 kWh XFC 초급속 충전 NCM 배터리 (800V)",
       "cellMaker": "SK On (SK온) (뉴스 교차검증)",
-      "packMaker": "Polestar Performance (폴스타)",
-      "qcPerformance": "4.8C Peak (최대 370kW) | SOC 10% → 80% (약 10분)",
-      "rangePerformance": "WLTP 600km / 884ps 듀얼 모터 및 접합 알루미늄 차섀 하이드로폼 플랫폼",
-      "overview": "StoreDot의 XFC(극속 충전) 기술 기반 셀을 적용하여 10분 만에 80% 충전을 목표로 개발된 고성능 럭셔리 GT.",
-      "adMessage": "Extreme Fast Charging Luxury Electric GT",
-      "dimensions": "4,980mm × 1,960mm × 1,420mm / WB: 3,000mm",
-      "powertrain": "High-Performance Dual Motor AWD (합산 최고출력 650kW / 884ps, 최대토크 900Nm)",
-      "packInfo": "800V 접합 알루미늄 샤시 일체형 고출력 팩",
+      "packMaker": "Polestar (폴스타)",
+      "qcPerformance": "3.4C Peak (최대 350kW) | SOC 10% → 80% (약 10분)",
+      "rangePerformance": "WLTP 600km / 0-100km/h 3.2초 / 듀얼모터 AWD 650kW / 본디드 알루미늄 새시",
+      "overview": "스토어닷(StoreDot)의 초급속 충전(XFC) 실리콘 음극 기술이 적용되어 10분 만에 80% 충전이 가능한 플래그십 GT.",
+      "adMessage": "The Electric Performance 4-Door GT - 10 Min Extreme Fast Charge",
+      "dimensions": "4,980mm × 1,960mm × 1,420mm / WB: 3,010mm",
+      "powertrain": "Dual Motor AWD (합산 최고출력 650kW / 884ps, 최대토크 900Nm)",
+      "packInfo": "Bonded Aluminum Spaceframe Structural Pack",
       "cellInfo": "StoreDot XFC Silicon-Dominant Anode Cell",
-      "chargingSafety": "초고속 충전 전용 능동 가압 유체 쿨링 시스템",
-      "trim": "GT Dual Motor",
+      "chargingSafety": "셀 유닛 단위 지능형 쿨링 차열판 및 초급속 충전 과열 차단 BMS",
+      "trim": "Performance Dual Motor",
       "topSpeed": "250 km/h",
       "zeroToHundred": "3.2초",
       "maxOutput": "650 kW (884 ps)",
-      "maxChargePower": "370 kW",
+      "maxChargePower": "350 kW",
       "packVoltage": "800V",
-      "packType": "Bespoke Aluminium Integrated Pack",
-      "cellType": "Pouch NCM",
-      "coolingMethod": "Liquid Cooling",
+      "packType": "본디드 알루미늄 일체형 팩",
+      "cellType": "파우치형 (Pouch / XFC)",
+      "coolingMethod": "수랭식 (Liquid Cooling)",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -2389,12 +2437,12 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM 811",
+      "cellComposition": "NCM",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-14",
-      "cellMakerCheckedAt": "2026-09-08",
+      "specLastCheckedAt": "2026-09-15",
+      "cellMakerCheckedAt": "2026-09-15",
       "cellMakerSource": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9QTXJpS2U5QXhWc1E3d2Z3TUpvVjVUcER2TzNwUHJUb1VwUFo4UGp0a18xQV9oN0tDVHYwaXR0Yk1LUUVEcGpnRjVVLXJ4Q3oyeldZRkJjazVQQmQxSVhN?oc=5"
     },
     {
@@ -2605,15 +2653,15 @@
       "packInfo": "E-GMP 대형 플로어 통합 배터리 보강 팩",
       "cellInfo": "SK온 차세대 하이니켈 파우치형 셀",
       "chargingSafety": "3중 지능형 셀 격리 구조 및 분당 1,000회 진단 BMS",
-      "trim": "Long Range Exclusive 2WD",
-      "topSpeed": "185km/h",
-      "zeroToHundred": "6.8초",
-      "maxOutput": "160kW / 218ps",
-      "maxChargePower": "350kW",
+      "trim": "Long Range",
+      "topSpeed": "190 km/h",
+      "zeroToHundred": "5.2초 ~ 6.7초",
+      "maxOutput": "160 kW ~ 230 kW (218 ps ~ 313 ps)",
+      "maxChargePower": "350 kW",
       "packVoltage": "800V",
-      "packType": "Cell-to-Module (CTM)",
+      "packType": "E-GMP 모듈형 팩",
       "cellType": "파우치형 (Pouch)",
-      "coolingMethod": "액체 냉각 (Cooling Plate)",
+      "coolingMethod": "수랭식 (Liquid Cooling)",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -2623,11 +2671,12 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM High-Nickel",
+      "cellComposition": "NCM",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-09-15"
+      "cellMakerCheckedAt": "2026-09-15",
+      "specLastCheckedAt": "2026-09-15"
     },
     {
       "id": "tesla_cybercab_prod",
@@ -3708,52 +3757,6 @@
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
       "specLastCheckedAt": "2026-09-08"
-    },
-    {
-      "id": "xiaomi_su7_ultra_prod",
-      "selected": true,
-      "releaseDate": "2026-07-08",
-      "name": "샤오미 SU7 울트라 (Xiaomi SU7 Ultra)",
-      "brand": "Xiaomi (샤오미)",
-      "type": "초고성능 하이퍼 전동 세단",
-      "timeline": "2026년 10월 출시예정",
-      "priceLocal": "¥814,900 RMB",
-      "priceKRW": "약 1억 6,100만 원",
-      "batterySpec": "93.7 kWh CATL Qilin 2.0 (NCM)",
-      "cellMaker": "CATL (닝더시대) (실측 검증)",
-      "packMaker": "Xiaomi EV (샤오미 자체)",
-      "qcPerformance": "5.2C Peak (최대 490kW) | SOC 10% → 80% (약 11분)",
-      "rangePerformance": "CLTC 620km / Tri-Motor AWD (합산 최고출력 1,138kW / 1,548ps, 0-100km/h 1.98초)",
-      "overview": "트리플 모터 파워트레인과 CATL 麒麟(Qilin) 2.0 고방전 배터리를 탑재한 트랙 특화 하이퍼 세단.",
-      "adMessage": "Track-Ready Hyper Electric Sedan - 1548 Horsepower",
-      "dimensions": "5,115mm × 1,970mm × 1,465mm / WB: 3,000mm",
-      "powertrain": "Tri-Motor AWD (V8s + V8s + V6s, 최고출력 1,138kW / 1,548ps, 최대토크 1,770Nm)",
-      "packInfo": "800V CTB (Cell-to-Body) 트랙 열관리 강화 팩",
-      "cellInfo": "CATL Qilin High-Power High-C-rate NCM Cell",
-      "chargingSafety": "액체 질소 냉각 매핑 기술 및 셀 액상 분리 안전 채널",
-      "trim": "Ultra Tri-Motor AWD",
-      "topSpeed": "359 km/h",
-      "zeroToHundred": "1.98 초",
-      "maxOutput": "1,138 kW (1,548 ps)",
-      "maxChargePower": "490 kW",
-      "packVoltage": "897 V",
-      "packType": "CTB (Cell-to-Body)",
-      "cellType": "CATL Qilin 2.0 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Dual-surface cooling)",
-      "packCapacityAh": "-",
-      "packDimensions": "-",
-      "packWeight": "-",
-      "packMinusCellWeight": "-",
-      "cellToPackWeightRatio": "-",
-      "packEnergyDensity": "-",
-      "cellConfiguration": "-",
-      "cellEnergy": "-",
-      "cellCapacityAh": "-",
-      "cellComposition": "NCM",
-      "cellDimensionsMeasured": "-",
-      "cellWeightMeasured": "-",
-      "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-13"
     }
   ],
   "news": [
@@ -3885,7 +3888,7 @@
     },
     {
       "title": "파나소닉, 150℃ 작동 전고체 배터리 개발…올해 4분기 생산 공급 - 비즈월드",
-      "summary": "파나소닉, 150℃ 작동 전고체 배터리 개발…올해 4분기 생산 공급    비즈월드",
+      "summary": "파나소닉이 최고 150℃의 고온 환경에서도 안정적으로 작동하는 차세대 전고체 배터리 개발을 완료하고 올해 4분기 양산 공급에 나섭니다.",
       "source": "비즈월드",
       "date": "2026-09-15",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1wWVZuazBLU0VhdzVnZFJZRjZPNTVTcmFTcFAzQ2p2bE5NcDJmM3NfelUwZG81dXI2cjVUXzl0R3FDZTFJZWFUcWhsSUxodTRRb1FnWlN1MVFRVDhMQW1XNTFYc0V0X1RqRmc?oc=5",
@@ -3921,7 +3924,7 @@
     },
     {
       "title": "BYD, 전고체 배터리 전기차 2027년 첫 출시…10년 넘은 기다림 끝나나 - digitaltoday.co.kr",
-      "summary": "BYD, 전고체 배터리 전기차 2027년 첫 출시…10년 넘은 기다림 끝나나    digitaltoday.co.kr",
+      "summary": "중국 BYD가 2027년 전고체 배터리를 탑재한 전기차 시범 모델을 공개하고 2030년 본격 상용화를 추진하며 차세대 전고체 전지 실차 적용 기술 개발을 가속화하고 있습니다.",
       "source": "digitaltoday.co.kr",
       "date": "2026-09-15",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5FU0U1bmZ0bGhoSG04VDlhb1lSUkFzenRWVktmejFMSlNjZnFUNVh1UnFsVHVtMUtUbzZzWWtiRUx6bW9ZYXdSdWdHcWYzV09xdTVzYmwybzNGSkxqS1hlMmdpS1B2ZllZS1hnZ1ZSN2tGQXc?oc=5",
@@ -3942,238 +3945,271 @@
     "usdKrw": 1347.2,
     "eurKrw": 1556.22,
     "cnyKrw": 200.32,
-    "updatedAt": "2026-09-15T16:28:04.001432+09:00"
+    "updatedAt": "2026-09-15T16:42:06.998320+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
-      "실리콘 음극재 대규모 양산 투자와 무음극·초저압 기술 등 전고체 배터리 핵심 혁신이 가속화되며 차세대 배터리 주도권 다툼이 심화되고 있습니다.",
-      "지하주차장 및 차량 화재에 대응하기 위해 AI 기반 멀티모달 예측, 열화상 모니터링, 초동 감지 센서 기술이 전기차 안전의 필수 표준으로 정착하고 있습니다.",
-      "사용후 배터리를 활용한 UBESS 실증, 폐배터리 리사이클링 및 수명주기 관리 솔루션 확대로 배터리 전주기 선순환 생태계 구축이 속도를 내고 있습니다."
+      "전기차 캐즘 여파에 대응해 배터리 업계는 실리콘 음극재 및 전고체 등 차세대 소재 개발과 함께 ESS, 방산·드론 특수전지로 사업 영역을 확장하고 있습니다.",
+      "미국의 대중 견제 정책으로 국내 기업의 글로벌 수주 기회가 확대되는 반면, 국내 EV 시장 내 중국산 LFP 침투 및 전문 인력 유입 감소는 위기 요인으로 작용하고 있습니다.",
+      "배터리 화재 위험성 해소를 위해 AI 기반 감지·예측 기술 도입, 전용 보험 상품 출시, 대중교통 열폭주 대피 수칙 제정 등 다각도의 안전 생태계가 구축되고 있습니다."
     ],
     "categories": [
       {
         "name": "차세대 배터리 및 소재 혁신",
         "items": [
           {
-            "headline": "HS효성, 울산에 1.2조 실리콘음극재 공장 신설",
-            "summary": "HS효성에너지솔루션코리아가 울산에 1조 2,000억 원 규모의 투자를 단행해 실리콘 음극재 양산 공장을 신설합니다. 기존 흑연 대비 높은 에너지 밀도와 빠른 충전 속도를 제공하는 실리콘 음극재를 본격 양산함으로써 차세대 배터리 소재 주도권을 확보할 것으로 기대됩니다.",
+            "headline": "HS효성 실리콘음극재 공장 신설",
+            "summary": "HS효성에너지솔루션코리아가 울산에 1조 2,000억 원을 투입해 차세대 실리콘 음극재 양산 공장을 신설합니다. 에너지 밀도를 높이고 충전 시간을 단축하는 핵심 소재를 확보해 배터리 성능을 획기적으로 개선하겠다는 전략입니다.",
             "tags": [
               "#실리콘음극재",
               "#HS효성",
-              "#배터리소재"
+              "#배터리소재",
+              "#투자에시"
             ],
             "source": "인더스트리뉴스",
             "date": "2026-09-15",
             "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1IbDZoYzRGZjloSUJuNkJyQ0swXzJWb0JKUXBsUEpLVEJwbXMwbjZBdmoyVjhOVjBZaUhheG5SRFhqSEJ4NkJGUmdFN0FXTGx1aXhVUUFTcThjQUt3N0ZPZ3RCRXF5QU1JQm9iNTlkWXhTUQ?oc=5"
           },
           {
-            "headline": "HS효성, 연 2만톤 실리콘음극재 생산거점 구축",
-            "summary": "HS효성이 울산에 연간 2만 톤 규모의 실리콘 음극재 생산 거점을 구축하며 차세대 배터리 소재 시장 공략에 속도를 냅니다. 고성능 전기차의 에너지 밀도 향상과 충전 시간 단축에 핵심인 실리콘 음극재의 안정적 양산 체계를 마련하는 전환점이 될 전망입니다.",
+            "headline": "글로벌 배터리 음극재 적재 증가",
+            "summary": "올해 1∼7월 글로벌 전기차 배터리 음극재 적재량이 전년 대비 21.7% 증가했습니다. 특히 중국 외 글로벌 시장에서는 29.4%의 높은 적재 증가율을 기록하며 고성능 음극 소재 수요 확대를 입증하고 있습니다.",
             "tags": [
-              "#HS효성",
-              "#실리콘음극재",
-              "#음극재양산"
+              "#음극재",
+              "#시장동향",
+              "#적재량",
+              "#글로벌시장"
             ],
-            "source": "전기신문",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBoc1lDbzRWdDRENUtTOGhqQ2lER01mTVRzbDNfVFJFQjlvMlRLQmN6UFRfZTBRVzBRN0VvZnRIUEl5RUFvOTJyc0JucVBqV1FmLXZBQ1VfT1NUem45ZXllMXAydzdyV3ZiVnQtcNIBcEFVX3lxTFBkaXpJcGNhdnV4NVRsS1luYVRkNzQ4NGp2bEc1Y1JGRllsbkgxUWN3SHhzcUdLWURyUGs4ZXFhY3U1Zmh4Zm1aTXhyeFJJTzM0cGxyeFh3dEpfTnFINVhqaF9wemYtV3BkV09FcjEtbWg?oc=5"
+            "source": "매일경제 마켓",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE12WE9PTGt4SDlKX1BoSjNqVXI5bUhzWHBaVFhjcGk0Q21GNTRnMGpka253Mmd5aERidm1qQ25DOVI2cnhmbko3a1BUeVFUY2xDTFE?oc=5"
           },
           {
-            "headline": "삼성전자, 리튬 덴드라이트 해결한 전고체 기술 공개",
-            "summary": "삼성전자 종합기술원이 리튬 덴드라이트 문제를 효과적으로 해결한 차세대 전고체전지 혁신 기술을 선보였습니다. 배터리의 화재 위험성을 근본적으로 배제함과 동시에 에너지 밀도를 비약적으로 끌어올려 차세대 배터리 상용화를 앞당길 핵심 기반을 마련했습니다.",
+            "headline": "폐배터리 핵심광물 회수 지원",
+            "summary": "정부가 반도체 부산물과 폐배터리에서 리튬, 니켈 등 핵심 광물을 회수하는 기술 개발에 최대 1억 2,000만 원의 실증비를 지원합니다. 원자재 국산화율을 높이고 배터리 재활용 생태계 조성을 가속할 전망입니다.",
             "tags": [
-              "#삼성전자",
-              "#전고체전지",
+              "#폐배터리",
+              "#핵심광물",
+              "#리사이클링",
+              "#정부지원"
+            ],
+            "source": "서울뉴스통신",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE96SVh4MHdHT0ZTN3BSR2EtdGNoZUxtcXBxUlU2ZjBjVkhjeWZWOFJUZkdlbU9saWVCQWlJSkNtaEd1b0otWlY1UnlZN1gwSXlnSzg4eDMyR2tqZThhOW90NVVHQjhfNm5MWl9r?oc=5"
+          },
+          {
+            "headline": "파나소닉 고온용 전고체 배터리",
+            "summary": "파나소닉이 최고 150℃의 극심한 고온 환경에서도 안정 작동하는 차세대 전고체 배터리 개발을 완료하고 올해 4분기 공급에 나섭니다. 내열성이 뛰어난 산업용 및 특수목적 전지 시장 선점에 속도를 내고 있습니다.",
+            "tags": [
+              "#전고체배터리",
+              "#파나소닉",
+              "#고온전지",
               "#차세대배터리"
             ],
-            "source": "Samsung Global Newsroom",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5Na0xXYkxucTdLZGdRVEhZaU92RnpTR1hGZWZldjR2ZDZlaGw0SENvVjQ1TkIzV1BmRHFmZU0xNk5yUVppTXBCb05GU3JsRjg5Xzk3N1BnNHJSRlAwcGlHcXRSdmtZdEpxWkNRYzVn?oc=5"
+            "source": "비즈월드",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1wWVZuazBLU0VhdzVnZFJZRjZPNTVTcmFTcFAzQ2p2bE5NcDJmM3NfelUwZG81dXI2cjVUXzl0R3FDZTFJZWFUcWhsSUxodTRRb1FnWlN1MVFRVDhMQW1XNTFYc0V0X1RqRmc?oc=5"
           },
           {
-            "headline": "동국대 연구팀, 초박막 무음극 전고체전지 개발",
-            "summary": "동국대 공동연구팀이 두께 2.77μm 수준의 초박막 무음극 전고체전지를 구현하고 높은 부피 에너지 밀도를 달성했습니다. 기존 전지 부피를 혁신적으로 줄이면서도 뛰어난 성능을 확보하여 차세대 초소형·고밀도 배터리 연구에 새로운 이정표를 세웠습니다.",
+            "headline": "코윈로보틱스 전고체 자동화 수주",
+            "summary": "전고체 배터리 상용화 투자가 활발해지면서 코윈로보틱스가 2차전지 공정 자동화 분야에서 강한 수주 모멘텀을 형성하고 있습니다. 차세대 배터리 제조 라인 증설에 따른 신규 매출 확대가 본격적으로 기대됩니다.",
             "tags": [
-              "#동국대",
-              "#무음극전고체",
-              "#부피에너지밀도"
+              "#전고체배터리",
+              "#코윈로보틱스",
+              "#공정자동화",
+              "#수주모멘텀"
             ],
-            "source": "뉴스티앤티",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9VbVJiaHNNcVZBX1Bab0l2NUVVNnpHOWJLWnY2bTVQWXN2Y2tmNy1jNDFFN0pXR1F6Z2thWGthMHd0cDNZWmFWWHpveXZpUHpKR1pKNHJTMEZMQ2x1YU8tTmUyQ0MzakJDc1E?oc=5"
+            "source": "핀포인트뉴스",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5ZelZJYWotZG84MEtWaU9NcDlUbDVjRFRnU3dMRklvSEVBQWh6U05JaHR4eXY0OUR4bHpHaTItTVBCdUxjUy1VZmphVUlhTE9GNHFEaksxSEhiT2JPajVOSkwtSjFYNm5tT1Z0Qk95WkVpWTdrMDBN0gF3QVVfeXFMTll6Vklhai1kbzgwS1ZpT01wOVRsNWNEVGdTd0xGSW9IRUFBaHpTTklodHh5djQ5RHhsekdpMi1NUEJ1TGNTLVVmamFVSWFMT0Y0cURqSzFISGJPYk9qNU5KTC1KMVg2bm1PVnRCT3laRWlZN2swME0?oc=5"
           },
           {
-            "headline": "K-양극재, 美·EU 규제 겨냥 LFP 및 하이니켈 다변화",
-            "summary": "국내 배터리 소재 기업들이 미국과 유럽의 환경 및 공급망 규제 강화에 대응해 LFP 및 고성능 하이니켈 양극재 기술 고도화에 집중하고 있습니다. 해외 정책 변화에 맞춰 제품 포트폴리오를 다변화하고 공급망 안정성을 높여 글로벌 시장 영향력을 확대할 방침입니다.",
+            "headline": "BYD 전고체 전기차 2027년 공개",
+            "summary": "중국 BYD가 2027년 전고체 배터리를 탑재한 시범 전기차를 최초 공개하고 2030년 상용화를 추진합니다. 양산 기술 고도화를 통해 차세대 배터리 주도권 확보 및 글로벌 시장 격차 확대를 노리고 있습니다.",
             "tags": [
-              "#양극재",
-              "#LFP배터리",
-              "#하이니켈",
-              "#공급망"
+              "#BYD",
+              "#전고체전기차",
+              "#중국배터리",
+              "#상용화"
             ],
-            "source": "디지털데일리",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1MN1ZRbzEyOGp5Y25TVEpZcHRlaWtYV0pWTzZfUldMTE9tUkF0WWdYZEktSFo2WDZPV0dfOXhaS1ZxTzJzcWZ6b1NYZnN3NVJaRTdrbzI5UmREZ3hFZ3VoT1RYWlU?oc=5"
+            "source": "digitaltoday.co.kr",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5FU0U1bmZ0bGhoSG04VDlhb1lSUkFzenRWVktmejFMSlNjZnFUNVh1UnFsVHVtMUtUbzZzWWtiRUx6bW9ZYXdSdWdHcWYzV09xdTVzYmwybzNGSkxqS1hlMmdpS1B2ZllZS1hnZ1ZSN2tGQXc?oc=5"
           }
         ]
       },
       {
-        "name": "화재 안전성 및 진단·열관리",
+        "name": "글로벌 시장 및 산업 재편",
         "items": [
           {
-            "headline": "시티아이랩, 멀티모달 AI 기반 전기차 화재예측 구축",
-            "summary": "시티아이랩이 현대건설 본사에 멀티모달 AI 융복합 기술을 적용한 전기차 배터리 화재 예측 솔루션을 구축했습니다. 배터리 상태 실시간 감지와 데이터 복합 분석을 통해 화재 가능성을 사전 탐지함으로써 빌딩 내 전기차 충전 인프라의 안전성을 대폭 강화했습니다.",
+            "headline": "中企 방산·드론 특수전지 진출",
+            "summary": "전기차 수요 캐즘 속에서 국내 중소 배터리 업체들이 방산과 드론 등 특수 목적용 배터리 시장으로 사업을 다각화하고 있습니다. 고부가 틈새시장을 발굴해 매출 공백을 메우고 독자적 경쟁력을 확보하려는 전략입니다.",
+            "tags": [
+              "#특수배터리",
+              "#방산드론",
+              "#중소기업",
+              "#사업다각화"
+            ],
+            "source": "대한경제",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5lNHRGSzhkaVNUX25ld2pLbTh0ekYwbjhoVlVSM2VSa0w2QlZZWklWNGY5UGdTN1BRZFhCc281b3RGazFPV0Z4Z0VVaGhNTUFCZVJFcHVjN0p0dzd1TGRwZHJXZVh3NGtlLWJqbE9tRFlHNEJh?oc=5"
+          },
+          {
+            "headline": "K-배터리 ESS 2년치 수주 확보",
+            "summary": "LG에너지솔루션과 삼성SDI가 북미 전력망 시장 성장에 힘입어 2년치에 달하는 ESS 배터리 물량을 확보했습니다. 전기차 수요 둔화를 ESS 부문의 고성장세로 극복하며 안정적인 실적 방어에 성공하고 있습니다.",
+            "tags": [
+              "#LG엔솔",
+              "#삼성SDI",
+              "#ESS배터리",
+              "#수주잔고"
+            ],
+            "source": "Chosunbiz",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOLUhBQWhDdGlheGIwekZCb1o2WVcxX1pPNzlKMkhRaURqd2pJMWdxMmZpa05vZ081LU5zeGZ4NE1lSFdrR2JBXzduU2hzWk5jSDg4ZGh1UjRCV0dEZHUtZmotVjM1SEFIOGVfX0tieExhN3ExZWVuOUdFZHVXbDhCbnV4SnPSAZgBQVVfeXFMTXhrY3VJcDJsWC05dzRTb3BqaTllYUQtS3EydTFmV1F0SmVkTGJfOVBvdm5DT2dZaXBTd2gtang5OTNnMFFnVGtNcDNkaGd5Z2IxU2NWTEpYU05VVVh5b2dpbGRMRnFTSWh6dkdwM0NDZGl3MllMQUxRMUVlU3YtckJHLW9TM2F5V3VoRm53d3o3V2lNTVFhdEQ?oc=5"
+          },
+          {
+            "headline": "삼성SDI 미국 대중 견제 수혜",
+            "summary": "미국 정부의 중국산 배터리 공급망 규제 강화로 삼성SDI가 반사이익 기대감을 얻으며 주가 강세를 나타냈습니다. 글로벌 완성차업체들의 공급망 다변화 기조 속에서 K-배터리의 입지가 더욱 확대되고 있습니다.",
+            "tags": [
+              "#삼성SDI",
+              "#미중갈등",
+              "#공급망다변화",
+              "#주가동향"
+            ],
+            "source": "매일경제 마켓",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE55TEFoRFB3OU5MY3NWSnpFM01TT2RSektoOHV1Zjg5Q3JpR3E0TXRYZTcyejNPeTB4ajRna1dBQWdySmJjcGNSdDZvTzFzWkxXX3c?oc=5"
+          },
+          {
+            "headline": "배터리 관련 계약학과 지원 감소",
+            "summary": "반도체 열풍으로 관련 계약학과 지원자가 역대 최다를 기록한 반면 배터리 계약학과 지원은 감소세를 보였습니다. 전기차 시장의 단기 둔화 우려가 차세대 기술을 이끌 핵심 인재 수급에도 부정적 영향을 미치고 있습니다.",
+            "tags": [
+              "#계약학과",
+              "#인재양성",
+              "#인력난",
+              "#배터리산업"
+            ],
+            "source": "edaily.co.kr",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNV3lGVXdyUDJYbDd5SVVZZ3Z6bDkzSGpXVE1INk1TWUVzNGs1YmtQYUVBdlhnWWtpZktZVjQ2YllLSnUwSVpaaXdsNnJYaHRGYkl6ekxiQmc2cWRiaVpySVE4R1lZb2o1U1Y1N0h0TURtY2JCQkkxSEZRRnN3VTNXdg?oc=5"
+          },
+          {
+            "headline": "이재용 유럽 출장 배터리 점검",
+            "summary": "이재용 삼성전자 회장이 유럽 출장을 마치고 귀국하며 반도체에 이어 배터리 사업 전반의 글로벌 네트워크를 점검했습니다. 차세대 기술 투자 확대 및 주요 자동차 고객사와의 협력을 더욱 강화하려는 행보로 풀이됩니다.",
+            "tags": [
+              "#이재용",
+              "#삼성SDI",
+              "#유럽출장",
+              "#글로벌경영"
+            ],
+            "source": "매일경제 마켓",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9COFNNd0HJSFE2WXM1WWlGcFphY2QzY0ZIV1VwS2d5cXBPbV8xWFpzOUV5X00tLVQzdTN6c1I2X3phWkFwQ0RleU81VTBNVE9zc1E?oc=5"
+          }
+        ]
+      },
+      {
+        "name": "안전성 제어 및 열관리 솔루션",
+        "items": [
+          {
+            "headline": "시티아이랩 AI 전기차 화재예측",
+            "summary": "시티아이랩이 멀티모달 AI 기술을 활용해 현대건설 본사 건물에 전기차 배터리 상태 감지 및 화재 예측 통합 솔루션을 구축했습니다. 배터리 이상 징후를 실시간 감지해 대형 화재 사고를 미연에 방지할 방침입니다.",
             "tags": [
               "#시티아이랩",
               "#AI화재예측",
-              "#전기차안전"
+              "#멀티모달",
+              "#배터리안전"
             ],
             "source": "인공지능신문",
             "date": "2026-09-15",
             "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBjd0ctbmFoOVRkempMVDJiZF9HS1ZRd2I5TXhKYndYclNFekxmNWhORGFVSjZLVlE1Y3hmNDNZYzdXVDBBSjdvTDd6Tk91SUItcDRRUjhyLWpsNE56amdfRDNVTExSUkU?oc=5"
           },
           {
-            "headline": "이오씨, 열폭주 조기감지 배터리 복합시스템 선보여",
-            "summary": "이오씨가 전기차 배터리의 열폭주 전조 현상을 초기에 감지해 화재 골든타임을 확보하는 복합 감지 시스템을 선보였습니다. 가스, 온도, 압력 등 다중 센서 데이터를 종합 분석함으로써 열폭주 발생 전 신속한 대응체계를 구축해 대형 화재 사고를 방지합니다.",
+            "headline": "현대건설 전주기 화재예방 도입",
+            "summary": "현대건설이 본사 건물 화재 예방을 위해 최첨단 배터리 감지 AI 기술을 채택하고 충전 및 주차 전주기에 걸친 위험 대응 체계를 마련했습니다. 도심 빌딩 내 전기차 화재 안전 제어 수준을 고도화한 사례입니다.",
             "tags": [
-              "#이오씨",
-              "#열폭주감지",
-              "#골든타임"
+              "#현대건설",
+              "#화재예방",
+              "#AI솔루션",
+              "#전주기대응"
             ],
-            "source": "얼리어답터뉴스",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5vREwzbGw5TUEyeHpWX245TkhaSnF5VzBLVEZoQ2ZvQVd2MXEzaFEyT0xpNFF0aW9TN0R4ejg5TXI3S2VtY3hRZ1hn?oc=5"
+            "source": "유니콘팩토리",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8xYWF5SmRta0IxMEZKNnktT1hURHU4b1J1R2RjZE93ZHBaY1FGSFVCM1o1NlVKZkZ3RTFMQ0JZUmxBMVlwajNBWXNYclBlaFAzRzJONmZBaGhfN3JxWWRiaFNCbkl0dFZmWHZvOA?oc=5"
           },
           {
-            "headline": "이오씨, K-배터리쇼서 화재 조기차단 시스템 공개",
-            "summary": "이오씨가 K-배터리쇼에서 전기차 배터리 열폭주 이상 징후를 미연에 감지해 화재를 원천 차단하는 조기 대응 시스템을 공개했습니다. 정밀 센싱 기술과 고도화된 감지 알고리즘을 결합해 배터리 안전 표준 향상에 기여할 것으로 크게 기대받고 있습니다.",
+            "headline": "보성 창고 충전기 발화 화재",
+            "summary": "전남 보성의 한 창고에서 전기차 충전기 발화로 추정되는 화재가 발생해 인프라 점검 필요성이 제기되었습니다. 배터리 자체뿐만 아니라 충전 기급 장치 전반에 대한 종합적인 화재 안전 대책 수립이 촉구됩니다.",
             "tags": [
-              "#이오씨",
-              "#화재조기차단",
-              "#K배터리쇼"
+              "#충전기화재",
+              "#발화사고",
+              "#충전인프라",
+              "#안전관리"
             ],
-            "source": "eanews.kr",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBfTWRfNTF6QndGVUVNdExqaUpzc0VIYzlLV0NUVHpYNnJ5Mm1lSThrNV96U2NMNzdYREtqaHhSNHFRdXMzeFQ4X1JR?oc=5"
+            "source": "뉴시스",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5ZQTIxZEdkVG1fQm5xTDBhcWZnSllhV05GUENwZklVUWJwVUxXd1VLajdybmRGMkhFU1pRSkxzM21JX0xoMUk5Mndxd2hpLTJOZ2RuQVFNTFhScGl0YVpKcNIBeEFVX3lxTE5FYnZjLVRQY2tyVGVVTFB1TEliNEVKY21vMXA1MkZ4cDdvWm1LQTJLaHJiRTBKSzdWLUpENmYzN2xfY0x1ZDhvRjJReFlJS1lmMDRxdGhhRGdvYXBVcmstQ3RvbkJ6eEdfOGxNYnpWQ3gtaW9DZmNpSQ?oc=5"
           },
           {
-            "headline": "지하주차장 전기차 화재, AI 열화상 카메라로 대응",
-            "summary": "아파트 지하주차장 등 밀폐 공간의 전기차 화재 위험을 최소화하기 위한 AI 기반 열화상 카메라 모니터링 전략이 제안되었습니다. 초기 이상 온도를 신속히 감지하고 알림을 제공해 열폭주로 인한 대형 인명 및 재산 피해를 예방하는 효과적인 기술 방안으로 주목받습니다.",
+            "headline": "열차 내 배터리 열폭주 수칙",
+            "summary": "정부가 대중교통 이용객의 안전을 도모하기 위해 열차 내 배터리 열폭주 화재 발생 시 행동 수칙을 담은 지침을 배포했습니다. 밀폐 공간 내 이차전지 화재 발생 시 대피 및 신고요령을 안내해 피해를 예방합니다.",
             "tags": [
-              "#AI열화상카메라",
-              "#열폭주예방",
-              "#지하주차장"
+              "#열폭주",
+              "#화재대응",
+              "#안전수칙",
+              "#대중교통"
             ],
-            "source": "정보통신신문",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5UUVVjNjRhbkg2eWh1S1Iwak9kVnh0WVQ2ZUNfZEZPRDNwVFdnV2FkdXNIS1lLMlpIVFZHbnROTjVsUU82anU3Q1JwLVNvS1dyZWM2SWJwWDEzdGpOQ2daenYwRzVGaVpZ0gFsQVVfeXFMUExKV2Q1OEhDY01QTXFQNXhkNmdrTzFfY21sNkpNLWFRZGN4LVItZ2RVcE9rb2lfOVhTZWJnRktDMENhSmp5aUtWM2FrVE9kZVJzUHdoUmpRUmw4eWl5b2JPRERSZmo1TVpBbUdE?oc=5"
-          },
-          {
-            "headline": "주행거리 넘어 SOH 데이터 기반 배터리 진단 주목",
-            "summary": "단순히 주행거리에 의존하지 않고 셀 간 전압 편차와 SOH(배터리 건강 상태) 진단 데이터를 바탕으로 배터리 교체 시점을 정밀하게 판단하는 정비 기술이 주목받고 있습니다. 데이터 기반 정밀 진단으로 배터리 수명을 극대화하고 안전 사고를 예방합니다.",
-            "tags": [
-              "#SOH진단",
-              "#배터리수명",
-              "#정밀진단"
-            ],
-            "source": "디지털투데이",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBWdVJZN0pkQTI4NVE3VlJDZHJiVXlVRnBCazhVay1uT0RQZU1Pcnc1WkNCQk1rVi1oR2tGUjBORFpta2ptWTZ0QVd2MXNFbUVDNkg1Rll1bXludFJ2WnIzLUNsWmEzd3ZuQktvQlZNOEZUbEU?oc=5"
+            "source": "대한민국 정책브리핑",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPR3N2XzJUODl3cU9RQlkyWTFwMFFJN0VjaHlrLVh3VExuMnVpUS1BYWRRU1kyakdlU0FjT1dTeVNOdWhDWFJ1eFJIOXNpcVVtY0h1YS1KY1FuLTBwTU9HR2pReFIwa1U5X20xcUtwSFhUQ2Y4WF80ZFk1WFRZTThEdjYtd2E2Yi11cVo0?oc=5"
           }
         ]
       },
       {
-        "name": "글로벌 공급망·리사이클링 & 인프라",
+        "name": "전기차 운용 및 배터리 응용 생태계",
         "items": [
           {
-            "headline": "BYD, 2027년 전고체 실증 및 2030년 상용화 목표",
-            "summary": "중국 BYD가 전고체 배터리를 탑재한 전기차 실증 모델을 2027년에 공개하고 2030년 본격 양산 및 상용화에 나선다는 기술 로드맵을 발표했습니다. 글로벌 전기차 선도 기업의 가세로 전고체 배터리 상용화를 둘러싼 글로벌 주도권 경쟁이 본격화되고 있습니다.",
+            "headline": "전기차 배터리 신가보상 특약",
+            "summary": "전기차 배터리 사고 발생 시 자기부담금을 경감해 주는 신가보상 특약의 구조와 비용이 세부적으로 살펴졌습니다. 배터리 교체 비용 부담을 완화하는 전용 보험 상품이 다양화되며 전기차 수요의 안정적 유지를 돕고 있습니다.",
             "tags": [
-              "#BYD",
-              "#전고체상용화",
-              "#글로벌동향"
+              "#신가보상",
+              "#배터해보험",
+              "#전기차특약",
+              "#소비자보호"
             ],
-            "source": "글로벌이코노믹",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPV1JQd2t4bmlPV0h1MzBwV3JyTEk2UHlTZ1JQZEppekcyZjJsZmtWSkh1RkR4eUllMzFyMmhtRFFtcjZhNFAxZ29oeXdCWUQ3SVZHbXZsY1N3Wm9xNHhtRW9lRFZmcEZNV1BuQ3ctNWRBNk5sZkV1NzdyU25VVXUwalFMNTE1ejdP?oc=5"
+            "source": "스페셜타임스",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE93U2NxVG5kSy1oVHMydzlhcmthNDNBMDlDRl9mN3ViRDRWTDg2NGFyY1hEbkktTldRNWFaWXpNU2std25jSFhVUld5aklNUXIyeFp3Si13eU93dVZPdUNaM2dUOVZWUUxHdEFBT3VNX29qUlU?oc=5"
           },
           {
-            "headline": "테레파워, 온틸리티 배터리 수명주기 솔루션 출시",
-            "summary": "테레파워가 유럽과 북미 전역에 전기차 배터리의 잔존 수명 진단부터 재사용 및 재활용까지 통합 관리하는 '온틸리티' 수명주기 솔루션을 출시했습니다. 배터리 전주기 가치를 극대화하고 순환경제 생태계를 구축하는 데 크게 기여할 것으로 보입니다.",
+            "headline": "포터 EV 배터리 메뉴 사용법",
+            "summary": "포터 EV 차량의 디스플레이 화면에서 접힌 상태의 배터리 정보 메뉴를 쉽게 확인하는 사용 팁이 공개되었습니다. 전기차 운전자의 효율적인 배터리 잔량 모니터링과 차량 운용 편의성을 높이기 위한 유용한 안내입니다.",
             "tags": [
-              "#테레파워",
-              "#배터리수명주기",
-              "#재사용재활용"
+              "#포터EV",
+              "#배터리메뉴",
+              "#차량관리",
+              "#사용자가이드"
             ],
-            "source": "peopleview.co.kr",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE0zdnR3QXgteDVfN3FEMDdrUDJtOHh2dE5KR3FHT012MDcwN245SVFnZlJUcTQxUHVKZDZkVkJjdzNrSVBqVkUtU3V6d0dlZ3BvMXdvNDQxdzRZQ0JEQUlKdkYzTWhXQQ?oc=5"
+            "source": "Calgary Roughnecks",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPMjV5cF9ZMjBqcV9GTFBDQU5hOE1fbk0xNU9LXzFqVmJmZExpNjZrc1ZMY0kyRmREcFRURThkUzhmX0xyN1FDTUpSWUtmLWZKa1pqeU1HOXdESE1fRGh2R1FaeDJieS0ySjVsaWRqTlYyd0R2QVl2bUJkNU9yUUZjOFRhRjJQMzBBdDdwNjRpekVHczM5Ull6ejY3RkM1QQ?oc=5"
           },
           {
-            "headline": "SK온 이반차 공장, NMP 미검출로 환경 안전 입증",
-            "summary": "SK온 해외 생산공장 인근 용수 조사 결과, 양극재 제조 공정 용매인 NMP 누출 징후가 전혀 발견되지 않았습니다. 철저한 환경 안전 관리 체계와 유해물질 통제 역량을 검증받아 현지 주민 불안을 해소하고 안정적 생산 운영 기반을 다졌습니다.",
+            "headline": "밸브 VR기기 배터리 성능한계",
+            "summary": "밸브의 고급 VR 헤드셋 '스팀 프레임'이 우수한 성능에도 불구하고 높은 가격과 짧은 배터리 제약이 흥행의 걸림돌로 지적되었습니다. 고성능 소비재 IT 기기 전반에서 배터리 효율 극대화가 핵심 과제로 떠올랐습니다.",
             "tags": [
-              "#SK온",
-              "#NMP미검출",
-              "#환경안전"
+              "#스팀프레임",
+              "#VR배터리",
+              "#밸브",
+              "#소비자IT"
             ],
-            "source": "PRESS9",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBIeXYtTFpIZEJqUjYybzlwWmxObU95amM4VXF2TnhRbk9Na0U4QnY4MHBrR3p5RE15d0g2eGVkY0ZtdGtsUExwdmUtMGRwMGM2d0dnaVZMQ0JNNmIweFhqSzZKUmI?oc=5"
-          },
-          {
-            "headline": "HS효성·현대차기아, 실리콘음극재 및 UBESS 실증",
-            "summary": "HS효성에너지솔루션코리아가 현대차·기아와 협업하여 실리콘 음극재 생산공장 투자를 진행함과 동시에 사용후 배터리 기반 ESS(UBESS) 실증 사업을 추진합니다. 배터리 소재 제조부터 사용후 배터리 재활용까지 연결되는 통합 선순환 모델을 구축합니다.",
-            "tags": [
-              "#HS효성",
-              "#현대차기아",
-              "#UBESS",
-              "#사용후배터리"
-            ],
-            "source": "여성소비자신문",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBrVklHaUtCNkNTWk9Tb1hMSnFHUEdIYll4RUxZVzNhdXFjcTlfRmVGMVhGVnNOa0xYWUZIa2oxaExLWXlFNEFhaVptNVIxNFZ2aUJTdENnTzJJRm1UejdnbjhjSEE3QQ?oc=5"
-          },
-          {
-            "headline": "알톤, 전기자전거 배터리 회수·리사이클링 추진",
-            "summary": "알톤이 마이크로 모빌리티 분야에서 사용 후 전기자전거 배터리를 회수하고 핵심 소재를 리사이클링하는 신사업에 진출합니다. 중소형 모빌리티 배터리 재활용 시장을 선점하여 친환경 소재 공급망 다변화 및 ESG 경영을 강화한다는 취지입니다.",
-            "tags": [
-              "#알톤",
-              "#마이크로모빌리티",
-              "#배터리재활용"
-            ],
-            "source": "뉴스핌",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBQaDY2SmtnOEpWU3NRNWZrTUFyMjdVNDhkSXBmN0dRSm9ZcGV2eFN0cVduSW5ZUmFOZWN5SjFJbmpiQ2ZEdGFRZ1g1N0Q2UnJOX1p6MWNadUkzVXdp?oc=5"
-          },
-          {
-            "headline": "LG엔솔, 산학연 협력으로 차세대 R&D 생태계 강화",
-            "summary": "LG에너지솔루션 김제영 CTO가 외부 전문 기관 및 학계와의 산학연 R&D 협력을 대폭 확대하겠다고 발표했습니다. 차세대 배터리 소재와 셀 공정 선도 기술을 공동 개발함으로써 오픈 이노베이션 기반의 기술 혁신 생태계를 빠르게 확장하고 있습니다.",
-            "tags": [
-              "#LG에너지솔루션",
-              "#오픈이노베이션",
-              "#배터리RND"
-            ],
-            "source": "더팩트",
-            "date": "2026-09-14",
-            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE93OTZENDdpbTl1bmNzMzFwNjhrc1M4MUIxdGdlQS1DcklGZ3BJeHhRVEhZUXpZbmIwTDFpWG9FR2FrME84ekwzN3o4Rm0zTlQwTDN0TU11Z1FSM3hsV1BpWE16dXNta0YyNUkxQXF30gFsQVVfeXFMTURhSF91Zm1GVEt0NkZPd1VvdEt3QVhuOGlBUHI2Q2VxN1JPX3FOMWJOUVFtWUlCTzA2dk5VdHF1Rk1FVWRmV3hnMWk2Z3BFNXhCTDQ4OGZDLVN3NDBEcHRaVzRobnFldlBsRGNE?oc=5"
-          },
-          {
-            "headline": "NIO, 전기차 배터리 교환 기술 및 특허 전략 강화",
-            "summary": "중국 NIO가 충전 시간 지연 문제를 해결하기 위한 배터리 스와핑(교환) 인프라 구축과 관련 표준화 및 특허 전략을 적극적으로 추진 중입니다. 독자적인 배터리 교환 생태계 조성을 통해 전기차 이용 편의성을 극대화하고 특허 장벽을 다지고 있습니다.",
-            "tags": [
-              "#NIO",
-              "#배터리스와핑",
-              "#배터리교환"
-            ],
-            "source": "특허뉴스",
-            "date": "2026-09-13",
-            "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE4ycDF2SldwZ3JxY2t1MDNnN3phSXdQblozenJ0RXJHbjN6QnZqVUZsdkVVRFNZNkFFeDFnNnRmV2x6YmRaRElIWg?oc=5"
+            "source": "조선일보",
+            "date": "2026-09-15",
+            "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVmd4a0JsaEZ0T2dERTBRVjlhV1BDeFQ2ekdrWlBPQVRRTWtfRVRya09EdGI1bnhUSTIwTzBIVGJHLVBEMDNTY0xSVUhvMmx4ZXRsM0ZvcXlfTkF4SThnaHhONGtidENXUmdEV1pOWm90S2dOUHF0cGZKNDFZcm90T0FzRQ?oc=5"
           }
         ]
       }
     ],
-    "implications": "이번 뉴스 흐름은 배터리 산업이 단순 고용량화 경쟁을 넘어 '안전성 확보'와 '전주기 순환경제 구축'이라는 고도화 단계로 진입했음을 보여줍니다. 실리콘 음극재 대규모 양산 투자와 전고체 난제 해결 등 소재 혁신이 가속화되는 한편, AI와 다중 센서를 결합한 화재 예방 시스템이 필수 안전 솔루션으로 급부상하고 있습니다. 아울러 폐배터리 리사이클링 및 UBESS 실증 등 배터리 수명주기 전반을 아우르는 공급망 구축이 기업들의 핵심 미래 경쟁력으로 자리잡을 것입니다."
+    "implications": "전기차 수요의 단기 성장 둔화 속에서 배터리 산업은 ESS, 방산, 드론 등 고성장·고부가 틈새 시장을 통한 실적 보전에 집중하는 동시에 실리콘 음극재 및 전고체 배터리 중심의 기술 격차 확보에 사활을 걸고 있습니다. 미국의 대중 규제에 따른 반사이익으로 글로벌 수주 물량은 견조하게 유지되고 있으나, 국내 시장 내 중국산 LFP 배터리의 공격적 침투와 미래 전문 인력 유입 감소는 K-배터리 생태계 주도권을 위협하는 중대한 위기 요인입니다. 더불어 전기차 및 충전 인프라 화재 우려를 해소하기 위해 AI 모니터링 기술 도입과 전용 보험 상품 마련 등 안전 생태계 구축이 속도를 내고 있습니다. 따라서 국내 기업들은 LFP 및 ESS 제품군 다변화를 통해 단기 수익성을 수호하고, 차세대 전고체 기술과 AI 안전 제어 솔루션을 결합한 프리미엄 전략을 속도감 있게 추진해야 합니다."
   },
   "chinaNews": [
     {
@@ -4186,8 +4222,8 @@
       "id": 1
     },
     {
-      "title": "Voyah Dream 9 flagship MPV with 701 km range set to launch on September 22",
-      "summary": "Voyah Dream MPV to launch September 22. The post Voyah Dream 9 flagship MPV with 701 km range set to launch on September 22 appeared first on CarNewsChina.com .",
+      "title": "보야, 주행거리 701km 플래그십 MPV '드림 9' 9월 22일 출시",
+      "summary": "동풍자동차의 프리미엄 브랜드 보야가 주행거리 701km를 갖춘 플래그십 MPV '드림 9'을 9월 22일 정식 출시합니다.",
       "source": "CarNewsChina",
       "date": "2026-09-15",
       "url": "https://carnewschina.com/2026/09/15/voyah-dream-9-flagship-mpv-with-701-km-range-set-to-launch-on-september-22/",
@@ -4195,8 +4231,8 @@
       "id": 2
     },
     {
-      "title": "Beijing initiates SOE automaker consolidation: FAW and GAC lead the way",
-      "summary": "Beijing pushes for industry consolidation: FAW and GAC to form alliance. The post Beijing initiates SOE automaker consolidation: FAW and GAC lead the way appeared first on CarNewsChina.com .",
+      "title": "중국 정부, 국유 완성차 재편 본격화…FAW·GAC 동맹 주도",
+      "summary": "중국 당국이 자동차 산업 구조조정의 일환으로 FAW, GAC 등 주요 국유 완성차 업체 간 통합 및 동맹 형성을 적극 추진하고 있습니다.",
       "source": "CarNewsChina",
       "date": "2026-09-14",
       "url": "https://carnewschina.com/2026/09/14/beijing-initiates-soe-automaker-consolidation-faw-and-gac-lead-the-way/",
@@ -4213,8 +4249,8 @@
       "id": 4
     },
     {
-      "title": "Leapmotor plans overseas plug-in hybrid launch in 2027, report says",
-      "summary": "Plug-in hybrid models could launch overseas as early as the first half of 2027, as Leapmotor increases investment in their development. For details, please visit CnEVPost (cnev.co).",
+      "title": "립모터, 2027년 해외 시장에 플러그인 하이브리드(PHEV) 투입 추진",
+      "summary": "립모터가 PHEV 개발 투자를 확대하며 이르면 2027년 상반기 해외 시장에 플러그인 하이브리드 모델을 출시할 계획입니다.",
       "source": "CnEVPost",
       "date": "2026-09-14",
       "url": "https://cnevpost.com/2026/09/14/leapmotor-plans-overseas-phev-launch-2027/",
@@ -4222,8 +4258,8 @@
       "id": 5
     },
     {
-      "title": "GAC unveils plan to buy auto JV stake from FAW in share deal",
-      "summary": "FAW is expected to become GAC's second-largest shareholder after the deal, with no change in GAC's ultimate control. For details, please visit CnEVPost (cnev.co).",
+      "title": "광저우자동차(GAC), 지분 거래 통해 디어자동차(FAW) 합작법인 지분 인수 추진",
+      "summary": "GAC가 FAW와의 지분 교환 거래를 통해 합작법인 지분을 인수할 계획이며, 이 거래로 FAW는 GAC의 2대 주주가 될 전망입니다.",
       "source": "CnEVPost",
       "date": "2026-09-14",
       "url": "https://cnevpost.com/2026/09/14/gac-buy-auto-jv-stake-faw-share-deal/",
@@ -4240,8 +4276,8 @@
       "id": 7
     },
     {
-      "title": "Xpeng G9L China launch event set for September 17",
-      "summary": "The 5-seat SUV opened for pre-sales in August, with prices starting at 259,800 yuan ($38,380). For details, please visit CnEVPost (cnev.co).",
+      "title": "샤오펑, 중형 전기 SUV 'G9L' 중국 정식 출시 행사 9월 17일 개최",
+      "summary": "샤오펑이 지난 8월 사전 예약을 시작한 5인승 SUV G9L의 정식 출시 이벤트를 9월 17일 진행합니다.",
       "source": "CnEVPost",
       "date": "2026-09-14",
       "url": "https://cnevpost.com/2026/09/14/xpeng-g9l-china-launch-sept-17/",
@@ -4249,8 +4285,8 @@
       "id": 8
     },
     {
-      "title": "Denza N8L BEV launches with 130 kWh battery that can be fully charged in 9 minutes",
-      "summary": "Denza N8L EV launches: 960 km range, 130 kWh battery, and 9-minute Flash Charging. The post Denza N8L BEV launches with 130 kWh battery that can be fully charged in 9 minutes appeared first on CarNewsChina.com .",
+      "title": "BYD 덴자, 130kWh 배터리 탑재 및 9분 급속 충전 지원 'N8L BEV' 출시",
+      "summary": "BYD의 프리미엄 브랜드 덴자가 130kWh 대용량 배터리와 9분 완충 기술을 적용해 항속거리 960km를 확보한 순수전기 SUV N8L을 선보였습니다.",
       "source": "CarNewsChina",
       "date": "2026-09-14",
       "url": "https://carnewschina.com/2026/09/14/denza-n8l-bev-launches-with-130-kwh-battery-that-can-be-fully-charged-in-9-minutes/",
@@ -4276,8 +4312,8 @@
       "id": 11
     },
     {
-      "title": "BYD to put solid-state battery technology into a vehicle next year, executive confirms",
-      "summary": "BYD Executive VP Stella Li confirms a solid-state EV demonstrator is coming next year. Here is what FinDreams’ sulfide patents and 2030 roadmap actually show. The post BYD to put solid-state battery technology into a vehicle next year, executive confirms appeared first on CarNewsChina.com .",
+      "title": "BYD, 내년 전고체 배터리 탑재 실증 차량 선보인다",
+      "summary": "BYD 경영진이 내년 중 전고체 배터리를 양산 차량 시범 모델에 탑재해 선보일 계획임을 공식 확인했습니다.",
       "source": "CarNewsChina",
       "date": "2026-09-13",
       "url": "https://carnewschina.com/2026/09/13/byd-to-put-solid-state-battery-technology-into-a-vehicle-next-year-executive-confirms/",
@@ -4285,8 +4321,8 @@
       "id": 12
     },
     {
-      "title": "The new Geely EX5 reveals a huge front trunk in China ahead of launch in Sept",
-      "summary": "The all-new Geely EX5 was unveiled with a huge front trunk (frunk) in China ahead of the launch scheduled for September 21 The post The new Geely EX5 reveals a huge front trunk in China ahead of launch in Sept appeared first on CarNewsChina.com .",
+      "title": "지리자동차, 대형 프렁크 갖춘 신형 순수전기 SUV 'EX5' 공개",
+      "summary": "지리모터스가 9월 21일 정식 출시를 앞두고 대용량 프런트 트렁크를 갖춘 신형 전기 SUV EX5를 중국에서 공개했습니다.",
       "source": "CarNewsChina",
       "date": "2026-09-13",
       "url": "https://carnewschina.com/2026/09/13/the-new-geely-ex5-reveals-a-huge-front-trunk-in-china-ahead-of-launch-in-sept/",
@@ -4312,8 +4348,8 @@
       "id": 15
     },
     {
-      "title": "Xpeng's first right-hand-drive G9L SUVs roll off production line, bound for Australia",
-      "summary": "The right-hand-drive G9L has rolled off the production line at Xpeng's Guangzhou plant, with the model set to enter 64 countries and regions. For details, please visit CnEVPost (cnev.co).",
+      "title": "샤오펑, 호주 수출용 우핸들(RHD) 'G9L' 양산 돌입…글로벌 64개국 진출 추진",
+      "summary": "샤오펑 광저우 공장에서 첫 우핸들 G9L이 양산되어 호주로 수출되며, 향후 64개 국가 및 지역에 순차 투입될 예정입니다.",
       "source": "CnEVPost",
       "date": "2026-09-11",
       "url": "https://cnevpost.com/2026/09/11/xpeng-first-right-hand-drive-g9l-roll-off-line/",
@@ -4321,8 +4357,8 @@
       "id": 16
     },
     {
-      "title": "China unveils five-year NEV plan, targets 70% share of passenger-car sales by 2030",
-      "summary": "China targets NEV shares of 70% for passenger-car sales and 40% for commercial-vehicle sales by 2030, alongside large-scale deployment of autonomous vehicles. For details, please visit CnEVPost (cnev.co).",
+      "title": "중국 정부, 신에너지차 5개년 계획 발표…2030년 승용차 비중 70% 목표",
+      "summary": "중국 당국이 2030년까지 승용차 판매 중 신에너지차 비중 70% 달성과 자율주행차 대규모 대량 투입을 골자로 하는 5개년 계획을 발표했습니다.",
       "source": "CnEVPost",
       "date": "2026-09-11",
       "url": "https://cnevpost.com/2026/09/11/china-unveils-five-year-nev-plan/",
@@ -4339,8 +4375,8 @@
       "id": 18
     },
     {
-      "title": "MG 07 passes 42,000 locked orders in China after 20 days",
-      "summary": "MG 07 has passed 42,000 locked customer orders in China within 20 days of launch, with PHEV and BEV versions starting at 15,790 USD. The post MG 07 passes 42,000 locked orders in China after 20 days appeared first on CarNewsChina.com .",
+      "title": "상하이자동차 MG, 신형 'MG 07' 출시 20일 만에 확정 계약 4만 2천 대 돌파",
+      "summary": "SAIC MG의 신형 07 모델이 출시 20일 만에 42,000건 이상의 확정 계약을 기록하며 흥행을 이어가고 있습니다.",
       "source": "CarNewsChina",
       "date": "2026-09-11",
       "url": "https://carnewschina.com/2026/09/11/mg-07-passes-42000-locked-orders-in-china-after-20-days/",
@@ -4359,73 +4395,80 @@
   ],
   "chinaNewsBriefing": {
     "keyTakeaways": [
-      "중국 완성차 기업들이 800V 고전압 플랫폼과 9분 초가속 충전, 전고체 배터리 실증 등 차세대 기술을 파격적인 가격대에 선보이며 글로벌 기술 및 가격 주도권을 끌어올리고 있습니다.",
-      "중국 정부가 2030년 신에너지차(NEV) 침투율 70% 목표 설정과 함께 FAW·GAC 등 국유 완성차 대형 재편을 주도하며 산업 체질 개선 및 시장 집중도를 강화하고 있습니다.",
-      "BYD의 대형 운반선 10척 추가 발주, 샤오펑의 우핸들 생산, 리오토·립모터의 유럽 진출 등 중국 EV 공급망 전반의 글로벌 영토 확장이 한층 공격적으로 전개되고 있습니다."
+      "BYD의 내년 전고체 배터리 실차 적용 및 9분 완충 아키텍처 도입은 한국 배터리 기업들의 기술적 우위에 강력한 위협 요인으로 작용할 것입니다.",
+      "중국 당국의 2030년 신에너지차 비중 70% 목표 및 국유 완성차 재편은 중국 기업들의 고도화된 스케일 파워와 내수 기반을 더욱 공고히 할 전망입니다.",
+      "립모터, 샤오펑 등 신흥 전기차 업체들의 우핸들 라인업 확보 및 해외 PHEV 투입 확대는 유럽과 아태 시장에서 한국 완성차 업체와의 경쟁을 급격히 심화시킬 것입니다."
     ],
     "categories": [
       {
-        "name": "중국 브랜드 신차 및 기술 동향",
+        "name": "중국 신차 및 차세대 배터리 기술",
         "items": [
           {
-            "headline": "덴자, 960km 주행 BEV SUV N8L 출시",
-            "summary": "BYD의 럭셔리 브랜드 덴자가 주행거리 960km를 갖춘 대형 순수전기 SUV N8L을 29만 9,800위안에 전격 출시했습니다. 기존 플러그인 하이브리드 중심의 라인업에 고성능 순수전기 파워트레인을 새로 추가함으로써 고급 EV 시장 내 브랜드 입지를 더욱 확대하려는 전략입니다.",
+            "headline": "BYD 덴자, 960km 주행 N8L BEV 출시",
+            "summary": "BYD의 프리미엄 브랜드 덴자가 주행거리 960km를 자랑하는 순수전기 SUV N8L을 29만 9,800위안에 공식 출시했습니다. 기존 플러그인 하이브리드 라인업에 순수전기 파워트레인을 추가하며 프리미엄 전기 SUV 시장 공략을 강화하고 있으며, 대용량 배터리를 바탕으로 파워트레인 다양성을 확보했습니다.",
             "tags": [
               "#BYD",
-              "#덴자",
-              "#N8L",
-              "#신차출시"
+              "#덴자N8L",
+              "#전기SUV"
             ],
             "source": "CnEVPost",
             "date": "2026-09-15",
             "url": "https://cnevpost.com/2026/09/14/byd-denza-launches-all-electric-n8l/"
           },
           {
-            "headline": "니오 3세대 ES8, 인도 15만 대 돌파 임박",
-            "summary": "니오의 플래그십 대형 순수전기 SUV 3세대 ES8이 출시 1주년을 맞아 이번 주 누적 인도량 15만 대 돌파를 목전에 두고 있습니다. 배터리 스왑 인프라 확장과 연계한 프리미엄 차종의 꾸준한 판매 호조는 니오의 고급화 브랜드 전략이 시장에 성공적으로 안착했음을 입증합니다.",
+            "headline": "보야, 701km 주행 플래그십 MPV 출시",
+            "summary": "동풍자동차의 프리미엄 브랜드 보야가 1회 충전 시 701km 주행이 가능한 플래그십 MPV '드림 9'을 9월 22일 정식 출시합니다. 고성능 파워트레인과 고급 실내 사양을 갖춘 이 모델은 중국 고급 럭셔리 MPV 시장에서 니오 및 상하이자동차 등과의 경쟁을 본격화할 전망입니다.",
             "tags": [
-              "#니오",
-              "#ES8",
-              "#배터리스왑",
-              "#인도량"
+              "#동풍보야",
+              "#드림9",
+              "#전기MPV"
             ],
-            "source": "CnEVPost",
-            "date": "2026-09-14",
-            "url": "https://cnevpost.com/2026/09/14/nio-150000-deliveries-3rd-gen-es8-this-week/"
+            "source": "CarNewsChina",
+            "date": "2026-09-15",
+            "url": "https://carnewschina.com/2026/09/15/voyah-dream-9-flagship-mpv-with-701-km-range-set-to-launch-on-september-22/"
           },
           {
-            "headline": "샤오펑, 중형 SUV G9L 9월 17일 출시",
-            "summary": "샤오펑이 25만 9,800위안부터 사전 예약을 진행해 온 5인승 중형 전기 SUV G9L을 9월 17일 중국 시장에 정식 출시합니다. 최신 자율주행 기능과 고효율 플랫폼을 탑재해 주력 라인업의 판매 확대와 수익성 개선을 동시에 달성한다는 목표입니다.",
+            "headline": "샤오펑, 중형 SUV G9L 9월 17일 정식 출시",
+            "summary": "샤오펑이 지난 8월 사전 예약을 시작한 중형 5인승 전기 SUV G9L의 정식 출시 이벤트를 9월 17일 개최합니다. 첨단 자율주행 시스템과 최신 섀시 기술을 탑재한 G9L은 가격 대비 높은 상품성을 앞세워 볼륨 모델로서 중국 내 주력 SUV 시장 수요를 공략할 계획입니다.",
             "tags": [
               "#샤오펑",
               "#G9L",
-              "#전기SUV",
-              "#사전예약"
+              "#전기SUV"
             ],
             "source": "CnEVPost",
             "date": "2026-09-14",
             "url": "https://cnevpost.com/2026/09/14/xpeng-g9l-china-launch-sept-17/"
           },
           {
-            "headline": "덴자 N8L, 130kWh 배터리·9분 급속충전 탑재",
-            "summary": "BYD 덴자가 130kWh 대용량 배터리와 9분 만에 초고속 충전이 가능한 순수전기 SUV N8L을 공식 출시했습니다. 최대 960km에 달하는 독보적인 주행거리와 파격적인 충전 속도를 앞세워 기존 내연기관 프리미엄 SUV 고객층까지 전동화로 이끌 것으로 기대됩니다.",
+            "headline": "BYD 덴자 N8L, 9분 완충 초급속 기술 적용",
+            "summary": "BYD 덴자가 130kWh 대용량 배터리를 탑재하고 9분 만에 완충이 가능한 초급속 충전 기술의 N8L BEV를 선보였습니다. 960km에 달하는 항속거리와 혁신적인 초급속 충전 아키텍처는 충전 불안 요소를 완전히 해소하며 고성능 프리미엄 전기차 시장의 새로운 기술 표준을 제시하고 있습니다.",
             "tags": [
               "#BYD",
-              "#덴자",
-              "#초가속충전",
-              "#대용량배터리"
+              "#초급속충전",
+              "#130kWh배터리"
             ],
             "source": "CarNewsChina",
             "date": "2026-09-14",
             "url": "https://carnewschina.com/2026/09/14/denza-n8l-bev-launches-with-130-kwh-battery-that-can-be-fully-charged-in-9-minutes/"
           },
           {
-            "headline": "지리, 대형 프렁크 탑재 신형 EX5 사전에 공개",
-            "summary": "지리모터스가 9월 21일 정식 출시를 앞두고 차별화된 대용량 프론트 트렁크(프렁크)를 갖춘 신형 순수전기 SUV EX5를 선공개했습니다. 효율적인 공간 활용성과 세련된 디자인을 강점으로 앞세워 대중형 실용 전기차 시장에서 거센 바람을 일으킬 것으로 보입니다.",
+            "headline": "BYD, 내년 전고체 배터리 시범차량 공개",
+            "summary": "BYD 경영진이 2027년 중 전고체 배터리 기술을 실증 양산 차량에 탑재하여 공개할 것임을 공식 확인했습니다. 꿈의 배터리로 불리는 전고체 기술의 실차 적용 시점을 구체화함으로써 차세대 배터리 주도권 다툼에서 기술 격차를 크게 벌리고 글로벌 전기차 시장 선점을 가속화할 전망입니다.",
+            "tags": [
+              "#BYD",
+              "#전고체배터리",
+              "#차세대기술"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-09-13",
+            "url": "https://carnewschina.com/2026/09/13/byd-to-put-solid-state-battery-technology-into-a-vehicle-next-year-executive-confirms/"
+          },
+          {
+            "headline": "지리, 대형 프렁크 적용 EX5 SUV 공개",
+            "summary": "지리모터스가 9월 21일 정식 출시를 앞두고 넉넉한 전방 트렁크(프렁크) 공간을 갖춘 신형 전기 SUV EX5를 중국 시장에 공개했습니다. 공간 활용성을 대폭 강화한 설계로 대중성 있는 대형 패밀리 SUV 시장을 겨냥하고 있으며, 실용성을 중시하는 소비자층의 관심이 집중되고 있습니다.",
             "tags": [
               "#지리자동차",
               "#EX5",
-              "#프렁크",
               "#전기SUV"
             ],
             "source": "CarNewsChina",
@@ -4433,82 +4476,40 @@
             "url": "https://carnewschina.com/2026/09/13/the-new-geely-ex5-reveals-a-huge-front-trunk-in-china-ahead-of-launch-in-sept/"
           },
           {
-            "headline": "테슬라, 판매 둔화 타개용 모델Y 퍼포먼스 출시",
-            "summary": "테슬라가 중국 시장 내 핵심 모델인 모델 Y의 최근 판매 감소세를 극복하고자 제로백 3.5초의 퍼포먼스 트림을 새롭게 출시했습니다. CLTC 기준 659km의 주행거리와 고성능 사양을 내세워 현지 전기차 브랜드들의 거센 가격 및 성능 공세에 맞설 방침입니다.",
+            "headline": "샤오펑 GX, 레인지로버 스타일 튜닝 화제",
+            "summary": "중국 시장에서 샤오펑 GX 모델이 랜드로버 레인지로버와 유사한 외관으로 튜닝되어 주목을 받고 있습니다. 해당 모델은 이전부터 영국 프리미엄 SUV 디자인과의 유사성으로 화제를 모았으며, 현지 유저들의 개성 있는 드레스업 튜닝 문화와 전기차 디자인 오마주 열풍을 보여주는 사례입니다.",
             "tags": [
-              "#테슬라",
-              "#모델Y",
-              "#퍼포먼스",
-              "#중국시장"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-09-11",
-            "url": "https://cnevpost.com/2026/09/11/tesla-launches-model-y-performance-china/"
-          },
-          {
-            "headline": "MG 07, 중국서 출시 20일 만에 4.2만 대 계약",
-            "summary": "상하이자동차(SAIC)의 MG 07이 출시 20일 만에 4만 2천 건을 넘어서는 고객 확정 계약을 기록하며 흥행 몰이 중입니다. 1만 5천 달러대의 파격적인 가격으로 PHEV 및 BEV 트림을 모두 제공하며 가성비를 중시하는 현지 소비자를 집중 공략하고 있습니다.",
-            "tags": [
-              "#상하이자동차",
-              "#MG07",
-              "#PHEV",
-              "#가성비"
+              "#샤오펑",
+              "#GX",
+              "#튜닝문화"
             ],
             "source": "CarNewsChina",
-            "date": "2026-09-11",
-            "url": "https://carnewschina.com/2026/09/11/mg-07-passes-42000-locked-orders-in-china-after-20-days/"
+            "date": "2026-09-13",
+            "url": "https://carnewschina.com/2026/09/13/the-xpeng-gx-was-turned-into-the-range-rover-in-china/"
           },
           {
-            "headline": "지리, 800V 아키텍처 탑재 세단 '갤럭시 TT' 출시",
-            "summary": "지리모터스가 800V 고전압 플랫폼과 제로백 3.8초의 강력한 성능을 지닌 전기 세단 '갤럭시 TT'를 12만 9,900위안에 출시했습니다. 압도적인 성능 대비 합리적인 가격대를 제안함으로써 800V 초고속 충전 기술의 대중화를 이끌고 있습니다.",
+            "headline": "지리, 800V 탑재 초가성비 갤럭시 TT 출시",
+            "summary": "지리모터스가 800V 고전압 아키텍처와 제로백 3.8초의 고성능을 갖춘 스포티 세단 갤럭시 TT를 12만 9,900위안(약 1만 9,100달러)에 출시했습니다. 압도적인 성능과 빠른 충전 속도를 1만 달러 대 초가성비 가격에 제공함으로써 대중형 고성능 전기차 시장의 주도권을 쥐겠다는 포석입니다.",
             "tags": [
               "#지리자동차",
               "#갤럭시TT",
-              "#800V",
-              "#전기세단"
+              "#800V플랫폼"
             ],
             "source": "CarNewsChina",
             "date": "2026-09-11",
             "url": "https://carnewschina.com/2026/09/11/geely-galaxy-tt-launches-800v-architecture-and-3-8s-0-100-km-h-starting-at-19100-usd/"
-          },
-          {
-            "headline": "MG 07 확정 주문 4만 2천 대 기록… 폭발적 인기",
-            "summary": "SAIC MG 브랜드의 신형 07 모델이 출시 불과 20일 만에 누적 확정 주문 42,000대를 넘어섰습니다. 전동화 파워트레인의 뛰어난 완성도와 공격적인 가격 책정이 주효했으며, 중국 대중형 EV 및 PHEV 시장에서 높은 성장세를 견인하고 있습니다.",
-            "tags": [
-              "#MG07",
-              "#SAIC",
-              "#신차계약",
-              "#중국EV"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-09-11",
-            "url": "https://cnevpost.com/2026/09/11/mg-07-locked-in-orders-42000-20-days/"
-          },
-          {
-            "headline": "BYD, 신형 SUV 씨라이언 08 전국 인도 본격화",
-            "summary": "BYD가 신형 순수전기 SUV 씨라이언 08의 양산 체제를 구축하고 중국 전역에 걸친 고객 인도를 시작했습니다. 차세대 플랫폼 기술과 넓은 실내 공간을 강점으로 세단 중심 라인업에서 SUV 수요층까지 공략 기반을 한층 더 넓혀가고 있습니다.",
-            "tags": [
-              "#BYD",
-              "#씨라이언08",
-              "#고객인도",
-              "#전기SUV"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-11",
-            "url": "https://carnewschina.com/2026/09/11/byd-sealion-08-shipments-underway-across-china/"
           }
         ]
       },
       {
-        "name": "차세대 배터리 및 첨단 기술",
+        "name": "해외 진출 및 글로벌 마케팅 동향",
         "items": [
           {
-            "headline": "테슬라, 중국서 자율주행 로보택시 공개",
-            "summary": "테슬라가 자율주행 전용 차량인 '사이버캡'을 베이징과 상하이의 주요 전시장에서 최초로 선보입니다. 이번 행사를 통해 중국 내 FSD 및 자율주행 마케팅 행보를 한층 강화하고, 현지 브랜드들과의 자율주행 주도권 경쟁에서 우위를 점하려는 행보로 풀이됩니다.",
+            "headline": "테슬라, 베이징·상하이에 사이버캡 공개",
+            "summary": "테슬라가 이번 주 베이징과 상하이에서 자율주행 로보택시 '사이버캡' 전시 행사를 개최하며 중국 시장 반응을 점검합니다. 9월 17일부터 시작되는 이번 행사는 테슬라의 차세대 자율주행 기술력을 선보이고, 중국 정부의 자율주행 승인 및 시장 입지 확대를 위한 전략적 행보로 해석됩니다.",
             "tags": [
               "#테슬라",
               "#사이버캡",
-              "#로보택시",
               "#자율주행"
             ],
             "source": "CnEVPost",
@@ -4516,131 +4517,146 @@
             "url": "https://cnevpost.com/2026/09/14/tesla-to-display-cybercab-beijing-shanghai-this-week/"
           },
           {
-            "headline": "BYD, 내년 전고체 배터리 실증차 공개 계획",
-            "summary": "BYD 경영진이 내년 중 전고체 배터리를 탑재한 전기 시범 차량을 공식 공개할 예정이라고 밝혔습니다. 꿈의 배터리로 불리는 전고체 기술의 실제 차량 적용 로드맵을 가시화함에 따라 글로벌 차세대 배터리 주도권 다툼이 더욱 치열해질 것으로 예상됩니다.",
-            "tags": [
-              "#BYD",
-              "#전고체배터리",
-              "#차세대기술",
-              "#실증차량"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-13",
-            "url": "https://carnewschina.com/2026/09/13/byd-to-put-solid-state-battery-technology-into-a-vehicle-next-year-executive-confirms/"
-          },
-          {
-            "headline": "BYD, 철도·광산 기관차용 블레이드 배터리 개발",
-            "summary": "BYD 배터리 자회사 파인드림스가 푸솅 테크놀로지와 협력하여 산업용 및 광산 철도 기관차 전용 블레이드 배터리 개발에 나섰습니다. 승용차와 상용차를 넘어 특수 산업 운송 장비까지 배터리 적용 범위를 획기적으로 확장하는 계기가 될 것으로 평가받습니다.",
-            "tags": [
-              "#BYD",
-              "#블레이드배터리",
-              "#파인드림스",
-              "#산업용배터리"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-10",
-            "url": "https://carnewschina.com/2026/09/10/byds-to-develop-blade-batteries-for-industrial-rail-locomotives-in-china/"
-          }
-        ]
-      },
-      {
-        "name": "시장·정책·구조조정 및 글로벌 수출",
-        "items": [
-          {
-            "headline": "중국 정부, 국유 완성차 FAW·GAC 재편 추진",
-            "summary": "중국 정부 주도의 자동차 산업 구조조정에 맞춰 일기자동차(FAW)와 광저우자동차(GAC)가 지분 인수 및 비즈니스 연합 형성에 나섰습니다. 비효율성을 개선하고 체질을 개선하여 신에너지차 시장에서의 글로벌 경쟁력을 한층 강화하려는 목적입니다.",
-            "tags": [
-              "#중국정부",
-              "#FAW",
-              "#GAC",
-              "#국조조정"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-14",
-            "url": "https://carnewschina.com/2026/09/14/beijing-initiates-soe-automaker-consolidation-faw-and-gac-lead-the-way/"
-          },
-          {
-            "headline": "립모터, 2027년 글로벌 PHEV 시장 진출",
-            "summary": "중국 신생 전기차 업체 립모터가 해외 투자 확대를 기반으로 2027년 상반기부터 글로벌 시장에 PHEV 모델을 본격 투입합니다. 순수전기차뿐만 아니라 PHEV 라인업을 다변화함으로써 충전 인프라가 부족한 해외 지역까지 신속히 침투하겠다는 구상입니다.",
+            "headline": "립모터, 2027년 해외 PHEV 시장 진출",
+            "summary": "중국 립모터가 플러그인 하이브리드(PHEV) 투자를 확대하며 2027년 상반기 해외 시장에 PHEV 라인업을 본격 투입할 계획입니다. 유럽 등 충전 인프라가 부족한 글로벌 시장을 겨냥해 순수전기차뿐만 아니라 하이브리드 제품군까지 라인업을 다변화하여 해외 판매 비중을 끌어올리려는 전략입니다.",
             "tags": [
               "#립모터",
               "#PHEV",
-              "#해외진출",
-              "#글로벌전략"
+              "#해외진출"
             ],
             "source": "CnEVPost",
             "date": "2026-09-14",
             "url": "https://cnevpost.com/2026/09/14/leapmotor-plans-overseas-phev-launch-2027/"
           },
           {
-            "headline": "GAC, FAW 합작지분 인수 및 구조조정",
-            "summary": "광저우자동차(GAC)가 지분 교환 방식을 통해 일기자동차(FAW)의 합작사 지분을 인수하며 국유 완성차 기업 간 대형 통합에 착수했습니다. 정부 주도의 효율화 정책에 따라 중복 투자를 줄이고 전기차·스마트카 분야 연구개발 및 생산 역량을 모으는 계기가 될 전망입니다.",
+            "headline": "니오 3세대 ES8, 누적 인도 15만대 달성",
+            "summary": "니오의 대형 순수전기 SUV인 3세대 ES8이 인도 시작 1주년을 앞두고 누적 인도량 15만 대를 이번 주 달성할 예정입니다. 프리미엄 대형 전기 SUV 시장에서 입지를 다진 니오는 배터리 교환 기술과 실내 고급화 전략을 앞세워 경쟁력을 입증하며 견조한 판매 실적을 유지하고 있습니다.",
             "tags": [
-              "#GAC",
-              "#FAW",
-              "#M&A",
-              "#국유기업"
+              "#니오",
+              "#ES8",
+              "#인도실적"
             ],
             "source": "CnEVPost",
             "date": "2026-09-14",
-            "url": "https://cnevpost.com/2026/09/14/gac-buy-auto-jv-stake-faw-share-deal/"
+            "url": "https://cnevpost.com/2026/09/14/nio-150000-deliveries-3rd-gen-es8-this-week/"
           },
           {
-            "headline": "샤오펑, 우핸들 G9L 양산… 64개국 수출 본격화",
-            "summary": "샤오펑이 호주 및 글로벌 시장 수출을 위한 우핸들(RHD) G9L SUV의 첫 양산에 돌입했습니다. 향후 총 64개 국가와 지역으로 해외 진출 라인업을 대대적으로 확대하며, 글로벌 전동화 시장에서 대표적인 중국 브랜드로서의 자리를 굳힌다는 전략입니다.",
+            "headline": "CarNewsChina, 1분 쇼폼 리뷰 도입",
+            "summary": "중국 자동차 전문 매체 CarNewsChina가 중국산 신차를 빠르게 리뷰하는 1분 길이의 신규 비디오 시리즈를 도입했습니다. 숏폼 콘텐츠 소비 트렌드에 발맞추어 글로벌 미디어 소비자들에게 국산 신에너지차의 특징과 시승 정보를 보다 직관적이고 효율적으로 전달하려는 시도입니다.",
+            "tags": [
+              "#CarNewsChina",
+              "#숏폼리뷰",
+              "#중국EV"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-09-14",
+            "url": "https://carnewschina.com/2026/09/14/carnewschina-introduces-a-new-1-minute-video-car-review-series/"
+          },
+          {
+            "headline": "폭스바겐 안후이, ID. UNYX 08 가격 인하",
+            "summary": "폭스바겐 안후이가 ID. UNYX 08 SUV 출시 5개월 만에 가격을 17.4% 대폭 낮춘 18만 9,900위안부터 한정 판매합니다. 중국 합작법인들의 거센 가격할인 경쟁에 대응하기 위한 조치로, 전통 완성차 제조사들이 치열한 치킨게임 속에서 수익성보다 점유율 방어에 집중하고 있음을 보여줍니다.",
+            "tags": [
+              "#폭스바겐",
+              "#가격인하",
+              "#중국합작법인"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-09-12",
+            "url": "https://cnevpost.com/2026/09/12/vw-anhui-refreshes-id-unyx-08-suv/"
+          },
+          {
+            "headline": "샤오펑, 호주 수출용 우핸들 G9L 양산",
+            "summary": "샤오펑 광저우 공장에서 호주 시장으로 수출될 첫 우핸들(RHD) G9L 양산차 조립이 완료되었습니다. 글로벌 64개 국가 및 지역으로 진출하려는 전략의 일환으로, 좌핸들 지역을 넘어 우핸들 시장까지 공급망을 확대하며 완성차 해외 수출 실적을 본격적으로 끌어올릴 방침입니다.",
             "tags": [
               "#샤오펑",
               "#우핸들",
-              "#G9L",
-              "#해외수출"
+              "#글로벌수출"
             ],
             "source": "CnEVPost",
             "date": "2026-09-11",
             "url": "https://cnevpost.com/2026/09/11/xpeng-first-right-hand-drive-g9l-roll-off-line/"
           },
           {
-            "headline": "중국, 2030년 NEV 침투율 70% 목표 발표",
-            "summary": "중국 정부가 2030년까지 승용차 판매 중 신에너지차(NEV) 비중을 70%, 상용차는 40%까지 대폭 끌어올리는 5개년 계획을 발표했습니다. 자율주행 기술의 대규모 상용화와 충전 인프라 고도화를 함께 추진해 자동차 산업 전동화의 전 세계 주도권을 지속 유지할 계획입니다.",
+            "headline": "테슬라, 중국서 모델Y 퍼포먼스 출시",
+            "summary": "테슬라가 판매 둔화세를 보이고 있는 중국 시장에서 모델 Y 퍼포먼스 트림을 36만 9,000위안에 전격 출시했습니다. 제로백 3.5초와 CLTC 기준 659km의 주행거리를 갖춘 고성능 트림을 앞세워 경쟁 모델들의 거센 추격을 방어하고 프리미엄 고성능 SUV 수요를 흡수하려는 전략입니다.",
             "tags": [
-              "#중국정책",
-              "#NEV침투율",
-              "#자율주행",
-              "#5개년계획"
+              "#테슬라",
+              "#모델Y퍼포먼스",
+              "#중국시장"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-09-11",
+            "url": "https://cnevpost.com/2026/09/11/tesla-launches-model-y-performance-china/"
+          },
+          {
+            "headline": "상하이자동차 MG 07, 20일 만에 4만대 계약",
+            "summary": "SAIC MG의 신형 세단 'MG 07'이 출시 불과 20일 만에 확정 계약 4만 2,000대를 넘어서며 시장에서 높은 인기를 입증했습니다. 뛰어난 가격 경쟁력과 세련된 패스트백 디자인을 무기로 젊은 소비층을 사로잡으며, 중국 내 준중형 세단 시장에서 빠른 점유율 확대를 이끌어내고 있습니다.",
+            "tags": [
+              "#상하이자동차",
+              "#MG07",
+              "#판매호조"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-09-11",
+            "url": "https://carnewschina.com/2026/09/11/mg-07-passes-42000-locked-orders-in-china-after-20-days/"
+          }
+        ]
+      },
+      {
+        "name": "정부 정책 및 국유 완성차 재편",
+        "items": [
+          {
+            "headline": "중국 당국, FAW·GAC 주도 국유차 재편",
+            "summary": "중국 정부가 자동차 산업 구조조정의 일환으로 FAW와 GAC 등 주요 국유 완성차 업체 간 통합 및 전략적 동맹을 본격 추진합니다. 내수 시장의 과도한 가격 경쟁을 완화하고 대형 국유기업의 효율성을 제고하기 위한 조치로, 향후 글로벌 경쟁력 강화를 목표로 신에너지차 중심 재편이 가속화될 것으로 보입니다.",
+            "tags": [
+              "#국유기업재편",
+              "#FAW",
+              "#GAC"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-09-14",
+            "url": "https://carnewschina.com/2026/09/14/beijing-initiates-soe-automaker-consolidation-faw-and-gac-lead-the-way/"
+          },
+          {
+            "headline": "GAC-FAW, 합작법인 지분 교환 추진",
+            "summary": "광저우자동차(GAC)가 FAW와의 지분 교환 거래를 통해 주요 합작법인 지분을 인수할 계획을 발표했습니다. 이번 거래가 완료되면 FAW는 GAC의 2대 주주로 올라서게 되며, 양사 간 연구개발 및 생산 자원의 통합이 촉진되어 중국 국유 완성차 연합체 형성이 구체화될 것으로 전망됩니다.",
+            "tags": [
+              "#GAC",
+              "#FAW",
+              "#지분거래"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-09-14",
+            "url": "https://cnevpost.com/2026/09/14/gac-buy-auto-jv-stake-faw-share-deal/"
+          },
+          {
+            "headline": "GAC 주식 거래중단, FAW 제휴 발표 임박",
+            "summary": "광저우자동차(GAC)가 주요 미공개 사안을 이유로 주식 거래를 전격 중단했으며 장 마감 후 중대 발표를 예고했습니다. 시장에서는 FAW와의 대규모 제휴 및 지분 구조 개편 관련 공식 발표가 임박한 것으로 보며, 중국 국유 자동차 대기업 간 통합 행보에 관심이 집중되고 있습니다.",
+            "tags": [
+              "#GAC",
+              "#주식거래중단",
+              "#기업통합"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-09-14",
+            "url": "https://cnevpost.com/2026/09/14/gac-shares-halted-faw-tie-up-rumors/"
+          },
+          {
+            "headline": "중국, 2030년 신에너지차 비중 70% 목표 발표",
+            "summary": "중국 당국이 2030년까지 전체 승용차 판매 중 신에너지차(NEV) 비중을 70%까지 끌어올리고 자율주행차 상용화를 확충하는 5개년 계획을 발표했습니다. 국가 차원의 정책 지원과 인프라 투자를 지속하여 전기차 전환 속도를 배가하고, 자율주행 생태계의 대규모 보급을 적극 지원한다는 중장기 로드맵입니다.",
+            "tags": [
+              "#중국정부",
+              "#5개년계획",
+              "#신에너지차"
             ],
             "source": "CnEVPost",
             "date": "2026-09-11",
             "url": "https://cnevpost.com/2026/09/11/china-unveils-five-year-nev-plan/"
-          },
-          {
-            "headline": "리오토, 오는 10월 유럽 진출… Li 6 첫 공개",
-            "summary": "중국 주요 EV 브랜드 리오토가 신형 SUV Li 6을 내세워 오는 10월 모터쇼를 시작으로 유럽 시장에 첫 진출합니다. 연내 판매 개시를 목표로 삼고 있으며, 유럽 고급 SUV 시장에서 가성비와 기술력을 무기로 기성 브랜드들과 직접 공세에 나설 예정입니다.",
-            "tags": [
-              "#리오토",
-              "#유럽진출",
-              "#Li6",
-              "#글로벌공세"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-11",
-            "url": "https://carnewschina.com/2026/09/10/another-major-chinese-automaker-heads-to-europe-debut-in-october-sales-later-this-year/"
-          },
-          {
-            "headline": "BYD, 9200대급 대형 운반선 10척 추가 발주",
-            "summary": "BYD가 9,200대의 차량을 동시에 수송할 수 있는 대형 자동차 전용 운반선(Ro-Ro) 10척을 추가 발주했습니다. 자체 물류 인프라 네트워크를 대대적으로 늘림으로써 해상 운송 비용을 절감하고 유럽, 남미 등 글로벌 시장으로의 완성차 수출을 극대화한다는 전략입니다.",
-            "tags": [
-              "#BYD",
-              "#자동차운반선",
-              "#물류인프라",
-              "#해외수출"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-11",
-            "url": "https://carnewschina.com/2026/09/11/byd-orders-10-more-vessels-with-capacity-for-9200-cars-each-report-says/"
           }
         ]
       }
     ],
-    "implications": "중국 전기차 및 배터리 기업들이 800V 초고속 충전과 전고체 배터리 상용화 기술을 대중형 파워트레인 가격대에 신속히 이식하면서, 한국 완성차 및 배터리 3사에 가격 경쟁력과 기술 격차 면에서 가중된 압박을 가하고 있습니다. 더욱이 BYD의 선박 직영 체제 구축 및 샤오펑·리오토·립모터의 유럽·신흥국 공세 강화는 그간 한국 자동차 업계가 강세를 보이던 해외 시장에서 치열한 주도권 다툼을 야기할 전망입니다. 이에 대응해 국내 업계는 프리미엄 차세대 배터리 양산 로드맵을 조기 달성하고 LFP 및 PHEV 등 가성비 파워트레인 포트폴리오를 빠르게 확대해야 합니다."
+    "implications": "중국 완성차 업체들이 800V 고전압 플랫폼과 9분 초급속 충전 기술을 1만 달러 대 가성비 모델까지 전면 확산함에 따라, 글로벌 전기차 시장에서 한국 완성차의 가격 및 성능 경쟁력 부담이 크게 가중되고 있습니다. 특히 BYD가 내년 전고체 배터리의 실차 양산 실증을 예고하면서 차세대 배터리 주도권을 둘러싼 국내 배터리 3사(LG에너지솔루션·삼성SDI·SK온)와의 기술 격차 축소 및 상용화 속도전이 한층 치열해질 전망입니다. 아울러 중국 당국 주도의 국유 기업 재편 및 샤오펑·립모터 등 신세력의 유럽·아태 지역 해외 진출 본격화는 향후 동남아, 유럽, 호주 시장에서 한국 자동차 및 배터리 업계의 수출 입지를 크게 위협할 것으로 분석됩니다."
   },
   "patentTrends": {
     "keyTakeaways": [
