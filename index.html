@@ -755,19 +755,28 @@
                 <span class="inline-block ${theme.tagBg} ${theme.tagText} text-[10px] font-bold px-1.5 py-0.5 rounded mr-1 mb-1">${esc(tag)}</span>
             `).join('');
 
+            // javascript: 등 위험 스킴 차단을 위해 http(s) 링크만 허용한다.
+            const safeUrl = (url) => (typeof url === 'string' && /^https?:\/\//i.test(url.trim())) ? url.trim() : '';
+
             const categories = Array.isArray(briefing.categories) ? briefing.categories : [];
             const categoriesHtml = categories.map((cat, idx) => {
                 const items = Array.isArray(cat.items) ? cat.items : [];
-                const itemsHtml = items.map(item => `
+                const itemsHtml = items.map(item => {
+                    const url = safeUrl(item.url);
+                    return `
                     <li class="text-[11px] sm:text-xs text-slate-200 leading-relaxed border-l-2 ${theme.itemBorder} pl-2.5 py-0.5">
-                        <div class="font-bold text-white">${esc(item.headline || item.title)}</div>
+                        <div class="font-bold text-white flex items-start gap-1.5">
+                            <span>${esc(item.headline || item.title)}</span>
+                            ${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" title="Google Patents 원문 보기" class="inline-flex items-center justify-center w-4 h-4 rounded ${theme.tagBg} ${theme.tagText} hover:brightness-125 transition flex-shrink-0 mt-0.5">🔍</a>` : ''}
+                        </div>
                         <div class="text-slate-300 mt-0.5">${esc(item.summary)}</div>
                         <div class="mt-1 flex flex-wrap items-center gap-x-1">
                             ${renderTags(item.tags)}
                             ${item.source ? `<span class="text-[10px] text-slate-400 ml-1">· ${esc(item.source)}</span>` : ''}
                         </div>
                     </li>
-                `).join('');
+                `;
+                }).join('');
                 return `
                     <div class="mb-3 last:mb-0">
                         <h4 class="text-xs sm:text-sm font-extrabold ${theme.catTitle} mb-1.5 flex items-center gap-1.5">
