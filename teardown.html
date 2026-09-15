@@ -217,6 +217,8 @@
             'Number of Fasteners', 'Fastener(s) Weight (kg)', 'OEM/Tiers', 'Part Code',
             'Number of Inserted Nuts', 'Number of Inserted Studs', 'Number of Free Screws', 'System',
         ];
+        // Pack 개요 데이터에 Marking 필드가 있어도 화면/엑셀 내보내기 모두에서 무조건 숨긴다 (불필요 데이터).
+        const PACK_OVERVIEW_EXCLUDED_FIELDS = new Set(['Marking']);
 
         function orderedKeys(obj, order) {
             const keys = Object.keys(obj || {});
@@ -338,7 +340,9 @@
         function buildFieldTable(title, selectedVehicles, getObj, order, colorClass) {
             const objs = selectedVehicles.map(v => getObj(v) || {});
             const allKeysSet = new Set();
-            objs.forEach(o => Object.keys(o).forEach(k => allKeysSet.add(k)));
+            objs.forEach(o => Object.keys(o).forEach(k => {
+                if (!PACK_OVERVIEW_EXCLUDED_FIELDS.has(k)) allKeysSet.add(k);
+            }));
             const keys = orderedKeys(Object.fromEntries([...allKeysSet].map(k => [k, true])), order);
 
             if (keys.length === 0) {
@@ -687,7 +691,9 @@
             const ws = workbook.addWorksheet('Pack 개요 & 실물사진');
             const objs = selectedVehicles.map(v => v.packOverview || {});
             const allKeysSet = new Set();
-            objs.forEach(o => Object.keys(o).forEach(k => allKeysSet.add(k)));
+            objs.forEach(o => Object.keys(o).forEach(k => {
+                if (!PACK_OVERVIEW_EXCLUDED_FIELDS.has(k)) allKeysSet.add(k);
+            }));
             const keys = orderedKeys(Object.fromEntries([...allKeysSet].map(k => [k, true])), PACK_OVERVIEW_FIELD_ORDER);
 
             const headerRow = ws.addRow(['항목', ...selectedVehicles.map(v => `${v.name} (${v.year || '-'})`)]);
