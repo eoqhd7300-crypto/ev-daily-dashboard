@@ -758,20 +758,39 @@
             // javascript: 등 위험 스킴 차단을 위해 http(s) 링크만 허용한다.
             const safeUrl = (url) => (typeof url === 'string' && /^https?:\/\//i.test(url.trim())) ? url.trim() : '';
 
-            // 특허 카드 전용: claims(청구항) 기반 정량적 설계 기준을 [label, value] 목록으로 렌더링한다.
-            // 뉴스 항목에는 designCriteria가 없으므로 자연히 렌더링되지 않는다.
+            // 특허 카드 전용: claims(청구항) 기반 정량적 파라미터를 group 단위로 동적 그룹핑하여
+            // "■ 핵심 정량 수치 요약 (Data Summary)" 블록으로 렌더링한다. 뉴스 항목에는 designCriteria가
+            // 없으므로 자연히 렌더링되지 않는다. group이 없는(레거시) 데이터는 그룹 헤더 없이 평탄하게 표시한다.
             const renderDesignCriteria = (designCriteria) => {
                 const list = Array.isArray(designCriteria) ? designCriteria.filter(dc => dc && dc.label && dc.value) : [];
                 if (list.length === 0) return '';
-                const rows = list.map(dc => `
-                    <li class="text-[10px] sm:text-[11px] text-slate-300 leading-relaxed">
-                        <span class="font-bold text-slate-100">${esc(dc.label)}:</span> ${esc(dc.value)}
-                    </li>
+                const groups = [];
+                const groupIndex = new Map();
+                list.forEach(dc => {
+                    const groupName = (dc.group || '').trim();
+                    const key = groupName || '__default__';
+                    if (!groupIndex.has(key)) {
+                        groupIndex.set(key, groups.length);
+                        groups.push({ name: groupName, rows: [] });
+                    }
+                    groups[groupIndex.get(key)].rows.push(dc);
+                });
+                const groupsHtml = groups.map(g => `
+                    <div class="mb-1.5 last:mb-0">
+                        ${g.name ? `<div class="text-[10px] font-bold text-slate-400 mb-0.5">[${esc(g.name)}]</div>` : ''}
+                        <ul class="space-y-0.5 pl-0.5">
+                            ${g.rows.map(dc => `
+                                <li class="text-[10px] sm:text-[11px] text-slate-300 leading-relaxed">
+                                    <span class="font-bold text-slate-100">${esc(dc.label)}:</span> ${esc(dc.value)}
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
                 `).join('');
                 return `
                     <div class="mt-1.5 bg-black/25 border ${theme.itemBorder} rounded-lg p-2">
-                        <div class="text-[10px] font-extrabold ${theme.catTitle} mb-1">[주요 설계 기준 요약]</div>
-                        <ul class="space-y-0.5 pl-0.5">${rows}</ul>
+                        <div class="text-[10px] font-extrabold ${theme.catTitle} mb-1">■ 핵심 정량 수치 요약 (Data Summary)</div>
+                        ${groupsHtml}
                     </div>
                 `;
             };
@@ -781,13 +800,22 @@
                 const items = Array.isArray(cat.items) ? cat.items : [];
                 const itemsHtml = items.map(item => {
                     const url = safeUrl(item.url);
+                    // painPoint/solution 필드가 있으면(특허 카드 신규 스키마) 구조화된 2줄로 표시하고,
+                    // 없으면(뉴스 카드 또는 레거시 특허 데이터) 기존 summary 문단을 그대로 표시한다.
+                    const hasPainSolution = !!(item.painPoint || item.solution);
+                    const bodyHtml = hasPainSolution ? `
+                        <div class="text-slate-300 mt-0.5 space-y-0.5">
+                            ${item.painPoint ? `<div>• <span class="font-semibold text-slate-200">문제점(Pain Point):</span> ${esc(item.painPoint)}</div>` : ''}
+                            ${item.solution ? `<div>• <span class="font-semibold text-slate-200">해결원리(Solution):</span> ${esc(item.solution)}</div>` : ''}
+                        </div>
+                    ` : (item.summary ? `<div class="text-slate-300 mt-0.5">${esc(item.summary)}</div>` : '');
                     return `
                     <li class="text-[11px] sm:text-xs text-slate-200 leading-relaxed border-l-2 ${theme.itemBorder} pl-2.5 py-0.5">
                         <div class="font-bold text-white flex items-start gap-1.5">
                             <span>${esc(item.headline || item.title)}</span>
                             ${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" title="Google Patents 원문 보기" class="inline-flex items-center justify-center w-4 h-4 rounded ${theme.tagBg} ${theme.tagText} hover:brightness-125 transition flex-shrink-0 mt-0.5">🔍</a>` : ''}
                         </div>
-                        <div class="text-slate-300 mt-0.5">${esc(item.summary)}</div>
+                        ${bodyHtml}
                         ${renderDesignCriteria(item.designCriteria)}
                         <div class="mt-1 flex flex-wrap items-center gap-x-1">
                             ${renderTags(item.tags)}
