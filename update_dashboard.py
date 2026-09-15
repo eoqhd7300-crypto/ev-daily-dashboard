@@ -67,6 +67,12 @@ WITH filtered_patents AS (
       (SELECT text FROM UNNEST(abstract_localized) WHERE language = 'en' LIMIT 1),
       (SELECT text FROM UNNEST(abstract_localized) LIMIT 1)
     ) AS abstract,
+    -- claims(청구항)에는 abstract보다 훨씬 구체적인 정량적 설계 수치(입도, 비율, 온도, 시간 등)가
+    -- 담겨 있어, "주요 설계 기준 요약" 생성 시 abstract 대신 claims를 근거 자료로 사용한다.
+    COALESCE(
+      (SELECT text FROM UNNEST(claims_localized) WHERE language = 'en' LIMIT 1),
+      (SELECT text FROM UNNEST(claims_localized) LIMIT 1)
+    ) AS claims,
     ARRAY(SELECT code FROM UNNEST(ipc)) AS ipc_codes,
     -- publication_number는 'EP-4726839-A1'처럼 하이픈이 포함된 형식이지만, Google Patents 페이지
     -- URL은 하이픈 없는 'EP4726839A1' 형식을 요구하므로 REPLACE로 제거한 뒤 링크를 구성한다.
@@ -122,6 +128,7 @@ SELECT
   primary_assignee,
   title,
   abstract,
+  claims,
   ARRAY_TO_STRING(ipc_codes, ', ') AS ipc_list,
   google_patent_url
 FROM
@@ -1360,6 +1367,8 @@ def run_battery_patent_query() -> list:
                 {
                     "title": row["title"] or "",
                     "abstract": (row["abstract"] or "")[:500],  # 프롬프트 용량 절약을 위해 초록은 500자로 절단
+                    # 청구항은 정량적 설계 수치의 근거 자료이므로 abstract보다 길게(2500자) 보존한다.
+                    "claims": (row["claims"] or "")[:2500],
                     "company_name": row["company_name"] or "",
                     "primary_assignee": row["primary_assignee"] or "",
                     "primary_tech_category": row["primary_tech_category"] or "",
@@ -1380,8 +1389,17 @@ def build_patent_trend_system_instruction() -> str:
     categories_block = "\n".join(f"   {i}. {name}" for i, name in enumerate(PATENT_TREND_CATEGORY_ORDER, start=1))
     return f"""
 너는 전기차 배터리 분야의 수석 특허 엔지니어이자 전문 특허 분석가다.
-전달받는 BigQuery 특허 데이터(title, abstract, company_name, primary_tech_category, ipc_list, pub_date,
+전달받는 BigQuery 특허 데이터(title, abstract, claims, company_name, primary_tech_category, ipc_list, pub_date,
 google_patent_url)를 정밀 분석해, 아래 규칙에 맞춰 "엔지니어링 팩트 중심"의 JSON 브리핑을 한국어로 작성하라.
+
+[근거 자료(grounding) 규칙 - 환각(hallucination) 절대 금지]
+- 모든 수치, 단위, 파라미터 명칭(예: Dv50, Dv99, SOC, C-rate 등)은 반드시 입력된 abstract 또는 claims
+  텍스트에 실제로 등장하는 표현만 사용하라. 절대 추정하거나 유사 관용구로 바꿔 쓰지 마라
+  (예: 원문이 "Dv50"이면 "Dv99"라고 쓰면 안 된다 - 반드시 원문 그대로).
+- abstract는 개략적 요약일 뿐이며, 정량적 수치/조성비/치수/온도/시간 등 구체적 설계 데이터는
+  claims 필드에 훨씬 상세히 담겨 있다. summary와 designCriteria를 작성할 때는 abstract보다
+  claims를 우선 근거로 삼아라.
+- claims에도 abstract에도 해당 정보가 없으면 절대 지어내지 말고 "미기재"라고 명시하라.
 
 [카테고리 규칙 - 엄격 준수]
 1. categories는 반드시 아래 4개를 이 순서 그대로, 정확히 이 이름으로 출력하라 (추가/삭제/이름 변경 금지):
@@ -1391,7 +1409,7 @@ google_patent_url)를 정밀 분석해, 아래 규칙에 맞춰 "엔지니어링
    만들지 마라.
 3. 각 카테고리에는 대표성 있는 특허 2~4건만 선별하라 (해당 카테고리에 실제로 분류될 특허가 하나도 없으면,
    items를 정확히 아래 형태의 단일 placeholder 1건으로 채워라:
-   {{"headline": "신규 공개 특허 없음", "summary": "", "tags": [], "source": "", "date": "", "url": ""}}).
+   {{"headline": "신규 공개 특허 없음", "summary": "", "tags": [], "source": "", "date": "", "url": "", "designCriteria": []}}).
 
 [특허 항목(items) 필드 규칙]
 각 특허 항목은 아래 필드를 모두 채워라:
@@ -1407,6 +1425,13 @@ google_patent_url)를 정밀 분석해, 아래 규칙에 맞춰 "엔지니어링
 - source: company_name 값을 그대로 사용 (예: "CATL", "BYD", "Geely").
 - date: pub_date 값을 그대로 사용 (YYYY-MM-DD, 변경 금지).
 - url: google_patent_url 값을 그대로 사용 (반드시 입력값 중에서만 선택, 지어내지 마라).
+- designCriteria: claims 필드에서 직접 추출한 "주요 설계 기준"을 {{"label": "...", "value": "..."}}
+  객체 2~5개의 배열로 작성하라 (claims 기반 정량적 스펙 전용 - summary의 정성적 서술과 별개).
+   * label: 설계 기준 항목명을 8자 내외로 간결하게 (예: "음극 입도 설계", "극판 밀도 타깃",
+     "급속 충전 조건", "전해액 조성 핵심").
+   * value: claims에 명시된 구체적 수치/범위/비율을 단위와 함께 그대로 인용하듯 작성하라
+     (예: "Dv50 기준 대립자(7.8~14.8 μm) 및 소립자(4.2~7.2 μm) 혼합비 3:7 ~ 5:5 적용").
+   * claims에 정량적 설계 기준이 전혀 없으면 빈 배열 []을 반환하라 (억지로 만들어내지 마라).
 
 [keyTakeaways / implications 규칙]
 - keyTakeaways: 전체 특허를 관통하는 "기업별 기술 전략 방향" 인사이트 2~3개를 한 문장씩 배열로 작성하라
@@ -1437,6 +1462,7 @@ def build_patent_trend_prompt(patents: list) -> str:
             {
                 "title": p.get("title", ""),
                 "abstract": p.get("abstract", ""),
+                "claims": p.get("claims", ""),
                 "company_name": p.get("company_name", ""),
                 "primary_tech_category": p.get("primary_tech_category", ""),
                 "ipc_list": p.get("ipc_list", ""),
@@ -1507,7 +1533,7 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
 
         # 카테고리는 항상 고정된 4개를 이 순서 그대로 출력한다. 모델이 이름을 다르게 반환했거나
         # 특정 카테고리에 해당하는 특허가 없었던 경우, "신규 공개 특허 없음" placeholder로 채운다.
-        empty_placeholder = [{"headline": "신규 공개 특허 없음", "summary": "", "tags": [], "source": "", "date": "", "url": ""}]
+        empty_placeholder = [{"headline": "신규 공개 특허 없음", "summary": "", "tags": [], "source": "", "date": "", "url": "", "designCriteria": []}]
         final_categories = []
         for canonical_name in PATENT_TREND_CATEGORY_ORDER:
             match = categories_by_name.pop(canonical_name, None)

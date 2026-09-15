@@ -758,6 +758,24 @@
             // javascript: 등 위험 스킴 차단을 위해 http(s) 링크만 허용한다.
             const safeUrl = (url) => (typeof url === 'string' && /^https?:\/\//i.test(url.trim())) ? url.trim() : '';
 
+            // 특허 카드 전용: claims(청구항) 기반 정량적 설계 기준을 [label, value] 목록으로 렌더링한다.
+            // 뉴스 항목에는 designCriteria가 없으므로 자연히 렌더링되지 않는다.
+            const renderDesignCriteria = (designCriteria) => {
+                const list = Array.isArray(designCriteria) ? designCriteria.filter(dc => dc && dc.label && dc.value) : [];
+                if (list.length === 0) return '';
+                const rows = list.map(dc => `
+                    <li class="text-[10px] sm:text-[11px] text-slate-300 leading-relaxed">
+                        <span class="font-bold text-slate-100">${esc(dc.label)}:</span> ${esc(dc.value)}
+                    </li>
+                `).join('');
+                return `
+                    <div class="mt-1.5 bg-black/25 border ${theme.itemBorder} rounded-lg p-2">
+                        <div class="text-[10px] font-extrabold ${theme.catTitle} mb-1">[주요 설계 기준 요약]</div>
+                        <ul class="space-y-0.5 pl-0.5">${rows}</ul>
+                    </div>
+                `;
+            };
+
             const categories = Array.isArray(briefing.categories) ? briefing.categories : [];
             const categoriesHtml = categories.map((cat, idx) => {
                 const items = Array.isArray(cat.items) ? cat.items : [];
@@ -770,6 +788,7 @@
                             ${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" title="Google Patents 원문 보기" class="inline-flex items-center justify-center w-4 h-4 rounded ${theme.tagBg} ${theme.tagText} hover:brightness-125 transition flex-shrink-0 mt-0.5">🔍</a>` : ''}
                         </div>
                         <div class="text-slate-300 mt-0.5">${esc(item.summary)}</div>
+                        ${renderDesignCriteria(item.designCriteria)}
                         <div class="mt-1 flex flex-wrap items-center gap-x-1">
                             ${renderTags(item.tags)}
                             ${item.source ? `<span class="text-[10px] text-slate-400 ml-1">· ${esc(item.source)}</span>` : ''}
