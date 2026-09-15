@@ -24,6 +24,7 @@ from email.utils import parsedate_to_datetime
 from urllib.parse import quote_plus
 
 from google import genai
+from google.genai import types
 
 KST = timezone(timedelta(hours=9))
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json")
@@ -48,6 +49,9 @@ CHINA_NEWS_POOL_SIZE = 40
 # main()에서 매일이 아니라 주 1회(월요일)만 조회한다. GCP_SA_KEY_JSON 환경변수(서비스 계정 키 JSON)가
 # 없으면 이 기능 전체를 건너뛴다 (다른 무료 파이프라인에는 영향 없음).
 MAX_PATENT_ITEMS = 80
+# 특허 동향 카드는 아래 4개 기술 카테고리를 항상 이 순서로 고정 출력한다 (엔지니어가 매주 동일한 틀에서
+# 비교할 수 있도록). 해당 주에 신규 특허가 없는 카테고리는 "신규 공개 특허 없음"으로 표시한다.
+PATENT_TREND_CATEGORY_ORDER = ["소재 & 전극", "전해질 & 전고체", "셀 제조 & 공정", "팩 구조 & CTP & 열관리"]
 BATTERY_PATENT_SQL = """
 WITH filtered_patents AS (
   SELECT
@@ -1364,6 +1368,63 @@ def run_battery_patent_query() -> list:
         return []
 
 
+def build_patent_trend_system_instruction() -> str:
+    """특허 트렌드 브리핑 생성용 system instruction. 페르소나/출력 구조/작성 품질 기준을 고정해
+    매주 동일한 엔지니어링 깊이로 결과가 나오도록 한다 (Gemini temperature를 낮게 설정해 함께 사용)."""
+    categories_block = "\n".join(f"   {i}. {name}" for i, name in enumerate(PATENT_TREND_CATEGORY_ORDER, start=1))
+    return f"""
+너는 전기차 배터리 분야의 수석 특허 엔지니어이자 전문 특허 분석가다.
+전달받는 BigQuery 특허 데이터(title, abstract, company_name, primary_tech_category, ipc_list, pub_date,
+google_patent_url)를 정밀 분석해, 아래 규칙에 맞춰 "엔지니어링 팩트 중심"의 JSON 브리핑을 한국어로 작성하라.
+
+[카테고리 규칙 - 엄격 준수]
+1. categories는 반드시 아래 4개를 이 순서 그대로, 정확히 이 이름으로 출력하라 (추가/삭제/이름 변경 금지):
+{categories_block}
+2. 입력된 모든 특허를 위 4개 카테고리 중 가장 적합한 곳에 분류하라 (primary_tech_category를 참고하되,
+   애매하면 title/abstract/ipc_list 내용을 근거로 가장 가까운 카테고리에 배치). 5번째 "기타" 카테고리는
+   만들지 마라.
+3. 각 카테고리에는 대표성 있는 특허 2~4건만 선별하라 (해당 카테고리에 실제로 분류될 특허가 하나도 없으면,
+   items를 정확히 아래 형태의 단일 placeholder 1건으로 채워라:
+   {{"headline": "신규 공개 특허 없음", "summary": "", "tags": [], "source": "", "date": "", "url": ""}}).
+
+[특허 항목(items) 필드 규칙]
+각 특허 항목은 아래 필드를 모두 채워라:
+- headline: "{{기술명}} ({{핵심 요약 1문장}})" 형태의 한 문장 (기술명은 특허의 핵심 기술을 압축한 짧은 명칭).
+- summary: 아래 3가지 요소를 반드시 포함해 2~3문장으로 결합한 "상세 설명" (엔지니어링 깊이 극대화):
+   ① 해결하려는 과제: 기존 기술의 구체적 한계/문제점 (예: 망간 용출, 계면 저항 증가, 젤리롤 변형, 열폭주 전이 등)
+   ② 핵심 기술 메커니즘: 이 특허만의 구체적 해결 수단 (화학 조성비, 표면 코팅, 제어 회로, 가압 구조 등 구체적으로)
+   ③ 정량적 수치 및 효과: 측정 가능한 개선 수치 (에너지 밀도 %, 수명 사이클 수, 사이클 유지율, 온도 감소치,
+      충전/공정 시간 단축 등). abstract에 구체적 수치가 없으면 "정량적 수치 미기재"라고 명시하고 정성적
+      효과만 서술하라 (수치를 지어내지 마라).
+   "성능을 향상시킨", "안정성을 높인", "우수한 특성을 지닌" 같은 추상적 표현은 절대 사용하지 마라.
+- tags: 핵심 키워드 2~4개를 "#키워드" 형태 문자열 배열로 작성 (예: "#전고체", "#탭용접", "#CATL").
+- source: company_name 값을 그대로 사용 (예: "CATL", "BYD", "Geely").
+- date: pub_date 값을 그대로 사용 (YYYY-MM-DD, 변경 금지).
+- url: google_patent_url 값을 그대로 사용 (반드시 입력값 중에서만 선택, 지어내지 마라).
+
+[keyTakeaways / implications 규칙]
+- keyTakeaways: 전체 특허를 관통하는 "기업별 기술 전략 방향" 인사이트 2~3개를 한 문장씩 배열로 작성하라
+  (개별 특허 제목 나열 금지, 어느 기업이 어떤 기술에 집중하는지/최근 급증한 기술 분야 등 종합적 인사이트).
+- implications: 수집된 특허 전체 트렌드를 종합하여, 한국 배터리/소재/공정 업계가 주목해야 할 핵심 시사점과
+  대응 전략을 3~5문장으로 작성하라 (2줄 요약이 아니라 실질적인 전략 제언 수준으로 상세히).
+
+[출력 형식]
+마크다운 코드블록이나 설명 문장 없이, 아래 스키마를 따르는 순수 JSON 객체 하나만 응답하라:
+{{
+  "keyTakeaways": ["...", "..."],
+  "categories": [
+    {{
+      "name": "...",
+      "items": [
+        {{"headline": "...", "summary": "...", "tags": ["#...", "#..."], "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+      ]
+    }}
+  ],
+  "implications": "..."
+}}
+"""
+
+
 def build_patent_trend_prompt(patents: list) -> str:
     items_json = json.dumps(
         [
@@ -1382,47 +1443,12 @@ def build_patent_trend_prompt(patents: list) -> str:
         indent=2,
     )
     return f"""
-아래는 Google BigQuery 공개 특허 데이터셋(patents-public-data)에서 조회한 CATL/BYD/Geely(및 계열사)의
-최근 배터리 관련 공개 특허 목록입니다 (title, abstract 일부, company_name, primary_tech_category, ipc_list,
-pub_date, google_patent_url 포함, 원문은 영문입니다).
+다음은 BigQuery에서 수집한 CATL/BYD/Geely(및 계열사)의 최신 배터리 관련 공개 특허 데이터이다
+(원문은 영문이며, title_localized/abstract_localized에서 영문 우선으로 추출됨):
 
-당신은 배터리 산업 특허 애널리스트입니다. 개별 특허를 전부 나열하지 말고, 아래 JSON 스키마에 맞춰
-"기업별·기술영역별 특허 트렌드 리포트"를 한국어로 작성하세요.
-
-작성 규칙:
-1. categories: 특허들을 기술 영역별로 2~4개 그룹으로 묶으세요 (예: "소재 & 전극", "전해질 & 전고체",
-   "셀 제조·공정", "팩 구조 & CTP & 열관리"). primary_tech_category 필드를 참고하되, 자연스러운 한국어
-   그룹명으로 재구성해도 됩니다.
-2. 각 그룹의 items는 그룹을 대표할 만한 특허 2~4건만 선별하여 아래 필드를 작성하세요 (전체 나열 금지):
-   - headline: 특허의 핵심 기술 내용을 압축한 짧은 소제목(15자 내외, 한국어)
-   - summary: title/abstract를 바탕으로 1문장 핵심 요약(한국어) - 청구항 직역이 아니라 "무엇을 개선/해결하는
-     기술인지" 위주로 요약
-   - tags: 핵심 키워드 2~4개를 "#키워드" 형태 문자열 배열로 작성 (예: "#전고체", "#탭용접", "#CATL")
-   - source: company_name 값을 그대로 사용 (예: "CATL", "BYD", "Geely")
-   - date: pub_date 값을 그대로 사용 (YYYY-MM-DD, 변경 금지)
-   - url: google_patent_url 값을 그대로 사용 (변경 금지)
-3. keyTakeaways: 전체 특허 목록을 관통하는 "기업별 기술 전략 방향" 인사이트 2~3개를 한 문장씩 배열로
-   작성하세요 (예: 어느 기업이 어떤 기술에 집중하는지, 최근 급증한 기술 분야 등 - 개별 특허 제목 나열 금지).
-4. implications: "이 특허 트렌드가 한국 배터리 업계에 주는 시사점"을 2줄 이내(공백 포함 약 120자 이내)로 분석하세요.
-5. url 값은 반드시 입력된 google_patent_url 중에서만 선택하세요 (지어내지 마세요).
-6. 마크다운 코드블록이나 설명 문장 없이 순수 JSON 객체만 응답하세요.
-
-원본 특허 목록:
 {items_json}
 
-응답 형식 (JSON 객체 하나):
-{{
-  "keyTakeaways": ["...", "..."],
-  "categories": [
-    {{
-      "name": "...",
-      "items": [
-        {{"headline": "...", "summary": "...", "tags": ["#...", "#..."], "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
-      ]
-    }}
-  ],
-  "implications": "..."
-}}
+system instruction의 카테고리 규칙/항목 필드 규칙/키워드 규칙을 모두 지켜서 JSON 브리핑을 작성하라.
 """
 
 
@@ -1435,6 +1461,10 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
         response = client.models.generate_content(
             model=MODEL_NAME,
             contents=build_patent_trend_prompt(patents),
+            config=types.GenerateContentConfig(
+                system_instruction=build_patent_trend_system_instruction(),
+                temperature=0.2,  # 기술적 정확성이 중요한 분석이므로 창의적 변주보다 일관성을 우선한다
+            ),
         )
         payload = extract_json(response.text)
         if not isinstance(payload, dict):
@@ -1443,24 +1473,52 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
         if not isinstance(categories, list) or not categories:
             return None
         valid_urls = {_norm(p.get("google_patent_url") or "") for p in patents}
-        cleaned_categories = []
+
+        def _is_valid_item(item: object) -> bool:
+            if not isinstance(item, dict):
+                return False
+            url = item.get("url") or ""
+            if not url:
+                return True  # "신규 공개 특허 없음" placeholder 등 url이 없는 항목은 그대로 허용
+            return _norm(url) in valid_urls
+
+        categories_by_name: dict[str, dict] = {}
         for cat in categories:
             if not isinstance(cat, dict):
                 continue
+            name = (cat.get("name") or "").strip()
             items = cat.get("items")
-            if not isinstance(items, list):
+            if not name or not isinstance(items, list):
                 continue
-            cleaned_items = [
-                item for item in items
-                if isinstance(item, dict) and _norm(item.get("url") or "") in valid_urls
-            ]
+            cleaned_items = [item for item in items if _is_valid_item(item)]
             if cleaned_items:
-                cleaned_categories.append({"name": cat.get("name") or "기타", "items": cleaned_items})
-        if not cleaned_categories:
+                categories_by_name[name] = {"name": name, "items": cleaned_items}
+
+        if not categories_by_name:
+            # 응답 자체가 파싱은 됐지만 유효한 카테고리를 하나도 만들지 못한 경우
+            # (형식 오류 등) - 지난주 데이터를 덮어쓰지 않도록 실패로 처리한다.
             return None
+
+        # 카테고리는 항상 고정된 4개를 이 순서 그대로 출력한다. 모델이 이름을 다르게 반환했거나
+        # 특정 카테고리에 해당하는 특허가 없었던 경우, "신규 공개 특허 없음" placeholder로 채운다.
+        empty_placeholder = [{"headline": "신규 공개 특허 없음", "summary": "", "tags": [], "source": "", "date": "", "url": ""}]
+        final_categories = []
+        for canonical_name in PATENT_TREND_CATEGORY_ORDER:
+            match = categories_by_name.pop(canonical_name, None)
+            if match is None:
+                # 이름이 정확히 일치하지 않는 경우, 핵심 키워드로 느슨하게 매칭을 시도한다.
+                for name, cat in list(categories_by_name.items()):
+                    if any(keyword in name for keyword in canonical_name.replace("&", " ").split()):
+                        match = categories_by_name.pop(name)
+                        break
+            if match is None:
+                final_categories.append({"name": canonical_name, "items": empty_placeholder})
+            else:
+                final_categories.append({"name": canonical_name, "items": match["items"]})
+
         return {
             "keyTakeaways": [t for t in (payload.get("keyTakeaways") or []) if isinstance(t, str)],
-            "categories": cleaned_categories,
+            "categories": final_categories,
             "implications": payload.get("implications") if isinstance(payload.get("implications"), str) else "",
         }
     except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
