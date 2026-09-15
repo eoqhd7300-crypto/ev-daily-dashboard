@@ -48,7 +48,9 @@ CHINA_NEWS_POOL_SIZE = 40
 # 특허 공개 데이터는 매일 유의미하게 바뀌지 않고 BigQuery 무료 할당량(월 1TB)도 아껴야 하므로,
 # main()에서 매일이 아니라 주 1회(월요일)만 조회한다. GCP_SA_KEY_JSON 환경변수(서비스 계정 키 JSON)가
 # 없으면 이 기능 전체를 건너뛴다 (다른 무료 파이프라인에는 영향 없음).
-MAX_PATENT_ITEMS = 80
+# claims(청구항) 필드를 함께 보내면서 응답이 finish_reason=MAX_TOKENS로 잘리는 문제가 실측 확인되어,
+# 입력 건수를 40건으로 낮춰 프롬프트/응답 크기를 줄인다.
+MAX_PATENT_ITEMS = 40
 # 특허 동향 카드는 아래 4개 기술 카테고리를 항상 이 순서로 고정 출력한다 (엔지니어가 매주 동일한 틀에서
 # 비교할 수 있도록). 해당 주에 신규 특허가 없는 카테고리는 "신규 공개 특허 없음"으로 표시한다.
 PATENT_TREND_CATEGORY_ORDER = ["소재 & 전극", "전해질 & 전고체", "셀 제조 & 공정", "팩 구조 & CTP & 열관리"]
@@ -1515,7 +1517,11 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
             config=types.GenerateContentConfig(
                 system_instruction=build_patent_trend_system_instruction(),
                 temperature=0.2,  # 기술적 정확성이 중요한 분석이므로 창의적 변주보다 일관성을 우선한다
-                max_output_tokens=8192,  # 항목 수가 많아 응답이 길어질 수 있어 잘림(truncation)을 방지
+                # 실측 결과 finish_reason=MAX_TOKENS로 응답이 잘려 JSON 파싱이 실패했다. "thinking" 모델의
+                # 내부 추론 토큰이 출력 예산을 크게 잠식하는 것이 원인이므로 thinking을 끄고, 그래도 항목 수가
+                # 많아 응답이 길어질 수 있으므로 max_output_tokens도 넉넉히 늘린다.
+                thinking_config=types.ThinkingConfig(thinking_budget=0),
+                max_output_tokens=16384,
             ),
         )
         finish_reason = None
