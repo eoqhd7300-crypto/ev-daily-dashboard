@@ -1367,8 +1367,9 @@ def run_battery_patent_query() -> list:
                 {
                     "title": row["title"] or "",
                     "abstract": (row["abstract"] or "")[:500],  # 프롬프트 용량 절약을 위해 초록은 500자로 절단
-                    # 청구항은 정량적 설계 수치의 근거 자료이므로 abstract보다 길게(2500자) 보존한다.
-                    "claims": (row["claims"] or "")[:2500],
+                    # 청구항은 정량적 설계 수치의 근거 자료이지만, 너무 길면 프롬프트가 과도하게 커져
+                    # Gemini 응답이 잘리는 문제가 있어 1500자로 제한한다.
+                    "claims": (row["claims"] or "")[:1500],
                     "company_name": row["company_name"] or "",
                     "primary_assignee": row["primary_assignee"] or "",
                     "primary_tech_category": row["primary_tech_category"] or "",
@@ -1505,17 +1506,28 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
     호출부에서는 지난주 버전을 그대로 유지한다."""
     if not patents:
         return None
+    prompt = build_patent_trend_prompt(patents)
+    print(f"특허 트렌드 프롬프트 생성 완료 ({len(patents)}건, 프롬프트 길이 {len(prompt)}자)")
     try:
         response = client.models.generate_content(
             model=MODEL_NAME,
-            contents=build_patent_trend_prompt(patents),
+            contents=prompt,
             config=types.GenerateContentConfig(
                 system_instruction=build_patent_trend_system_instruction(),
                 temperature=0.2,  # 기술적 정확성이 중요한 분석이므로 창의적 변주보다 일관성을 우선한다
+                max_output_tokens=8192,  # 항목 수가 많아 응답이 길어질 수 있어 잘림(truncation)을 방지
             ),
         )
-        payload = extract_json(response.text)
+        finish_reason = None
+        try:
+            finish_reason = response.candidates[0].finish_reason
+        except Exception:  # noqa: BLE001 - 진단 목적의 부가 정보이므로 실패해도 무시
+            pass
+        response_text = response.text or ""
+        print(f"특허 트렌드 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
+        payload = extract_json(response_text)
         if not isinstance(payload, dict):
+            print("특허 트렌드 응답이 JSON 객체 형식이 아니어서 건너뜁니다.")
             return None
         categories = payload.get("categories")
         if not isinstance(categories, list) or not categories:
