@@ -809,11 +809,14 @@
                             ${item.solution ? `<div>• <span class="font-semibold text-slate-200">해결원리(Solution):</span> ${esc(item.solution)}</div>` : ''}
                         </div>
                     ` : (item.summary ? `<div class="text-slate-300 mt-0.5">${esc(item.summary)}</div>` : '');
+                    // 특허 카드(violet)는 Google Patents 원문 링크, 뉴스 카드(sky/rose)는 기사 원문 링크이므로
+                    // 테마에 따라 돋보기 링크의 안내 문구(title)를 다르게 표시한다.
+                    const linkTitle = themeKey === 'violet' ? 'Google Patents 원문 보기' : '뉴스 원문 보기';
                     return `
                     <li class="text-[11px] sm:text-xs text-slate-200 leading-relaxed border-l-2 ${theme.itemBorder} pl-2.5 py-0.5">
                         <div class="font-bold text-white flex items-start gap-1.5">
                             <span>${esc(item.headline || item.title)}</span>
-                            ${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" title="Google Patents 원문 보기" class="inline-flex items-center justify-center w-4 h-4 rounded ${theme.tagBg} ${theme.tagText} hover:brightness-125 transition flex-shrink-0 mt-0.5">🔍</a>` : ''}
+                            ${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" title="${linkTitle}" class="inline-flex items-center justify-center w-4 h-4 rounded ${theme.tagBg} ${theme.tagText} hover:brightness-125 transition flex-shrink-0 mt-0.5">🔍</a>` : ''}
                         </div>
                         ${bodyHtml}
                         ${renderDesignCriteria(item.designCriteria)}
