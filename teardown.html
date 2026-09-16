@@ -169,6 +169,11 @@
         let selectedTeardownIds = new Set();
         let activeCellManufacturerFilter = 'all';
         let activeCellFormatFilter = 'all';
+        // vehicleId -> { stackingStructure, stackStructure, anodeCathodeImages, separatorDimensions,
+        // overhangs, cellMaterialSummary, cathodeElectrodeCrossSection, anodeElectrodeCrossSection }
+        // parse_cell_report_pdf.py(teardown_cellreport_data.json)의 선택적 보강 데이터. 파일이 없거나
+        // 특정 차량에 데이터가 없어도 기존 Teardown 화면에는 전혀 영향을 주지 않는다.
+        let cellReportData = {};
         window.__partGalleries = {}; // galleryKey -> { images: [{view, path}], title } for the part-photo lightbox
         let currentGalleryKey = null;
         let currentGalleryIndex = 0;
@@ -186,13 +191,17 @@
         }
 
         // Curated display order (fields not listed here still show, appended alphabetically as fallback)
+        // 'Cell Length/Height/Width' 3개 필드는 buildCellSpecTable()에서 'Cell size(...)' 한 줄로
+        // 합쳐서 표시하고, '스택 구조'는 teardown_cellreport_data.json(stackingStructure)에서 채워지는
+        // 행이라 맨 끝에 추가한다 (parse_cell_report_pdf.py로 파싱한 PDF가 있는 차량만 값이 채워짐).
         const CELL_FIELD_ORDER = [
             'Cell Manufacturer', 'Cell Format', 'Cell Internal Assembly Process', 'Cell Casing Material',
             'Cell Casing Thickness [µm]', 'Cell Nominal Voltage [V]', 'Cell Nominal Voltage OEM [V]',
             'Cell Capacity [Ah]', 'Cell Capacity OEM [Ah]', 'Cell Energy [Wh]', 'Cell Energy OEM [Wh]',
-            'Cell Weight [kg]', 'Cell Length [mm]', 'Cell Height [mm]', 'Cell Width / Thickness [mm]',
+            'Cell Weight [kg]', 'Cell size(width x length x height)',
             'Cell length/height ratio', 'Cell Box Volume [L]', 'Cell 3D Volume [L]',
             'Cell Volumetric Energy Density [Wh/L]', 'Cell Gravimetric Energy Density [Wh/kg]',
+            '스택 구조',
         ];
         const MODULE_FIELD_ORDER = [
             'Number of modules', 'Cells in Module', 'Cells in Series in Module', 'Cells in Parallel in Module',
@@ -244,6 +253,19 @@
                 document.getElementById('vehicleCountBadge').innerText = `${teardownVehicles.length}대 수록`;
                 document.getElementById('loadingNotice').classList.add('hidden');
                 document.getElementById('teardownAppRoot').classList.remove('hidden');
+
+                // 선택적 보강 데이터(parse_cell_report_pdf.py 출력). 파일이 없거나 형식이 깨져도
+                // 위의 메인 Teardown 화면 표시를 절대 막아서는 안 되므로 별도 try/catch로 격리한다.
+                try {
+                    const crRes = await fetch('./teardown_cellreport_data.json', { cache: 'no-store' });
+                    if (crRes.ok) {
+                        const crData = await crRes.json();
+                        cellReportData = crData.vehicles || {};
+                    }
+                } catch (crErr) {
+                    console.warn('[Teardown] optional cell report data not loaded', crErr);
+                }
+
                 window.renderTeardownFilterBars();
                 window.renderVehiclePicker();
             } catch (err) {
@@ -337,6 +359,71 @@
             window.renderTeardownComparison();
         };
 
+        // Cell 필드 라벨 한글 표기 (여기 없는 필드는 원래 영문 키 그대로 표시됨).
+        const CELL_FIELD_LABELS = {
+            'Cell Manufacturer': 'Cell 제조사',
+            'Cell Format': 'Cell 타입',
+            'Cell Casing Material': '외장재',
+            'Cell Casing Thickness [µm]': '외장재 두께[µm]',
+            'Cell Nominal Voltage [V]': 'Cell Nominal 전압 [V]',
+            'Cell Nominal Voltage OEM [V]': 'Cell Nominal 전압 OEM [V]',
+            'Cell Weight [kg]': 'Cell 무게[kg]',
+        };
+
+        // Cell 스펙 비교 표 전용 빌더: v.cell(teardown_data.json)의 Length/Height/Width 3개 필드를
+        // 'Cell size(width x length x height)' 한 줄로 합치고, cellReportData(parse_cell_report_pdf.py
+        // 출력)에서 파싱된 '스택 구조'(stackingStructure) 행을 있으면 추가한다.
+        function buildCellSpecTable(selectedVehicles) {
+            const objs = selectedVehicles.map(v => {
+                const cell = v.cell || {};
+                const merged = { ...cell };
+                delete merged['Cell Length [mm]'];
+                delete merged['Cell Height [mm]'];
+                delete merged['Cell Width / Thickness [mm]'];
+                const w = cell['Cell Width / Thickness [mm]'], l = cell['Cell Length [mm]'], h = cell['Cell Height [mm]'];
+                if (w != null || l != null || h != null) {
+                    merged['Cell size(width x length x height)'] = `${fmtVal(w)} x ${fmtVal(l)} x ${fmtVal(h)}`;
+                }
+                const stackingStructure = (cellReportData[v.id] || {}).stackingStructure;
+                if (stackingStructure) merged['스택 구조'] = stackingStructure;
+                return merged;
+            });
+
+            const allKeysSet = new Set();
+            objs.forEach(o => Object.keys(o).forEach(k => allKeysSet.add(k)));
+            const keys = orderedKeys(Object.fromEntries([...allKeysSet].map(k => [k, true])), CELL_FIELD_ORDER);
+            if (keys.length === 0) return `<div class="text-xs text-slate-400 italic py-3">데이터 없음</div>`;
+
+            const LABEL_COL_WIDTH = 260;
+            const VEHICLE_COL_WIDTH = 160;
+            const totalWidth = LABEL_COL_WIDTH + selectedVehicles.length * VEHICLE_COL_WIDTH;
+
+            const headerCells = selectedVehicles.map(v => `<th class="p-2.5 bg-sky-50 text-sky-900 font-bold text-xs border border-slate-200 text-center w-[160px] break-words">${v.name} (${v.year || '-'})</th>`).join('');
+            const rows = keys.map(k => {
+                const label = CELL_FIELD_LABELS[k] || k.trim();
+                const cells = objs.map(o => {
+                    let val = o[k];
+                    if (k === 'Cell Format' && CELL_FORMAT_LABEL_KO[val]) val = CELL_FORMAT_LABEL_KO[val];
+                    return `<td class="p-2.5 text-center text-xs text-slate-800 border border-slate-200 w-[160px]">${fmtVal(val)}</td>`;
+                }).join('');
+                return `
+                    <tr class="even:bg-slate-50">
+                        <td class="p-2.5 font-semibold text-slate-700 bg-slate-100 border border-slate-200 text-xs break-words sticky left-0 w-[260px]">${label}</td>
+                        ${cells}
+                    </tr>
+                `;
+            }).join('');
+
+            return `
+                <div class="overflow-x-auto">
+                    <table class="border-collapse text-left text-xs table-fixed" style="width: ${totalWidth}px;">
+                        <thead><tr><th class="p-2.5 bg-slate-100 border border-slate-200 sticky left-0 z-10 w-[260px]">항목</th>${headerCells}</tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+            `;
+        }
+
         function buildFieldTable(title, selectedVehicles, getObj, order, colorClass) {
             const objs = selectedVehicles.map(v => getObj(v) || {});
             const allKeysSet = new Set();
@@ -390,6 +477,267 @@
                         }).join('')}
                     </div>
                 </div>
+            `;
+        }
+
+        // ---------------------------------------------------------------------------------
+        // parse_cell_report_pdf.py(teardown_cellreport_data.json) 출력을 렌더링하는 보강 섹션.
+        // Cell 스펙 비교 카드 안에 "Cell 실물 사진" 아래로 추가되며, 선택된 차량 중 해당 데이터가
+        // 있는 차량이 하나도 없으면 아무것도 렌더링하지 않는다 (기존 화면에 영향 없음).
+        // ---------------------------------------------------------------------------------
+        const STACK_STRUCTURE_COMPONENT_ORDER = ['Anode', 'Cathode', 'Separator', 'Electrolyte', 'Packaging', 'Total'];
+        // regex_values 기반 필드(단면 측정)는 라벨을 고정 노출한다 - 선택된 차량 중 해당 PDF에 값이
+        // 없어도 행 자체는 '-'로 항상 표시되어야 하므로, 값이 있는 차량만 있을 때 행이 사라지면 안 된다.
+        const CATHODE_CROSS_SECTION_ORDER = ['Total electrode thickness', 'Al foil current collector thickness', 'Electrode thickness (one side)'];
+        const ANODE_CROSS_SECTION_ORDER = ['Total electrode thickness', 'Cu foil current collector thickness', 'Electrode thickness (one side)'];
+        const SEPARATOR_DIMENSIONS_ORDER = ['Length', 'Quantity', 'Thickness', 'Weight', 'Width'];
+        const CROSS_SECTION_LABELS = {
+            'Total electrode thickness': '총 두께',
+            'Al foil current collector thickness': 'Foil 두께',
+            'Cu foil current collector thickness': 'Foil두께',
+            'Electrode thickness (one side)': '전극 두께(one side)',
+        };
+        const MATERIAL_GROUP_LABELS = { 'ANODE': '음극', 'CATHODE': '양극', 'ELECTROLYTE': '전해액', 'SEPARATOR': '분리막' };
+        const MATERIAL_GROUP_ORDER = ['CATHODE', 'ANODE', 'SEPARATOR', 'ELECTROLYTE'];
+        const MATERIAL_LABEL_MAP = {
+            'Active material': '활물질',
+            'Binder': '바인더',
+            'Current collector thickness': '집전판 두께',
+            'Total electrode thickness': '총 두께',
+            'Active material loading': '활물질 로딩',
+            'Particle size': '입자 크기',
+            'Additives': '첨가제',
+            'Salt': '리튬염',
+            'Solvents': '용매',
+        };
+
+        // "Cell characteristics - "/"Characteristics - " 접두어를 제거하고(대소문자 무관),
+        // "Number"를 "Quantity"로 통일해 PDF마다 다른 표기가 같은 분리막 항목으로 합쳐지게 한다.
+        function normalizeSeparatorKey(key) {
+            let k = key.replace(/^(?:cell\s+)?characteristics\s*-\s*/i, '').trim();
+            if (/^number$/i.test(k)) k = 'Quantity';
+            return k;
+        }
+
+        function remapKeys(obj, transformFn) {
+            if (!obj) return obj;
+            const out = {};
+            Object.keys(obj).forEach(k => { out[transformFn(k)] = obj[k]; });
+            return out;
+        }
+
+        // Overhangs 라벨 치환: "Anode / Cathode" & "Cathode / Anode" -> "A/C", "Separator / Anode" -> "A/S".
+        function transformOverhangsLabel(key) {
+            return key.trim()
+                .replace(/Anode\s*\/\s*Cathode/gi, 'A/C')
+                .replace(/Cathode\s*\/\s*Anode/gi, 'A/C')
+                .replace(/Separator\s*\/\s*Anode/gi, 'A/S');
+        }
+
+        function splitMaterialKey(key) {
+            const idx = key.indexOf(' - ');
+            if (idx === -1) return { group: '', label: key.trim() };
+            return { group: key.slice(0, idx).trim(), label: key.slice(idx + 3).trim() };
+        }
+
+        function translateMaterialSummaryKey(key) {
+            const { group, label } = splitMaterialKey(key);
+            const groupUpper = group.toUpperCase();
+            if (groupUpper === 'SEPARATOR' && /^materials?$/i.test(label)) return '분리막 원단';
+            if (groupUpper === 'SEPARATOR' && /^thickness$/i.test(label)) return '분리막 두께';
+            const translatedGroup = MATERIAL_GROUP_LABELS[groupUpper] || group;
+            // 일부 PDF는 라벨 뒤에 "(Al)" 같은 foil 힌트를 덧붙인다. 이 접미사는 유지한 채 기본 라벨만 번역한다.
+            const suffixMatch = label.match(/^(.*?)(\([^)]*\))\s*$/);
+            const baseLabel = suffixMatch ? suffixMatch[1].trim() : label;
+            const suffix = suffixMatch ? suffixMatch[2] : '';
+            const translatedLabel = (MATERIAL_LABEL_MAP[baseLabel] || baseLabel) + (suffix ? ` ${suffix}` : '');
+            return group ? `${translatedGroup} - ${translatedLabel}` : translatedLabel;
+        }
+
+        function materialSummaryGroupRank(key) {
+            const { group } = splitMaterialKey(key);
+            const rankIdx = MATERIAL_GROUP_ORDER.indexOf(group.toUpperCase());
+            return rankIdx === -1 ? MATERIAL_GROUP_ORDER.length : rankIdx;
+        }
+
+        // Cell 성분 분석 표 전용 빌더: 행을 그룹(양극/음극/분리막/전해액) 순서로 재정렬하고 라벨을 번역한다.
+        function buildMaterialSummaryTable(selectedVehicles) {
+            const objs = selectedVehicles.map(v => (cellReportData[v.id] || {}).cellMaterialSummary || {});
+            const allKeysSet = new Set();
+            objs.forEach(o => Object.keys(o).forEach(k => allKeysSet.add(k)));
+            const keys = [...allKeysSet].sort((a, b) => {
+                const rankDiff = materialSummaryGroupRank(a) - materialSummaryGroupRank(b);
+                if (rankDiff !== 0) return rankDiff;
+                return a.localeCompare(b);
+            });
+            if (keys.length === 0) return '';
+
+            const LABEL_COL_WIDTH = 260;
+            const VEHICLE_COL_WIDTH = 160;
+            const totalWidth = LABEL_COL_WIDTH + selectedVehicles.length * VEHICLE_COL_WIDTH;
+            const headerCells = selectedVehicles.map(v => `<th class="p-2.5 bg-purple-50 text-purple-900 font-bold text-xs border border-slate-200 text-center w-[160px] break-words">${v.name} (${v.year || '-'})</th>`).join('');
+            const rows = keys.map(k => `
+                <tr class="even:bg-slate-50">
+                    <td class="p-2.5 font-semibold text-slate-700 bg-slate-100 border border-slate-200 text-xs break-words sticky left-0 w-[260px]">${translateMaterialSummaryKey(k)}</td>
+                    ${objs.map(o => `<td class="p-2.5 text-center text-xs text-slate-800 border border-slate-200 w-[160px]">${fmtVal(o[k])}</td>`).join('')}
+                </tr>
+            `).join('');
+            return `
+                <div class="overflow-x-auto">
+                    <table class="border-collapse text-left text-xs table-fixed" style="width: ${totalWidth}px;">
+                        <thead><tr><th class="p-2.5 bg-slate-100 border border-slate-200 sticky left-0 z-10 w-[260px]">항목</th>${headerCells}</tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        // cellReportData의 한 하위 필드에 대한 '항목 : 값' 표. order에 있는 항목은 모든 선택 차량에
+        // 값이 없어도 '-'로 항상 노출되고, order에 없는 나머지 키는 알파벳순으로 뒤에 추가된다.
+        // labelFn이 있으면 원본 키를 표시용 라벨로 변환한다.
+        function buildCellReportKvTable(selectedVehicles, getObj, order, colorClass, labelFn) {
+            const objs = selectedVehicles.map(v => getObj(v) || {});
+            const keysSet = new Set(order);
+            objs.forEach(o => Object.keys(o).forEach(k => keysSet.add(k)));
+            const keys = orderedKeys(Object.fromEntries([...keysSet].map(k => [k, true])), order);
+            if (keys.length === 0) return '';
+
+            const LABEL_COL_WIDTH = 260;
+            const VEHICLE_COL_WIDTH = 160;
+            const totalWidth = LABEL_COL_WIDTH + selectedVehicles.length * VEHICLE_COL_WIDTH;
+            const headerCells = selectedVehicles.map(v => `<th class="p-2.5 ${colorClass} font-bold text-xs border border-slate-200 text-center w-[160px] break-words">${v.name} (${v.year || '-'})</th>`).join('');
+            const rows = keys.map(k => `
+                <tr class="even:bg-slate-50">
+                    <td class="p-2.5 font-semibold text-slate-700 bg-slate-100 border border-slate-200 text-xs break-words sticky left-0 w-[260px]">${labelFn ? labelFn(k) : k.trim()}</td>
+                    ${objs.map(o => `<td class="p-2.5 text-center text-xs text-slate-800 border border-slate-200 w-[160px]">${fmtVal(o[k])}</td>`).join('')}
+                </tr>
+            `).join('');
+            return `
+                <div class="overflow-x-auto">
+                    <table class="border-collapse text-left text-xs table-fixed" style="width: ${totalWidth}px;">
+                        <thead><tr><th class="p-2.5 bg-slate-100 border border-slate-200 sticky left-0 z-10 w-[260px]">항목</th>${headerCells}</tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function buildCellReportSection(selectedVehicles) {
+            const withData = selectedVehicles.filter(v => cellReportData[v.id]);
+            if (withData.length === 0) return '';
+
+            let stackTableHtml = '';
+            if (withData.some(v => (cellReportData[v.id].stackStructure || []).length > 0)) {
+                const LABEL_COL_WIDTH = 260;
+                const VEHICLE_COL_WIDTH = 160 * 3;
+                const totalWidth = LABEL_COL_WIDTH + selectedVehicles.length * VEHICLE_COL_WIDTH;
+                const vehicleHeaderCells = selectedVehicles.map(v => `<th colspan="3" class="p-2.5 bg-amber-50 text-amber-900 font-bold text-xs border border-slate-200 text-center break-words">${v.name} (${v.year || '-'})</th>`).join('');
+                const subHeaderCells = selectedVehicles.map(() => `
+                    <th class="p-2 bg-amber-50/60 text-amber-900 font-semibold text-[11px] border border-slate-200 text-center w-[160px]">Weight(g)</th>
+                    <th class="p-2 bg-amber-50/60 text-amber-900 font-semibold text-[11px] border border-slate-200 text-center w-[160px]">Quantity</th>
+                    <th class="p-2 bg-amber-50/60 text-amber-900 font-semibold text-[11px] border border-slate-200 text-center w-[160px]">Total weight(g)</th>
+                `).join('');
+                const rows = STACK_STRUCTURE_COMPONENT_ORDER.map(comp => {
+                    const cells = selectedVehicles.map(v => {
+                        const rows = (cellReportData[v.id] || {}).stackStructure || [];
+                        const row = rows.find(r => r.component === comp);
+                        return `
+                            <td class="p-2.5 text-center text-xs text-slate-800 border border-slate-200 w-[160px]">${row && row.weightG != null ? fmtVal(row.weightG) : '-'}</td>
+                            <td class="p-2.5 text-center text-xs text-slate-800 border border-slate-200 w-[160px]">${row && row.quantity != null ? fmtVal(row.quantity) : '-'}</td>
+                            <td class="p-2.5 text-center text-xs text-slate-800 border border-slate-200 w-[160px]">${row && row.totalWeightG != null ? fmtVal(row.totalWeightG) : '-'}</td>
+                        `;
+                    }).join('');
+                    return `<tr class="even:bg-slate-50"><td class="p-2.5 font-semibold text-slate-700 bg-slate-100 border border-slate-200 text-xs break-words sticky left-0 w-[260px]">${comp}</td>${cells}</tr>`;
+                }).join('');
+                stackTableHtml = `
+                    <div class="overflow-x-auto">
+                        <table class="border-collapse text-left text-xs table-fixed" style="width: ${totalWidth}px;">
+                            <thead>
+                                <tr><th class="p-2.5 bg-slate-100 border border-slate-200 sticky left-0 z-10 w-[260px]" rowspan="2">구성</th>${vehicleHeaderCells}</tr>
+                                <tr>${subHeaderCells}</tr>
+                            </thead>
+                            <tbody>${rows}</tbody>
+                        </table>
+                    </div>
+                `;
+            }
+
+            // 썸네일이 실제 도면 가장자리의 치수 표기를 잘라먹지 않도록 object-contain으로 크게 표시한다.
+            // `imgs`는 도면이 한 슬라이드에 합쳐진 차량은 1개, Cathode/Anode 슬라이드가 분리된 차량은
+            // 2개(cathode, anode) 항목을 가진다.
+            let dimImagesHtml = '';
+            if (withData.some(v => ((cellReportData[v.id] || {}).anodeCathodeImages || []).length > 0)) {
+                dimImagesHtml = `
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        ${selectedVehicles.map(v => {
+                            const imgs = (cellReportData[v.id] || {}).anodeCathodeImages || [];
+                            if (imgs.length === 0) return '';
+                            return `
+                                <div class="bg-slate-50 border border-slate-200 rounded-lg p-2">
+                                    <div class="grid ${imgs.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} gap-1.5">
+                                        ${imgs.map(src => `
+                                            <a href="${src}" target="_blank" rel="noopener noreferrer" class="block overflow-hidden rounded border border-slate-200 bg-white hover:border-sky-400 transition">
+                                                <img src="${src}" alt="${v.name} Anode/Cathode 치수" class="w-full h-72 sm:h-80 object-contain bg-white">
+                                            </a>
+                                        `).join('')}
+                                    </div>
+                                    <div class="text-[10px] text-slate-500 text-center mt-1 truncate">${v.name}</div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            }
+
+            const overhangsTableHtml = buildCellReportKvTable(selectedVehicles, v => (cellReportData[v.id] || {}).overhangs, [], 'bg-orange-50 text-orange-900', transformOverhangsLabel);
+            const separatorTableHtml = buildCellReportKvTable(selectedVehicles, v => remapKeys((cellReportData[v.id] || {}).separatorDimensions, normalizeSeparatorKey), SEPARATOR_DIMENSIONS_ORDER, 'bg-teal-50 text-teal-900');
+            const materialSummaryTableHtml = buildMaterialSummaryTable(selectedVehicles);
+            const cathodeCrossSectionHtml = buildCellReportKvTable(selectedVehicles, v => (cellReportData[v.id] || {}).cathodeElectrodeCrossSection, CATHODE_CROSS_SECTION_ORDER, 'bg-slate-100 text-slate-900', k => CROSS_SECTION_LABELS[k] || k.trim());
+            const anodeCrossSectionHtml = buildCellReportKvTable(selectedVehicles, v => (cellReportData[v.id] || {}).anodeElectrodeCrossSection, ANODE_CROSS_SECTION_ORDER, 'bg-slate-100 text-slate-900', k => CROSS_SECTION_LABELS[k] || k.trim());
+
+            return `
+                ${stackTableHtml ? `
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <h4 class="text-sm font-bold text-slate-800 mb-2">🧪 Cell 구조 분석</h4>
+                        ${stackTableHtml}
+                    </div>
+                ` : ''}
+                ${dimImagesHtml ? `
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <h4 class="text-sm font-bold text-slate-800 mb-2">양극/음극 치수</h4>
+                        ${dimImagesHtml}
+                    </div>
+                ` : ''}
+                ${separatorTableHtml ? `
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <h4 class="text-sm font-bold text-slate-800 mb-2">📏 분리막 치수</h4>
+                        ${separatorTableHtml}
+                    </div>
+                ` : ''}
+                ${overhangsTableHtml ? `
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <h4 class="text-sm font-bold text-slate-800 mb-2">↔ Overhangs</h4>
+                        ${overhangsTableHtml}
+                    </div>
+                ` : ''}
+                ${materialSummaryTableHtml ? `
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <h4 class="text-sm font-bold text-slate-800 mb-2">🧾 Cell 성분 분석</h4>
+                        ${materialSummaryTableHtml}
+                    </div>
+                ` : ''}
+                ${cathodeCrossSectionHtml ? `
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <h4 class="text-sm font-bold text-slate-800 mb-2">🔬 양극 단면 측정</h4>
+                        ${cathodeCrossSectionHtml}
+                    </div>
+                ` : ''}
+                ${anodeCrossSectionHtml ? `
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <h4 class="text-sm font-bold text-slate-800 mb-2">🔬 음극 단면 측정</h4>
+                        ${anodeCrossSectionHtml}
+                    </div>
+                ` : ''}
             `;
         }
 
@@ -814,11 +1162,13 @@
                         <span>🔋 Cell 스펙 비교</span>
                     </h3>
                     <p class="text-[11px] text-slate-400 mb-3">※ 'OEM'이 붙은 항목(예: Cell Nominal Voltage OEM [V])은 실측치가 아니라 완성차 업체(OEM)가 공식 발표한 <span class="font-semibold text-slate-500">제조사 라벨값</span>입니다.</p>
-                    ${buildFieldTable('Cell', selected, v => v.cell, CELL_FIELD_ORDER, 'bg-sky-50 text-sky-900')}
+                    ${buildCellSpecTable(selected)}
 
                     <div class="mt-4">
                         ${buildPhotoRow('Cell 실물 사진', selected, v => (v.cellImages && v.cellImages[0]) || null)}
                     </div>
+
+                    ${buildCellReportSection(selected)}
                 </section>
 
                 <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">

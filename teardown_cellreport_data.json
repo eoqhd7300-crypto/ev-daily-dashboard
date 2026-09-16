@@ -1,0 +1,3752 @@
+{
+  "generatedAt": "2026-09-15T22:49:21.851834+09:00",
+  "vehicles": {
+    "nio-et9-signature-2025": {
+      "sourcePdf": "2025_A2MAC1_CellReport-NIO ET9_V1.pdf",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 31.86
+        },
+        {
+          "component": "Cathode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 41.5
+        },
+        {
+          "component": "Separator",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 2.8
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 14.54
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 9.3
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/nio-et9-signature-2025/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "4",
+        "Cell characteristics - Length": "1744.8 cm",
+        "Cell characteristics - Width": "93 mm",
+        "Cell characteristics - Weight": "13.88 g per unit"
+      },
+      "overhangs": {
+        "On outside - Separator / anode": "130 cm",
+        "On outside - Separator / cathode": "131.6 cm",
+        "On outside - Anode / cathode": "1.6 cm",
+        "On inside - Separator / anode": "53.7 cm",
+        "On inside - Separator / cathode": "93.5 cm",
+        "On inside - Anode / cathode": "39.8 cm",
+        "At tab - Separator / anode": "3.5 mm",
+        "At tab - Separator / cathode": "2 mm",
+        "At tab - Cathode / anode": "1.5 mm",
+        "At other side of tab - Separator / anode": "3 mm",
+        "At other side of tab - Separator / cathode": "4.5 mm",
+        "At other side of tab - Anode / cathode": "1.5 mm"
+      }
+    },
+    "byd-qin-l-dm-i-120km-zhuoyue-2024": {
+      "sourcePdf": "2025_A2MAC1_CellReport_BYD_Qin_L_V2.pdf",
+      "stackingStructure": "40 cathodes, 41 anodes, 82 separators +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 7.492,
+          "quantity": 41.0,
+          "totalWeightG": 307.17,
+          "weightRatioPct": 26.74
+        },
+        {
+          "component": "Cathode",
+          "weightG": 12.054,
+          "quantity": 40.0,
+          "totalWeightG": 482.16,
+          "weightRatioPct": 41.97
+        },
+        {
+          "component": "Separator",
+          "weightG": 0.2364,
+          "quantity": 82.0,
+          "totalWeightG": 19.38,
+          "weightRatioPct": 1.69
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 202.08,
+          "weightRatioPct": 17.59
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 138.12,
+          "weightRatioPct": 12.02
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 1148.91,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/byd-qin-l-dm-i-120km-zhuoyue-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "82",
+        "Cell characteristics - Length": "410 mm",
+        "Cell characteristics - Width": "86 mm",
+        "Cell characteristics - Weight": "0.236 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "1 mm",
+        "On sides - Separator / cathode": "2 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / anode": "4 mm",
+        "At cathode tab - Separator / cathode": "3 mm",
+        "At cathode tab - Cathode / anode": "1 mm",
+        "At anode tab - Separator / anode": "4 mm",
+        "At anode tab - Separator / cathode": "5 mm",
+        "At anode tab - Anode / cathode": "1 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP （LiFePO ) 4",
+        "CATHODE - Particle size": "0.3-2 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "94.30%",
+        "CATHODE - Total electrode thickness": "165 µm",
+        "CATHODE - Current collector thickness(Al)": "13 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-30 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "122 µm",
+        "ANODE - Current collector thickness(Cu)": "6 µm",
+        "SEPARATOR - Material": "PP",
+        "SEPARATOR - Thickness": "14.5 µm",
+        "SEPARATOR - Coating Where？": "No coating",
+        "SEPARATOR - Coating Material": "/",
+        "SEPARATOR - Coating Thickness": "/",
+        "SEPARATOR - Total electrode thickness": "14.5 µm",
+        "ELECTROLYTE - Solvents": "DMC, EMC, EC",
+        "ELECTROLYTE - Additives": "VC",
+        "ELECTROLYTE - Salts": "LiPF₆, LiFSI"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "165 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "76 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "122 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "58 µm"
+      },
+      "electrolyte": {
+        "Solvent": "DMC, EMC, EC",
+        "Additive": "VC",
+        "Salt": "LiPF , LiFSI"
+      }
+    },
+    "bmw-ix3-50-xdrive-2026": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_BMW_iX3_50_xDrive_2026_Draft.pdf",
+      "stackingStructure": "1 stack containing 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 129.0,
+          "quantity": 1.0,
+          "totalWeightG": 129.0,
+          "weightRatioPct": 30.5
+        },
+        {
+          "component": "Cathode",
+          "weightG": 179.0,
+          "quantity": 1.0,
+          "totalWeightG": 179.0,
+          "weightRatioPct": 42.5
+        },
+        {
+          "component": "Separator",
+          "weightG": 4.5,
+          "quantity": 2.0,
+          "totalWeightG": 9.0,
+          "weightRatioPct": 2.1
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 24.0,
+          "weightRatioPct": 5.7
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 81.0,
+          "weightRatioPct": 19.2
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 422.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "2",
+        "Length": "5275 mm",
+        "Width": "87 mm",
+        "Thickness": "T.B.D µm",
+        "Weight": "4.5 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at start of stack - Separator → Anode": "193 mm",
+        "Overhangs at start of stack - Anode → Cathode": "12 mm",
+        "Overhangs at start of stack - Separator → Cathode": "205 mm",
+        "Overhangs at positive tabs side - Separator → Anode": "2 mm",
+        "Overhangs at positive tabs side - Anode → Cathode": "0.5 mm",
+        "Overhangs at positive tabs side - Cathode coating → Separator": "0 mm",
+        "Overhangs at positive tabs side - Cathode coating width": "2.5 mm",
+        "Overhangs at positive tabs side - Separator → Cathode": "2.5 mm",
+        "Overhangs at negative tabs side - Separator → Anode": "1 mm",
+        "Overhangs at negative tabs side - Anode → Cathode": "2 mm",
+        "Overhangs at negative tabs side - Separator → Cathode": "3 mm",
+        "Overhangs at the end of - Separators → Anode": "77 mm",
+        "Overhangs at the end of - Anode → Cathode": "33 mm",
+        "Overhangs at the end of - Separators → Cathode": "110 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/bmw-ix3-50-xdrive-2026/cellreport_cathode_dimension.png",
+        "assets/teardown/bmw-ix3-50-xdrive-2026/cellreport_anode_dimension.png"
+      ]
+    },
+    "byd-sealion-07-4x4-550-zhihang-2024": {
+      "sourcePdf": "A2MAC1_BYD_Sealion_07_4X4_550_Zhihang_2024_Cell_Analysis_Report 1.pdf",
+      "stackingStructure": "1 stack containing 40 anodes, 39 cathodes, 80 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 19.1,
+          "quantity": 40.0,
+          "totalWeightG": 762.0,
+          "weightRatioPct": 28.7
+        },
+        {
+          "component": "Cathode",
+          "weightG": 31.0,
+          "quantity": 39.0,
+          "totalWeightG": 1211.0,
+          "weightRatioPct": 45.7
+        },
+        {
+          "component": "Separator",
+          "weightG": 0.67,
+          "quantity": 80.0,
+          "totalWeightG": 54.0,
+          "weightRatioPct": 2.0
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 281.0,
+          "weightRatioPct": 10.0
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 345.0,
+          "weightRatioPct": 13.0
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2653.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/byd-sealion-07-4x4-550-zhihang-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "80",
+        "Cell characteristics - Length": "926 mm",
+        "Cell characteristics - Width": "86.5 mm",
+        "Cell characteristics - Thickness": "13 µm",
+        "Cell characteristics - Weight": "0.67 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "1 mm",
+        "On sides - Separator / cathode": "2 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / anode": "4 mm",
+        "At cathode tab - Separator / cathode": "2.5 mm",
+        "At cathode tab - Cathode / anode": "1.5 mm",
+        "At anode tab - Separator / anode": "3 mm",
+        "At anode tab - Separator / cathode": "4.5 mm",
+        "At anode tab - Anode / cathode": "1.5 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP（LiFePO ） 4",
+        "CATHODE - Particle size": "0.66 µm + 2.8 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "95.38%",
+        "CATHODE - Total electrode thickness": "166 µm",
+        "CATHODE - Current collector thickness (Al)": "12 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "10 µm",
+        "ANODE - Binder": "CMC + SBR",
+        "ANODE - Total electrode thickness": "132 µm",
+        "ANODE - Current collector thickness (Cu)": "6 µm",
+        "SEPARATOR - Material": "PP",
+        "SEPARATOR - Thickness": "14 um",
+        "ELECTROLYTE - Solvents": "EC / EMC / DMC (87.7 %)",
+        "ELECTROLYTE - Additives": "VC (1.5 %)",
+        "ELECTROLYTE - Salt": "LiPF / LiFSI (10.8 %) 6"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "166 µm",
+        "Al foil current collector thickness": "12 µm",
+        "Electrode thickness (one side)": "77 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "132 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "63 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EC, EMC, DMC",
+        "Additive": "VC",
+        "Salt": "LiPF6"
+      }
+    },
+    "aion-v-tyrannosaurus-lidar-2025": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_Aion V Tyrannosaurus LIDAR_VF.pdf",
+      "stackingStructure": "2 stack containing 122 anodes, 120 cathodes, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 8.24,
+          "quantity": 122.0,
+          "totalWeightG": 1005.0,
+          "weightRatioPct": 27.3
+        },
+        {
+          "component": "Cathode",
+          "weightG": 15.0,
+          "quantity": 120.0,
+          "totalWeightG": 1801.0,
+          "weightRatioPct": 49.0
+        },
+        {
+          "component": "Separator",
+          "weightG": 32.9,
+          "quantity": 2.0,
+          "totalWeightG": 65.8,
+          "weightRatioPct": 1.8
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 360.8,
+          "weightRatioPct": 9.8
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 444.4,
+          "weightRatioPct": 12.1
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 3676.4,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/aion-v-tyrannosaurus-lidar-2025/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Quantity": "1",
+        "Length": "12530 mm",
+        "Width": "289 mm",
+        "Thickness": "9 µm",
+        "Weight": "32.9 g"
+      },
+      "overhangs": {
+        "Stack left - Separator / anode": "1.5 mm",
+        "Stack left - Separator / cathode": "3 mm",
+        "Stack left - Anode / cathode": "1.5 mm",
+        "Stack right - Separator / anode": "1.5 mm",
+        "Stack right - Separator / cathode": "3 mm",
+        "Stack right - Anode / cathode": "1.5 mm",
+        "Stack top - Separator / anode": "2 mm",
+        "Stack top - Separator / cathode": "1 mm",
+        "Stack top - Cathode / anode": "1 mm",
+        "Stack top - Cathode edge coating": "3 mm",
+        "Stack bottom - Separator / anode": "1 mm",
+        "Stack bottom - Separator / cathode": "3 mm",
+        "Stack bottom - Anode / cathode": "2 mm"
+      }
+    },
+    "volkswagen-id7-2024": {
+      "sourcePdf": "2024_A2MAC1_CellReport-VW_ID.7_V3.pdf",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 32.98
+        },
+        {
+          "component": "Cathode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 40.3
+        },
+        {
+          "component": "Separator",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 2.52
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 13.14
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 11.07
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/volkswagen-id7-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "4",
+        "Cell characteristics - Length": "1155.8 cm",
+        "Cell characteristics - Width": "9.6 cm",
+        "Cell characteristics - Weight": "10.996 g"
+      },
+      "overhangs": {
+        "On outside - Separator / anode": "53.5 cm",
+        "On outside - Separator / cathode": "55.85 cm",
+        "On outside - Anode / cathode": "1.55 cm",
+        "On inside - Separator / anode": "60 cm",
+        "On inside - Separator / cathode": "105 cm",
+        "On inside - Anode / cathode": "45 cm",
+        "At tab - Separator / anode": "4 mm",
+        "At tab - Separator / cathode": "2.5 mm",
+        "At tab - Cathode / anode": "1.5 mm",
+        "At other side of tab - Separator / anode": "2.5 mm",
+        "At other side of tab - Separator / cathode": "4 mm",
+        "At other side of tab - Anode / cathode": "1.5 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "NMC(LiNi Mn Co O ) 0.82 0.11 0.07 2",
+        "CATHODE - Particle size": "5-30 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "96.70%",
+        "CATHODE - Total electrode thickness": "130 µm",
+        "CATHODE - Current collector thickness(Al)": "13 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-40 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "173 µm",
+        "ANODE - Current collector thickness(Cu)": "6 µm",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "7.7 µm",
+        "SEPARATOR - Coating Where？": "Cathode & Anode side",
+        "SEPARATOR - Coating Material": "Al O 2 3",
+        "SEPARATOR - Coating Thickness": "1.3",
+        "SEPARATOR - Total electrode thickness": "10.3 µm",
+        "ELECTROLYTE - Salt": "LiPF , LiBF , LiPO F , LiFSI 6 4 2 2",
+        "ELECTROLYTE - Solvents": "EMC,EC",
+        "ELECTROLYTE - Additives": "FEC, PS"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "130 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "60 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "173 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "82 µm"
+      },
+      "electrolyte": {
+        "Salt": "LiPF , LiBF , LiPO F , LiFSI",
+        "Solvent": "EMC, EC",
+        "Additive": "FEC, PS"
+      }
+    },
+    "fang-cheng-bao-bao-8-flagship-7-seats-2025": {
+      "sourcePdf": "2025_A2MAC1_CellReport-Fangchengbao Bao8 .pdf",
+      "stackingStructure": "36 cathode,37 anode,74 separators +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 8.168,
+          "quantity": 37.0,
+          "totalWeightG": 302.22,
+          "weightRatioPct": 26.0
+        },
+        {
+          "component": "Cathode",
+          "weightG": 13.916,
+          "quantity": 36.0,
+          "totalWeightG": 500.98,
+          "weightRatioPct": 43.0
+        },
+        {
+          "component": "Separator",
+          "weightG": 0.2572,
+          "quantity": 74.0,
+          "totalWeightG": 19.03,
+          "weightRatioPct": 1.6
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 203.93,
+          "weightRatioPct": 17.5
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 138.43,
+          "weightRatioPct": 11.9
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 1164.58,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/fang-cheng-bao-bao-8-flagship-7-seats-2025/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "74",
+        "Cell characteristics - Length": "409 mm",
+        "Cell characteristics - Width": "86 mm",
+        "Cell characteristics - Weight": "0.2572 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "0.5 mm",
+        "On sides - Separator / cathode": "1.5 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / anode": "5 mm",
+        "At cathode tab - Separator / cathode": "3.5 mm",
+        "At cathode tab - Cathode / anode": "1.5 mm",
+        "At anode tab - Separator / anode": "3 mm",
+        "At anode tab - Separator / cathode": "3 mm",
+        "At anode tab - Anode / cathode": "0 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP (LiFePO ) 4",
+        "CATHODE - Particle size": "0.3-2 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "94.2%",
+        "CATHODE - Total electrode thickness": "181 µm",
+        "CATHODE - Current collector thickness(Al)": "12 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-30 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "145 µm",
+        "ANODE - Current collector thickness(Cu)": "6 µm",
+        "SEPARATOR - Material": "PP",
+        "SEPARATOR - Thickness": "13.1 µm",
+        "SEPARATOR - Coating Where？": "NO",
+        "SEPARATOR - Coating Material": "/",
+        "SEPARATOR - Coating Thickness": "/",
+        "SEPARATOR - Total electrode thickness": "13.1 µm",
+        "ELECTROLYTE - Solvents": "DMC, EC, EMC",
+        "ELECTROLYTE - Additives": "VC",
+        "ELECTROLYTE - Salts": "LiPF₆, LiFSI"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "181 µm",
+        "Al foil current collector thickness": "12 µm",
+        "Electrode thickness (one side)": "84.5 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "145 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "69.5 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC, DMC",
+        "Additive": "VC",
+        "Salt": "LiPF , LiFSI"
+      }
+    },
+    "geely-galaxy-e5-starship-2024": {
+      "sourcePdf": "2025_A2MAC1_CellReport-Geely_Galaxy_E5_V1.pdf",
+      "stackingStructure": "48 cathode, 49 anode,98 separators +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 15.104,
+          "quantity": 49.0,
+          "totalWeightG": 740.096,
+          "weightRatioPct": 26.57
+        },
+        {
+          "component": "Cathode",
+          "weightG": 27.876,
+          "quantity": 48.0,
+          "totalWeightG": 1338.05,
+          "weightRatioPct": 48.04
+        },
+        {
+          "component": "Separator",
+          "weightG": 0.515,
+          "quantity": 98.0,
+          "totalWeightG": 50.431,
+          "weightRatioPct": 1.81
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 417.94,
+          "weightRatioPct": 15.01
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 238.726,
+          "weightRatioPct": 8.57
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2785.24,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/geely-galaxy-e5-starship-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "98",
+        "Cell characteristics - Length": "560 mm",
+        "Cell characteristics - Width": "120 mm",
+        "Cell characteristics - Weight": "50.431 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "2 or 3 mm",
+        "On sides - Separator / cathode": "3 or 4 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / anode": "5 mm",
+        "At cathode tab - Separator / cathode": "3 mm",
+        "At cathode tab - Cathode / anode": "2 mm",
+        "At anode tab - Separator / anode": "6 mm",
+        "At anode tab - Separator / cathode": "8 mm",
+        "At anode tab - Anode / cathode": "2 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP （LiFePO ) 4",
+        "CATHODE - Particle size": "0.3-2 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "93.10%",
+        "CATHODE - Total electrode thickness": "186 µm",
+        "CATHODE - Current collector thickness (Al)": "13 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "13 µm",
+        "ANODE - Binder": "CMC+SBR",
+        "ANODE - Total electrode thickness": "143 µm",
+        "ANODE - Current collector thickness (Cu)": "4.5 µm",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "6.3 µm",
+        "SEPARATOR - Coating Where？": "Anode/Cathode",
+        "SEPARATOR - Coating Material": "AlO(OH)/PVDF",
+        "SEPARATOR - Coating Thickness": "1.7/0.8 µm",
+        "SEPARATOR - Total electrode thickness": "8.8 µm",
+        "ELECTROLYTE - Solvents": "DMC, EMC, EC",
+        "ELECTROLYTE - Additives": "VC, TMSP",
+        "ELECTROLYTE - Salt": "LiPF₆"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "186 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "86.5 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "143 µm",
+        "Cu foil current collector thickness": "4.5 µm",
+        "Electrode thickness (one side)": "69 µm"
+      },
+      "electrolyte": {
+        "Solvent": "DMC, EMC, EC",
+        "Additive": "VC, TMSP",
+        "Salt": "LiPF"
+      }
+    },
+    "luxeed-s7-4x4-max-rs-performance-2024": {
+      "sourcePdf": "2025_A2MAC1_CellReport-Luxeed_S7_V2.pdf",
+      "stackingStructure": "2cathodes ,2 anodes ,4 separators +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 327.6,
+          "quantity": 2.0,
+          "totalWeightG": 655.2,
+          "weightRatioPct": 30.2
+        },
+        {
+          "component": "Cathode",
+          "weightG": 456.71,
+          "quantity": 2.0,
+          "totalWeightG": 913.42,
+          "weightRatioPct": 42.1
+        },
+        {
+          "component": "Separator",
+          "weightG": 15.43,
+          "quantity": 4.0,
+          "totalWeightG": 61.73,
+          "weightRatioPct": 2.85
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 331.84,
+          "weightRatioPct": 15.3
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 207.31,
+          "weightRatioPct": 9.56
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2169.49,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/luxeed-s7-4x4-max-rs-performance-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "4",
+        "Cell characteristics - Length": "1822.4 cm",
+        "Cell characteristics - Width": "87 mm",
+        "Cell characteristics - Weight": "15.4 g"
+      },
+      "overhangs": {
+        "On outside - Separator / anode": "89 cm",
+        "On outside - Separator / cathode": "90 cm",
+        "On outside - Anode / cathode": "1 cm",
+        "On inside - Separator / anode": "36 cm",
+        "On inside - Separator / cathode": "75.5 cm",
+        "On inside - Anode / cathode": "39.5 cm",
+        "At tab - Separator / anode": "4.5 mm",
+        "At tab - Separator / cathode": "2.5 mm",
+        "At tab - Cathode / anode": "2 mm",
+        "At opposite side of tab - Separator / anode": "2.5 mm",
+        "At opposite side of tab - Separator / cathode": "4.5 mm",
+        "At opposite side of tab - Anode / cathode": "2 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "NMC (LiNi Mn Co O ) 0.53 0.34 0.13 2 and LMFP（LiMnFePO ) 4",
+        "CATHODE - Particle size": "NMC 1-10 µm LMFP 0.2-1 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "94.64%",
+        "CATHODE - Total electrode thickness": "125 µm",
+        "CATHODE - Current collector thickness(Al)": "13 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-40 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "140 µm",
+        "ANODE - Current collector thickness(Cu)": "6 µm",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "7 µm",
+        "SEPARATOR - Coating Where？": "Cathode & anode side",
+        "SEPARATOR - Coating Material": "Al O 2 3",
+        "SEPARATOR - Coating Thickness": "1.3",
+        "SEPARATOR - Total electrode thickness": "9.5 µm",
+        "ELECTROLYTE - Solvents": "EMC, EC",
+        "ELECTROLYTE - Additives": "PS",
+        "ELECTROLYTE - Salts": "LiPF₆, LiBF , LiPO F 4 2 2"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "125 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "56 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "140 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "67 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC",
+        "Additive": "PS",
+        "Salt": "LiPF , LiBF , LiPO F"
+      }
+    },
+    "onvo-l60-60kwh-4x4-2024": {
+      "sourcePdf": "2025_A2MAC1_CellReport-Onvo_L60_V1.pdf",
+      "stackingStructure": "34 cathode,35 anode,70 separators +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 11.26,
+          "quantity": 35.0,
+          "totalWeightG": 394.1,
+          "weightRatioPct": 26.6
+        },
+        {
+          "component": "Cathode",
+          "weightG": 20.63,
+          "quantity": 34.0,
+          "totalWeightG": 701.49,
+          "weightRatioPct": 47.3
+        },
+        {
+          "component": "Separator",
+          "weightG": 0.3629,
+          "quantity": 70.0,
+          "totalWeightG": 25.4,
+          "weightRatioPct": 1.7
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 230.23,
+          "weightRatioPct": 15.5
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 132.55,
+          "weightRatioPct": 8.9
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 1483.77,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/onvo-l60-60kwh-4x4-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "70",
+        "Cell characteristics - Length": "512 mm",
+        "Cell characteristics - Width": "90 mm",
+        "Cell characteristics - Weight": "0.3629 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "1 mm",
+        "On sides - Separator / cathode": "2 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / anode": "4 mm",
+        "At cathode tab - Separator / cathode": "3.5 mm",
+        "At cathode tab - Cathode / anode": "0.5 mm",
+        "At anode tab - Separator / anode": "3 mm",
+        "At anode tab - Separator / cathode": "4 mm",
+        "At anode tab - Anode / cathode": "1 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP (LiFePO ) 4",
+        "CATHODE - Particle size": "0.2-2 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "95.1%",
+        "CATHODE - Total electrode thickness": "194 µm",
+        "CATHODE - Current collector thickness(Al)": "12 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-30 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "154 µm",
+        "ANODE - Current collector thickness(Cu)": "4.4 µm",
+        "SEPARATOR - Material": "PP",
+        "SEPARATOR - Thickness": "15.3 µm",
+        "SEPARATOR - Coating Where？": "NO",
+        "SEPARATOR - Coating Material": "/",
+        "SEPARATOR - Coating Thickness": "/",
+        "SEPARATOR - Total electrode thickness": "15.3 µm",
+        "ELECTROLYTE - Solvents": "DMC, EC, EMC",
+        "ELECTROLYTE - Additives": "VC",
+        "ELECTROLYTE - Salts": "LiPO F , LiPF₆, LiFSI 2 2"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "194 µm",
+        "Al foil current collector thickness": "12 µm",
+        "Electrode thickness (one side)": "91 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "154 µm",
+        "Cu foil current collector thickness": "4.4 µm",
+        "Electrode thickness (one side)": "74.8 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC, DMC",
+        "Additive": "VC",
+        "Salt": "LiPF , LiPO F , LiFSI"
+      }
+    },
+    "tesla-model-y-rwd-2025": {
+      "sourcePdf": "2025_A2MAC1_CellReport-Tesla Model Y_V1.pdf",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 26.28
+        },
+        {
+          "component": "Cathode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 45.39
+        },
+        {
+          "component": "Separator",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 1.61
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 16.6
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 10.12
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/tesla-model-y-rwd-2025/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Number": "4",
+        "Length": "2074.6 cm",
+        "Width": "79.5 mm",
+        "Weight": "12.78 g"
+      },
+      "overhangs": {
+        "On outside - Separator / anode": "127.5 cm",
+        "On outside - Separator / cathode": "129.3 cm",
+        "On outside - Anode / cathode": "1.8 cm",
+        "On inside - Separator / anode": "72.9 cm",
+        "On inside - Separator / cathode": "125.8 cm",
+        "On inside - Anode / cathode": "52.9 cm",
+        "At tab - Separator / anode": "2.5 mm",
+        "At tab - Separator / cathode": "3 mm",
+        "At tab - Cathode / anode": "0.5 mm",
+        "At other side of tab - Separator / anode": "3 mm",
+        "At other side of tab - Separator / cathode": "4 mm",
+        "At other side of tab - Anode / cathode": "1 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP (LiFePO ) 4",
+        "CATHODE - Particle size": "0.3-2 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "95.3%",
+        "CATHODE - Total electrode thickness": "237 µm",
+        "CATHODE - Current collector thickness(Al)": "15 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-35 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "186 µm",
+        "ANODE - Current collector thickness(Cu)": "6 µm",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "6.4 µm",
+        "SEPARATOR - Coating Where？": "Cathode side",
+        "SEPARATOR - Coating Material": "AlO(OH)",
+        "SEPARATOR - Coating Thickness": "1.4",
+        "SEPARATOR - Total electrode thickness": "7.8 µm",
+        "ELECTROLYTE - Solvents": "DMC, EC, EMC",
+        "ELECTROLYTE - Additives": "VC,FEC",
+        "ELECTROLYTE - Salts": "LiPF , LiFSI, LiPO F 6 2 2"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "237 µm",
+        "Al foil current collector thickness": "15 µm",
+        "Electrode thickness (one side)": "111 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "186 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "90 µm"
+      },
+      "electrolyte": {
+        "Solvent": "DMC, EC, EMC",
+        "Additive": "VC, FEC",
+        "Salt": "LiPF , LiPO F , LiFSI"
+      }
+    },
+    "xpeng-mona-03-600-super-range-max-2025": {
+      "sourcePdf": "2025_A2MAC1_CellReport-XPeng MONA03_V1.pdf",
+      "stackingStructure": "1 stack containing 35 anodes, 34 cathodes, 70 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 21.2,
+          "quantity": 35.0,
+          "totalWeightG": 742.7,
+          "weightRatioPct": 28.4
+        },
+        {
+          "component": "Cathode",
+          "weightG": 36.7,
+          "quantity": 34.0,
+          "totalWeightG": 1246.4,
+          "weightRatioPct": 47.7
+        },
+        {
+          "component": "Separator",
+          "weightG": 0.59,
+          "quantity": 70.0,
+          "totalWeightG": 41.1,
+          "weightRatioPct": 1.6
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 251.5,
+          "weightRatioPct": 9.6
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 331.8,
+          "weightRatioPct": 12.7
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2613.5,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/xpeng-mona-03-600-super-range-max-2025/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "70",
+        "Cell characteristics - Length": "927 mm",
+        "Cell characteristics - Width": "86.5 mm",
+        "Cell characteristics - Thickness": "8 µm",
+        "Cell characteristics - Weight": "0.59 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "1 mm",
+        "On sides - Separator / cathode": "2 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / anode": "5.0 mm",
+        "At cathode tab - Separator / cathode": "3.5 mm",
+        "At cathode tab - Cathode / anode": "1.5 mm",
+        "At anode tab - Separator / anode": "2.0 mm",
+        "At anode tab - Separator / cathode": "3.5 mm",
+        "At anode tab - Anode / cathode": "1.5 mm"
+      }
+    },
+    "xpeng-p7-super-range-max-2024": {
+      "sourcePdf": "2025_A2MAC1_CellReport-Xpeng P7+_V1.pdf",
+      "stackingStructure": "2 separators +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 5.542,
+          "quantity": 102.0,
+          "totalWeightG": 565.28,
+          "weightRatioPct": 25.58
+        },
+        {
+          "component": "Cathode",
+          "weightG": 10.01,
+          "quantity": 100.0,
+          "totalWeightG": 1001.0,
+          "weightRatioPct": 45.3
+        },
+        {
+          "component": "Separator",
+          "weightG": 20.18,
+          "quantity": 2.0,
+          "totalWeightG": 40.36,
+          "weightRatioPct": 1.83
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 365.34,
+          "weightRatioPct": 16.53
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 237.82,
+          "weightRatioPct": 10.76
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2209.8,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/xpeng-p7-super-range-max-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Single - Length": "298 mm",
+        "Single - Width": "about 8500 mm",
+        "Single - Weight": "20.18g",
+        "A piece within a single separator - Length": "298 mm",
+        "A piece within a single separator - Width": "80 mm",
+        "A piece within a single separator - Weight": "0.19 g",
+        "A piece within a single separator - Total Weight": "40.36g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "0.5/1 mm",
+        "On sides - Separator / cathode": "1.5/2 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / anode": "2.5 mm",
+        "At cathode tab - Separator / cathode": "2 mm",
+        "At cathode tab - Cathode / anode": "0.5 mm",
+        "At anode tab - Separator / anode": "3.5 mm",
+        "At anode tab - Separator / cathode": "4.5 mm",
+        "At anode tab - Anode / cathode": "1 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP (LiFePO ) 4",
+        "CATHODE - Particle size": "0.3-2 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "95.2%",
+        "CATHODE - Total electrode thickness": "190 µm",
+        "CATHODE - Current collector thickness(Al)": "12 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-35 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "154 µm",
+        "ANODE - Current collector thickness(Cu)": "4.4 µm",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "7.5 µm",
+        "SEPARATOR - Coating Where？": "Cathode & anode",
+        "SEPARATOR - Coating Material": "AlO(OH)",
+        "SEPARATOR - Coating Thickness": "1.4/1.4",
+        "SEPARATOR - Total electrode thickness": "10.3 µm",
+        "ELECTROLYTE - Solvents": "DMC, EC, EMC",
+        "ELECTROLYTE - Additives": "VC, PC",
+        "ELECTROLYTE - Salts": "LiPF₆, LiFSI"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "190 µm",
+        "Al foil current collector thickness": "12 µm",
+        "Electrode thickness (one side)": "89 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "145 µm",
+        "Cu foil current collector thickness": "4 µm",
+        "Electrode thickness (one side)": "70.5 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC, DMC",
+        "Additive": "VC, PC",
+        "Salt": "LiPF , LiFSI"
+      }
+    },
+    "zeekr-mix-smart-driving-edition-2025": {
+      "sourcePdf": "2025_A2MAC1_CellReport-Zeekr MIX Zhijia_V2.pdf",
+      "stackingStructure": "54 cathode, 55 anode,1 separator +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 11.35,
+          "quantity": 55.0,
+          "totalWeightG": 624.31,
+          "weightRatioPct": 27.9
+        },
+        {
+          "component": "Cathode",
+          "weightG": 18.84,
+          "quantity": 54.0,
+          "totalWeightG": 1017.25,
+          "weightRatioPct": 45.4
+        },
+        {
+          "component": "Separator",
+          "weightG": 47.92,
+          "quantity": 1.0,
+          "totalWeightG": 47.92,
+          "weightRatioPct": 2.1
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 334.97,
+          "weightRatioPct": 15.0
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 214.52,
+          "weightRatioPct": 9.6
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2238.96,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/zeekr-mix-smart-driving-edition-2025/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "1",
+        "Cell characteristics - Length": "12980 mm",
+        "Cell characteristics - Width": "48.5 mm",
+        "Cell characteristics - Weight": "47.92 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "1.5 or 0.5 mm",
+        "On sides - Separator / cathode": "3 or 2 mm",
+        "On sides - Anode / cathode": "1.5 mm",
+        "At cathode tab - Separator / anode": "5 mm",
+        "At cathode tab - Separator / cathode": "2 mm",
+        "At cathode tab - Cathode / anode": "3 mm",
+        "At anode tab - Separator / anode": "3 mm",
+        "At anode tab - Separator / cathode": "5 mm",
+        "At anode tab - Anode / cathode": "2 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP (LiFePO ) 4",
+        "CATHODE - Particle size": "0.3-2 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "95.20%",
+        "CATHODE - Total electrode thickness": "140 µm",
+        "CATHODE - Current collector thickness(Al)": "13 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "15 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "107 µm",
+        "ANODE - Current collector thickness(Cu)": "6 µm",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "8 µm",
+        "SEPARATOR - Coating Where？": "Cathode side",
+        "SEPARATOR - Coating Material": "Al O 2 3",
+        "SEPARATOR - Coating Thickness": "1.3",
+        "SEPARATOR - Total electrode thickness": "9.3 µm",
+        "ELECTROLYTE - Solvents": "EA, EC, EMC",
+        "ELECTROLYTE - Additives": "VC,PS",
+        "ELECTROLYTE - Salts": "LiPO F , LiPF₆, LiBF , LiFSI 2 2 4"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "140 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "63.5 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "106 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "50 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EA, EC, EMC",
+        "Additive": "VC, PS",
+        "Salt": "LiPF , LiBF , LiPO F , LiFSI"
+      }
+    },
+    "exeed-sterra-et-ev-540-pro-4x4-2024": {
+      "sourcePdf": "2025_A2MAC1_CellReport_Exeed_Sterra_V1.pdf",
+      "stackingStructure": "2 cathodes, 2 anodes, 4 separators +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 300.77,
+          "quantity": 2.0,
+          "totalWeightG": 601.55,
+          "weightRatioPct": 27.27
+        },
+        {
+          "component": "Cathode",
+          "weightG": 502.93,
+          "quantity": 2.0,
+          "totalWeightG": 1005.86,
+          "weightRatioPct": 45.59
+        },
+        {
+          "component": "Separator",
+          "weightG": 11.7,
+          "quantity": 4.0,
+          "totalWeightG": 46.79,
+          "weightRatioPct": 2.12
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 334.39,
+          "weightRatioPct": 15.16
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 217.57,
+          "weightRatioPct": 9.86
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2206.16,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/exeed-sterra-et-ev-540-pro-4x4-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "4",
+        "Cell characteristics - Length": "1686.6 cm",
+        "Cell characteristics - Width": "92.5 mm",
+        "Cell characteristics - Weight": "11.7 g"
+      },
+      "overhangs": {
+        "On outside - Separator / anode": "130.5 cm",
+        "On outside - Separator / cathode": "131.9 cm",
+        "On outside - Anode / cathode": "1.4 cm",
+        "On inside - Separator / anode": "79 cm",
+        "On inside - Separator / cathode": "121.5 cm",
+        "On inside - Anode / cathode": "42.5 cm",
+        "At tab - Separator / anode": "3 mm",
+        "At tab - Separator / cathode": "3 mm",
+        "At tab - Cathode / anode": "0 mm",
+        "At opposite side of tab - Separator / anode": "2.5 mm",
+        "At opposite side of tab - Separator / cathode": "3.5 mm",
+        "At opposite side of tab - Anode / cathode": "1 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP (LiFePO ) 4",
+        "CATHODE - Particle size": "2-10 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "96.20%",
+        "CATHODE - Total electrode thickness": "165 µm",
+        "CATHODE - Current collector thickness(Al)": "15 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-40 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "138 µm",
+        "ANODE - Current collector thickness(Cu)": "6 µm",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "7.3 µm",
+        "SEPARATOR - Coating Where？": "Cathode side",
+        "SEPARATOR - Coating Material": "AlO(OH)",
+        "SEPARATOR - Coating Thickness": "2.5",
+        "SEPARATOR - Total electrode thickness": "9.8 µm",
+        "ELECTROLYTE - Solvents": "EA, EC",
+        "ELECTROLYTE - Additives": "VC,PS",
+        "ELECTROLYTE - Salts": "LiPO F , LiPF₆, LiBF 2 2 4"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "165 µm",
+        "Al foil current collector thickness": "15 µm",
+        "Electrode thickness (one side)": "75 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "138 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "66 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EA, EC",
+        "Additive": "VC, PS",
+        "Salt": "LiPF , LiBF , LiPO F"
+      }
+    },
+    "mg-windsor-ev-45kw-essence-2024": {
+      "sourcePdf": "A2MAC1_ Cell_Analysis_Report_MG_Windsor_EV_45kW_ESSENCE_2024_VF2.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "2",
+        "Length": "11005 mm",
+        "Width": "109 mm",
+        "Thickness": "12.3 µm",
+        "Weight": "12.8 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at start of stack - Separator → Anode": "389 mm",
+        "Overhangs at start of stack - Anode → Cathode": "17 mm",
+        "Overhangs at start of stack - Separator → Cathode": "406 mm",
+        "Overhangs at tabs side - Separator → Anode": "4 mm",
+        "Overhangs at tabs side - Anode → Cathode": "1 mm",
+        "Cathode coating → Separator - Cathode coating width": "2 mm",
+        "Cathode coating → Separator - Separator → Cathode": "5 mm",
+        "Overhangs at bottom - Separator → Anode": "2.5 mm",
+        "Overhangs at bottom - Separator → Cathode": "3.5 mm",
+        "Overhangs at bottom - Anode → Cathode": "1 mm",
+        "Overhangs at the end of - Separators → Anode": "401 mm",
+        "Overhangs at the end of - Anode → Cathode": "11 mm",
+        "Overhangs at the end of - Separators → Cathode": "412 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/mg-windsor-ev-45kw-essence-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "polestar-4-long-range-dual-motor-2025": {
+      "sourcePdf": "A2MAC1_ Cell_Analysis_Report_Polestar_4_Long_Range_Dual_Motor_2025_VF3.pdf",
+      "stackingStructure": "4 stacks Each stack contains 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Separator",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "2",
+        "Length": "11995 mm",
+        "Width": "105 mm",
+        "Thickness": "11.7 µm",
+        "Weight": "13 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at start of stack - Separator → Anode": "791 mm",
+        "Overhangs at start of stack - Anode → Cathode": "6 mm",
+        "Overhangs at start of stack - Separator → Cathode": "797 mm",
+        "Overhangs at tabs side - Separator → Anode": "4.5 mm",
+        "Overhangs at tabs side - Anode → Cathode": "1.5 mm",
+        "Overhangs at tabs side - Cathode coating → Separator": "2.5",
+        "Overhangs at tabs side - Cathode coating width": "3.5 mm",
+        "Overhangs at tabs side - Separator → Cathode": "6 mm",
+        "Overhangs at bottom - Separator → Anode": "2.5 mm",
+        "Overhangs at bottom - Separator → Cathode": "4 mm",
+        "Overhangs at bottom - Anode → Cathode": "1.5 mm",
+        "Overhangs at the end of - Separators → Anode": "604 mm",
+        "Overhangs at the end of - Anode → Cathode": "459 mm",
+        "Overhangs at the end of - Separators → Cathode": "1063 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/polestar-4-long-range-dual-motor-2025/cellreport_cathode_dimension.png",
+        "assets/teardown/polestar-4-long-range-dual-motor-2025/cellreport_anode_dimension.png"
+      ]
+    },
+    "cupra-tavascan-vz-4drive-2025": {
+      "sourcePdf": "A2MAC1_ Cell_Report_Cupra_Tavascan_VZ_4Drive_2025_vf2.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "4",
+        "Total length": "11570 mm",
+        "Width": "95 mm",
+        "Thickness": "12 µm",
+        "Weight": "11 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at start of stack - Separator → Anode": "585 mm",
+        "Overhangs at start of stack - Anode → Cathode": "15 mm",
+        "Overhangs at start of stack - Separator → Cathode": "600 mm",
+        "Overhangs at tabs side - Separator → Anode": "4 mm",
+        "Overhangs at tabs side - Anode → Cathode": "1.5 mm",
+        "Overhangs at tabs side - Cathode coating → Separator": "2",
+        "Overhangs at tabs side - Cathode coating width": "3 mm",
+        "Overhangs at tabs side - Separator → Cathode": "5 mm",
+        "Overhangs at bottom - Separator → Anode": "2.5 mm",
+        "Overhangs at bottom - Separator → Cathode": "4 mm",
+        "Overhangs at bottom - Anode → Cathode": "1.5 mm",
+        "Overhangs at the end of - Separators → Anode": "595 mm",
+        "Overhangs at the end of - Anode → Cathode": "447 mm",
+        "Overhangs at the end of - Separators → Cathode": "1042 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/cupra-tavascan-vz-4drive-2025/cellreport_cathode_dimension.png",
+        "assets/teardown/cupra-tavascan-vz-4drive-2025/cellreport_anode_dimension.png"
+      ]
+    },
+    "jeep-wagoneer-s-launch-edition-4xe-2025": {
+      "sourcePdf": "A2MAC1_ Jeep_Wagoneer_S_Launch_Edition_4XE_2025 _Cell_Analysis_Report_vf2.pdf",
+      "stackingStructure": "1 stack containing 69 anodes, 68 cathodes, 1 separator",
+      "separatorDimensions": {
+        "Quantity": "1",
+        "Length": "12887 mm",
+        "Width": "211 mm",
+        "Thickness": "16 µm",
+        "Weight": "35 g"
+      },
+      "overhangs": {
+        "Folding": "Z-Folding",
+        "Stacking": "1 Separator, 69 Anodes, 68",
+        "Overhangs at start of stack - Separator →Anode": "26 mm",
+        "Overhangs at end of stack - Separator →Anode": "8 mm",
+        "Overhangs at cathode tab - Separator →Anode": "3 mm",
+        "Overhangs at cathode tab - Anode →Cathode": "2.5 mm",
+        "Overhangs at cathode tab - Separator →Cathode": "5.5 mm",
+        "Overhangs at anode tab - Separator →Anode": "1 mm",
+        "Overhangs at anode tab - Anode →Cathode": "1 mm",
+        "Overhangs at anode tab - Separator →Cathode": "2 mm",
+        "Overhangs at top/bottom - Separator →Anode": "0 mm",
+        "Overhangs at top/bottom - Anode →Cathode": "1 mm",
+        "Overhangs at top/bottom - Separator →Cathode": "1 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/jeep-wagoneer-s-launch-edition-4xe-2025/cellreport_cathode_dimension.png",
+        "assets/teardown/jeep-wagoneer-s-launch-edition-4xe-2025/cellreport_anode_dimension.png"
+      ]
+    },
+    "leapmotor-c10-reev-design-2025": {
+      "sourcePdf": "A2MAC1_ Leapmotor_C10_REEV_Design_2025_Cell_Analysis_Report_VF2.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "4",
+        "Length": "10720 mm",
+        "Width": "93 mm",
+        "Thickness": "16.7 µm",
+        "Weight": "10.8 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at start of stack - Separator → Anode": "533 mm",
+        "Overhangs at start of stack - Anode → Cathode": "19 mm",
+        "Overhangs at start of stack - Separator → Cathode": "552 mm",
+        "Overhangs at tabs side - Separator → Anode": "2 mm",
+        "Overhangs at tabs side - Anode → Cathode": "2 mm",
+        "Overhangs at tabs side - Cathode coating → Separator": "1",
+        "Overhangs at tabs side - Cathode coating width": "3 mm",
+        "Overhangs at tabs side - Separator → Cathode": "4 mm",
+        "Overhangs at bottom - Separator → Anode": "2 mm",
+        "Overhangs at bottom - Separator → Cathode": "3 mm",
+        "Overhangs at bottom - Anode → Cathode": "1 mm",
+        "Overhangs at the end of - Separators → Anode": "269 mm",
+        "Overhangs at the end of - Anode → Cathode": "247 mm",
+        "Overhangs at the end of - Separators → Cathode": "516 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/leapmotor-c10-reev-design-2025/cellreport_cathode_dimension.png",
+        "assets/teardown/leapmotor-c10-reev-design-2025/cellreport_anode_dimension.png"
+      ]
+    },
+    "aito-m8-range-extended-ultra-53-2025": {
+      "sourcePdf": "A2MAC1_AITO_M8_Range_Extended_Ultra_53.4kWh_5_Seats_2025_Cell_Analysis_Report_v3.pdf",
+      "anodeCathodeImages": [
+        "assets/teardown/aito-m8-range-extended-ultra-53-2025/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "4",
+        "Cell characteristics - Length": "19830 mm",
+        "Cell characteristics - Width": "87 mm",
+        "Cell characteristics - Thickness": "14 µm",
+        "Cell characteristics - Weight": "14.75 g"
+      },
+      "overhangs": {
+        "Stack top - Separator / anode": "4 mm",
+        "Stack top - Separator / cathode": "2.5 mm",
+        "Stack top - Cathode / anode": "1.5 mm",
+        "Stack bottom - Separator / anode": "3.0 mm",
+        "Stack bottom - Separator / cathode": "4.5 mm",
+        "Stack bottom - Anode / cathode": "1.5 mm",
+        "Start of stack - Separator / anode": "469mm",
+        "Start of stack - Anode / cathode": "36.5 mm",
+        "End of stack - Separator / anode": "1259 mm",
+        "End of stack - Anode / cathode": "17.5 mm"
+      }
+    },
+    "audi-a5-avant-2-0-hybrid-2025": {
+      "sourcePdf": "A2MAC1_Audi_A5_Avant_2.0_e-hybrid_quattro_S_line_2025_Cell_Analysis_Report_v5.pdf",
+      "separatorDimensions": {
+        "Quantity": "1",
+        "Length": "10528 mm",
+        "Width": "210 mm",
+        "Thickness": "16 µm",
+        "Weight": "25 g"
+      },
+      "overhangs": {
+        "Folding": "Z-Folding",
+        "Stacking": "1 Separator, 57 Anodes, 56",
+        "Overhangs at start of stack - Separator →Anode": "6 mm",
+        "Overhangs at end of stack - Separator →Anode": "17 mm",
+        "Overhangs at cathode tab - Separator →Anode": "3 mm",
+        "Overhangs at cathode tab - Anode →Cathode": "2 mm",
+        "Overhangs at cathode tab - Separator →Cathode": "5 mm",
+        "Overhangs at anode tab - Separator →Anode": "1 mm",
+        "Overhangs at anode tab - Anode →Cathode": "1 mm",
+        "Overhangs at anode tab - Separator →Cathode": "2 mm",
+        "Overhangs at top/bottom - Separator →Anode": "0.5 mm",
+        "Overhangs at top/bottom - Anode →Cathode": "1 mm",
+        "Overhangs at top/bottom - Separator →Cathode": "1.5 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/audi-a5-avant-2-0-hybrid-2025/cellreport_cathode_dimension.png",
+        "assets/teardown/audi-a5-avant-2-0-hybrid-2025/cellreport_anode_dimension.png"
+      ]
+    },
+    "byd-shark-gs-dm-o-2025": {
+      "sourcePdf": "A2MAC1_BYD_Shark_GS_DM-O_2025_Cell_Analysis_Report_vf1.pdf",
+      "stackingStructure": "the stack contains 38 anodes, 37 cathodes, 1 separator",
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "1",
+        "Cell characteristics - Length": "11886 mm",
+        "Cell characteristics - Width": "306 mm",
+        "Cell characteristics - Thickness": "10 µm",
+        "Cell characteristics - Weight": "24.7 g"
+      },
+      "overhangs": {
+        "Separator / anode": "0 mm",
+        "Separator / cathode": "2 mm",
+        "Anode / cathode": "2 mm",
+        "At cathode tab - Coating cathode / Separator": "4 mm",
+        "At cathode tab - Separator / cathode": "7.5 mm",
+        "At cathode tab - Separator / Anode": "5 mm",
+        "At cathode tab - Anode / cathode": "2.5 mm",
+        "At anode tab - Separator / anode": "3 mm",
+        "At anode tab - Separator / cathode": "5 mm",
+        "At anode tab - Anode / cathode": "2 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "175 µm",
+        "Al foil current collector thickness": "11 µm",
+        "Electrode thickness (one side)": "82 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "128 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "61 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC",
+        "Additive": "VC",
+        "Salt": "LiPF , LiFSI"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/byd-shark-gs-dm-o-2025/cellreport_cathode_dimension.png",
+        "assets/teardown/byd-shark-gs-dm-o-2025/cellreport_anode_dimension.png"
+      ]
+    },
+    "byd-tang-l-ev-2025": {
+      "sourcePdf": "A2MAC1_BYD_Tang_L_2025_Cell_Analysis_Report_v2.pdf",
+      "anodeCathodeImages": [
+        "assets/teardown/byd-tang-l-ev-2025/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "1",
+        "Cell characteristics - Length": "13038 mm",
+        "Cell characteristics - Width": "400 mm",
+        "Cell characteristics - Weight": "28.2 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "1 or 2 mm",
+        "On sides - Separator / cathode": "3 or 2.5 mm",
+        "On sides - Anode / cathode": "2 or 0.5 mm",
+        "At cathode tab - Separator / anode": "5 mm",
+        "At cathode tab - Separator / cathode": "3.5 mm",
+        "At cathode tab - Cathode / anode": "1.5 mm",
+        "At anode tab - Separator / anode": "2 mm",
+        "At anode tab - Separator / cathode": "4 mm",
+        "At anode tab - Anode / cathode": "2 mm"
+      }
+    },
+    "li-xiang-mega-ultra-2024": {
+      "sourcePdf": "A2MAC1_CellReport-LiXiang_MEGA-V4_.pdf",
+      "stackingStructure": "2 cathodes, 2 anodes,4 separators +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 381.22,
+          "quantity": 2.0,
+          "totalWeightG": 762.44,
+          "weightRatioPct": 33.62
+        },
+        {
+          "component": "Cathode",
+          "weightG": 455.271,
+          "quantity": 2.0,
+          "totalWeightG": 910.542,
+          "weightRatioPct": 40.15
+        },
+        {
+          "component": "Separator",
+          "weightG": 17.007,
+          "quantity": 4.0,
+          "totalWeightG": 68.027,
+          "weightRatioPct": 3.0
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 321.12,
+          "weightRatioPct": 14.16
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 205.87,
+          "weightRatioPct": 9.08
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2268.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/li-xiang-mega-ultra-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "4",
+        "Cell characteristics - Length": "1986.5 cm",
+        "Cell characteristics - Width": "106 mm",
+        "Cell characteristics - Weight": "17.007 g"
+      },
+      "overhangs": {
+        "On outside - Separator / anode": "94.2 cm",
+        "On outside - Separator / cathode": "95.5cm",
+        "On outside - Anode / cathode": "1.3 cm",
+        "On inside - Separator / anode": "53.5 cm",
+        "On inside - Separator / cathode": "93.5 cm",
+        "On inside - Anode / cathode": "40 cm",
+        "At tab - Separator / anode": "3 mm",
+        "At tab - Separator / cathode": "2 mm",
+        "At tab - Cathode / anode": "1 mm",
+        "At opposite side of tab - Separator / anode": "3 mm",
+        "At opposite side of tab - Separator / cathode": "4 mm",
+        "At opposite side of tab - Anode / cathode": "1 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "NMC+LFP NMC 96.7% LFP 3.3%",
+        "CATHODE - Particle size": "5~10um",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "95.8%",
+        "CATHODE - Total electrode thickness": "86um",
+        "CATHODE - Current collector thickness(Al)": "13um",
+        "ANODE - Active material": "96.8%",
+        "ANODE - Particle size": "5-20um",
+        "ANODE - Binder": "CMC+SBR",
+        "ANODE - Total electrode thickness": "122um",
+        "ANODE - Current collector thickness(Cu)": "5um",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "7.5um",
+        "SEPARATOR - Coating Where？": "Cathode & Anode side",
+        "SEPARATOR - Coating Material": "Al O 2 3",
+        "SEPARATOR - Coating Thickness": "1.1um",
+        "SEPARATOR - Total electrode thickness": "9.7um",
+        "ELECTROLYTE - Solvents": "DMC, EMC, EC",
+        "ELECTROLYTE - Additives": "FEC, PS",
+        "ELECTROLYTE - Salts": "LiPF , LiBF , LiPO F , LiBOB 6 4 2 2"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "86 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "36 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "122 µm",
+        "Cu foil current collector thickness": "5 µm",
+        "Electrode thickness (one side)": "58 µm"
+      },
+      "electrolyte": {
+        "Solvent": "DMC, EMC, EC",
+        "Additive": "FEC, PS",
+        "Salt": "LiPF , LiBF , LiPO F , LiBOB"
+      }
+    },
+    "vinfast-vf6-plus-2024": {
+      "sourcePdf": "A2MAC1_CellReport-Vinfast_VF6_Plus_2024_V3.pdf",
+      "stackingStructure": "2 cathode, 2 anode, 4 separators +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 132.66,
+          "quantity": 2.0,
+          "totalWeightG": 265.32,
+          "weightRatioPct": 26.61
+        },
+        {
+          "component": "Cathode",
+          "weightG": 208.83,
+          "quantity": 2.0,
+          "totalWeightG": 417.66,
+          "weightRatioPct": 41.89
+        },
+        {
+          "component": "Separator",
+          "weightG": 6.95,
+          "quantity": 4.0,
+          "totalWeightG": 27.8,
+          "weightRatioPct": 2.79
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 170.11,
+          "weightRatioPct": 17.06
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 116.21,
+          "weightRatioPct": 11.65
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 997.1,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/vinfast-vf6-plus-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "4",
+        "Cell characteristics - Length": "555.3 mm",
+        "Cell characteristics - Width": "109 mm",
+        "Cell characteristics - Weight": "6.95 g"
+      },
+      "overhangs": {
+        "On outside - Separator / anode": "8.8 cm",
+        "On outside - Separator / cathode": "35 cm",
+        "On outside - Anode / cathode": "26.2 cm",
+        "On inside - Separator / anode": "55.3 cm",
+        "On inside - Separator / cathode": "55.7 cm",
+        "On inside - Anode / cathode": "0.4 cm",
+        "At tab - Separator / anode": "3 mm",
+        "At tab - Separator / cathode": "5 mm",
+        "At tab - Cathode / anode": "2 mm",
+        "At other side of tab - Separator / anode": "3 mm",
+        "At other side of tab - Separator / cathode": "4.5 mm",
+        "At other side of tab - Anode / cathode": "1.5 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP （LiFePO ) 4",
+        "CATHODE - Particle size": "2-50 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "94.3%",
+        "CATHODE - Total electrode thickness": "206 µm",
+        "CATHODE - Current collector thickness(Al)": "12 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-40 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "148 µm",
+        "ANODE - Current collector thickness(Cu)": "6 µm",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "12 µm",
+        "SEPARATOR - Coating Where？": "Cathode side",
+        "SEPARATOR - Coating Material": "Al O 2 3",
+        "SEPARATOR - Coating Thickness": "2",
+        "SEPARATOR - Total electrode thickness": "14 µm",
+        "ELECTROLYTE - Solvents": "EMC,EC,PC",
+        "ELECTROLYTE - Additives": "VC",
+        "ELECTROLYTE - Salt": "LiPO F ,LiPF₆ 2 2"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "206 µm",
+        "Al foil current collector thickness": "12 µm",
+        "Electrode thickness (one side)": "97 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "148 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "71 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC, PC",
+        "Additive": "VC",
+        "Salt": "LiPF , LiPO F"
+      }
+    },
+    "zeekr-007-4x4-zhijia-75kwh-2024": {
+      "sourcePdf": "A2MAC1_CellReport-Zeekr_007_2024_V5.pdf",
+      "stackingStructure": "47 cathodes, 48 anodes,1 separator +1 insulating film",
+      "anodeCathodeImages": [
+        "assets/teardown/zeekr-007-4x4-zhijia-75kwh-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "1",
+        "Cell characteristics - Length": "1164 mm",
+        "Cell characteristics - Width": "49.3 mm",
+        "Cell characteristics - Weight": "50.196 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "2 mm",
+        "On sides - Separator / cathode": "3 or 4 mm",
+        "On sides - Anode / cathode": "1 or 2 mm",
+        "At cathode tab - Separator / anode": "3 mm",
+        "At cathode tab - Separator / cathode": "2 mm",
+        "At cathode tab - Cathode / anode": "1 mm",
+        "At anode tab - Separator / anode": "4 mm",
+        "At anode tab - Separator / cathode": "5 mm",
+        "At anode tab - Anode / cathode": "1 mm"
+      },
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 12.656,
+          "quantity": 48.0,
+          "totalWeightG": 607.488,
+          "weightRatioPct": 26.93
+        },
+        {
+          "component": "Cathode",
+          "weightG": 21.976,
+          "quantity": 47.0,
+          "totalWeightG": 1032.872,
+          "weightRatioPct": 45.78
+        },
+        {
+          "component": "Separator",
+          "weightG": 50.196,
+          "quantity": 1.0,
+          "totalWeightG": 50.196,
+          "weightRatioPct": 2.23
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 349.73,
+          "weightRatioPct": 15.5
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 215.71,
+          "weightRatioPct": 9.56
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2256.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "LFP(LiFePO ) 4",
+        "CATHODE - Particle size": "2-40 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "93.70%",
+        "CATHODE - Total electrode thickness": "162 µm",
+        "CATHODE - Current collector thickness(Al)": "13 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-30 µm",
+        "ANODE - Binder": "CMC & SBR",
+        "ANODE - Total electrode thickness": "122 µm",
+        "ANODE - Current collector thickness(Cu)": "6 µm",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "5.4 µm",
+        "SEPARATOR - Coating Where？": "Cathode side",
+        "SEPARATOR - Coating Material": "Al O 2 3",
+        "SEPARATOR - Coating Thickness": "1.6 µm",
+        "SEPARATOR - Total electrode thickness": "7 µm",
+        "ELECTROLYTE - Solvents": "DMC, EMC, EC",
+        "ELECTROLYTE - Additives": "VC",
+        "ELECTROLYTE - Salt": "LiPO F , LiPF₆, LiFSI 2 2"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "162 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "74 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "122 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "58 µm"
+      },
+      "electrolyte": {
+        "Solvent": "DMC, EMC, EC",
+        "Additive": "VC",
+        "Salt": "LiPF , LiPO F , LiFSI"
+      }
+    },
+    "aito-m9-ultra-42kwh-2024": {
+      "sourcePdf": "A2MAC1_CellReport_AITO_M9_2024_V1.pdf",
+      "stackingStructure": "2cathodes, 2 anodes, 4 stacked separator +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 282.6,
+          "quantity": 2.0,
+          "totalWeightG": 565.21,
+          "weightRatioPct": 31.92
+        },
+        {
+          "component": "Cathode",
+          "weightG": 362.12,
+          "quantity": 2.0,
+          "totalWeightG": 724.24,
+          "weightRatioPct": 40.9
+        },
+        {
+          "component": "Separator",
+          "weightG": 9.71,
+          "quantity": 4.0,
+          "totalWeightG": 38.85,
+          "weightRatioPct": 2.19
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 260.045,
+          "weightRatioPct": 14.69
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 182.29,
+          "weightRatioPct": 10.29
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 1771.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/aito-m9-ultra-42kwh-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "4",
+        "Cell characteristics - Length": "1202.3 mm",
+        "Cell characteristics - Width": "9.65 mm",
+        "Cell characteristics - Weight": "9.71 g"
+      },
+      "overhangs": {
+        "On outside - Separator / anode": "69.6 cm",
+        "On outside - Separator / cathode": "102 cm",
+        "On outside - Anode / cathode": "32.4 cm",
+        "On inside - Separator / anode": "34.9 cm",
+        "On inside - Separator / cathode": "39.4 cm",
+        "On inside - Anode / cathode": "4.4 cm",
+        "At tab - Separator / anode": "4 mm",
+        "At tab - Separator / cathode": "2.5 mm",
+        "At tab - Cathode / anode": "1.5 mm",
+        "At opposite side of tab - Separator / anode": "2.5 mm",
+        "At opposite side of tab - Separator / cathode": "4 mm",
+        "At opposite side of tab - Anode / cathode": "1.5 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "125 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "55 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "155 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "74 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC,EC",
+        "Additive": "FEC,PS",
+        "Salt": "LiPF , LiBF , LiPO F"
+      }
+    },
+    "xiaomi-su7-4x4-super-range-high-class-max-2024": {
+      "sourcePdf": "A2MAC1_CellReport_Xiaomi SU7 MAX_2024_VF2.pdf",
+      "stackingStructure": "2 cathode, 2 anode, 4 separators +1 insulating film",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 349.73,
+          "quantity": 2.0,
+          "totalWeightG": 699.45,
+          "weightRatioPct": 31.2
+        },
+        {
+          "component": "Cathode",
+          "weightG": 444.62,
+          "quantity": 2.0,
+          "totalWeightG": 889.25,
+          "weightRatioPct": 39.67
+        },
+        {
+          "component": "Separator",
+          "weightG": 16.1,
+          "quantity": 4.0,
+          "totalWeightG": 64.42,
+          "weightRatioPct": 2.87
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 325.52,
+          "weightRatioPct": 14.52
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 263.04,
+          "weightRatioPct": 11.73
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2241.68,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/xiaomi-su7-4x4-super-range-high-class-max-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "4",
+        "Cell characteristics - Length": "1878.8 mm",
+        "Cell characteristics - Width": "925 mm",
+        "Cell characteristics - Weight": "16.1 g"
+      },
+      "overhangs": {
+        "On outside - Separator / anode": "141.3 cm",
+        "On outside - Separator / cathode": "142.8 cm",
+        "On outside - Anode / cathode": "1.5 cm",
+        "On inside - Separator / anode": "38 cm",
+        "On inside - Separator / cathode": "79 cm",
+        "On inside - Anode / cathode": "41 cm",
+        "At tab - Separator / anode": "3.5 mm",
+        "At tab - Separator / cathode": "2.5 mm",
+        "At tab - Cathode / anode": "1 mm",
+        "At other side of tab - Separator / anode": "2.5 mm",
+        "At other side of tab - Separator / cathode": "4 mm",
+        "At other side of tab - Anode / cathode": "1.5 mm"
+      },
+      "cellMaterialSummary": {
+        "CATHODE - Active material": "NMC(LiNi Mn Co O ) 0.64 0.29 0.07 2 & LFP",
+        "CATHODE - Particle size": "2-10 µm",
+        "CATHODE - Binder": "PVDF",
+        "CATHODE - Active material loading": "95.0%",
+        "CATHODE - Total electrode thickness": "100 µm",
+        "CATHODE - Current collector thickness(Al)": "13 µm",
+        "ANODE - Active material": "Graphite",
+        "ANODE - Particle size": "5-40 µm",
+        "ANODE - Binder": "CMC",
+        "ANODE - Total electrode thickness": "146 µm",
+        "ANODE - Current collector thickness(Cu)": "6 µm",
+        "SEPARATOR - Material": "PE",
+        "SEPARATOR - Thickness": "7.1 µm",
+        "SEPARATOR - Coating Where？": "Cathode & anode",
+        "SEPARATOR - Coating Material": "AlO O 2 3",
+        "SEPARATOR - Coating Thickness": "1.3",
+        "SEPARATOR - Total electrode thickness": "9.8 µm",
+        "ELECTROLYTE - Solvents": "EMC,EC,DMC",
+        "ELECTROLYTE - Additives": "DEC,FEC,DTD,PS",
+        "ELECTROLYTE - Salt": "LiPO F ,LiPF₆,LiBF ,LiBOB 2 2 4"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "100 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "44 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "146 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "70 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC, DMC",
+        "Additive": "DEC, FEC, DTD, PS",
+        "Salt": "LiPF , LiBF , LiPO F , LiBOB"
+      }
+    },
+    "audi-sq6-e-tron-edition-one-2024": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_Audi_SQ6_e-tron_Edition_One_2024.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Cathode",
+          "weightG": 1.0,
+          "quantity": 2.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Anode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "2",
+        "Cell characteristics - Length": "13408 mm (x2)",
+        "Cell characteristics - Width": "110 mm",
+        "Cell characteristics - Thickness": "9.5 µm",
+        "Cell characteristics - Total weight": "12.7 g"
+      },
+      "overhangs": {
+        "Overhangs at the start of stack - Separators / anode": "993 mm",
+        "Overhangs at the start of stack - Anode / cathode": "15 mm",
+        "Overhangs at the start of stack - Separators / cathode": "1008 mm",
+        "At tabs - Separator / coating cathode": "2 mm",
+        "At tabs - Coating cathode width": "3 mm",
+        "At tabs - Separator / anode": "3.5 mm",
+        "At tabs - Separator / cathode": "5 mm",
+        "At tabs - Anode / cathode": "1.5 mm",
+        "At bottom side - Separator / anode": "2.5 mm",
+        "At bottom side - Separator / cathode": "3.5 mm",
+        "At bottom side - Anode / cathode": "1 mm",
+        "Overhangs at the end of stack - Separators / anode": "460 mm",
+        "Overhangs at the end of stack - Anode / cathode": "470 mm",
+        "Overhangs at the end of stack - Separators / cathode": "930 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "111 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "49 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "156 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "75 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, DEC, EC",
+        "Additive": "FEC",
+        "Salt": "LiPF , LiPO F"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/audi-sq6-e-tron-edition-one-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "ebro-s900-phev-2026": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_Ebro_S900 PHEV 2026_draft.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Separator",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "2",
+        "Length": "11142 mm",
+        "Width": "97.5 mm",
+        "Thickness": "9.9 µm",
+        "Weight": "8.9 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at start of stack - Separator → Anode": "963 mm",
+        "Overhangs at start of stack - Anode → Cathode": "17 mm",
+        "Overhangs at start of stack - Separator → Cathode": "980 mm",
+        "Overhangs at tabs side - Separator → Anode": "3.5 mm",
+        "Overhangs at tabs side - Anode → Cathode": "2 mm",
+        "Overhangs at tabs side - Cathode coating → Separator": "3",
+        "Overhangs at tabs side - Cathode coating width": "2.5 mm",
+        "Overhangs at tabs side - Separator → Cathode": "5.5 mm",
+        "Overhangs at bottom - Separator → Anode": "2.5 mm",
+        "Overhangs at bottom - Separator → Cathode": "3.5 mm",
+        "Overhangs at bottom - Anode → Cathode": "1 mm",
+        "Overhangs at the end of - Separators → Anode": "375 mm",
+        "Overhangs at the end of - Anode → Cathode": "273 mm",
+        "Overhangs at the end of - Separators → Cathode": "648 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/ebro-s900-phev-2026/cellreport_cathode_dimension.png",
+        "assets/teardown/ebro-s900-phev-2026/cellreport_anode_dimension.png"
+      ]
+    },
+    "leapmotor-b10-design-promax-2026": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_Leapmotor B10 Design Promax_vf2.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Separator",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "2",
+        "Length": "17 170 mm",
+        "Width": "104.5 mm",
+        "Thickness": "9.5 µm",
+        "Weight": "50.0 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at start of stack - Separator → Anode": "1270 mm",
+        "Overhangs at start of stack - Anode → Cathode": "14 mm",
+        "Overhangs at start of stack - Separator → Cathode": "1284 mm",
+        "Overhangs at tabs side - Separator → Anode": "3mm",
+        "Overhangs at tabs side - Anode → Cathode": "2 mm",
+        "Overhangs at tabs side - Cathode coating → Separator": "2.5",
+        "Overhangs at tabs side - Cathode coating width": "2.5 mm",
+        "Overhangs at tabs side - Separator → Cathode": "5 mm",
+        "Overhangs at bottom - Separator → Anode": "2.5 mm",
+        "Overhangs at bottom - Separator → Cathode": "4 mm",
+        "Overhangs at bottom - Anode → Cathode": "1.5 mm",
+        "Overhangs at the end of - Separators → Anode": "798 mm",
+        "Overhangs at the end of - Anode → Cathode": "585 mm",
+        "Overhangs at the end of - Separators → Cathode": "1383 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/leapmotor-b10-design-promax-2026/cellreport_cathode_dimension.png",
+        "assets/teardown/leapmotor-b10-design-promax-2026/cellreport_anode_dimension.png"
+      ]
+    },
+    "lynk-co-900-tansuo-2025": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_Lynk_&_Co_900_Tansuo_2025_vf.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode, 1 cathode, 1 separator",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 363.0,
+          "quantity": 2.0,
+          "totalWeightG": 726.0,
+          "weightRatioPct": 36.3
+        },
+        {
+          "component": "Cathode",
+          "weightG": 420.0,
+          "quantity": 2.0,
+          "totalWeightG": 841.0,
+          "weightRatioPct": 42.0
+        },
+        {
+          "component": "Separator",
+          "weightG": 28.0,
+          "quantity": 2.0,
+          "totalWeightG": 57.0,
+          "weightRatioPct": 2.8
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 209.0,
+          "weightRatioPct": 10.4
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 168.0,
+          "weightRatioPct": 8.4
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2000.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/lynk-co-900-tansuo-2025/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "2",
+        "Cell characteristics - Length": "1434 cm",
+        "Cell characteristics - Width": "109 mm",
+        "Cell characteristics - Thickness": "12 µm",
+        "Cell characteristics - Weight": "28.4 g"
+      },
+      "overhangs": {
+        "Stack top - Separator / anode": "4 mm",
+        "Stack top - Separator / cathode": "2.5 mm",
+        "Stack top - Cathode / anode": "1.5 mm",
+        "Stack top - Cathode edge coating": "2.5mm",
+        "Stack bottom - Separator / anode": "2.5 mm",
+        "Stack bottom - Separator / cathode": "4 mm",
+        "Stack bottom - Anode / cathode": "1.5 mm",
+        "Overhangs at start of roll - Separator / anode": "374mm",
+        "Overhangs at start of roll - Anode / cathode": "57mm",
+        "Overhangs at end of roll - Separator / anode": "978mm",
+        "Overhangs at end of roll - Anode / cathode": "17mm"
+      }
+    },
+    "mercedes-cla-350-4matic-eq-business-executive-2026": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_Mercedes_CLA_350_4MATIC_EQ_Business_Executive_2026_V3.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Separator",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "2",
+        "Length": "13656 mm",
+        "Width": "85 mm",
+        "Thickness": "10.5 µm",
+        "Weight": "10 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at start of stack - Separator → Anode": "773 mm",
+        "Overhangs at start of stack - Anode → Cathode": "11 mm",
+        "Overhangs at start of stack - Separator → Cathode": "784 mm",
+        "Overhangs at tabs side - Separator → Anode": "3.5 mm",
+        "Overhangs at tabs side - Anode → Cathode": "1 mm",
+        "Overhangs at tabs side - Cathode coating → Separator": "2",
+        "Overhangs at tabs side - Cathode coating width": "2.5 mm",
+        "Overhangs at tabs side - Separator → Cathode": "4.5 mm",
+        "Overhangs at bottom - Separator → Anode": "3.5 mm",
+        "Overhangs at bottom - Separator → Cathode": "4.5 mm",
+        "Overhangs at bottom - Anode → Cathode": "1 mm",
+        "Overhangs at the end of - Separators → Anode": "753 mm",
+        "Overhangs at the end of - Anode → Cathode": "524 mm",
+        "Overhangs at the end of - Separators → Cathode": "1277 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/mercedes-cla-350-4matic-eq-business-executive-2026/cellreport_cathode_dimension.png",
+        "assets/teardown/mercedes-cla-350-4matic-eq-business-executive-2026/cellreport_anode_dimension.png"
+      ]
+    },
+    "nio-firefly-2025": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_Nio_Firefly_2025_vf2.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Cathode",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "2",
+        "Length": "13 455 mm",
+        "Width": "95.5 mm",
+        "Thickness": "10.8 µm",
+        "Weight": "10.7 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at start of stack - Separator → Anode": "878 mm",
+        "Overhangs at start of stack - Anode → Cathode": "15.5 mm",
+        "Overhangs at start of stack - Separator → Cathode": "893.5 mm",
+        "Overhangs at tabs side - Separator → Anode": "3 mm",
+        "Overhangs at tabs side - Anode → Cathode": "1 mm",
+        "Overhangs at tabs side - Cathode coating → Separator": "1 mm",
+        "Overhangs at tabs side - Cathode coating width": "3 mm",
+        "Overhangs at tabs side - Separator → Cathode": "4 mm",
+        "Overhangs at bottom - Separator → Anode": "2.5 mm",
+        "Overhangs at bottom - Separator → Cathode": "4 mm",
+        "Overhangs at bottom - Anode → Cathode": "1.5 mm",
+        "Overhangs at the end of - Separators → Anode": "703 mm",
+        "Overhangs at the end of - Anode → Cathode": "8 mm",
+        "Overhangs at the end of - Separators → Cathode": "711 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/nio-firefly-2025/cellreport_cathode_dimension.png"
+      ]
+    },
+    "nissan-n7-625-max-2026": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_Nissan_N7_625_Max_2026_v1.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Separator",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "2",
+        "Length": "17261 mm",
+        "Width": "106 mm",
+        "Thickness": "13.7 µm",
+        "Weight": "16.5 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at end of stack - Separator → Anode": "852 mm",
+        "Overhangs at end of stack - Anode → Cathode": "11 mm",
+        "Overhangs at end of stack - Separator → Cathode": "863 mm",
+        "Overhangs at tabs side - Separator → Anode": "2 mm",
+        "Overhangs at tabs side - Anode → Cathode": "2 mm",
+        "Overhangs at tabs side - Cathode coating → Separator": "4",
+        "Overhangs at tabs side - Cathode coating width": "2 mm",
+        "Overhangs at tabs side - Separator → Cathode": "6 mm",
+        "Overhangs at bottom - Separator → Anode": "3 mm",
+        "Overhangs at bottom - Separator → Cathode": "2 mm",
+        "Overhangs at bottom - Anode → Cathode": "1 mm",
+        "Overhangs at the Start of - Separators → Anode": "731 mm",
+        "Overhangs at the Start of - Anode → Cathode": "621 mm",
+        "Overhangs at the Start of - Separators → Cathode": "1352 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/nissan-n7-625-max-2026/cellreport_cathode_dimension.png",
+        "assets/teardown/nissan-n7-625-max-2026/cellreport_anode_dimension.png"
+      ]
+    },
+    "onvo-l90-ultra-7-seats-2026": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_Onvo L90_VF2.pdf",
+      "stackingStructure": "2 stacks Each stack contains 1 anode,1 cathode,2 separators",
+      "stackStructure": [
+        {
+          "component": "Separator",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "2",
+        "Length": "18276 mm",
+        "Width": "86.5 mm",
+        "Thickness": "9 µm",
+        "Weight": "13.8 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at end of stack - Separator → Anode": "345 mm",
+        "Overhangs at end of stack - Anode → Cathode": "365 mm",
+        "Overhangs at end of stack - Separator → Cathode": "710 mm",
+        "Overhangs at tabs side - Separator → Anode": "4 mm",
+        "Overhangs at tabs side - Anode → Cathode": "1 mm",
+        "Overhangs at tabs side - Cathode coating → Separator": "2.5",
+        "Overhangs at tabs side - Cathode coating width": "2.5 mm",
+        "Overhangs at tabs side - Separator → Cathode": "5 mm",
+        "Overhangs at bottom - Separator → Anode": "2 mm",
+        "Overhangs at bottom - Separator → Cathode": "3.5 mm",
+        "Overhangs at bottom - Anode → Cathode": "1.5 mm",
+        "Overhangs at the Start of - Separators → Anode": "1286 mm",
+        "Overhangs at the Start of - Anode → Cathode": "17 mm",
+        "Overhangs at the Start of - Separators → Cathode": "1303 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/onvo-l90-ultra-7-seats-2026/cellreport_cathode_dimension.png",
+        "assets/teardown/onvo-l90-ultra-7-seats-2026/cellreport_anode_dimension.png"
+      ]
+    },
+    "smart-5-brabus-2025": {
+      "sourcePdf": "A2MAC1_Cell_Analysis_Report_Smart_#5_Brabus_2025_vf.pdf",
+      "stackingStructure": "2 stacks Each stack contains 81 anodes, 80 cathodes, 1 separator",
+      "separatorDimensions": {
+        "Quantity": "1",
+        "Length": "18457 mm",
+        "Width": "184 mm",
+        "Thickness": "9 µm",
+        "Weight": "32.9 g"
+      },
+      "overhangs": {
+        "Folding": "Z-Folding",
+        "Stacking": "1 Separator, 81 Anodes, 80",
+        "Overhangs at start of stack - Separator →Anode": "15 mm",
+        "Overhangs at end of stack - Separator →Anode": "4 mm",
+        "Overhangs at cathode tab - Separator →Anode": "2 mm",
+        "Overhangs at cathode tab - Cathode coating →Separator": "2 mm",
+        "Overhangs at cathode tab - Cathode coating width": "4 mm",
+        "Overhangs at cathode tab - Separator →Cathode": "2 mm",
+        "Overhangs at anode tab - Separator →Anode": "2.5 mm",
+        "Overhangs at anode tab - Anode →Cathode": "1.5 mm",
+        "Overhangs at anode tab - Separator →Cathode": "4 mm",
+        "Overhangs at top - Separator →Anode": "0 mm",
+        "Overhangs at top - Separator →Cathode": "2 mm",
+        "Overhangs at top - Anode →Cathode": "2 mm",
+        "Overhangs at bottom - Separator →Anode": "0.5 mm",
+        "Overhangs at bottom - Separator →Cathode": "2 mm",
+        "Overhangs at bottom - Anode →Cathode": "1.5 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/smart-5-brabus-2025/cellreport_cathode_dimension.png",
+        "assets/teardown/smart-5-brabus-2025/cellreport_anode_dimension.png"
+      ]
+    },
+    "land-rover-range-rover-autobiography-swb-phev-2025": {
+      "sourcePdf": "A2MAC1_Cell_Report_LAND_ROVER_Range_Rover_v4.pdf",
+      "stackingStructure": "1 stack containing 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 27.0,
+          "quantity": 1.0,
+          "totalWeightG": 27.0,
+          "weightRatioPct": 39.8
+        },
+        {
+          "component": "Separator",
+          "weightG": 1.4,
+          "quantity": 2.1,
+          "totalWeightG": 5.8,
+          "weightRatioPct": 8.6
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 12.0,
+          "weightRatioPct": 17.7
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 68.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "2",
+        "Cell characteristics - Length": "1167 mm",
+        "Cell characteristics - Width": "67 mm",
+        "Cell characteristics - Thickness": "13.3 µm",
+        "Cell characteristics - Weight": "0.7 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 separators, 1 anode, 1",
+        "Overhangs at the start of roll - Separator → Anode": "4 mm",
+        "Overhangs at the start of roll - Anode → Cathode": "8 mm",
+        "Overhangs at the start of roll - Separator → Cathode": "12 mm",
+        "Overhangs at sides - Separator → Anode": "0.5 mm",
+        "Overhangs at sides - Separator → Cathode": "1 mm",
+        "Overhangs at sides - Anode → Cathode": "0.5 mm",
+        "Overhangs at the end of roll - Separator → Anode": "50 mm",
+        "Overhangs at the end of roll - Separator → Cathode": "67 mm",
+        "Overhangs at the end of roll - Anode → Cathode": "17 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/land-rover-range-rover-autobiography-swb-phev-2025/cellreport_cathode_dimension.png"
+      ]
+    },
+    "lucid-air-pure-2025": {
+      "sourcePdf": "A2MAC1_Cell_Report_Lucid_air_Pure_2025_vf.pdf",
+      "stackingStructure": "1 stack containing 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 22.0,
+          "quantity": 1.0,
+          "totalWeightG": 22.0,
+          "weightRatioPct": 32.6
+        },
+        {
+          "component": "Separator",
+          "weightG": 1.0,
+          "quantity": 1.5,
+          "totalWeightG": 19.0,
+          "weightRatioPct": 28.3
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 11.0,
+          "weightRatioPct": 16.6
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 67.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "2",
+        "Cell characteristics - Length": "84 cm",
+        "Cell characteristics - Width": "67 mm",
+        "Cell characteristics - Weight": "507 mg"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 separators, 1 anode, 1",
+        "Overhangs at the start of roll - Separator → Anode": "14 mm",
+        "Overhangs at the start of roll - Anode → Cathode": "1 mm",
+        "Overhangs at the start of roll - Separator → Cathode": "15 mm",
+        "Overhangs at sides - Separator → Anode": "1 mm",
+        "Overhangs at sides - Separator → Cathode": "2 mm",
+        "Overhangs at the end of roll - Separator → Anode": "64 mm",
+        "Overhangs at the end of roll - Separator → Cathode": "53 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/lucid-air-pure-2025/cellreport_cathode_dimension.png",
+        "assets/teardown/lucid-air-pure-2025/cellreport_anode_dimension.png"
+      ]
+    },
+    "lucid-gravity-grand-touring-2026": {
+      "sourcePdf": "A2MAC1_Cell_Report_Lucid_Gravity_Draft.pdf",
+      "stackingStructure": "1 stack containing 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 29.0,
+          "quantity": 1.0,
+          "totalWeightG": 29.0,
+          "weightRatioPct": 42.4
+        },
+        {
+          "component": "Separator",
+          "weightG": 1.2,
+          "quantity": 1.7,
+          "totalWeightG": 8.0,
+          "weightRatioPct": 12.2
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 11.0,
+          "weightRatioPct": 16.0
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 68.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "2",
+        "Cell characteristics - Length": "901 mm",
+        "Cell characteristics - Width": "67 mm",
+        "Cell characteristics - Thickness": "T.B.D µm",
+        "Cell characteristics - Weight": "0.6 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 separators, 1 anode, 1",
+        "Overhangs at the start of roll - Separator → Anode": "8 mm",
+        "Overhangs at the start of roll - Anode → Cathode": "12 mm",
+        "Overhangs at the start of roll - Separator → Cathode": "20 mm",
+        "Overhangs at the start of roll - Anode copper": "18 mm",
+        "Overhangs at sides - Separator → Anode": "1 mm",
+        "Overhangs at sides - Anode → Cathode": "0.5 mm",
+        "Overhangs at sides - Separator → Cathode": "1.5 mm",
+        "Overhangs at the end of roll - Separator → Anode": "44 mm",
+        "Overhangs at the end of roll - Anode → Cathode": "23 mm",
+        "Overhangs at the end of roll - Separator → Cathode": "67 mm",
+        "Overhangs at the end of roll - Anode copper": "14 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/lucid-gravity-grand-touring-2026/cellreport_cathode_dimension.png",
+        "assets/teardown/lucid-gravity-grand-touring-2026/cellreport_anode_dimension.png"
+      ]
+    },
+    "peugeot-3008-e-gt-2024": {
+      "sourcePdf": "A2MAC1_Cell_Report_Peugeot_3008_e_GT_2024.pdf",
+      "separatorDimensions": {
+        "Cell characteristics - Number": "8 (2 per stack)",
+        "Cell characteristics - Length": "5225 mm",
+        "Cell characteristics - Width": "209 mm",
+        "Cell characteristics - Thickness": "11 µm",
+        "Cell characteristics - Weight": "11.4 g"
+      },
+      "overhangs": {
+        "Overhangs at the start of stack - Separators / anode": "290 mm",
+        "Overhangs at the start of stack - Anode / cathode": "230 mm",
+        "Overhangs at the start of stack - Separators / cathode": "520 mm",
+        "At cathode tabs - Separator / anode": "4 mm",
+        "At cathode tabs - Cathode (+ edge coating) / anode": "2",
+        "At cathode tabs - Cathode edge coating": "2 mm",
+        "At anode tabs - Separator / anode": "4 mm",
+        "At anode tabs - Separator / cathode": "6 mm",
+        "At anode tabs - Anode / cathode": "2 mm",
+        "Overhangs at the end of stack - Separators / anode": "154 mm",
+        "Overhangs at the end of stack - Anode / cathode": "2 mm",
+        "Overhangs at the end of stack - Separators / cathode": "156 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "123 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "55 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "149 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "71.5 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, DEC, EC",
+        "Additive": "none",
+        "Salt": "LiPF"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/peugeot-3008-e-gt-2024/cellreport_cathode_dimension.png",
+        "assets/teardown/peugeot-3008-e-gt-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "polestar-2-long-range-dual-motor-2024": {
+      "sourcePdf": "A2MAC1_Cell_Report_Polestar_2_2024.pdf",
+      "stackStructure": [
+        {
+          "component": "Cathode",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "2",
+        "Cell characteristics - Length": "10787 mm",
+        "Cell characteristics - Width": "95 mm",
+        "Cell characteristics - Thickness": "16 µm",
+        "Cell characteristics - Weight": "7 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at the start of stack - Separators → Anode": "820 mm",
+        "Overhangs at the start of stack - Anode → Cathode": "325 mm",
+        "Overhangs at the start of stack - Separators → Cathode": "1145 mm",
+        "Overhangs at tabs - Separator → Anode": "4 mm",
+        "Overhangs at tabs - Separator → Coating cathode": "3.5 mm",
+        "Overhangs at tabs - Cathode coating width": "2.5 mm",
+        "Overhangs at tabs - Separator → Cathode": "6 mm",
+        "Overhangs at bottom - Separator → Anode": "2 mm",
+        "Overhangs at bottom - Separator → Cathode": "3 mm",
+        "Overhangs at bottom - Anode → Cathode": "1 mm",
+        "Overhangs at the end of stack - Separators → Anode": "250 mm",
+        "Overhangs at the end of stack - Anode → Cathode": "42 mm",
+        "Overhangs at the end of stack - Separators → Cathode": "292 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "121 µm",
+        "Al foil current collector thickness": "13 µm",
+        "Electrode thickness (one side)": "54 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "150 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "72 µm"
+      },
+      "electrolyte": {
+        "Solvent": "DMC, EMC, EC H C Additives: FEC",
+        "Additive": "FEC",
+        "Salt": "LiPF (lithium hexafluorophosphate)"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/polestar-2-long-range-dual-motor-2024/cellreport_cathode_dimension.png",
+        "assets/teardown/polestar-2-long-range-dual-motor-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "rivian-r1s-tri-max-2025": {
+      "sourcePdf": "A2MAC1_Cell_Report_Rivian_R1S_2025_vf3.pdf",
+      "stackingStructure": "1 stack containing 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 8.0,
+          "weightRatioPct": 11.1
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 13.0,
+          "weightRatioPct": 19.1
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 70.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "2",
+        "Cell characteristics - Length 1": "1015 mm",
+        "Cell characteristics - Weight 1": "568 mg",
+        "Cell characteristics - Length 2": "1008 mm",
+        "Cell characteristics - Weight 2": "548 mg",
+        "Cell characteristics - Width": "66 mm",
+        "Cell characteristics - Thickness": "13 µm"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 separators, 1 anode, 1",
+        "Overhangs at the start of roll - Separator → Anode": "6 mm",
+        "Overhangs at the start of roll - Anode → Cathode": "6 mm",
+        "Overhangs at the start of roll - Separator → Cathode": "12 mm",
+        "Overhangs at sides - Separator → Anode": "1 mm",
+        "Overhangs at sides - Separator → Cathode": "1 mm",
+        "Overhangs at the end of roll - Longest separator → Anode": "60 mm",
+        "Overhangs at the end of roll - Longest separator → Cathode": "74 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/rivian-r1s-tri-max-2025/cellreport_cathode_dimension.png"
+      ]
+    },
+    "volvo-ex30-twin-motor-performance-ultra-2024": {
+      "sourcePdf": "A2MAC1_Cell_Report_Volvo_EX30.pdf",
+      "anodeCathodeImages": [
+        "assets/teardown/volvo-ex30-twin-motor-performance-ultra-2024/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "For 1 stack - Number": "1",
+        "For 1 stack - Length": "1442 mm",
+        "For 1 stack - Width": "212 mm",
+        "For 1 stack - Thickness": "20 µm",
+        "For 1 stack - Total weight": "43 g"
+      },
+      "overhangs": {
+        "Separator / anode": "1 mm",
+        "Separator / cathode": "2 mm",
+        "Anode / cathode": "1 mm",
+        "At cathode tab - Coating cathode / Separator": "1 mm",
+        "At cathode tab - Coating cathode width": "5 mm",
+        "At cathode tab - Separator / cathode": "4 mm",
+        "At cathode tab - Separator / Anode": "2 mm",
+        "At cathode tab - Anode / cathode": "2 mm",
+        "At anode tab - Separator / anode": "2 mm",
+        "At anode tab - Separator / cathode": "3 mm",
+        "At anode tab - Anode / cathode": "1 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "118 µm",
+        "Al foil current collector thickness": "12 µm",
+        "Electrode thickness (one side)": "53 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "150 µm",
+        "Cu foil current collector thickness": "4 µm",
+        "Electrode thickness (one side)": "73 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, DEC, EC",
+        "Additive": "VC",
+        "Salt": "LiPF (lithium hexafluorophosphate)"
+      }
+    },
+    "chevrolet-blazer-ev-rs-awd-2024": {
+      "sourcePdf": "A2MAC1_Chevrolet_Blazer_EV_RS_AWD_2024_Cell_Analysis_Report_vf2 1.pdf",
+      "separatorDimensions": {
+        "Cell characteristics - Number": "39",
+        "Cell characteristics - Length": "546 mm",
+        "Cell characteristics - Width": "106 mm",
+        "Cell characteristics - Thickness": "18 µm",
+        "Cell characteristics - Weight": "1.12 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "1 mm",
+        "On sides - Separator / cathode": "2 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / Anode": "2 mm",
+        "At cathode tab - Anode / Cathode coating": "1 mm",
+        "At cathode tab - Width of Cathode coating": "1.5 mm",
+        "At cathode tab - Anode / Cathode": "2.5 mm",
+        "At anode tab - Separator / Anode": "2 mm",
+        "At anode tab - Anode / Cathode coating": "1 mm",
+        "At anode tab - Width of Cathode coating": "2 mm",
+        "At anode tab - Anode / Cathode": "3 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "165 µm",
+        "Al foil current collector thickness": "15 µm",
+        "Electrode thickness (one side)": "75 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "240 µm",
+        "Cu foil current collector thickness": "8 µm",
+        "Electrode thickness (one side)": "116 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC",
+        "Additive": "VC 3",
+        "Salt": "m/z 86"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/chevrolet-blazer-ev-rs-awd-2024/cellreport_cathode_dimension.png",
+        "assets/teardown/chevrolet-blazer-ev-rs-awd-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "chevrolet-equinox-rs-2024": {
+      "sourcePdf": "A2MAC1_Chevrolet_Equinox_RS_2024_Cell_Analysis_Report_v3.pdf",
+      "separatorDimensions": {
+        "Cell characteristics - Number": "39",
+        "Cell characteristics - Length": "546 mm",
+        "Cell characteristics - Width": "106 mm",
+        "Cell characteristics - Thickness": "18 µm",
+        "Cell characteristics - Weight": "1.12 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "1 mm",
+        "On sides - Separator / cathode": "2 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / Anode": "2 mm",
+        "At cathode tab - Anode / Cathode coating": "1 mm",
+        "At cathode tab - Width of Cathode coating": "1.5 mm",
+        "At cathode tab - Anode / Cathode": "2.5 mm",
+        "At anode tab - Separator / Anode": "2 mm",
+        "At anode tab - Anode / Cathode coating": "1 mm",
+        "At anode tab - Width of Cathode coating": "2 mm",
+        "At anode tab - Anode / Cathode": "3 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "165 µm",
+        "Al foil current collector thickness": "15 µm",
+        "Electrode thickness (one side)": "75 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "240 µm",
+        "Cu foil current collector thickness": "8 µm",
+        "Electrode thickness (one side)": "116 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC",
+        "Additive": "VC 3",
+        "Salt": "m/z 86"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/chevrolet-equinox-rs-2024/cellreport_cathode_dimension.png",
+        "assets/teardown/chevrolet-equinox-rs-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "gmc-hummer-ev-suv-edition-1-2024": {
+      "sourcePdf": "A2MAC1_GMC_Hummer_EV_2024_Cell_Analysis_Report_v3.pdf",
+      "separatorDimensions": {
+        "Cell characteristics - Number": "39",
+        "Cell characteristics - Length": "546 mm",
+        "Cell characteristics - Width": "106 mm",
+        "Cell characteristics - Thickness": "18 µm",
+        "Cell characteristics - Weight": "1.12 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "1 mm",
+        "On sides - Separator / cathode": "2 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / Anode": "2 mm",
+        "At cathode tab - Anode / Cathode coating": "1 mm",
+        "At cathode tab - Width of Cathode coating": "1.5 mm",
+        "At cathode tab - Anode / Cathode": "2.5 mm",
+        "At anode tab - Separator / Anode": "2 mm",
+        "At anode tab - Anode / Cathode coating": "1 mm",
+        "At anode tab - Width of Cathode coating": "2 mm",
+        "At anode tab - Anode / Cathode": "3 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "165 µm",
+        "Al foil current collector thickness": "15 µm",
+        "Electrode thickness (one side)": "75 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "240 µm",
+        "Cu foil current collector thickness": "8 µm",
+        "Electrode thickness (one side)": "116 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC",
+        "Additive": "VC 3",
+        "Salt": "m/z 86"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/gmc-hummer-ev-suv-edition-1-2024/cellreport_cathode_dimension.png",
+        "assets/teardown/gmc-hummer-ev-suv-edition-1-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "hyundai-inster-creative-2025": {
+      "sourcePdf": "A2MAC1_Hyundai_Inster_Creative_2025_Cell_Analysis_Report.pdf",
+      "stackingStructure": "1 stack 37 anodes, 36 cathodes, 1 separator",
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "1",
+        "Cell characteristics - Length": "733 cm",
+        "Cell characteristics - Width": "32 cm",
+        "Cell characteristics - Weight": "26.7 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "0 mm",
+        "On sides - Separator / cathode": "1 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / cathode": "5.5 mm",
+        "At cathode tab - Separator / Anode": "2.5 mm",
+        "At cathode tab - Anode / cathode": "3 mm",
+        "At anode tab - Separator / cathode": "5.5 mm",
+        "At anode tab - Separator / anode": "2.5 mm",
+        "At anode tab - Anode / cathode": "3 mm"
+      }
+    },
+    "hyundai-ioniq-5-n-2024": {
+      "sourcePdf": "A2MAC1_Hyundai_Ioniq_5N_2024_Cell_Analysis_Report_vf2.pdf",
+      "stackingStructure": "30 anodes, 29 cathodes, 1 separator",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Cathode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Separator",
+          "weightG": null,
+          "quantity": 19.6,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": 20.8,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": 77.8,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": 744.0,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "1",
+        "Cell characteristics - Length": "5507 mm",
+        "Cell characteristics - Width": "320 mm",
+        "Cell characteristics - Thickness": "14 µm",
+        "Cell characteristics - Weight": "19.6 g"
+      },
+      "overhangs": {
+        "On sides - Anode / cathode": "2 mm",
+        "At cathode tab - Separator / anode": "3 mm",
+        "At cathode tab - Separator / cathode": "6.5 mm",
+        "At cathode tab - Anode / Cathode": "3.5 mm",
+        "At anode tab - Separator / anode": "3 mm",
+        "At anode tab - Separator / cathode": "6.5 mm",
+        "At anode tab - Anode / cathode": "3.5 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "118 µm",
+        "Al foil current collector thickness": "12 µm",
+        "Electrode thickness (one side)": "53 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "169 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "81.5 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC",
+        "Additive": "ø 5.71",
+        "Salt": "LiPF"
+      }
+    },
+    "kia-ev3-gt-line-2024": {
+      "sourcePdf": "A2MAC1_Kia_EV3_GT-Line_2024_Cell_Analysis_Report_vf2.pdf",
+      "stackingStructure": "1 stack 37 anodes, 36 cathodes, 1 separator",
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "1",
+        "Cell characteristics - Length": "733 cm",
+        "Cell characteristics - Width": "32 cm",
+        "Cell characteristics - Weight": "26.7 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "0 mm",
+        "On sides - Separator / cathode": "1 mm",
+        "On sides - Anode / cathode": "1 mm",
+        "At cathode tab - Separator / cathode": "5.5 mm",
+        "At cathode tab - Separator / Anode": "2.5 mm",
+        "At cathode tab - Anode / cathode": "3 mm",
+        "At anode tab - Separator / cathode": "5.5 mm",
+        "At anode tab - Separator / anode": "2.5 mm",
+        "At anode tab - Anode / cathode": "3 mm"
+      }
+    },
+    "kia-ev9-gt-line-2024": {
+      "sourcePdf": "A2MAC1_KIA_EV9_2024_Cell_Analysis_Report_vf2.pdf",
+      "stackingStructure": "30 anodes, 29 cathodes, 1 separator",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Cathode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Separator",
+          "weightG": null,
+          "quantity": 19.6,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": 20.8,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": 77.8,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": 744.0,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "1",
+        "Cell characteristics - Length": "5507 mm",
+        "Cell characteristics - Width": "320 mm",
+        "Cell characteristics - Thickness": "14 µm",
+        "Cell characteristics - Weight": "19.6 g"
+      },
+      "overhangs": {
+        "On sides - Anode / cathode": "2 mm",
+        "At cathode tab - Separator / anode": "3 mm",
+        "At cathode tab - Separator / cathode": "6.5 mm",
+        "At cathode tab - Anode / Cathode": "3.5 mm",
+        "At anode tab - Separator / anode": "3 mm",
+        "At anode tab - Separator / cathode": "6.5 mm",
+        "At anode tab - Anode / cathode": "3.5 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "118 µm",
+        "Al foil current collector thickness": "12 µm",
+        "Electrode thickness (one side)": "53 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "169 µm",
+        "Cu foil current collector thickness": "6 µm",
+        "Electrode thickness (one side)": "81.5 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, EC",
+        "Additive": "ø 5.71",
+        "Salt": "LiPF"
+      }
+    },
+    "mg3-hybrid-2024": {
+      "sourcePdf": "A2MAC1_MG_3_1.5_Hybrid+_Luxury_2024_Cell_Analysis_Report_vf3.pdf",
+      "stackStructure": [
+        {
+          "component": "Separator",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity": "2",
+        "Length": "4007 mm",
+        "Width": "96 mm",
+        "Thickness": "10 µm",
+        "Weight": "3 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at the start of stack - Separator → Anode": "256 mm",
+        "Overhangs at the start of stack - Anode → Cathode": "12 mm",
+        "Overhangs at the start of stack - Separator → Cathode": "268 mm",
+        "Overhangs at Cathode tab - Separator → Anode": "2 mm",
+        "Overhangs at Cathode tab - Anode → Cathode": "2 mm",
+        "Overhangs at Cathode tab - Coating cathode → Separator": "1 mm",
+        "Overhangs at Cathode tab - Cathode coating width": "5 mm",
+        "Overhangs at Cathode tab - Separator → Cathode": "4 mm",
+        "Overhangs at Anode tab - Separator → Anode": "3 mm",
+        "Overhangs at Anode tab - Separator → Cathode": "5 mm",
+        "Overhangs at Anode tab - Anode → Cathode": "2 mm",
+        "Overhangs at the end of stack - Separators → Anode": "56 mm",
+        "Overhangs at the end of stack - Anode → Cathode": "96 mm",
+        "Overhangs at the end of stack - Separators → Cathode": "152 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/mg3-hybrid-2024/cellreport_cathode_dimension.png",
+        "assets/teardown/mg3-hybrid-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "renault-5-iconic-cinq-confort-2025": {
+      "sourcePdf": "A2MAC1_Renault_5_Iconic_Cinq_Confort_2025_Cell_Analysis_Report_vf2.pdf",
+      "stackingStructure": "1 stack containing 25 anodes, 24 cathodes, 1 separator",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 28.0,
+          "quantity": 2.6,
+          "totalWeightG": 128.0,
+          "weightRatioPct": 11.9
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 36.0,
+          "weightRatioPct": 3.3
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 1075.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "separatorDimensions": {
+        "Quantity - Length": "5020 mm",
+        "Quantity - Width": "507 mm",
+        "Quantity - Weight": "28.1 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "4 mm",
+        "On sides - Separator / cathode": "5.5 mm",
+        "On sides - Anode / cathode": "1.5 mm",
+        "At cathode tab - Separator / cathode": "2.5 mm",
+        "At cathode tab - Separator / Anode": "2 mm",
+        "At cathode tab - Anode / cathode": "0.5 mm",
+        "At anode tab - Separator / cathode": "4.5 mm",
+        "At anode tab - Separator / anode": "2 mm",
+        "At anode tab - Anode / cathode": "2.5 mm"
+      }
+    },
+    "tata-punch-ev-empowered-slr-acfc-2024": {
+      "sourcePdf": "A2MAC1_Tata_Punch_EV_Empowered+SLR_ACFC_2024_Cell_Analysis_Report_vf.pdf",
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "2",
+        "2 different Lengths - Separator 1": "2620 mm",
+        "2 different Lengths - Separator 2": "2680 mm",
+        "2 different Lengths - Width": "124 mm",
+        "2 different Lengths - Weight": "3.1 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Overhangs at the start of roll - Separators → Anode": "112 mm",
+        "Overhangs at the start of roll - Anode → Cathode": "9 mm",
+        "Overhangs at the start of roll - Separators → Cathode": "127 mm",
+        "Overhangs at cathode tabs - Separator →Anode": "2 mm",
+        "Overhangs at cathode tabs - Separator → Cathode": "4 mm",
+        "Overhangs at cathode tabs - Anode → Cathode": "2 mm",
+        "Overhangs at anode tabs - Separator → Anode": "1 mm",
+        "Overhangs at anode tabs - Separator → Cathode": "2 mm",
+        "Overhangs at anode tabs - Anode → Cathode": "1 mm",
+        "Overhangs at the end of roll - Separator 1 →Anode": "105 mm",
+        "Overhangs at the end of roll - Anode → Cathode": "15 mm",
+        "Overhangs at the end of roll - Separator 1 → Cathode": "90 mm",
+        "Overhangs at the end of roll - Separator 1 → Separator 2": "40 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/tata-punch-ev-empowered-slr-acfc-2024/cellreport_cathode_dimension.png",
+        "assets/teardown/tata-punch-ev-empowered-slr-acfc-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "tesla-cybertruck-awd-foundation-edition-2024": {
+      "sourcePdf": "A2MAC1_Tesla_Cybertruck_Cell report_draft v2.pdf",
+      "stackingStructure": "1 roll containing 1 anode, 1 cathode, 2 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Cathode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Separator",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": 49.0,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": 35.0,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": 350.0,
+          "totalWeightG": null,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "2",
+        "2 different Lengths - Separator 1": "4130 mm",
+        "2 different Lengths - Separator 2": "4082 mm",
+        "2 different Lengths - Width": "75 mm",
+        "2 different Lengths - Thickness": "13 µm",
+        "2 different Lengths - Weight": "7 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at the start of roll - Separators → Anode": "266 mm",
+        "Overhangs at the start of roll - Anode → Cathode": "14 mm",
+        "Overhangs at the start of roll - Separators → Cathode": "280 mm",
+        "Overhangs at cathode tabs - Separator → Anode": "1 mm",
+        "Overhangs at cathode tabs - Separator → Coating cathode": "1.5 mm",
+        "Overhangs at cathode tabs - Coating cathode width": "1 mm",
+        "Overhangs at cathode tabs - Separator → Cathode": "2.5 mm",
+        "Overhangs at anode tabs - Separator → Anode": "0 mm",
+        "Overhangs at anode tabs - Separator → Cathode": "2 mm",
+        "Overhangs at anode tabs - Anode → Cathode": "2 mm",
+        "Overhangs at the end of roll - Separator 1 → Separator 2": "10 mm",
+        "Overhangs at the end of roll - Separator 1 →Anode": "54 mm",
+        "Overhangs at the end of roll - Separator 2 →Anode": "64",
+        "Overhangs at the end of roll - Anode → Cathode": "36 mm",
+        "Overhangs at the end of roll - Separator 1 → Cathode": "90 mm",
+        "Overhangs at the end of roll - Separator 2 → Cathode": "100 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "154 µm",
+        "Al foil current collector thickness": "12 µm",
+        "Electrode thickness (one side)": "71 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "230 µm",
+        "Cu foil current collector thickness": "8 µm",
+        "Electrode thickness (one side)": "111 µm"
+      },
+      "electrolyte": {
+        "Salt": "60 2 1 4US03-el-"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/tesla-cybertruck-awd-foundation-edition-2024/cellreport_cathode_dimension.png",
+        "assets/teardown/tesla-cybertruck-awd-foundation-edition-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "togg-t10x-v2-rwd-long-range-2024": {
+      "sourcePdf": "A2MAC1_TOGG_T10X_2024_Cell_Analysis_vf.pdf",
+      "stackingStructure": "1 stack, containing 40 anodes, 39 cathodes, 1 separator",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 1.0,
+          "weightRatioPct": null
+        },
+        {
+          "component": "Separator",
+          "weightG": 39.0,
+          "quantity": 40.0,
+          "totalWeightG": 1.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "1",
+        "Cell characteristics - Length": "8 400 mm",
+        "Cell characteristics - Width": "264.5 mm",
+        "Cell characteristics - Thickness": "9 µm",
+        "Cell characteristics - Weight": "25.0 g"
+      },
+      "overhangs": {
+        "On sides - Anode / Cathode": "1 mm",
+        "At cathode tab - Separator / Anode": "2 mm",
+        "At cathode tab - Anode / Cathode": "2 mm",
+        "At cathode tab - Separator / Cathode": "4 mm",
+        "At anode tab - Separator / Anode": "1.5 mm",
+        "At anode tab - Separator / Cathode": "3.5 mm",
+        "At anode tab - Anode / Cathode": "2 mm"
+      },
+      "cathodeElectrodeCrossSection": {
+        "Total electrode thickness": "128 µm",
+        "Al foil current collector thickness": "12 µm",
+        "Electrode thickness (one side)": "58 µm"
+      },
+      "anodeElectrodeCrossSection": {
+        "Total electrode thickness": "179 µm",
+        "Cu foil current collector thickness": "7 µm",
+        "Electrode thickness (one side)": "86 µm"
+      },
+      "electrolyte": {
+        "Solvent": "EMC, DEC, EC 70 EMC",
+        "Additive": "none",
+        "Salt": "LiPF , LiFSI"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/togg-t10x-v2-rwd-long-range-2024/cellreport_cathode_dimension.png",
+        "assets/teardown/togg-t10x-v2-rwd-long-range-2024/cellreport_anode_dimension.png"
+      ]
+    },
+    "volvo-ex90-twin-motor-perf-electric-ultra-2025": {
+      "sourcePdf": "A2MAC1_Volvo_EX90_Twin_Motor_Perf_Electric_Ultra_2025_Cell_Analysis_Report_vf.pdf",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 1.0,
+          "quantity": 1.0,
+          "totalWeightG": 2.0,
+          "weightRatioPct": null
+        }
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Quantity": "2",
+        "Length - Separator 1 l": "15 229 mm",
+        "Length - Separator 2 l": "14 834 mm",
+        "Length - Width": "95 mm",
+        "Length - Thickness": "10 µm",
+        "Length - Weight": "29 g"
+      },
+      "overhangs": {
+        "Folding": "Jelly roll",
+        "Stacking": "2 Separators, 1 Anode, 1",
+        "Overhangs at the start of stack - Separator 1 →Anode": "1 553 mm",
+        "Overhangs at the start of stack - Separator 2 →Anode": "1 158 mm",
+        "Overhangs at the start of stack - Anode → Cathode": "18 mm",
+        "Overhangs at the start of stack - Separator 1 → Cathode": "1 571 mm",
+        "Overhangs at the start of stack - Separator 2 → Cathode": "1 176 mm",
+        "Overhangs at tabs - Separator → Anode": "4 mm",
+        "Overhangs at tabs - Separator → Coating cathode": "2 mm",
+        "Overhangs at tabs - Cathode coating width": "3 mm",
+        "Overhangs at tabs - Separator → Cathode": "5 mm",
+        "Overhangs at bottom - Separator → Anode": "3 mm",
+        "Overhangs at bottom - Separator → Cathode": "4.5 mm",
+        "Overhangs at bottom - Anode → Cathode": "1.5 mm",
+        "Overhangs at the end of stack - Separators → Anode": "505 mm",
+        "Overhangs at the end of stack - Anode → Cathode": "381 mm",
+        "Overhangs at the end of stack - Separators → Cathode": "886 mm"
+      },
+      "anodeCathodeImages": [
+        "assets/teardown/volvo-ex90-twin-motor-perf-electric-ultra-2025/cellreport_cathode_dimension.png",
+        "assets/teardown/volvo-ex90-twin-motor-perf-electric-ultra-2025/cellreport_anode_dimension.png"
+      ]
+    },
+    "xiaomi-yu7-super-range-4x4-pro-2025": {
+      "sourcePdf": "A2MAC1_Xiaomi_YU7_Super-Range_4x4_Pro_2025_Cell_Analysis_Report_v1.pdf",
+      "stackingStructure": "44 cathode, 45 anodes, 90 separators",
+      "stackStructure": [
+        {
+          "component": "Anode",
+          "weightG": 0.0,
+          "quantity": 90.0,
+          "totalWeightG": 40.0,
+          "weightRatioPct": 1.5
+        },
+        {
+          "component": "Electrolyte",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 435.0,
+          "weightRatioPct": 16.4
+        },
+        {
+          "component": "Packaging",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 244.0,
+          "weightRatioPct": 9.2
+        },
+        {
+          "component": "Total",
+          "weightG": null,
+          "quantity": null,
+          "totalWeightG": 2657.0,
+          "weightRatioPct": 100.0
+        }
+      ],
+      "anodeCathodeImages": [
+        "assets/teardown/xiaomi-yu7-super-range-4x4-pro-2025/cellreport_anode_cathode.png"
+      ],
+      "separatorDimensions": {
+        "Cell characteristics - Number": "90",
+        "Cell characteristics - Length": "593 mm",
+        "Cell characteristics - Width": "98 mm",
+        "Cell characteristics - Total weight": "40 g"
+      },
+      "overhangs": {
+        "On sides - Separator / anode": "0.5 mm",
+        "On sides - Separator / cathode": "2 or 1 mm",
+        "On sides - Anode / cathode": "1.5 or 0.5 mm",
+        "At cathode tab - Separator / anode": "4 mm",
+        "At cathode tab - Separator / cathode": "2 mm",
+        "At cathode tab - Cathode / anode": "2 mm",
+        "At anode tab - Separator / anode": "3 mm",
+        "At anode tab - Separator / cathode": "5 mm",
+        "At anode tab - Anode / cathode": "2 mm"
+      }
+    }
+  }
+}

@@ -5,3 +5,7 @@ __pycache__/
 # GCP 서비스 계정 키 (BigQuery 특허 동향 조회용) - 절대 커밋하지 않음
 _gcp_sa_key.json
 *_sa_key.json
+
+# parse_cell_report_pdf.py의 로컬 전용 원본 입력 PDF (용량이 크고, 배포 사이트에는
+# 파싱 결과물(teardown_cellreport_data.json/js + 생성된 PNG 이미지)만 있으면 되므로 제외한다.
+assets/pdf/
