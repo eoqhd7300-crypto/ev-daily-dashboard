@@ -1155,14 +1155,27 @@ def merge_news(old_news: list, new_news: list) -> list:
 def merge_china_news(old_news: list, new_news: list) -> list:
     """China EV/배터리 뉴스(CnEVPost/CarNewsChina) 병합. 국내 뉴스 파이프라인과 달리 출처가 이미
     2개 사이트로 고정돼 있고 콘텐츠 자체가 EV 산업 전문지라, merge_news처럼 별도의
-    출처 제외/엔지니어링 관련성 재검증 없이 url 기준 중복 제거 + 최신순 상한만 적용한다."""
+    출처 제외/엔지니어링 관련성 재검증 없이 url 기준 중복 제거 + 최신순 상한만 적용한다.
+    단, 같은 URL이 번역본(translated=True)과 미번역 영어본(translated=False)으로 모두 존재할 수
+    있으므로, 이미 한국어로 번역된 기사가 나중에 영어 원문으로 다시 수집되어도 절대 덮어써서
+    되돌리지 않는다 (반대로 예전에 영어였던 기사가 나중에 번역되면 자동으로 업그레이드된다)."""
     merged: dict[str, dict] = {}
     for n in old_news + new_news:
         key = _norm(n.get("url") or n.get("title") or "")
         if not key:
             continue
         existing = merged.get(key)
-        if existing is None or (n.get("date") or "") >= (existing.get("date") or ""):
+        if existing is None:
+            merged[key] = n
+            continue
+        # translated 필드가 없는 과거 데이터는 이미 번역된 것으로 간주한다(하위 호환).
+        existing_translated = existing.get("translated", True)
+        new_translated = n.get("translated", True)
+        if new_translated and not existing_translated:
+            merged[key] = n  # 영어 -> 한국어 업그레이드
+        elif not new_translated and existing_translated:
+            continue  # 이미 번역된 기사를 영어로 되돌리지 않음
+        elif (n.get("date") or "") >= (existing.get("date") or ""):
             merged[key] = n
     result = sorted(merged.values(), key=lambda n: n.get("date") or "", reverse=True)
     result = dedup_similar_titles(result)[:MAX_CHINA_NEWS]
@@ -1322,12 +1335,18 @@ def generate_china_news(client: "genai.Client") -> list:
                         "date": raw["date"],
                         "url": raw["url"],
                         "linkType": "rss",
+                        "translated": True,
                     }
                 )
-    except Exception as exc:  # noqa: BLE001 - 실패 시 원문(영어) 그대로 최소한의 결과라도 유지
-        print(f"China 뉴스 선별/번역 생성 실패, 원문 기반으로 대체합니다: {exc}")
+    except Exception as exc:  # noqa: BLE001
+        print(f"China 뉴스 선별/번역 생성 실패: {exc}")
 
+    # 번역 호출 자체가 통째로 실패한 경우(selected가 비어있음)에는, 최신 기사가 아예 안 보이는 것보다는
+    # 영어 원문이라도 노출하는 편이 낫다 - "translated": False로 표시해 두면, merge_china_news()가
+    # 이미 한국어로 번역된 기존 기사를 이 영어 항목으로 덮어쓰지 않도록 보호하고, 다음 실행에서 번역이
+    # 성공하면 같은 URL이 자동으로 한국어로 업그레이드된다.
     if not selected:
+        print("번역 결과가 없어 이번 실행분은 영어 원문으로 대체 노출합니다 (기존 번역 데이터는 보존됨).")
         for raw in raw_items[:MAX_CHINA_NEWS]:
             selected.append(
                 {
@@ -1337,6 +1356,7 @@ def generate_china_news(client: "genai.Client") -> list:
                     "date": raw["date"],
                     "url": raw["url"],
                     "linkType": "rss",
+                    "translated": False,
                 }
             )
 
