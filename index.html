@@ -44,6 +44,13 @@
 
         /* Print Style for PDF Generation */
         @media print {
+            /* Chrome 등 대부분 브라우저는 인쇄/PDF 저장 시 배경색을 기본적으로 생략한다.
+               카드별 배경색(bg-sky-50 등)이 PDF에 그대로 찍히도록 강제 적용한다. */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
             .no-print {
                 display: none !important;
             }
