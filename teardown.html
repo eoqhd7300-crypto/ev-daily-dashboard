@@ -1085,6 +1085,160 @@
             xlsxAutoFitColumns(ws);
         }
 
+        // cellReportData(anodeCathodeImages)에서 파일명 패턴으로 원하는 이미지 경로 하나를 찾는다.
+        // 결합형 PDF는 'cellreport_anode_cathode.png' 1장, 분리형 PDF는 'cellreport_anode_dimension.png'
+        // / 'cellreport_cathode_dimension.png' 2장으로 저장되므로 파일명으로 구분해야 정확하다.
+        function pickCellReportImage(v, pattern) {
+            const imgs = (cellReportData[v.id] || {}).anodeCathodeImages || [];
+            return imgs.find(p => pattern.test(p)) || null;
+        }
+
+        // 특허/뉴스와 무관한 Teardown 전용 유틸: KV(항목:값) 형태 필드를 시트에 그대로 행으로 추가한다.
+        // buildCellReportKvTable()과 동일한 규칙(order에 있는 항목은 데이터가 전혀 없어도 '-'로 항상 노출,
+        // order에 없는 나머지 키는 알파벳순으로 뒤에 추가)을 따른다. 추가된 행이 없으면 false를 반환해
+        // 호출부에서 섹션 제목까지 통째로 건너뛸 수 있게 한다.
+        function xlsxAddKvRows(ws, selectedVehicles, getObj, order, labelFn) {
+            const objs = selectedVehicles.map(v => getObj(v) || {});
+            const keysSet = new Set(order);
+            objs.forEach(o => Object.keys(o).forEach(k => keysSet.add(k)));
+            const keys = orderedKeys(Object.fromEntries([...keysSet].map(k => [k, true])), order);
+            if (keys.length === 0) return false;
+            keys.forEach(k => {
+                const label = labelFn ? labelFn(k) : k.trim();
+                const row = ws.addRow([label, ...objs.map(o => o[k])]);
+                row.eachCell((cell, colNumber) => {
+                    if (colNumber === 1) {
+                        cell.border = XLSX_BORDER_THIN;
+                        cell.font = { bold: true };
+                        cell.alignment = { vertical: 'middle', horizontal: 'left' };
+                    } else {
+                        xlsxApplyValueCell(cell, objs[colNumber - 2][k]);
+                    }
+                });
+            });
+            return true;
+        }
+
+        // 섹션 제목 행(예: "🧪 Cell 구조 분석")을 셀 병합 + 강조 배경으로 추가한다.
+        function xlsxAddSectionTitleRow(ws, title, colCount) {
+            const row = ws.addRow([title]);
+            ws.mergeCells(row.number, 1, row.number, colCount);
+            row.getCell(1).font = { bold: true, size: 12 };
+            row.getCell(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEF3C7' } };
+            row.getCell(1).alignment = { vertical: 'middle', horizontal: 'left' };
+            row.getCell(1).border = XLSX_BORDER_THIN;
+        }
+
+        // parse_cell_report_pdf.py(teardown_cellreport_data.json) 출력을 전용 시트로 내보낸다.
+        // 화면(buildCellReportSection)과 동일한 7개 섹션을 같은 순서로 담으며, 선택 차량 중 해당
+        // 데이터가 있는 차량이 하나도 없으면 시트 자체를 만들지 않는다(빈 시트 방지).
+        async function xlsxAddCellReportSheet(workbook, selectedVehicles) {
+            const withData = selectedVehicles.filter(v => cellReportData[v.id]);
+            if (withData.length === 0) return;
+
+            const ws = workbook.addWorksheet('Cell Report 상세');
+            const colCount = selectedVehicles.length + 1;
+
+            const headerRow = ws.addRow(['항목', ...selectedVehicles.map(v => `${v.name} (${v.year || '-'})`)]);
+            xlsxStyleHeaderRow(headerRow);
+
+            // 1) 🧪 Cell 구조 분석 (Stack structure): 화면은 차량당 3열(Weight/Quantity/Total weight)의
+            // 복합 헤더 표지만, 엑셀에서는 "구성 - 지표" 형태로 한 줄씩 평탄화해 다른 시트와 동일한
+            // "항목 1열 + 차량별 값" 구조를 유지한다.
+            if (withData.some(v => (cellReportData[v.id].stackStructure || []).length > 0)) {
+                xlsxAddSectionTitleRow(ws, '🧪 Cell 구조 분석', colCount);
+                const metrics = [['weightG', 'Weight(g)'], ['quantity', 'Quantity'], ['totalWeightG', 'Total weight(g)']];
+                STACK_STRUCTURE_COMPONENT_ORDER.forEach(comp => {
+                    metrics.forEach(([field, metricLabel]) => {
+                        const row = ws.addRow([
+                            `${comp} - ${metricLabel}`,
+                            ...selectedVehicles.map(v => {
+                                const rows = (cellReportData[v.id] || {}).stackStructure || [];
+                                const found = rows.find(r => r.component === comp);
+                                return found && found[field] != null ? found[field] : '-';
+                            }),
+                        ]);
+                        row.eachCell((cell, colNumber) => {
+                            if (colNumber === 1) {
+                                cell.border = XLSX_BORDER_THIN;
+                                cell.font = { bold: true };
+                                cell.alignment = { vertical: 'middle', horizontal: 'left' };
+                            } else {
+                                xlsxApplyValueCell(cell, cell.value);
+                            }
+                        });
+                    });
+                });
+            }
+
+            // 2) 양극/음극 치수: 결합형(anode_cathode)/분리형(anode_dimension, cathode_dimension) 이미지를
+            // 파일명으로 구분해 사진 행으로 삽입한다. 선택 차량 중 아무도 갖지 않은 종류의 행은 자동 제외.
+            const dimPhotoRowDefs = [
+                ['양극/음극 결합 도면', v => pickCellReportImage(v, /anode_cathode/)],
+                ['음극 치수 도면', v => pickCellReportImage(v, /anode_dimension/)],
+                ['양극 치수 도면', v => pickCellReportImage(v, /cathode_dimension/)],
+            ].filter(([, getUrl]) => selectedVehicles.some(v => getUrl(v)));
+            if (dimPhotoRowDefs.length > 0) {
+                xlsxAddSectionTitleRow(ws, '양극/음극 치수', colCount);
+                await xlsxAddPhotoRows(workbook, ws, selectedVehicles, dimPhotoRowDefs);
+            }
+
+            // 3) 📏 분리막 치수
+            const separatorAdded = (() => {
+                xlsxAddSectionTitleRow(ws, '📏 분리막 치수', colCount);
+                const added = xlsxAddKvRows(ws, selectedVehicles, v => remapKeys((cellReportData[v.id] || {}).separatorDimensions, normalizeSeparatorKey), SEPARATOR_DIMENSIONS_ORDER);
+                if (!added) ws.spliceRows(ws.rowCount, 1); // 추가된 행이 없으면 방금 넣은 제목 행도 제거
+                return added;
+            })();
+
+            // 4) ↔ Overhangs
+            (() => {
+                xlsxAddSectionTitleRow(ws, '↔ Overhangs', colCount);
+                const added = xlsxAddKvRows(ws, selectedVehicles, v => (cellReportData[v.id] || {}).overhangs, [], transformOverhangsLabel);
+                if (!added) ws.spliceRows(ws.rowCount, 1);
+            })();
+
+            // 5) 🧾 Cell 성분 분석: 그룹(양극/음극/분리막/전해액) 순서로 정렬 + 라벨 번역
+            (() => {
+                const objs = selectedVehicles.map(v => (cellReportData[v.id] || {}).cellMaterialSummary || {});
+                const allKeysSet = new Set();
+                objs.forEach(o => Object.keys(o).forEach(k => allKeysSet.add(k)));
+                const keys = [...allKeysSet].sort((a, b) => {
+                    const rankDiff = materialSummaryGroupRank(a) - materialSummaryGroupRank(b);
+                    if (rankDiff !== 0) return rankDiff;
+                    return a.localeCompare(b);
+                });
+                if (keys.length === 0) return;
+                xlsxAddSectionTitleRow(ws, '🧾 Cell 성분 분석', colCount);
+                keys.forEach(k => {
+                    const row = ws.addRow([translateMaterialSummaryKey(k), ...objs.map(o => o[k])]);
+                    row.eachCell((cell, colNumber) => {
+                        if (colNumber === 1) {
+                            cell.border = XLSX_BORDER_THIN;
+                            cell.font = { bold: true };
+                            cell.alignment = { vertical: 'middle', horizontal: 'left' };
+                        } else {
+                            xlsxApplyValueCell(cell, objs[colNumber - 2][k]);
+                        }
+                    });
+                });
+            })();
+
+            // 6) 🔬 양극 단면 측정 / 7) 🔬 음극 단면 측정
+            (() => {
+                xlsxAddSectionTitleRow(ws, '🔬 양극 단면 측정', colCount);
+                const added = xlsxAddKvRows(ws, selectedVehicles, v => (cellReportData[v.id] || {}).cathodeElectrodeCrossSection, CATHODE_CROSS_SECTION_ORDER, k => CROSS_SECTION_LABELS[k] || k.trim());
+                if (!added) ws.spliceRows(ws.rowCount, 1);
+            })();
+            (() => {
+                xlsxAddSectionTitleRow(ws, '🔬 음극 단면 측정', colCount);
+                const added = xlsxAddKvRows(ws, selectedVehicles, v => (cellReportData[v.id] || {}).anodeElectrodeCrossSection, ANODE_CROSS_SECTION_ORDER, k => CROSS_SECTION_LABELS[k] || k.trim());
+                if (!added) ws.spliceRows(ws.rowCount, 1);
+            })();
+
+            xlsxAutoFitColumns(ws);
+        }
+
         window.exportTeardownToExcel = async function() {
             const selected = teardownVehicles.filter(v => selectedTeardownIds.has(v.id));
             if (selected.length === 0) {
@@ -1110,12 +1264,30 @@
                 workbook.creator = 'Daily EV & Battery Intelligence Dashboard';
                 workbook.created = new Date();
 
-                await xlsxAddSpecSheet(workbook, 'Cell 스펙 비교', selected, v => v.cell, CELL_FIELD_ORDER, [
+                // 화면(buildCellSpecTable)과 동일하게 Length/Height/Width 3개 필드를 'Cell size(...)'
+                // 한 줄로 합치고, cellReportData의 '스택 구조'(stackingStructure)가 있으면 함께 넣는다.
+                const cellSpecGetObj = v => {
+                    const cell = v.cell || {};
+                    const merged = { ...cell };
+                    delete merged['Cell Length [mm]'];
+                    delete merged['Cell Height [mm]'];
+                    delete merged['Cell Width / Thickness [mm]'];
+                    const w = cell['Cell Width / Thickness [mm]'], l = cell['Cell Length [mm]'], h = cell['Cell Height [mm]'];
+                    if (w != null || l != null || h != null) {
+                        merged['Cell size(width x length x height)'] = `${fmtVal(w)} x ${fmtVal(l)} x ${fmtVal(h)}`;
+                    }
+                    const stackingStructure = (cellReportData[v.id] || {}).stackingStructure;
+                    if (stackingStructure) merged['스택 구조'] = stackingStructure;
+                    return merged;
+                };
+
+                await xlsxAddSpecSheet(workbook, 'Cell 스펙 비교', selected, cellSpecGetObj, CELL_FIELD_ORDER, [
                     ['Cell 실물 사진', v => (v.cellImages && v.cellImages[0]) || null],
                 ]);
                 await xlsxAddSpecSheet(workbook, 'Module 스펙 비교', selected, primaryModule, MODULE_FIELD_ORDER);
                 await xlsxAddSpecSheet(workbook, 'Battery Pack 스펙 비교', selected, v => v.pack, PACK_FIELD_ORDER);
                 await xlsxAddPackOverviewSheet(workbook, selected);
+                await xlsxAddCellReportSheet(workbook, selected);
 
                 const buffer = await workbook.xlsx.writeBuffer();
                 const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
