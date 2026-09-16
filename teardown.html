@@ -1284,10 +1284,10 @@
                 await xlsxAddSpecSheet(workbook, 'Cell 스펙 비교', selected, cellSpecGetObj, CELL_FIELD_ORDER, [
                     ['Cell 실물 사진', v => (v.cellImages && v.cellImages[0]) || null],
                 ]);
+                await xlsxAddCellReportSheet(workbook, selected);
                 await xlsxAddSpecSheet(workbook, 'Module 스펙 비교', selected, primaryModule, MODULE_FIELD_ORDER);
                 await xlsxAddSpecSheet(workbook, 'Battery Pack 스펙 비교', selected, v => v.pack, PACK_FIELD_ORDER);
                 await xlsxAddPackOverviewSheet(workbook, selected);
-                await xlsxAddCellReportSheet(workbook, selected);
 
                 const buffer = await workbook.xlsx.writeBuffer();
                 const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
