@@ -55,7 +55,10 @@
                 display: none !important;
             }
             body {
-                background-color: #ffffff !important;
+                /* body는 background-color가 아니라 background: linear-gradient(...)로 배경이
+                   설정돼 있어, background-color만 덮어쓰면 그라데이션이 그대로 남는다. background
+                   shorthand로 완전히 흰색 단색으로 초기화해야 한다. */
+                background: #ffffff !important;
                 color: #000000 !important;
             }
             .print-card {
@@ -73,6 +76,7 @@
             }
             body.printing-today-report #todayReportPrintArea {
                 display: block !important;
+                background: #ffffff !important;
             }
         }
     </style>
