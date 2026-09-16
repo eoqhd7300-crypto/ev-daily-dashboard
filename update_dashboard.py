@@ -202,6 +202,18 @@ GOOGLE_NEWS_QUERIES = [
     "배터리 연구개발 OR R&D",
 ]
 
+# "신규 전기차(EV) 기본 사양 & 가격 정보" 카드(generate_vehicles)의 신차 커버리지를 넓히기 위한 전용
+# 쿼리 세트. 위 GOOGLE_NEWS_QUERIES는 배터리/기술 관련성으로 한 번 더 필터링되어(is_engineering_relevant)
+# 순수 "신차 출시/가격 공개" 기사는 그 필터에서 탈락하기 쉬우므로, 이 쿼리들은 별도로 수집해 필터링 없이
+# "힌트"로만 사용한다 (build_vehicle_prompt 참고). 한국/영어/중국어 키워드를 함께 넣어 지역 편중을 줄인다.
+VEHICLE_LAUNCH_HINT_QUERIES = [
+    "전기차 신차 가격 공개",
+    "전기차 출시 사전계약",
+    "new electric vehicle price reveal",
+    "EV world premiere launch",
+    "新能源汽车 上市 价格",
+]
+
 # Google News RSS의 <source url="..."> 도메인이 아래 패턴에 매칭되면, 계열사/서브도메인 바이라인
 # (예: 한경매거진&북, 모바일한경)을 대표 매체명으로 통일해 하나의 매체로 인식되게 한다.
 SOURCE_NAME_OVERRIDES = {
@@ -304,14 +316,26 @@ def _last_12_months(today_str: str) -> list:
     return list(reversed(labels))
 
 
-def build_vehicle_prompt(today_str: str) -> str:
+def build_vehicle_prompt(today_str: str, launch_hints: list | None = None) -> str:
     months = _last_12_months(today_str)
     months_list = ", ".join(months)
+    hints_block = ""
+    if launch_hints:
+        hints_lines = "\n".join(f"- ({h['date']}, {h['source']}) {h['title']}" for h in launch_hints)
+        hints_block = f"""
+[참고: 최근 수집된 신차 관련 뉴스 헤드라인 (제목만, RSS 원문 그대로)]
+{hints_lines}
+
+위 헤드라인은 실제로 최근 보도된 신차 소식을 놓치지 않기 위한 "참고용 힌트"입니다. 이 중 신차 발표/가격
+공개 기사로 보이는 항목이 있으면 해당 차량을 vehicles에 최대한 반영하되, 세부 스펙(배터리 용량, 충전
+성능 등)은 헤드라인에 없으므로 당신이 알고 있는 지식으로 채우세요. 헤드라인에 없는 다른 신차도 알고
+있는 지식 내에서 자유롭게 추가해도 됩니다 (이 목록이 전체 신차의 전부는 아닙니다).
+"""
     return f"""
 당신은 글로벌 전기차(EV) 및 배터리 산업 전문 애널리스트입니다.
 오늘 날짜는 {today_str} (KST) 입니다. 당신이 알고 있는 지식 범위 내에서 아래 JSON 스키마에
 맞춰 순수 JSON 한 개만 응답하세요. 마크다운 코드블록이나 설명 문장은 절대 포함하지 마세요.
-
+{hints_block}
 vehicles 배열의 각 항목은 반드시 아래 예시와 동일한 수준의 상세함을 갖춰야 합니다 (이 예시의 문장 형식과 정보량을 그대로 모방하세요):
 {json.dumps(VEHICLE_FILLED_EXAMPLE, ensure_ascii=False, indent=2)}
 
@@ -650,6 +674,32 @@ def collect_china_news_raw(pool_size: int = CHINA_NEWS_POOL_SIZE) -> list:
     for item in collected:
         key = _norm(item["url"])
         if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(item)
+    deduped.sort(key=lambda n: n["date"], reverse=True)
+    return dedup_similar_titles(deduped)[:pool_size]
+
+
+# generate_vehicles()에 "최근 실제로 보도된 신차/가격 뉴스" 힌트를 제공하기 위한 전용 수집 함수.
+# is_engineering_relevant() 필터를 절대 거치지 않는다 (배터리 언급이 없는 순수 신차 출시 기사도
+# 힌트로는 유효해야 하므로) - 이 풀은 화면에 노출되는 news/chinaNews 배열과는 완전히 별개다.
+# Gemini API를 전혀 호출하지 않고 무료 RSS만 사용하므로 API 할당량 소모가 없다.
+VEHICLE_LAUNCH_HINT_POOL_SIZE = 30
+
+
+def collect_vehicle_launch_hints(pool_size: int = VEHICLE_LAUNCH_HINT_POOL_SIZE) -> list:
+    collected = []
+    for query in VEHICLE_LAUNCH_HINT_QUERIES:
+        collected.extend(fetch_google_news_rss(query, max_items=15))
+    for source_name, url in CHINA_NEWS_FEEDS:
+        collected.extend(fetch_generic_rss(source_name, url, max_items=20))
+
+    seen = set()
+    deduped = []
+    for item in collected:
+        key = _norm(item["url"])
+        if not key or key in seen:
             continue
         seen.add(key)
         deduped.append(item)
@@ -1121,11 +1171,11 @@ def merge_china_news(old_news: list, new_news: list) -> list:
     return result
 
 
-def generate_vehicles(client: "genai.Client", today_str: str) -> list:
+def generate_vehicles(client: "genai.Client", today_str: str, launch_hints: list | None = None) -> list:
     try:
         response = client.models.generate_content(
             model=MODEL_NAME,
-            contents=build_vehicle_prompt(today_str),
+            contents=build_vehicle_prompt(today_str, launch_hints),
         )
         payload = extract_json(response.text)
         vehicles = payload.get("vehicles") or []
@@ -1606,7 +1656,16 @@ def main() -> None:
     existing = load_existing_data()
     fx = fetch_fx_rates(existing.get("fx"))
 
-    vehicles = generate_vehicles(client, today_str)
+    # 신차 놓침 방지용 힌트(무료 RSS만 사용, Gemini 호출 없음 - API 할당량 소모 없음). 실패해도
+    # 힌트 없이 그냥 진행한다 (기존 동작과 동일하게 계속 작동).
+    try:
+        vehicle_launch_hints = collect_vehicle_launch_hints()
+        print(f"신차 힌트 수집 완료: {len(vehicle_launch_hints)}건")
+    except Exception as exc:  # noqa: BLE001
+        print(f"신차 힌트 수집 실패, 힌트 없이 진행합니다: {exc}")
+        vehicle_launch_hints = []
+
+    vehicles = generate_vehicles(client, today_str, vehicle_launch_hints)
     news = generate_news(client)
 
     # China EV/배터리 뉴스는 국내 차량/뉴스 파이프라인과 완전히 독립적인 별도 소스(CnEVPost/CarNewsChina)이므로,
