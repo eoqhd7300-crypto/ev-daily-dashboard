@@ -59,6 +59,14 @@
             .page-break {
                 page-break-before: always;
             }
+            /* "오늘의 리포트" 전용 인쇄 모드: #todayReportPrintArea(body 바로 아래 자식)만 남기고
+               헤더/히어로/메인 테이블/모달 등 나머지 body 직계 자식은 전부 숨긴다. */
+            body.printing-today-report > *:not(#todayReportPrintArea) {
+                display: none !important;
+            }
+            body.printing-today-report #todayReportPrintArea {
+                display: block !important;
+            }
         }
     </style>
 </head>
@@ -132,16 +140,18 @@
             <span class="text-[10px] sm:text-[11px] text-red-700 whitespace-nowrap">최신 24시간 이내 신규 EV 데이터가 없어 이전 일자의 최신 데이터를 유지합니다.</span>
         </div>
 
-        <div id="successBanner" class="mb-5 px-3 py-1.5 bg-emerald-50 border border-emerald-300 rounded-xl flex items-center justify-between text-[11px] sm:text-xs text-emerald-900 shadow-xs overflow-x-auto">
+        <div id="successBanner" class="mb-5 px-3 py-1.5 bg-emerald-50 border border-emerald-300 rounded-xl flex items-center justify-between gap-2 text-[11px] sm:text-xs text-emerald-900 shadow-xs overflow-x-auto">
             <div class="flex items-center space-x-1.5 min-w-0 flex-wrap sm:flex-nowrap">
                 <span class="text-xs flex-shrink-0">✅</span>
                 <span class="font-bold text-emerald-950 whitespace-nowrap text-[11px] sm:text-xs">오늘의 신규 전기차 & 배터리 데이터</span>
                 <span class="text-emerald-300 flex-shrink-0 hidden sm:inline">|</span>
                 <span class="text-[10px] sm:text-[11px] text-emerald-700 whitespace-nowrap">기준일: <span id="currentDateStr" class="font-semibold">2026년 8월 20일 (목)</span> (매일 자동 갱신) | <span id="fxRateStr">환율 정보를 불러오는 중...</span></span>
             </div>
-            <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold bg-emerald-200 text-emerald-800 flex-shrink-0 ml-1.5">
-                UPDATED
-            </span>
+            <div class="flex items-center gap-1.5 flex-shrink-0">
+                <button onclick="window.exportTodayReport()" class="no-print inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold bg-emerald-600 text-white hover:bg-emerald-700 transition whitespace-nowrap">
+                    <span>📑</span><span>오늘의 리포트 다운로드</span>
+                </button>
+            </div>
         </div>
 
         <!-- Global EV Latest News Briefing: Categorized Report (Full list moved to news.html / "EV News" nav) -->
@@ -1386,6 +1396,201 @@
             window.print();
         };
 
+        // ============================================================================
+        // "오늘의 리포트" PDF 내보내기: 메인 페이지에 이미 표시 중인 글로벌/China 뉴스 브리핑,
+        // 특허 동향, 상위 5개 신차 정보를 별도로 가공하지 않고 그대로 인쇄용 레이아웃으로 재구성해
+        // 브라우저 인쇄(Save as PDF)로 내보낸다. 새 라이브러리 없이 기존 window.print() 방식을 재사용한다.
+        // ============================================================================
+        const TODAY_REPORT_PRINT_THEMES = {
+            sky: { border: 'border-sky-300', badgeBg: 'bg-sky-600', title: 'text-sky-900', tagBg: 'bg-sky-100', tagText: 'text-sky-800', catBg: 'bg-sky-50' },
+            rose: { border: 'border-rose-300', badgeBg: 'bg-rose-600', title: 'text-rose-900', tagBg: 'bg-rose-100', tagText: 'text-rose-800', catBg: 'bg-rose-50' },
+            violet: { border: 'border-violet-300', badgeBg: 'bg-violet-600', title: 'text-violet-900', tagBg: 'bg-violet-100', tagText: 'text-violet-800', catBg: 'bg-violet-50' },
+        };
+
+        // renderNewsBriefingStructured()과 동일한 데이터(keyTakeaways/categories/implications, item의
+        // headline/summary/painPoint/solution/tags/source/date/designCriteria)를 그대로 사용하되,
+        // 인쇄에 적합한 밝은 배경/절제된 색상으로만 다시 배치한다 (내용 자체는 가공하지 않음).
+        function renderTodayReportBriefingSection(icon, title, briefing, themeKey, subtitle) {
+            const esc = window.escapeHtmlText;
+            const theme = TODAY_REPORT_PRINT_THEMES[themeKey];
+            if (!briefing || !Array.isArray(briefing.categories) || briefing.categories.length === 0) {
+                return `
+                    <div class="print-card mb-6 p-4 rounded-xl border ${theme.border} bg-white">
+                        <h2 class="text-base font-extrabold ${theme.title} mb-1">${icon} ${esc(title)}</h2>
+                        <p class="text-xs text-slate-400">아직 준비된 데이터가 없습니다.</p>
+                    </div>
+                `;
+            }
+
+            const takeaways = Array.isArray(briefing.keyTakeaways) ? briefing.keyTakeaways : [];
+            const takeawaysHtml = takeaways.length > 0 ? `
+                <div class="mb-3 ${theme.catBg} border ${theme.border} rounded-lg p-3">
+                    <div class="text-xs font-extrabold ${theme.title} mb-1">🔑 Key Takeaways</div>
+                    <ul class="space-y-1 text-[11px] text-slate-700 list-disc list-inside">
+                        ${takeaways.map(t => `<li>${esc(t)}</li>`).join('')}
+                    </ul>
+                </div>
+            ` : '';
+
+            const categoriesHtml = briefing.categories.map((cat, idx) => {
+                const items = Array.isArray(cat.items) ? cat.items : [];
+                const itemsHtml = items.map(item => {
+                    const hasPainSolution = !!(item.painPoint || item.solution);
+                    const bodyHtml = hasPainSolution ? `
+                        <div class="text-[11px] text-slate-700 mt-0.5 space-y-0.5">
+                            ${item.painPoint ? `<div>• <span class="font-semibold">문제점:</span> ${esc(item.painPoint)}</div>` : ''}
+                            ${item.solution ? `<div>• <span class="font-semibold">해결원리:</span> ${esc(item.solution)}</div>` : ''}
+                        </div>
+                    ` : (item.summary ? `<div class="text-[11px] text-slate-700 mt-0.5">${esc(item.summary)}</div>` : '');
+                    const designCriteria = Array.isArray(item.designCriteria) ? item.designCriteria.filter(dc => dc && dc.label && dc.value) : [];
+                    const designCriteriaHtml = designCriteria.length > 0 ? `
+                        <div class="mt-1 text-[10px] text-slate-600">
+                            ${designCriteria.map(dc => `<div>· <span class="font-semibold">${esc(dc.label)}:</span> ${esc(dc.value)}</div>`).join('')}
+                        </div>
+                    ` : '';
+                    const tags = Array.isArray(item.tags) ? item.tags : [];
+                    return `
+                        <li class="text-[11px] leading-relaxed border-l-2 ${theme.border} pl-2 py-1 mb-1.5">
+                            <div class="font-bold text-slate-900">${esc(item.headline || item.title || '')}</div>
+                            ${bodyHtml}
+                            ${designCriteriaHtml}
+                            <div class="mt-1 flex flex-wrap gap-1 items-center">
+                                ${tags.map(tag => `<span class="inline-block ${theme.tagBg} ${theme.tagText} text-[9px] font-bold px-1.5 py-0.5 rounded">${esc(tag)}</span>`).join('')}
+                                ${item.source ? `<span class="text-[9px] text-slate-400">· ${esc(item.source)}${item.date ? ` (${esc(item.date)})` : ''}</span>` : ''}
+                            </div>
+                        </li>
+                    `;
+                }).join('');
+                return `
+                    <div class="mb-3">
+                        <h4 class="text-xs font-extrabold ${theme.title} mb-1 flex items-center gap-1.5">
+                            <span class="inline-flex items-center justify-center w-4 h-4 rounded ${theme.badgeBg} text-white text-[9px]">${idx + 1}</span>
+                            <span>${esc(cat.name)}</span>
+                        </h4>
+                        <ul class="pl-1">${itemsHtml}</ul>
+                    </div>
+                `;
+            }).join('');
+
+            const implications = briefing.implications || '';
+            return `
+                <div class="print-card mb-6 p-4 rounded-xl border ${theme.border} bg-white">
+                    <h2 class="text-base font-extrabold ${theme.title} mb-1">${icon} ${esc(title)}</h2>
+                    ${subtitle ? `<p class="text-[10px] text-slate-400 mb-2">${esc(subtitle)}</p>` : ''}
+                    ${takeawaysHtml}
+                    ${categoriesHtml}
+                    ${implications ? `
+                        <div class="mt-2 bg-amber-50 border border-amber-200 rounded-lg p-2.5">
+                            <div class="text-[11px] font-extrabold text-amber-800 mb-0.5">💡 시사점</div>
+                            <p class="text-[11px] text-amber-900 leading-relaxed">${esc(implications)}</p>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        // 메인 테이블에 현재 표시 중인 순서/필터를 그대로 존중해 상위 5개 차량만 뽑는다 (별도 재정렬 없음).
+        function renderTodayReportTop5VehiclesSection() {
+            const esc = window.escapeHtmlText;
+            const source = typeof window.getFilteredVehicles === 'function' ? window.getFilteredVehicles() : vehicles;
+            const top5 = (source || []).slice(0, 5);
+            if (top5.length === 0) {
+                return `
+                    <div class="print-card mb-6 p-4 rounded-xl border border-emerald-300 bg-white">
+                        <h2 class="text-base font-extrabold text-emerald-900 mb-2">🚗 신규 전기차(EV) 기본 사양 & 가격 정보 (상위 5개 모델)</h2>
+                        <p class="text-xs text-slate-400">데이터가 없습니다.</p>
+                    </div>
+                `;
+            }
+            const rows = top5.map((v, idx) => `
+                <tr class="${idx % 2 === 1 ? 'bg-slate-50' : ''}">
+                    <td class="p-2 border border-slate-200 text-center font-bold">${idx + 1}</td>
+                    <td class="p-2 border border-slate-200 font-semibold">${esc(v.name)}</td>
+                    <td class="p-2 border border-slate-200 text-center whitespace-nowrap">${esc(v.releaseDate || '-')}</td>
+                    <td class="p-2 border border-slate-200 text-center">${esc(v.type || '-')}</td>
+                    <td class="p-2 border border-slate-200 text-center whitespace-nowrap">${window.formatKrwPriceDisplay ? window.formatKrwPriceDisplay(v.priceKRW) : esc(v.priceKRW || '-')}</td>
+                    <td class="p-2 border border-slate-200 text-center">${esc(window.extractFormFactor ? window.extractFormFactor(v) : '-')}</td>
+                    <td class="p-2 border border-slate-200 text-center">${esc(window.extractComposition ? window.extractComposition(v) : '-')}</td>
+                    <td class="p-2 border border-slate-200 text-[10px]">
+                        셀: ${esc(window.stripMakerVerificationNote ? window.stripMakerVerificationNote(v.cellMaker) : (v.cellMaker || '-'))}<br>
+                        팩: ${esc(window.stripMakerVerificationNote ? window.stripMakerVerificationNote(v.packMaker) : (v.packMaker || '-'))}
+                    </td>
+                </tr>
+            `).join('');
+            return `
+                <div class="print-card mb-6 p-4 rounded-xl border border-emerald-300 bg-white">
+                    <h2 class="text-base font-extrabold text-emerald-900 mb-2">🚗 신규 전기차(EV) 기본 사양 & 가격 정보 (상위 5개 모델)</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse text-[11px]">
+                            <thead>
+                                <tr class="bg-emerald-50">
+                                    <th class="p-2 border border-slate-200">#</th>
+                                    <th class="p-2 border border-slate-200">모델명</th>
+                                    <th class="p-2 border border-slate-200">발표일</th>
+                                    <th class="p-2 border border-slate-200">차종</th>
+                                    <th class="p-2 border border-slate-200">가격</th>
+                                    <th class="p-2 border border-slate-200">폼팩터</th>
+                                    <th class="p-2 border border-slate-200">조성</th>
+                                    <th class="p-2 border border-slate-200">셀/팩 제조사</th>
+                                </tr>
+                            </thead>
+                            <tbody>${rows}</tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildTodayReportHtml() {
+            const esc = window.escapeHtmlText;
+            const dateEl = document.getElementById('currentDateStr');
+            const fxEl = document.getElementById('fxRateStr');
+            const dateStr = dateEl ? dateEl.textContent : '';
+            const fxStr = fxEl ? fxEl.textContent : '';
+            const generatedAt = new Date().toLocaleString('ko-KR');
+            return `
+                <div class="max-w-4xl mx-auto p-6 bg-white text-slate-900" style="font-family: 'Pretendard', -apple-system, sans-serif;">
+                    <div class="flex items-start justify-between border-b-2 border-slate-800 pb-3 mb-5">
+                        <div class="flex items-center gap-2">
+                            <div class="bg-sky-600 text-white w-9 h-9 rounded-lg flex items-center justify-center font-bold text-lg flex-shrink-0">⚡</div>
+                            <div>
+                                <div class="text-lg font-extrabold text-slate-900">EV Intelligence — 오늘의 리포트</div>
+                                <div class="text-[11px] text-slate-500">Daily EV & Battery Intelligence Dashboard</div>
+                            </div>
+                        </div>
+                        <div class="text-right text-[11px] text-slate-500 flex-shrink-0">
+                            <div>기준일: <span class="font-semibold text-slate-700">${esc(dateStr)}</span></div>
+                            <div>환율: ${esc(fxStr)}</div>
+                            <div>생성 시각: ${esc(generatedAt)}</div>
+                        </div>
+                    </div>
+                    ${renderTodayReportBriefingSection('📰', '글로벌 EV & 배터리 최신 동향 리포트', evNewsBriefingData, 'sky')}
+                    ${renderTodayReportBriefingSection('📰', 'China EV & 배터리 최신 동향 리포트', chinaNewsBriefingData, 'rose')}
+                    ${renderTodayReportBriefingSection('🔬', 'CATL·BYD·Geely 배터리 특허 동향', patentTrendsData, 'violet')}
+                    ${renderTodayReportTop5VehiclesSection()}
+                    <div class="text-center text-[10px] text-slate-300 mt-6 pt-3 border-t border-slate-200">
+                        ⓒ Daily EV & Battery Intelligence Dashboard — 대시보드 화면 내용을 그대로 정리한 리포트입니다.
+                    </div>
+                </div>
+            `;
+        }
+
+        window.exportTodayReport = function() {
+            const area = document.getElementById('todayReportPrintArea');
+            if (!area) return;
+            area.innerHTML = buildTodayReportHtml();
+            document.body.classList.add('printing-today-report');
+            window.print();
+        };
+
+        window.addEventListener('afterprint', function() {
+            if (document.body.classList.contains('printing-today-report')) {
+                document.body.classList.remove('printing-today-report');
+                const area = document.getElementById('todayReportPrintArea');
+                if (area) area.innerHTML = '';
+            }
+        });
+
         // --- Local Database & History Management ---
         window.getDBHistory = function() {
             try {
@@ -1649,5 +1854,9 @@
             window.loadDailyDashboardData();
         });
     </script>
+
+    <!-- "오늘의 리포트" 전용 인쇄 영역: 평소에는 hidden, exportTodayReport() 실행 시에만 내용이 채워지고
+         body.printing-today-report 클래스가 붙은 상태에서 print() 가 호출된다 (위 @media print 규칙 참고). -->
+    <div id="todayReportPrintArea" class="hidden"></div>
 </body>
 </html>
