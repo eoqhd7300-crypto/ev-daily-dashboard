@@ -1415,7 +1415,7 @@
             const theme = TODAY_REPORT_PRINT_THEMES[themeKey];
             if (!briefing || !Array.isArray(briefing.categories) || briefing.categories.length === 0) {
                 return `
-                    <div class="print-card mb-6 p-4 rounded-xl border ${theme.border} bg-white">
+                    <div class="mb-6 p-4 rounded-xl border ${theme.border} ${theme.catBg}">
                         <h2 class="text-base font-extrabold ${theme.title} mb-1">${icon} ${esc(title)}</h2>
                         <p class="text-xs text-slate-400">아직 준비된 데이터가 없습니다.</p>
                     </div>
@@ -1448,16 +1448,12 @@
                             ${designCriteria.map(dc => `<div>· <span class="font-semibold">${esc(dc.label)}:</span> ${esc(dc.value)}</div>`).join('')}
                         </div>
                     ` : '';
-                    const tags = Array.isArray(item.tags) ? item.tags : [];
                     return `
                         <li class="text-[11px] leading-relaxed border-l-2 ${theme.border} pl-2 py-1 mb-1.5">
                             <div class="font-bold text-slate-900">${esc(item.headline || item.title || '')}</div>
                             ${bodyHtml}
                             ${designCriteriaHtml}
-                            <div class="mt-1 flex flex-wrap gap-1 items-center">
-                                ${tags.map(tag => `<span class="inline-block ${theme.tagBg} ${theme.tagText} text-[9px] font-bold px-1.5 py-0.5 rounded">${esc(tag)}</span>`).join('')}
-                                ${item.source ? `<span class="text-[9px] text-slate-400">· ${esc(item.source)}${item.date ? ` (${esc(item.date)})` : ''}</span>` : ''}
-                            </div>
+                            ${item.source ? `<div class="mt-1 text-[9px] text-slate-400">· ${esc(item.source)}${item.date ? ` (${esc(item.date)})` : ''}</div>` : ''}
                         </li>
                     `;
                 }).join('');
@@ -1474,7 +1470,7 @@
 
             const implications = briefing.implications || '';
             return `
-                <div class="print-card mb-6 p-4 rounded-xl border ${theme.border} bg-white">
+                <div class="mb-6 p-4 rounded-xl border ${theme.border} ${theme.catBg}">
                     <h2 class="text-base font-extrabold ${theme.title} mb-1">${icon} ${esc(title)}</h2>
                     ${subtitle ? `<p class="text-[10px] text-slate-400 mb-2">${esc(subtitle)}</p>` : ''}
                     ${takeawaysHtml}
@@ -1496,7 +1492,7 @@
             const top5 = (source || []).slice(0, 5);
             if (top5.length === 0) {
                 return `
-                    <div class="print-card mb-6 p-4 rounded-xl border border-emerald-300 bg-white">
+                    <div class="mb-6 p-4 rounded-xl border border-emerald-300 bg-emerald-50">
                         <h2 class="text-base font-extrabold text-emerald-900 mb-2">🚗 신규 전기차(EV) 기본 사양 & 가격 정보 (상위 5개 모델)</h2>
                         <p class="text-xs text-slate-400">데이터가 없습니다.</p>
                     </div>
@@ -1518,7 +1514,7 @@
                 </tr>
             `).join('');
             return `
-                <div class="print-card mb-6 p-4 rounded-xl border border-emerald-300 bg-white">
+                <div class="mb-6 p-4 rounded-xl border border-emerald-300 bg-emerald-50">
                     <h2 class="text-base font-extrabold text-emerald-900 mb-2">🚗 신규 전기차(EV) 기본 사양 & 가격 정보 (상위 5개 모델)</h2>
                     <div class="overflow-x-auto">
                         <table class="w-full border-collapse text-[11px]">
@@ -1554,7 +1550,7 @@
                         <div class="flex items-center gap-2">
                             <div class="bg-sky-600 text-white w-9 h-9 rounded-lg flex items-center justify-center font-bold text-lg flex-shrink-0">⚡</div>
                             <div>
-                                <div class="text-lg font-extrabold text-slate-900">EV Intelligence — 오늘의 리포트</div>
+                                <div class="text-lg font-extrabold text-slate-900">오늘의 리포트</div>
                                 <div class="text-[11px] text-slate-500">Daily EV & Battery Intelligence Dashboard</div>
                             </div>
                         </div>
