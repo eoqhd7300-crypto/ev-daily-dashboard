@@ -289,6 +289,7 @@
                     <button data-value="원통형" onclick="window.setFormFactorFilter('원통형')" class="form-factor-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50">원통형</button>
                     <button data-value="각형" onclick="window.setFormFactorFilter('각형')" class="form-factor-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50">각형</button>
                     <button data-value="파우치" onclick="window.setFormFactorFilter('파우치')" class="form-factor-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50">파우치</button>
+                    <button data-value="블레이드" onclick="window.setFormFactorFilter('블레이드')" class="form-factor-btn px-2.5 py-1 text-[11px] font-bold rounded-lg border transition border-slate-200 bg-white text-slate-600 hover:bg-sky-50">블레이드</button>
                 </div>
                 <div class="flex items-center flex-wrap gap-1.5">
                     <span class="text-xs font-bold text-slate-600 mr-0.5">조성:</span>
@@ -592,7 +593,7 @@
         let isUpdatedToday = true;
         let searchNoticeTimer = null;
         let expandedVehicleIds = new Set(); // Row-level inline detail expand state (independent from compare-checkbox selection)
-        let currentFormFactor = 'all'; // 'all', '원통형', '각형', '파우치'
+        let currentFormFactor = 'all'; // 'all', '원통형', '각형', '파우치', '블레이드'
         let currentComposition = 'all'; // 'all', 'LFP', 'NCM', 'NCMA', 'NCA', '반고체/전고체'
         const LOCAL_STORAGE_KEY = 'ev_dashboard_history_db';
 
@@ -609,13 +610,16 @@
             return { main: raw.slice(0, idx).trim(), sub: raw.slice(idx).trim() };
         };
 
-        // Derive cell 폼팩터 (원통형/각형/파우치) from structured fields (cellType/packType) or free-text (cellInfo)
+        // Derive cell 폼팩터 (원통형/각형/파우치/블레이드) from structured fields (cellType/packType) or free-text (cellInfo)
         window.extractFormFactor = function(v) {
             const text = `${v.cellType || ''} ${v.cellInfo || ''} ${v.packType || ''}`;
             const found = [];
             if (/원통형|cylindrical/i.test(text)) found.push('원통형');
             if (/각형|prismatic/i.test(text)) found.push('각형');
             if (/파우치|pouch/i.test(text)) found.push('파우치');
+            // BYD 블레이드 배터리 등: 일부 차량은 cellType에 "각형/Prismatic" 없이 "블레이드형(Blade)"
+            // 로만 표기되어 위 3개 패턴에 걸리지 않는 경우가 있어 별도로 인식한다.
+            if (/블레이드|blade/i.test(text)) found.push('블레이드');
             return found.length > 0 ? [...new Set(found)].join(' / ') : '-';
         };
 

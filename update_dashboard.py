@@ -828,17 +828,94 @@ def _norm(text: str) -> str:
 
 
 def merge_vehicles(old_vehicles: list, new_vehicles: list) -> list:
-    merged: dict[str, dict] = {}
-    for v in old_vehicles + new_vehicles:
+    """차량 목록은 매일 Gemini가 기억을 바탕으로 새로 생성하다 보니, 같은 실제 모델이 날마다
+    조금씩 다른 이름(트림/버전 표기 차이: 'Rivian R2' vs 'Rivian R2 SUV' vs 'Rivian R2 Dual Motor')
+    으로 반복 등록되는 경우가 많다. 정확한 이름 일치만으로 중복 제거하면 이런 변형들이 전부 별개
+    차량으로 쌓여, 필드가 덜 채워진 중복 항목만 화면에 노출되는 문제(폼팩터/조성 "-" 표기 등)가
+    생긴다. 이를 막기 위해 브랜드+모델명(model line) 단위로 그룹화한 뒤, 그룹 내 모든 중복 항목을
+    합쳐 "이름은 가장 간결한 것으로 통일 + 값은 필드별로 가장 신뢰도 높은(비어있지 않은) 것을 채택"
+    하는 방식으로 병합한다."""
+    all_vehicles = old_vehicles + new_vehicles
+
+    groups: dict[str, list[dict]] = {}
+    ungrouped: list[dict] = []
+    for v in all_vehicles:
+        name = v.get("name") or v.get("id") or ""
+        if not name:
+            continue
+        key = _model_line_key(_extract_english_name(name))
+        if key:
+            groups.setdefault(key, []).append(v)
+        else:
+            ungrouped.append(v)
+
+    merged_vehicles: list[dict] = []
+
+    for group in groups.values():
+        # 완전히 동일한 이름(공백/기호 차이 정도)의 항목은 최신 releaseDate 쪽만 남긴다.
+        by_exact_name: dict[str, dict] = {}
+        for v in group:
+            exact_key = _norm(v.get("name") or "")
+            existing = by_exact_name.get(exact_key)
+            if existing is None or (v.get("releaseDate") or "") >= (existing.get("releaseDate") or ""):
+                by_exact_name[exact_key] = v
+        dedup_group = list(by_exact_name.values())
+
+        # 완전성(값이 있고 "-"가 아닌 필드 수)이 높은 순으로 정렬 - 가장 정보가 풍부한 항목을 기준으로 삼는다.
+        dedup_group.sort(key=_vehicle_completeness_score, reverse=True)
+        base = dict(dedup_group[0])
+        for other in dedup_group[1:]:
+            for field, val in other.items():
+                if field in ("id", "name"):
+                    continue
+                current = base.get(field)
+                if (current is None or current == "" or current == "-") and val not in (None, "", "-"):
+                    base[field] = val  # 기준 항목에 비어있는 필드만, 신뢰도 있는(비어있지 않은) 값으로 보강
+        # 대표 이름: 트림/버전 수식어가 적을수록 "formal"한 이름이라고 보고, 그룹 내에서 가장 짧은 이름을 채택한다.
+        base["name"] = min((v.get("name") or "" for v in dedup_group), key=lambda n: (len(n), n))
+        merged_vehicles.append(base)
+
+    # model line key를 추출할 수 없었던(영문명이 없는 등) 항목은 기존처럼 정확한 이름 기준으로만 병합한다.
+    exact_merged: dict[str, dict] = {}
+    for v in ungrouped:
         key = _norm(v.get("name") or v.get("id") or "")
         if not key:
             continue
-        # 동일 차량이면 더 최신 releaseDate를 가진 항목(주로 새로 생성된 쪽)으로 덮어씀
-        existing = merged.get(key)
+        existing = exact_merged.get(key)
         if existing is None or (v.get("releaseDate") or "") >= (existing.get("releaseDate") or ""):
-            merged[key] = v
-    result = sorted(merged.values(), key=lambda v: v.get("releaseDate") or "", reverse=True)
+            exact_merged[key] = v
+    merged_vehicles.extend(exact_merged.values())
+
+    # 서로 다른 그룹인데 과거 생성 과정에서 우연히 같은 id 문자열이 부여된 경우가 있어(실측 확인됨),
+    # 화면에서 DOM id/차량 선택 키로 쓰이는 id의 유일성을 마지막에 한 번 더 보장한다.
+    seen_ids: set[str] = set()
+    for v in merged_vehicles:
+        vid = v.get("id") or ""
+        if vid and vid in seen_ids:
+            suffix = 2
+            new_id = f"{vid}-{suffix}"
+            while new_id in seen_ids:
+                suffix += 1
+                new_id = f"{vid}-{suffix}"
+            v["id"] = new_id
+            vid = new_id
+        if vid:
+            seen_ids.add(vid)
+
+    result = sorted(merged_vehicles, key=lambda v: v.get("releaseDate") or "", reverse=True)
     return result[:MAX_VEHICLES]
+
+
+def _vehicle_completeness_score(v: dict) -> int:
+    """차량 데이터가 얼마나 채워져 있는지 대략적으로 점수화한다(값이 있고 "-"가 아닌 필드 수).
+    중복 차량 그룹에서 어느 항목을 "기준(base)"으로 삼을지 정할 때 사용한다."""
+    score = 0
+    for key, val in v.items():
+        if key in ("id", "name", "selected"):
+            continue
+        if val not in (None, "", "-"):
+            score += 1
+    return score
 
 
 # A2MAC1 teardown_data.json의 Cell Manufacturer 원문 표기 -> 대시보드 표기 규칙('영문사명 (한글표기)')으로 변환
