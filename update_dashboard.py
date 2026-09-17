@@ -316,7 +316,7 @@ def _last_12_months(today_str: str) -> list:
     return list(reversed(labels))
 
 
-def build_vehicle_prompt(today_str: str, launch_hints: list | None = None) -> str:
+def build_vehicle_prompt(today_str: str, launch_hints: list | None = None, existing_names: list | None = None) -> str:
     months = _last_12_months(today_str)
     months_list = ", ".join(months)
     hints_block = ""
@@ -331,11 +331,23 @@ def build_vehicle_prompt(today_str: str, launch_hints: list | None = None) -> st
 성능 등)은 헤드라인에 없으므로 당신이 알고 있는 지식으로 채우세요. 헤드라인에 없는 다른 신차도 알고
 있는 지식 내에서 자유롭게 추가해도 됩니다 (이 목록이 전체 신차의 전부는 아닙니다).
 """
+    existing_names_block = ""
+    if existing_names:
+        names_list = "\n".join(f"- {n}" for n in existing_names)
+        existing_names_block = f"""
+[이미 대시보드에 등록된 차량 목록 (중복 방지용, 총 {len(existing_names)}개)]
+{names_list}
+
+위 목록은 이미 확보된 차량입니다. 같은 모델(트림/버전만 다른 변형 포함)을 반복 생성하지 말고, 이 목록에 없는
+다른 실제 EV를 최우선적으로 찾아 추가하세요 (만약 같은 모델의 새 트림/대상국/가격 정보가 있다면 포함해도
+됩니다 - 그건 중복이 아니라 갱신입니다). 목록을 채우기 위해 덜 유명하거나 불확실한 차량을 지어내지 마세요 -
+여전히 "실제로 알려진, 최근에 화제가 된" 차량만 담아야 합니다.
+"""
     return f"""
 당신은 글로벌 전기차(EV) 및 배터리 산업 전문 애널리스트입니다.
 오늘 날짜는 {today_str} (KST) 입니다. 당신이 알고 있는 지식 범위 내에서 아래 JSON 스키마에
 맞춰 순수 JSON 한 개만 응답하세요. 마크다운 코드블록이나 설명 문장은 절대 포함하지 마세요.
-{hints_block}
+{hints_block}{existing_names_block}
 vehicles 배열의 각 항목은 반드시 아래 예시와 동일한 수준의 상세함을 갖춰야 합니다 (이 예시의 문장 형식과 정보량을 그대로 모방하세요):
 {json.dumps(VEHICLE_FILLED_EXAMPLE, ensure_ascii=False, indent=2)}
 
@@ -858,9 +870,15 @@ def merge_vehicles(old_vehicles: list, new_vehicles: list) -> list:
     으로 반복 등록되는 경우가 많다. 정확한 이름 일치만으로 중복 제거하면 이런 변형들이 전부 별개
     차량으로 쌓여, 필드가 덜 채워진 중복 항목만 화면에 노출되는 문제(폼팩터/조성 "-" 표기 등)가
     생긴다. 이를 막기 위해 브랜드+모델명(model line) 단위로 그룹화한 뒤, 그룹 내 모든 중복 항목을
-    합쳐 "이름은 가장 간결한 것으로 통일 + 값은 필드별로 가장 신뢰도 높은(비어있지 않은) 것을 채택"
-    하는 방식으로 병합한다."""
-    all_vehicles = old_vehicles + new_vehicles
+    합쳐 "이름은 가장 간결한 것으로 통일 + 값은 이번 실행에서 재탐색된 값을 우선 채택(있으면 기존
+    값을 갱신), 비어있으면 기존 값으로 보강" 하는 방식으로 병합한다. 정렬 순서(releaseDate 기준)는
+    이 갱신과 무관하게 그대로 유지된다 — 재탐색되어 정보가 갱신됐다고 해서 표 상단으로 끌어올리지
+    않는다."""
+    # 어느 쪽 실행에서 온 데이터인지 표시해두고(최종 결과에는 남기지 않음), 필드 병합 시 "이번 실행에서
+    # 새로 탐색된 값"이 "기존 누적 값"보다 우선하도록 한다.
+    tagged_old = [dict(v, _src="old") for v in old_vehicles]
+    tagged_new = [dict(v, _src="new") for v in new_vehicles]
+    all_vehicles = tagged_old + tagged_new
 
     groups: dict[str, list[dict]] = {}
     ungrouped: list[dict] = []
@@ -874,42 +892,51 @@ def merge_vehicles(old_vehicles: list, new_vehicles: list) -> list:
         else:
             ungrouped.append(v)
 
+    def _merge_field_priority(items: list[dict]) -> dict:
+        """items를 "이번 실행(new) 우선, 동일 소스 내에서는 완전성 높은 순"으로 정렬한 뒤,
+        가장 앞의 항목을 기준으로 값이 채워진 필드는 그대로 유지하고(= 재탐색된 새 값이 있으면 그
+        값이 최종 채택됨), 기준 항목에 없는 필드만 나머지 항목 값으로 보강한다."""
+        items = sorted(items, key=lambda v: (v.get("_src") != "new", -_vehicle_completeness_score(v)))
+        merged = dict(items[0])
+        for other in items[1:]:
+            for field, val in other.items():
+                if field in ("id", "name", "_src"):
+                    continue
+                current = merged.get(field)
+                if (current is None or current == "" or current == "-") and val not in (None, "", "-"):
+                    merged[field] = val  # 기준 항목에 비어있는 필드만, 기존/다른 값으로 보강
+        return merged
+
     merged_vehicles: list[dict] = []
 
     for group in groups.values():
-        # 완전히 동일한 이름(공백/기호 차이 정도)의 항목은 최신 releaseDate 쪽만 남긴다.
-        by_exact_name: dict[str, dict] = {}
+        # 완전히 동일한 이름(공백/기호 차이 정도)의 항목들을 먼저 하나로 합친다. 이때 이번 실행에서
+        # 재탐색된 값이 있으면 기존 누적 값을 갱신하고(우선 채택), 새 데이터에 빈 칸이 있으면 기존
+        # 값으로 보강해 정보 손실을 막는다.
+        by_exact_name: dict[str, list[dict]] = {}
         for v in group:
             exact_key = _norm(v.get("name") or "")
-            existing = by_exact_name.get(exact_key)
-            if existing is None or (v.get("releaseDate") or "") >= (existing.get("releaseDate") or ""):
-                by_exact_name[exact_key] = v
-        dedup_group = list(by_exact_name.values())
+            by_exact_name.setdefault(exact_key, []).append(v)
+        dedup_group = [_merge_field_priority(items) for items in by_exact_name.values()]
 
-        # 완전성(값이 있고 "-"가 아닌 필드 수)이 높은 순으로 정렬 - 가장 정보가 풍부한 항목을 기준으로 삼는다.
-        dedup_group.sort(key=_vehicle_completeness_score, reverse=True)
-        base = dict(dedup_group[0])
-        for other in dedup_group[1:]:
-            for field, val in other.items():
-                if field in ("id", "name"):
-                    continue
-                current = base.get(field)
-                if (current is None or current == "" or current == "-") and val not in (None, "", "-"):
-                    base[field] = val  # 기준 항목에 비어있는 필드만, 신뢰도 있는(비어있지 않은) 값으로 보강
+        # 트림/버전 표기가 달라 서로 다른 exact_key로 분리됐던 항목들도 같은 방식(새 값 우선 + 빈칸 보강)으로 합친다.
+        base = _merge_field_priority(dedup_group)
         # 대표 이름: 트림/버전 수식어가 적을수록 "formal"한 이름이라고 보고, 그룹 내에서 가장 짧은 이름을 채택한다.
         base["name"] = min((v.get("name") or "" for v in dedup_group), key=lambda n: (len(n), n))
+        base.pop("_src", None)
         merged_vehicles.append(base)
 
     # model line key를 추출할 수 없었던(영문명이 없는 등) 항목은 기존처럼 정확한 이름 기준으로만 병합한다.
-    exact_merged: dict[str, dict] = {}
+    exact_merged: dict[str, list[dict]] = {}
     for v in ungrouped:
         key = _norm(v.get("name") or v.get("id") or "")
         if not key:
             continue
-        existing = exact_merged.get(key)
-        if existing is None or (v.get("releaseDate") or "") >= (existing.get("releaseDate") or ""):
-            exact_merged[key] = v
-    merged_vehicles.extend(exact_merged.values())
+        exact_merged.setdefault(key, []).append(v)
+    for items in exact_merged.values():
+        merged = _merge_field_priority(items)
+        merged.pop("_src", None)
+        merged_vehicles.append(merged)
 
     # 서로 다른 그룹인데 과거 생성 과정에서 우연히 같은 id 문자열이 부여된 경우가 있어(실측 확인됨),
     # 화면에서 DOM id/차량 선택 키로 쓰이는 id의 유일성을 마지막에 한 번 더 보장한다.
@@ -936,7 +963,7 @@ def _vehicle_completeness_score(v: dict) -> int:
     중복 차량 그룹에서 어느 항목을 "기준(base)"으로 삼을지 정할 때 사용한다."""
     score = 0
     for key, val in v.items():
-        if key in ("id", "name", "selected"):
+        if key in ("id", "name", "selected", "_src"):
             continue
         if val not in (None, "", "-"):
             score += 1
@@ -1286,11 +1313,11 @@ def merge_china_news(old_news: list, new_news: list) -> list:
     return result
 
 
-def generate_vehicles(client: "genai.Client", today_str: str, launch_hints: list | None = None) -> list:
+def generate_vehicles(client: "genai.Client", today_str: str, launch_hints: list | None = None, existing_names: list | None = None) -> list:
     try:
         response = client.models.generate_content(
             model=MODEL_NAME,
-            contents=build_vehicle_prompt(today_str, launch_hints),
+            contents=build_vehicle_prompt(today_str, launch_hints, existing_names),
         )
         payload = extract_json(response.text)
         vehicles = payload.get("vehicles") or []
@@ -1841,7 +1868,12 @@ def main() -> None:
         print(f"신차 힌트 수집 실패, 힌트 없이 진행합니다: {exc}")
         vehicle_launch_hints = []
 
-    vehicles = generate_vehicles(client, today_str, vehicle_launch_hints)
+    vehicles = generate_vehicles(
+        client,
+        today_str,
+        vehicle_launch_hints,
+        [v.get("name") for v in existing.get("vehicles", []) if v.get("name")],
+    )
     news = generate_news(client)
 
     # China EV/배터리 뉴스는 국내 차량/뉴스 파이프라인과 완전히 독립적인 별도 소스(CnEVPost/CarNewsChina)이므로,
