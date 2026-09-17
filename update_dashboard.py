@@ -484,6 +484,31 @@ def build_china_news_summary_prompt(raw_items: list) -> str:
 """
 
 
+def build_china_news_retranslate_prompt(items: list) -> str:
+    """이미 선별이 끝난(화면에 노출 중인) 기사들 중, 이전 실행에서 번역 API 호출이 실패해
+    영어 원문으로만 남아있는 항목을 재번역하기 위한 전용 프롬프트. 선별/필터링 기준 없이
+    입력된 목록 전부를 번역해야 한다(이미 선별이 끝난 기사들이기 때문)."""
+    items_json = json.dumps(items, ensure_ascii=False, indent=2)
+    return f"""
+아래는 이미 선별이 완료되어 화면에 노출 중인 중국 EV/배터리 뉴스 기사 목록입니다(원문은 영어). 이전 실행에서
+번역 API 호출이 실패해 영어 원문 그대로 노출되고 있는 항목들이니, 선별 기준 없이 목록에 있는 항목
+전부에 대해 title과 summary를 자연스러운 한국어로 번역/요약해 JSON 배열로만 응답하세요.
+
+- title은 한국어로 자연스럽게 의역(직역 금지), summary는 description을 바탕으로 1~2문장 한국어 요약.
+- url, date, source 값은 절대 변경하지 말고 원본 그대로 유지하세요.
+- 목록에 있는 항목은 전부 응답에 포함하세요(선별/제외하지 마세요).
+- 마크다운 코드블록이나 설명 문장 없이 순수 JSON 배열만 응답하세요.
+
+원본 목록:
+{items_json}
+
+응답 형식 (배열, 각 원소는 아래 5개 필드만 포함):
+[
+  {{"title": "...(한국어)", "summary": "...(한국어)", "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+]
+"""
+
+
 def build_china_news_briefing_prompt(news_items: list) -> str:
     items_json = json.dumps(
         [
@@ -1379,7 +1404,7 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
         return None
 
 
-def generate_china_news(client: "genai.Client") -> list:
+def generate_china_news(client: "genai.Client", old_news: list | None = None) -> list:
     """CnEVPost/CarNewsChina 공식 RSS(2개 사이트로 정보 출처 한정)에서 수집한 뒤,
     Gemini로 선별 + 한국어 번역/요약한다."""
     print("China EV 뉴스 RSS 수집 시작...")
@@ -1438,7 +1463,61 @@ def generate_china_news(client: "genai.Client") -> list:
             )
 
     selected.sort(key=lambda n: n["date"], reverse=True)
-    return dedup_similar_titles(selected)[:MAX_CHINA_NEWS]
+    selected = dedup_similar_titles(selected)[:MAX_CHINA_NEWS]
+
+    # 이전 실행에서 번역에 실패해 영어 원문으로 남아있던 기사 중, 이번 RSS 풀에도 더 이상
+    # 잡히지 않는(원본 게시일 기준 오래돼 RSS 풀에서 밀려난) "고아" 항목은, 그냥 두면 영원히 영어로
+    # 고정된다(정기 선별/번역 호출은 항상 "현재 RSS 풀"만 대상으로 하기 때문). 이런 항목만 따로 모아
+    # 재번역을 시도해, 성공하면 merge_china_news()의 영어->한국어 업그레이드 규칙에 따라 자동으로 반영된다.
+    if old_news:
+        stuck = [
+            n for n in old_news
+            if n.get("translated") is False and _norm(n.get("url") or "") not in raw_by_key
+        ]
+        if stuck:
+            print(f"이전에 번역 실패해 영어로 남아있는 기사 {len(stuck)}건 재번역 시도...")
+            try:
+                retry_candidates = [
+                    {
+                        "title": n.get("title", ""),
+                        "description": n.get("summary", ""),
+                        "source": n.get("source", ""),
+                        "date": n.get("date", ""),
+                        "url": n.get("url", ""),
+                    }
+                    for n in stuck
+                ]
+                retry_response = client.models.generate_content(
+                    model=MODEL_NAME,
+                    contents=build_china_news_retranslate_prompt(retry_candidates),
+                )
+                retried = extract_json(retry_response.text)
+                stuck_by_key = {_norm(n.get("url") or ""): n for n in stuck}
+                upgraded = 0
+                if isinstance(retried, list):
+                    for entry in retried:
+                        if not isinstance(entry, dict) or not entry.get("url"):
+                            continue
+                        original = stuck_by_key.get(_norm(entry["url"]))
+                        if original is None:
+                            continue
+                        selected.append(
+                            {
+                                "title": entry.get("title") or original.get("title", ""),
+                                "summary": entry.get("summary") or original.get("summary") or original.get("title", ""),
+                                "source": original.get("source", ""),
+                                "date": original.get("date", ""),
+                                "url": original.get("url", ""),
+                                "linkType": "rss",
+                                "translated": True,
+                            }
+                        )
+                        upgraded += 1
+                print(f"재번역 완료: {upgraded}건 한국어로 업그레이드")
+            except Exception as exc:  # noqa: BLE001
+                print(f"재번역 재시도 실패, 다음 실행에서 다시 시도합니다: {exc}")
+
+    return selected
 
 
 def generate_china_news_briefing(client: "genai.Client", news_items: list) -> dict | None:
@@ -1768,7 +1847,7 @@ def main() -> None:
     # China EV/배터리 뉴스는 국내 차량/뉴스 파이프라인과 완전히 독립적인 별도 소스(CnEVPost/CarNewsChina)이므로,
     # 여기서 오류가 나더라도 위 vehicles/news 결과 저장을 막지 않도록 별도로 격리한다.
     try:
-        china_news = generate_china_news(client)
+        china_news = generate_china_news(client, existing.get("chinaNews"))
     except Exception as exc:  # noqa: BLE001
         print(f"China 뉴스 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
         china_news = []
