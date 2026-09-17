@@ -808,6 +808,7 @@ def load_existing_data() -> dict:
     empty = {
         "vehicles": [], "news": [], "fx": None, "newsBriefing": None,
         "chinaNews": [], "chinaNewsBriefing": None, "patentTrends": None,
+        "benchmarkingPoints": None,
     }
     if not os.path.exists(DATA_PATH):
         return dict(empty)
@@ -822,9 +823,11 @@ def load_existing_data() -> dict:
             "chinaNews": data.get("chinaNews") or [],
             "chinaNewsBriefing": data.get("chinaNewsBriefing"),
             "patentTrends": data.get("patentTrends"),
+            "benchmarkingPoints": data.get("benchmarkingPoints"),
         }
     except Exception:  # noqa: BLE001 - 손상된 파일이면 빈 값으로 시작
         return dict(empty)
+
 
 
 # 환율 조회에 실패했을 때 사용할 최종 안전값 (사이트에 기존에 표시되던 값과 동일)
@@ -1845,6 +1848,138 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
         return None
 
 
+# "벤치마킹 포인트" 카드: 이미 수집된 신차/뉴스/China뉴스/특허 데이터를 근거로, 한국 배터리/완성차
+# 업계 실무자가 "이건 사내에서 직접 확인해볼 만하다"고 판단할 만한 포인트를 뽑아준다. 의도적으로
+# "한국 업체가 부족하다" 같은 단정적 비교/결론은 절대 내리지 않는다 - 이 시스템은 특정 한국 업체의
+# 내부 데이터(로드맵/특허 포트폴리오/실제 양산 수준)를 전혀 갖고 있지 않으므로, 그런 비교를 하는 순간
+# 근거 없는 추측이 되기 때문이다. 대신 "공개된 사실 + 왜 주목할 만한가"까지만 서술하고, 그 사실이
+# 자사 상황과 비교해 의미가 있는지 판단하는 최종 결론은 실무자가 사내 데이터를 갖고 직접 내리도록
+# "internalCheckQuestion"(사내에서 확인해볼 질문) 형태로 넘긴다.
+MAX_BENCHMARKING_VEHICLES_IN_PROMPT = 12
+MAX_BENCHMARKING_NEWS_IN_PROMPT = 8
+
+
+def build_benchmarking_prompt(vehicles: list, news: list, china_news: list, patent_trends: dict | None) -> str:
+    slim_vehicles = [
+        {
+            "name": v.get("name"),
+            "releaseDate": v.get("releaseDate"),
+            "batterySpec": v.get("batterySpec"),
+            "cellMaker": v.get("cellMaker"),
+            "qcPerformance": v.get("qcPerformance"),
+            "rangePerformance": v.get("rangePerformance"),
+            "cellComposition": v.get("cellComposition"),
+        }
+        for v in (vehicles or [])[:MAX_BENCHMARKING_VEHICLES_IN_PROMPT]
+    ]
+    slim_news = [
+        {"title": n.get("title"), "summary": n.get("summary"), "source": n.get("source"), "date": n.get("date"), "url": n.get("url")}
+        for n in (news or [])[:MAX_BENCHMARKING_NEWS_IN_PROMPT]
+    ]
+    slim_china_news = [
+        {"title": n.get("title"), "summary": n.get("summary"), "source": n.get("source"), "date": n.get("date"), "url": n.get("url")}
+        for n in (china_news or [])[:MAX_BENCHMARKING_NEWS_IN_PROMPT]
+        if n.get("translated", True)  # 아직 번역 안 된 영어 원문 항목은 프롬프트에서 제외
+    ]
+    slim_patents = []
+    for cat in ((patent_trends or {}).get("categories") or []):
+        for item in (cat.get("items") or [])[:2]:
+            if not item.get("url"):
+                continue  # "신규 공개 특허 없음" placeholder 제외
+            slim_patents.append({
+                "category": cat.get("name"), "headline": item.get("headline"),
+                "painPoint": item.get("painPoint"), "solution": item.get("solution"),
+                "source": item.get("source"), "date": item.get("date"), "url": item.get("url"),
+            })
+
+    return f"""
+너는 한국 배터리/완성차 업계 실무자(엔지니어·기획 담당자)를 지원하는 벤치마킹 애널리스트다.
+아래는 이미 수집된 실제 데이터(신차 스펙, 국내/China 뉴스, 배터리 특허)다. 이 데이터"만"을 근거로,
+실무자가 "이건 사내에서 직접 확인해볼 가치가 있다"고 느낄 만한 벤치마킹 포인트를 뽑아 JSON으로 응답하라.
+
+[절대 규칙 - 반드시 지킬 것]
+1. 입력 데이터에 실제로 있는 내용만 근거로 사용하라. 지어내지 마라.
+2. 특정 한국 기업명을 언급하며 "부족하다/뒤처졌다/뛰어나다" 같은 단정적 비교·평가를 절대 하지 마라.
+   너는 어떤 한국 기업의 내부 로드맵/기술 수준/특허 포트폴리오도 알지 못한다. 그런 비교는 근거 없는
+   추측이 된다. 대신 "경쟁사가 공개적으로 발표/출원한 사실"과 "그것이 왜 주목할 만한가"까지만 서술하라.
+3. 마케팅 문구("혁신적인", "세계 최고 수준의")와 실질적 기술 내용을 구분하라. whyNotable에는 구체적
+   수치/구조/공급망 등 실체가 있는 내용만 쓰고, 실체가 불분명하면 "구체적 근거 부족, 원문 확인 필요"라고 써라.
+4. 모든 항목은 반드시 입력 데이터 중 정확히 1건(뉴스 1건, 특허 1건, 또는 신차 스펙 1건)에서 파생되어야
+   하며, 그 항목의 source/date/url을 원본 그대로 유지하라 (url이 없는 신차 스펙 항목은 url을 빈 문자열로 둬라).
+5. internalCheckQuestion은 "이 공개된 사실을, 우리 회사의 실제 상황과 비교하려면 무엇을 확인해야 하는가"를
+   묻는 구체적 질문 1개여야 한다 (예: "당사 급속충전 시스템은 SOC 10→80% 기준 몇 분대인지, 이 경쟁사
+   수치(있으면)와 비교 확인 필요" 같은 형태). 절대 답을 단정하지 말고 질문 형태로만 작성하라.
+6. 최대 6~8개 항목만 선별하라(모든 입력을 다 다룰 필요 없음, 실무자가 놓치기 쉬운/임팩트 큰 것 위주).
+
+[입력 데이터]
+신차 스펙:
+{json.dumps(slim_vehicles, ensure_ascii=False, indent=2)}
+
+국내 뉴스:
+{json.dumps(slim_news, ensure_ascii=False, indent=2)}
+
+China 뉴스:
+{json.dumps(slim_china_news, ensure_ascii=False, indent=2)}
+
+배터리 특허:
+{json.dumps(slim_patents, ensure_ascii=False, indent=2)}
+
+[출력 형식 - 마크다운/설명 문장 없이 순수 JSON 객체 하나만]
+{{
+  "keyTakeaways": ["오늘 데이터 전체를 관통하는 핵심 흐름 1~2개 문장"],
+  "categories": [
+    {{
+      "name": "글로벌 신차·배터리 스펙 벤치마킹" 또는 "특허·기술 벤치마킹" 또는 "시장·공급망 동향 벤치마킹" 중 해당하는 이름,
+      "items": [
+        {{
+          "headline": "핵심을 압축한 한 문장(제목 형태)",
+          "whyNotable": "왜 주목할 만한가 - 공개된 사실과 구체적 근거를 2~3문장으로 심도있게 서술",
+          "internalCheckQuestion": "실무자가 사내 데이터로 직접 확인해봐야 할 질문 1개",
+          "tags": ["#키워드"],
+          "source": "...", "date": "YYYY-MM-DD", "url": "..."
+        }}
+      ]
+    }}
+  ]
+}}
+"""
+
+
+def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: list, china_news: list, patent_trends: dict | None) -> dict | None:
+    """오늘 확보된 신차/뉴스/China뉴스/특허 데이터를 근거로 "벤치마킹 포인트" 카드를 생성한다.
+    실패 시 None을 반환하며, 호출부에서는 어제 버전을 그대로 유지한다."""
+    if not vehicles and not news and not china_news and not (patent_trends or {}).get("categories"):
+        return None
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=build_benchmarking_prompt(vehicles, news, china_news, patent_trends),
+            config=types.GenerateContentConfig(temperature=0.2),
+        )
+        payload = extract_json(response.text)
+        if not isinstance(payload, dict):
+            return None
+        categories = payload.get("categories")
+        if not isinstance(categories, list) or not categories:
+            return None
+        cleaned_categories = []
+        for cat in categories:
+            if not isinstance(cat, dict):
+                continue
+            items = [item for item in (cat.get("items") or []) if isinstance(item, dict) and item.get("headline")]
+            if items:
+                cleaned_categories.append({"name": cat.get("name") or "벤치마킹 포인트", "items": items})
+        if not cleaned_categories:
+            return None
+        return {
+            "keyTakeaways": [t for t in (payload.get("keyTakeaways") or []) if isinstance(t, str)],
+            "categories": cleaned_categories,
+        }
+    except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
+        print(f"벤치마킹 포인트 생성 실패, 건너뜁니다: {exc}")
+        return None
+
+
 def main() -> None:
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -1919,6 +2054,7 @@ def main() -> None:
             "chinaNews": merged_china_news,
             "chinaNewsBriefing": china_news_briefing,
             "patentTrends": patent_trends,
+            "benchmarkingPoints": existing.get("benchmarkingPoints"),
         }
         with open(DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
@@ -1952,6 +2088,17 @@ def main() -> None:
         # 생성 실패 시 어제 버전을 그대로 유지해 프론트가 갑자기 구도없이 문장형으로 후퇴하는 사태를 최소화한다.
         news_briefing = existing.get("newsBriefing")
 
+    # "벤치마킹 포인트" 카드: 이미 확보된 오늘자 데이터(신차/국내뉴스/China뉴스/특허)를 근거로
+    # 실무자가 사내에서 직접 검토해볼 만한 포인트를 뽑아준다. 다른 부가 기능과 동일하게 실패해도
+    # 전체 저장을 막지 않도록 격리한다.
+    try:
+        benchmarking_points = generate_benchmarking_points(client, merged_vehicles, merged_news, merged_china_news, patent_trends)
+    except Exception as exc:  # noqa: BLE001
+        print(f"벤치마킹 포인트 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        benchmarking_points = None
+    if benchmarking_points is None:
+        benchmarking_points = existing.get("benchmarkingPoints")
+
     output = {
         "generatedAt": now_kst.isoformat(),
         "vehicles": merged_vehicles,
@@ -1961,6 +2108,7 @@ def main() -> None:
         "chinaNews": merged_china_news,
         "chinaNewsBriefing": china_news_briefing,
         "patentTrends": patent_trends,
+        "benchmarkingPoints": benchmarking_points,
     }
 
     with open(DATA_PATH, "w", encoding="utf-8") as f:

@@ -24,7 +24,7 @@
 **판정: 완료 (지정 사이트 방문 방식을 RSS 기반 자동 수집으로 대체 — 커버리지는 오히려 확대)**
 
 - 기존 수작업은 "지정된 8개 사이트를 사람이 방문"하는 방식이었지만, 자동화된 구현은 **Google News RSS 키워드 검색(`GOOGLE_NEWS_QUERIES`, 사이트 지정 8개 도메인 + 비지정 일반 키워드 쿼리 약 15종) + CnEVPost/CarNewsChina RSS(`CHINA_NEWS_FEEDS`)**로 대체되었습니다.
-- **실측 검증**: 현재 `data.json`의 국내 뉴스(`news`, 상위 20건) 안에서만도 중앙일보·한국경제·서울경제·연합뉴스·전기신문·edaily 등 **서로 다른 매체 17곳**이 실제로 잡히고 있습니다(원본 RSS 수집 풀은 `NEWS_POOL_SIZE=120`건으로 더 넓음). 즉 "지정 8개 사이트"라는 좁은 창구보다 **실질적으로 더 많은 매체를 자동으로 커버**하고 있습니다.
+- **실측 검증**: 현재 `data.json`의 국내 뉴스(`news`, 상위 20건) 안에서만도 중앙일보·한국경제·서울경제·연합뉴스·전기신문·edaily 등 **서로 다른 매체 17곳**이 실제로 잡히고 있습니다(화면에는 최신 20건만 노출되지만, 유사기사·비기술 기사를 걸러내기 전 RSS 원본 수집 풀 자체는 최대 **120건**까지 확보합니다 — 코드 상수 `NEWS_POOL_SIZE = 120`, [update_dashboard.py](update_dashboard.py#L34)). 즉 "지정 8개 사이트"라는 좁은 창구보다 **실질적으로 더 많은 매체를 자동으로 커버**하고 있습니다.
 - China 뉴스는 CnEVPost·CarNewsChina **2개 매체로 의도적으로 한정**했습니다 — 두 매체는 중국 EV 산업 전문 영어 매체로 보도 속도와 신뢰도가 검증되어 있어 "양보다 질"을 택한 큐레이션 결정입니다. Gasgoo(`autonews.gasgoo.com`) 등 유사하게 신뢰도 높은 매체를 추가하는 확장 계획이 있습니다 — 현재 `CHINA_NEWS_FEEDS`(`update_dashboard.py:40`) 리스트에 소스를 한 줄 추가하는 구조로 손쉽게 확장 가능하도록 설계되어 있습니다.
 - `data-web-source.html`의 Dongchedi/Yiche/Autohome/EVKX/EVSpecifications/Gasgoo/A2MAC1/中 MIIT/Google Patents 등 11개 링크는 뉴스 모니터링용이 아니라 **차량 상세 스펙 조회용 참고 링크**이며, 이 사이트들의 자동 스크래핑 여부는 1-5 항목에서 별도로 다룹니다.
 
@@ -69,7 +69,7 @@
 - `apply_teardown_verified_cell_makers()`: 실측 Teardown 데이터(`teardown_data.json`)에 있는 모델과 일치하면, AI 추정치를 실측값으로 덮어쓰고 `"(실측 검증)"` 표시를 붙입니다.
 - `cross_check_cell_maker_via_news()` + `apply_news_cross_checked_cell_makers()`: Teardown 데이터가 없는 신차는 무료 Google News RSS로 "이 차량명 + 배터리 셀 공급" 관련 실제 보도를 검색하고, **차량명이 실제로 언급된 기사에서 단 하나의 공급사만 일관되게 검출될 때만** 값을 갱신하며 `"(뉴스 교차검증)"` 표시를 붙입니다(`len(found) != 1: return None`으로 애매하면 적용하지 않음).
 
-### 1-7. 배터리 특허 동향 자동 수집·분석
+### 1-7. 배터리 특허 동향 자동 수집·분석 - 계획에 없던 추가 고도화 사례
 
 **판정: 완료 (BigQuery 실제 데이터 기반)**
 
