@@ -1949,18 +1949,30 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
     """오늘 확보된 신차/뉴스/China뉴스/특허 데이터를 근거로 "벤치마킹 포인트" 카드를 생성한다.
     실패 시 None을 반환하며, 호출부에서는 어제 버전을 그대로 유지한다."""
     if not vehicles and not news and not china_news and not (patent_trends or {}).get("categories"):
+        print("벤치마킹 포인트: 근거로 쓸 데이터(신차/뉴스/China뉴스/특허)가 하나도 없어 건너뜁니다.")
         return None
+    prompt = build_benchmarking_prompt(vehicles, news, china_news, patent_trends)
+    print(f"벤치마킹 포인트 프롬프트 생성 완료 (길이 {len(prompt)}자)")
     try:
         response = client.models.generate_content(
             model=MODEL_NAME,
-            contents=build_benchmarking_prompt(vehicles, news, china_news, patent_trends),
+            contents=prompt,
             config=types.GenerateContentConfig(temperature=0.2),
         )
-        payload = extract_json(response.text)
+        finish_reason = None
+        try:
+            finish_reason = response.candidates[0].finish_reason
+        except Exception:  # noqa: BLE001 - 진단 목적의 부가 정보이므로 실패해도 무시
+            pass
+        response_text = response.text or ""
+        print(f"벤치마킹 포인트 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
+        payload = extract_json(response_text)
         if not isinstance(payload, dict):
+            print(f"벤치마킹 포인트 응답이 JSON 객체 형식이 아니어서 건너뜁니다. (응답 앞부분: {response_text[:300]!r})")
             return None
         categories = payload.get("categories")
         if not isinstance(categories, list) or not categories:
+            print(f"벤치마킹 포인트 응답에 유효한 categories가 없어 건너뜁니다. (payload keys: {list(payload.keys())})")
             return None
         cleaned_categories = []
         for cat in categories:
@@ -1970,13 +1982,15 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
             if items:
                 cleaned_categories.append({"name": cat.get("name") or "벤치마킹 포인트", "items": items})
         if not cleaned_categories:
+            print("벤치마킹 포인트: 카테고리는 있었지만 유효한 item(headline 포함)이 하나도 없어 건너뜁니다.")
             return None
+        print(f"벤치마킹 포인트 생성 완료 (카테고리 {len(cleaned_categories)}개, 총 항목 {sum(len(c['items']) for c in cleaned_categories)}건)")
         return {
             "keyTakeaways": [t for t in (payload.get("keyTakeaways") or []) if isinstance(t, str)],
             "categories": cleaned_categories,
         }
     except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
-        print(f"벤치마킹 포인트 생성 실패, 건너뜁니다: {exc}")
+        print(f"벤치마킹 포인트 생성 실패, 건너뜁니다: {type(exc).__name__}: {exc}")
         return None
 
 
