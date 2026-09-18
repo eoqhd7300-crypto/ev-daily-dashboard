@@ -1471,6 +1471,7 @@
             sky: { border: 'border-sky-300', badgeBg: 'bg-sky-600', title: 'text-sky-900', tagBg: 'bg-sky-100', tagText: 'text-sky-800', catBg: 'bg-sky-50' },
             rose: { border: 'border-rose-300', badgeBg: 'bg-rose-600', title: 'text-rose-900', tagBg: 'bg-rose-100', tagText: 'text-rose-800', catBg: 'bg-rose-50' },
             violet: { border: 'border-violet-300', badgeBg: 'bg-violet-600', title: 'text-violet-900', tagBg: 'bg-violet-100', tagText: 'text-violet-800', catBg: 'bg-violet-50' },
+            benchmark: { border: 'border-teal-300', badgeBg: 'bg-teal-600', title: 'text-teal-900', tagBg: 'bg-teal-100', tagText: 'text-teal-800', catBg: 'bg-teal-50' },
         };
 
         // renderNewsBriefingStructured()과 동일한 데이터(keyTakeaways/categories/implications, item의
@@ -1502,11 +1503,15 @@
                 const items = Array.isArray(cat.items) ? cat.items : [];
                 const itemsHtml = items.map(item => {
                     const hasPainSolution = !!(item.painPoint || item.solution);
+                    const hasWhyNotable = !!item.whyNotable;
                     const bodyHtml = hasPainSolution ? `
                         <div class="text-[11px] text-slate-700 mt-0.5 space-y-0.5">
                             ${item.painPoint ? `<div>• <span class="font-semibold">문제점:</span> ${esc(item.painPoint)}</div>` : ''}
                             ${item.solution ? `<div>• <span class="font-semibold">해결원리:</span> ${esc(item.solution)}</div>` : ''}
                         </div>
+                    ` : hasWhyNotable ? `
+                        <div class="text-[11px] text-slate-700 mt-0.5">${esc(item.whyNotable)}</div>
+                        ${item.internalCheckQuestion ? `<div class="mt-1 text-[10px] text-slate-600">🔎 <span class="font-semibold">사내 확인 질문:</span> ${esc(item.internalCheckQuestion)}</div>` : ''}
                     ` : (item.summary ? `<div class="text-[11px] text-slate-700 mt-0.5">${esc(item.summary)}</div>` : '');
                     const designCriteria = Array.isArray(item.designCriteria) ? item.designCriteria.filter(dc => dc && dc.label && dc.value) : [];
                     const designCriteriaHtml = designCriteria.length > 0 ? `
@@ -1629,6 +1634,7 @@
                     ${renderTodayReportBriefingSection('📰', '글로벌 EV & 배터리 최신 동향 리포트', evNewsBriefingData, 'sky')}
                     ${renderTodayReportBriefingSection('📰', 'China EV & 배터리 최신 동향 리포트', chinaNewsBriefingData, 'rose')}
                     ${renderTodayReportBriefingSection('🔬', 'CATL·BYD·Geely 배터리 특허 동향', patentTrendsData, 'violet')}
+                    ${renderTodayReportBriefingSection('🎯', '배터리 벤치마킹 포인트', benchmarkingPointsData, 'benchmark', '실무 참고용 힌트 - 특정 국내 업체와의 비교/평가는 포함하지 않으며, 자사 데이터와의 비교/검증은 실무자가 직접 진행해야 합니다.')}
                     ${renderTodayReportTop5VehiclesSection()}
                     <div class="text-center text-[10px] text-slate-300 mt-6 pt-3 border-t border-slate-200">
                         ⓒ Daily EV & Battery Intelligence Dashboard — 대시보드 화면 내용을 그대로 정리한 리포트입니다.
