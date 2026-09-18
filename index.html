@@ -752,6 +752,15 @@
             return div.innerHTML;
         };
 
+        // 벤치마킹 포인트 항목의 factLevel(모델이 스스로 표시한 근거 강도)을 배지 스타일 키로 변환한다.
+        // 정확히 일치하지 않는 값(구버전 응답 등)은 배지를 표시하지 않도록 null을 반환한다.
+        window.getFactLevelKey = function(level) {
+            if (level === '직접 인용') return 'quote';
+            if (level === '간접 서술') return 'indirect';
+            if (level === '추론') return 'inference';
+            return null;
+        };
+
         // 카테고리별 그룹 / 키워드 태그 / 핵심 요약 / 시사점을 포함한 구조화 브리핑 렌더링
         // themeKey: 'sky'(글로벌 EV 카드, 기본값) | 'rose'(China EV 카드) | 'violet'(특허 동향 카드) | 'benchmark'(벤치마킹 포인트 카드)
         window.NEWS_BRIEFING_THEMES = {
@@ -860,13 +869,20 @@
                     // 둘 다 없으면(뉴스 카드 또는 레거시 특허 데이터) 기존 summary 문단을 그대로 표시한다.
                     const hasPainSolution = !!(item.painPoint || item.solution);
                     const hasWhyNotable = !!item.whyNotable;
+                    // factLevel 배지: 직접 인용(초록)/간접 서술(호박색)/추론(붉은색)으로 근거 강도를 한눈에 구분한다.
+                    const factLevelDarkClasses = { quote: 'bg-emerald-500/20 text-emerald-300', indirect: 'bg-amber-500/20 text-amber-300', inference: 'bg-rose-500/20 text-rose-300' };
+                    const factLevelKey = window.getFactLevelKey(item.factLevel);
+                    const factLevelHtml = factLevelKey ? `<span class="inline-block text-[9px] font-bold px-1.5 py-0.5 rounded ${factLevelDarkClasses[factLevelKey]}">${esc(item.factLevel)}</span>` : '';
+                    const evidenceQuoteHtml = item.evidenceQuote ? `<div class="mt-1 text-[10px] text-slate-400 italic border-l-2 border-slate-600/60 pl-2">"${esc(item.evidenceQuote)}"</div>` : '';
                     const bodyHtml = hasPainSolution ? `
                         <div class="text-slate-300 mt-0.5 space-y-0.5">
                             ${item.painPoint ? `<div>• <span class="font-semibold text-slate-200">문제점(Pain Point):</span> ${esc(item.painPoint)}</div>` : ''}
                             ${item.solution ? `<div>• <span class="font-semibold text-slate-200">해결원리(Solution):</span> ${esc(item.solution)}</div>` : ''}
                         </div>
                     ` : hasWhyNotable ? `
+                        ${factLevelHtml ? `<div class="mt-0.5">${factLevelHtml}</div>` : ''}
                         <div class="text-slate-300 mt-0.5">${esc(item.whyNotable)}</div>
+                        ${evidenceQuoteHtml}
                         ${item.internalCheckQuestion ? `<div class="mt-1.5 bg-black/25 border ${theme.itemBorder} rounded-lg px-2 py-1.5"><span class="font-bold ${theme.catTitle}">🔎 사내 확인 질문:</span> <span class="text-slate-200">${esc(item.internalCheckQuestion)}</span></div>` : ''}
                     ` : (item.summary ? `<div class="text-slate-300 mt-0.5">${esc(item.summary)}</div>` : '');
                     // 특허 카드(violet)는 Google Patents 원문 링크, 벤치마킹 카드(benchmark)는 근거 원문 링크,
@@ -1504,13 +1520,19 @@
                 const itemsHtml = items.map(item => {
                     const hasPainSolution = !!(item.painPoint || item.solution);
                     const hasWhyNotable = !!item.whyNotable;
+                    const factLevelPrintClasses = { quote: 'bg-emerald-100 text-emerald-800', indirect: 'bg-amber-100 text-amber-800', inference: 'bg-rose-100 text-rose-800' };
+                    const factLevelKey = window.getFactLevelKey(item.factLevel);
+                    const factLevelHtml = factLevelKey ? `<span class="inline-block text-[9px] font-bold px-1.5 py-0.5 rounded ${factLevelPrintClasses[factLevelKey]}">${esc(item.factLevel)}</span>` : '';
+                    const evidenceQuoteHtml = item.evidenceQuote ? `<div class="mt-1 text-[10px] text-slate-500 italic border-l-2 border-slate-300 pl-2">"${esc(item.evidenceQuote)}"</div>` : '';
                     const bodyHtml = hasPainSolution ? `
                         <div class="text-[11px] text-slate-700 mt-0.5 space-y-0.5">
                             ${item.painPoint ? `<div>• <span class="font-semibold">문제점:</span> ${esc(item.painPoint)}</div>` : ''}
                             ${item.solution ? `<div>• <span class="font-semibold">해결원리:</span> ${esc(item.solution)}</div>` : ''}
                         </div>
                     ` : hasWhyNotable ? `
+                        ${factLevelHtml ? `<div class="mt-0.5">${factLevelHtml}</div>` : ''}
                         <div class="text-[11px] text-slate-700 mt-0.5">${esc(item.whyNotable)}</div>
+                        ${evidenceQuoteHtml}
                         ${item.internalCheckQuestion ? `<div class="mt-1 text-[10px] text-slate-600">🔎 <span class="font-semibold">사내 확인 질문:</span> ${esc(item.internalCheckQuestion)}</div>` : ''}
                     ` : (item.summary ? `<div class="text-[11px] text-slate-700 mt-0.5">${esc(item.summary)}</div>` : '');
                     const designCriteria = Array.isArray(item.designCriteria) ? item.designCriteria.filter(dc => dc && dc.label && dc.value) : [];

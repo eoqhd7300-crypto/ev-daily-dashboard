@@ -1942,8 +1942,19 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
 MAX_BENCHMARKING_VEHICLES_IN_PROMPT = 12
 MAX_BENCHMARKING_NEWS_IN_PROMPT = 8
 
+# 벤치마킹 포인트가 실무자에게 신뢰받으려면 흔한 상투어만으로는 부족하다. 원문에 이 표현이 실제로
+# 등장하더라도 whyNotable 본문(서술)에서는 사실 위주로 대체하라고 강제하기 위한 블랙리스트.
+# evidenceQuote(원문 그대로 인용) 안에서 그대로 인용하는 것은 예외로 둔다.
+BENCHMARKING_BANNED_PHRASES = [
+    "혁신적인", "세계 최고 수준의", "업계 최초", "세계 최초", "독보적", "압도적", "게임체인저",
+    "차원이 다른", "타의 추종을 불허하는", "전례 없는", "혁명적인",
+]
 
-def build_benchmarking_prompt(vehicles: list, news: list, china_news: list, patent_trends: dict | None) -> str:
+
+def _slim_benchmarking_inputs(vehicles: list, news: list, china_news: list, patent_trends: dict | None) -> dict:
+    """벤치마킹 프롬프트에 실제로 넘기는 입력 데이터를 슬림화한다. build_benchmarking_prompt()가 프롬프트
+    텍스트를 만들 때와, generate_benchmarking_points()가 응답을 사후 검증(코드 레벨 근거 대조)할 때
+    똑같은 데이터를 재사용해야 두 곳이 어긋나지 않으므로 별도 함수로 분리했다."""
     slim_vehicles = [
         {
             "name": v.get("name"),
@@ -1975,6 +1986,12 @@ def build_benchmarking_prompt(vehicles: list, news: list, china_news: list, pate
                 "painPoint": item.get("painPoint"), "solution": item.get("solution"),
                 "source": item.get("source"), "date": item.get("date"), "url": item.get("url"),
             })
+    return {"vehicles": slim_vehicles, "news": slim_news, "china_news": slim_china_news, "patents": slim_patents}
+
+
+def build_benchmarking_prompt(vehicles: list, news: list, china_news: list, patent_trends: dict | None) -> str:
+    slim = _slim_benchmarking_inputs(vehicles, news, china_news, patent_trends)
+    slim_vehicles, slim_news, slim_china_news, slim_patents = slim["vehicles"], slim["news"], slim["china_news"], slim["patents"]
 
     return f"""
 너는 한국 배터리/완성차 업계 실무자(엔지니어·기획 담당자)를 지원하는 벤치마킹 애널리스트다.
@@ -1986,14 +2003,26 @@ def build_benchmarking_prompt(vehicles: list, news: list, china_news: list, pate
 2. 특정 한국 기업명을 언급하며 "부족하다/뒤처졌다/뛰어나다" 같은 단정적 비교·평가를 절대 하지 마라.
    너는 어떤 한국 기업의 내부 로드맵/기술 수준/특허 포트폴리오도 알지 못한다. 그런 비교는 근거 없는
    추측이 된다. 대신 "경쟁사가 공개적으로 발표/출원한 사실"과 "그것이 왜 주목할 만한가"까지만 서술하라.
-3. 마케팅 문구("혁신적인", "세계 최고 수준의")와 실질적 기술 내용을 구분하라. whyNotable에는 구체적
-   수치/구조/공급망 등 실체가 있는 내용만 쓰고, 실체가 불분명하면 "구체적 근거 부족, 원문 확인 필요"라고 써라.
+3. 마케팅 문구와 실질적 기술 내용을 구분하라. whyNotable에는 구체적 수치/구조/공급망 등 실체가 있는
+   내용만 쓰고, 실체가 불분명하면 "구체적 근거 부족, 원문 확인 필요"라고 써라. 원문에 수치(kWh, kW, V,
+   mm, % 등)가 있으면 반드시 그 숫자를 그대로 포함하고, 수치가 없으면 whyNotable 끝에 반드시
+   "(구체적 수치 미공개)"를 붙여라 - 이 둘 중 하나는 항상 명시해야 한다.
 4. 모든 항목은 반드시 입력 데이터 중 정확히 1건(뉴스 1건, 특허 1건, 또는 신차 스펙 1건)에서 파생되어야
    하며, 그 항목의 source/date/url을 원본 그대로 유지하라 (url이 없는 신차 스펙 항목은 url을 빈 문자열로 둬라).
-5. internalCheckQuestion은 "이 공개된 사실을, 우리 회사의 실제 상황과 비교하려면 무엇을 확인해야 하는가"를
-   묻는 구체적 질문 1개여야 한다 (예: "당사 급속충전 시스템은 SOC 10→80% 기준 몇 분대인지, 이 경쟁사
-   수치(있으면)와 비교 확인 필요" 같은 형태). 절대 답을 단정하지 말고 질문 형태로만 작성하라.
+5. internalCheckQuestion은 반드시 다음 템플릿을 따르는 구체적 질문 1개여야 한다:
+   "당사 [비교할 지표명]은 [단위] 기준 얼마인지, 이 경쟁사 수치([해당 값 또는 '있으면'])와 비교 확인 필요"
+   (예: "당사 급속충전 시스템은 SOC 10→80% 기준 몇 분대인지, 이 경쟁사 수치(18분)와 비교 확인 필요").
+   절대 답을 단정하지 말고 이 템플릿 형태의 질문으로만 작성하라.
 6. 최대 6~8개 항목만 선별하라(모든 입력을 다 다룰 필요 없음, 실무자가 놓치기 쉬운/임팩트 큰 것 위주).
+7. evidenceQuote는 이 항목의 근거가 된 입력 데이터(뉴스 title/summary, 특허 headline/painPoint/solution,
+   또는 신차 스펙 필드 값) 안에 실제로 등장하는 문구를 의역 없이 그대로 20~80자 정도 복사해 담아라.
+   이 인용문은 사후에 원문과 코드로 대조 검증되며, 원문에 없는 문구를 넣으면 해당 항목은 자동 폐기된다.
+8. factLevel 필드에 이 항목의 근거 강도를 스스로 "직접 인용" | "간접 서술" | "추론" 중 하나로 표시하라.
+   evidenceQuote를 그대로 풀어 쓴 수준이면 "직접 인용", 여러 문장을 요약/재구성했다면 "간접 서술",
+   원문에 명시되지 않은 내용을 논리적으로 추정했다면 "추론"으로 정직하게 표시하라.
+9. 다음 상투어는 whyNotable 본문(너의 서술)에서 사용하지 마라 - 실체 없는 마케팅 표현으로 실무자의
+   신뢰를 깎는다: {", ".join(BENCHMARKING_BANNED_PHRASES)}. 원문에 이런 표현이 등장해도 evidenceQuote
+   안에서 그대로 인용하는 것은 예외이나, whyNotable 서술은 반드시 구체적 사실로 대체하라.
 
 [입력 데이터]
 신차 스펙:
@@ -2018,7 +2047,9 @@ China 뉴스:
         {{
           "headline": "핵심을 압축한 한 문장(제목 형태)",
           "whyNotable": "왜 주목할 만한가 - 공개된 사실과 구체적 근거를 2~3문장으로 심도있게 서술",
-          "internalCheckQuestion": "실무자가 사내 데이터로 직접 확인해봐야 할 질문 1개",
+          "evidenceQuote": "입력 데이터 원문에 실제로 등장하는 문구를 의역 없이 그대로 인용 (사후 코드 검증됨)",
+          "factLevel": "직접 인용" 또는 "간접 서술" 또는 "추론",
+          "internalCheckQuestion": "규칙 5의 템플릿을 따르는 구체적 질문 1개",
           "tags": ["#키워드"],
           "source": "...", "date": "YYYY-MM-DD", "url": "..."
         }}
@@ -2029,12 +2060,62 @@ China 뉴스:
 """
 
 
+def _build_benchmarking_evidence_index(slim: dict) -> tuple:
+    """(A) 코드 레벨 근거 검증용 인덱스를 만든다. 특허 트렌드 카드의 _is_valid_item()과 같은 목적으로,
+    모델이 응답에 넣은 url이 실제로 프롬프트에 넘긴 입력 데이터에 존재하는지 대조한다. 여기서는 한 걸음
+    더 나아가 evidenceQuote(원문 인용)까지 실제 원문 텍스트에 포함되어 있는지 대조해, 근거 강도를 더
+    엄격하게 검증한다."""
+    valid_urls = set()
+    text_by_url = {}
+    for n in slim["news"] + slim["china_news"]:
+        url = n.get("url")
+        if not url:
+            continue
+        key = _norm(url)
+        valid_urls.add(key)
+        text_by_url[key] = f"{n.get('title', '')} {n.get('summary', '')}"
+    for p in slim["patents"]:
+        url = p.get("url")
+        if not url:
+            continue
+        key = _norm(url)
+        valid_urls.add(key)
+        text_by_url[key] = f"{p.get('headline', '')} {p.get('painPoint', '')} {p.get('solution', '')}"
+    vehicle_fields = ("name", "batterySpec", "cellMaker", "qcPerformance", "rangePerformance", "cellComposition")
+    vehicle_text = " ".join(
+        " ".join(str(v.get(f) or "") for f in vehicle_fields)
+        for v in slim["vehicles"]
+    )
+    return valid_urls, text_by_url, vehicle_text
+
+
+def _is_grounded_benchmarking_item(item: dict, valid_urls: set, text_by_url: dict, vehicle_text: str) -> bool:
+    """url이 있으면 입력 데이터의 url 집합에 실제로 존재하는지, evidenceQuote가 있으면 그 url의 원문
+    (또는 url이 없는 신차 스펙 항목이면 차량 스펙 텍스트) 안에 실제로 등장하는지 대조한다. url이 지어낸
+    값이면 무조건 폐기하고, evidenceQuote는 모델이 아직 채워 넣지 않은 구버전 응답과의 호환을 위해
+    값이 있을 때만 엄격히 검증한다(값 자체가 없다고 무조건 폐기하면 과도하게 결과가 줄어들 수 있음)."""
+    url = (item.get("url") or "").strip()
+    quote = _norm(item.get("evidenceQuote") or "")
+    if url:
+        key = _norm(url)
+        if key not in valid_urls:
+            return False  # 모델이 지어낸 url이거나 입력에 없던 근거 -> 폐기
+        if quote and quote not in _norm(text_by_url.get(key, "")):
+            return False  # 인용문이 해당 원문에 실제로 없음 -> 폐기
+        return True
+    if quote:
+        return quote in _norm(vehicle_text)  # 신차 스펙 기반 항목: 차량 스펙 텍스트 안에 인용문이 있는지 확인
+    return True
+
+
 def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: list, china_news: list, patent_trends: dict | None) -> dict | None:
     """오늘 확보된 신차/뉴스/China뉴스/특허 데이터를 근거로 "벤치마킹 포인트" 카드를 생성한다.
     실패 시 None을 반환하며, 호출부에서는 어제 버전을 그대로 유지한다."""
     if not vehicles and not news and not china_news and not (patent_trends or {}).get("categories"):
         print("벤치마킹 포인트: 근거로 쓸 데이터(신차/뉴스/China뉴스/특허)가 하나도 없어 건너뜁니다.")
         return None
+    slim = _slim_benchmarking_inputs(vehicles, news, china_news, patent_trends)
+    valid_urls, text_by_url, vehicle_text = _build_benchmarking_evidence_index(slim)
     prompt = build_benchmarking_prompt(vehicles, news, china_news, patent_trends)
     print(f"벤치마킹 포인트 프롬프트 생성 완료 (길이 {len(prompt)}자)")
     try:
@@ -2060,14 +2141,22 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
             print(f"벤치마킹 포인트 응답에 유효한 categories가 없어 건너뜁니다. (payload keys: {list(payload.keys())})")
             return None
         cleaned_categories = []
+        total_before, total_after = 0, 0
         for cat in categories:
             if not isinstance(cat, dict):
                 continue
             items = [item for item in (cat.get("items") or []) if isinstance(item, dict) and item.get("headline")]
+            total_before += len(items)
+            # (A) 코드 레벨 근거 검증: url이 입력 데이터에 실제로 없거나, evidenceQuote가 해당 원문에
+            # 없는 항목(모델의 지어낸 근거)은 폐기한다. 특허 트렌드 카드의 _is_valid_item()과 동일한 목적.
+            items = [item for item in items if _is_grounded_benchmarking_item(item, valid_urls, text_by_url, vehicle_text)]
+            total_after += len(items)
             if items:
                 cleaned_categories.append({"name": cat.get("name") or "벤치마킹 포인트", "items": items})
+        if total_before != total_after:
+            print(f"벤치마킹 포인트: 근거 검증 실패로 {total_before - total_after}건 폐기 ({total_before} -> {total_after}건)")
         if not cleaned_categories:
-            print("벤치마킹 포인트: 카테고리는 있었지만 유효한 item(headline 포함)이 하나도 없어 건너뜁니다.")
+            print("벤치마킹 포인트: 카테고리는 있었지만 유효한 item(headline 포함 + 근거 검증 통과)이 하나도 없어 건너뜁니다.")
             return None
         print(f"벤치마킹 포인트 생성 완료 (카테고리 {len(cleaned_categories)}개, 총 항목 {sum(len(c['items']) for c in cleaned_categories)}건)")
         return {
