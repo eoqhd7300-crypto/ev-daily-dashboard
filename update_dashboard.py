@@ -1400,8 +1400,19 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
         response = client.models.generate_content(
             model=MODEL_NAME,
             contents=build_news_briefing_prompt(news_items),
+            config=types.GenerateContentConfig(
+                thinking_config=types.ThinkingConfig(thinking_budget=0),
+                max_output_tokens=8192,
+            ),
         )
-        payload = extract_json(response.text)
+        finish_reason = None
+        try:
+            finish_reason = response.candidates[0].finish_reason
+        except Exception:  # noqa: BLE001 - 진단 목적의 부가 정보이므로 실패해도 무시
+            pass
+        response_text = response.text or ""
+        print(f"뉴스 브리핑 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
+        payload = extract_json(response_text)
         if not isinstance(payload, dict):
             return None
         categories = payload.get("categories")
@@ -1430,7 +1441,7 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
             "implications": payload.get("implications") if isinstance(payload.get("implications"), str) else "",
         }
     except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
-        print(f"뉴스 브리핑(카테고리/시사점) 생성 실패, 건너뜁니다: {exc}")
+        print(f"뉴스 브리핑(카테고리/시사점) 생성 실패, 건너뜁니다: {type(exc).__name__}: {exc}")
         return None
 
 
@@ -1450,8 +1461,22 @@ def generate_china_news(client: "genai.Client", old_news: list | None = None) ->
         response = client.models.generate_content(
             model=MODEL_NAME,
             contents=build_china_news_summary_prompt(raw_items),
+            config=types.GenerateContentConfig(
+                # 특허 트렌드 카드에서 실측 확인된 문제(thinking 모델의 내부 추론 토큰이 출력 예산을 잠식해
+                # 응답이 중간에 잘려 JSON 파싱이 실패하는 현상)이 이 호출에도 동일하게 발생할 수 있어
+                # thinking을 끄고 max_output_tokens도 넘널하 잡아둠다.
+                thinking_config=types.ThinkingConfig(thinking_budget=0),
+                max_output_tokens=8192,
+            ),
         )
-        summarized = extract_json(response.text)
+        finish_reason = None
+        try:
+            finish_reason = response.candidates[0].finish_reason
+        except Exception:  # noqa: BLE001 - 진단 목적의 부가 정보이므로 실패해도 무시
+            pass
+        response_text = response.text or ""
+        print(f"China 뉴스 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
+        summarized = extract_json(response_text)
         if isinstance(summarized, list):
             for entry in summarized:
                 if not isinstance(entry, dict) or not entry.get("url"):
@@ -1471,7 +1496,7 @@ def generate_china_news(client: "genai.Client", old_news: list | None = None) ->
                     }
                 )
     except Exception as exc:  # noqa: BLE001
-        print(f"China 뉴스 선별/번역 생성 실패: {exc}")
+        print(f"China 뉴스 선별/번역 생성 실패: {type(exc).__name__}: {exc}")
 
     # 번역 호출 자체가 통째로 실패한 경우(selected가 비어있음)에는, 최신 기사가 아예 안 보이는 것보다는
     # 영어 원문이라도 노출하는 편이 낫다 - "translated": False로 표시해 두면, merge_china_news()가
@@ -1520,8 +1545,19 @@ def generate_china_news(client: "genai.Client", old_news: list | None = None) ->
                 retry_response = client.models.generate_content(
                     model=MODEL_NAME,
                     contents=build_china_news_retranslate_prompt(retry_candidates),
+                    config=types.GenerateContentConfig(
+                        thinking_config=types.ThinkingConfig(thinking_budget=0),
+                        max_output_tokens=8192,
+                    ),
                 )
-                retried = extract_json(retry_response.text)
+                retry_finish_reason = None
+                try:
+                    retry_finish_reason = retry_response.candidates[0].finish_reason
+                except Exception:  # noqa: BLE001
+                    pass
+                retry_response_text = retry_response.text or ""
+                print(f"재번역 응답 수신 완료 (finish_reason={retry_finish_reason}, 응답 길이 {len(retry_response_text)}자)")
+                retried = extract_json(retry_response_text)
                 stuck_by_key = {_norm(n.get("url") or ""): n for n in stuck}
                 upgraded = 0
                 if isinstance(retried, list):
@@ -1545,7 +1581,7 @@ def generate_china_news(client: "genai.Client", old_news: list | None = None) ->
                         upgraded += 1
                 print(f"재번역 완료: {upgraded}건 한국어로 업그레이드")
             except Exception as exc:  # noqa: BLE001
-                print(f"재번역 재시도 실패, 다음 실행에서 다시 시도합니다: {exc}")
+                print(f"재번역 재시도 실패, 다음 실행에서 다시 시도합니다: {type(exc).__name__}: {exc}")
 
     return selected
 
@@ -1558,8 +1594,19 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
         response = client.models.generate_content(
             model=MODEL_NAME,
             contents=build_china_news_briefing_prompt(news_items),
+            config=types.GenerateContentConfig(
+                thinking_config=types.ThinkingConfig(thinking_budget=0),
+                max_output_tokens=8192,
+            ),
         )
-        payload = extract_json(response.text)
+        finish_reason = None
+        try:
+            finish_reason = response.candidates[0].finish_reason
+        except Exception:  # noqa: BLE001 - 진단 목적의 부가 정보이므로 실패해도 무시
+            pass
+        response_text = response.text or ""
+        print(f"China 뉴스 브리핑 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
+        payload = extract_json(response_text)
         if not isinstance(payload, dict):
             return None
         categories = payload.get("categories")
@@ -1587,7 +1634,7 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
             "implications": payload.get("implications") if isinstance(payload.get("implications"), str) else "",
         }
     except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
-        print(f"China 뉴스 브리핑(카테고리/시사점) 생성 실패, 건너뜁니다: {exc}")
+        print(f"China 뉴스 브리핑(카테고리/시사점) 생성 실패, 건너뜁니다: {type(exc).__name__}: {exc}")
         return None
 
 
