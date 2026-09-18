@@ -21,7 +21,8 @@
 - **글로벌 EV & 배터리 최신 동향 리포트**: Google News RSS 수집 기사를 Gemini가 카테고리별로 선별·요약한 브리핑 카드
 - **China EV & 배터리 최신 동향 리포트**: CnEVPost·CarNewsChina RSS 수집 기사를 Gemini가 선별·번역·요약한 브리핑 카드 (번역 실패 시 원문 영어로 노출되며 "Translation coming soon" 배지 표시)
 - **CATL·BYD·Geely 배터리 특허 동향**: BigQuery 공개 특허 데이터셋(`patents-public-data.patents.publications`) 조회 결과를 Gemini가 분석(문제점/해결원리/청구항 기반 정량적 설계 기준 요약)한 브리핑 카드
-- **오늘의 리포트 PDF 다운로드**: 위 3개 브리핑 카드 + 상위 5개 신차 정보를 인쇄용 레이아웃으로 재구성해 브라우저 인쇄(Save as PDF) 기능으로 내보내기
+- **배터리 벤치마킹 포인트**: 이미 수집된 신차/국내·China 뉴스/특허 데이터를 근거로, 실무자가 사내에서 직접 확인해볼 만한 포인트를 AI가 추출해주는 카드. 특정 국내 업체와의 직접 비교/평가는 하지 않고(내부 데이터를 가지고 있지 않으므로), 항목마다 "사내 확인 질문"을 함께 제공해 실제 비교/검증은 실무자가 직접 진행하도록 설계되었습니다.
+- **오늘의 리포트 PDF 다운로드**: 위 4개 브리핑 카드(글로벌/China 뉴스, 특허 동향, 벤치마킹 포인트) + 상위 5개 신차 정보를 인쇄용 레이아웃으로 재구성해 브라우저 인쇄(Save as PDF) 기능으로 내보내기
 - **DB 히스토리**: 현재 차량 목록 상태를 브라우저 로컬스토리지에 스냅샷으로 저장/조회
 
 ### 2.2 뉴스 전체보기 (`news.html`)
@@ -40,11 +41,14 @@
 
 ### 2.6 데이터 자동 갱신 파이프라인 (`update_dashboard.py`)
 - 매일 실행되어 아래 데이터를 생성/갱신하고 `data.json`으로 저장합니다.
-  - 신차 스펙(Gemini 생성) — 기존 데이터와 모델 라인 단위로 병합해 중복 항목을 통합
+  - 신차 스펙(Gemini 생성) — 기존 차량명 목록을 프롬프트에 함께 전달해 중복 생성을 줄이고 신규 모델 발굴을 유도하며, 모델 라인 단위로 병합해 중복 항목을 통합(재탐색으로 새 정보가 확인되면 기존 값을 갱신, 빈 필드만 보강 — 정렬 순서는 유지)
   - 국내 뉴스(Google News RSS 수집 + Gemini 선별/요약)
-  - China 뉴스(CnEVPost·CarNewsChina RSS 수집 + Gemini 선별/번역/요약)
+  - China 뉴스(CnEVPost·CarNewsChina RSS 수집 + Gemini 선별/번역/요약, 번역 실패 시 원문 노출 후 다음 실행에서 재번역 시도)
   - 배터리 특허 동향(BigQuery 조회 + Gemini 분석, 주 1회 또는 수동 강제 갱신)
+  - 배터리 벤치마킹 포인트(위 데이터들을 근거로 Gemini가 추출)
   - 환율 정보
+- **중복 실행 방지**: `data.json`의 `generatedAt` 날짜가 오늘 날짜와 같으면(스케줄/수동 구분 없이) API 호출 없이 실행을 건너뜁니다 — 같은 날 스케줄+수동 중복 실행으로 무료 API 할당량이 두 배로 소모되는 것을 막기 위함입니다(강제 재실행은 `force_full_refresh` 옵션으로 가능).
+- **일시적 서버 오류 재시도**: Gemini API가 `503 UNAVAILABLE`(서버 과부하) 오류를 반환하면 30초 대기 후 1회 자동 재시도합니다(할당량 초과는 재시도하지 않고 즉시 기존 데이터를 유지).
 
 ## 3. 사용 기술 스택
 
@@ -63,7 +67,7 @@
 
 ### 자동화 / 배포
 - GitHub Actions
-  - `daily_update.yml`: 매일(KST 09:10) `update_dashboard.py` 실행 후 `data.json`을 자동 커밋/푸시 (수동 실행 + 특허 동향 강제 갱신 옵션 지원)
+  - `daily_update.yml`: 매일(KST 09:10) `update_dashboard.py` 실행 후 `data.json`을 자동 커밋/푸시 (수동 실행 + 특허 동향 강제 갱신/전체 강제 재실행 옵션 지원)
   - `deploy_pages.yml`: `master` 브랜치 변경 또는 위 자동 갱신 워크플로우 완료 시 GitHub Pages로 자동 배포
 - GitHub Pages — 정적 사이트 호스팅
 
@@ -111,11 +115,12 @@ EV-Daily Report by gemini/
 | `GEMINI_API_KEY` | 필수 | Google Gemini API 키. 설정되어 있지 않으면 `data.json` 갱신 자체를 건너뜁니다. |
 | `GCP_SA_KEY_JSON` | 선택 | BigQuery 조회용 GCP 서비스 계정 키의 JSON **내용 전체**(파일 경로가 아님). 설정되어 있지 않으면 특허 동향 조회만 건너뛰고 나머지 파이프라인은 정상 동작합니다. |
 | `FORCE_PATENT_REFRESH` | 선택 | `"true"`로 설정하면 요일과 무관하게 특허 동향을 즉시 재조회합니다(기본은 매주 월요일에만 조회). |
+| `FORCE_FULL_REFRESH` | 선택 | `"true"`로 설정하면 오늘 이미 갱신 이력이 있어도 강제로 다시 실행합니다(기본은 같은 날 중복 실행을 자동으로 건너뛰어 API 할당량을 절약). |
 
 ### GitHub Actions에서의 설정
 `daily_update.yml` 워크플로우는 위 값을 GitHub 저장소의 **Settings → Secrets and variables → Actions**에 등록된 시크릿에서 읽어옵니다.
 - `GEMINI_API_KEY`, `GCP_SA_KEY_JSON` 시크릿을 등록해야 합니다.
-- `FORCE_PATENT_REFRESH`는 시크릿이 아니라, Actions 탭에서 워크플로우를 수동 실행(`workflow_dispatch`)할 때 체크박스로 지정합니다.
+- `FORCE_PATENT_REFRESH`/`FORCE_FULL_REFRESH`는 시크릿이 아니라, Actions 탭에서 워크플로우를 수동 실행(`workflow_dispatch`)할 때 체크박스로 지정합니다.
 
 ### 로컬 실행 시 설정
 PowerShell 기준 예시:
