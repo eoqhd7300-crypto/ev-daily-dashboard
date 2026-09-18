@@ -16,6 +16,7 @@ import html
 import json
 import os
 import re
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
@@ -574,6 +575,34 @@ def build_china_news_briefing_prompt(news_items: list) -> str:
   "implications": "..."
 }}
 """
+
+
+def generate_content_with_retry(client: "genai.Client", max_attempts: int = 2, retry_delay_seconds: float = 30.0, **kwargs):
+    """client.models.generate_content()을 그대로 호출하되, Gemini 서버가 일시적으로 과부하를 야기할 때
+    나오는 일시적(transient) 오류(예: '503 UNAVAILABLE - This model is currently experiencing high
+    demand')를 짧은 대기 후 자동으로 재시도한다. 실측 확인된 사례(China 뉴스 번역 실패 원인이 할당량/
+    JSON 잘림이 아니라 이 503 오류였던 것)를 계기로 추가되었다. 할당량 초과(429) 등 일시적이
+    아닌 오류는 재시도해도 어차피 같은 결과가 나올 가능성이 높아 바로 남기고(fail-fast), 각 호출부의
+    기존 try/except fallback이 처리하도록 둔다. 기본값은 30초 대기 후 1회만 재시도(총 2회 시도)로,
+    불필요한 반복 호출을 최소화한다."""
+    transient_markers = ("503", "UNAVAILABLE", "overloaded", "high demand", "internal error", "500")
+    last_exc = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return client.models.generate_content(**kwargs)
+        except Exception as exc:  # noqa: BLE001 - 일시적 오류인지 판단해 재시도 여부를 결정해야 함
+            last_exc = exc
+            is_transient = any(marker.lower() in str(exc).lower() for marker in transient_markers)
+            if not is_transient or attempt == max_attempts:
+                raise
+            print(
+                f"Gemini 호출 일시적 오류({type(exc).__name__}), {retry_delay_seconds:.0f}초 후 재시도 "
+                f"({attempt}/{max_attempts}): {exc}"
+            )
+            time.sleep(retry_delay_seconds)
+    if last_exc is not None:
+        raise last_exc  # 도달 불가(로직상 미도달, 안전장치)
+    raise RuntimeError("generate_content_with_retry: 예기치 못한 흐름")
 
 
 def extract_json(text):
@@ -1230,7 +1259,8 @@ def backfill_tier1_specs(client: "genai.Client", vehicles: list, today_str: str)
         return 0
 
     try:
-        response = client.models.generate_content(
+        response = generate_content_with_retry(
+            client,
             model=MODEL_NAME,
             contents=build_spec_backfill_prompt(candidates),
         )
@@ -1318,7 +1348,8 @@ def merge_china_news(old_news: list, new_news: list) -> list:
 
 def generate_vehicles(client: "genai.Client", today_str: str, launch_hints: list | None = None, existing_names: list | None = None) -> list:
     try:
-        response = client.models.generate_content(
+        response = generate_content_with_retry(
+            client,
             model=MODEL_NAME,
             contents=build_vehicle_prompt(today_str, launch_hints, existing_names),
         )
@@ -1343,7 +1374,8 @@ def generate_news(client: "genai.Client") -> list:
 
     selected = []
     try:
-        response = client.models.generate_content(
+        response = generate_content_with_retry(
+            client,
             model=MODEL_NAME,
             contents=build_news_summary_prompt(raw_items),
         )
@@ -1397,7 +1429,8 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
     if not news_items:
         return None
     try:
-        response = client.models.generate_content(
+        response = generate_content_with_retry(
+            client,
             model=MODEL_NAME,
             contents=build_news_briefing_prompt(news_items),
             config=types.GenerateContentConfig(
@@ -1458,7 +1491,8 @@ def generate_china_news(client: "genai.Client", old_news: list | None = None) ->
 
     selected = []
     try:
-        response = client.models.generate_content(
+        response = generate_content_with_retry(
+            client,
             model=MODEL_NAME,
             contents=build_china_news_summary_prompt(raw_items),
             config=types.GenerateContentConfig(
@@ -1542,7 +1576,8 @@ def generate_china_news(client: "genai.Client", old_news: list | None = None) ->
                     }
                     for n in stuck
                 ]
-                retry_response = client.models.generate_content(
+                retry_response = generate_content_with_retry(
+                    client,
                     model=MODEL_NAME,
                     contents=build_china_news_retranslate_prompt(retry_candidates),
                     config=types.GenerateContentConfig(
@@ -1591,7 +1626,8 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
     if not news_items:
         return None
     try:
-        response = client.models.generate_content(
+        response = generate_content_with_retry(
+            client,
             model=MODEL_NAME,
             contents=build_china_news_briefing_prompt(news_items),
             config=types.GenerateContentConfig(
@@ -1814,7 +1850,8 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
     prompt = build_patent_trend_prompt(patents)
     print(f"특허 트렌드 프롬프트 생성 완료 ({len(patents)}건, 프롬프트 길이 {len(prompt)}자)")
     try:
-        response = client.models.generate_content(
+        response = generate_content_with_retry(
+            client,
             model=MODEL_NAME,
             contents=prompt,
             config=types.GenerateContentConfig(
@@ -2001,7 +2038,8 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
     prompt = build_benchmarking_prompt(vehicles, news, china_news, patent_trends)
     print(f"벤치마킹 포인트 프롬프트 생성 완료 (길이 {len(prompt)}자)")
     try:
-        response = client.models.generate_content(
+        response = generate_content_with_retry(
+            client,
             model=MODEL_NAME,
             contents=prompt,
             config=types.GenerateContentConfig(temperature=0.2),
