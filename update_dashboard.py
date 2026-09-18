@@ -2003,9 +2003,24 @@ def main() -> None:
     now_kst = datetime.now(KST)
     today_str = now_kst.strftime("%Y-%m-%d")
 
+    existing = load_existing_data()
+
+    # 스케줄(매일 09:10 KST)과 수동 실행(workflow_dispatch)이 같은 날 중복으로 돌면 무료 Gemini
+    # 할당량을 두 배로 소비하게 된다. data.json의 generatedAt이 이미 오늘 날짜면(스케줄이든 수동이든
+    # 상관없이) 오늘치 갱신이 끝난 것으로 보고 건너뛴다. FORCE_FULL_REFRESH=true면 이 스킵을 무시하고
+    # 강제로 다시 실행한다(workflow_dispatch의 force_full_refresh 입력에 연결됨).
+    force_full_refresh = os.environ.get("FORCE_FULL_REFRESH", "").strip().lower() == "true"
+    last_generated_at = existing.get("generatedAt") or ""
+    if not force_full_refresh and last_generated_at[:10] == today_str:
+        print(
+            f"오늘({today_str}) 이미 데이터가 갱신된 이력이 있어(generatedAt={last_generated_at}) "
+            "중복 API 소비를 막기 위해 이번 실행은 건너뜁니다. "
+            "(강제로 다시 실행하려면 workflow_dispatch의 force_full_refresh 옵션을 체크하세요.)"
+        )
+        return
+
     client = genai.Client(api_key=api_key)
 
-    existing = load_existing_data()
     fx = fetch_fx_rates(existing.get("fx"))
 
     # 신차 놓침 방지용 힌트(무료 RSS만 사용, Gemini 호출 없음 - API 할당량 소모 없음). 실패해도
