@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-23T13:37:03.191427+09:00",
+  "generatedAt": "2026-09-24T13:35:56.544882+09:00",
   "vehicles": [
     {
       "id": "nio_flagship_es9_2026",
@@ -963,14 +963,14 @@
       "packInfo": "900V 스와핑 겸용 모듈러 고밀도 팩",
       "cellInfo": "CALB 46105 High-Power Cylindrical Cell",
       "chargingSafety": "3분 탈착 시 자동 커넥터 안전 점검 및 900V 수냉 내열 플레이트",
-      "trim": "Ultra-Luxury",
+      "trim": "Executive",
       "topSpeed": "220 km/h",
       "zeroToHundred": "3.6초",
-      "maxOutput": "520 kW (707 ps)",
+      "maxOutput": "520 kW",
       "maxChargePower": "600 kW",
       "packVoltage": "900V",
-      "packType": "CTP (Cell-to-Pack)",
-      "cellType": "46105 Large Cylindrical",
+      "packType": "CTP (Swappable Pack)",
+      "cellType": "46105 Cylindrical Cell",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -985,7 +985,7 @@
       "cellDimensionsMeasured": "ø46mm × 105mm",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "292 Wh/kg",
-      "specLastCheckedAt": "2026-09-09"
+      "specLastCheckedAt": "2026-09-24"
     },
     {
       "id": "volvo_ex60_spa3_2026",
@@ -1295,11 +1295,11 @@
       "trim": "Standard Range",
       "topSpeed": "155km/h",
       "zeroToHundred": "8.1초",
-      "maxOutput": "120 kW (163 ps)",
+      "maxOutput": "120 kW",
       "maxChargePower": "130 kW",
-      "packVoltage": "400 V",
+      "packVoltage": "400V",
       "packType": "Modular Pack",
-      "cellType": "Prismatic",
+      "cellType": "LFP Prismatic Cell",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -1314,7 +1314,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-10",
+      "specLastCheckedAt": "2026-09-24",
       "cellMakerCheckedAt": "2026-09-10"
     },
     {
@@ -3788,7 +3788,7 @@
     },
     {
       "title": "LG엔솔 폴란드 브로츠와프 공장 확장…대규모 ESS용 배터리 생산 준비 - 더구루",
-      "summary": "LG엔솔 폴란드 브로츠와프 공장 확장…대규모 ESS용 배터리 생산 준비    더구루",
+      "summary": "LG에너지솔루션이 폴란드 브로츠와프 배터리 공장의 생산 라인을 확장해 대용량 ESS용 배터리 셀 및 모듈 양산 준비를 본격화합니다.",
       "source": "더구루",
       "date": "2026-09-23",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE0xbElVdXhfZ1RqdkR5dXpSUkk2bWhmWjhLMm55cmxPNWgtOXFzZDJkUnp0N0hDaFZ6bGF2UXhsd2NkTEs3d0FDOFRCT1NKOGdxd2FsTy0zOGpnSS1wTV8wYzNjSQ?oc=5",
@@ -3923,7 +3923,7 @@
     },
     {
       "title": "LG전자·SK엔무브, ‘차세대 냉각’ 맞손…ESS·전기차까지 영토 넓힌다 - 디지틀조선TV",
-      "summary": "LG전자·SK엔무브, ‘차세대 냉각’ 맞손…ESS·전기차까지 영토 넓힌다    디지틀조선TV",
+      "summary": "LG전자와 SK엔무브가 전기차 배터리 및 ESS의 발열 제어를 위한 차세대 액침냉각(Immersion Cooling) 솔루션 개발에 협력합니다.",
       "source": "디지틀조선TV",
       "date": "2026-09-23",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOTDVNNGNMNlQxeWlfUk1ZNUVSMkhRTkh2dGR2T0tCLVZPX2xadnB6aG9VUi1EMVJLQzRIZ3QyMkRmdTlfTXVXLWZIWTlvV3FmZloxRUg0eGFYSEpaejNFbHlZVWpLbkFLTkZXT1lfSFF6c3NKQk9MdHNmakpTM2FObXcyQkxJQQ?oc=5",
@@ -3941,10 +3941,10 @@
     }
   ],
   "fx": {
-    "usdKrw": 1353.7,
-    "eurKrw": 1550.27,
-    "cnyKrw": 201.64,
-    "updatedAt": "2026-09-23T13:37:03.444013+09:00"
+    "usdKrw": 1364.77,
+    "eurKrw": 1555.52,
+    "cnyKrw": 203.01,
+    "updatedAt": "2026-09-24T13:35:56.684334+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
@@ -4212,6 +4212,56 @@
   },
   "chinaNews": [
     {
+      "title": "IM Motors launches next-gen LS6 from $29,320 with up to 782 km range",
+      "summary": "The next-generation LS6 comes standard with a by-wire chassis and an 800-volt platform, taking on the Tesla Model Y and Zeekr 7X. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-09-24",
+      "url": "https://cnevpost.com/2026/09/24/im-motors-launches-next-gen-ls6-suv/",
+      "linkType": "rss",
+      "translated": false,
+      "id": 1
+    },
+    {
+      "title": "GAC-Huawei brand Aistaland launches GX7, targeting extended-range SUV market",
+      "summary": "The GX7 is Aistaland's second model, with a limited-time starting price of 229,900 yuan ($34,060). For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-09-24",
+      "url": "https://cnevpost.com/2026/09/24/aistaland-launches-gx7/",
+      "linkType": "rss",
+      "translated": false,
+      "id": 2
+    },
+    {
+      "title": "Geely launches updated Galaxy E5, adding LiDAR and 6C charging to key electric SUV",
+      "summary": "The updated Geely Galaxy E5 starts at a limited-time price of 97,800 yuan ($14,490) in China and can charge from 10% to 70% in as little as 8 minutes and 25 seconds. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-09-24",
+      "url": "https://cnevpost.com/2026/09/24/geely-launches-updated-galaxy-e5/",
+      "linkType": "rss",
+      "translated": false,
+      "id": 3
+    },
+    {
+      "title": "Chinese automakers could sell 1.7 million vehicles a year in US by 2038 if allowed in",
+      "summary": "Chinese automakers could capture 11% of annual US new car sales by 2038 if allowed into the market, according to Mobility Global. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-09-24",
+      "url": "https://cnevpost.com/2026/09/24/chinese-automakers-could-sell-1-7-million-vehicles-us-2038/",
+      "linkType": "rss",
+      "translated": false,
+      "id": 4
+    },
+    {
+      "title": "Geely EX5 launches in China: now featuring 6C fast charging and a 114 hp power boost",
+      "summary": "New Geely EX5 hits the market with 6C charging capability and 114 hp performance upgrade. The post Geely EX5 launches in China: now featuring 6C fast charging and a 114 hp power boost appeared first on CarNewsChina.com .",
+      "source": "CarNewsChina",
+      "date": "2026-09-24",
+      "url": "https://carnewschina.com/2026/09/24/geely-ex5-launches-in-china-now-featuring-6c-fast-charging-and-a-114-hp-power-boost/",
+      "linkType": "rss",
+      "translated": false,
+      "id": 5
+    },
+    {
       "title": "BYD, 국경절 연휴 전 고속도로 초고속 충전소 2,000곳 구축 조기 완료 예정",
       "summary": "BYD가 당초 연말 목표였던 고속도로 초고속 충전소 2,000곳 구축을 계획보다 약 3달 앞당겨 9월 24일에 완료하고 가동에 들어갑니다.",
       "source": "CnEVPost",
@@ -4219,196 +4269,146 @@
       "url": "https://cnevpost.com/2026/09/23/byd-to-finish-2000-highway-flash-charging-stations/",
       "linkType": "rss",
       "translated": true,
-      "id": 1
-    },
-    {
-      "title": "현대차, 중국 맞춤형 전기 세단 '아이오닉 V' 29일 출격… pre-sale가 1,700만 원대부터",
-      "summary": "현대차가 중국 시장 전용 전기 세단인 아이오닉 V를 9월 29일 정식 출시합니다. 사전 판매가는 11만 9,900위안(약 17,770달러)부터 시작합니다.",
-      "source": "CnEVPost",
-      "date": "2026-09-22",
-      "url": "https://cnevpost.com/2026/09/22/hyundai-ioniq-v-sept-29-launch-china/",
-      "linkType": "rss",
-      "translated": true,
-      "id": 2
-    },
-    {
-      "title": "FAW 홍치, 800V 고전압 시스템 탑재 '천궁 07' 사전 예약 개시",
-      "summary": "중국 FAW의 프리미엄 브랜드 홍치가 800V 고전압 아키텍처를 기반으로 한 신형 전기차 '천궁 07'의 사전 판매를 시작했습니다.",
-      "source": "CarNewsChina",
-      "date": "2026-09-22",
-      "url": "https://carnewschina.com/2026/09/22/faws-hongqi-tiangong-07-opens-pre-sales-in-china-800-v-architecture-starting-from-25000-usd/",
-      "linkType": "rss",
-      "translated": true,
-      "id": 3
-    },
-    {
-      "title": "보야, 프리미엄 MPV 시장 겨냥한 '드림 9' 출시… 해외 우핸들 시장 진출",
-      "summary": "동풍자동차의 프리미엄 브랜드 보야가 신형 MPV '드림 9'을 중국에 출시했으며, 오는 11월부터 해외 우핸들 시장 공략에 나섭니다.",
-      "source": "CnEVPost",
-      "date": "2026-09-22",
-      "url": "https://cnevpost.com/2026/09/22/voyah-launches-dream-9-mpv/",
-      "linkType": "rss",
-      "translated": true,
-      "id": 4
-    },
-    {
-      "title": "지커, 글로벌 영토 확장 가속… 중동 UAE향 '지커 9X' 대량 출하 시작",
-      "summary": "지커가 글로벌 시장 공략의 일환으로 중동 아랍에미리트(UAE)에 대형 전기 SUV '지커 9X'의 양산 물량 인도 및 출하를 본격화했습니다.",
-      "source": "CnEVPost",
-      "date": "2026-09-22",
-      "url": "https://cnevpost.com/2026/09/22/zeekr-begins-volume-shipments-9x-uae/",
-      "linkType": "rss",
-      "translated": true,
-      "id": 5
-    },
-    {
-      "title": "CATL, 헝가리 100GWh 배터리 공장 시운전 및 셀 시제품 생산 돌입",
-      "summary": "CATL이 헝가리 데브레첸의 100GWh 규모 배터리 공장에서 인허가를 마치고 배터리 셀 시운전 및 시험 생산을 시작했습니다. 완공 시 중국 외 최대 규모의 생산 거점이 될 전망입니다.",
-      "source": "CnEVPost",
-      "date": "2026-09-22",
-      "url": "https://cnevpost.com/2026/09/22/catl-begins-trial-cell-production-hungary-plant/",
-      "linkType": "rss",
-      "translated": true,
       "id": 6
     },
     {
-      "title": "BYD, 생산량 급증 및 수출 호조에 시안 공장서 8천 명 대규모 채용",
-      "summary": "BYD가 전기차 생산 확대와 수출 물량 증가에 대응하기 위해 시안 생산 거점 내 여러 공장에 걸쳐 8,000명 이상의 인력을 대규모 채용합니다.",
+      "title": "Geely takes on BYD with system charging EVs to 70% in 4.5 minutes",
+      "summary": "Geely's system took just 4 minutes and 30 seconds to charge from 10% to 70% in real-world tests, beating BYD's 5 minutes. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-22",
-      "url": "https://cnevpost.com/2026/09/22/byd-launches-mass-hiring-xian-production-base/",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/geely-takes-on-byd-charging/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 7
     },
     {
-      "title": "리상, 전고체 배터리 상용화 로드맵 공개… 2027~2028년 소량 적용 전망",
-      "summary": "리상이 전고체 배터리 양산 프로젝트를 진행 중이며, 2027년 또는 2028년부터 양산 차량에 소량으로 적용 통합을 시작할 계획입니다.",
+      "title": "BYD Denza launches Z9S electric sedan with range of up to 1,100 km",
+      "summary": "The Denza Z9S starts at 255,800 yuan ($37,910), 64,000 yuan lower than its pre-sales price. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-22",
-      "url": "https://cnevpost.com/2026/09/22/li-auto-solid-state-battery-limited-vehicle-use-2027-2028/",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/denza-launches-z9s-electric-sedan/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 8
     },
     {
-      "title": "중국 관영매체, '탈CATL' 프레임 경계… 완성차-배터리 공급망 갈등설 일축",
-      "summary": "중국 공신부 산하 매체가 완성차 업체들의 배터리 공급망 다변화를 배터리사와의 대립 구도로 해석하는 것을 경계하며 가격 경쟁 심화를 경고했습니다.",
+      "title": "Nio opens its first fully solar-powered battery swap station in China",
+      "summary": "The battery swap station in Xinjiang uses solar power and energy storage to operate off-grid. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-22",
-      "url": "https://cnevpost.com/2026/09/22/china-state-media-rebuts-de-catlization/",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/nio-opens-1st-fully-solar-powered-swap-station/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 9
     },
     {
-      "title": "BYD, 차체 키우고 라이다 탑재한 2세대 '시걸' 스케치 및 실물 공개",
-      "summary": "BYD가 차체 길이를 425mm 늘리고 휠베이스 확장을 거친 2세대 시걸의 디자인을 공개했습니다. 신형 시걸은 라이다 옵션을 갖추고 곧 내수 시장에 출격합니다.",
+      "title": "China NEV retail sales fall 9% in first 20 days of September, outperforming broader market",
+      "summary": "NEV retail sales totaled 596,000 from September 1-20, accounting for 67.9% of passenger car retail sales. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-22",
-      "url": "https://cnevpost.com/2026/09/22/byd-teases-2nd-gen-seagull-design-sketches/",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/china-nev-retail-sales-fall-first-20-days-sept/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 10
     },
     {
-      "title": "BYD 차세대 '한' 세단 포착… 라이다 탑재 및 드래곤 페이스 적용",
-      "summary": "BYD의 차세대 '한' 세단 시험주행차가 라이다를 탑재한 상태로 중국에서 포착되었으며, 엔트리 라인업으로서 약 20만 위안에 판매될 예정입니다.",
-      "source": "CarNewsChina",
-      "date": "2026-09-22",
-      "url": "https://carnewschina.com/2026/09/22/next-generation-byd-han-sedan-spotted-in-china-with-lidar-and-dragon-face/",
+      "title": "Buick refreshes Electra E7 after just 5 months, adding features and power",
+      "summary": "The refreshed Buick Electra E7 arrives just 5 months after its initial rollout, underscoring pressure on joint-venture brands to catch up in China. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/buick-refreshes-electra-e7-china/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 11
     },
     {
-      "title": "중국 차량용 반도체 기업 세미드라이브, 신규 자금 조달 성공",
-      "summary": "누적 1,400만 개 이상의 차량용 칩을 출하하고 중국 완성차 업체 90% 이상에 공급하는 반도체 스타트업 세미드라이브가 추가 투자 유치에 성공했습니다.",
+      "title": "Nio extends HERE partnership beyond Firefly to full European lineup",
+      "summary": "The companies will explore technologies supporting NOA and Nio World Model, laying the groundwork for future assisted driving capabilities in Europe. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-21",
-      "url": "https://cnevpost.com/2026/09/21/semidrive-secures-fresh-funding/",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/nio-extends-here-partnership-full-european-lineup/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 12
     },
     {
-      "title": "Nio flagship ES9 set to hit 30,000 deliveries this week in milestone for premium lineup",
-      "summary": "ES9 cumulative deliveries are expected to reach 30,000 this week, after hitting 20,000 on August 8. For details, please visit CnEVPost (cnev.co).",
+      "title": "Li Auto moves 2026 i6 launch to late October, keeps early November deliveries",
+      "summary": "Li Auto said the adjustment aims to shorten customers' waits after ordering. Reservations were previously scheduled to open in late September. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-21",
-      "url": "https://cnevpost.com/2026/09/21/nio-es9-to-hit-30000-deliveries-this-week/",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/li-auto-moves-2026-i6-launch-to-late-oct/",
       "linkType": "rss",
       "translated": false,
       "id": 13
     },
     {
-      "title": "화웨이 합작 브랜드 럭스드, 신형 전기 SUV 'RX' 28일 공식 출시",
-      "summary": "화웨이 협력 브랜드 럭스드가 용량을 줄인 81kWh 배터리 옵션을 추가해 사전 판매가를 26만 9,800위안(약 39,980달러)으로 낮춘 신형 RX SUV를 9월 28일 출시합니다.",
+      "title": "Spy shots reveal new BYD Yangwang executive sedan as brand pushes further upmarket",
+      "summary": "The new model is said to measure about 5.5 meters long, with an estimated price above 2 million yuan ($296,440). For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-21",
-      "url": "https://cnevpost.com/2026/09/21/luxeed-to-launch-rx-sept-28/",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/spy-shots-byd-yangwang-executive-sedan/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 14
     },
     {
-      "title": "Nio adds new ES8 wheel package as deliveries stay strong 1 year after launch",
-      "summary": "The package includes upgraded wheels and brake calipers and costs 25,800 yuan ($3,820) for the entry-level variant. For details, please visit CnEVPost (cnev.co).",
+      "title": "BYD Thailand plant tops 100,000 vehicles just over 2 years after opening",
+      "summary": "The milestone vehicle was a BYD Atto 3, the company's first model introduced in Thailand. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-21",
-      "url": "https://cnevpost.com/2026/09/21/nio-adds-new-es8-wheel-package/",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/byd-thailand-plant-tops-100000-vehicles/",
       "linkType": "rss",
       "translated": false,
       "id": 15
     },
     {
-      "title": "리상, 자율주행 칩 자회사 150억 위안 가치로 투자 유치 추진",
-      "summary": "리상이 약 150억 위안(약 22억 2,000만 달러)의 기업 가치를 인정받아 자율주행 반도체 설계 자회사의 첫 외부 투자 유치를 진행 중입니다.",
+      "title": "Nio ES9 deliveries hit 30,000, with latest 10,000 taking 46 days",
+      "summary": "The latest milestone implies Nio delivered 5,503 ES9 SUVs so far in September. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-21",
-      "url": "https://cnevpost.com/2026/09/21/li-auto-chip-unit-pursue-first-funding-round/",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/nio-es9-deliveries-30000/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 16
     },
     {
-      "title": "폭스바겐 안후이, 샤오펑과 공동 개발한 2번째 전기 세단 'ID. UNYX 09' 공개",
-      "summary": "폭스바겐과 샤오펑이 협력하여 개발한 두 번째 전기차 모델인 ID. UNYX 09 세단이 공식 데뷔를 앞두고 있습니다.",
+      "title": "Nio Onvo adds $890 design package to boost L90's appeal",
+      "summary": "Onvo is seeking to boost the large electric SUV's appeal with exterior and interior updates. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-21",
-      "url": "https://cnevpost.com/2026/09/21/vw-anhui-sept-24-debut-id-unyx-09/",
+      "date": "2026-09-23",
+      "url": "https://cnevpost.com/2026/09/23/nio-onvo-adds-design-package-l90/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 17
     },
     {
-      "title": "지리자동차, 전기차·PHEV 3종 내세워 스위스 진출… 유럽 공략 가속",
-      "summary": "지리디스커버리가 스위스 시장에 순수전기차 E5, E2 및 플러그인 하이브리드 SUV 스타레이 EM-i를 동시에 선보이며 스위스 친환경차 시장 공략에 나섭니다.",
-      "source": "CnEVPost",
-      "date": "2026-09-21",
-      "url": "https://cnevpost.com/2026/09/21/geely-enters-switzerland/",
+      "title": "Geely challenges BYD with 2.2 MW charging technology",
+      "summary": "Geely unveils 2.2 MW charging system, outpacing BYD’s Flash Charge. The post Geely challenges BYD with 2.2 MW charging technology appeared first on CarNewsChina.com .",
+      "source": "CarNewsChina",
+      "date": "2026-09-23",
+      "url": "https://carnewschina.com/2026/09/23/geely-challenges-byd-with-2-2-mw-charging-technology/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 18
     },
     {
-      "title": "테슬라, 휴머노이드 로봇 '옵티머스' 양산 위해 중국 부품 공급망 실사",
-      "summary": "테슬라가 휴머노이드 로봇 옵티머스의 대량 생산을 목표로 중국 내 주요 부품 공급업체들의 감사 및 품질 점검을 진행하고 있습니다.",
-      "source": "CnEVPost",
-      "date": "2026-09-21",
-      "url": "https://cnevpost.com/2026/09/21/tesla-audits-china-suppliers-optimus-mass-production/",
+      "title": "Changan Nevo Q06 EV crossover started sales in China ahead of global rollout",
+      "summary": "The Changan Nevo Q06 started sales in China at 20,880 USD as a rival to the BYD Song Ultra. It boasts up to 443 hp and 574 km of WLTP range. The post Changan Nevo Q06 EV crossover started sales in China ahead of global rollout appeared first on CarNewsChina.com .",
+      "source": "CarNewsChina",
+      "date": "2026-09-23",
+      "url": "https://carnewschina.com/2026/09/23/changan-nevo-q06-ev-crossover-started-sales-in-china-ahead-of-global-rollout/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 19
     },
     {
-      "title": "지리 신형 EX5 공개… 329마력·70kWh 배터리로 CLTC 기준 635km 주행",
-      "summary": "지리 B세그먼트 전기 SUV 신형 EX5가 9월 23일 출시를 앞두고 공개되었습니다. 후륜구동 기반 329마력 출력을 발휘하며 70kWh 배터리를 탑재했습니다.",
+      "title": "BYD launches Denza Z9S in with world’s longest 1,100 km EV range, starting from 37,600 USD in China",
+      "summary": "BYD’s Denza Z9S launced: the 1,100 km range Tesla Model 3 challenger. The post BYD launches Denza Z9S in with world’s longest 1,100 km EV range, starting from 37,600 USD in China appeared first on CarNewsChina.com .",
       "source": "CarNewsChina",
-      "date": "2026-09-21",
-      "url": "https://carnewschina.com/2026/09/21/new-geely-ex5-revealed-officially-ahead-of-launch-on-september-23/",
+      "date": "2026-09-23",
+      "url": "https://carnewschina.com/2026/09/23/byd-launches-denza-z9s-in-with-worlds-longest-1100-km-range-starting-from-37600-usd-in-china/",
       "linkType": "rss",
-      "translated": true,
+      "translated": false,
       "id": 20
     }
   ],
@@ -4899,40 +4899,55 @@
   },
   "benchmarkingPoints": {
     "keyTakeaways": [
-      "중국 완성차 및 배터리 업체들은 5C급 초고속 충전 사양 탑재와 열교환 유로 통합 등 팩 구조 효율화를 가속화하고 있으며, 글로벌 생산 거점 구축 및 인프라·구독제 비즈니스 모델을 다각화하고 있음."
+      "중국 완성차 및 배터리 업계를 중심으로 5C급 초고속 충전, 900V 아키텍처, M3P/NCM 하이브리드 팩 등 고성능 사양이 신차에 빠르게 적용되고 있으며, 팩 내장형 열교환 유로 및 음극 소재 개선 특허 출원과 충전 인프라·소유권 분리 정책 논의가 동시에 추진되고 있다."
     ],
     "categories": [
       {
         "name": "글로벌 신차·배터리 스펙 벤치마킹",
         "items": [
           {
-            "headline": "Li Auto i9, CATL Qilin 5C 배터리 탑재로 10.5분 급속충전 구현",
-            "whyNotable": "CATL Qilin 5C NCM 배터리를 적용하여 5.2C Peak(최대 520kW) 급속충전 성능으로 SOC 10%에서 80%까지 약 10.5분이 소요됨. 102.5 kWh 용량의 배터리로 CLTC 기준 720km 주행거리를 확보함.",
+            "headline": "Li Auto i9, CATL Qilin 5C 배터리 탑재로 5.2C 급속충전 및 최대 520kW 출력 구현",
+            "whyNotable": "CATL의 Qilin 5C 배터리를 탑재하여 5.2C Peak 충전율과 최대 520kW 충전 출력을 달성하였으며, SOC 10%에서 80%까지 충전 소요 시간이 약 10.5분 수준이다. CLTC 720km 주행거리와 듀얼모터 AWD 400kW 출력을 지원한다.",
             "evidenceQuote": "5.2C Peak (최대 520kW) | SOC 10% → 80% (약 10.5분)",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 급속충전 시간은 SOC 10→80% 기준 몇 분대인지, 이 경쟁사 수치(약 10.5분)와 비교 확인 필요",
+            "internalCheckQuestion": "당사 급속충전 최고 출력 및 충전 시간은 kW 및 분 기준 얼마인지, 이 경쟁사 수치(최대 520kW / 약 10.5분)와 비교 확인 필요",
             "tags": [
               "#5C급속충전",
               "#Qilin배터리",
-              "#LiAuto"
+              "#520kW"
             ],
             "source": "理想 i9 (Li Auto i9)",
             "date": "2026-09-16",
             "url": ""
           },
           {
-            "headline": "NIO ES9, 900V 스왑형 패키지로 3분 교체 및 13분 급속충전 제공",
-            "whyNotable": "900V 아키텍처 기반 100.0 kWh 고밀도 스왑형 패키지를 적용해 4.0C Peak(최대 320kW) 충전으로 SOC 10%에서 80%까지 약 13분, 배터리 스왑은 3분이 소요됨.",
-            "evidenceQuote": "4.0C Peak (최대 320kW) | SOC 10% → 80% (약 13분, 배터리 스왑 3분)",
+            "headline": "NIO Flagship ES9, 900V 고전압 교체형 팩 및 4.0C 급속충전·3분 스왑 시스템 적용",
+            "whyNotable": "CALB의 NCM 셀을 기반으로 900V 전동화 아키텍처 및 100.0 kWh 교체형 팩을 적용하였다. 4.0C Peak(최대 320kW) 충전 시 SOC 10%에서 80%까지 약 13분이 소요되며, 배터리 스왑 방식을 이용할 경우 3분 만에 교체가 가능하다.",
+            "evidenceQuote": "100.0 kWh 900V High-Density Swappable Pack",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 배터리 스왑 시간은 분 기준 얼마인지, 이 경쟁사 수치(3분)와 비교 확인 필요",
+            "internalCheckQuestion": "당사 급속충전 및 배터리 교체 소요 시간은 분 기준 얼마인지, 이 경쟁사 수치(충전 약 13분 / 스왑 3분)와 비교 확인 필요",
             "tags": [
               "#900V",
               "#배터리스왑",
-              "#NIO"
+              "#CALB"
             ],
             "source": "니오 플래그십 ES9 (NIO Flagship ES9)",
             "date": "2026-09-21",
+            "url": ""
+          },
+          {
+            "headline": "Huawei-Chery Luxeed RX, CATL M3P/NCM 하이브리드 배터리 팩 및 3.5C 충전 적용",
+            "whyNotable": "CATL이 공급하는 82.0 kWh 용량의 M3P 및 NCM 하이브리드 배터리 팩을 탑재하였다. 800V 플랫폼 기반으로 3.5C Peak(최대 290kW) 급속 충전을 지원하며 SOC 10%에서 80%까지 약 15분이 소요된다.",
+            "evidenceQuote": "82.0 kWh M3P / NCM Hybrid Pack",
+            "factLevel": "직접 인용",
+            "internalCheckQuestion": "당사 하이브리드 배터리 팩 급속충전 소요 시간은 분 기준 얼마인지, 이 경쟁사 수치(약 15분)와 비교 확인 필요",
+            "tags": [
+              "#M3P하이브리드",
+              "#800V",
+              "#CATL"
+            ],
+            "source": "럭시드 RX 전기 SUV (Huawei-Chery Luxeed RX EV)",
+            "date": "2026-09-20",
             "url": ""
           }
         ]
@@ -4941,34 +4956,34 @@
         "name": "특허·기술 벤치마킹",
         "items": [
           {
-            "headline": "BYD, 유로 단면적 차이를 통한 냉매 유량 균일 분배 열교환기 특허 출원",
-            "whyNotable": "배터리 팩 내부 냉매 유량을 균일하게 제어하기 위해 유로 간 단면적 차이를 두어 유량 분배 및 집수 구조를 구성함. 냉매 흐름의 균일성을 높여 셀간 국소 과열을 방지하는 설계 방식임. (구체적 수치 미공개)",
-            "evidenceQuote": "첫 번째 유로의 단면적을 두 번째 유로의 단면적보다 크게 형성한 유량 분배 및 집수 구조를 구성하여 냉매 흐름 균일성을 확보합니다.",
-            "factLevel": "간접 서술",
-            "internalCheckQuestion": "당사 배터리 팩 냉매 유량 분배 편차는 % 기준 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
-            "tags": [
-              "#열관리",
-              "#냉매유량분배",
-              "#BYD특허"
-            ],
-            "source": "BYD",
-            "date": "2026-04-16",
-            "url": "https://patents.google.com/patent/DE112024002817T5/en"
-          },
-          {
-            "headline": "CATL, 엔드 플레이트 내장형 열교환 유로 케이스 기술 특허 출원",
-            "whyNotable": "엔드 플레이트와 패널 접합부 측면에 유체 유입구 및 유출구를 갖춘 열교환 유로를 직접 통합 형성함. 외부 쿨링 패드 추가 없이 구조를 단순화하여 팩 내 공간 활용성을 개선함. (구체적 수치 미공개)",
+            "headline": "CATL, 엔드 플레이트 내 열교환 유로를 직접 통합한 배터리 케이스 기술 출원",
+            "whyNotable": "외부 쿨링 패드 추가에 따른 부품 수 증가 및 열전달 효율 저하 문제를 해결하기 위해, 엔드 플레이트와 패널 접합부 측면에 유량 유입·유출구를 가진 열교환 유로를 구조적으로 직접 통합 설계하였다. 팩 내부 부품 자재 수를 줄이고 공간 활용도를 향상시키는 특허 구조이다. (구체적 수치 미공개)",
             "evidenceQuote": "엔드 플레이트와 패널 접합부 측면에 유체 유입구 및 유출구를 구비한 열교환 매체 유로를 직접 통합 형성하여 구조를 단순화합니다.",
-            "factLevel": "간접 서술",
-            "internalCheckQuestion": "당사 배터리 팩 엔드 플레이트 부품 통합 오차는 mm 기준 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
+            "factLevel": "직접 인용",
+            "internalCheckQuestion": "당사 배터리 팩 엔드 플레이트 열교환 통합 유로 적용 여부는 건 기준 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
             "tags": [
+              "#팩열관리",
               "#엔드플레이트",
-              "#통합열교환",
-              "#CATL특허"
+              "#유로통합"
             ],
             "source": "CATL",
             "date": "2026-04-15",
             "url": "https://patents.google.com/patent/EP4726888A1/en"
+          },
+          {
+            "headline": "CATL, 인조흑연 코어 및 무형탄소 코팅층 기반 음극 활물질 최적화 기술 출원",
+            "whyNotable": "충방전 시 발생하는 전극 팽창과 수명 저하를 억제하기 위해 인조흑연 코어 외부에 무형탄소 코팅층을 적용하고 입도 분포 파라미터를 제어하는 기술이다. 전극 밀도 증가와 계면 안정성 확보를 도모하고 있다. (구체적 수치 미공개)",
+            "evidenceQuote": "인조흑연 코어 표면에 무형탄소 코팅층을 형성하고 입도 분포 파라미터를 제어하여 전극 밀도와 계면 안정성을 향상시킵니다.",
+            "factLevel": "직접 인용",
+            "internalCheckQuestion": "당사 음극 활물질 입도 분포 및 코팅 제어 지표는 % 기준 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
+            "tags": [
+              "#음극활물질",
+              "#인조흑연",
+              "#무형탄소"
+            ],
+            "source": "CATL",
+            "date": "2026-04-15",
+            "url": "https://patents.google.com/patent/EP4725901A2/en"
           }
         ]
       },
@@ -4976,48 +4991,34 @@
         "name": "시장·공급망 동향 벤치마킹",
         "items": [
           {
-            "headline": "BYD, 고속도로 초고속 충전소 2,000곳 구축 3개월 조기 완료",
-            "whyNotable": "당초 연말 목표였던 고속도로 초고속 충전소 2,000곳 구축을 약 3개월 앞당겨 9월 24일에 완료함. 인프라 조기 확충을 통해 전기차 이용자의 충전 접근성을 보장하는 전략임.",
+            "headline": "BYD, 고속도로 초고속 충전소 2,000곳 구축 목표를 3개월 조기 달성",
+            "whyNotable": "당초 연말 목표였던 고속도로 초고속 충전 인프라 구축 계획을 약 3개월 단축하여 총 2,000곳의 초고속 충전소를 2026년 9월 24일까지 가동할 예정이다. 자체 완성차 및 배터리 공급망을 연계한 충전 거점 확보 전략을 실행 중이다.",
             "evidenceQuote": "고속도로 초고속 충전소 2,000곳 구축을 계획보다 약 3달 앞당겨 9월 24일에 완료하고 가동에 들어갑니다.",
-            "factLevel": "간접 서술",
-            "internalCheckQuestion": "당사 고속도로 전용 초고속 충전소 구축 수량은 개소 기준 얼마인지, 이 경쟁사 수치(2,000곳)와 비교 확인 필요",
+            "factLevel": "직접 인용",
+            "internalCheckQuestion": "당사 고속도로 초고속 충전 인프라 구축 수량은 곳 기준 얼마인지, 이 경쟁사 수치(2,000곳)와 비교 확인 필요",
             "tags": [
-              "#초고속충전인프라",
-              "#BYD"
+              "#BYD",
+              "#초고속충전소",
+              "#충전인프라"
             ],
             "source": "CnEVPost",
             "date": "2026-09-23",
             "url": "https://cnevpost.com/2026/09/23/byd-to-finish-2000-highway-flash-charging-stations/"
           },
           {
-            "headline": "CATL, 헝가리 100GWh 배터리 공장 시운전 및 시험 생산 개시",
-            "whyNotable": "헝가리 데브레첸에 구축한 100GWh 규모 배터리 공장에서 인허가를 마치고 셀 시운전 및 시험 생산을 시작함. 중국 외 지역 최대 규모의 배터리 생산 거점 가동을 추진함.",
-            "evidenceQuote": "헝가리 데브레첸의 100GWh 규모 배터리 공장에서 인허가를 마치고 배터리 셀 시운전 및 시험 생산을 시작했습니다.",
-            "factLevel": "간접 서술",
-            "internalCheckQuestion": "당사 유럽 거점 배터리 생산 케파는 GWh 기준 얼마인지, 이 경쟁사 수치(100GWh)와 비교 확인 필요",
-            "tags": [
-              "#유럽공급망",
-              "#CATL헝가리",
-              "#100GWh"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-09-22",
-            "url": "https://cnevpost.com/2026/09/22/catl-begins-trial-cell-production-hungary-plant/"
-          },
-          {
-            "headline": "국내 전기차 배터리 소유권 분리 제도화 및 구독제 도입 논의",
-            "whyNotable": "전기차 초기 구매 가격 인하를 목적으로 차량과 배터리 소유권을 분리하는 배터리 구독제 법제화 및 사업화 논의가 진행되고 있음. (구체적 수치 미공개)",
-            "evidenceQuote": "\"차값 반토막·배터리 구독 시대 연다\"…전기차 '소유권 분리' 판이 바뀐다",
+            "headline": "국내 전기차 배터리 소유권 분리 및 구독제 법제화 논의 본격 추진",
+            "whyNotable": "전기차 차량 본체와 배터리 소유권을 분리하는 배터리 구독제 및 리스 모델에 대한 국내 법제화 논의가 추진되고 있다. 초기 차량 구입 비용 절감 및 배터리 자산의 서비스화(BaaS)를 가능케 하는 법적 기반 조성이 논의 대상이다. (구체적 수치 미공개)",
+            "evidenceQuote": "\"전기차는 사고, 배터리는 빌린다\"…소유권 분리 법제화 논의 속도",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 양산 EV 라인업의 배터리 소유권 분리 모델 도입 비율은 % 기준 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
+            "internalCheckQuestion": "당사 배터리 소유권 분리 연계 모델 도입 준비율은 % 기준 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
             "tags": [
-              "#배터리구독제",
               "#소유권분리",
-              "#비즈니스모델"
+              "#배터리구독제",
+              "#BaaS"
             ],
-            "source": "비즈월드",
+            "source": "피플투데이",
             "date": "2026-09-23",
-            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5YQUZlbC1RMkFGWWVGRXJVMjlIYzRoM0F1M19WV2V3bWs3T080QmhETzlIWEVoYTNnYWQyWHdjRkJPeWxtd2dWMzlwY2xKYmhoMFFReXZheUlvaFpXQUpTcFFJUTRIbldzekE?oc=5"
+            "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9sWHlvY1lsZG9JWlhtcFJzMWkzSEg4TlkxLWV5bnR0b3pZQW91dFJrQk1hWXVXYnVZcWpRNW1nbGdXWlZ3LXZaS0YxbUtzNDM1di0zWElrVnFKeGZ6UXNWNEJ5TkdJanlTYlBqdkRSZw?oc=5"
           }
         ]
       }
