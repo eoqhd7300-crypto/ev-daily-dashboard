@@ -896,6 +896,19 @@ def _norm(text: str) -> str:
     return re.sub(r"[\s\-_()\[\]/.]", "", (text or "")).lower()
 
 
+def _as_string_list(value) -> list:
+    """payload의 keyTakeaways 등 "문자열 배열"이어야 할 필드를 안전하게 리스트로 변환한다. Gemini가
+    간혹 배열 대신 문자열 하나를 그대로 반환할 때가 있는데, 이 상태에서 곧바로
+    `[t for t in value if isinstance(t, str)]`처럼 순회하면 파이썬은 문자열을 글자 단위로 쪼개
+    (예: "안녕" -> ["안", "녕"]) 화면에 한 글자씩 세로로 나열되는 버그가 생긴다. 리스트가 아니면
+    단일 문자열 항목 1개로 취급해 이 문제를 막는다."""
+    if isinstance(value, str):
+        return [value] if value.strip() else []
+    if isinstance(value, list):
+        return [t for t in value if isinstance(t, str)]
+    return []
+
+
 def merge_vehicles(old_vehicles: list, new_vehicles: list) -> list:
     """차량 목록은 매일 Gemini가 기억을 바탕으로 새로 생성하다 보니, 같은 실제 모델이 날마다
     조금씩 다른 이름(트림/버전 표기 차이: 'Rivian R2' vs 'Rivian R2 SUV' vs 'Rivian R2 Dual Motor')
@@ -1469,7 +1482,7 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
         if not cleaned_categories:
             return None
         return {
-            "keyTakeaways": [t for t in (payload.get("keyTakeaways") or []) if isinstance(t, str)],
+            "keyTakeaways": _as_string_list(payload.get("keyTakeaways")),
             "categories": cleaned_categories,
             "implications": payload.get("implications") if isinstance(payload.get("implications"), str) else "",
         }
@@ -1665,7 +1678,7 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
         if not cleaned_categories:
             return None
         return {
-            "keyTakeaways": [t for t in (payload.get("keyTakeaways") or []) if isinstance(t, str)],
+            "keyTakeaways": _as_string_list(payload.get("keyTakeaways")),
             "categories": cleaned_categories,
             "implications": payload.get("implications") if isinstance(payload.get("implications"), str) else "",
         }
@@ -1923,7 +1936,7 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
                 final_categories.append({"name": canonical_name, "items": match["items"]})
 
         return {
-            "keyTakeaways": [t for t in (payload.get("keyTakeaways") or []) if isinstance(t, str)],
+            "keyTakeaways": _as_string_list(payload.get("keyTakeaways")),
             "categories": final_categories,
             "implications": payload.get("implications") if isinstance(payload.get("implications"), str) else "",
         }
@@ -2160,7 +2173,7 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
             return None
         print(f"벤치마킹 포인트 생성 완료 (카테고리 {len(cleaned_categories)}개, 총 항목 {sum(len(c['items']) for c in cleaned_categories)}건)")
         return {
-            "keyTakeaways": [t for t in (payload.get("keyTakeaways") or []) if isinstance(t, str)],
+            "keyTakeaways": _as_string_list(payload.get("keyTakeaways")),
             "categories": cleaned_categories,
         }
     except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행

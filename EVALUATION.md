@@ -70,7 +70,7 @@
 - `apply_teardown_verified_cell_makers()`: 실측 Teardown 데이터(`teardown_data.json`)에 있는 모델과 일치하면, AI 추정치를 실측값으로 덮어쓰고 `"(실측 검증)"` 표시를 붙입니다.
 - `cross_check_cell_maker_via_news()` + `apply_news_cross_checked_cell_makers()`: Teardown 데이터가 없는 신차는 무료 Google News RSS로 "이 차량명 + 배터리 셀 공급" 관련 실제 보도를 검색하고, **차량명이 실제로 언급된 기사에서 단 하나의 공급사만 일관되게 검출될 때만** 값을 갱신하며 `"(뉴스 교차검증)"` 표시를 붙입니다(`len(found) != 1: return None`으로 애매하면 적용하지 않음).
 
-### 1-7. 배터리 특허 동향 자동 수집·분석 - 계획에 없던 추가 고도화 사례
+### 1-7. 배터리 특허 동향 자동 수집·분석 (계획에 없던 추가 고도화 사례)
 
 **판정: 완료 (BigQuery 실제 데이터 기반)**
 
