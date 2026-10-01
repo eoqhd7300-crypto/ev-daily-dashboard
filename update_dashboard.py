@@ -472,8 +472,8 @@ def build_china_news_summary_prompt(raw_items: list) -> str:
     return f"""
 아래는 CnEVPost, CarNewsChina(둘 다 중국 전기차/배터리 산업 전문 영어 매체) 공식 RSS 피드에서 수집한 실제 기사
 후보 목록입니다 (title, url, date, source, description 포함, 원문은 영어입니다).
-당신은 한국 배터리/완성차 업계 실무자를 위한 "중국 EV/배터리 산업 동향" 큐레이터입니다. 아래 기준에 따라 기사를 선별한 뒤,
-선택한 기사의 title과 summary를 자연스러운 한국어로 번역/요약해 JSON 배열로만 응답하세요.
+당신은 한국 배터리/완성차 업계 실무자를 위한 "중국 EV/배터리 산업 동향" 큐레이터입니다. 아래 기준에 따라 기사를 선별하세요
+(번역은 하지 마세요 — 영어 원문 그대로 유지해야 합니다).
 
 선별 기준:
 - 포함: 중국 브랜드(BYD, CATL, Nio, Xpeng, Li Auto, Xiaomi, Zeekr, Huawei/Aito, Geely 등)의 신차/신기술 발표,
@@ -481,8 +481,9 @@ def build_china_news_summary_prompt(raw_items: list) -> str:
   자율주행/소프트웨어 등 한국 업계 실무자가 경쟁 동향 파악에 참고할 만한 내용.
 - 제외: 단순 가격 할인/프로모션/이벤트성 기사, 정보가 거의 없는 스팟성 가십, 같은 사건을 다룬 중복 기사
   (그 중 가장 정보가 상세한 1건만 유지).
-- title은 한국어로 자연스럽게 의역(직역 금지, 핵심이 드러나게 재구성), summary는 description을 바탕으로
-  1~2문장 한국어 요약으로 작성하세요. description이 비어있으면 title을 근거로 합리적으로 요약하세요.
+- title/summary는 영어 원문을 그대로 유지하되, summary는 description을 바탕으로 1~2문장 영어 요약으로
+  정리하세요(직역/번역 금지, 원문 표현을 최대한 그대로 활용). description이 비어있으면 title을 근거로
+  합리적으로 요약하세요.
 - url, date, source 값은 선택한 항목에 대해 절대 변경하지 말고 원본 그대로 유지하세요.
 - 최대 {MAX_CHINA_NEWS}건까지, 최신순으로 선택하세요. 기준을 통과하는 기사가 적으면 그보다 적은 건수만 반환해도 됩니다.
 - 마크다운 코드블록이나 설명 문장 없이 순수 JSON 배열만 응답하세요.
@@ -492,32 +493,7 @@ def build_china_news_summary_prompt(raw_items: list) -> str:
 
 응답 형식 (배열, 각 원소는 아래 5개 필드만 포함, 선택된 기사만):
 [
-  {{"title": "...(한국어)", "summary": "...(한국어)", "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
-]
-"""
-
-
-def build_china_news_retranslate_prompt(items: list) -> str:
-    """이미 선별이 끝난(화면에 노출 중인) 기사들 중, 이전 실행에서 번역 API 호출이 실패해
-    영어 원문으로만 남아있는 항목을 재번역하기 위한 전용 프롬프트. 선별/필터링 기준 없이
-    입력된 목록 전부를 번역해야 한다(이미 선별이 끝난 기사들이기 때문)."""
-    items_json = json.dumps(items, ensure_ascii=False, indent=2)
-    return f"""
-아래는 이미 선별이 완료되어 화면에 노출 중인 중국 EV/배터리 뉴스 기사 목록입니다(원문은 영어). 이전 실행에서
-번역 API 호출이 실패해 영어 원문 그대로 노출되고 있는 항목들이니, 선별 기준 없이 목록에 있는 항목
-전부에 대해 title과 summary를 자연스러운 한국어로 번역/요약해 JSON 배열로만 응답하세요.
-
-- title은 한국어로 자연스럽게 의역(직역 금지), summary는 description을 바탕으로 1~2문장 한국어 요약.
-- url, date, source 값은 절대 변경하지 말고 원본 그대로 유지하세요.
-- 목록에 있는 항목은 전부 응답에 포함하세요(선별/제외하지 마세요).
-- 마크다운 코드블록이나 설명 문장 없이 순수 JSON 배열만 응답하세요.
-
-원본 목록:
-{items_json}
-
-응답 형식 (배열, 각 원소는 아래 5개 필드만 포함):
-[
-  {{"title": "...(한국어)", "summary": "...(한국어)", "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+  {{"title": "...(영어 원문)", "summary": "...(영어)", "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
 ]
 """
 
@@ -1331,26 +1307,15 @@ def merge_china_news(old_news: list, new_news: list) -> list:
     """China EV/배터리 뉴스(CnEVPost/CarNewsChina) 병합. 국내 뉴스 파이프라인과 달리 출처가 이미
     2개 사이트로 고정돼 있고 콘텐츠 자체가 EV 산업 전문지라, merge_news처럼 별도의
     출처 제외/엔지니어링 관련성 재검증 없이 url 기준 중복 제거 + 최신순 상한만 적용한다.
-    단, 같은 URL이 번역본(translated=True)과 미번역 영어본(translated=False)으로 모두 존재할 수
-    있으므로, 이미 한국어로 번역된 기사가 나중에 영어 원문으로 다시 수집되어도 절대 덮어써서
-    되돌리지 않는다 (반대로 예전에 영어였던 기사가 나중에 번역되면 자동으로 업그레이드된다)."""
+    (과거에는 한국어 번역본/영어 원문이 섞여 있어 번역 상태를 추적하는 로직이 있었으나, 번역 기능을
+    제거하고 항상 영어 원문만 유지하기로 하면서 더 이상 필요하지 않아 단순화했다.)"""
     merged: dict[str, dict] = {}
     for n in old_news + new_news:
         key = _norm(n.get("url") or n.get("title") or "")
         if not key:
             continue
         existing = merged.get(key)
-        if existing is None:
-            merged[key] = n
-            continue
-        # translated 필드가 없는 과거 데이터는 이미 번역된 것으로 간주한다(하위 호환).
-        existing_translated = existing.get("translated", True)
-        new_translated = n.get("translated", True)
-        if new_translated and not existing_translated:
-            merged[key] = n  # 영어 -> 한국어 업그레이드
-        elif not new_translated and existing_translated:
-            continue  # 이미 번역된 기사를 영어로 되돌리지 않음
-        elif (n.get("date") or "") >= (existing.get("date") or ""):
+        if existing is None or (n.get("date") or "") >= (existing.get("date") or ""):
             merged[key] = n
     result = sorted(merged.values(), key=lambda n: n.get("date") or "", reverse=True)
     result = dedup_similar_titles(result)[:MAX_CHINA_NEWS]
@@ -1491,9 +1456,9 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
         return None
 
 
-def generate_china_news(client: "genai.Client", old_news: list | None = None) -> list:
+def generate_china_news(client: "genai.Client") -> list:
     """CnEVPost/CarNewsChina 공식 RSS(2개 사이트로 정보 출처 한정)에서 수집한 뒤,
-    Gemini로 선별 + 한국어 번역/요약한다."""
+    Gemini로 선별한다(번역은 하지 않음 — 영어 원문 그대로 노출)."""
     print("China EV 뉴스 RSS 수집 시작...")
     raw_items = collect_china_news_raw()
     print(f"China EV 뉴스 RSS 수집 완료: 후보 {len(raw_items)}건")
@@ -1511,7 +1476,7 @@ def generate_china_news(client: "genai.Client", old_news: list | None = None) ->
             config=types.GenerateContentConfig(
                 # 특허 트렌드 카드에서 실측 확인된 문제(thinking 모델의 내부 추론 토큰이 출력 예산을 잠식해
                 # 응답이 중간에 잘려 JSON 파싱이 실패하는 현상)이 이 호출에도 동일하게 발생할 수 있어
-                # thinking을 끄고 max_output_tokens도 넘널하 잡아둠다.
+                # thinking을 끄고 max_output_tokens도 넉넉히 잡아둔다.
                 thinking_config=types.ThinkingConfig(thinking_budget=0),
                 max_output_tokens=8192,
             ),
@@ -1539,18 +1504,15 @@ def generate_china_news(client: "genai.Client", old_news: list | None = None) ->
                         "date": raw["date"],
                         "url": raw["url"],
                         "linkType": "rss",
-                        "translated": True,
                     }
                 )
     except Exception as exc:  # noqa: BLE001
-        print(f"China 뉴스 선별/번역 생성 실패: {type(exc).__name__}: {exc}")
+        print(f"China 뉴스 선별 생성 실패: {type(exc).__name__}: {exc}")
 
-    # 번역 호출 자체가 통째로 실패한 경우(selected가 비어있음)에는, 최신 기사가 아예 안 보이는 것보다는
-    # 영어 원문이라도 노출하는 편이 낫다 - "translated": False로 표시해 두면, merge_china_news()가
-    # 이미 한국어로 번역된 기존 기사를 이 영어 항목으로 덮어쓰지 않도록 보호하고, 다음 실행에서 번역이
-    # 성공하면 같은 URL이 자동으로 한국어로 업그레이드된다.
+    # 선별 호출 자체가 통째로 실패한 경우(selected가 비어있음)에는, 최신 기사가 아예 안 보이는 것보다는
+    # RSS 원본을 최신순으로 그대로 노출하는 편이 낫다 (어차피 평소에도 영어 원문으로 노출되므로 체감상 차이는 적음).
     if not selected:
-        print("번역 결과가 없어 이번 실행분은 영어 원문으로 대체 노출합니다 (기존 번역 데이터는 보존됨).")
+        print("선별 결과가 없어 이번 실행분은 RSS 원문을 최신순으로 그대로 노출합니다.")
         for raw in raw_items[:MAX_CHINA_NEWS]:
             selected.append(
                 {
@@ -1560,78 +1522,11 @@ def generate_china_news(client: "genai.Client", old_news: list | None = None) ->
                     "date": raw["date"],
                     "url": raw["url"],
                     "linkType": "rss",
-                    "translated": False,
                 }
             )
 
     selected.sort(key=lambda n: n["date"], reverse=True)
-    selected = dedup_similar_titles(selected)[:MAX_CHINA_NEWS]
-
-    # 이전 실행에서 번역에 실패해 영어 원문으로 남아있던 기사 중, 이번 RSS 풀에도 더 이상
-    # 잡히지 않는(원본 게시일 기준 오래돼 RSS 풀에서 밀려난) "고아" 항목은, 그냥 두면 영원히 영어로
-    # 고정된다(정기 선별/번역 호출은 항상 "현재 RSS 풀"만 대상으로 하기 때문). 이런 항목만 따로 모아
-    # 재번역을 시도해, 성공하면 merge_china_news()의 영어->한국어 업그레이드 규칙에 따라 자동으로 반영된다.
-    if old_news:
-        stuck = [
-            n for n in old_news
-            if n.get("translated") is False and _norm(n.get("url") or "") not in raw_by_key
-        ]
-        if stuck:
-            print(f"이전에 번역 실패해 영어로 남아있는 기사 {len(stuck)}건 재번역 시도...")
-            try:
-                retry_candidates = [
-                    {
-                        "title": n.get("title", ""),
-                        "description": n.get("summary", ""),
-                        "source": n.get("source", ""),
-                        "date": n.get("date", ""),
-                        "url": n.get("url", ""),
-                    }
-                    for n in stuck
-                ]
-                retry_response = generate_content_with_retry(
-                    client,
-                    model=MODEL_NAME,
-                    contents=build_china_news_retranslate_prompt(retry_candidates),
-                    config=types.GenerateContentConfig(
-                        thinking_config=types.ThinkingConfig(thinking_budget=0),
-                        max_output_tokens=8192,
-                    ),
-                )
-                retry_finish_reason = None
-                try:
-                    retry_finish_reason = retry_response.candidates[0].finish_reason
-                except Exception:  # noqa: BLE001
-                    pass
-                retry_response_text = retry_response.text or ""
-                print(f"재번역 응답 수신 완료 (finish_reason={retry_finish_reason}, 응답 길이 {len(retry_response_text)}자)")
-                retried = extract_json(retry_response_text)
-                stuck_by_key = {_norm(n.get("url") or ""): n for n in stuck}
-                upgraded = 0
-                if isinstance(retried, list):
-                    for entry in retried:
-                        if not isinstance(entry, dict) or not entry.get("url"):
-                            continue
-                        original = stuck_by_key.get(_norm(entry["url"]))
-                        if original is None:
-                            continue
-                        selected.append(
-                            {
-                                "title": entry.get("title") or original.get("title", ""),
-                                "summary": entry.get("summary") or original.get("summary") or original.get("title", ""),
-                                "source": original.get("source", ""),
-                                "date": original.get("date", ""),
-                                "url": original.get("url", ""),
-                                "linkType": "rss",
-                                "translated": True,
-                            }
-                        )
-                        upgraded += 1
-                print(f"재번역 완료: {upgraded}건 한국어로 업그레이드")
-            except Exception as exc:  # noqa: BLE001
-                print(f"재번역 재시도 실패, 다음 실행에서 다시 시도합니다: {type(exc).__name__}: {exc}")
-
-    return selected
+    return dedup_similar_titles(selected)[:MAX_CHINA_NEWS]
 
 
 def generate_china_news_briefing(client: "genai.Client", news_items: list) -> dict | None:
@@ -1987,7 +1882,6 @@ def _slim_benchmarking_inputs(vehicles: list, news: list, china_news: list, pate
     slim_china_news = [
         {"title": n.get("title"), "summary": n.get("summary"), "source": n.get("source"), "date": n.get("date"), "url": n.get("url")}
         for n in (china_news or [])[:MAX_BENCHMARKING_NEWS_IN_PROMPT]
-        if n.get("translated", True)  # 아직 번역 안 된 영어 원문 항목은 프롬프트에서 제외
     ]
     slim_patents = []
     for cat in ((patent_trends or {}).get("categories") or []):
@@ -2230,7 +2124,7 @@ def main() -> None:
     # China EV/배터리 뉴스는 국내 차량/뉴스 파이프라인과 완전히 독립적인 별도 소스(CnEVPost/CarNewsChina)이므로,
     # 여기서 오류가 나더라도 위 vehicles/news 결과 저장을 막지 않도록 별도로 격리한다.
     try:
-        china_news = generate_china_news(client, existing.get("chinaNews"))
+        china_news = generate_china_news(client)
     except Exception as exc:  # noqa: BLE001
         print(f"China 뉴스 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
         china_news = []
