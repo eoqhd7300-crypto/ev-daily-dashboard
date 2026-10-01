@@ -55,6 +55,9 @@ MAX_PATENT_ITEMS = 40
 # 특허 동향 카드는 아래 4개 기술 카테고리를 항상 이 순서로 고정 출력한다 (엔지니어가 매주 동일한 틀에서
 # 비교할 수 있도록). 해당 주에 신규 특허가 없는 카테고리는 "신규 공개 특허 없음"으로 표시한다.
 PATENT_TREND_CATEGORY_ORDER = ["소재 & 전극", "전해질 & 전고체", "셀 제조 & 공정", "팩 구조 & CTP & 열관리"]
+# Google 특허 공개 데이터셋의 색인 지연(최대 5개월+)을 보완하기 위해, "이번 주에 처음 조회된 특허"를
+# 추적할 때 누적해두는 seen url 목록의 최대 길이 (무한정 늘어나지 않도록 오래된 것부터 버림).
+PATENT_SEEN_URLS_MAX = 2000
 BATTERY_PATENT_SQL = """
 WITH filtered_patents AS (
   SELECT
@@ -813,7 +816,7 @@ def load_existing_data() -> dict:
     empty = {
         "vehicles": [], "news": [], "fx": None, "newsBriefing": None,
         "chinaNews": [], "chinaNewsBriefing": None, "patentTrends": None,
-        "benchmarkingPoints": None,
+        "benchmarkingPoints": None, "patentSeenUrls": [],
     }
     if not os.path.exists(DATA_PATH):
         return dict(empty)
@@ -829,6 +832,7 @@ def load_existing_data() -> dict:
             "chinaNewsBriefing": data.get("chinaNewsBriefing"),
             "patentTrends": data.get("patentTrends"),
             "benchmarkingPoints": data.get("benchmarkingPoints"),
+            "patentSeenUrls": data.get("patentSeenUrls") or [],
         }
     except Exception:  # noqa: BLE001 - 손상된 파일이면 빈 값으로 시작
         return dict(empty)
@@ -1659,7 +1663,7 @@ google_patent_url)를 정밀 분석해, 아래 규칙에 맞춰 "엔지니어링
    만들지 마라.
 3. 각 카테고리에는 대표성 있는 특허 2~4건만 선별하라 (해당 카테고리에 실제로 분류될 특허가 하나도 없으면,
    items를 정확히 아래 형태의 단일 placeholder 1건으로 채워라:
-   {{"headline": "신규 공개 특허 없음", "painPoint": "", "solution": "", "tags": [], "source": "", "date": "", "url": "", "designCriteria": []}}).
+   {{"headline": "신규 공개 특허 없음", "painPoint": "", "solution": "", "tags": [], "source": "", "date": "", "url": "", "designCriteria": [], "evidenceQuote": ""}}).
 
 [특허 항목(items) 필드 규칙 - 4단 구성(개요 → 문제점/해결원리 → 핵심 정량 수치 요약)]
 각 특허 항목은 아래 필드를 모두 채워라:
@@ -1694,6 +1698,10 @@ google_patent_url)를 정밀 분석해, 아래 규칙에 맞춰 "엔지니어링
    * 특허에 정량적 데이터가 전혀 없으면 빈 배열 []을 반환하라 (그룹을 억지로 만들어내지 마라).
    * 같은 그룹에 속하는 여러 파라미터는 각각 별도 객체로 추가하되 group 값을 동일하게 유지하면,
      화면에서 자동으로 그룹핑되어 표시된다.
+- evidenceQuote: 이 항목의 painPoint/solution/designCriteria 근거가 된 claims(우선) 또는 abstract
+  원문 안에 실제로 등장하는 문구를 의역 없이 그대로 20~100자 정도 복사해 담아라. 이 인용문은
+  사후에 원문과 코드로 대조 검증되며, 원문에 없는 문구를 넣으면 해당 항목은 자동으로 폐기된다
+  (Dv50을 Dv99로 잘못 쓰는 등의 환각을 코드 레벨에서 차단하기 위한 장치이므로 반드시 원문 그대로 인용하라).
 
 [keyTakeaways / implications 규칙]
 - keyTakeaways: 전체 특허를 관통하는 "기업별 기술 전략 방향" 인사이트 2~3개를 한 문장씩 배열로 작성하라
@@ -1712,7 +1720,8 @@ google_patent_url)를 정밀 분석해, 아래 규칙에 맞춰 "엔지니어링
         {{
           "headline": "...", "painPoint": "...", "solution": "...",
           "tags": ["#...", "#..."], "source": "...", "date": "YYYY-MM-DD", "url": "...",
-          "designCriteria": [{{"group": "...", "label": "...", "value": "..."}}]
+          "designCriteria": [{{"group": "...", "label": "...", "value": "..."}}],
+          "evidenceQuote": "..."
         }}
       ]
     }}
@@ -1750,11 +1759,18 @@ system instruction의 카테고리 규칙/항목 필드 규칙/키워드 규칙�
 """
 
 
-def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None:
-    """조회된 특허 목록을 바탕으로 카테고리별 기술 트렌드 브리핑을 생성한다. 실패 시 None을 반환하며,
-    호출부에서는 지난주 버전을 그대로 유지한다."""
+def generate_patent_trends(client: "genai.Client", patents: list, seen_urls: list | None = None) -> tuple:
+    """조회된 특허 목록을 바탕으로 카테고리별 기술 트렌드 브리핑을 생성한다. Google 특허 공개
+    데이터셋은 실제 공개일과 무관하게 색인까지 수개월(최대 5개월+) 지연되는 것으로 알려져 있어,
+    "pub_date가 최신"이라고 해서 "실제로 오늘 처음 조회 가능해진 것"이라는 보장은 없다. 이를 보완하기
+    위해 seen_urls(지나간 주에 이미 조회된 publication url 년 누적 목록)와 대조해, 이번 주에 처음
+    등장한(=이번 주에 새로 색인된) 항목만 "isNewlyIndexed"로 표시한다. 반환값은
+    (브리핑 dict 또는 None, 갱신된 seen_urls 리스트) 튜플이며, 실패 시 seen_urls는 그대로 돌려준다
+    (호출부에서는 브리핑이 None이면 지난주 버전을 그대로 유지한다)"""
+    seen_urls = list(seen_urls or [])
     if not patents:
-        return None
+        return None, seen_urls
+    seen_url_set = {_norm(u) for u in seen_urls}
     prompt = build_patent_trend_prompt(patents)
     print(f"특허 트렌드 프롬프트 생성 완료 ({len(patents)}건, 프롬프트 길이 {len(prompt)}자)")
     try:
@@ -1782,19 +1798,35 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
         payload = extract_json(response_text)
         if not isinstance(payload, dict):
             print("특허 트렌드 응답이 JSON 객체 형식이 아니어서 건너뜁니다.")
-            return None
+            return None, seen_urls
         categories = payload.get("categories")
         if not isinstance(categories, list) or not categories:
-            return None
+            return None, seen_urls
         valid_urls = {_norm(p.get("google_patent_url") or "") for p in patents}
+        # (A) 코드 레벨 근거 검증용 인덱스: url -> 해당 특허의 claims+abstract 원문. evidenceQuote가
+        # 실제로 이 원문 안에 있는지 대조해, 벤치마킹 포인트 카드와 동일한 방식으로 환각(예: Dv50을
+        # Dv99로 잘못 쓰는 등)을 코드 레벨에서 차단한다.
+        text_by_url = {
+            _norm(p.get("google_patent_url") or ""): f"{p.get('abstract', '')} {p.get('claims', '')}"
+            for p in patents
+        }
+        discarded_for_quote = 0
 
         def _is_valid_item(item: object) -> bool:
+            nonlocal discarded_for_quote
             if not isinstance(item, dict):
                 return False
             url = item.get("url") or ""
             if not url:
                 return True  # "신규 공개 특허 없음" placeholder 등 url이 없는 항목은 그대로 허용
-            return _norm(url) in valid_urls
+            key = _norm(url)
+            if key not in valid_urls:
+                return False
+            quote = _norm(item.get("evidenceQuote") or "")
+            if quote and quote not in _norm(text_by_url.get(key, "")):
+                discarded_for_quote += 1
+                return False  # 인용문이 해당 특허 원문에 실제로 없음(모델의 지어낸 근거) -> 폐기
+            return True
 
         categories_by_name: dict[str, dict] = {}
         for cat in categories:
@@ -1805,17 +1837,27 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
             if not name or not isinstance(items, list):
                 continue
             cleaned_items = [item for item in items if _is_valid_item(item)]
+            # 이번 주에 처음 조회된(=seen_urls에 없던) 항목만 "신규 색인"으로 표시한다. Google 특허
+            # 공개 데이터셋은 색인 지연(최대 5개월+)이 있어, pub_date가 최신이라도 "실제로 오늘 처음
+            # 조회 가능해졌다"는 보장이 없기 때문이다.
+            for item in cleaned_items:
+                url_key = _norm(item.get("url") or "")
+                item["isNewlyIndexed"] = bool(url_key) and url_key not in seen_url_set
             if cleaned_items:
                 categories_by_name[name] = {"name": name, "items": cleaned_items}
+
+        if discarded_for_quote:
+            print(f"특허 트렌드: 근거 인용문 검증 실패로 {discarded_for_quote}건 폐기 (원문에 없는 문구 사용)")
+
 
         if not categories_by_name:
             # 응답 자체가 파싱은 됐지만 유효한 카테고리를 하나도 만들지 못한 경우
             # (형식 오류 등) - 지난주 데이터를 덮어쓰지 않도록 실패로 처리한다.
-            return None
+            return None, seen_urls
 
         # 카테고리는 항상 고정된 4개를 이 순서 그대로 출력한다. 모델이 이름을 다르게 반환했거나
         # 특정 카테고리에 해당하는 특허가 없었던 경우, "신규 공개 특허 없음" placeholder로 채운다.
-        empty_placeholder = [{"headline": "신규 공개 특허 없음", "painPoint": "", "solution": "", "tags": [], "source": "", "date": "", "url": "", "designCriteria": []}]
+        empty_placeholder = [{"headline": "신규 공개 특허 없음", "painPoint": "", "solution": "", "tags": [], "source": "", "date": "", "url": "", "designCriteria": [], "evidenceQuote": ""}]
         final_categories = []
         for canonical_name in PATENT_TREND_CATEGORY_ORDER:
             match = categories_by_name.pop(canonical_name, None)
@@ -1830,14 +1872,27 @@ def generate_patent_trends(client: "genai.Client", patents: list) -> dict | None
             else:
                 final_categories.append({"name": canonical_name, "items": match["items"]})
 
+        # 이번 실행에서 조회된 모든 특허(최종 캐드에 선별되지 못한 것 포함)을 seen_urls에 누적해,
+        # 다음 주에는 같은 특허가 더 이상 "신규 색인"으로 잡히지 않도록 한다. 무한정 늘어나지 않도록
+        # 최대 개수를 제한해, 오래된 항목부터 버린다.
+        updated_seen = list(seen_urls)
+        updated_seen_set = set(seen_url_set)
+        for p in patents:
+            key = _norm(p.get("google_patent_url") or "")
+            if key and key not in updated_seen_set:
+                updated_seen_set.add(key)
+                updated_seen.append(key)
+        if len(updated_seen) > PATENT_SEEN_URLS_MAX:
+            updated_seen = updated_seen[-PATENT_SEEN_URLS_MAX:]
+
         return {
             "keyTakeaways": _as_string_list(payload.get("keyTakeaways")),
             "categories": final_categories,
             "implications": payload.get("implications") if isinstance(payload.get("implications"), str) else "",
-        }
+        }, updated_seen
     except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
         print(f"특허 트렌드 브리핑 생성 실패, 건너뜁니다: {exc}")
-        return None
+        return None, seen_urls
 
 
 # "벤치마킹 포인트" 카드: 이미 수집된 신차/뉴스/China뉴스/특허 데이터를 근거로, 한국 배터리/완성차
@@ -2139,12 +2194,13 @@ def main() -> None:
 
     # 배터리 특허 동향(BigQuery, CATL/BYD/Geely): 주 1회(월요일)만 조회 + GCP_SA_KEY_JSON 없으면 자동 스킵.
     # 다른 무료 파이프라인과 완전히 독립적으로 격리해, 여기서 오류가 나도 나머지 저장에는 영향 없다.
+    patent_seen_urls = existing.get("patentSeenUrls") or []
     try:
         if should_refresh_patent_trends(now_kst):
             print("특허 동향 갱신 시작 (주 1회, 월요일)...")
             patents = run_battery_patent_query()
             print(f"BigQuery 특허 조회 완료: {len(patents)}건")
-            patent_trends = generate_patent_trends(client, patents)
+            patent_trends, patent_seen_urls = generate_patent_trends(client, patents, patent_seen_urls)
         else:
             patent_trends = None
     except Exception as exc:  # noqa: BLE001
@@ -2165,6 +2221,7 @@ def main() -> None:
             "chinaNewsBriefing": china_news_briefing,
             "patentTrends": patent_trends,
             "benchmarkingPoints": existing.get("benchmarkingPoints"),
+            "patentSeenUrls": patent_seen_urls,
         }
         with open(DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
@@ -2219,6 +2276,7 @@ def main() -> None:
         "chinaNewsBriefing": china_news_briefing,
         "patentTrends": patent_trends,
         "benchmarkingPoints": benchmarking_points,
+        "patentSeenUrls": patent_seen_urls,
     }
 
     with open(DATA_PATH, "w", encoding="utf-8") as f:

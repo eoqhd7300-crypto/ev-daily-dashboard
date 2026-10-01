@@ -205,7 +205,7 @@
 
         <!-- CATL/BYD/Geely Battery Patent Trends: BigQuery public patents dataset, refreshed weekly (Mondays) -->
         <section class="bg-gradient-to-r from-violet-950 via-indigo-950 to-slate-900 border border-violet-700/60 rounded-2xl p-4 sm:p-5 text-white shadow-sm mb-6 no-print">
-            <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center space-x-2.5 min-w-0">
                     <span class="bg-violet-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md flex-shrink-0">WEEKLY</span>
                     <span class="text-xs sm:text-sm font-bold text-violet-200 whitespace-nowrap">🔬 CATL·BYD·Geely 배터리 특허 동향</span>
@@ -213,6 +213,9 @@
                     <span class="text-[11px] text-slate-400 hidden sm:inline">출처: Google Patents 공개 데이터셋, 미국(USPTO), 유럽(EPO), 세계지식재산기구(WIPO), 중국(CNIPA) 등 100개 이상 특허청 공개 특허 통합 수집</span>
                 </div>
             </div>
+            <p class="text-[10px] sm:text-[11px] text-violet-200/70 mb-3 leading-relaxed">
+                ⏱️ Google 특허 공개 데이터셋 특성상 실제 공개 후 색인까지 <b>수개월(최대 5개월 이상)</b> 지연될 수 있어, 표시된 날짜가 "최근 공개"가 아니라 "이번 주에 새로 색인된" 특허일 수 있습니다.
+            </p>
             <div id="patentTrendsPreviewContainer" class="max-h-[520px] overflow-y-auto pr-1">
                 <!-- Dynamic Categorized Patent Trend Briefing Rendered via JS -->
             </div>
@@ -892,6 +895,7 @@
                     <li class="text-[11px] sm:text-xs text-slate-200 leading-relaxed border-l-2 ${theme.itemBorder} pl-2.5 py-0.5">
                         <div class="font-bold text-white flex items-start gap-1.5">
                             <span>${esc(item.headline || item.title)}</span>
+                            ${item.isNewlyIndexed ? `<span class="inline-flex items-center text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 flex-shrink-0 mt-0.5" title="Google 특허 데이터셋에 이번 주 처음 색인된 항목(색인 지연으로 공개일 자체는 더 오래됐을 수 있음)">🆕 신규 색인</span>` : ''}
                             ${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" title="${linkTitle}" class="inline-flex items-center justify-center w-4 h-4 rounded ${theme.tagBg} ${theme.tagText} hover:brightness-125 transition flex-shrink-0 mt-0.5">🔍</a>` : ''}
                         </div>
                         ${bodyHtml}
