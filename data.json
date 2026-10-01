@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T14:40:13.031054+09:00",
+  "generatedAt": "2026-10-01T15:54:12.613989+09:00",
   "vehicles": [
     {
       "id": "seres_aito_m8_l3_ev",
@@ -3823,9 +3823,9 @@
       "id": 7
     },
     {
-      "title": "LG엔솔, 美 인디고테크와 46시리즈 배터리 공급 협력 - thelec.kr",
-      "summary": "LG엔솔, 美 인디고테크와 46시리즈 배터리 공급 협력    thelec.kr",
-      "source": "thelec.kr",
+      "title": "LG엔솔, 美 인디고테크와 46시리즈 배터리 공급 협력 - 디일렉",
+      "summary": "LG엔솔, 美 인디고테크와 46시리즈 배터리 공급 협력    디일렉",
+      "source": "디일렉",
       "date": "2026-10-01",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9yWU9scVBnRVVhN1EzWHVnMjI1YU42YU0yN01ySUlPVTRuT3Y3d0VpTDJiRzhsWTM4dnE1c2tHZTBYenpMYjYyS0tMcUI1dFRkSk5tdHRPVXpVcldjVjVXX3QtSENuZw?oc=5",
       "linkType": "rss",
@@ -3944,7 +3944,7 @@
     "usdKrw": 1355.84,
     "eurKrw": 1537.56,
     "cnyKrw": 201.86,
-    "updatedAt": "2026-10-01T14:40:13.220464+09:00"
+    "updatedAt": "2026-10-01T15:54:12.802836+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
@@ -4155,33 +4155,30 @@
   },
   "chinaNews": [
     {
-      "title": "니오, 9월 3만 7,408대 인도하며 3분기 가이드라인 달성",
-      "summary": "니오 브랜드의 9월 인도량이 전년 동기 대비 55.29% 증가하였으며, 서브 브랜드 파이어플라이는 월간 최다 실적을 기록했다.",
+      "title": "Nio delivers 37,408 vehicles in September, meets Q3 guidance",
+      "summary": "Deliveries by the Nio brand rose 55.29% year-on-year in September, with Firefly setting a monthly record.",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/nio-sept-2026-deliveries/",
       "linkType": "rss",
-      "translated": true,
       "id": 1
     },
     {
-      "title": "립모터, 9월 인도량 역대 최고 기록하며 3개월 연속 10만 대 돌파",
-      "summary": "립모터가 9월 한 달간 10만 5,656대를 인도하여 3분기 누적 인도량이 역대 최고치인 31만 52대에 달했다.",
+      "title": "Leapmotor posts record September deliveries, tops 100,000 for third straight month",
+      "summary": "Leapmotor delivered 105,656 vehicles in September, bringing third-quarter deliveries to a record 310,052.",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/leapmotor-sept-2026-deliveries/",
       "linkType": "rss",
-      "translated": true,
       "id": 2
     },
     {
-      "title": "샤오미 오토, 신모델 '스카이 노마드' 효과로 9월 인도량 4만 대 돌파",
-      "summary": "샤오미 오토는 신규 출시된 스카이 노마드의 판매 호조에 힘입어 2026년 들어 월간 기준 가장 많은 인도량을 기록했다.",
+      "title": "Xiaomi Auto September deliveries top 40,000 as Sky Nomad adds volume",
+      "summary": "Sky Nomad helped lift Xiaomi Auto's monthly deliveries to their highest level so far in 2026 in its first month on sale.",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/xiaomi-auto-sept-2026-deliveries/",
       "linkType": "rss",
-      "translated": true,
       "id": 3
     },
     {
@@ -4205,33 +4202,30 @@
       "id": 5
     },
     {
-      "title": "세레스·CATL 합작 브랜드 '아이바', 파리에서 첫 모델 ME7 공개",
-      "summary": "세레스와 CATL의 지원을 받는 전기차 브랜드 아이바(Aiva)가 파리에서 신형 전기 SUV ME7을 세계 최초로 선보였다.",
+      "title": "Seres and CATL-backed Aiva unveils ME7 in Paris",
+      "summary": "Aiva ME7 backed by Seres and CATL makes its official debut in Paris.",
       "source": "CarNewsChina",
       "date": "2026-09-30",
       "url": "https://carnewschina.com/2026/09/30/seres-and-catl-backed-aiva-unveils-me7-in-paris/",
       "linkType": "rss",
-      "translated": true,
       "id": 6
     },
     {
-      "title": "중국 신에너지차 소매 판매 감소세 심화, 9월 하순까지 20% 감소",
-      "summary": "9월 1일부터 27일까지 중국 내 신에너지차 소매 판매는 82만 7천 대로 집계되었으며, 전체 승용차 판매의 65.7%를 차지했다.",
+      "title": "China NEV retail sales fall 20% in first 27 days of September as decline deepens",
+      "summary": "China's NEV retail sales totaled 827,000 in September 1-27, accounting for 65.7% of passenger car sales.",
       "source": "CnEVPost",
       "date": "2026-09-30",
       "url": "https://cnevpost.com/2026/09/30/china-nev-retail-sales-first-27-days-sept/",
       "linkType": "rss",
-      "translated": true,
       "id": 7
     },
     {
-      "title": "아이토, 상향된 가격으로 신형 M8 SUV 사전 판매 개시",
-      "summary": "세레스와 화웨이의 협력 재편 속에 출시된 신형 아이토 M8의 사전 판매가는 이전 모델보다 3만 위안 인상된 38만 9,800위안부터 시작한다.",
+      "title": "Aito opens pre-sales for updated M8 SUV as Seres and Huawei reshape partnership",
+      "summary": "The updated Aito M8 starts at 389,800 yuan ($57,880) in pre-sales, 30,000 yuan above its predecessor's starting price.",
       "source": "CnEVPost",
       "date": "2026-09-30",
       "url": "https://cnevpost.com/2026/09/30/aito-opens-pre-sales-updated-m8-suv/",
       "linkType": "rss",
-      "translated": true,
       "id": 8
     },
     {
@@ -4285,13 +4279,12 @@
       "id": 13
     },
     {
-      "title": "BYD, 1회 충전 주행거리 1,008km '다한' 양산… 왕조 시리즈 1천만 대 돌파 기념",
-      "summary": "BYD가 왕조 시리즈의 1천만 번째 생산 차량인 플래그십 전기 세단 '다한'을 출고했으며, 10월 13일 정식 출시를 앞두고 있다.",
+      "title": "BYD Da Han marks Dynasty lineup's 10 millionth vehicle ahead of October 13 launch",
+      "summary": "The Da Han will launch on October 13, with its all-electric version already available for pre-sales offering a CLTC range of up to 1,008 km.",
       "source": "CnEVPost",
       "date": "2026-09-29",
       "url": "https://cnevpost.com/2026/09/29/byd-da-han-marks-dynasty-10-millionth-vehicle/",
       "linkType": "rss",
-      "translated": true,
       "id": 14
     },
     {
@@ -4315,13 +4308,12 @@
       "id": 16
     },
     {
-      "title": "창안자동차, 효율성 제고 위해 아바타와 심람 브랜드 운영 통합",
-      "summary": "창안자동차가 산하 프리미엄 브랜드 아바타(Avatr)와 에이전트 브랜드 심람(Deepal)의 조직 운영을 통합해 독자 전기차 사업의 효율성을 강화한다.",
+      "title": "Changan Auto consolidates Avatr and Deepal to streamline operations, report says",
+      "summary": "Changan Auto integrates Avatr and Deepal operations to boost efficiency.",
       "source": "CarNewsChina",
       "date": "2026-09-29",
       "url": "https://carnewschina.com/2026/09/29/changan-auto-consolidates-avatr-and-deepal-to-streamline-operations-report-says/",
       "linkType": "rss",
-      "translated": true,
       "id": 17
     },
     {
@@ -4345,13 +4337,12 @@
       "id": 19
     },
     {
-      "title": "자율주행 스타트업 모멘타, 푸조·지프 차량용 ADAS 공급 계약 체결",
-      "summary": "중국 모멘타가 스텔란티스 그룹의 푸조 및 지프 브랜드 모델에 2027년부터 탑재될 자율주행 소프트웨어를 중국 및 글로벌 시장용으로 개발한다.",
-      "source": "CnEVPost",
-      "date": "2026-09-28",
-      "url": "https://cnevpost.com/2026/09/28/momenta-develop-driver-assistance-peugeot-jeep/",
+      "title": "Geely has deployed 2,250 kW charging stations in five cities across China",
+      "summary": "Geely has deployed 12C fast-charging stations with a power output of 2,250 kW in five cities across China to counter BYD’s flash chargers.",
+      "source": "CarNewsChina",
+      "date": "2026-09-29",
+      "url": "https://carnewschina.com/2026/09/29/geely-has-deployed-2250-kw-charging-stations-in-five-cities-across-china/",
       "linkType": "rss",
-      "translated": true,
       "id": 20
     }
   ],
@@ -4934,5 +4925,6 @@
         ]
       }
     ]
-  }
+  },
+  "patentSeenUrls": []
 }
