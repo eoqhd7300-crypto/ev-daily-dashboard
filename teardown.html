@@ -199,6 +199,15 @@
             return CELL_FORMAT_LABEL_KO[v] || fmtVal(value);
         }
 
+        // A2MAC1 원본 데이터(teardown_data.json)에는 과거 사명인 'LG Chem'으로 기록돼 있으나, 해당
+        // 배터리 사업부는 2020년 LG에너지솔루션(LG Energy Solution)으로 분사되었으므로 화면/엑셀
+        // 내보내기에 표시될 때만 현재 사명으로 치환한다 (원본 데이터 자체는 변경하지 않음).
+        const CELL_MANUFACTURER_DISPLAY_NAME = { 'LG Chem': 'LG Energy Solution' };
+        function formatCellManufacturer(value) {
+            const v = (value || '').trim();
+            return CELL_MANUFACTURER_DISPLAY_NAME[v] || value;
+        }
+
         // 차량 종류별 배지 색상 (BEV=파랑/HEV=회색/PHEV=보라/EREV=주황/FCEV=녹색, 미분류는 회색 점선)
         const VEHICLE_TYPE_BADGE_CLASS = {
             'BEV': 'bg-sky-100 text-sky-700',
@@ -318,7 +327,7 @@
 
             const manufacturerSelect = document.getElementById('cellManufacturerFilterSelect');
             manufacturerSelect.innerHTML = `<option value="all">전체</option>`
-                + manufacturers.map(m => `<option value="${m}">${m}</option>`).join('');
+                + manufacturers.map(m => `<option value="${m}">${formatCellManufacturer(m)}</option>`).join('');
             manufacturerSelect.value = activeCellManufacturerFilter;
 
             const formatSelect = document.getElementById('cellFormatFilterSelect');
@@ -371,7 +380,7 @@
                         </td>
                         <td class="p-2.5 font-semibold text-slate-900">${v.name} <span class="text-slate-400 font-normal">(${v.year || '-'})</span></td>
                         <td class="p-2.5 text-center">${vehicleTypeBadge(v.vehicleType)}</td>
-                        <td class="p-2.5 text-slate-600">${fmtVal(v.cell['Cell Manufacturer'])}</td>
+                        <td class="p-2.5 text-slate-600">${fmtVal(formatCellManufacturer(v.cell['Cell Manufacturer']))}</td>
                         <td class="p-2.5 text-center text-slate-600 whitespace-nowrap">${formatCellFormatKo(v.cell['Cell Format'])}</td>
                         <td class="p-2.5 text-right text-slate-600">${fmtVal(packCapacity)}</td>
                         <td class="p-2.5 text-right text-slate-600">${fmtVal(packEnergy)}</td>
@@ -443,6 +452,7 @@
                 const cells = objs.map(o => {
                     let val = o[k];
                     if (k === 'Cell Format' && CELL_FORMAT_LABEL_KO[val]) val = CELL_FORMAT_LABEL_KO[val];
+                    if (k === 'Cell Manufacturer') val = formatCellManufacturer(val);
                     return `<td class="p-2.5 text-center text-xs text-slate-800 border border-slate-200 w-[160px]">${fmtVal(val)}</td>`;
                 }).join('');
                 return `
@@ -1308,6 +1318,7 @@
                 const cellSpecGetObj = v => {
                     const cell = v.cell || {};
                     const merged = { ...cell };
+                    if (merged['Cell Manufacturer']) merged['Cell Manufacturer'] = formatCellManufacturer(merged['Cell Manufacturer']);
                     delete merged['Cell Length [mm]'];
                     delete merged['Cell Height [mm]'];
                     delete merged['Cell Width / Thickness [mm]'];
