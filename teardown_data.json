@@ -3496,7 +3496,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "aito-m8-range-extended-ultra-53-2025",
@@ -7166,7 +7167,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "EREV"
     },
     {
       "id": "aito-m9-ultra-42kwh-2024",
@@ -9670,7 +9672,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "EREV"
     },
     {
       "id": "audi-a5-avant-2-0-hybrid-2025",
@@ -11775,7 +11778,8 @@
           "energyWh": 254.0,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "HEV"
     },
     {
       "id": "audi-e5-sportback-flagship-quattro-2026",
@@ -11825,7 +11829,8 @@
           "assets/teardown/audi-e5-sportback-flagship-quattro-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "BEV"
     },
     {
       "id": "audi-sq6-e-tron-edition-one-2024",
@@ -13448,7 +13453,8 @@
           "energyWh": 556.0,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "bmw-ix3-50-xdrive-2026",
@@ -13546,7 +13552,8 @@
           "assets/teardown/bmw-ix3-50-xdrive-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "BEV"
     },
     {
       "id": "byd-qin-l-dm-i-120km-zhuoyue-2024",
@@ -14501,7 +14508,8 @@
           "oemTiers": null,
           "partCount": 1
         }
-      ]
+      ],
+      "vehicleType": "PHEV"
     },
     {
       "id": "byd-sealion-05-ev-520km-flagship-zhihang-2026",
@@ -14548,7 +14556,8 @@
           "assets/teardown/byd-sealion-05-ev-520km-flagship-zhihang-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "BEV"
     },
     {
       "id": "byd-sealion-07-4x4-550-zhihang-2024",
@@ -18171,7 +18180,8 @@
           "energyWh": null,
           "voltageV": 3.245
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "byd-shark-gs-dm-o-2025",
@@ -21210,7 +21220,8 @@
           "energyWh": null,
           "voltageV": 3.24
         }
-      ]
+      ],
+      "vehicleType": "PHEV"
     },
     {
       "id": "byd-tang-l-ev-2025",
@@ -24016,7 +24027,8 @@
           "energyWh": null,
           "voltageV": 3.264
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "chevrolet-blazer-ev-rs-awd-2024",
@@ -25412,7 +25424,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "chevrolet-equinox-rs-2024",
@@ -27874,7 +27887,8 @@
           "energyWh": null,
           "voltageV": 3.59
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "cupra-tavascan-vz-4drive-2025",
@@ -30818,7 +30832,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "ds-n-8-etoile-awd-long-range-2026",
@@ -30866,7 +30881,8 @@
           "assets/teardown/ds-n-8-etoile-awd-long-range-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "BEV"
     },
     {
       "id": "ebro-s900-phev-2026",
@@ -34016,7 +34032,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "PHEV"
     },
     {
       "id": "exeed-sterra-et-ev-540-pro-4x4-2024",
@@ -37797,7 +37814,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "fang-cheng-bao-bao-8-flagship-7-seats-2025",
@@ -40914,7 +40932,8 @@
           "energyWh": null,
           "voltageV": 2.55
         }
-      ]
+      ],
+      "vehicleType": "PHEV"
     },
     {
       "id": "geely-galaxy-e5-starship-2024",
@@ -44172,7 +44191,8 @@
           "energyWh": 494.4,
           "voltageV": 3.09
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "gmc-hummer-ev-suv-edition-1-2024",
@@ -46529,7 +46549,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "honda-n-van-efun-2025",
@@ -48816,7 +48837,8 @@
           "energyWh": null,
           "voltageV": 3.61
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "hyundai-inster-creative-2025",
@@ -51984,7 +52006,8 @@
           "energyWh": null,
           "voltageV": 3.69
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "hyundai-ioniq-5-n-2024",
@@ -55125,7 +55148,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "im-motor-ls6-extended-range-66-max-2026",
@@ -55168,7 +55192,8 @@
           "assets/teardown/im-motor-ls6-extended-range-66-max-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "EREV"
     },
     {
       "id": "jeep-cherokee-overland-4x4-2026",
@@ -57152,7 +57177,8 @@
           "energyWh": null,
           "voltageV": 3.7
         }
-      ]
+      ],
+      "vehicleType": "HEV"
     },
     {
       "id": "jeep-wagoneer-s-launch-edition-4xe-2025",
@@ -59256,7 +59282,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "kia-carens-clavis-clavis-htx-er-2026",
@@ -59305,7 +59332,8 @@
           "assets/teardown/kia-carens-clavis-clavis-htx-er-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "BEV"
     },
     {
       "id": "kia-ev3-gt-line-2024",
@@ -62521,7 +62549,8 @@
           "energyWh": null,
           "voltageV": 3.69
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "kia-ev9-gt-line-2024",
@@ -65936,7 +65965,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "land-rover-range-rover-autobiography-swb-phev-2025",
@@ -67901,7 +67931,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "PHEV"
     },
     {
       "id": "leapmotor-b10-design-promax-2026",
@@ -67947,7 +67978,8 @@
           "assets/teardown/leapmotor-b10-design-promax-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "BEV"
     },
     {
       "id": "leapmotor-c10-reev-design-2025",
@@ -71212,7 +71244,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "EREV"
     },
     {
       "id": "leapmotor-d19-extended-range-500-extreme-7-seats-2026",
@@ -71259,7 +71292,8 @@
           "assets/teardown/leapmotor-d19-extended-range-500-extreme-7-seats-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "EREV"
     },
     {
       "id": "li-auto-i6-4x4-standard-edition-2026",
@@ -71308,7 +71342,8 @@
           "assets/teardown/li-auto-i6-4x4-standard-edition-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "BEV"
     },
     {
       "id": "li-xiang-mega-ultra-2024",
@@ -75030,7 +75065,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "lucid-air-pure-2025",
@@ -77302,7 +77338,8 @@
           "energyWh": null,
           "voltageV": 3.5
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "lucid-gravity-grand-touring-2026",
@@ -79666,7 +79703,8 @@
           "energyWh": null,
           "voltageV": 2.68
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "luxeed-s7-4x4-max-rs-performance-2024",
@@ -83469,7 +83507,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "lynk-co-900-tansuo-2025",
@@ -87575,7 +87614,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "PHEV"
     },
     {
       "id": "mahindra-be-6-pack-three-79-kwh-2025",
@@ -89200,7 +89240,8 @@
           "energyWh": 607.0,
           "voltageV": 3.24
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "mahindra-xev-9e-pack-two-59-kwh-2026",
@@ -89251,7 +89292,8 @@
           "assets/teardown/mahindra-xev-9e-pack-two-59-kwh-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "BEV"
     },
     {
       "id": "mercedes-cla-350-4matic-eq-business-executive-2026",
@@ -91859,7 +91901,8 @@
           "energyWh": 466.7,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "mg-windsor-ev-45kw-essence-2024",
@@ -95562,7 +95605,8 @@
           "energyWh": null,
           "voltageV": 3.2
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "mg3-hybrid-2024",
@@ -97061,7 +97105,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "HEV"
     },
     {
       "id": "nio-et9-signature-2025",
@@ -100470,7 +100515,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "nio-firefly-2025",
@@ -104311,7 +104357,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "nissan-n7-625-max-2026",
@@ -107043,7 +107090,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "onvo-l60-60kwh-4x4-2024",
@@ -109817,7 +109865,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "onvo-l90-ultra-7-seats-2026",
@@ -113708,7 +113757,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "peugeot-3008-e-gt-2024",
@@ -116109,7 +116159,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "polestar-2-long-range-dual-motor-2024",
@@ -119300,7 +119351,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "polestar-4-long-range-dual-motor-2025",
@@ -119447,7 +119499,8 @@
           "assets/teardown/polestar-4-long-range-dual-motor-2025/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "BEV"
     },
     {
       "id": "renault-5-iconic-cinq-confort-2025",
@@ -120116,7 +120169,8 @@
           "oemTiers": "Renault",
           "partCount": 1
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "rivian-r1s-tri-max-2025",
@@ -122686,7 +122740,8 @@
           "energyWh": null,
           "voltageV": 3.4972
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "smart-5-brabus-2025",
@@ -126075,7 +126130,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "tata-harrier-ev-qwd-dual-motor-2025",
@@ -128826,7 +128882,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "tata-punch-ev-empowered-slr-acfc-2024",
@@ -131579,7 +131636,8 @@
           "energyWh": null,
           "voltageV": 3.2
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "tesla-cybertruck-awd-foundation-edition-2024",
@@ -133660,7 +133718,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "tesla-model-y-rwd-2025",
@@ -135839,7 +135898,8 @@
           "energyWh": null,
           "voltageV": 3.27
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "togg-t10x-v2-rwd-long-range-2024",
@@ -137838,7 +137898,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "toyota-tacoma-ltd-hv-4x4-double-cab-2024",
@@ -139302,7 +139363,8 @@
           "energyWh": null,
           "voltageV": 7.73
         }
-      ]
+      ],
+      "vehicleType": "HEV"
     },
     {
       "id": "toyota-tundra-3-4t-i-force-4wd-platinum-5-2026",
@@ -140959,7 +141021,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "HEV"
     },
     {
       "id": "vinfast-vf6-plus-2024",
@@ -143409,7 +143472,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "volkswagen-id7-2024",
@@ -145613,7 +145677,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "volvo-ex30-twin-motor-performance-ultra-2024",
@@ -148079,7 +148144,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "volvo-ex90-twin-motor-perf-electric-ultra-2025",
@@ -149552,7 +149618,8 @@
           "energyWh": null,
           "voltageV": 3.477
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "xiaomi-su7-4x4-super-range-high-class-max-2024",
@@ -153102,7 +153169,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "xiaomi-yu7-super-range-4x4-pro-2025",
@@ -154546,7 +154614,8 @@
           "oemTiers": null,
           "partCount": 3
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "xpeng-g7-extended-range-1704-max-flagship-2026",
@@ -154602,7 +154671,8 @@
           "assets/teardown/xpeng-g7-extended-range-1704-max-flagship-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "EREV"
     },
     {
       "id": "xpeng-mona-03-600-super-range-max-2025",
@@ -158284,7 +158354,8 @@
           "energyWh": null,
           "voltageV": 3.247
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "xpeng-p7-super-range-max-2024",
@@ -162202,7 +162273,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "yangwang-u7-4-seats-flagship-2025",
@@ -165680,7 +165752,8 @@
           "energyWh": null,
           "voltageV": 3.195
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "zeekr-007-4x4-zhijia-75kwh-2024",
@@ -168428,7 +168501,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     },
     {
       "id": "zeekr-9x-hyper-70kwh-2026",
@@ -168476,7 +168550,8 @@
           "assets/teardown/zeekr-9x-hyper-70kwh-2026/pack_profile_4.jpg"
         ]
       },
-      "bomTree": []
+      "bomTree": [],
+      "vehicleType": "PHEV"
     },
     {
       "id": "zeekr-mix-smart-driving-edition-2025",
@@ -171114,7 +171189,8 @@
           "energyWh": null,
           "voltageV": null
         }
-      ]
+      ],
+      "vehicleType": "BEV"
     }
   ]
 }

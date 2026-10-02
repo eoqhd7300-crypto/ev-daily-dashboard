@@ -105,6 +105,10 @@
                 </div>
                 <div class="flex flex-col sm:flex-row gap-2 mb-3">
                     <div class="flex items-center gap-1.5 flex-1">
+                        <label for="vehicleTypeFilterSelect" class="text-xs font-semibold text-slate-500 flex-shrink-0">차량 종류:</label>
+                        <select id="vehicleTypeFilterSelect" onchange="window.setVehicleTypeFilter(this.value)" class="flex-1 sm:flex-none sm:w-40 px-2.5 py-1.5 text-xs sm:text-sm rounded-lg border border-slate-300 bg-white text-slate-700 focus:ring-2 focus:ring-sky-500"></select>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-1">
                         <label for="cellManufacturerFilterSelect" class="text-xs font-semibold text-slate-500 flex-shrink-0">셀 제조사:</label>
                         <select id="cellManufacturerFilterSelect" onchange="window.setCellManufacturerFilter(this.value)" class="flex-1 sm:flex-none sm:w-48 px-2.5 py-1.5 text-xs sm:text-sm rounded-lg border border-slate-300 bg-white text-slate-700 focus:ring-2 focus:ring-sky-500"></select>
                     </div>
@@ -119,6 +123,7 @@
                             <tr class="border-b border-slate-200 text-slate-700 font-semibold">
                                 <th class="p-2.5 text-center w-10"></th>
                                 <th class="p-2.5">모델명 / 연식</th>
+                                <th class="p-2.5 text-center whitespace-nowrap">차량 종류</th>
                                 <th class="p-2.5">셀 제조사</th>
                                 <th class="p-2.5 text-center whitespace-nowrap">폼팩터</th>
                                 <th class="p-2.5 text-right">팩 용량 [Ah]</th>
@@ -167,8 +172,12 @@
     <script>
         let teardownVehicles = [];
         let selectedTeardownIds = new Set();
+        let activeVehicleTypeFilter = 'all';
         let activeCellManufacturerFilter = 'all';
         let activeCellFormatFilter = 'all';
+        // BEV/HEV/PHEV/EREV/FCEV 고정 표시 순서 (build_teardown_data.py의 VEHICLE_TYPE_OVERRIDES와
+        // 동일한 값 체계). 데이터에 실제로 등장하는 값만 드롭다운에 노출한다.
+        const VEHICLE_TYPE_ORDER = ['BEV', 'HEV', 'PHEV', 'EREV', 'FCEV', '확인 필요'];
         // vehicleId -> { stackingStructure, stackStructure, anodeCathodeImages, separatorDimensions,
         // overhangs, cellMaterialSummary, cathodeElectrodeCrossSection, anodeElectrodeCrossSection }
         // parse_cell_report_pdf.py(teardown_cellreport_data.json)의 선택적 보강 데이터. 파일이 없거나
@@ -188,6 +197,21 @@
         function formatCellFormatKo(value) {
             const v = (value || '').trim();
             return CELL_FORMAT_LABEL_KO[v] || fmtVal(value);
+        }
+
+        // 차량 종류별 배지 색상 (BEV=파랑/HEV=회색/PHEV=보라/EREV=주황/FCEV=녹색, 미분류는 회색 점선)
+        const VEHICLE_TYPE_BADGE_CLASS = {
+            'BEV': 'bg-sky-100 text-sky-700',
+            'HEV': 'bg-slate-200 text-slate-700',
+            'PHEV': 'bg-violet-100 text-violet-700',
+            'EREV': 'bg-amber-100 text-amber-700',
+            'FCEV': 'bg-emerald-100 text-emerald-700',
+        };
+        function vehicleTypeBadge(value) {
+            const v = (value || '').trim();
+            if (!v) return '<span class="text-slate-300">-</span>';
+            const cls = VEHICLE_TYPE_BADGE_CLASS[v] || 'bg-white text-slate-400 border border-dashed border-slate-300';
+            return `<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold ${cls}">${v}</span>`;
         }
 
         // Curated display order (fields not listed here still show, appended alphabetically as fallback)
@@ -282,8 +306,15 @@
         }
 
         window.renderTeardownFilterBars = function() {
+            const vehicleTypesPresent = new Set(teardownVehicles.map(v => (v.vehicleType || '').trim()).filter(Boolean));
+            const vehicleTypes = VEHICLE_TYPE_ORDER.filter(t => vehicleTypesPresent.has(t));
             const manufacturers = [...new Set(teardownVehicles.map(v => (v.cell['Cell Manufacturer'] || '').trim()).filter(Boolean))].sort();
             const formats = [...new Set(teardownVehicles.map(v => (v.cell['Cell Format'] || '').trim()).filter(Boolean))].sort();
+
+            const vehicleTypeSelect = document.getElementById('vehicleTypeFilterSelect');
+            vehicleTypeSelect.innerHTML = `<option value="all">전체</option>`
+                + vehicleTypes.map(t => `<option value="${t}">${t}</option>`).join('');
+            vehicleTypeSelect.value = activeVehicleTypeFilter;
 
             const manufacturerSelect = document.getElementById('cellManufacturerFilterSelect');
             manufacturerSelect.innerHTML = `<option value="all">전체</option>`
@@ -294,6 +325,12 @@
             formatSelect.innerHTML = `<option value="all">전체</option>`
                 + formats.map(f => `<option value="${f}">${formatCellFormatKo(f)}</option>`).join('');
             formatSelect.value = activeCellFormatFilter;
+        };
+
+        window.setVehicleTypeFilter = function(value) {
+            activeVehicleTypeFilter = value;
+            window.renderTeardownFilterBars();
+            window.renderVehiclePicker();
         };
 
         window.setCellManufacturerFilter = function(value) {
@@ -315,6 +352,7 @@
 
             teardownVehicles
                 .filter(v => `${v.name} ${v.year}`.toLowerCase().includes(query))
+                .filter(v => activeVehicleTypeFilter === 'all' || (v.vehicleType || '').trim() === activeVehicleTypeFilter)
                 .filter(v => activeCellManufacturerFilter === 'all' || (v.cell['Cell Manufacturer'] || '').trim() === activeCellManufacturerFilter)
                 .filter(v => activeCellFormatFilter === 'all' || (v.cell['Cell Format'] || '').trim() === activeCellFormatFilter)
                 .forEach(v => {
@@ -332,6 +370,7 @@
                             <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="window.toggleTeardownVehicle('${v.id}')" class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer">
                         </td>
                         <td class="p-2.5 font-semibold text-slate-900">${v.name} <span class="text-slate-400 font-normal">(${v.year || '-'})</span></td>
+                        <td class="p-2.5 text-center">${vehicleTypeBadge(v.vehicleType)}</td>
                         <td class="p-2.5 text-slate-600">${fmtVal(v.cell['Cell Manufacturer'])}</td>
                         <td class="p-2.5 text-center text-slate-600 whitespace-nowrap">${formatCellFormatKo(v.cell['Cell Format'])}</td>
                         <td class="p-2.5 text-right text-slate-600">${fmtVal(packCapacity)}</td>

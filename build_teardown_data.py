@@ -48,6 +48,91 @@ KST = timezone(timedelta(hours=9))
 MAX_IMAGE_WIDTH = 480
 JPEG_QUALITY = 72
 
+# 차량 종류(파워트레인 구분) 수동 분류 테이블. A2MAC1 원본 엑셀에는 이 정보가 없어(배터리 팩
+# 스펙/치수만 제공), 실제 차량명을 근거로 사람이 직접 확인·입력한 값이다. 새 차량을 추가할 때는
+# 반드시 이 사전에도 slug(= teardown_data.json의 id)를 추가해야 한다 - 없으면 "확인 필요"로
+# 표시되어 "차량 종류" 필터에서 분류 안 됨으로 남는다(추측해서 채우지 않음).
+# BEV=순수 전기차, HEV=일반 하이브리드, PHEV=플러그인 하이브리드, EREV=레인지 익스텐더(REEV),
+# FCEV=수소연료전지.
+VEHICLE_TYPE_OVERRIDES = {
+    "aion-v-tyrannosaurus-lidar-2025": "BEV",
+    "aito-m8-range-extended-ultra-53-2025": "EREV",
+    "aito-m9-ultra-42kwh-2024": "EREV",
+    "audi-a5-avant-2-0-hybrid-2025": "HEV",
+    "audi-e5-sportback-flagship-quattro-2026": "BEV",
+    "audi-sq6-e-tron-edition-one-2024": "BEV",
+    "bmw-ix3-50-xdrive-2026": "BEV",
+    "byd-qin-l-dm-i-120km-zhuoyue-2024": "PHEV",
+    "byd-sealion-05-ev-520km-flagship-zhihang-2026": "BEV",
+    "byd-sealion-07-4x4-550-zhihang-2024": "BEV",
+    "byd-shark-gs-dm-o-2025": "PHEV",
+    "byd-tang-l-ev-2025": "BEV",
+    "chevrolet-blazer-ev-rs-awd-2024": "BEV",
+    "chevrolet-equinox-rs-2024": "BEV",
+    "cupra-tavascan-vz-4drive-2025": "BEV",
+    "ds-n-8-etoile-awd-long-range-2026": "BEV",
+    "ebro-s900-phev-2026": "PHEV",
+    "exeed-sterra-et-ev-540-pro-4x4-2024": "BEV",
+    "fang-cheng-bao-bao-8-flagship-7-seats-2025": "PHEV",
+    "geely-galaxy-e5-starship-2024": "BEV",
+    "gmc-hummer-ev-suv-edition-1-2024": "BEV",
+    "honda-n-van-efun-2025": "BEV",
+    "hyundai-inster-creative-2025": "BEV",
+    "hyundai-ioniq-5-n-2024": "BEV",
+    "im-motor-ls6-extended-range-66-max-2026": "EREV",
+    "jeep-cherokee-overland-4x4-2026": "HEV",
+    "jeep-wagoneer-s-launch-edition-4xe-2025": "BEV",
+    "kia-carens-clavis-clavis-htx-er-2026": "BEV",
+    "kia-ev3-gt-line-2024": "BEV",
+    "kia-ev9-gt-line-2024": "BEV",
+    "land-rover-range-rover-autobiography-swb-phev-2025": "PHEV",
+    "leapmotor-b10-design-promax-2026": "BEV",
+    "leapmotor-c10-reev-design-2025": "EREV",
+    "leapmotor-d19-extended-range-500-extreme-7-seats-2026": "EREV",
+    "li-auto-i6-4x4-standard-edition-2026": "BEV",
+    "li-xiang-mega-ultra-2024": "BEV",
+    "lucid-air-pure-2025": "BEV",
+    "lucid-gravity-grand-touring-2026": "BEV",
+    "luxeed-s7-4x4-max-rs-performance-2024": "BEV",
+    "lynk-co-900-tansuo-2025": "PHEV",
+    "mahindra-be-6-pack-three-79-kwh-2025": "BEV",
+    "mahindra-xev-9e-pack-two-59-kwh-2026": "BEV",
+    "mercedes-cla-350-4matic-eq-business-executive-2026": "BEV",
+    "mg-windsor-ev-45kw-essence-2024": "BEV",
+    "mg3-hybrid-2024": "HEV",
+    "nio-et9-signature-2025": "BEV",
+    "nio-firefly-2025": "BEV",
+    "nissan-n7-625-max-2026": "BEV",
+    "onvo-l60-60kwh-4x4-2024": "BEV",
+    "onvo-l90-ultra-7-seats-2026": "BEV",
+    "peugeot-3008-e-gt-2024": "BEV",
+    "polestar-2-long-range-dual-motor-2024": "BEV",
+    "polestar-4-long-range-dual-motor-2025": "BEV",
+    "renault-5-iconic-cinq-confort-2025": "BEV",
+    "rivian-r1s-tri-max-2025": "BEV",
+    "smart-5-brabus-2025": "BEV",
+    "tata-harrier-ev-qwd-dual-motor-2025": "BEV",
+    "tata-punch-ev-empowered-slr-acfc-2024": "BEV",
+    "tesla-cybertruck-awd-foundation-edition-2024": "BEV",
+    "tesla-model-y-rwd-2025": "BEV",
+    "togg-t10x-v2-rwd-long-range-2024": "BEV",
+    "toyota-tacoma-ltd-hv-4x4-double-cab-2024": "HEV",
+    "toyota-tundra-3-4t-i-force-4wd-platinum-5-2026": "HEV",  # 실제로는 i-FORCE MAX(하이브리드) - 원본 파일명에 MAX 누락
+    "vinfast-vf6-plus-2024": "BEV",
+    "volkswagen-id7-2024": "BEV",
+    "volvo-ex30-twin-motor-performance-ultra-2024": "BEV",
+    "volvo-ex90-twin-motor-perf-electric-ultra-2025": "BEV",
+    "xiaomi-su7-4x4-super-range-high-class-max-2024": "BEV",
+    "xiaomi-yu7-super-range-4x4-pro-2025": "BEV",
+    "xpeng-g7-extended-range-1704-max-flagship-2026": "EREV",
+    "xpeng-mona-03-600-super-range-max-2025": "BEV",
+    "xpeng-p7-super-range-max-2024": "BEV",
+    "yangwang-u7-4-seats-flagship-2025": "BEV",
+    "zeekr-007-4x4-zhijia-75kwh-2024": "BEV",
+    "zeekr-9x-hyper-70kwh-2026": "PHEV",
+    "zeekr-mix-smart-driving-edition-2025": "BEV",
+}
+
 # --- Filename parsing -------------------------------------------------------
 
 TYPE2_RE = re.compile(
@@ -472,10 +557,13 @@ def build(source_dir, only_filter=None):
             'id': slug,
             'name': info['name'],
             'year': info['year'],
+            'vehicleType': VEHICLE_TYPE_OVERRIDES.get(slug, '확인 필요'),
             'sourceFiles': {'type1': info['type1'], 'type2': info['type2']},
             'meta': {}, 'cell': {}, 'modules': [], 'pack': {}, 'cellImages': [],
             'packOverview': {}, 'packImages': {}, 'bomTree': [],
         }
+        if slug not in VEHICLE_TYPE_OVERRIDES:
+            print(f"  [WARN] '{info['name']}' 의 차량 종류(BEV/HEV/PHEV/EREV/FCEV)가 VEHICLE_TYPE_OVERRIDES에 없어 '확인 필요'로 표시됩니다.")
 
         if info['type2']:
             try:
