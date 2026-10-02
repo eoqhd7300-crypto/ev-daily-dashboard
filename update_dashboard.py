@@ -30,7 +30,8 @@ from google.genai import types
 KST = timezone(timedelta(hours=9))
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json")
 
-MAX_VEHICLES = 80  # 누적 상한 (최근 1년치 데이터를 충분히 보유)
+MAX_VEHICLES = 500  # 누적 상한 (프론트엔드 페이지네이션: 페이지당 50대 x 최대 10페이지). 초과분은
+# releaseDate 기준 가장 오래된 차량부터 자동으로 밀려나 삭제된다 (merge_vehicles()의 정렬+슬라이싱).
 MAX_NEWS = 20       # 항상 최신 20건만 유지 (기존 대시보드 사양과 동일)
 NEWS_POOL_SIZE = 120  # 유사기사/비기술 기사 필터링 전, RSS에서 확보해 둘 후보 기사 풀 크기
 # (엔지니어 관심 타겟 쿼리 추가 + 엄격한 기술 관련성 필터링으로 걸러내는 양이 늘어난 만큼,

@@ -323,6 +323,9 @@
                 </div>
             </div>
 
+            <!-- Vehicle Table Pagination (Top): 최대 10페이지 × 페이지당 50대 -->
+            <div id="vehiclePaginationTop" class="flex items-center justify-center flex-wrap gap-1 pb-4"></div>
+
             <!-- Responsive Table Container -->
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs sm:text-sm border-collapse">
@@ -347,6 +350,9 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Vehicle Table Pagination (Bottom) -->
+            <div id="vehiclePaginationBottom" class="flex items-center justify-center flex-wrap gap-1 pt-4"></div>
         </section>
     </main>
 
@@ -618,6 +624,12 @@
         let expandedVehicleIds = new Set(); // Row-level inline detail expand state (independent from compare-checkbox selection)
         let currentFormFactor = 'all'; // 'all', '원통형', '각형', '파우치', '블레이드'
         let currentComposition = 'all'; // 'all', 'LFP', 'NCM', 'NCMA', 'NCA', '반고체/전고체'
+
+        // 신규 전기차 테이블 페이지네이션: 페이지당 50대, 최대 10페이지(=최대 500대까지 화면에 노출).
+        // 그 이상 누적되는 차량은 백엔드(update_dashboard.py의 MAX_VEHICLES)에서 오래된 순으로 정리된다.
+        const VEHICLE_PAGE_SIZE = 50;
+        const VEHICLE_MAX_PAGES = 10;
+        let currentVehiclePage = 1;
         const LOCAL_STORAGE_KEY = 'ev_dashboard_history_db';
 
         // Helper function for space-insensitive, case-insensitive string cleaning
@@ -1026,6 +1038,7 @@
 
         window.setPeriodFilter = function(periodKey) {
             currentPeriod = periodKey;
+            currentVehiclePage = 1;
 
             // Hide custom date picker if not custom
             const customContainer = document.getElementById('customDatePickerContainer');
@@ -1048,6 +1061,7 @@
 
         window.setFormFactorFilter = function(key) {
             currentFormFactor = key;
+            currentVehiclePage = 1;
 
             document.querySelectorAll('.form-factor-btn').forEach(btn => {
                 const isActive = btn.dataset.value === key;
@@ -1061,6 +1075,7 @@
 
         window.setCompositionFilter = function(key) {
             currentComposition = key;
+            currentVehiclePage = 1;
 
             document.querySelectorAll('.composition-btn').forEach(btn => {
                 const isActive = btn.dataset.value === key;
@@ -1114,6 +1129,7 @@
             customStartDate = startVal;
             customEndDate = endVal;
             currentPeriod = 'custom';
+            currentVehiclePage = 1;
             window.renderTable();
         };
 
@@ -1122,6 +1138,14 @@
             tbody.innerHTML = '';
 
             const filteredVehicles = window.getFilteredVehicles();
+
+            // 페이지네이션: 필터된 전체 결과를 기준으로 최대 10페이지×페이지당 50대로 자른다.
+            // 필터가 바뀌어 총 페이지가 줄어들면 현재 페이지도 유효 범위 안으로 보정한다.
+            const totalVehiclePages = Math.max(1, Math.min(VEHICLE_MAX_PAGES, Math.ceil(filteredVehicles.length / VEHICLE_PAGE_SIZE)));
+            if (currentVehiclePage > totalVehiclePages) currentVehiclePage = totalVehiclePages;
+            if (currentVehiclePage < 1) currentVehiclePage = 1;
+            const pageStartIdx = (currentVehiclePage - 1) * VEHICLE_PAGE_SIZE;
+            const pageVehicles = filteredVehicles.slice(pageStartIdx, pageStartIdx + VEHICLE_PAGE_SIZE);
 
             if (filteredVehicles.length === 0) {
                 const message = vehicles.length === 0
@@ -1139,7 +1163,7 @@
                     </tr>
                 `;
             } else {
-                filteredVehicles.forEach(v => {
+                pageVehicles.forEach(v => {
                     const isExpanded = expandedVehicleIds.has(v.id);
                     const tr = document.createElement('tr');
                     tr.id = `vehicle-row-${v.id}`;
@@ -1204,6 +1228,30 @@
             document.getElementById('periodCount').innerText = filteredVehicles.length;
             const selectedCount = filteredVehicles.filter(v => v.selected).length;
             document.getElementById('selectedCount').innerText = selectedCount;
+
+            window.renderVehiclePagination(totalVehiclePages);
+        };
+
+        // 상단/하단 두 위치에 동일한 페이지 버튼(1, 2, 3...)을 렌더링한다.
+        window.renderVehiclePagination = function(totalPages) {
+            const containers = [document.getElementById('vehiclePaginationTop'), document.getElementById('vehiclePaginationBottom')];
+            if (totalPages <= 1) {
+                containers.forEach(c => { if (c) c.innerHTML = ''; });
+                return;
+            }
+            let html = '';
+            html += `<button onclick="window.setVehiclePage(${currentVehiclePage - 1})" ${currentVehiclePage === 1 ? 'disabled' : ''} class="px-2.5 py-1 text-xs font-bold rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-sky-50 disabled:opacity-40 disabled:cursor-not-allowed transition">◀</button>`;
+            for (let p = 1; p <= totalPages; p++) {
+                const isActive = p === currentVehiclePage;
+                html += `<button onclick="window.setVehiclePage(${p})" class="px-3 py-1 text-xs font-bold rounded-lg border transition ${isActive ? 'border-sky-600 bg-sky-600 text-white shadow-xs' : 'border-slate-200 bg-white text-slate-600 hover:bg-sky-50'}">${p}</button>`;
+            }
+            html += `<button onclick="window.setVehiclePage(${currentVehiclePage + 1})" ${currentVehiclePage === totalPages ? 'disabled' : ''} class="px-2.5 py-1 text-xs font-bold rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-sky-50 disabled:opacity-40 disabled:cursor-not-allowed transition">▶</button>`;
+            containers.forEach(c => { if (c) c.innerHTML = html; });
+        };
+
+        window.setVehiclePage = function(page) {
+            currentVehiclePage = page;
+            window.renderTable();
         };
 
         // Toggle inline "차량 개요 및 배터리 시스템 기본 정보" panel directly below a table row (no separate window/modal)
