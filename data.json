@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-02T14:25:19.973746+09:00",
+  "generatedAt": "2026-10-03T14:08:12.644047+09:00",
   "vehicles": [
     {
       "id": "seres_aito_m8_l3_ev",
@@ -23,15 +23,15 @@
       "packInfo": "800V 초고속 충전 CTP 알루미늄 배터리 팩",
       "cellInfo": "CATL 삼원계 NCM 각형 셀",
       "chargingSafety": "화웨이 AI 서버 연동 배터리 이상 예측 센싱 및 셀 단위 열차단 패널",
-      "trim": "Ultra L3 AWD",
-      "topSpeed": "210km/h",
-      "zeroToHundred": "4.3초",
-      "maxOutput": "390kW / 530ps",
-      "maxChargePower": "320kW",
-      "packVoltage": "800V",
+      "trim": "Ultra AWD",
+      "topSpeed": "200 km/h",
+      "zeroToHundred": "4.5 s",
+      "maxOutput": "390 kW (530 ps)",
+      "maxChargePower": "320 kW",
+      "packVoltage": "800 V",
       "packType": "CTP (Cell-to-Pack)",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -46,7 +46,7 @@
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
       "cellMakerCheckedAt": "2026-09-18",
-      "specLastCheckedAt": "2026-09-19"
+      "specLastCheckedAt": "2026-10-03"
     },
     {
       "id": "lynk_co_z20_compact_suv",
@@ -1104,13 +1104,13 @@
       "packInfo": "상용 진동 규격 강화형 초고강도 섀시 일체형 팩",
       "cellInfo": "150만km 장수명 고방전 상용 LFP/LMFP 셀",
       "chargingSafety": "액체 직접 분사 소화 모듈 및 메가와트 수냉 커넥터 인터페이스",
-      "trim": "Heavy Duty Pack",
+      "trim": "Heavy Duty Commercial 600kWh",
       "topSpeed": "110 km/h",
       "zeroToHundred": "-",
       "maxOutput": "600 kW (816 ps)",
-      "maxChargePower": "1000 kW",
-      "packVoltage": "800V-1000V",
-      "packType": "CTP Heavy Duty Pack",
+      "maxChargePower": "1,000 kW",
+      "packVoltage": "800 V",
+      "packType": "CTP 3.0 Heavy Commercial",
       "cellType": "Prismatic",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
@@ -1118,7 +1118,7 @@
       "packWeight": "-",
       "packMinusCellWeight": "-",
       "cellToPackWeightRatio": "-",
-      "packEnergyDensity": "-",
+      "packEnergyDensity": "175 Wh/kg",
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
@@ -1127,7 +1127,7 @@
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
       "cellMakerCheckedAt": "2026-09-18",
-      "specLastCheckedAt": "2026-09-19"
+      "specLastCheckedAt": "2026-10-03"
     },
     {
       "id": "lexus_es350e_8th_gen",
@@ -1245,15 +1245,15 @@
       "packInfo": "e-Platform 3.0 Evo 전용 CTB 일체형 LFP 블레이드 팩",
       "cellInfo": "BYD 2세대 안전 LFP 블레이드 셀",
       "chargingSafety": "못 관통 시험 통과 무열폭주 블레이드 구조 및 하부 스티어링 가드",
-      "trim": "AWD GT Edition",
+      "trim": "4WD Performance Edition",
       "topSpeed": "200 km/h",
-      "zeroToHundred": "4.9s",
+      "zeroToHundred": "4.9 s",
       "maxOutput": "310 kW (421 ps)",
       "maxChargePower": "160 kW",
-      "packVoltage": "800V",
+      "packVoltage": "800 V",
       "packType": "CTB (Cell-to-Body)",
-      "cellType": "Blade Prismatic",
-      "coolingMethod": "Direct Refrigerant / Liquid Cooling",
+      "cellType": "Prismatic (Blade)",
+      "coolingMethod": "Direct Refrigerant Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -1268,7 +1268,7 @@
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
       "cellMakerCheckedAt": "2026-09-18",
-      "specLastCheckedAt": "2026-09-19"
+      "specLastCheckedAt": "2026-10-03"
     },
     {
       "id": "nio_et9_horizon",
@@ -1433,13 +1433,13 @@
       "packInfo": "800V eM Structural High-Density Battery Pack",
       "cellInfo": "High-Nickel NCM Pouch Cell with Silicon Anode",
       "chargingSafety": "3중 차체 사이드 임팩트 구조 및 지능형 핫스팟 제어 BPCM 기술",
-      "trim": "Standard AWD",
+      "trim": "Magma Performance AWD",
       "topSpeed": "250 km/h",
-      "zeroToHundred": "4.2초",
+      "zeroToHundred": "3.8 s",
       "maxOutput": "400 kW (544 ps)",
       "maxChargePower": "400 kW",
-      "packVoltage": "800V",
-      "packType": "eM Platform CTP",
+      "packVoltage": "800 V",
+      "packType": "eM Integrated Pack",
       "cellType": "Pouch",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
@@ -1455,7 +1455,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-19",
+      "specLastCheckedAt": "2026-10-03",
       "cellMakerCheckedAt": "2026-09-09"
     },
     {
@@ -1480,14 +1480,14 @@
       "packInfo": "MEB Entry CTP 통합 배터리 케이싱",
       "cellInfo": "PowerCo Unified Prismatic LFP Cell",
       "chargingSafety": "충돌 대응 3차원 측면 쉘 구조",
-      "trim": "MEB Entry FWD",
+      "trim": "Production Standard",
       "topSpeed": "160 km/h",
-      "zeroToHundred": "< 7.0s",
+      "zeroToHundred": "6.9 s",
       "maxOutput": "166 kW (226 ps)",
       "maxChargePower": "125 kW",
-      "packVoltage": "400V",
-      "packType": "MEB Entry Module",
-      "cellType": "Unified Cell (Prismatic)",
+      "packVoltage": "400 V",
+      "packType": "MEB Entry Unified Pack",
+      "cellType": "Prismatic (Unified Cell)",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -1502,7 +1502,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-19",
+      "specLastCheckedAt": "2026-10-03",
       "cellMakerCheckedAt": "2026-09-09"
     },
     {
@@ -2136,15 +2136,15 @@
       "packInfo": "800V 고방전 특화 기린 CTP 구조 배터리 팩",
       "cellInfo": "CATL Qilin Ultra-High Output NCM Cell",
       "chargingSafety": "직접 냉각식 셀 인터페이스 및 실리콘 기반 유전체 오일 다이렉트 쿨링",
-      "trim": "FR Quad-Motor",
+      "trim": "FR Quad-Motor Performance",
       "topSpeed": "280 km/h",
-      "zeroToHundred": "2.02s",
+      "zeroToHundred": "2.02 s",
       "maxOutput": "930 kW (1,265 ps)",
       "maxChargePower": "400 kW",
-      "packVoltage": "800V",
-      "packType": "Qilin CTP 3.0",
+      "packVoltage": "800 V",
+      "packType": "CTP 3.0 Kirin Pack",
       "cellType": "Prismatic",
-      "coolingMethod": "Liquid Cooling",
+      "coolingMethod": "Direct Liquid Surface Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -2159,7 +2159,7 @@
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
       "cellMakerCheckedAt": "2026-09-18",
-      "specLastCheckedAt": "2026-09-19"
+      "specLastCheckedAt": "2026-10-03"
     },
     {
       "id": "hyundai_ioniq_9",
@@ -2979,13 +2979,13 @@
       "packInfo": "400V Compact Swappable Pack",
       "cellInfo": "High-Efficiency LFP Prismatic Cell",
       "chargingSafety": "스왑 커넥터 10,000회 탈착 내구성 테스트 및 팩 하부 4중 보호 방패 적용",
-      "trim": "Standard Swappable FWD",
+      "trim": "Standard FWD Swappable",
       "topSpeed": "150 km/h",
-      "zeroToHundred": "7.9초",
+      "zeroToHundred": "8.5 s",
       "maxOutput": "130 kW (177 ps)",
       "maxChargePower": "110 kW",
-      "packVoltage": "400V",
-      "packType": "Swappable Modular Pack",
+      "packVoltage": "400 V",
+      "packType": "Compact Swappable Pack",
       "cellType": "Prismatic",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
@@ -3001,7 +3001,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-19"
+      "specLastCheckedAt": "2026-10-03"
     },
     {
       "id": "hyundai_ioniq9_longrange_2026",
@@ -3638,13 +3638,13 @@
       "packInfo": "CATL CTP 3.0 고밀도 LFP 초급속 배터리 팩",
       "cellInfo": "CATL Shenxing LFP Ultra-fast Charge Cell",
       "chargingSafety": "BMS 초고속 실시간 유량 제어 및 360도 스틸 프레임 하우징",
-      "trim": "Ultra EV AWD",
+      "trim": "Ultra 4WD",
       "topSpeed": "200 km/h",
-      "zeroToHundred": "3.9s",
+      "zeroToHundred": "3.9 s",
       "maxOutput": "440 kW (598 ps)",
       "maxChargePower": "350 kW",
-      "packVoltage": "800V",
-      "packType": "Shenxing CTP 3.0",
+      "packVoltage": "800 V",
+      "packType": "CTP Shenxing Superfast Pack",
       "cellType": "Prismatic",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
@@ -3661,7 +3661,7 @@
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
       "cellMakerCheckedAt": "2026-09-18",
-      "specLastCheckedAt": "2026-09-19"
+      "specLastCheckedAt": "2026-10-03"
     },
     {
       "id": "mercedes_eqe_350_suv_2026",
@@ -3760,13 +3760,40 @@
   ],
   "news": [
     {
+      "title": "예선테크, 전기차 배터리 열폭주 방지 ‘화염차단제’ 개발…고객사와 대체품 협의 - 이투데이",
+      "summary": "예선테크가 전기차 배터리의 열폭주 현상을 방지하기 위한 화염차단제 소재를 개발하고 주요 고객사와 제품 적용 및 대체 시험을 협의 중입니다.",
+      "source": "이투데이",
+      "date": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1YSThKV1JnRmVnTzQyRkJ2Ni1QVmtUbnQxbkM4eU9fbXZxZlVWMXhTZ1c3Q08wVklvc1hCNUNpRE1GLWl5cE1zYTg1bGdnZ0hqbTREMkV2RWcwQ3RONVI4c0ktb2RfNi1wMkRpX3l3?oc=5",
+      "linkType": "rss",
+      "id": 1
+    },
+    {
+      "title": "환경공단·독일 프라운호퍼, 배터리 재활용 넘어 ‘재생원료 품질’ 공동연구 - 에너지데일리",
+      "summary": "한국환경공단이 독일 프라운호퍼 연구소와 사용후 배터리의 단순 재활용을 넘어 추출된 재생원료의 고품질화 및 표준화 기술 공동연구에 착수합니다.",
+      "source": "에너지데일리",
+      "date": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0tZWtVYXlUM09jbUpnY3BqZVhmSE9teHBGQmt2cEptOEZ1LWl0S1MxbDhZVHZZdnNJMXNOTnZuMktwSjVzWjFhNjRGYXRROEJWeXJVN0VTMlotTk00UWxyeHk1eWVZZHpSRmQ5SzVvcE92QQ?oc=5",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "전기차 폐배터리, 블랙매스 거쳐 금속 원료로 - 비건뉴스",
+      "summary": "전기차 폐배터리를 파쇄해 제조한 블랙매스에서 니켈, 코발트, 리튬 등 유효 금속을 고순도로 추출·회수하는 자원 순환 공정을 조명합니다.",
+      "source": "비건뉴스",
+      "date": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFAzaFh2VW02QzUwT2R1VDAxVTJmMUpwMy1fdlp3Zk1ReUg3dnlmc0lpcmNTZlRvNUZ1X2J4U1ppN0RHSk9UeEF4MHNoQmtPNF8wVkx5TkV5LWlVQy1GSjM5QnFVa0cxQQ?oc=5",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
       "title": "1∼8월 전기차 배터리 사용량 20%↑…중국업체 선전 지속 - 연합뉴스",
       "summary": "1∼8월 전기차 배터리 사용량 20%↑…중국업체 선전 지속    연합뉴스",
       "source": "연합뉴스",
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5fVnc2Uk02S1dzUURBSzFzbVNwdEZNcWVWTGVERHM2dGgxcjRkTWlFcGlkdDltZ3hzT0pOZkh0RE5vakpOeko2VDhObU9fbGgyYU5jeEJoQkM4S3fSAWBBVV95cUxOcVdONC1KMzg5X21DbGdVakxRZU1ERTNmMnhiREQ4VXFDLVJCZUJPeHVlM0VnMDVIMDczZEFMTjhobFFfQTl3c2hIai1yV1JlOWhXSnU4OGg0WHVtZGdzcG8?oc=5",
       "linkType": "rss",
-      "id": 1
+      "id": 4
     },
     {
       "title": "K배터리, 1~8월 美 전기차 공급분 전년비 40% ↓ - 지디넷코리아",
@@ -3775,7 +3802,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5rS1QtQzgxcXBlOGRNYTFMdjNSengzM0dIUjRtX1ItWGlIZk8zOS1TSXRia1ctd2djeEVmWEhhRm9RWVF2RXVsWVpsOHB4ZEFMU1FvS3BR?oc=5",
       "linkType": "rss",
-      "id": 2
+      "id": 5
     },
     {
       "title": "‘폐배터리 1500개 모으면 전기차 1대 리튬 나온다’…LG전자, ‘배터리턴’ 캠페인 재가동 - 비즈월드",
@@ -3784,7 +3811,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9Za2FEQUswVEFHMnMxSENrdV91SVBFNTRoNDdQWE1FU3B1cEpDM2xkX3hQYVVNN19xVlVVNGw5dVFUV0ZhTHVhQ1VBRGw3WWlGTEtJTXhLd01iSElmekprU0xwMkg4XzM0NEE?oc=5",
       "linkType": "rss",
-      "id": 3
+      "id": 6
     },
     {
       "title": "LG전자, 폐배터리 1500개서 전기차 1대분 리튬 회수…폐가전 64만톤 회수·매립 제로 추진 - 위키리크스한국",
@@ -3793,7 +3820,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Kci12cl9ZRWF3ZjA1bGZDNUJKcGZQQS1reXZyb19Od2NRNkZrak5UZDBacGEzTHBVQTRKUUF3QnBVQ3JSQ2lmU05qUW5OaHQzWXdScjA0cWNPdEFqY1pVZ1FGOTNuSjFvRFRLbllKdEY?oc=5",
       "linkType": "rss",
-      "id": 4
+      "id": 7
     },
     {
       "title": "[심층분석] LG전자, 폐배터리 34만 개 회수…자원순환에서 ESG 경영의 실효성 찾는다 - newsvalue.kr",
@@ -3802,7 +3829,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB4RHlyeVpZQVhRcnpVdFdwTU5mZVBfREhaR0NYMnNHbXJWc0ZoSktuVTNLYjdVTVM0bllQN1N6NENfVkswa1BzTDdlRnFSX3ZlOFNYWV9xczl3TmY0YU1GNVZnNXlTeG81OVE?oc=5",
       "linkType": "rss",
-      "id": 5
+      "id": 8
     },
     {
       "title": "'GM 배터리 소재 공급사' 비아노드, 자본 확충·북미 공장 건설 위한 투자 유치 - 더구루",
@@ -3811,7 +3838,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE01QkkwLTZuNzJPS21rYTRiMngwZXYzd0RsQ2lDVG5SQktIUHkzWXBtRHdxX3Voa1FuczFGWHpydF9HaHFxYzlYSm8yV1Nlcm91aDBmdk1JbnZwVjlnbEdHbDdDNA?oc=5",
       "linkType": "rss",
-      "id": 6
+      "id": 9
     },
     {
       "title": "LG엔솔, EV 배터리 제품군 확대…출하량은 과제로 - 한스경제",
@@ -3820,7 +3847,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE05cmRhdVpabXR0UkMtY0I4d1JYeXRZa2xVbWlEZWE1bFBDaUdEUmdQcWk5Q3ZKcVpZQ0FwQzdBdWJtU2w5andFWmJ3UC01b082XzZUU3MtaW50cl9VTnBmb2RSd182TnVqSXBF0gFvQVVfeXFMTjVWVkJ5dWQySHl2SDlGU2N2V21aTTdNZVRjbWU0eEh2STVtN2xubDRIZS1IdEwtSV9aWVJKaWk3N1Y0Z0swRlVoaXFKNXFNb0JUcWVZZFh0cThUc1c3QjB6aThCUEI2ZEtqR3hWZllB?oc=5",
       "linkType": "rss",
-      "id": 7
+      "id": 10
     },
     {
       "title": "광섬유 결합 레이저 모듈 시장, 2035년까지 성장 가속…전기차 배터리 제조와 의료기기가 견인 - 뉴스 및 통계 - IndexBox",
@@ -3829,7 +3856,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOcnZTOTg5bjhxQlBnY1lJdUR4QVYyQXloeV9EcGphS2FwODJuOGxmQjJTd3VyaWpDdFh4Sk1jQ0FZejYzRXUxQ18wTHdHZXNzaldHbmtHS0RrSzEwaXhiVnV2T1RIZENvRG9WN204ZlktNG8zNUJ1UEpnTEhYUlRDclZEbUFCQkZ6NDUyQUI3Vnhya0tCRmtkX2NWOUxBQmtmOTN5LTIxd1g2R3Fvd2tWNlVUVnByTjBjSGFKRTRwaFRTMlkxVHNtbGNOMEthaU1oVWE0dFRYWkVhNEJNWXprSg?oc=5",
       "linkType": "rss",
-      "id": 8
+      "id": 11
     },
     {
       "title": "LG전자, 폐배터리 자원순환 캠페인 진행 - IT조선",
@@ -3838,7 +3865,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1FMDFaTHhjcGd2cDdMUFdyT000MWJpb21OSTB6RXRlc0Y4TVhRbFNVOXh5OUhuZW5LSXBfVjZOekw3bDd0c283TklraEhqZ0JZd2pZbGd3aDZSQUcyOUZ5QnlFR2RMSFdkcldIX1YwMk_SAXRBVV95cUxPbFBCT1AxYmdQUlpFSWVYQnZwb0tEbGZEZVFsRVR4LVZvOWIzT3l3MHg0bW43ZjduWG1xMGZwY3VWbkdEQ1VYNmQ4d1EwaUk3Z0tDT1NzZElySVdsWmZpT0p0a1RGYkgxZUNOUGpiY2RaUmE3Tg?oc=5",
       "linkType": "rss",
-      "id": 9
+      "id": 12
     },
     {
       "title": "LG전자, 무선청소기 폐배터리 재활용 확대… 누적 수거량 156톤 달성 - 조선비즈 - Chosunbiz",
@@ -3847,7 +3874,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOQ0lzZEdDWnFvLVpOMHpQWXdBSFowQ1NrZkozQW9lSVVjbFZYcVBSVGtqSWlvRTdPMkpXQTBiSHdTVV96MUpUOWFGc2Z0SkpsV201eV9mMm1Nel9PR1N3MEp5OV9jV3phbzRPUW9PTUdjNmhpNEFoeXh3T2NvS0tMTlFn0gGWAUFVX3lxTE5MdkN4MkJqZmhwUlZDU3h6WWZ1b0NDSGlaVTZJVTFaODhuR1BrZFV0X01Lam1TX3ZVY3VjV2ItdEh0VXZqUmI3V29XVUxaenJBbXBTQ3pfbzdrbW1qOUZ5MjVCWjExSDNIQnNrdXJMd3dKOGo0MTRZTGZFbjIycmdnUk45Y2RkT1BZbWJrNjVGaHpMc3JWdw?oc=5",
       "linkType": "rss",
-      "id": 10
+      "id": 13
     },
     {
       "title": "플래티넘 그룹 메탈스, 백금·팔라듐 리튬황 배터리 1단계 검증..시제품 착수 - 매일경제 마켓",
@@ -3856,7 +3883,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE40UlNxc3ZLTTFOQ2QwcE9fY010emthSXJNM0F6bTlRVHFBZEtWeG5MR252VG1YTzA3dnNOWjlEMW5YdWhPRWM0VV93Rm9ueVJzbWc?oc=5",
       "linkType": "rss",
-      "id": 11
+      "id": 14
     },
     {
       "title": "아메리칸 배터리 테크놀러, 블랙매스 1억 달러 수출 승인..美 상무부 라이선스 - 매일경제 마켓",
@@ -3865,7 +3892,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBHaE1xbWY1NHJRcFJHTy1iQTBkX1JaS1F4TmdFdEtvcVBNMmZhZ2VYWHhVYllsX1NXbk1lRW1fWmc2Qlo5OTF0b0s5Vlkwb1BLQXc?oc=5",
       "linkType": "rss",
-      "id": 12
+      "id": 15
     },
     {
       "title": "LG전자, 폐배터리 모아 재활용한다…누적 34만개 회수 - 서울경제",
@@ -3874,7 +3901,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1xTXRhT0V2TW9nMERsbHE1bV9OekVKUGNmWUk5a0JDZnNlajdLLU1VLW9YZVlWOXZCUUlGSmJ5SmJ0UTBHMl9Mci1PcGdXdWxkOWfSAVNBVV95cUxOZ2JmMEx1LWtvb2dxbk85ckp0YU5PV2ZxRUlmZGY3d0d6OWJhM0R3SFFxbWc5Vm1DSXVzQWJGMWdHMldTb2w1NVdRXzhWc2xSQWtJbw?oc=5",
       "linkType": "rss",
-      "id": 13
+      "id": 16
     },
     {
       "title": "브랜즈컴퍼니, 열폭주 걱정 줄인 스카이 반고체 보조배터리 3종 선보여 - 글로벌E",
@@ -3883,7 +3910,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5rWmRibWNiRTk0Vlg1SU10NkhaUnhGblRaVWwxMk1ybENqNFQwaVZrMmc1OWtLNVczVVZ2SmIxdHJHS2xwc1hrSVAxSU5IZDBsbmdvZDJub2JqLWQyMWxiQ3lLV3hlYXljU0RJ0gFvQVVfeXFMT3ZLaExnVmNvTWNSU3RYcnRIa1pidTJtaXVvSVQ3S1F4aU9ldW8xbGVSYy1NTWxEQmNkbUZJRWpVQi13dUlUbk9lXzhDMnItNmFHdzMtWHVrY004dm1EUDFVODhidHRobUI1dzNaZS1r?oc=5",
       "linkType": "rss",
-      "id": 14
+      "id": 17
     },
     {
       "title": "LG전자, 무선청소기 폐배터리 재활용 캠페인 - 주간한국",
@@ -3892,7 +3919,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9KR0lUZmhPWF9teWhRaWdoNlRkMUdJS1d0ejdvLTA0aXZ1V2s5ZFNmQ01VdlE4YzNIb3ZYaHNOTEs1S0cwaFlVcDVDQWdSUXRnVFI0SDdqY1paWER3XzFXVTk2bGdWN3Z5bkR4Z0JoWmcweVda0gF0QVVfeXFMT0pHSVRmaE9YX215aFFpZ2g2VGQxR0lLV3R6N28tMDRpdnVXazlkU2ZDTVV2UThjM0hvdlhoc05MSzVLRzBoWVVwNUNBZ1JRdGdUUjRIN2pjWlpYRHdfMVdVOTZsZ1Y3dnluRHhnQmhaZzB5V1o?oc=5",
       "linkType": "rss",
-      "id": 15
+      "id": 18
     },
     {
       "title": "LG전자, 올해 두 번째 ‘배터리턴’ 진행…\"폐배터리 34만개 수거\" - 매일일보",
@@ -3901,7 +3928,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBHaThTbFZibHRodU9VaGdUSlFtTTN4ZTdvblZHdGlwQm9GbnNxSkI2REFtaEozcU1DMDFDdFhrLWtJUzNZNlRvbjhwTy14ZTVOb3lLN0IyRUR4SzNPbXE5bHVZdy0?oc=5",
       "linkType": "rss",
-      "id": 16
+      "id": 19
     },
     {
       "title": "LG전자, 무선청소기 폐배터리 34만개 모았다…희유금속 13톤 회수 - ebn.co.kr",
@@ -3910,41 +3937,14 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9SaUE2TjRQUVkyWHpjQXhNeWF4U3RVN3k2T0ZrZDRBWGFiNVl3Q211dWpyQTNjczFBZ041NzJFenpxdGZJRDdlSmRnOUc5WUlWeDFCNGZ4NWJnNW5IMjR3MU9vQmFJMVVH?oc=5",
       "linkType": "rss",
-      "id": 17
-    },
-    {
-      "title": "아메리칸 배터리 테크놀로지, 미 상무부서 최대 1억 달러 규모 재활용 블랙매스 수출 판매 승인 - 데이터투자",
-      "summary": "아메리칸 배터리 테크놀로지, 미 상무부서 최대 1억 달러 규모 재활용 블랙매스 수출 판매 승인    데이터투자",
-      "source": "데이터투자",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE90R1FzeWljcUZkOXh2QTAwQzFlTGxFcFlIdG03TmNqUFA0ak1TZzd2bU1WZHNHOVFDVF9oYU12MFB5S0tGT3B1Y1BpWkkzNGtQZ3VEYlRSUDdXTmZ4bWRCaVNyS3g0VFBDbTBfWVpxSHFKQQ?oc=5",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "LG전자, 자원순환 캠페인 지속…폐배터리 34만개 수거·재활용 - 더팩트",
-      "summary": "LG전자, 자원순환 캠페인 지속…폐배터리 34만개 수거·재활용    더팩트",
-      "source": "더팩트",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBnTTVCeVBhM09sYlBDVTQ3Q2dHdm41Qlc4ZDMzdWxySHJfc05ldDJacVA2bkdoRXZPNDdHRl9ISzVEMHIxOHlxTktUT0Y4OUloX09pUUlwank0d9IBVEFVX3lxTE1faXNGNGNORVdHVUhDemxQVFZ1a3ZJR3NfWWRkMU9fNy14TldFVF81eUg1RkxRQkR1MTlibERrTWNCMEhtX2JlNTdrX05mY05rZVNRVg?oc=5",
-      "linkType": "rss",
-      "id": 19
-    },
-    {
-      "title": "LG전자, ‘배터리턴’ 지속…폐배터리 자원순환 활동 확대 - 뉴스투데이",
-      "summary": "LG전자, ‘배터리턴’ 지속…폐배터리 자원순환 활동 확대    뉴스투데이",
-      "source": "뉴스투데이",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9ScFNkbXlGMkEzaFhCaXRPZDhqR3Y3Z29uRFBsLTZRZ2dJRVNieWlENTYzQUJuYXNSUGg2dnVibjlVZ2I2eldMSGtBMkFheUl2eTM5ZDRLNnQxeDczaFE?oc=5",
-      "linkType": "rss",
       "id": 20
     }
   ],
   "fx": {
-    "usdKrw": 1360.2,
-    "eurKrw": 1532.95,
-    "cnyKrw": 202.58,
-    "updatedAt": "2026-10-02T14:25:20.163054+09:00"
+    "usdKrw": 1347.39,
+    "eurKrw": 1516.05,
+    "cnyKrw": 200.67,
+    "updatedAt": "2026-10-03T14:08:12.816979+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
@@ -4201,13 +4201,40 @@
   },
   "chinaNews": [
     {
+      "title": "Global EV battery market share in January-August 2026: CATL 39.4%, BYD 15.1%",
+      "summary": "The 7 Chinese companies in the top 10 held a combined 73.3% share of the global EV battery market.",
+      "source": "CnEVPost",
+      "date": "2026-10-02",
+      "url": "https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/",
+      "linkType": "rss",
+      "id": 1
+    },
+    {
+      "title": "Tesla beats Q3 delivery expectations but falls further behind BYD in BEV sales",
+      "summary": "Tesla delivered 486,532 vehicles globally in the third quarter, down 2.13% year-on-year but above market expectations.",
+      "source": "CnEVPost",
+      "date": "2026-10-02",
+      "url": "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "What to expect from Chinese car brands at the Paris Auto Show 2026",
+      "summary": "Overview of what to expect from Chinese car brands at the Paris Auto Show 2026 starting on October 12.",
+      "source": "CarNewsChina",
+      "date": "2026-10-02",
+      "url": "https://carnewschina.com/2026/10/02/what-to-expect-from-chinese-car-brands-at-the-paris-auto-show-2026/",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
       "title": "Nio delivers 37,408 vehicles in September, meets Q3 guidance",
       "summary": "Deliveries by the Nio brand rose 55.29% year-on-year in September, with Firefly setting a monthly record.",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/nio-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 1
+      "id": 4
     },
     {
       "title": "Leapmotor posts record September deliveries, tops 100,000 for third straight month",
@@ -4216,7 +4243,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/leapmotor-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 2
+      "id": 5
     },
     {
       "title": "Xiaomi Auto September deliveries top 40,000 as Sky Nomad adds volume",
@@ -4225,7 +4252,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/xiaomi-auto-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 3
+      "id": 6
     },
     {
       "title": "리상, 9월 인도량 전년 대비 6.29% 감소한 3만 1,817대 기록",
@@ -4235,16 +4262,16 @@
       "url": "https://cnevpost.com/2026/10/01/li-auto-sept-2026-deliveries/",
       "linkType": "rss",
       "translated": true,
-      "id": 4
+      "id": 7
     },
     {
       "title": "Roundup: September 2026 deliveries by major Chinese automakers",
-      "summary": "Leapmotor and Zeekr set fresh delivery records, while Xiaomi topped 40,000 deliveries to reach its highest monthly level this year.",
+      "summary": "Leapmotor and Zeekr set fresh records, while Xiaomi tops 40,000 deliveries to reach its highest monthly level this year.",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/roundup-sept-2026-deliveries-china-automakers/",
       "linkType": "rss",
-      "id": 5
+      "id": 8
     },
     {
       "title": "Geely September sales rise 7% to 2026 high as record export streak ends",
@@ -4253,7 +4280,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/geely-sept-2026-sales/",
       "linkType": "rss",
-      "id": 6
+      "id": 9
     },
     {
       "title": "Huawei, Seres sign new 5-year deal to upgrade Aito business",
@@ -4262,7 +4289,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/huawei-seres-sign-5-year-deal-upgrade-aito/",
       "linkType": "rss",
-      "id": 7
+      "id": 10
     },
     {
       "title": "BYD September sales rise 16.98% to 463,561, hitting new high for 2026",
@@ -4271,7 +4298,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/byd-sept-2026-sales/",
       "linkType": "rss",
-      "id": 8
+      "id": 11
     },
     {
       "title": "Zeekr plans 001 update in Q1 2027, offers incentives on current model",
@@ -4280,7 +4307,16 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/zeekr-plans-001-update-q1-2027-incentives-current-model/",
       "linkType": "rss",
-      "id": 9
+      "id": 12
+    },
+    {
+      "title": "Zeekr delivers 37,216 vehicles in September, its sixth straight monthly record",
+      "summary": "Zeekr's September deliveries rose 103.85% year-on-year, extending its streak of both annual and monthly growth to 8 consecutive months.",
+      "source": "CnEVPost",
+      "date": "2026-10-01",
+      "url": "https://cnevpost.com/2026/10/01/zeekr-sept-2026-deliveries/",
+      "linkType": "rss",
+      "id": 13
     },
     {
       "title": "BYD, 방청보 포뮬러 S 시리즈 월 판매 목표 1만 5천 대로 설정",
@@ -4290,16 +4326,16 @@
       "url": "https://carnewschina.com/2026/09/30/byd-expects-formula-s-series-sales-to-reach-15000-units-monthly/",
       "linkType": "rss",
       "translated": true,
-      "id": 10
+      "id": 14
     },
     {
       "title": "Seres and CATL-backed Aiva unveils ME7 in Paris",
-      "summary": "Aiva, an EV brand backed by Seres and CATL, officially unveiled its ME7 model in Paris.",
+      "summary": "Seres and CATL-backed brand Aiva officially unveiled its ME7 model in Paris.",
       "source": "CarNewsChina",
       "date": "2026-09-30",
       "url": "https://carnewschina.com/2026/09/30/seres-and-catl-backed-aiva-unveils-me7-in-paris/",
       "linkType": "rss",
-      "id": 11
+      "id": 15
     },
     {
       "title": "China NEV retail sales fall 20% in first 27 days of September as decline deepens",
@@ -4308,16 +4344,16 @@
       "date": "2026-09-30",
       "url": "https://cnevpost.com/2026/09/30/china-nev-retail-sales-first-27-days-sept/",
       "linkType": "rss",
-      "id": 12
+      "id": 16
     },
     {
       "title": "Aito opens pre-sales for updated M8 SUV as Seres and Huawei reshape partnership",
-      "summary": "The updated Aito M8 starts at 389,800 yuan ($57,880) in pre-sales, coming standard with Huawei's Qiankun ADS 5 and an electric range up to 830 km.",
+      "summary": "The updated Aito M8 comes standard with Huawei's Qiankun ADS 5 with L3-ready architecture, starting at 389,800 yuan ($57,880) in pre-sales.",
       "source": "CnEVPost",
       "date": "2026-09-30",
       "url": "https://cnevpost.com/2026/09/30/aito-opens-pre-sales-updated-m8-suv/",
       "linkType": "rss",
-      "id": 13
+      "id": 17
     },
     {
       "title": "BYD, 2세대 시걸 공개… 마사지 시트 및 94L 프렁크 탑재",
@@ -4327,7 +4363,7 @@
       "url": "https://carnewschina.com/2026/09/30/second-gen-byd-seagull-revealed-massaged-drivers-seat-94l-frunk/",
       "linkType": "rss",
       "translated": true,
-      "id": 14
+      "id": 18
     },
     {
       "title": "Lynk & Co launches 20 compact electric SUV, reports over 14,663 firm orders in 1 hour",
@@ -4337,7 +4373,7 @@
       "url": "https://cnevpost.com/2026/09/29/lynk-co-launches-20-compact-electric-suv/",
       "linkType": "rss",
       "translated": false,
-      "id": 15
+      "id": 19
     },
     {
       "title": "Aito to open pre-sales of updated M8 SUV on September 30 with L3-ready architecture",
@@ -4347,299 +4383,293 @@
       "url": "https://cnevpost.com/2026/09/29/aito-to-open-pre-sales-updated-m8-sept-30/",
       "linkType": "rss",
       "translated": false,
-      "id": 16
-    },
-    {
-      "title": "New Lynk & Co 02 got 14,663 orders in one hour after the launch in China",
-      "summary": "The new Lynk & Co 02, domestically known as the Lynk & Co 20, got 14,663 orders in one hour after the market launch in China. The post New Lynk & Co 02 got 14,663 orders in one hour after the launch in China appeared first on CarNewsChina.com .",
-      "source": "CarNewsChina",
-      "date": "2026-09-29",
-      "url": "https://carnewschina.com/2026/09/29/new-lynk-co-02-got-14663-orders-in-one-hour-after-the-launch-in-china/",
-      "linkType": "rss",
-      "translated": false,
-      "id": 17
-    },
-    {
-      "title": "Hyundai launches China-tailored Ioniq V electric sedan from under $15,000",
-      "summary": "Hyundai's Ioniq V electric sedan starts at a limited-time price of 99,900 yuan ($14,820) in China with a CLTC range of up to 650 km ahead of global rollout.",
-      "source": "CnEVPost",
-      "date": "2026-09-29",
-      "url": "https://cnevpost.com/2026/09/29/hyundai-launches-china-tailored-ioniq-v/",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "BYD Da Han marks Dynasty lineup's 10 millionth vehicle ahead of October 13 launch",
-      "summary": "The Da Han flagship sedan marks the 10 millionth Dynasty series vehicle to roll off the production line, featuring an all-electric version with up to 1,008 km CLTC range.",
-      "source": "CnEVPost",
-      "date": "2026-09-29",
-      "url": "https://cnevpost.com/2026/09/29/byd-da-han-marks-dynasty-10-millionth-vehicle/",
-      "linkType": "rss",
-      "id": 19
-    },
-    {
-      "title": "Hyundai Ioniq V launched at 16,380 USD in China ahead of global rollout",
-      "summary": "The Hyundai Ioniq V electric sedan was launched in China at 16,380 USD before discounts. This model will go global. The post Hyundai Ioniq V launched at 16,380 USD in China ahead of global rollout appeared first on CarNewsChina.com .",
-      "source": "CarNewsChina",
-      "date": "2026-09-29",
-      "url": "https://carnewschina.com/2026/09/29/hyundai-ioniq-v-launched-at-16380-usd-in-china-ahead-of-global-rollout/",
-      "linkType": "rss",
-      "translated": false,
       "id": 20
     }
   ],
   "chinaNewsBriefing": {
     "keyTakeaways": [
-      "중국 주요 전기차 제조사들이 신차 출시 및 초급속 충전 네트워크 확장을 바탕으로 9월 인도량 및 생산량에서 역대급 실적을 올리고 있습니다.",
-      "화웨이 자율주행 알고리즘, CATL 합작 브랜드, 모멘타의 글로벌 완성차 협력 등 자율주행과 배터리 기술의 세대교체가 가속화되고 있습니다.",
-      "현대차의 중국 맞춤형 파격가 전기차 출시 및 중국 합작법인의 지비 구조 재편 등 현지 시장 대응을 위한 완성차 업체들의 구조조정이 본격화되었습니다."
+      "BYD와 CATL을 필두로 한 중국 기업들이 글로벌 배터리 및 전기차 시장에서 과반 이상의 점유율을 기록하며 독주 체제를 공고히 하고 있습니다.",
+      "샤오미, 링커앤코 등 신규 진입자 및 기존 브랜드들의 신차 효과로 9월 인도량이 사상 최대치를 경신하는 등 완성차 업계의 출하 경쟁이 격화되고 있습니다.",
+      "화웨이와 세레스의 5년 재계약 및 CATL 연합 등 완성차와 자율주행·배터리 빅테크 간 기술 동맹이 프리미엄 EV 시장을 주도하고 있습니다."
     ],
     "categories": [
       {
-        "name": "중국 브랜드 신차·기술",
+        "name": "완성차 인도량 및 시장 동향",
         "items": [
           {
-            "headline": "BYD, 포뮬러 S 월 1.5만 대 목표",
-            "summary": "BYD는 패스트백과 GT 스티어링 웨건 형태의 포뮬러 S 라인업을 새롭게 선보이며, 월 1만 5,000대 판매 달성을 목표로 고급 및 개성형 EV 시장 공략을 본격화하고 있습니다.",
+            "headline": "테슬라, Q3 인도량 상회에도 BYD에 밀려",
+            "summary": "테슬라의 3분기 글로벌 인도량이 전년 동기 대비 2.13% 감소한 486,532대를 기록했으나 시장 전망치는 웃돌았습니다. 하지만 순수전기차(BEV) 판매량에서 점유율을 지속적으로 확장 중인 BYD와의 격차는 더욱 벌어지는 양상을 보였습니다.",
             "tags": [
+              "#테슬라",
               "#BYD",
-              "#포뮬러S",
-              "#신차출시"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-30",
-            "url": "https://carnewschina.com/2026/09/30/byd-expects-formula-s-series-sales-to-reach-15000-units-monthly/"
-          },
-          {
-            "headline": "아이토 신형 M8, 가격 올리고 사전예약",
-            "summary": "세레스와 화웨이의 협력으로 개발된 아이토 M8이 프리미엄 전략에 따라 가격을 3만 위안 인상해 사전 판매를 시작했으며, 화웨이의 최신 자율주행 시스템을 핵심 무기로 내세웠습니다.",
-            "tags": [
-              "#아이토",
-              "#화웨이",
-              "#M8"
+              "#인도량",
+              "#전기차경쟁"
             ],
             "source": "CnEVPost",
-            "date": "2026-09-30",
-            "url": "https://cnevpost.com/2026/09/30/aito-opens-pre-sales-updated-m8-suv/"
+            "date": "2026-10-02",
+            "url": "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/"
           },
           {
-            "headline": "BYD, 2세대 시걸 해치백 공개",
-            "summary": "BYD가 운전석 마사지 시트, 플로팅 디스플레이, 94L 대용량 프렁크 등 최신 편의사양을 대폭 추가한 보급형 전기차 2세대 시걸을 공개하며 컴팩트 EV 시장의 상품성을 대폭 올렸습니다.",
-            "tags": [
-              "#BYD",
-              "#시걸",
-              "#소형EV"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-30",
-            "url": "https://carnewschina.com/2026/09/30/second-gen-byd-seagull-revealed-massaged-drivers-seat-94l-frunk/"
-          },
-          {
-            "headline": "링크앤코 20, 출시 1시간 만에 1.4만 대 계약",
-            "summary": "지리자동차 산하 프리미엄 브랜드 링크앤코가 Z20의 부분변경 모델인 콤팩트 전기 SUV '링크앤코 20'을 11만 8,800위안의 파격적 가격에 출시해 한 시간 만에 1.4만 대 이상의 확정 주문을 받았습니다.",
-            "tags": [
-              "#링크앤코",
-              "#지리자동차",
-              "#신차계약"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-09-29",
-            "url": "https://cnevpost.com/2026/09/29/lynk-co-launches-20-compact-electric-suv/"
-          },
-          {
-            "headline": "아이토 M8, 화웨이 L3급 시스템 탑재",
-            "summary": "화웨이 건쿤 ADS 5 자율주행 시스템을 전 트림에 기본 적용한 신형 아이토 M8 SUV가 사전 판매를 개시하였으며, 순수 전기 모델의 경우 CLTC 기준 최대 830km의 주행거리를 자랑합니다.",
-            "tags": [
-              "#아이토",
-              "#화웨이ADS",
-              "#자율주행"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-09-29",
-            "url": "https://cnevpost.com/2026/09/29/aito-to-open-pre-sales-updated-m8-sept-30/"
-          },
-          {
-            "headline": "링크앤코 02, 중국 시장서 돌풍 돌입",
-            "summary": "중국 내에서 '링크앤코 20'으로 불리는 신형 링크앤코 02 모델이 공식 시장 출시 단 1시간 만에 1만 4,663대의 계약을 기록하며 컴팩트 EV 분야에서 매서운 성장세를 보여주고 있습니다.",
-            "tags": [
-              "#링크앤코",
-              "#지리",
-              "#컴팩트EV"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-29",
-            "url": "https://carnewschina.com/2026/09/29/new-lynk-co-02-got-14663-orders-in-one-hour-after-the-launch-in-china/"
-          },
-          {
-            "headline": "BYD, 1,008km 주행 '다한' 세단 양산",
-            "summary": "BYD가 왕조 시리즈 1천만 대 생산이라는 대기록을 달성함과 동시에 1회 충전으로 1,008km를 주행할 수 있는 플래그십 전기 세단 '다한'을 출고하며 기술력을 입증했습니다.",
-            "tags": [
-              "#BYD",
-              "#다한",
-              "#초장거리EV"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-09-29",
-            "url": "https://cnevpost.com/2026/09/29/byd-da-han-marks-dynasty-10-millionth-vehicle/"
-          },
-          {
-            "headline": "BYD 왕조 시리즈 1,000만 대 돌파",
-            "summary": "BYD의 대표 라인업인 왕조 시리즈가 플래그십 세단 '다한' 생산을 기점으로 누적 출고량 1,000만 대를 달성하며 중국 전기차 산업의 독보적 위상을 재확인했습니다.",
-            "tags": [
-              "#BYD",
-              "#왕조시리즈",
-              "#1000만대"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-29",
-            "url": "https://carnewschina.com/2026/09/29/the-10-millionth-byd-dynasty-car-rolled-off-the-production-line-in-china/"
-          }
-        ]
-      },
-      {
-        "name": "배터리·충전·기술 합작",
-        "items": [
-          {
-            "headline": "세레스·CATL, 파리서 전기 SUV ME7 공개",
-            "summary": "세레스와 CATL이 합작한 신규 전기차 브랜드 '아이바(Aiva)'가 파리 현지에서 신형 전기 SUV ME7을 세계 최초로 선보이며 글로벌 전기차 시장 진출 선언을 추진하고 있습니다.",
-            "tags": [
-              "#CATL",
-              "#세레스",
-              "#아이바"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-30",
-            "url": "https://carnewschina.com/2026/09/30/seres-and-catl-backed-aiva-unveils-me7-in-paris/"
-          },
-          {
-            "headline": "지리, 2,250kW 초고속 충전소 전격 구축",
-            "summary": "지리자동차가 BYD의 급속 충전 생태계에 대응하기 위해 중국 주요 5개 도시에 12C 충전 레이트에 달하는 2,250kW급 초고속 충전 인프라를 대대적으로 배치하기 시작했습니다.",
-            "tags": [
-              "#지리자동차",
-              "#초고속충전",
-              "#충전인프라"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-09-29",
-            "url": "https://carnewschina.com/2026/09/29/geely-has-deployed-2250-kwh-charging-stations-in-five-cities-across-china/"
-          },
-          {
-            "headline": "모멘타, 스텔란티스 그룹과 ADAS 공급 계약",
-            "summary": "중국 자율주행 스타트업 모멘타가 스텔란티스 그룹과 계약을 체결해 2027년부터 글로벌 시장의 푸조 및 지프 브랜드 차량에 탑재될 자율주행 소프트웨어를 공급할 예정입니다.",
-            "tags": [
-              "#모멘타",
-              "#스텔란티스",
-              "#자율주행"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-09-28",
-            "url": "https://cnevpost.com/2026/09/28/momenta-develop-driver-assistance-peugeot-jeep/"
-          }
-        ]
-      },
-      {
-        "name": "시장 동향·기업 재편",
-        "items": [
-          {
-            "headline": "니오, 9월 3.7만 대 인도하며 실적 달성",
-            "summary": "니오가 서브 브랜드 파이어플라이의 역대 최대 판매량과 니오 브랜드의 55.29% 성장에 힘입어 9월 한 달간 3만 7,408대를 인도해 3분기 목표 실적을 성공적으로 이뤄냈습니다.",
+            "headline": "니오, 9월 3.7만 대 인도하며 Q3 목표 달성",
+            "summary": "니오(Nio) 브랜드의 9월 인도량이 전년 동기 대비 55.29% 급증한 37,408대를 기록하며 3분기 분기 목표치(Guidance)를 성공적으로 달성했습니다. 보급형 및 하브 브랜드를 포함한 파이어플라이(Firefly) 역시 월간 최고 판매 기록을 세우며 성장을 견인했습니다.",
             "tags": [
               "#니오",
               "#파이어플라이",
-              "#인도량"
+              "#인도량",
+              "#실적달성"
             ],
             "source": "CnEVPost",
             "date": "2026-10-01",
             "url": "https://cnevpost.com/2026/10/01/nio-sept-2026-deliveries/"
           },
           {
-            "headline": "립모터, 9월 10.5만 대 돌파로 최다 기록",
-            "summary": "립모터가 3개월 연속 월 판매 10만 대를 돌파하며 9월 10만 5,656대의 인도량을 기록했으며, 3분기 누적 인도량 역시 31만 대라는 분기 최대 실적을 달성했습니다.",
+            "headline": "립모터, 3개월 연속 10만 대 돌파 및 사상 최대",
+            "summary": "립모터(Leapmotor)가 9월 한 달 동안 105,656대를 인도하며 3개월 연속 10만 대를 돌파했습니다. 이에 힘입어 3분기 총 인도량은 310,052대로 사상 최대 분기 실적을 올리며 신생 전기차 제조사 중 압도적인 성장세를 입증했습니다.",
             "tags": [
               "#립모터",
-              "#판매량",
-              "#3분기실적"
+              "#신기록",
+              "#3분기실적",
+              "#중국EV"
             ],
             "source": "CnEVPost",
             "date": "2026-10-01",
             "url": "https://cnevpost.com/2026/10/01/leapmotor-sept-2026-deliveries/"
           },
           {
-            "headline": "샤오미 오토, 신모델 효과로 4만 대 달성",
-            "summary": "샤오미 오토가 신형 전기차 '스카이 노마드'의 호조에 힘입어 9월 한 달간 4만 대 이상의 인도량을 달성하면서 2026년 들어 월간 기준 최고 판매 실적을 고쳐 썼습니다.",
+            "headline": "샤오미, 신차 효과로 9월 4만 대 돌파",
+            "summary": "샤오미 오토가 신형 EV '스카이 노마드(Sky Nomad)'의 출시 첫 달 흥행에 힘입어 9월 인도량 4만 대를 돌파했습니다. 이는 2026년 들어 거둔 월간 사상 최대 실적으로, 스마트폰에 이어 전기차 시장에서도 연착륙에 성공하는 모습입니다.",
             "tags": [
               "#샤오미",
               "#스카이노마드",
-              "#월간최다"
+              "#신차효과",
+              "#월간최대"
             ],
             "source": "CnEVPost",
             "date": "2026-10-01",
             "url": "https://cnevpost.com/2026/10/01/xiaomi-auto-sept-2026-deliveries/"
           },
           {
-            "headline": "리상, 9월 감소에도 3분기 전체 성과 유지",
-            "summary": "리상의 9월 인도량은 전년 동기 대비 6.29% 감소한 3만 1,817대에 그쳤으나, 3분기 전체 인도량은 9만 9,964대를 기록해 전년 동기 대비 7.24%의 성장세를 이어갔습니다.",
+            "headline": "리상, 9월 감소에도 Q3 전체는 7.2% 증가",
+            "summary": "리상(Li Auto)의 9월 인도량은 전년 동기 대비 6.29% 감소한 31,817대에 그쳤습니다. 단기적인 월간 감소세에도 불구하고 3분기 누적 인도량은 전년 대비 7.24% 증가한 99,964대를 기록해 견조한 분기 실적 흐름을 유지했습니다.",
             "tags": [
               "#리상",
-              "#인도량",
-              "#3분기실적"
+              "#LiAuto",
+              "#3분기실적",
+              "#인도량"
             ],
             "source": "CnEVPost",
             "date": "2026-10-01",
             "url": "https://cnevpost.com/2026/10/01/li-auto-sept-2026-deliveries/"
           },
           {
-            "headline": "현대차, 중국향 아이오닉 V 1.4만 달러 출시",
-            "summary": "현대자동차가 중국 시장 내 입지 회복을 위해 9만 9,900위안(약 1,4820달러)이라는 파격적인 한정 할인 가격과 650km 주행거리를 갖춘 아이오닉 V 전기 세단을 출시했습니다.",
+            "headline": "중국 주요 완성차 9월 인도량 요약 종합",
+            "summary": "2026년 9월 중국 주요 완성차 업체들의 인도 실적 발표 결과, 립모터와 지커가 사상 최대 월간 실적을 경신했습니다. 샤오미 역시 4만 대 고지를 넘어서며 신생 EV 브랜드들이 전체 시장 수요를 강력하게 이끌고 있는 것으로 나타났습니다.",
             "tags": [
-              "#현대차",
-              "#아이오닉V",
-              "#중국시장"
+              "#중국자동차",
+              "#9월실적",
+              "#지커",
+              "#립모터"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-01",
+            "url": "https://cnevpost.com/2026/10/01/roundup-sept-2026-deliveries-china-automakers/"
+          },
+          {
+            "headline": "지커, 8개월 연속 성장하며 3.7만 대 기록",
+            "summary": "지리자동차 그룹의 프리미엄 브랜드 지커(Zeekr)가 9월 37,216대를 인도해 전년 대비 103.85% 급증했습니다. 이로써 지커는 8개월 연속 전년 및 전월 대비 성장을 지속하며 6개월 연속 월간 최고 실적을 갱신했습니다.",
+            "tags": [
+              "#지커",
+              "#Zeekr",
+              "#판매기록",
+              "#지리자동차"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-01",
+            "url": "https://cnevpost.com/2026/10/01/zeekr-sept-2026-deliveries/"
+          },
+          {
+            "headline": "BYD, 9월 46만 대 판매로 올해 최고치 경신",
+            "summary": "BYD의 9월 신에너지차(NEV) 판매량이 전년 대비 16.98% 증가한 463,561대를 기록하며 올해 월간 최고 실적을 올려 5개월 연속 전년비 성장, 7개월 연속 전월비 성장을 기록했습니다.",
+            "tags": [
+              "#BYD",
+              "#신에너지차",
+              "#판매신기록",
+              "#중국EV"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-01",
+            "url": "https://cnevpost.com/2026/10/01/byd-sept-2026-sales/"
+          },
+          {
+            "headline": "중국 9월 초순 NEV 소매 20% 감소세 심화",
+            "summary": "9월 1일부터 27일까지 중국 내 신에너지차(NEV) 소매 판매량은 82만 7천 대에 그쳐 전년 대비 20% 감소했습니다. 전체 승용차 판매 중 NEV 비중은 65.7%에 달했으나 시장 내 전반적인 소비 침체 우려가 커지고 있습니다.",
+            "tags": [
+              "#중국내수",
+              "#NEV소매",
+              "#시장침체",
+              "#판매통계"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-09-30",
+            "url": "https://cnevpost.com/2026/09/30/china-nev-retail-sales-first-27-days-sept/"
+          }
+        ]
+      },
+      {
+        "name": "중국 브랜드 신차·기술 및 빅테크 협력",
+        "items": [
+          {
+            "headline": "지커, 001 모델 2027년 개소식 및 인센티브",
+            "summary": "지커는 올해 8개월간 001 모델의 인도량이 21.5% 감소함에 따라 2027년 1분기 대대적인 신형 업데이트를 계획하고 있습니다. 이에 앞서 구형 모델의 재고 소진을 위해 현재 구매 고객을 대상으로 파격적인 인센티브를 제공 중입니다.",
+            "tags": [
+              "#지커001",
+              "#모델연식변경",
+              "#할인혜택",
+              "#지리"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-01",
+            "url": "https://cnevpost.com/2026/10/01/zeekr-plans-001-update-q1-2027-incentives-current-model/"
+          },
+          {
+            "headline": "화웨이-세레스, 아이토 사업 확대 5년 재계약",
+            "summary": "화웨이와 세레스(Seres)가 아이토(Aito) 브랜드의 운영 제어권 조정을 발표한 지 약 2주 만에 신규 5년 장기 파트너십을 체결했습니다. 양사는 이를 통해 아이토 브랜드를 고도화하고 차세대 스마트카 분야에서의 협력을 대폭 강화할 방침입니다.",
+            "tags": [
+              "#화웨이",
+              "#세레스",
+              "#아이토",
+              "#스마트카"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-01",
+            "url": "https://cnevpost.com/2026/10/01/huawei-seres-sign-5-year-deal-upgrade-aito/"
+          },
+          {
+            "headline": "BYD, 포뮬러 S 월 1.5만 대 판매 목표 설정",
+            "summary": "BYD가 새로운 개성파 브랜드 방청보의 포뮬러 S 시리즈에 대해 월 15,000대의 판매 목표를 수립했습니다. 패스트백과 GT 스티어링 웨건 라인업을 앞세워 틈새 프리미엄 전기차 시장을 적극 공략하겠다는 구상입니다.",
+            "tags": [
+              "#BYD",
+              "#방청보",
+              "#포뮬러S",
+              "#GT전기차"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-09-30",
+            "url": "https://carnewschina.com/2026/09/30/byd-expects-formula-s-series-sales-to-reach-15000-units-monthly/"
+          },
+          {
+            "headline": "화웨이 L3급 자율주행 탑재 아이토 M8 사전예약",
+            "summary": "세레스와 화웨이가 전 라인업에 화웨이 첸쿤(Qiankun) ADS 5 자율주행 시스템을 기본 탑재한 신형 아이토 M8 사전예약을 개시했습니다. L3 자율주행 대응 아키텍처 및 순수전기 기준 최대 830km 주행거리를 갖췄으며 389,800위안부터 시작합니다.",
+            "tags": [
+              "#아이토M8",
+              "#화웨이ADS",
+              "#L3자율주행",
+              "#세레스"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-09-30",
+            "url": "https://cnevpost.com/2026/09/30/aito-opens-pre-sales-updated-m8-suv/"
+          },
+          {
+            "headline": "BYD 2세대 시걸 공개, 고급 편의사양 대거 적용",
+            "summary": "BYD가 대표 보급형 해치백 전기차인 2세대 시걸(Seagull)을 공개했습니다. 신형 모델은 운전석 마사지 시트, 앰비언트 라이트, 플로팅 디스플레이와 함께 94L 용량의 프렁크 공간까지 확보하는 등 상품성을 대폭 업그레이드했습니다.",
+            "tags": [
+              "#BYD",
+              "#시걸",
+              "#보급형EV",
+              "#2세대시걸"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-09-30",
+            "url": "https://carnewschina.com/2026/09/30/second-gen-byd-seagull-revealed-massaged-drivers-seat-94l-frunk/"
+          },
+          {
+            "headline": "링커앤코 20 출시, 1시간 만에 1.4만 대 주문",
+            "summary": "지리 그룹의 링커앤코가 소형 전기 SUV '링커앤코 20'(Z20의 페이스리프트)을 한시적 할인가 118,800위안(약 1.76만 달러)에 출시했습니다. 가성비를 앞세운 전략으로 출시 단 1시간 만에 14,663대의 확정 주문을 받으며 돌풍을 일으키고 있습니다.",
+            "tags": [
+              "#링커앤코",
+              "#지리자동차",
+              "#소형SUV",
+              "#사전예약"
             ],
             "source": "CnEVPost",
             "date": "2026-09-29",
-            "url": "https://cnevpost.com/2026/09/29/hyundai-launches-china-tailored-ioniq-v/"
+            "url": "https://cnevpost.com/2026/09/29/lynk-co-launches-20-compact-electric-suv/"
           },
           {
-            "headline": "현대 아이오닉 V, 글러벌 출시 전 중국 선공개",
-            "summary": "현대자동차가 보조금 적용 전 1만 6,380달러 수준의 가격으로 중국 시장에 맞춤형 아이오닉 V를 먼저 공개했으며, 이 모델을 향후 글로벌 시장으로 확장 전개할 계획입니다.",
+            "headline": "화웨이 ADS 5 탑재 신형 아이토 M8 사전예약 예정",
+            "summary": "화웨이와 세레스가 L3급 시스템인 첸쿤 ADS 5를 탑재한 신형 아이토 M8 SUV의 사전예약을 9월 30일 시작한다고 발표했습니다. 순수 전기차 버전은 1회 충전 시 최대 830km를 주행할 수 있어 고성능 프리미엄 시장을 겨냥합니다.",
             "tags": [
-              "#현대차",
-              "#아이오닉V",
-              "#글로벌전략"
+              "#아이토M8",
+              "#화웨이",
+              "#자율주행",
+              "#프리미엄EV"
             ],
-            "source": "CarNewsChina",
+            "source": "CnEVPost",
             "date": "2026-09-29",
-            "url": "https://carnewschina.com/2026/09/29/hyundai-ioniq-v-launched-at-16380-usd-in-china-ahead-of-global-rollout/"
+            "url": "https://cnevpost.com/2026/09/29/aito-to-open-pre-sales-updated-m8-sept-30/"
+          }
+        ]
+      },
+      {
+        "name": "글로벌 배터리 점유율 및 해외 공략·수출",
+        "items": [
+          {
+            "headline": "1~8월 글로벌 배터리 CATL 39.4%·BYD 15.1%",
+            "summary": "2026년 1~8월 글로벌 EV 배터리 시장에서 CATL이 점유율 39.4%로 압도적 1위를 유지했고, BYD가 15.1%로 2위를 차지했습니다. 글로벌 탑 10에 포함된 중국 7개 배터리 기업의 합산 점유율은 73.3%에 달해 과점 체제를 공고히 했습니다.",
+            "tags": [
+              "#CATL",
+              "#BYD",
+              "#배터리점유율",
+              "#글로벌배터리"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-02",
+            "url": "https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/"
           },
           {
-            "headline": "창안자동차, 아바타·심람 브랜드 구조 통합",
-            "summary": "창안자동차가 프리미엄 브랜드 아바타와 보급형 에이전트 브랜드 심람의 조직 운영 및 인프라를 통합 관리함으로써 독자 EV 사업의 경영 효율성을 한층 끌어올리기로 결정했습니다.",
+            "headline": "2026 파리모터쇼 관전 포인트 및 중국 진용",
+            "summary": "10월 12일 개막하는 2026 파리 모터쇼에 중국 신에너지차 브랜드들이 대거 참가하여 신기술과 유럽 진출 전략형 신차를 선보일 예정입니다. 현지 생산 및 유럽 맞춤형 프리미엄 라인업 공략이 관전 포인트로 짚어지고 있습니다.",
             "tags": [
-              "#창안자동차",
-              "#아바타",
-              "#심람"
+              "#파리모터쇼",
+              "#유럽진출",
+              "#중국EV",
+              "#모터쇼"
             ],
             "source": "CarNewsChina",
-            "date": "2026-09-29",
-            "url": "https://carnewschina.com/2026/09/29/changan-auto-consolidates-avatr-and-deepal-to-streamline-operations-report-says/"
+            "date": "2026-10-02",
+            "url": "https://carnewschina.com/2026/10/02/what-to-expect-from-chinese-car-brands-at-the-paris-auto-show-2026/"
           },
           {
-            "headline": "GAC, FAW 도요타 지분 인수하며 구조재편",
-            "summary": "GAC(광저우자동차)가 FAW(일汽)가 소유했던 FAW 도요타 합작법인의 지분 50%를 인수하기로 결정하면서, 중국 내 완성차 합작 구조를 단순화하고 경영 효율성을 고도화하고 있습니다.",
+            "headline": "지리, 9월 수출 감소로 8개월 연속 기록 일สิ้น",
+            "summary": "지리자동차의 9월 수출량이 106,685대로 전년 대비 162% 급증했으나 전월 대비로는 3% 줄어들며 8개월간 지속된 연속 수출 신기록 행진이 마감되었습니다. 전체 9월 판매량은 7% 증가하며 2026년 연중 최고치를 기록했습니다.",
             "tags": [
-              "#GAC",
-              "#도요타",
-              "#합작법인"
+              "#지리자동차",
+              "#자동차수출",
+              "#해외진출",
+              "#실적분석"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-01",
+            "url": "https://cnevpost.com/2026/10/01/geely-sept-2026-sales/"
+          },
+          {
+            "headline": "세레스·CATL 합작 아이바, 파리서 ME7 최초 공개",
+            "summary": "세레스와 CATL이 합작 투자를 바탕으로 설립한 신규 EV 브랜드 아이바(Aiva)가 파리에서 첫 신형 모델 ME7을 최초 공개했습니다. 글로벌 시장 진출을 염두에 둔 프리미엄 SUV 모델로 배터리 기술과 완성차 제조 노하우가 집약되었습니다.",
+            "tags": [
+              "#세레스",
+              "#CATL",
+              "#아이바ME7",
+              "#파리공개"
             ],
             "source": "CarNewsChina",
-            "date": "2026-09-29",
-            "url": "https://carnewschina.com/2026/09/29/gac-to-replace-faw-in-the-faw-toyota-joint-venture-to-streamline-operations/"
+            "date": "2026-09-30",
+            "url": "https://carnewschina.com/2026/09/30/seres-and-catl-backed-aiva-unveils-me7-in-paris/"
           }
         ]
       }
     ],
-    "implications": "중국 전기차 제조사들이 1,000km 이상 주행 가능한 배터리와 2,250kW급 12C 초고속 충전 인프라, L3급 자율주행을 보급형 모델까지 전면 확대함에 따라 한국 완성차 및 배터리 업계는 진입 장벽이 높아지는 초격차 기술 경쟁에 직면했습니다. 지리·BYD 등이 1,000만 원 대 후반~2,000만 원 대의 압도적 가격 경쟁력과 프리미엄 사양을 무기로 내수 및 글로벌 시장 공략을 강화하고 있어, 국내 완성차 업체의 가격 정책과 수익성 보전에 심각한 위협이 되고 있습니다. 또한 모멘타와 스텔란티스의 협력 사례처럼 중국 자율주행 SW 및 CATL 기반 공급망이 글로벌 OEM에 신속히 침투하고 있는 만큼, 한국 배터리·부품 기업들은 고성능 LFP 및 차세대 소프트웨어 중심 차량(SDV) 솔루션 공급망을 빠르게 구축해 대항마를 마련해야 합니다."
+    "implications": "중국 배터리 기업들의 글로벌 점유율이 73%를 돌파하고 CATL과 BYD의 독주가 심화됨에 따라 한국 배터리 3사의 글로벌 입지가 위축될 위험이 더욱 커지고 있습니다. 특히 중국 완성차 업체들이 화웨이의 L3급 자율주행 및 프리미엄 사양을 보급형 모델까지 적극 이식하며 완성차 가격 대비 성능 경쟁력을 기하급수적으로 높이고 있습니다. 한국 완성차 및 배터리 업계는 가격 경쟁력 확보를 위한 LFP 및 차세대 배터리 양산 시기를 앞당기는 동시에 소프트웨어 중심 차량(SDV) 및 자율주행 기술력 격차를 빠르게 줄여야만 글로벌 시장에서의 주도권을 지켜낼 수 있을 것입니다."
   },
   "patentTrends": {
     "keyTakeaways": [
