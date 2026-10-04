@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T14:08:12.644047+09:00",
+  "generatedAt": "2026-10-04T14:41:36.125048+09:00",
   "vehicles": [
     {
       "id": "seres_aito_m8_l3_ev",
@@ -493,15 +493,15 @@
       "packInfo": "CTP 3.0 하이테크 모듈리스 구조 배터리 팩",
       "cellInfo": "CATL 고에너지밀도 삼원계 NCM 각형 셀",
       "chargingSafety": "화웨이 AI 실시간 셀 전압/온도 감지 모니터링 시스템",
-      "trim": "4C Supercharge AWD",
+      "trim": "AWD Flagship",
       "topSpeed": "200 km/h",
       "zeroToHundred": "3.9초",
       "maxOutput": "400 kW (544 ps)",
       "maxChargePower": "280 kW",
-      "packVoltage": "800 V",
-      "packType": "800V 고율충전 CTP 팩",
-      "cellType": "각형 (NCM 4C)",
-      "coolingMethod": "수랭식 (Liquid Cooling)",
+      "packVoltage": "800V",
+      "packType": "NCM 삼원계 팩",
+      "cellType": "Prismatic",
+      "coolingMethod": "액체 냉각 (Liquid Cooling)",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -511,11 +511,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "NCM",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-20",
+      "specLastCheckedAt": "2026-10-04",
       "cellMakerCheckedAt": "2026-09-20"
     },
     {
@@ -592,10 +592,10 @@
       "zeroToHundred": "7.2초",
       "maxOutput": "160 kW (218 ps)",
       "maxChargePower": "150 kW",
-      "packVoltage": "400 V",
-      "packType": "LFP 통합형 팩",
-      "cellType": "각형 (LFP)",
-      "coolingMethod": "수랭식 (Liquid Cooling)",
+      "packVoltage": "400V",
+      "packType": "LFP 팩",
+      "cellType": "Prismatic",
+      "coolingMethod": "액체 냉각 (Liquid Cooling)",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -605,11 +605,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "LFP",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-20",
+      "specLastCheckedAt": "2026-10-04",
       "cellMakerCheckedAt": "2026-09-20"
     },
     {
@@ -2699,15 +2699,15 @@
       "packInfo": "차체 통합 샌드위치 플레이트 배터리 팩",
       "cellInfo": "CATL 고용량 삼원계 NCM 셀",
       "chargingSafety": "BMS 5G 데이터 통합 열관리 감지 시스템",
-      "trim": "Passion EV Long Range AWD",
+      "trim": "Long Range AWD",
       "topSpeed": "205 km/h",
       "zeroToHundred": "4.2초",
       "maxOutput": "375 kW (510 ps)",
       "maxChargePower": "230 kW",
-      "packVoltage": "400 V",
-      "packType": "CTP (Cell-to-Pack)",
-      "cellType": "각형 (NCM)",
-      "coolingMethod": "수랭식 (Liquid Cooling)",
+      "packVoltage": "400V",
+      "packType": "NCM 삼원계 팩",
+      "cellType": "Pouch",
+      "coolingMethod": "액체 냉각 (Liquid Cooling)",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -2717,11 +2717,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "NCM",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-20",
+      "specLastCheckedAt": "2026-10-04",
       "cellMakerCheckedAt": "2026-09-20"
     },
     {
@@ -3760,22 +3760,76 @@
   ],
   "news": [
     {
+      "title": "전기차 시장 판도 바꿀 ‘게임체인저’… 車 업계, 전고체 배터리 개발에 사활 - 조선비즈 - Chosunbiz",
+      "summary": "전기차 시장 판도 바꿀 ‘게임체인저’… 車 업계, 전고체 배터리 개발에 사활 - 조선비즈    Chosunbiz",
+      "source": "Chosunbiz",
+      "date": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNUHRsaWRlOWFwWS04VEc2UjNYcVlJelpNRkdYSEF2UWQtTWI3ZGViMl8tWjlrWUJBVmFYQ0VnOTJycDBydnVMRzhMN3lHZWY0OUVPa01RaV9WWGZ3RlpTeE5kZEN2WkZ2QVdoNHpXbXloVDRySEJ3d2dKNHFfSWJLRjJrRWXSAZgBQVVfeXFMT3V6ZjZOdGNUWmxGTDBiT3BYaEM5MnJ2M3BJVGlMZkRGU1Q2YmdFQV9XS19tZ1BJRzVqRzRiYUpSd21WZjVUREFzS3hsRmZwdGtKOUFfdms3MXB6QTJMTktXOEhiQkhCaEZnRExKZ24xTUtGME9ZeEM3OHhqdURIamhZbUZ0OGRGanZYY0pwYVJsbGVUWk1kYmg?oc=5",
+      "linkType": "rss",
+      "id": 1
+    },
+    {
+      "title": "[영상] 美 정부 연비 규제 '완화'…K-배터리 비상? - 더구루",
+      "summary": "[영상] 美 정부 연비 규제 '완화'…K-배터리 비상?    더구루",
+      "source": "더구루",
+      "date": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9rb2VUNWlsc0xSdlVPVi1acFh5RzVld0RpODlWM0JVN3REZ3BwS1padzFQNjRPck00LWE5bW1HY1RQWnl3bDhOdVA5NVZiZlVETEEyNUZMTjNhQUVBZEE?oc=5",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "고니켈 배터리 폐기물 시장 2035년 전망: 전기차 수요와 재활용 의무가 성장 견인 - 뉴스 및 통계 - IndexBox",
+      "summary": "고니켈 배터리 폐기물 시장 2035년 전망: 전기차 수요와 재활용 의무가 성장 견인 - 뉴스 및 통계    IndexBox",
+      "source": "IndexBox",
+      "date": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPLUdOa3ZjOUVKY1RseW44NzYwWHBzejYzMU5PcGJtX0dzVk9tMGZiMl9BeVVDbE9zWWxYUWNmYktTRm9uNzM1Vzg5cVF6Rmt1bGdId3J1NlY2OWJWbmcwaDZHNkpoVVRGQ1BqQ2laMkM0UmZ5ck1UYjNaZmlZeHV0UE5FNmJxNGlyZDlZM2JtaHh3YmE1MUtYVGxHY2FSSjBMWkZoa2ZYT3NaVzc3U2pOYkc5TUlMbE9iZ3J6XzlEYTRBck1ZbklueHNGcVN3QQ?oc=5",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
+      "title": "배터리·연료 채우면 1000㎞도 거뜬…중국발 1.5L PHEV의 공습 - 중앙일보",
+      "summary": "배터리·연료 채우면 1000㎞도 거뜬…중국발 1.5L PHEV의 공습    중앙일보",
+      "source": "중앙일보",
+      "date": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1oc3Rwb0NEbFYzN0dtWlFCbkhkNGFMeFd3QjZDUkdvbllEajBxZlJqakNuOVBzWjJMUlN6b0Z2X3hJS1l2QjRBX0tsUkZkQVlGTFlsbDZR?oc=5",
+      "linkType": "rss",
+      "id": 4
+    },
+    {
+      "title": "환경공단·독일 프라운호퍼, 사용후 배터리 공동연구 - 디스커버리뉴스(DISCOVERYNEWS)",
+      "summary": "환경공단·독일 프라운호퍼, 사용후 배터리 공동연구    디스커버리뉴스(DISCOVERYNEWS)",
+      "source": "디스커버리뉴스(DISCOVERYNEWS)",
+      "date": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBtXy1sdG1Ha3lhOUpEOWxJYW5rX0RCSzh2Z0IzTU9Sc25nZVpWdWVKa2NrOWI3dnRnSUpxLUNqc05KRDY2cnRELVRxbWRrY1F6NU5URUxCak5RQVBJWndvTnkxaTJCTmYtYk5CdVJHNGh0Zw?oc=5",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
+      "title": "차세대 기술 선점 나선 K배터리·태양광…글로벌 주도권 잡는다[초격차 코리아③] - 뉴시스",
+      "summary": "차세대 기술 선점 나선 K배터리·태양광…글로벌 주도권 잡는다[초격차 코리아③]    뉴시스",
+      "source": "뉴시스",
+      "date": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE4wc2o3TzhEdGxvUkl2N1o0SkkwbDJmUGppa0hmZ21fa1JmS2EwZXhzSHJBNV8wbzJVNXZYaE1TdExrVVdnZ3AwMmNTVkMxdGNtQ3NjTFpfUWg0NkhLU3N3RdIBeEFVX3lxTFA1bUVNM2dJSlg5NGYzbUxTTE9SNG5EUDVlVnA5U1JiM1VVQTM4VHJMY1BURVBBODFrbjdPMHhrVlJLS2hBb1ZNZHY0S3BaTmd2eGdVcVlkdmJaNGhXSkR6MDdBV2F6U0l2RTl5VlNRWXdISFNEZk5nbQ?oc=5",
+      "linkType": "rss",
+      "id": 6
+    },
+    {
       "title": "예선테크, 전기차 배터리 열폭주 방지 ‘화염차단제’ 개발…고객사와 대체품 협의 - 이투데이",
       "summary": "예선테크가 전기차 배터리의 열폭주 현상을 방지하기 위한 화염차단제 소재를 개발하고 주요 고객사와 제품 적용 및 대체 시험을 협의 중입니다.",
       "source": "이투데이",
       "date": "2026-10-03",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1YSThKV1JnRmVnTzQyRkJ2Ni1QVmtUbnQxbkM4eU9fbXZxZlVWMXhTZ1c3Q08wVklvc1hCNUNpRE1GLWl5cE1zYTg1bGdnZ0hqbTREMkV2RWcwQ3RONVI4c0ktb2RfNi1wMkRpX3l3?oc=5",
       "linkType": "rss",
-      "id": 1
+      "id": 7
     },
     {
       "title": "환경공단·독일 프라운호퍼, 배터리 재활용 넘어 ‘재생원료 품질’ 공동연구 - 에너지데일리",
-      "summary": "한국환경공단이 독일 프라운호퍼 연구소와 사용후 배터리의 단순 재활용을 넘어 추출된 재생원료의 고품질화 및 표준화 기술 공동연구에 착수합니다.",
+      "summary": "환경공단·독일 프라운호퍼, 배터리 재활용 넘어 ‘재생원료 품질’ 공동연구    에너지데일리",
       "source": "에너지데일리",
       "date": "2026-10-03",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0tZWtVYXlUM09jbUpnY3BqZVhmSE9teHBGQmt2cEptOEZ1LWl0S1MxbDhZVHZZdnNJMXNOTnZuMktwSjVzWjFhNjRGYXRROEJWeXJVN0VTMlotTk00UWxyeHk1eWVZZHpSRmQ5SzVvcE92QQ?oc=5",
       "linkType": "rss",
-      "id": 2
+      "id": 8
     },
     {
       "title": "전기차 폐배터리, 블랙매스 거쳐 금속 원료로 - 비건뉴스",
@@ -3784,7 +3838,61 @@
       "date": "2026-10-03",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFAzaFh2VW02QzUwT2R1VDAxVTJmMUpwMy1fdlp3Zk1ReUg3dnlmc0lpcmNTZlRvNUZ1X2J4U1ppN0RHSk9UeEF4MHNoQmtPNF8wVkx5TkV5LWlVQy1GSjM5QnFVa0cxQQ?oc=5",
       "linkType": "rss",
-      "id": 3
+      "id": 9
+    },
+    {
+      "title": "복합 적층 분리막 시장 2035년 전망: 전기차 배터리 수요가 성장 견인 - IndexBox",
+      "summary": "복합 적층 분리막 시장 2035년 전망: 전기차 배터리 수요가 성장 견인    IndexBox",
+      "source": "IndexBox",
+      "date": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPY1VrUUdxa2lRWFM0YWxSNi13Y0dLb3JuQTJpdVRqRFY2SHY1RXNtUGFCWmYtOWVpaFVleVNsX0Y1M0Q4Zm91ZEI4QVBNVGE5UWsyX2NaSVY0VUlmNmI1cGtycVVpY0YyZjF2VE1Fc0I0Q3NfVGJkMktYU2s1aWFPSWU1VnpMM1dGVzk4eTlWdmo4SGZaMVhvN3BlVmlKcXU1b1RocGFNaHpjMVpCTEl3OHhfM1lURmIwY2c?oc=5",
+      "linkType": "rss",
+      "id": 10
+    },
+    {
+      "title": "토요타, 미시간주에 5000만 달러 배터리 연구·시험센터 개소 - 글로벌이코노믹",
+      "summary": "토요타, 미시간주에 5000만 달러 배터리 연구·시험센터 개소    글로벌이코노믹",
+      "source": "글로벌이코노믹",
+      "date": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTEZRWmxfRVR1SzlkOFEwRGNuSzBESzJYTE14ZnZ6YnR0TGozbjAwb1B2TFI5aXhUYm00WVpFYjdNWXZFdVViYXlkNS1IamgtRk5HbGRnSXkwVTBhRWRuVndtcDFwZVROQ05yR2F3TDB2cU00TDlqaUN4cGE4Qld3Zmt3VHQzcGY2?oc=5",
+      "linkType": "rss",
+      "id": 11
+    },
+    {
+      "title": "LG엔솔·GM, 차세대 LMR 배터리 승부수⋯美 공장에 500명 더 뽑는다 - 엠투데이",
+      "summary": "LG엔솔·GM, 차세대 LMR 배터리 승부수⋯美 공장에 500명 더 뽑는다    엠투데이",
+      "source": "엠투데이",
+      "date": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5sUWxjWkhMR3JPMmM3dTYzWEdIZ1B0dFFPMXBsUUVUcmowWlJYQUNBaVB5M0dOaFI0UWJuQmRuZ0tCUnVLS2VET3NLck93amNhOGdLNTdoNC1sNTZzTGJ3MnZ0TlBEaFlXZlV6dFIzWQ?oc=5",
+      "linkType": "rss",
+      "id": 12
+    },
+    {
+      "title": "플루오로에틸렌카보네이트 첨가제 시장 2035년 전망: 전기차 배터리 수요가 연평균 14% 성장 견인 - IndexBox",
+      "summary": "플루오로에틸렌카보네이트 첨가제 시장 2035년 전망: 전기차 배터리 수요가 연평균 14% 성장 견인    IndexBox",
+      "source": "IndexBox",
+      "date": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNWEh5OXV3UEZraXRta0VLVGdMLXJIeVZhZDFaM0JCdTlDbWxZS2V3V01ZTFJwdmF3aTRGRS1JZVBHVVc5amFicEU0NnVWaGZKTkZ1dWFQQWJTeXh3MUdIcUVnYi02QXZ0Z1lidmRjR3FScEVVV2VwbGRCdHh2YzJTN3JCNGpicUVIS2RxTXRoRkk2dGp2emJ1R05SUkZoMnVNaWwybmhUWFp2VUJONTFla1R2a19mbXZzUlRKX0tjazY?oc=5",
+      "linkType": "rss",
+      "id": 13
+    },
+    {
+      "title": "상온 가황(RTV) 실리콘 고무 시장 2035년 전망: 전기차 배터리 밀봉이 성장 견인 - 뉴스 및 통계 - IndexBox",
+      "summary": "상온 가황(RTV) 실리콘 고무 시장 2035년 전망: 전기차 배터리 밀봉이 성장 견인 - 뉴스 및 통계    IndexBox",
+      "source": "IndexBox",
+      "date": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQQVRGT3JrdzhiRWhmbGtOd194OFpDTlBRa2toeENEZGgwYVJUb3g3VlZiWExnRXpNeWRwWVA5UFhoLXN2eFNyVkZrQ0N5Q1E5RGI5QU0wTVFhaUlfNjE2UDFDT00zOFVnM212WkZPdG9ZZ0tkRzFLcncyUWlFSWhBenRhLTFETVBBWWMwQzRQNWREeXd1ZDRWQk5ab1o0bndaM0tRWFBLeXY0WEZmYjA5ZTUwSi1qWHRPR3JEQU5LSkhtcHJYSTRLbExoWnAzTDJSRU9ydldWblA?oc=5",
+      "linkType": "rss",
+      "id": 14
+    },
+    {
+      "title": "‘첫 양산’ 356부터 1156마력 ‘괴물 전기차’까지…마포에 70여대 ‘포르쉐 군단’ 떴다 - 서울경제",
+      "summary": "‘첫 양산’ 356부터 1156마력 ‘괴물 전기차’까지…마포에 70여대 ‘포르쉐 군단’ 떴다    서울경제",
+      "source": "서울경제",
+      "date": "2026-10-03",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE52UE5nNnRJbkVSdGZVdFp2NENsTjI3Nm12SjBBeGFNWGJnSWJRZlpUb2U2NENzdDFlY1dNTFVMYVBJTmJwSFluYmxaMkFTWXhYNWfSAVNBVV95cUxOd00zMHlSZXNDTFRKSjNURVJlcVdtTjZLbTVnM2Vsa1YyS3ZRNXFHUDd6bTB5MjZNU1dCQU9KQ3ZqVzJrNVUzY21DQlBWdUdKWTQ3NA?oc=5",
+      "linkType": "rss",
+      "id": 15
     },
     {
       "title": "1∼8월 전기차 배터리 사용량 20%↑…중국업체 선전 지속 - 연합뉴스",
@@ -3793,7 +3901,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5fVnc2Uk02S1dzUURBSzFzbVNwdEZNcWVWTGVERHM2dGgxcjRkTWlFcGlkdDltZ3hzT0pOZkh0RE5vakpOeko2VDhObU9fbGgyYU5jeEJoQkM4S3fSAWBBVV95cUxOcVdONC1KMzg5X21DbGdVakxRZU1ERTNmMnhiREQ4VXFDLVJCZUJPeHVlM0VnMDVIMDczZEFMTjhobFFfQTl3c2hIai1yV1JlOWhXSnU4OGg0WHVtZGdzcG8?oc=5",
       "linkType": "rss",
-      "id": 4
+      "id": 16
     },
     {
       "title": "K배터리, 1~8월 美 전기차 공급분 전년비 40% ↓ - 지디넷코리아",
@@ -3802,7 +3910,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5rS1QtQzgxcXBlOGRNYTFMdjNSengzM0dIUjRtX1ItWGlIZk8zOS1TSXRia1ctd2djeEVmWEhhRm9RWVF2RXVsWVpsOHB4ZEFMU1FvS3BR?oc=5",
       "linkType": "rss",
-      "id": 5
+      "id": 17
     },
     {
       "title": "‘폐배터리 1500개 모으면 전기차 1대 리튬 나온다’…LG전자, ‘배터리턴’ 캠페인 재가동 - 비즈월드",
@@ -3811,7 +3919,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9Za2FEQUswVEFHMnMxSENrdV91SVBFNTRoNDdQWE1FU3B1cEpDM2xkX3hQYVVNN19xVlVVNGw5dVFUV0ZhTHVhQ1VBRGw3WWlGTEtJTXhLd01iSElmekprU0xwMkg4XzM0NEE?oc=5",
       "linkType": "rss",
-      "id": 6
+      "id": 18
     },
     {
       "title": "LG전자, 폐배터리 1500개서 전기차 1대분 리튬 회수…폐가전 64만톤 회수·매립 제로 추진 - 위키리크스한국",
@@ -3820,7 +3928,7 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Kci12cl9ZRWF3ZjA1bGZDNUJKcGZQQS1reXZyb19Od2NRNkZrak5UZDBacGEzTHBVQTRKUUF3QnBVQ3JSQ2lmU05qUW5OaHQzWXdScjA0cWNPdEFqY1pVZ1FGOTNuSjFvRFRLbllKdEY?oc=5",
       "linkType": "rss",
-      "id": 7
+      "id": 19
     },
     {
       "title": "[심층분석] LG전자, 폐배터리 34만 개 회수…자원순환에서 ESG 경영의 실효성 찾는다 - newsvalue.kr",
@@ -3829,375 +3937,200 @@
       "date": "2026-10-02",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB4RHlyeVpZQVhRcnpVdFdwTU5mZVBfREhaR0NYMnNHbXJWc0ZoSktuVTNLYjdVTVM0bllQN1N6NENfVkswa1BzTDdlRnFSX3ZlOFNYWV9xczl3TmY0YU1GNVZnNXlTeG81OVE?oc=5",
       "linkType": "rss",
-      "id": 8
-    },
-    {
-      "title": "'GM 배터리 소재 공급사' 비아노드, 자본 확충·북미 공장 건설 위한 투자 유치 - 더구루",
-      "summary": "'GM 배터리 소재 공급사' 비아노드, 자본 확충·북미 공장 건설 위한 투자 유치    더구루",
-      "source": "더구루",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE01QkkwLTZuNzJPS21rYTRiMngwZXYzd0RsQ2lDVG5SQktIUHkzWXBtRHdxX3Voa1FuczFGWHpydF9HaHFxYzlYSm8yV1Nlcm91aDBmdk1JbnZwVjlnbEdHbDdDNA?oc=5",
-      "linkType": "rss",
-      "id": 9
-    },
-    {
-      "title": "LG엔솔, EV 배터리 제품군 확대…출하량은 과제로 - 한스경제",
-      "summary": "LG엔솔, EV 배터리 제품군 확대…출하량은 과제로    한스경제",
-      "source": "한스경제",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE05cmRhdVpabXR0UkMtY0I4d1JYeXRZa2xVbWlEZWE1bFBDaUdEUmdQcWk5Q3ZKcVpZQ0FwQzdBdWJtU2w5andFWmJ3UC01b082XzZUU3MtaW50cl9VTnBmb2RSd182TnVqSXBF0gFvQVVfeXFMTjVWVkJ5dWQySHl2SDlGU2N2V21aTTdNZVRjbWU0eEh2STVtN2xubDRIZS1IdEwtSV9aWVJKaWk3N1Y0Z0swRlVoaXFKNXFNb0JUcWVZZFh0cThUc1c3QjB6aThCUEI2ZEtqR3hWZllB?oc=5",
-      "linkType": "rss",
-      "id": 10
-    },
-    {
-      "title": "광섬유 결합 레이저 모듈 시장, 2035년까지 성장 가속…전기차 배터리 제조와 의료기기가 견인 - 뉴스 및 통계 - IndexBox",
-      "summary": "광섬유 결합 레이저 모듈 시장, 2035년까지 성장 가속…전기차 배터리 제조와 의료기기가 견인 - 뉴스 및 통계    IndexBox",
-      "source": "IndexBox",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOcnZTOTg5bjhxQlBnY1lJdUR4QVYyQXloeV9EcGphS2FwODJuOGxmQjJTd3VyaWpDdFh4Sk1jQ0FZejYzRXUxQ18wTHdHZXNzaldHbmtHS0RrSzEwaXhiVnV2T1RIZENvRG9WN204ZlktNG8zNUJ1UEpnTEhYUlRDclZEbUFCQkZ6NDUyQUI3Vnhya0tCRmtkX2NWOUxBQmtmOTN5LTIxd1g2R3Fvd2tWNlVUVnByTjBjSGFKRTRwaFRTMlkxVHNtbGNOMEthaU1oVWE0dFRYWkVhNEJNWXprSg?oc=5",
-      "linkType": "rss",
-      "id": 11
-    },
-    {
-      "title": "LG전자, 폐배터리 자원순환 캠페인 진행 - IT조선",
-      "summary": "LG전자, 폐배터리 자원순환 캠페인 진행    IT조선",
-      "source": "IT조선",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1FMDFaTHhjcGd2cDdMUFdyT000MWJpb21OSTB6RXRlc0Y4TVhRbFNVOXh5OUhuZW5LSXBfVjZOekw3bDd0c283TklraEhqZ0JZd2pZbGd3aDZSQUcyOUZ5QnlFR2RMSFdkcldIX1YwMk_SAXRBVV95cUxPbFBCT1AxYmdQUlpFSWVYQnZwb0tEbGZEZVFsRVR4LVZvOWIzT3l3MHg0bW43ZjduWG1xMGZwY3VWbkdEQ1VYNmQ4d1EwaUk3Z0tDT1NzZElySVdsWmZpT0p0a1RGYkgxZUNOUGpiY2RaUmE3Tg?oc=5",
-      "linkType": "rss",
-      "id": 12
-    },
-    {
-      "title": "LG전자, 무선청소기 폐배터리 재활용 확대… 누적 수거량 156톤 달성 - 조선비즈 - Chosunbiz",
-      "summary": "LG전자, 무선청소기 폐배터리 재활용 확대… 누적 수거량 156톤 달성 - 조선비즈    Chosunbiz",
-      "source": "Chosunbiz",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOQ0lzZEdDWnFvLVpOMHpQWXdBSFowQ1NrZkozQW9lSVVjbFZYcVBSVGtqSWlvRTdPMkpXQTBiSHdTVV96MUpUOWFGc2Z0SkpsV201eV9mMm1Nel9PR1N3MEp5OV9jV3phbzRPUW9PTUdjNmhpNEFoeXh3T2NvS0tMTlFn0gGWAUFVX3lxTE5MdkN4MkJqZmhwUlZDU3h6WWZ1b0NDSGlaVTZJVTFaODhuR1BrZFV0X01Lam1TX3ZVY3VjV2ItdEh0VXZqUmI3V29XVUxaenJBbXBTQ3pfbzdrbW1qOUZ5MjVCWjExSDNIQnNrdXJMd3dKOGo0MTRZTGZFbjIycmdnUk45Y2RkT1BZbWJrNjVGaHpMc3JWdw?oc=5",
-      "linkType": "rss",
-      "id": 13
-    },
-    {
-      "title": "플래티넘 그룹 메탈스, 백금·팔라듐 리튬황 배터리 1단계 검증..시제품 착수 - 매일경제 마켓",
-      "summary": "플래티넘 그룹 메탈스, 백금·팔라듐 리튬황 배터리 1단계 검증..시제품 착수    매일경제 마켓",
-      "source": "매일경제 마켓",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE40UlNxc3ZLTTFOQ2QwcE9fY010emthSXJNM0F6bTlRVHFBZEtWeG5MR252VG1YTzA3dnNOWjlEMW5YdWhPRWM0VV93Rm9ueVJzbWc?oc=5",
-      "linkType": "rss",
-      "id": 14
-    },
-    {
-      "title": "아메리칸 배터리 테크놀러, 블랙매스 1억 달러 수출 승인..美 상무부 라이선스 - 매일경제 마켓",
-      "summary": "아메리칸 배터리 테크놀러, 블랙매스 1억 달러 수출 승인..美 상무부 라이선스    매일경제 마켓",
-      "source": "매일경제 마켓",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBHaE1xbWY1NHJRcFJHTy1iQTBkX1JaS1F4TmdFdEtvcVBNMmZhZ2VYWHhVYllsX1NXbk1lRW1fWmc2Qlo5OTF0b0s5Vlkwb1BLQXc?oc=5",
-      "linkType": "rss",
-      "id": 15
-    },
-    {
-      "title": "LG전자, 폐배터리 모아 재활용한다…누적 34만개 회수 - 서울경제",
-      "summary": "LG전자, 폐배터리 모아 재활용한다…누적 34만개 회수    서울경제",
-      "source": "서울경제",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1xTXRhT0V2TW9nMERsbHE1bV9OekVKUGNmWUk5a0JDZnNlajdLLU1VLW9YZVlWOXZCUUlGSmJ5SmJ0UTBHMl9Mci1PcGdXdWxkOWfSAVNBVV95cUxOZ2JmMEx1LWtvb2dxbk85ckp0YU5PV2ZxRUlmZGY3d0d6OWJhM0R3SFFxbWc5Vm1DSXVzQWJGMWdHMldTb2w1NVdRXzhWc2xSQWtJbw?oc=5",
-      "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "브랜즈컴퍼니, 열폭주 걱정 줄인 스카이 반고체 보조배터리 3종 선보여 - 글로벌E",
-      "summary": "브랜즈컴퍼니, 열폭주 걱정 줄인 스카이 반고체 보조배터리 3종 선보여    글로벌E",
-      "source": "글로벌E",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5rWmRibWNiRTk0Vlg1SU10NkhaUnhGblRaVWwxMk1ybENqNFQwaVZrMmc1OWtLNVczVVZ2SmIxdHJHS2xwc1hrSVAxSU5IZDBsbmdvZDJub2JqLWQyMWxiQ3lLV3hlYXljU0RJ0gFvQVVfeXFMT3ZLaExnVmNvTWNSU3RYcnRIa1pidTJtaXVvSVQ3S1F4aU9ldW8xbGVSYy1NTWxEQmNkbUZJRWpVQi13dUlUbk9lXzhDMnItNmFHdzMtWHVrY004dm1EUDFVODhidHRobUI1dzNaZS1r?oc=5",
-      "linkType": "rss",
-      "id": 17
-    },
-    {
-      "title": "LG전자, 무선청소기 폐배터리 재활용 캠페인 - 주간한국",
-      "summary": "LG전자, 무선청소기 폐배터리 재활용 캠페인    주간한국",
-      "source": "주간한국",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9KR0lUZmhPWF9teWhRaWdoNlRkMUdJS1d0ejdvLTA0aXZ1V2s5ZFNmQ01VdlE4YzNIb3ZYaHNOTEs1S0cwaFlVcDVDQWdSUXRnVFI0SDdqY1paWER3XzFXVTk2bGdWN3Z5bkR4Z0JoWmcweVda0gF0QVVfeXFMT0pHSVRmaE9YX215aFFpZ2g2VGQxR0lLV3R6N28tMDRpdnVXazlkU2ZDTVV2UThjM0hvdlhoc05MSzVLRzBoWVVwNUNBZ1JRdGdUUjRIN2pjWlpYRHdfMVdVOTZsZ1Y3dnluRHhnQmhaZzB5V1o?oc=5",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "LG전자, 올해 두 번째 ‘배터리턴’ 진행…\"폐배터리 34만개 수거\" - 매일일보",
-      "summary": "LG전자, 올해 두 번째 ‘배터리턴’ 진행…\"폐배터리 34만개 수거\"    매일일보",
-      "source": "매일일보",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBHaThTbFZibHRodU9VaGdUSlFtTTN4ZTdvblZHdGlwQm9GbnNxSkI2REFtaEozcU1DMDFDdFhrLWtJUzNZNlRvbjhwTy14ZTVOb3lLN0IyRUR4SzNPbXE5bHVZdy0?oc=5",
-      "linkType": "rss",
-      "id": 19
-    },
-    {
-      "title": "LG전자, 무선청소기 폐배터리 34만개 모았다…희유금속 13톤 회수 - ebn.co.kr",
-      "summary": "LG전자, 무선청소기 폐배터리 34만개 모았다…희유금속 13톤 회수    ebn.co.kr",
-      "source": "ebn.co.kr",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9SaUE2TjRQUVkyWHpjQXhNeWF4U3RVN3k2T0ZrZDRBWGFiNVl3Q211dWpyQTNjczFBZ041NzJFenpxdGZJRDdlSmRnOUc5WUlWeDFCNGZ4NWJnNW5IMjR3MU9vQmFJMVVH?oc=5",
-      "linkType": "rss",
       "id": 20
     }
   ],
   "fx": {
-    "usdKrw": 1347.39,
-    "eurKrw": 1516.05,
-    "cnyKrw": 200.67,
-    "updatedAt": "2026-10-03T14:08:12.816979+09:00"
+    "usdKrw": 1348.61,
+    "eurKrw": 1517.36,
+    "cnyKrw": 200.68,
+    "updatedAt": "2026-10-04T14:41:36.338274+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
-      "글로벌 전기차 배터리 시장의 중국 성장세 지속 속에서 K-배터리의 미국 시장 공급량 감축 등 규제 및 시장 판도 변화가 가시화되고 있습니다.",
-      "차세대 리튬황 배터리 검증, 반고체 배터리 상용화, 초경량 레이저 제조 기술 등 차세대 배터리 소재 및 제조 공정 기술의 고도화가 빠르게 진행 중입니다.",
-      "폐배터리 리사이클링 및 자원순환 캠페인 활성화를 통해 핵심 원자재(리튬, 희유금속 등)의 안정적 공급망을 확보하려는 움직임이 가전 및 배터리 전반으로 확산되고 있습니다."
+      "글로벌 배터리 시장은 중국 업체의 견조한 성장과 미국 연비 규제 완화 움직임 속에서 K-배터리의 입지가 위협받는 도전 과제에 직면해 있습니다.",
+      "차세대 시장 주도권을 확보하기 위해 전고체 및 LMR 배터리 개발과 열폭주 방지 소재 등 배터리 안전·소재 혁신에 기술 역량이 집중되고 있습니다.",
+      "사용후 배터리의 블랙매스 추출, 고순도 재생원료 품질 확보, 소형 폐배터리 자원순환 등 폐배터리 재활용 생태계가 고도화되고 있습니다."
     ],
     "categories": [
       {
-        "name": "차세대 기술 및 소재/제조",
+        "name": "차세대 배터리 & 소재 혁신",
         "items": [
           {
-            "headline": "리튬황 배터리 백금·팔라듐 기술 검증",
-            "summary": "플래티넘 그룹 메탈스가 리튬황 배터리의 성능과 안정성을 향상시키기 위한 백금 및 팔라듐 기반 신소재 적용 1단계 검증을 완료하고 시제품 제작에 착수했습니다. 차세대 배터리 에너지 밀도 개선에 크게 기여할 것으로 기대됩니다.",
+            "headline": "전고체 배터리 주도권 경쟁 격화",
+            "summary": "완성차 및 배터리 기업들이 전기차 시장의 판도를 바꿀 게임체인저로 꼽히는 전고체 배터리 상용화를 위해 총력전을 펼치고 있습니다. 기존 리튬이온 대비 높은 에너지 밀도와 안정성을 확보해 캐즘을 극복하려는 전략입니다.",
             "tags": [
-              "#리튬황배터리",
-              "#백금팔라듐",
-              "#차세대배터리"
+              "#전고체배터리",
+              "#차세대기술",
+              "#게임체인저"
             ],
-            "source": "매일경제 마켓",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE40UlNxc3ZLTTFOQ2QwcE9fY010emthSXJNM0F6bTlRVHFBZEtWeG5MR252VG1YTzA3dnNOWjlEMW5YdWhPRWM0VV93Rm9ueVJzbWc?oc=5"
+            "source": "Chosunbiz",
+            "date": "2026-10-04",
+            "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNUHRsaWRlOWFwWS04VEc2UjNYcVlJelpNRkdYSEF2UWQtTWI3ZGViMl8tWjlrWUJBVmFYQ0VnOTJycDBydnVMRzhMN3lHZWY0OUVPa01RaV9WWGZ3RlpTeE5kZEN2WkZ2QVdoNHpXbXloVDRySEJ3d2dKNHFfSWJLRjJrRWXSAZgBQVVfeXFMT3V6ZjZOdGNUWmxGTDBiT3BYaEM5MnJ2M3BJVGlMZkRGU1Q2YmdFQV9XS19tZ1BJRzVqRzRiYUpSd21WZjVUREFzS3hsRmZwdGtKOUFfdms3MXB6QTJMTktXOEhiQkhCaEZnRExKZ24xTUtGME9ZeEM3OHhqdURIamhZbUZ0OGRGanZYY0pwYVJsbGVUWk1kYmg?oc=5"
           },
           {
-            "headline": "열폭주 방지 반고체 보조배터리 출시",
-            "summary": "브랜즈컴퍼니가 기존 액체 전해질 대비 열폭주 및 화재 위험을 획기적으로 낮춘 스카이 브랜드 반고체 보조배터리 3종을 새로 선보였습니다. 안전성이 강조되는 소형 및 차량용 배터리 시장의 시장성 확대가 기대됩니다.",
+            "headline": "복합 적층 분리막 시장 성장의 장기 전망",
+            "summary": "전기차 배터리의 고성능화 및 안전성 강화 요구에 따라 복합 적층 분리막 시장이 2035년까지 장기 성장세를 이어갈 전망입니다. 배터리 내열성 확보와 수명 연장을 위한 핵심 소재로 주목받고 있습니다.",
             "tags": [
-              "#반고체배터리",
-              "#열폭주방지",
-              "#배터리안전성"
-            ],
-            "source": "글로벌E",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5rWmRibWNiRTk0Vlg1SU10NkhaUnhGblRaVWwxMk1ybENqNFQwaVZrMmc1OWtLNVczVVZ2SmIxdHJHS2xwc1hrSVAxSU5IZDBsbmdvZDJub2JqLWQyMWxiQ3lLV3hlYXljU0RJ0gFvQVVfeXFMT3ZLaExnVmNvTWNSU3RYcnRIa1pidTJtaXVvSVQ3S1F4aU9ldW8xbGVSYy1NTWxEQmNkbUZJRWpVQi13dUlUbk9lXzhDMnItNmFHdzMtWHVrY004dm1EUDFVODhidHRobUI1dzNaZS1r?oc=5"
-          },
-          {
-            "headline": "레이저 모듈 시장 성장, 배터리 공정 견인",
-            "summary": "광섬유 결합 레이저 모듈 시장이 전기차 배터리 용접 및 정밀 가공 수요 급증에 힘입어 2035년까지 장기 성장을 가속화할 전망입니다. 배터리 고속 수율 개선과 정밀 제조 품질 향상에 필수적인 요소로 주목받고 있습니다.",
-            "tags": [
-              "#레이저모듈",
-              "#배터리제조공정",
-              "#공정고도화"
+              "#복합분리막",
+              "#배터리소재",
+              "#시장전망"
             ],
             "source": "IndexBox",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOcnZTOTg5bjhxQlBnY1lJdUR4QVYyQXloeV9EcGphS2FwODJuOGxmQjJTd3VyaWpDdFh4Sk1jQ0FZejYzRXUxQ18wTHdHZXNzaldHbmtHS0RrSzEwaXhiVnV2T1RIZENvRG9WN204ZlktNG8zNUJ1UEpnTEhYUlRDclZEbUFCQkZ6NDUyQUI3Vnhya0tCRmtkX2NWOUxBQmtmOTN5LTIxd1g2R3Fvd2tWNlVUVnByTjBjSGFKRTRwaFRTMlkxVHNtbGNOMEthaU1oVWE0dFRYWkVhNEJNWXprSg?oc=5"
+            "date": "2026-10-03",
+            "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPY1VrUUdxa2lRWFM0YWxSNi13Y0dLb3JuQTJpdVRqRFY2SHY1RXNtUGFCWmYtOWVpaFVleVNsX0Y1M0Q4Zm91ZEI4QVBNVGE5UWsyX2NaSVY0VUlmNmI1cGtycVVpY0YyZjF2VE1Fc0I0Q3NfVGJkMktYU2s1aWFPSWU1VnpMM1dGVzk4eTlWdmo4SGZaMVhvN3BlVmlKcXU1b1RocGFNaHpjMVpCTEl3OHhfM1lURmIwY2c?oc=5"
           }
         ]
       },
       {
-        "name": "기업 동향 및 글로벌 공급망",
+        "name": "안전성 & 열관리 및 완성차 동향",
         "items": [
           {
-            "headline": "글로벌 배터리 20%↑, 중국세 지속",
-            "summary": "1~8월 글로벌 전기차 배터리 총 사용량이 전년 동기 대비 20% 증가한 가운데 중국 배터리 기업들의 높은 성장이 계속되고 있습니다. 시장 경쟁 가열 속에서 K-배터리 기업들의 점유율 방어 전략이 시급한 시점입니다.",
+            "headline": "예선테크, 배터리 화염차단제 개발",
+            "summary": "예선테크가 전기차 배터리의 열폭주 확산을 차단하는 신규 화염차단제 소재 개발에 성공해 고객사들과 대체품 적용 시험을 진행 중입니다. 배터리 화재 안정성에 대한 규제 강화 대응책으로 큰 기대를 모으고 있습니다.",
             "tags": [
-              "#배터리사용량",
-              "#중국배터리",
-              "#글로벌시장"
+              "#열폭주방지",
+              "#화염차단제",
+              "#배터리안전"
             ],
-            "source": "연합뉴스",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5fVnc2Uk02S1dzUURBSzFzbVNwdEZNcWVWTGVERHM2dGgxcjRkTWlFcGlkdDltZ3hzT0pOZkh0RE5vakpOeko2VDhObU9fbGgyYU5jeEJoQkM4S3fSAWBBVV95cUxOcVdONC1KMzg5X21DbGdVakxRZU1ERTNmMnhiREQ4VXFDLVJCZUJPeHVlM0VnMDVIMDczZEFMTjhobFFfQTl3c2hIai1yV1JlOWhXSnU4OGg0WHVtZGdzcG8?oc=5"
+            "source": "이투데이",
+            "date": "2026-10-03",
+            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1YSThKV1JnRmVnTzQyRkJ2Ni1QVmtUbnQxbkM4eU9fbXZxZlVWMXhTZ1c3Q08wVklvc1hCNUNpRE1GLWl5cE1zYTg1bGdnZ0hqbTREMkV2RWcwQ3RONVI4c0ktb2RfNi1wMkRpX3l3?oc=5"
           },
           {
-            "headline": "K-배터리 美 전기차 공급량 40% 감소",
-            "summary": "올해 1~8월 국내 배터리 3사의 미국 시장 내 전기차 배터리 공급량이 전년 동기 대비 40% 대폭 감소했습니다. IRA 보조금 등 정책적 변화와 현지 OEM 생산 조정 영향이 복합 작용한 결과로 분석됩니다.",
+            "headline": "RTV 실리콘 고무, 배터리 밀봉 수요 증대",
+            "summary": "상온 가황(RTV) 실리콘 고무 시장이 전기차 배터리 패킹 및 밀봉 수요 증가에 힘입어 2035년까지 견조한 성장세를 유지할 전망입니다. 배터리 모듈의 방수, 방진 및 내부 열 안정성 제어에 필수적인 역할을 수행합니다.",
+            "tags": [
+              "#RTV실리콘",
+              "#배터리밀봉",
+              "#열관리"
+            ],
+            "source": "IndexBox",
+            "date": "2026-10-03",
+            "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQQVRGT3JrdzhiRWhmbGtOd194OFpDTlBRa2toeENEZGgwYVJUb3g3VlZiWExnRXpNeWRwWVA5UFhoLXN2eFNyVkZrQ0N5Q1E5RGI5QU0wTVFhaUlfNjE2UDFDT00zOFVnM212WkZPdG9ZZ0tkRzFLcncyUWlFSWhBenRhLTFETVBBWWMwQzRQNWREeXd1ZDRWQk5ab1o0bndaM0tRWFBLeXY0WEZmYjA5ZTUwSi1qWHRPR3JEQU5LSkhtcHJYSTRLbExoWnAzTDJSRU9ydldWblA?oc=5"
+          },
+          {
+            "headline": "포르쉐, 고성능 전기차 기술 과시",
+            "summary": "포르쉐가 서울 마포에서 최고출력 1156마력에 달하는 고성능 전기차를 포함한 다수의 차량을 선보였습니다. 고성능 럭셔리 전기차 시장에서도 배터리 출력 제어와 모터 기술력이 핵심 차별화 요소로 작용하고 있습니다.",
+            "tags": [
+              "#포르쉐",
+              "#고성능전기차",
+              "#전기차동향"
+            ],
+            "source": "서울경제",
+            "date": "2026-10-03",
+            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE52UE5nNnRJbkVSdGZVdFp2NENsTjI3Nm12SjBBeGFNWGJnSWJRZlpUb2U2NENzdDFlY1dNTFVMYVBJTmJwSFluYmxaMkFTWXhYNWfSAVNBVV95cUxOd00zMHlSZXNDTFRKSjNURVJlcVdtTjZLbTVnM2Vsa1YyS3ZRNXFHUDd6bTB5MjZNU1dCQU9KQ3ZqVzJrNVUzY21DQlBWdUdKWTQ3NA?oc=5"
+          }
+        ]
+      },
+      {
+        "name": "기업 동향 & 시장 규제",
+        "items": [
+          {
+            "headline": "美 연비 규제 완화 움직임과 K-배터리",
+            "summary": "미국 정부의 연비 규제 완화 추진 소식에 따라 미국 시장에 집중하던 한국 배터리 기업들의 신규 수주 및 생산 계획 차질 우려가 제기되고 있습니다. 정책 변화에 따른 시장 리스크 관리가 시급한 과제로 떠올랐습니다.",
+            "tags": [
+              "#연비규제",
+              "#K배터리",
+              "#미국시장"
+            ],
+            "source": "더구루",
+            "date": "2026-10-04",
+            "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9rb2VUNWlsc0xSdlVPVi1acFh5RzVld0RpODlWM0JVN3REZ3BwS1padzFQNjRPck00LWE5bW1HY1RQWnl3bDhOdVA5NVZiZlVETEEyNUZMTjNhQUVBZEE?oc=5"
+          },
+          {
+            "headline": "토요타, 미시간 배터리 연구센터 개소",
+            "summary": "토요타가 미국 미시간주에 5000만 달러를 투자해 배터리 연구·시험센터를 본격 개소했습니다. 북미 현지 배터리 자체 평가 및 검증 역량을 강화하여 북미 전기차 공급망을 고도화하겠다는 전략입니다.",
+            "tags": [
+              "#토요타",
+              "#배터리연구센터",
+              "#북미투자"
+            ],
+            "source": "글로벌이코노믹",
+            "date": "2026-10-03",
+            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTEZRWmxfRVR1SzlkOFEwRGNuSzBESzJYTE14ZnZ6YnR0TGozbjAwb1B2TFI5aXhUYm00WVpFYjdNWXZFdVViYXlkNS1IamgtRk5HbGRnSXkwVTBhRWRuVndtcDFwZVROQ05yR2F3TDB2cU00TDlqaUN4cGE4Qld3Zmt3VHQzcGY2?oc=5"
+          },
+          {
+            "headline": "K배터리, 美 전기차 공급량 40% 감소",
+            "summary": "올해 1~8월 한국 배터리 3사의 미국 전기차향 공급 물량이 전년 동기 대비 40% 급감한 것으로 나타났습니다. 미국 현지 전기차 수요 둔화와 정책 변화가 한국 기업들의 실적 타격으로 이어진 결과입니다.",
             "tags": [
               "#K배터리",
-              "#미국전기차",
-              "#공급량감소"
+              "#미국공급량",
+              "#전기차캐즘"
             ],
             "source": "지디넷코리아",
             "date": "2026-10-02",
             "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5rS1QtQzgxcXBlOGRNYTFMdjNSengzM0dIUjRtX1ItWGlIZk8zOS1TSXRia1ctd2djeEVmWEhhRm9RWVF2RXVsWVpsOHB4ZEFMU1FvS3BR?oc=5"
-          },
-          {
-            "headline": "비아노드, 북미 공장 건설 투자 유치",
-            "summary": "GM 배터리 소재 공급사인 음극재 전문 기업 비아노드가 북미 생산 인프라 확충과 자본 제고를 위한 신규 투자 유치에 성공했습니다. 북미 밸류체인 내 현지 소재 조달 역량이 더욱 강화될 전망입니다.",
-            "tags": [
-              "#비아노드",
-              "#GM공급사",
-              "#북미공장"
-            ],
-            "source": "더구루",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE01QkkwLTZuNzJPS21rYTRiMngwZXYzd0RsQ2lDVG5SQktIUHkzWXBtRHdxX3Voa1FuczFGWHpydF9HaHFxYzlYSm8yV1Nlcm91aDBmdk1JbnZwVjlnbEdHbDdDNA?oc=5"
-          },
-          {
-            "headline": "LG엔솔, EV 라인업 확대와 출하량 과제",
-            "summary": "LG에너지솔루션이 LFP 및 폼팩터 다양화를 통해 EV 배터리 제품군을 확장하고 있으나, 글로벌 캐즘 여파로 출하량 증대가 핵심 과제로 떠올랐습니다. 수익성 방어와 제품 다양화 간 균형이 요구됩니다.",
-            "tags": [
-              "#LG에너지솔루션",
-              "#배터리라인업",
-              "#출하량확대"
-            ],
-            "source": "한스경제",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE05cmRhdVpabXR0UkMtY0I4d1JYeXRZa2xVbWlEZWE1bFBDaUdEUmdQcWk5Q3ZKcVpZQ0FwQzdBdWJtU2w5andFWmJ3UC01b082XzZUU3MtaW50cl9VTnBmb2RSd182TnVqSXBF0gFvQVVfeXFMTjVWVkJ5dWQySHl2SDlGU2N2V21aTTdNZVRjbWU0eEh2STVtN2xubDRIZS1IdEwtSV9aWVJKaWk3N1Y0Z0swRlVoaXFKNXFNb0JUcWVZZFh0cThUc1c3QjB6aThCUEI2ZEtqR3hWZllB?oc=5"
           }
         ]
       },
       {
-        "name": "폐배터리 리사이클링 및 자원순환",
+        "name": "재활용 & 자원 순환 생태계",
         "items": [
           {
-            "headline": "LG전자, 폐가전 64만톤 수거·매립 제로 추진",
-            "summary": "LG전자가 무선청소기 등에서 추출한 폐배터리 리사이클링을 넘어 연간 폐가전 64만 톤 회수 및 폐기물 매립 제로화를 적극 추진합니다. 희유금속 회수 기술 향상으로 원가 절감 효과도 기대하고 있습니다.",
+            "headline": "고니켈 폐기물 재활용 시장 확대",
+            "summary": "전기차 보급 확대와 각국의 재활용 의무화 규제에 힘입어 고니켈 배터리 폐기물 시장이 2035년까지 가파르게 성장할 전망입니다. 하이니켈 배터리 회수를 통한 고가 금속 자원 확보가 핵심 과제로 부상했습니다.",
             "tags": [
-              "#LG전자",
-              "#자원순환",
-              "#매립제로"
+              "#고니켈배터리",
+              "#폐배터리",
+              "#재활용의무화"
             ],
-            "source": "위키리크스한국",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Kci12cl9ZRWF3ZjA1bGZDNUJKcGZQQS1reXZyb19Od2NRNkZrak5UZDBacGEzTHBVQTRKUUF3QnBVQ3JSQ2lmU05qUW5OaHQzWXdScjA0cWNPdEFqY1pVZ1FGOTNuSjFvRFRLbllKdEY?oc=5"
+            "source": "IndexBox",
+            "date": "2026-10-04",
+            "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPLUdOa3ZjOUVKY1RseW44NzYwWHBzejYzMU5PcGJtX0dzVk9tMGZiMl9BeVVDbE9zWWxYUWNmYktTRm9uNzM1Vzg5cVF6Rmt1bGdId3J1NlY2OWJWbmcwaDZHNkpoVVRGQ1BqQ2laMkM0UmZ5ck1UYjNaZmlZeHV0UE5FNmJxNGlyZDlZM2JtaHh3YmE1MUtYVGxHY2FSSjBMWkZoa2ZYT3NaVzc3U2pOYkc5TUlMbE9iZ3J6XzlEYTRBck1ZbklueHNGcVN3QQ?oc=5"
           },
           {
-            "headline": "LG전자 폐배터리 34만 개 회수 ESG 경영",
-            "summary": "LG전자가 자원순환 캠페인을 통해 누적 34만 개의 폐배터리를 수거하여 지속가능한 ESG 경영의 실효성을 입증하고 있습니다. 자가 원자재 재활용 모델 구축의 우수 사례로 평가받습니다.",
+            "headline": "한국-독일, 사용후 배터리 공동연구",
+            "summary": "한국환경공단이 독일 프라운호퍼 연구소와 사용후 배터리 재활용 기술 및 자원 순환 고도화를 위한 공동 연구협약을 체결했습니다. 양국은 사용후 배터리의 성능 평가와 자원 회수 효율화에 집중할 계획입니다.",
+            "tags": [
+              "#환경공단",
+              "#프라운호퍼",
+              "#사용후배터리"
+            ],
+            "source": "디스커버리뉴스(DISCOVERYNEWS)",
+            "date": "2026-10-04",
+            "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBtXy1sdG1Ha3lhOUpEOWxJYW5rX0RCSzh2Z0IzTU9Sc25nZVpWdWVKa2NrOWI3dnRnSUpxLUNqc05KRDY2cnRELVRxbWRrY1F6NU5URUxCak5RQVBJWndvTnkxaTJCTmYtYk5CdVJHNGh0Zw?oc=5"
+          },
+          {
+            "headline": "한-독, 배터리 재생원료 품질 표준화",
+            "summary": "한국환경공단과 프라운호퍼 연구소가 단순 재활용 공정을 넘어 회수된 재생원료의 순도와 품질을 높이는 연구에 착수했습니다. 표준화된 재생원료 품질을 확보해 글로벌 배터리 공급망에 재투입하는 것을 목표로 합니다.",
+            "tags": [
+              "#재생원료",
+              "#품질표준화",
+              "#자원순환"
+            ],
+            "source": "에너지데일리",
+            "date": "2026-10-03",
+            "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0tZWtVYXlUM09jbUpnY3BqZVhmSE9teHBGQmt2cEptOEZ1LWl0S1MxbDhZVHZZdnNJMXNOTnZuMktwSjVzWjFhNjRGYXRROEJWeXJVN0VTMlotTk00UWxyeHk1eWVZZHpSRmQ5SzVvcE92QQ?oc=5"
+          },
+          {
+            "headline": "LG전자, '배터리턴' 자원순환 캠페인",
+            "summary": "LG전자가 소형 폐배터리 1,500개 수거 시 전기차 1대분의 리튬을 추출할 수 있는 '배터리턴' 캠페인을 재가동했습니다. 폐가전 수거를 확대해 매립 제로화와 원자재 선순환 체계를 모범적으로 구축하고 있습니다.",
             "tags": [
               "#LG전자",
-              "#ESG경영",
-              "#자원재활용"
+              "#배터리턴",
+              "#리튬회수"
+            ],
+            "source": "비즈월드",
+            "date": "2026-10-02",
+            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9Za2FEQUswVEFHMnMxSENrdV91SVBFNTRoNDdQWE1FU3B1cEpDM2xkX3hQYVVNN19xVlVVNGw5dVFUV0ZhTHVhQ1VBRGw3WWlGTEtJTXhLd01iSElmekprU0xwMkg4XzM0NEE?oc=5"
+          },
+          {
+            "headline": "LG전자, 폐배터리 34만 개 회수 성과",
+            "summary": "LG전자가 누적 34만 개의 폐배터리를 회수하며 전자제품 제조사를 넘어 자원 순환 ESG 경영의 실효성을 입증했습니다. 수거된 배터리는 파쇄 후 핵심 희유금속으로 재생되어 원자재 공급망 안정화에 기여합니다.",
+            "tags": [
+              "#LG전자",
+              "#ESG",
+              "#폐배터리회수"
             ],
             "source": "newsvalue.kr",
             "date": "2026-10-02",
             "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB4RHlyeVpZQVhRcnpVdFdwTU5mZVBfREhaR0NYMnNHbXJWc0ZoSktuVTNLYjdVTVM0bllQN1N6NENfVkswa1BzTDdlRnFSX3ZlOFNYWV9xczl3TmY0YU1GNVZnNXlTeG81OVE?oc=5"
-          },
-          {
-            "headline": "LG전자 무선청소기 폐배터리 자원순환",
-            "summary": "LG전자가 전국 서비스센터망을 활용하여 소형 폐배터리 수거망을 확장하고 자원 재활용 비율을 극대화하고 있습니다. 가전제품 생애주기 전반에 걸친 친환경 선순환 체계가 고도화되고 있습니다.",
-            "tags": [
-              "#LG전자",
-              "#폐배터리수거",
-              "#자원순환"
-            ],
-            "source": "IT조선",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1FMDFaTHhjcGd2cDdMUFdyT000MWJpb21OSTB6RXRlc0Y4TVhRbFNVOXh5OUhuZW5LSXBfVjZOekw3bDd0c283TklraEhqZ0JZd2pZbGd3aDZSQUcyOUZ5QnlFR2RMSFdkcldIX1YwMk_SAXRBVV95cUxPbFBCT1AxYmdQUlpFSWVYQnZwb0tEbGZEZVFsRVR4LVZvOWIzT3l3MHg0bW43ZjduWG1xMGZwY3VWbkdEQ1VYNmQ4d1EwaUk3Z0tDT1NzZElySVdsWmZpT0p0a1RGYkgxZUNOUGpiY2RaUmE3Tg?oc=5"
-          },
-          {
-            "headline": "LG전자 누적 수거량 156톤 달성",
-            "summary": "LG전자의 무선청소기 폐배터리 누적 수거량이 156톤을 달성하며 도시광산 사업의 가능성을 증명했습니다. 수거된 배터리에서 니켈, 코발트, 리튬 등 고가 핵심 소재를 고순도로 정제해 내고 있습니다.",
-            "tags": [
-              "#LG전자",
-              "#도시광산",
-              "#희유금속"
-            ],
-            "source": "Chosunbiz",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOQ0lzZEdDWnFvLVpOMHpQWXdBSFowQ1NrZkozQW9lSVVjbFZYcVBSVGtqSWlvRTdPMkpXQTBiSHdTVV96MUpUOWFGc2Z0SkpsV201eV9mMm1Nel9PR1N3MEp5OV9jV3phbzRPUW9PTUdjNmhpNEFoeXh3T2NvS0tMTlFn0gGWAUFVX3lxTE5MdkN4MkJqZmhwUlZDU3h6WWZ1b0NDSGlaVTZJVTFaODhuR1BrZFV0X01Lam1TX3ZVY3VjV2ItdEh0VXZqUmI3V29XVUxaenJBbXBTQ3pfbzdrbW1qOUZ5MjVCWjExSDNIQnNrdXJMd3dKOGo0MTRZTGZFbjIycmdnUk45Y2RkT1BZbWJrNjVGaHpMc3JWdw?oc=5"
-          },
-          {
-            "headline": "美, 블랙매스 1억 달러 수출 승인",
-            "summary": "아메리칸 배터리 테크놀러지가 미국 상무부로부터 1억 달러 규모의 재활용 블랙매스 수출 라이선스를 획득했습니다. 폐배터리 재활용 중간재의 글로벌 유통 규제 완화와 시장 확대의 계기가 될 전망입니다.",
-            "tags": [
-              "#블랙매스",
-              "#배터리재활용",
-              "#미상무부승인"
-            ],
-            "source": "매일경제 마켓",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBHaE1xbWY1NHJRcFJHTy1iQTBkX1JaS1F4TmdFdEtvcVBNMmZhZ2VYWHhVYllsX1NXbk1lRW1fWmc2Qlo5OTF0b0s5Vlkwb1BLQXc?oc=5"
-          },
-          {
-            "headline": "LG전자, 폐배터리 누적 34만개 수거",
-            "summary": "LG전자가 '배터리턴' 캠페인을 통해 누적 34만 개의 폐배터리를 성공적으로 회수했습니다. 추출된 리튬과 희유금속은 다시 자원화되어 신규 배터리 제조 인프라 공급망으로 재투입됩니다.",
-            "tags": [
-              "#LG전자",
-              "#폐배터리",
-              "#자원재활용"
-            ],
-            "source": "서울경제",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1xTXRhT0V2TW9nMERsbHE1bV9OekVKUGNmWUk5a0JDZnNlajdLLU1VLW9YZVlWOXZCUUlGSmJ5SmJ0UTBHMl9Mci1PcGdXdWxkOWfSAVNBVV95cUxOZ2JmMEx1LWtvb2dxbk85ckp0YU5PV2ZxRUlmZGY3d0d6OWJhM0R3SFFxbWc5Vm1DSXVzQWJGMWdHMldTb2w1NVdRXzhWc2xSQWtJbw?oc=5"
-          },
-          {
-            "headline": "LG전자, '배터리턴' 캠페인 지속 추진",
-            "summary": "LG전자가 자원 재활용 가치를 제고하기 위해 무선청소기 폐배터리 수거 이벤트를 확대 실시합니다. 고객 참여형 ESG 캠페인을 통한 자원 선순환 생태계 조성이 더욱 속도를 내고 있습니다.",
-            "tags": [
-              "#LG전자",
-              "#배터리턴",
-              "#ESG캠페인"
-            ],
-            "source": "주간한국",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9KR0lUZmhPWF9teWhRaWdoNlRkMUdJS1d0ejdvLTA0aXZ1V2s5ZFNmQ01VdlE4YzNIb3ZYaHNOTEs1S0cwaFlVcDVDQWdSUXRnVFI0SDdqY1paWER3XzFXVTk2bGdWN3Z5bkR4Z0JoWmcweVda0gF0QVVfeXFMT0pHSVRmaE9YX215aFFpZ2g2VGQxR0lLV3R6N28tMDRpdnVXazlkU2ZDTVV2UThjM0hvdlhoc05MSzVLRzBoWVVwNUNBZ1JRdGdUUjRIN2pjWlpYRHdfMVdVOTZsZ1Y3dnluRHhnQmhaZzB5V1o?oc=5"
-          },
-          {
-            "headline": "LG전자, 2차 배터리턴 수거 지속",
-            "summary": "LG전자가 연내 두 번째 '배터리턴' 캠페인을 진행하며 폐배터리 수거율을 극대화하고 있습니다. 수거된 희유금속을 자원화함으로써 자원 안보 확보와 친환경 가치를 동시에 달성하고 있습니다.",
-            "tags": [
-              "#LG전자",
-              "#배터리턴",
-              "#희유금속"
-            ],
-            "source": "매일일보",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBHaThTbFZibHRodU9VaGdUSlFtTTN4ZTdvblZHdGlwQm9GbnNxSkI2REFtaEozcU1DMDFDdFhrLWtJUzNZNlRvbjhwTy14ZTVOb3lLN0IyRUR4SzNPbXE5bHVZdy0?oc=5"
-          },
-          {
-            "headline": "폐배터리 34만개서 희유금속 13톤 회수",
-            "summary": "LG전자가 수거한 폐배터리 34만 개로부터 니켈, 코발트, 리튬 등 희유금속 약 13톤을 성공적으로 회수했습니다. 폐가전 기반 원자재 extraction의 실효성을 극명히 보여준 결과입니다.",
-            "tags": [
-              "#희유금속회수",
-              "#도시광산",
-              "#리사이클링"
-            ],
-            "source": "ebn.co.kr",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9SaUE2TjRQUVkyWHpjQXhNeWF4U3RVN3k2T0ZrZDRBWGFiNVl3Q211dWpyQTNjczFBZ041NzJFenpxdGZJRDdlSmRnOUc5WUlWeDFCNGZ4NWJnNW5IMjR3MU9vQmFJMVVH?oc=5"
-          },
-          {
-            "headline": "ABTC, 미 상무부 재활용 수출 승인",
-            "summary": "아메리칸 배터리 테크놀로지가 미 상무부로부터 최대 1억 달러 상당의 재활용 블랙매스 수출 판로를 승인받았습니다. 글로벌 배터리 재활용 유통망 단일화 및 경제성 확보가 가속화될 예정입니다.",
-            "tags": [
-              "#ABTC",
-              "#블랙매스",
-              "#수출승인"
-            ],
-            "source": "데이터투자",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE90R1FzeWljcUZkOXh2QTAwQzFlTGxFcFlIdG03TmNqUFA0ak1TZzd2bU1WZHNHOVFDVF9oYU12MFB5S0tGT3B1Y1BpWkkzNGtQZ3VEYlRSUDdXTmZ4bWRCaVNyS3g0VFBDbTBfWVpxSHFKQQ?oc=5"
-          },
-          {
-            "headline": "LG전자, 자원순환 캠페인 영역 확대",
-            "summary": "LG전자가 폐배터리 수거 캠페인을 정례화하며 자원순환 체계를 자사 핵심 ESG 지표로 강화하고 있습니다. 기업과 소비자가 함께하는 친환경 생태계 모델 정착에 앞장서고 있습니다.",
-            "tags": [
-              "#자원순환",
-              "#LG전자",
-              "#ESG"
-            ],
-            "source": "더팩트",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBnTTVCeVBhM09sYlBDVTQ3Q2dHdm41Qlc4ZDMzdWxySHJfc05ldDJacVA2bkdoRXZPNDdHRl9ISzVEMHIxOHlxTktUT0Y4OUloX09pUUlwank0d9IBVEFVX3lxTE1faXNGNGNORVdHVUhDemxQVFZ1a3ZJR3NfWWRkMU9fNy14TldFVF81eUg1RkxRQkR1MTlibERrTWNCMEhtX2JlNTdrX05mY05rZVNRVg?oc=5"
-          },
-          {
-            "headline": "LG전자, '배터리턴' 자원순환 확대",
-            "summary": "LG전자가 '배터리턴' 활동을 더욱 확대하며 친환경 재활용 생태계를 확장하고 있습니다. 폐가전 폐배터리 회수를 통해 핵심 소재 공급망의 내부 충원 비율을 지속 높여갈 계획입니다.",
-            "tags": [
-              "#배터리턴",
-              "#자원순환",
-              "#LG전자"
-            ],
-            "source": "뉴스투데이",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9ScFNkbXlGMkEzaFhCaXRPZDhqR3Y3Z29uRFBsLTZRZ2dJRVNieWlENTYzQUJuYXNSUGg2dnVibjlVZ2I2eldMSGtBMkFheUl2eTM5ZDRLNnQxeDczaFE?oc=5"
           }
         ]
       }
     ],
-    "implications": "미국 시장 내 공급량 감소와 글로벌 시장에서의 중국 기업들의 고성장은 국내 배터리 셀 업체 및 소재사들에게 제품 포트폴리오 다변화와 공급망 재편을 강하게 압박하고 있습니다. 이에 대응하여 리튬황, 반고체 등 안전성과 에너지 밀도를 극대화하는 차세대 배터리 기술 개발 및 공정 레이저 모듈 도입 등 제조 경쟁력 확보 노력이 빠르게 가시화되고 있습니다. 또한, 폐배터리 재활용 라이선스 승인 및 가전업계의 대규모 폐배터리 자원순환(도시광산) 추진은 향후 배터리 원자재 수급 안정화와 친환경 ESG 규제 대응에 결정적인 교두보가 될 것으로 분석됩니다."
+    "implications": "미국의 연비 규제 완화 움직임과 현지 전기차 수요 감소로 인해 한국 배터리 기업들의 대미 공급량이 급감하는 등 대외 악재가 가시화되고 있습니다. 동시에 중국 업체들의 점유율 확대와 PHEV 시장 공습이 가속화됨에 따라, K-배터리는 LMR, 전고체 등 원가 경쟁력과 안전성을 갖춘 차세대 폼팩터로의 조기 전환이 불가피한 시점입니다. 이에 더해 폐배터리 재생원료의 고순도 품질 표준화 및 블랙매스 금속 추출 기술 확보를 통한 자원 순환 체계 구축이 향후 원가 절감과 ESG 규제 대응의 핵심 승부처가 될 것입니다."
   },
   "chinaNews": [
     {
@@ -4220,7 +4153,7 @@
     },
     {
       "title": "What to expect from Chinese car brands at the Paris Auto Show 2026",
-      "summary": "Overview of what to expect from Chinese car brands at the Paris Auto Show 2026 starting on October 12.",
+      "summary": "CarNewsChina outlined expectations for Chinese car brands at the Paris Auto Show 2026 starting October 12.",
       "source": "CarNewsChina",
       "date": "2026-10-02",
       "url": "https://carnewschina.com/2026/10/02/what-to-expect-from-chinese-car-brands-at-the-paris-auto-show-2026/",
@@ -4266,7 +4199,7 @@
     },
     {
       "title": "Roundup: September 2026 deliveries by major Chinese automakers",
-      "summary": "Leapmotor and Zeekr set fresh records, while Xiaomi tops 40,000 deliveries to reach its highest monthly level this year.",
+      "summary": "Leapmotor and Zeekr set fresh records, while Xiaomi topped 40,000 deliveries to reach its highest monthly level this year.",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/roundup-sept-2026-deliveries-china-automakers/",
@@ -4319,6 +4252,15 @@
       "id": 13
     },
     {
+      "title": "Chinese NEV sales rankings in September 2026: BYD, Geely Galaxy, Leapmotor",
+      "summary": "CarNewsChina compiled the Chinese NEV sales rankings for September 2026 based on delivery data released by new energy car makers.",
+      "source": "CarNewsChina",
+      "date": "2026-10-01",
+      "url": "https://carnewschina.com/2026/10/01/chinese-nev-sales-rankings-in-september-2026-byd-leapmotor-changan-nevo/",
+      "linkType": "rss",
+      "id": 14
+    },
+    {
       "title": "BYD, 방청보 포뮬러 S 시리즈 월 판매 목표 1만 5천 대로 설정",
       "summary": "BYD는 패스트백과 GT 스티어링 웨건으로 구성된 포뮬러 S 라인업을 통해 월 1만 5,000대 판매 달성을 기대하고 있다.",
       "source": "CarNewsChina",
@@ -4326,16 +4268,16 @@
       "url": "https://carnewschina.com/2026/09/30/byd-expects-formula-s-series-sales-to-reach-15000-units-monthly/",
       "linkType": "rss",
       "translated": true,
-      "id": 14
+      "id": 15
     },
     {
       "title": "Seres and CATL-backed Aiva unveils ME7 in Paris",
-      "summary": "Seres and CATL-backed brand Aiva officially unveiled its ME7 model in Paris.",
+      "summary": "Seres and CATL-backed brand Aiva unveiled its ME7 model in Paris.",
       "source": "CarNewsChina",
       "date": "2026-09-30",
       "url": "https://carnewschina.com/2026/09/30/seres-and-catl-backed-aiva-unveils-me7-in-paris/",
       "linkType": "rss",
-      "id": 15
+      "id": 16
     },
     {
       "title": "China NEV retail sales fall 20% in first 27 days of September as decline deepens",
@@ -4344,16 +4286,16 @@
       "date": "2026-09-30",
       "url": "https://cnevpost.com/2026/09/30/china-nev-retail-sales-first-27-days-sept/",
       "linkType": "rss",
-      "id": 16
+      "id": 17
     },
     {
       "title": "Aito opens pre-sales for updated M8 SUV as Seres and Huawei reshape partnership",
-      "summary": "The updated Aito M8 comes standard with Huawei's Qiankun ADS 5 with L3-ready architecture, starting at 389,800 yuan ($57,880) in pre-sales.",
+      "summary": "The updated Aito M8 comes standard with Huawei's Qiankun ADS 5 and an L3-ready architecture, with pre-sales starting at 389,800 yuan.",
       "source": "CnEVPost",
       "date": "2026-09-30",
       "url": "https://cnevpost.com/2026/09/30/aito-opens-pre-sales-updated-m8-suv/",
       "linkType": "rss",
-      "id": 17
+      "id": 18
     },
     {
       "title": "BYD, 2세대 시걸 공개… 마사지 시트 및 94L 프렁크 탑재",
@@ -4363,7 +4305,7 @@
       "url": "https://carnewschina.com/2026/09/30/second-gen-byd-seagull-revealed-massaged-drivers-seat-94l-frunk/",
       "linkType": "rss",
       "translated": true,
-      "id": 18
+      "id": 19
     },
     {
       "title": "Lynk & Co launches 20 compact electric SUV, reports over 14,663 firm orders in 1 hour",
@@ -4371,16 +4313,6 @@
       "source": "CnEVPost",
       "date": "2026-09-29",
       "url": "https://cnevpost.com/2026/09/29/lynk-co-launches-20-compact-electric-suv/",
-      "linkType": "rss",
-      "translated": false,
-      "id": 19
-    },
-    {
-      "title": "Aito to open pre-sales of updated M8 SUV on September 30 with L3-ready architecture",
-      "summary": "The updated model will come standard with Huawei's Qiankun ADS 5 across the lineup, with the battery-electric version offering a range of up to 830 km. For details, please visit CnEVPost (cnev.co).",
-      "source": "CnEVPost",
-      "date": "2026-09-29",
-      "url": "https://cnevpost.com/2026/09/29/aito-to-open-pre-sales-updated-m8-sept-30/",
       "linkType": "rss",
       "translated": false,
       "id": 20
