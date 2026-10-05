@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T14:41:36.125048+09:00",
+  "generatedAt": "2026-10-05T14:25:29.035711+09:00",
   "vehicles": [
     {
       "id": "seres_aito_m8_l3_ev",
@@ -117,15 +117,15 @@
       "packInfo": "EREV 전용 고강성 바닥 하부 고정 CTP 배터리 팩",
       "cellInfo": "CATL 초고속 LFP 각형 셀",
       "chargingSafety": "연료탱크-배터리 열격리 보강 구조 및 하부 스틸 범퍼 라이너",
-      "trim": "Pro AWD EREV",
-      "topSpeed": "190km/h",
+      "trim": "LiDAR Edition EREV",
+      "topSpeed": "200 km/h",
       "zeroToHundred": "5.1초",
-      "maxOutput": "300kW / 408ps",
-      "maxChargePower": "140kW",
+      "maxOutput": "300 kW (408 ps)",
+      "maxChargePower": "140 kW",
       "packVoltage": "400V",
-      "packType": "CTP (Cell-to-Pack)",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각",
+      "packType": "CTP Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -135,11 +135,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM",
+      "cellComposition": "LFP",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-21",
+      "specLastCheckedAt": "2026-10-05",
       "cellMakerCheckedAt": "2026-09-21"
     },
     {
@@ -446,15 +446,15 @@
       "packInfo": "4세대 교환형 900V 고전압 배터리 팩",
       "cellInfo": "High Energy NCM Prismatic Cell",
       "chargingSafety": "배터리 교환 스태이션 자동 정밀 체결 및 수심 차단 3중 셀 세이프티",
-      "trim": "Flagship AWD",
+      "trim": "Flagship 100kWh AWD",
       "topSpeed": "220 km/h",
       "zeroToHundred": "3.8초",
       "maxOutput": "520 kW (707 ps)",
       "maxChargePower": "320 kW",
       "packVoltage": "900V",
-      "packType": "900V Swappable Battery Pack",
-      "cellType": "원통형 (Cylindrical)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "Swappable Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -468,7 +468,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-21",
+      "specLastCheckedAt": "2026-10-05",
       "cellMakerCheckedAt": "2026-09-21"
     },
     {
@@ -542,13 +542,13 @@
       "chargingSafety": "화웨이 AI 배터리 헬스 모니터링 시스템 지원",
       "trim": "Max RWD",
       "topSpeed": "200 km/h",
-      "zeroToHundred": "5.9초",
+      "zeroToHundred": "6.5초",
       "maxOutput": "215 kW (292 ps)",
       "maxChargePower": "290 kW",
       "packVoltage": "800V",
-      "packType": "Giant Whale 800V CTP Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "Giant Whale Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -562,7 +562,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-21",
+      "specLastCheckedAt": "2026-10-05",
       "cellMakerCheckedAt": "2026-09-21"
     },
     {
@@ -1527,15 +1527,15 @@
       "packInfo": "eM 플랫폼 초고밀도 차세대 팩 구조",
       "cellInfo": "SK온 고밀도 하이니켈 파우치 셀",
       "chargingSafety": "360도 전방위 차체 구조 결합 열폭주 유입 차단 기술",
-      "trim": "Neolun / GV90 AWD",
-      "topSpeed": "240 km/h",
+      "trim": "GV90 AWD",
+      "topSpeed": "220 km/h",
       "zeroToHundred": "4.4초",
       "maxOutput": "380 kW (517 ps)",
       "maxChargePower": "350 kW",
       "packVoltage": "800V",
-      "packType": "eM Platform Next-Gen Pack",
-      "cellType": "파우치형 (Pouch)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "E-GMP Next-Gen Pack",
+      "cellType": "Pouch / Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -1545,11 +1545,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM",
+      "cellComposition": "NCM High-Nickel",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-21",
+      "specLastCheckedAt": "2026-10-05",
       "cellMakerCheckedAt": "2026-09-10"
     },
     {
@@ -3403,15 +3403,15 @@
       "packInfo": "Golden Bell 2.0 LFP High-Safety Battery Pack",
       "cellInfo": "Long-Life LFP Prismatic Cell",
       "chargingSafety": "마이크로초 단위 단락 차단 소프트웨어 및 하부 침투 방지 강판",
-      "trim": "Pure EV 620",
+      "trim": "620 Pure EV RWD",
       "topSpeed": "180 km/h",
       "zeroToHundred": "7.5초",
       "maxOutput": "160 kW (218 ps)",
       "maxChargePower": "240 kW",
       "packVoltage": "400V",
-      "packType": "Golden Bell (金钟罩) CTP Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "Golden Bell Battery",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -3425,7 +3425,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-21",
+      "specLastCheckedAt": "2026-10-05",
       "cellMakerCheckedAt": "2026-09-21"
     },
     {
@@ -3760,13 +3760,85 @@
   ],
   "news": [
     {
+      "title": "한국은 반도체 기술을 활용하여 전기 자동차 배터리 성능 향상을 위한 새로운 길을 열고 있습니다. - vietnam.vn",
+      "summary": "한국은 반도체 기술을 활용하여 전기 자동차 배터리 성능 향상을 위한 새로운 길을 열고 있습니다.    vietnam.vn",
+      "source": "vietnam.vn",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxObG1CQ1hXaWR1M2hxYmZPREYzMUVwOXFENTE3Sk4zWFhIYUEzVVJwWUJaQ3JVbzMyekRQWWtsaWtLeWRjUW5CQnVDNGpsTFF0ZHBGVWZoU0VueHhManBsekRQU2xPeWFpN1UyYlVDT1JIVF9BTnByYVhBT3NWY0ROR3lfaXZqaGxnZFEwUEt2d1laRkJu?oc=5",
+      "linkType": "rss",
+      "id": 1
+    },
+    {
+      "title": "LG에너지솔루션 폴란드 공장 LFP로 체질 전환, 김동명 유럽 ESS 시장 정조준 - 비즈니스포스트",
+      "summary": "LG에너지솔루션 폴란드 공장 LFP로 체질 전환, 김동명 유럽 ESS 시장 정조준    비즈니스포스트",
+      "source": "비즈니스포스트",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9rVlhLcktzenY1Vjg0UXQ0dXBXaHNiajhuNERfbWd0ajluQmVFQkRRZFVCX3RCM0FkZS1ueHAyei1uRmhtUnZXWWdKOHNGT3Y1YVU4aEtaMDFUNHN5S1VtcGc4U05lRDgzdlhOaWVyQXNmQzA?oc=5",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "中 배터리 반격 할 `K배터리` 소재에서 시작…차세대 기술 개발·양산 속도전 - 매일신문",
+      "summary": "中 배터리 반격 할 `K배터리` 소재에서 시작…차세대 기술 개발·양산 속도전    매일신문",
+      "source": "매일신문",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9VVWFseHNESTNNaXR1NFZWMzVuUmpyeXFEVWZLdVgtTnNObWFoV3FZZXlZR2ttS0tlMVE3a0RkR1JJX2VGbld3V0c0V2xweDYxTDZtV2FvX0x2N0U2TFY1OUV3?oc=5",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
+      "title": "폐자원 회수부터 여권 제도까지…삼성·SK·LG, 배터리 순환경제 속도 - IT조선",
+      "summary": "폐자원 회수부터 여권 제도까지…삼성·SK·LG, 배터리 순환경제 속도    IT조선",
+      "source": "IT조선",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5PdkJmb1BockdfSS1VcHkycjlQVkZLZmxMNENPMWlQREJHOU1sTUNQSndyUTRQQXdhc2RrYkUtZmF2NWNEN0ZiZldfNzFTRTBLTm5lYjhKbC1Vd2J2aEhoLWlfSlZ6Um9CaVM3NGpnbG7SAXRBVV95cUxOWUY0V1J2Q1JGRVZ4a2tJcDMzelBGaVcydGwzcWJZRmdpZEdHOUZyNEdJMFlISkFKMG1saEFqdnFaUW54UUl0XzRLc3YzOUVmcHo3N3hOelhCU0FueWUzVkdaYU1MVU9lcXp6cW1oQVloejhycw?oc=5",
+      "linkType": "rss",
+      "id": 4
+    },
+    {
+      "title": "플루언스·테슬라, 배터리 공급망 강화 총력…EVE파워·LG엔솔과 맞손 | 더구루 - 뷰타임즈",
+      "summary": "플루언스·테슬라, 배터리 공급망 강화 총력…EVE파워·LG엔솔과 맞손 | 더구루    뷰타임즈",
+      "source": "뷰타임즈",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBnUEs5Ri0tOUNjMkhHY3ZrbmluUER0Qy1uNG5ycTVJdXRUTVg2ZmlDRkhBNEtodXVwN0lSTUhMTzVHcFh3UXkzWGZiSmZHMmc1UDdlbHJkX3hjQdIBX0FVX3lxTE1PUFVGTEJYcmN3SWVvTGVaaHMzWHZwa2ZycjJadzVlbG91ak1nUHVTc2VhYjJud1I5QmRTWVpMaU82NWgtMzlHR2szOHd1RWtmcUh0bkxHNXZkc0pneS04?oc=5",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
+      "title": "삼성SDI, 美 골프카 1위 ‘이지고'에 3세대 배터리 공급…10년 동맹 이어간다 | 더구루 - 뷰타임즈",
+      "summary": "삼성SDI, 美 골프카 1위 ‘이지고'에 3세대 배터리 공급…10년 동맹 이어간다 | 더구루    뷰타임즈",
+      "source": "뷰타임즈",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9zN0gxMHRhTl9JaHdlcXNpU1A2MjNyOGtySFRzUUZXbm5sVzhJQ2l6bHZoUGFHU09lcUVKTFNLX0VLMzF1ZlBfT1JhQXp3ME1Pb2gxazFYbFJhQdIBX0FVX3lxTE4tSmlEbUxrX2pVQ19LTHVCeU5Kb0dLTExIY1g3ZkFWYW5MUHBUYW5nU3M4MEhWeldabDFIMHBIQzRmaEFwOEpHckRVVHRZUDh2RDEzcFlQZFdxb2ktajBV?oc=5",
+      "linkType": "rss",
+      "id": 6
+    },
+    {
+      "title": "철강도시 넘어 ‘K-배터리’ 허브로…포항시·포스텍, 獨 프라운호퍼와 손잡았다 - 경북매일",
+      "summary": "철강도시 넘어 ‘K-배터리’ 허브로…포항시·포스텍, 獨 프라운호퍼와 손잡았다    경북매일",
+      "source": "경북매일",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBYRm16Rkd0RWJOY1ZveTgyZ093aWlkZEdIZFMyUFdIazJZZmhmdnpfWG5HRVVQcGNLblk4cGl3WDRRVGFrM21QWWtEVXFGVEdwYV9sakQ5ejF2UQ?oc=5",
+      "linkType": "rss",
+      "id": 7
+    },
+    {
+      "title": "포항시·포스텍, 독일 프라운호퍼와 배터리 국제공동연구 협력 MOU 체결 - 서프라이즈뉴스",
+      "summary": "포항시·포스텍, 독일 프라운호퍼와 배터리 국제공동연구 협력 MOU 체결    서프라이즈뉴스",
+      "source": "서프라이즈뉴스",
+      "date": "2026-10-05",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5RSUE4WmJwRmY5UlMtSjV6WFZmMndYaXdieUtkaTljYUF2YjRQa1lhYnJiWk1STGJtZUxtd2xTVzRfMXh3bW02VnlyNWx3czR4ck5pa19ERHY5TXdOZjMtQkdPRWE0TzdBNVN1Y3dR?oc=5",
+      "linkType": "rss",
+      "id": 8
+    },
+    {
       "title": "전기차 시장 판도 바꿀 ‘게임체인저’… 車 업계, 전고체 배터리 개발에 사활 - 조선비즈 - Chosunbiz",
       "summary": "전기차 시장 판도 바꿀 ‘게임체인저’… 車 업계, 전고체 배터리 개발에 사활 - 조선비즈    Chosunbiz",
       "source": "Chosunbiz",
       "date": "2026-10-04",
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNUHRsaWRlOWFwWS04VEc2UjNYcVlJelpNRkdYSEF2UWQtTWI3ZGViMl8tWjlrWUJBVmFYQ0VnOTJycDBydnVMRzhMN3lHZWY0OUVPa01RaV9WWGZ3RlpTeE5kZEN2WkZ2QVdoNHpXbXloVDRySEJ3d2dKNHFfSWJLRjJrRWXSAZgBQVVfeXFMT3V6ZjZOdGNUWmxGTDBiT3BYaEM5MnJ2M3BJVGlMZkRGU1Q2YmdFQV9XS19tZ1BJRzVqRzRiYUpSd21WZjVUREFzS3hsRmZwdGtKOUFfdms3MXB6QTJMTktXOEhiQkhCaEZnRExKZ24xTUtGME9ZeEM3OHhqdURIamhZbUZ0OGRGanZYY0pwYVJsbGVUWk1kYmg?oc=5",
       "linkType": "rss",
-      "id": 1
+      "id": 9
     },
     {
       "title": "[영상] 美 정부 연비 규제 '완화'…K-배터리 비상? - 더구루",
@@ -3775,7 +3847,7 @@
       "date": "2026-10-04",
       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9rb2VUNWlsc0xSdlVPVi1acFh5RzVld0RpODlWM0JVN3REZ3BwS1padzFQNjRPck00LWE5bW1HY1RQWnl3bDhOdVA5NVZiZlVETEEyNUZMTjNhQUVBZEE?oc=5",
       "linkType": "rss",
-      "id": 2
+      "id": 10
     },
     {
       "title": "고니켈 배터리 폐기물 시장 2035년 전망: 전기차 수요와 재활용 의무가 성장 견인 - 뉴스 및 통계 - IndexBox",
@@ -3784,7 +3856,7 @@
       "date": "2026-10-04",
       "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPLUdOa3ZjOUVKY1RseW44NzYwWHBzejYzMU5PcGJtX0dzVk9tMGZiMl9BeVVDbE9zWWxYUWNmYktTRm9uNzM1Vzg5cVF6Rmt1bGdId3J1NlY2OWJWbmcwaDZHNkpoVVRGQ1BqQ2laMkM0UmZ5ck1UYjNaZmlZeHV0UE5FNmJxNGlyZDlZM2JtaHh3YmE1MUtYVGxHY2FSSjBMWkZoa2ZYT3NaVzc3U2pOYkc5TUlMbE9iZ3J6XzlEYTRBck1ZbklueHNGcVN3QQ?oc=5",
       "linkType": "rss",
-      "id": 3
+      "id": 11
     },
     {
       "title": "배터리·연료 채우면 1000㎞도 거뜬…중국발 1.5L PHEV의 공습 - 중앙일보",
@@ -3793,16 +3865,16 @@
       "date": "2026-10-04",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1oc3Rwb0NEbFYzN0dtWlFCbkhkNGFMeFd3QjZDUkdvbllEajBxZlJqakNuOVBzWjJMUlN6b0Z2X3hJS1l2QjRBX0tsUkZkQVlGTFlsbDZR?oc=5",
       "linkType": "rss",
-      "id": 4
+      "id": 12
     },
     {
-      "title": "환경공단·독일 프라운호퍼, 사용후 배터리 공동연구 - 디스커버리뉴스(DISCOVERYNEWS)",
-      "summary": "환경공단·독일 프라운호퍼, 사용후 배터리 공동연구    디스커버리뉴스(DISCOVERYNEWS)",
-      "source": "디스커버리뉴스(DISCOVERYNEWS)",
+      "title": "환경공단·독일 프라운호퍼, 사용후 배터리 공동연구 - discoverynews.kr",
+      "summary": "환경공단·독일 프라운호퍼, 사용후 배터리 공동연구    discoverynews.kr",
+      "source": "discoverynews.kr",
       "date": "2026-10-04",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBtXy1sdG1Ha3lhOUpEOWxJYW5rX0RCSzh2Z0IzTU9Sc25nZVpWdWVKa2NrOWI3dnRnSUpxLUNqc05KRDY2cnRELVRxbWRrY1F6NU5URUxCak5RQVBJWndvTnkxaTJCTmYtYk5CdVJHNGh0Zw?oc=5",
       "linkType": "rss",
-      "id": 5
+      "id": 13
     },
     {
       "title": "차세대 기술 선점 나선 K배터리·태양광…글로벌 주도권 잡는다[초격차 코리아③] - 뉴시스",
@@ -3811,7 +3883,43 @@
       "date": "2026-10-04",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE4wc2o3TzhEdGxvUkl2N1o0SkkwbDJmUGppa0hmZ21fa1JmS2EwZXhzSHJBNV8wbzJVNXZYaE1TdExrVVdnZ3AwMmNTVkMxdGNtQ3NjTFpfUWg0NkhLU3N3RdIBeEFVX3lxTFA1bUVNM2dJSlg5NGYzbUxTTE9SNG5EUDVlVnA5U1JiM1VVQTM4VHJMY1BURVBBODFrbjdPMHhrVlJLS2hBb1ZNZHY0S3BaTmd2eGdVcVlkdmJaNGhXSkR6MDdBV2F6U0l2RTl5VlNRWXdISFNEZk5nbQ?oc=5",
       "linkType": "rss",
-      "id": 6
+      "id": 14
+    },
+    {
+      "title": "전기차 배터리 안전 수요에 힘입어 2035년까지 성장하는 아라미드 폴리머 분리막 시장 - IndexBox",
+      "summary": "전기차 배터리 안전 수요에 힘입어 2035년까지 성장하는 아라미드 폴리머 분리막 시장    IndexBox",
+      "source": "IndexBox",
+      "date": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNcTh3OE5PdE1XUHp4YVpYdDdiaGdhbENVVjl1aFhkSVBQX2hsLTE1WlRtbklXZk11VGtiQkJJa2hoY29HYWFOWDVCNmt3UzU1WXJFYVdwcnJCX1NUWjZsc3Q5WG5SZGtVLUxVM2pRN0VwODdveXlDazI2akMwNXM5VzZfcklBWm5qZWxsZnBFMjl3ejlEMW5KQVVEcDFSRHBGcDdUT3RxUF9VdGhVcUFrdTZFX3BjeUxLcWlaY2Fkd1djRVVw?oc=5",
+      "linkType": "rss",
+      "id": 15
+    },
+    {
+      "title": "전기차 배터리 수명은 휘발유차 배터리 수명과 어떻게 다른가요? - vietnam.vn",
+      "summary": "전기차 배터리 수명은 휘발유차 배터리 수명과 어떻게 다른가요?    vietnam.vn",
+      "source": "vietnam.vn",
+      "date": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPT3Fhei1uVUdZQ2tqS05rYUdXMlhkYmtuekwyYWU4cEtwczZOcTVlbGlxb2x3OGhuY2xWU1UxYXBJd0tOT1VGYWlSM2FDc3BDU3BlaXJoVEI4MHlYNEd3anpxbVhHUDJXcjZYTk8wY09HYlVfNWJyVUVsZ0toWGlUVGRFZW5aamM?oc=5",
+      "linkType": "rss",
+      "id": 16
+    },
+    {
+      "title": "‘상폐 위기’ 케이이엠텍, 기댈 건 대주주 수혈 뿐인데… 그 대주주는 배터리 기술 유출 혐의 - 조선비즈 - Chosunbiz",
+      "summary": "‘상폐 위기’ 케이이엠텍, 기댈 건 대주주 수혈 뿐인데… 그 대주주는 배터리 기술 유출 혐의 - 조선비즈    Chosunbiz",
+      "source": "Chosunbiz",
+      "date": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOQU1sSlVfSVJTV0VMSG9SUFpRNEhHSXFpMi1KNHNkZXRFM1VHWFphSkhJZTFZaTZHa1plWjZMOE1yVUZnb0o3WnJFZXY0MWhMMktDdXp3UkVmbFFITzRIMmRyaG1sdDV4YWh0dUJyVjU0bEpaRU5IcXRjSGdiUjdKVG8yWWwwLUHSAZsBQVVfeXFMUEp5a1RyWV9TTmsxUC1GR3pEZlNCSE03ZjNrQ1BRb0RmZ2FSZFRnamNkOG1obzdPU3djOHZkRDdjbF83XzNfUHNWYklYeE9RbmlHZGZmU29wVml0cGVESUkwN2VFZHVFZXJBcEI1UXNIYjhkb2xLb2NVZG40ZXR4R3dTNE5URTBwanFTOUhlelRqZVNuRWF3b1AxQTg?oc=5",
+      "linkType": "rss",
+      "id": 17
+    },
+    {
+      "title": "X선 회절 장비 시장 2035년 전망: 반도체·배터리 부문이 견인하는 성장세 - 뉴스 및 통계 - IndexBox",
+      "summary": "X선 회절 장비 시장 2035년 전망: 반도체·배터리 부문이 견인하는 성장세 - 뉴스 및 통계    IndexBox",
+      "source": "IndexBox",
+      "date": "2026-10-04",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVk94T2NTQVVNaFBkSHdIaUd5X3RvWWVNU2xwbzVkWUFBc05ZRXFRU0hReXhBZVhPX0p0ZVNKUm1nVTJKUUpfN252dC1fcklVbHAyeUx4QUpiUVlmdzN5LXlCVU1ORXhVNmEtdlZvbVkwWWdTcnRITXNwZlA5TnZTcF9EVFJ1MVVtcnA2TXJjN3YxaGF1UzNyNllCaUNWZlctSGFKalpUc1pqT3pxUzFnbnpZelRNS2hvWlVxWEZ0UTRZeTZrZXB1N2lQTFFPeDBkOFRyYW5JNDJFS24wNEZBQVFQcw?oc=5",
+      "linkType": "rss",
+      "id": 18
     },
     {
       "title": "예선테크, 전기차 배터리 열폭주 방지 ‘화염차단제’ 개발…고객사와 대체품 협의 - 이투데이",
@@ -3820,7 +3928,7 @@
       "date": "2026-10-03",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1YSThKV1JnRmVnTzQyRkJ2Ni1QVmtUbnQxbkM4eU9fbXZxZlVWMXhTZ1c3Q08wVklvc1hCNUNpRE1GLWl5cE1zYTg1bGdnZ0hqbTREMkV2RWcwQ3RONVI4c0ktb2RfNi1wMkRpX3l3?oc=5",
       "linkType": "rss",
-      "id": 7
+      "id": 19
     },
     {
       "title": "환경공단·독일 프라운호퍼, 배터리 재활용 넘어 ‘재생원료 품질’ 공동연구 - 에너지데일리",
@@ -3829,313 +3937,265 @@
       "date": "2026-10-03",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0tZWtVYXlUM09jbUpnY3BqZVhmSE9teHBGQmt2cEptOEZ1LWl0S1MxbDhZVHZZdnNJMXNOTnZuMktwSjVzWjFhNjRGYXRROEJWeXJVN0VTMlotTk00UWxyeHk1eWVZZHpSRmQ5SzVvcE92QQ?oc=5",
       "linkType": "rss",
-      "id": 8
-    },
-    {
-      "title": "전기차 폐배터리, 블랙매스 거쳐 금속 원료로 - 비건뉴스",
-      "summary": "전기차 폐배터리를 파쇄해 제조한 블랙매스에서 니켈, 코발트, 리튬 등 유효 금속을 고순도로 추출·회수하는 자원 순환 공정을 조명합니다.",
-      "source": "비건뉴스",
-      "date": "2026-10-03",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFAzaFh2VW02QzUwT2R1VDAxVTJmMUpwMy1fdlp3Zk1ReUg3dnlmc0lpcmNTZlRvNUZ1X2J4U1ppN0RHSk9UeEF4MHNoQmtPNF8wVkx5TkV5LWlVQy1GSjM5QnFVa0cxQQ?oc=5",
-      "linkType": "rss",
-      "id": 9
-    },
-    {
-      "title": "복합 적층 분리막 시장 2035년 전망: 전기차 배터리 수요가 성장 견인 - IndexBox",
-      "summary": "복합 적층 분리막 시장 2035년 전망: 전기차 배터리 수요가 성장 견인    IndexBox",
-      "source": "IndexBox",
-      "date": "2026-10-03",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPY1VrUUdxa2lRWFM0YWxSNi13Y0dLb3JuQTJpdVRqRFY2SHY1RXNtUGFCWmYtOWVpaFVleVNsX0Y1M0Q4Zm91ZEI4QVBNVGE5UWsyX2NaSVY0VUlmNmI1cGtycVVpY0YyZjF2VE1Fc0I0Q3NfVGJkMktYU2s1aWFPSWU1VnpMM1dGVzk4eTlWdmo4SGZaMVhvN3BlVmlKcXU1b1RocGFNaHpjMVpCTEl3OHhfM1lURmIwY2c?oc=5",
-      "linkType": "rss",
-      "id": 10
-    },
-    {
-      "title": "토요타, 미시간주에 5000만 달러 배터리 연구·시험센터 개소 - 글로벌이코노믹",
-      "summary": "토요타, 미시간주에 5000만 달러 배터리 연구·시험센터 개소    글로벌이코노믹",
-      "source": "글로벌이코노믹",
-      "date": "2026-10-03",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTEZRWmxfRVR1SzlkOFEwRGNuSzBESzJYTE14ZnZ6YnR0TGozbjAwb1B2TFI5aXhUYm00WVpFYjdNWXZFdVViYXlkNS1IamgtRk5HbGRnSXkwVTBhRWRuVndtcDFwZVROQ05yR2F3TDB2cU00TDlqaUN4cGE4Qld3Zmt3VHQzcGY2?oc=5",
-      "linkType": "rss",
-      "id": 11
-    },
-    {
-      "title": "LG엔솔·GM, 차세대 LMR 배터리 승부수⋯美 공장에 500명 더 뽑는다 - 엠투데이",
-      "summary": "LG엔솔·GM, 차세대 LMR 배터리 승부수⋯美 공장에 500명 더 뽑는다    엠투데이",
-      "source": "엠투데이",
-      "date": "2026-10-03",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5sUWxjWkhMR3JPMmM3dTYzWEdIZ1B0dFFPMXBsUUVUcmowWlJYQUNBaVB5M0dOaFI0UWJuQmRuZ0tCUnVLS2VET3NLck93amNhOGdLNTdoNC1sNTZzTGJ3MnZ0TlBEaFlXZlV6dFIzWQ?oc=5",
-      "linkType": "rss",
-      "id": 12
-    },
-    {
-      "title": "플루오로에틸렌카보네이트 첨가제 시장 2035년 전망: 전기차 배터리 수요가 연평균 14% 성장 견인 - IndexBox",
-      "summary": "플루오로에틸렌카보네이트 첨가제 시장 2035년 전망: 전기차 배터리 수요가 연평균 14% 성장 견인    IndexBox",
-      "source": "IndexBox",
-      "date": "2026-10-03",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNWEh5OXV3UEZraXRta0VLVGdMLXJIeVZhZDFaM0JCdTlDbWxZS2V3V01ZTFJwdmF3aTRGRS1JZVBHVVc5amFicEU0NnVWaGZKTkZ1dWFQQWJTeXh3MUdIcUVnYi02QXZ0Z1lidmRjR3FScEVVV2VwbGRCdHh2YzJTN3JCNGpicUVIS2RxTXRoRkk2dGp2emJ1R05SUkZoMnVNaWwybmhUWFp2VUJONTFla1R2a19mbXZzUlRKX0tjazY?oc=5",
-      "linkType": "rss",
-      "id": 13
-    },
-    {
-      "title": "상온 가황(RTV) 실리콘 고무 시장 2035년 전망: 전기차 배터리 밀봉이 성장 견인 - 뉴스 및 통계 - IndexBox",
-      "summary": "상온 가황(RTV) 실리콘 고무 시장 2035년 전망: 전기차 배터리 밀봉이 성장 견인 - 뉴스 및 통계    IndexBox",
-      "source": "IndexBox",
-      "date": "2026-10-03",
-      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQQVRGT3JrdzhiRWhmbGtOd194OFpDTlBRa2toeENEZGgwYVJUb3g3VlZiWExnRXpNeWRwWVA5UFhoLXN2eFNyVkZrQ0N5Q1E5RGI5QU0wTVFhaUlfNjE2UDFDT00zOFVnM212WkZPdG9ZZ0tkRzFLcncyUWlFSWhBenRhLTFETVBBWWMwQzRQNWREeXd1ZDRWQk5ab1o0bndaM0tRWFBLeXY0WEZmYjA5ZTUwSi1qWHRPR3JEQU5LSkhtcHJYSTRLbExoWnAzTDJSRU9ydldWblA?oc=5",
-      "linkType": "rss",
-      "id": 14
-    },
-    {
-      "title": "‘첫 양산’ 356부터 1156마력 ‘괴물 전기차’까지…마포에 70여대 ‘포르쉐 군단’ 떴다 - 서울경제",
-      "summary": "‘첫 양산’ 356부터 1156마력 ‘괴물 전기차’까지…마포에 70여대 ‘포르쉐 군단’ 떴다    서울경제",
-      "source": "서울경제",
-      "date": "2026-10-03",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE52UE5nNnRJbkVSdGZVdFp2NENsTjI3Nm12SjBBeGFNWGJnSWJRZlpUb2U2NENzdDFlY1dNTFVMYVBJTmJwSFluYmxaMkFTWXhYNWfSAVNBVV95cUxOd00zMHlSZXNDTFRKSjNURVJlcVdtTjZLbTVnM2Vsa1YyS3ZRNXFHUDd6bTB5MjZNU1dCQU9KQ3ZqVzJrNVUzY21DQlBWdUdKWTQ3NA?oc=5",
-      "linkType": "rss",
-      "id": 15
-    },
-    {
-      "title": "1∼8월 전기차 배터리 사용량 20%↑…중국업체 선전 지속 - 연합뉴스",
-      "summary": "1∼8월 전기차 배터리 사용량 20%↑…중국업체 선전 지속    연합뉴스",
-      "source": "연합뉴스",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5fVnc2Uk02S1dzUURBSzFzbVNwdEZNcWVWTGVERHM2dGgxcjRkTWlFcGlkdDltZ3hzT0pOZkh0RE5vakpOeko2VDhObU9fbGgyYU5jeEJoQkM4S3fSAWBBVV95cUxOcVdONC1KMzg5X21DbGdVakxRZU1ERTNmMnhiREQ4VXFDLVJCZUJPeHVlM0VnMDVIMDczZEFMTjhobFFfQTl3c2hIai1yV1JlOWhXSnU4OGg0WHVtZGdzcG8?oc=5",
-      "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "K배터리, 1~8월 美 전기차 공급분 전년비 40% ↓ - 지디넷코리아",
-      "summary": "K배터리, 1~8월 美 전기차 공급분 전년비 40% ↓    지디넷코리아",
-      "source": "지디넷코리아",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5rS1QtQzgxcXBlOGRNYTFMdjNSengzM0dIUjRtX1ItWGlIZk8zOS1TSXRia1ctd2djeEVmWEhhRm9RWVF2RXVsWVpsOHB4ZEFMU1FvS3BR?oc=5",
-      "linkType": "rss",
-      "id": 17
-    },
-    {
-      "title": "‘폐배터리 1500개 모으면 전기차 1대 리튬 나온다’…LG전자, ‘배터리턴’ 캠페인 재가동 - 비즈월드",
-      "summary": "‘폐배터리 1500개 모으면 전기차 1대 리튬 나온다’…LG전자, ‘배터리턴’ 캠페인 재가동    비즈월드",
-      "source": "비즈월드",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9Za2FEQUswVEFHMnMxSENrdV91SVBFNTRoNDdQWE1FU3B1cEpDM2xkX3hQYVVNN19xVlVVNGw5dVFUV0ZhTHVhQ1VBRGw3WWlGTEtJTXhLd01iSElmekprU0xwMkg4XzM0NEE?oc=5",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "LG전자, 폐배터리 1500개서 전기차 1대분 리튬 회수…폐가전 64만톤 회수·매립 제로 추진 - 위키리크스한국",
-      "summary": "LG전자, 폐배터리 1500개서 전기차 1대분 리튬 회수…폐가전 64만톤 회수·매립 제로 추진    위키리크스한국",
-      "source": "위키리크스한국",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Kci12cl9ZRWF3ZjA1bGZDNUJKcGZQQS1reXZyb19Od2NRNkZrak5UZDBacGEzTHBVQTRKUUF3QnBVQ3JSQ2lmU05qUW5OaHQzWXdScjA0cWNPdEFqY1pVZ1FGOTNuSjFvRFRLbllKdEY?oc=5",
-      "linkType": "rss",
-      "id": 19
-    },
-    {
-      "title": "[심층분석] LG전자, 폐배터리 34만 개 회수…자원순환에서 ESG 경영의 실효성 찾는다 - newsvalue.kr",
-      "summary": "[심층분석] LG전자, 폐배터리 34만 개 회수…자원순환에서 ESG 경영의 실효성 찾는다    newsvalue.kr",
-      "source": "newsvalue.kr",
-      "date": "2026-10-02",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB4RHlyeVpZQVhRcnpVdFdwTU5mZVBfREhaR0NYMnNHbXJWc0ZoSktuVTNLYjdVTVM0bllQN1N6NENfVkswa1BzTDdlRnFSX3ZlOFNYWV9xczl3TmY0YU1GNVZnNXlTeG81OVE?oc=5",
-      "linkType": "rss",
       "id": 20
     }
   ],
   "fx": {
-    "usdKrw": 1348.61,
-    "eurKrw": 1517.36,
-    "cnyKrw": 200.68,
-    "updatedAt": "2026-10-04T14:41:36.338274+09:00"
+    "usdKrw": 1344.61,
+    "eurKrw": 1512.68,
+    "cnyKrw": 200.38,
+    "updatedAt": "2026-10-05T14:25:29.375612+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
-      "글로벌 배터리 시장은 중국 업체의 견조한 성장과 미국 연비 규제 완화 움직임 속에서 K-배터리의 입지가 위협받는 도전 과제에 직면해 있습니다.",
-      "차세대 시장 주도권을 확보하기 위해 전고체 및 LMR 배터리 개발과 열폭주 방지 소재 등 배터리 안전·소재 혁신에 기술 역량이 집중되고 있습니다.",
-      "사용후 배터리의 블랙매스 추출, 고순도 재생원료 품질 확보, 소형 폐배터리 자원순환 등 폐배터리 재활용 생태계가 고도화되고 있습니다."
+      "K-배터리 기업들이 전고체, LFP, 반도체 융합 기술 등 차세대 소재 및 공정 개발을 통해 중국의 가격 경쟁력에 맞서 기술 초격차 확보에 집중하고 있습니다.",
+      "글로벌 시장의 캐즘 현상과 규제 변화에 대응하여 ESS용 LFP 전환, 비전기차 부문 협력, 글로벌 공동 연구 등 사업 다각화 및 자원 순환 체계 구축이 속도를 내고 있습니다.",
+      "배터리 열폭주 방지 소재와 고안전성 분리막 등 화재 안전 기술 개발이 고성능 배터리 양산의 필수 전제 조건으로 부상하고 있습니다."
     ],
     "categories": [
       {
-        "name": "차세대 배터리 & 소재 혁신",
+        "name": "차세대 기술 및 소재 혁신",
         "items": [
           {
-            "headline": "전고체 배터리 주도권 경쟁 격화",
-            "summary": "완성차 및 배터리 기업들이 전기차 시장의 판도를 바꿀 게임체인저로 꼽히는 전고체 배터리 상용화를 위해 총력전을 펼치고 있습니다. 기존 리튬이온 대비 높은 에너지 밀도와 안정성을 확보해 캐즘을 극복하려는 전략입니다.",
+            "headline": "반도체 공정 융합 배터리 개발",
+            "summary": "국내 연구진과 산업계가 반도체 초미세 공정 및 첨단 소재 기술을 배터리 제조에 접목하여 전극 구조를 혁신하고 있습니다. 이를 통해 에너지 밀도를 증대시키고 충전 효율을 극대화하여 글로벌 전기차 배터리 시장의 기술적 한계를 극복하는 새로운 표준을 제시하고 있습니다.",
+            "tags": [
+              "#반도체융합",
+              "#배터리성능",
+              "#기술혁신"
+            ],
+            "source": "vietnam.vn",
+            "date": "2026-10-05",
+            "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxObG1CQ1hXaWR1M2hxYmZPREYzMUVwOXFENTE3Sk4zWFhIYUEzVVJwWUJaQ3JVbzMyekRQWWtsaWtLeWRjUW5CQnVDNGpsTFF0ZHBGVWZoU0VueHhManBsekRQU2xPeWFpN1UyYlVDT1JIVF9BTnByYVhBT3NWY0ROR3lfaXZqaGxnZFEwUEt2d1laRkJu?oc=5"
+          },
+          {
+            "headline": "K-배터리 차세대 소재 총력전",
+            "summary": "중국 배터리 업계의 저가 공세에 대응해 국내 기업들이 하이디켈, 양극재, 음극재 등 차세대 소재 개발 및 양산 속도전에 진입했습니다. 고성능·고효율 소재를 기반으로 초격차 기술 경쟁력을 확보하여 글로벌 시장 주도권을 지키겠다는 전략입니다.",
+            "tags": [
+              "#K배터리",
+              "#배터리소재",
+              "#차세대기술"
+            ],
+            "source": "매일신문",
+            "date": "2026-10-05",
+            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9VVWFseHNESTNNaXR1NFZWMzVuUmpyeXFEVWZLdVgtTnNObWFoV3FZZXlZR2ttS0tlMVE3a0RkR1JJX2VGbld3V0c0V2xweDYxTDZtV2FvX0x2N0U2TFY1OUV3?oc=5"
+          },
+          {
+            "headline": "전고체 배터리 상용화 사활",
+            "summary": "완성차 및 배터리 업체들이 게임체인저로 불리는 전고체 배터리 상용화를 위해 대규모 R&D와 설비 투자를 가속화하고 있습니다. 화재 위험을 획기적으로 낮추고 주행거리를 늘릴 수 있어 차세대 전기차 시장의 주도권을 결정짓는 핵심 분수령이 될 전망입니다.",
             "tags": [
               "#전고체배터리",
-              "#차세대기술",
-              "#게임체인저"
+              "#게임체인저",
+              "#안전성"
             ],
             "source": "Chosunbiz",
             "date": "2026-10-04",
             "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNUHRsaWRlOWFwWS04VEc2UjNYcVlJelpNRkdYSEF2UWQtTWI3ZGViMl8tWjlrWUJBVmFYQ0VnOTJycDBydnVMRzhMN3lHZWY0OUVPa01RaV9WWGZ3RlpTeE5kZEN2WkZ2QVdoNHpXbXloVDRySEJ3d2dKNHFfSWJLRjJrRWXSAZgBQVVfeXFMT3V6ZjZOdGNUWmxGTDBiT3BYaEM5MnJ2M3BJVGlMZkRGU1Q2YmdFQV9XS19tZ1BJRzVqRzRiYUpSd21WZjVUREFzS3hsRmZwdGtKOUFfdms3MXB6QTJMTktXOEhiQkhCaEZnRExKZ24xTUtGME9ZeEM3OHhqdURIamhZbUZ0OGRGanZYY0pwYVJsbGVUWk1kYmg?oc=5"
           },
           {
-            "headline": "복합 적층 분리막 시장 성장의 장기 전망",
-            "summary": "전기차 배터리의 고성능화 및 안전성 강화 요구에 따라 복합 적층 분리막 시장이 2035년까지 장기 성장세를 이어갈 전망입니다. 배터리 내열성 확보와 수명 연장을 위한 핵심 소재로 주목받고 있습니다.",
+            "headline": "배터리·태양광 초격차 선점",
+            "summary": "국내 산업계가 배터리와 태양광 등 에너지 신산업 분야에서 차세대 기술 선점에 다각도로 나서고 있습니다. 글로벌 친환경 에너지 전환 흐름 속에서 경쟁국과의 격차를 벌리고 초격차 기술을 확보하여 글로벌 시장 경쟁력을 다지기 위한 행보입니다.",
             "tags": [
-              "#복합분리막",
-              "#배터리소재",
-              "#시장전망"
+              "#초격차",
+              "#태양광",
+              "#차세대기술"
+            ],
+            "source": "뉴시스",
+            "date": "2026-10-04",
+            "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE4wc2o3TzhEdGxvUkl2N1o0SkkwbDJmUGppa0hmZ21fa1JmS2EwZXhzSHJBNV8wbzJVNXZYaE1TdExrVVdnZ3AwMmNTVkMxdGNtQ3NjTFpfUWg0NkhLU3N3RdIBeEFVX3lxTFA1bUVNM2dJSlg5NGYzbUxTTE9SNG5EUDVlVnA5U1JiM1VVQTM4VHJMY1BURVBBODFrbjdPMHhrVlJLS2hBb1ZNZHY0S3BaTmd2eGdVcVlkdmJaNGhXSkR6MDdBV2F6U0l2RTl5VlNRWXdISFNEZk5nbQ?oc=5"
+          },
+          {
+            "headline": "배터리 품질 분석 장비 성장",
+            "summary": "반도체와 배터리 제조 공정에서 고밀도 소재의 미세 구조 분석을 위한 X선 회절(XRD) 장비 수요가 급증하고 있습니다. 배터리 품질 관리와 수율 향상이 기업 경쟁력의 핵심으로 떠오르면서 관련 분석 장비 시장이 2035년까지 지속 성장할 것으로 예상됩니다.",
+            "tags": [
+              "#X선회절",
+              "#품질분석",
+              "#장비시장"
             ],
             "source": "IndexBox",
-            "date": "2026-10-03",
-            "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPY1VrUUdxa2lRWFM0YWxSNi13Y0dLb3JuQTJpdVRqRFY2SHY1RXNtUGFCWmYtOWVpaFVleVNsX0Y1M0Q4Zm91ZEI4QVBNVGE5UWsyX2NaSVY0VUlmNmI1cGtycVVpY0YyZjF2VE1Fc0I0Q3NfVGJkMktYU2s1aWFPSWU1VnpMM1dGVzk4eTlWdmo4SGZaMVhvN3BlVmlKcXU1b1RocGFNaHpjMVpCTEl3OHhfM1lURmIwY2c?oc=5"
+            "date": "2026-10-04",
+            "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVk94T2NTQVVNaFBkSHdIaUd5X3RvWWVNU2xwbzVkWUFBc05ZRXFRU0hReXhBZVhPX0p0ZVNKUm1nVTJKUUpfN252dC1fcklVbHAyeUx4QUpiUVlmdzN5LXlCVU1ORXhVNmEtdlZvbVkwWWdTcnRITXNwZlA5TnZTcF9EVFJ1MVVtcnA2TXJjN3YxaGF1UzNyNllCaUNWZlctSGFKalpUc1pqT3pxUzFnbnpZelRNS2hvWlVxWEZ0UTRZeTZrZXB1N2lQTFFPeDBkOFRyYW5JNDJFS24wNEZBQVFQcw?oc=5"
           }
         ]
       },
       {
-        "name": "안전성 & 열관리 및 완성차 동향",
+        "name": "기업 동향 및 글로벌 공급망",
         "items": [
           {
-            "headline": "예선테크, 배터리 화염차단제 개발",
-            "summary": "예선테크가 전기차 배터리의 열폭주 확산을 차단하는 신규 화염차단제 소재 개발에 성공해 고객사들과 대체품 적용 시험을 진행 중입니다. 배터리 화재 안정성에 대한 규제 강화 대응책으로 큰 기대를 모으고 있습니다.",
+            "headline": "LG엔솔 유럽 ESS LFP 전환",
+            "summary": "LG에너지솔루션이 폴란드 공장의 라인 일부를 LFP 배터리로 전환하여 급성장하는 유럽 ESS(에너지저장장치) 시장 공략에 적극 나섭니다. 전기차 수요 둔화 대응과 가격 경쟁력 확보를 통해 유럽 시장 내 주도권을 넓히겠다는 김동명 사장의 전략적 구상입니다.",
             "tags": [
-              "#열폭주방지",
-              "#화염차단제",
-              "#배터리안전"
+              "#LG에너지솔루션",
+              "#LFP배터리",
+              "#ESS"
             ],
-            "source": "이투데이",
-            "date": "2026-10-03",
-            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1YSThKV1JnRmVnTzQyRkJ2Ni1QVmtUbnQxbkM4eU9fbXZxZlVWMXhTZ1c3Q08wVklvc1hCNUNpRE1GLWl5cE1zYTg1bGdnZ0hqbTREMkV2RWcwQ3RONVI4c0ktb2RfNi1wMkRpX3l3?oc=5"
+            "source": "비즈니스포스트",
+            "date": "2026-10-05",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9rVlhLcktzenY1Vjg0UXQ0dXBXaHNiajhuNERfbWd0ajluQmVFQkRRZFVCX3RCM0FkZS1ueHAyei1uRmhtUnZXWWdKOHNGT3Y1YVU4aEtaMDFUNHN5S1VtcGc4U05lRDgzdlhOaWVyQXNmQzA?oc=5"
           },
           {
-            "headline": "RTV 실리콘 고무, 배터리 밀봉 수요 증대",
-            "summary": "상온 가황(RTV) 실리콘 고무 시장이 전기차 배터리 패킹 및 밀봉 수요 증가에 힘입어 2035년까지 견조한 성장세를 유지할 전망입니다. 배터리 모듈의 방수, 방진 및 내부 열 안정성 제어에 필수적인 역할을 수행합니다.",
+            "headline": "글로벌 ESS 배터리 동맹 강화",
+            "summary": "플루언스, 테슬라 등 글로벌 에너지 기업들이 배터리 수급 안정화를 위해 LG에너지솔루션, EVE파워 등 글로벌 제조사들과 협력을 확대하고 있습니다. 글로벌 ESS 시장 가속화에 맞춰 안정적인 공급망 구축이 핵심 과제로 부상하고 있습니다.",
             "tags": [
-              "#RTV실리콘",
-              "#배터리밀봉",
-              "#열관리"
+              "#테슬라",
+              "#LG엔솔",
+              "#공급망"
             ],
-            "source": "IndexBox",
-            "date": "2026-10-03",
-            "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQQVRGT3JrdzhiRWhmbGtOd194OFpDTlBRa2toeENEZGgwYVJUb3g3VlZiWExnRXpNeWRwWVA5UFhoLXN2eFNyVkZrQ0N5Q1E5RGI5QU0wTVFhaUlfNjE2UDFDT00zOFVnM212WkZPdG9ZZ0tkRzFLcncyUWlFSWhBenRhLTFETVBBWWMwQzRQNWREeXd1ZDRWQk5ab1o0bndaM0tRWFBLeXY0WEZmYjA5ZTUwSi1qWHRPR3JEQU5LSkhtcHJYSTRLbExoWnAzTDJSRU9ydldWblA?oc=5"
+            "source": "뷰타임즈",
+            "date": "2026-10-05",
+            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBnUEs5Ri0tOUNjMkhHY3ZrbmluUER0Qy1uNG5ycTVJdXRUTVg2ZmlDRkhBNEtodXVwN0lSTUhMTzVHcFh3UXkzWGZiSmZHMmc1UDdlbHJkX3hjQdIBX0FVX3lxTE1PUFVGTEJYcmN3SWVvTGVaaHMzWHZwa2ZycjJadzVlbG91ak1nUHVTc2VhYjJud1I5QmRTWVpMaU82NWgtMzlHR2szOHd1RWtmcUh0bkxHNXZkc0pneS04?oc=5"
           },
           {
-            "headline": "포르쉐, 고성능 전기차 기술 과시",
-            "summary": "포르쉐가 서울 마포에서 최고출력 1156마력에 달하는 고성능 전기차를 포함한 다수의 차량을 선보였습니다. 고성능 럭셔리 전기차 시장에서도 배터리 출력 제어와 모터 기술력이 핵심 차별화 요소로 작용하고 있습니다.",
+            "headline": "포항시 독 프라운호퍼 R&D 협력",
+            "summary": "포항시와 포스텍이 세계적인 응용연구기관인 독일 프라운호퍼 연구소와 배터리 국제 공동연구 MOU를 체결했습니다. 이를 통해 첨단 배터리 원천기술 확보와 인프라 조성을 추진하여 포항을 글로벌 배터리 연구 및 산업 허브로 육성할 방침입니다.",
             "tags": [
-              "#포르쉐",
-              "#고성능전기차",
-              "#전기차동향"
+              "#포항시",
+              "#프라운호퍼",
+              "#국제협력"
             ],
-            "source": "서울경제",
-            "date": "2026-10-03",
-            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE52UE5nNnRJbkVSdGZVdFp2NENsTjI3Nm12SjBBeGFNWGJnSWJRZlpUb2U2NENzdDFlY1dNTFVMYVBJTmJwSFluYmxaMkFTWXhYNWfSAVNBVV95cUxOd00zMHlSZXNDTFRKSjNURVJlcVdtTjZLbTVnM2Vsa1YyS3ZRNXFHUDd6bTB5MjZNU1dCQU9KQ3ZqVzJrNVUzY21DQlBWdUdKWTQ3NA?oc=5"
+            "source": "경북매일",
+            "date": "2026-10-05",
+            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBYRm16Rkd0RWJOY1ZveTgyZ093aWlkZEdIZFMyUFdIazJZZmhmdnpfWG5HRVVQcGNLblk4cGl3WDRRVGFrM21QWWtEVXFGVEdwYV9sakQ5ejF2UQ?oc=5"
+          },
+          {
+            "headline": "포항 배터리 연구 MOU 체결",
+            "summary": "포항시와 포스텍이 독일 프라운호퍼와 배터리 국제공동연구 MOU를 체결하며 기술 경쟁력 강화에 나섭니다. 글로벌 연구 네트워크 구축을 통해 이차전지 차세대 기술개발 및 전문 인력 양성에 박차를 가할 전망입니다.",
+            "tags": [
+              "#포스텍",
+              "#프라운호퍼",
+              "#MOU"
+            ],
+            "source": "서프라이즈뉴스",
+            "date": "2026-10-05",
+            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5RSUE4WmJwRmY5UlMtSjV6WFZmMndYaXdieUtkaTljYUF2YjRQa1lhYnJiWk1STGJtZUxtd2xTVzRfMXh3bW02VnlyNWx3czR4ck5pa19ERHY5TXdOZjMtQkdPRWE0TzdBNVN1Y3dR?oc=5"
           }
         ]
       },
       {
-        "name": "기업 동향 & 시장 규제",
+        "name": "시장, 규제 및 리사이클링",
         "items": [
           {
-            "headline": "美 연비 규제 완화 움직임과 K-배터리",
-            "summary": "미국 정부의 연비 규제 완화 추진 소식에 따라 미국 시장에 집중하던 한국 배터리 기업들의 신규 수주 및 생산 계획 차질 우려가 제기되고 있습니다. 정책 변화에 따른 시장 리스크 관리가 시급한 과제로 떠올랐습니다.",
+            "headline": "배터리 3사 순환경제 가속",
+            "summary": "삼성SDI, SK온, LG에너지솔루션 등 국내 배터리 3사가 폐자원 회수망을 확충하고 배터리 여권 제도를 선제 도입하고 있습니다. 글로벌 환경 규제 강화에 맞춰 사용후 배터리의 재활용 및 재사용 생태계를 완성하여 원자재 공급망 리스크를 완화하고 있습니다.",
             "tags": [
+              "#순환경제",
+              "#배터리여권",
+              "#재활용"
+            ],
+            "source": "IT조선",
+            "date": "2026-10-05",
+            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5PdkJmb1BockdfSS1VcHkycjlQVkZLZmxMNENPMWlQREJHOU1sTUNQSndyUTRQQXdhc2RrYkUtZmF2NWNEN0ZiZldfNzFTRTBLTm5lYjhKbC1Vd2J2aEhoLWlfSlZ6Um9CaVM3NGpnbG7SAXRBVV95cUxOWUY0V1J2Q1JGRVZ4a2tJcDMzelBGaVcydGwzcWJZRmdpZEdHOUZyNEdJMFlISkFKMG1saEFqdnFaUW54UUl0XzRLc3YzOUVmcHo3N3hOelhCU0FueWUzVkdaYU1MVU9lcXp6cW1oQVloejhycw?oc=5"
+          },
+          {
+            "headline": "미 연비 규제 완화 영향",
+            "summary": "미국 정부가 자동차 연비 규제 완화 움직임을 보임에 따라 순수 전기차 전환 속도가 조정될 가능성이 제기되고 있습니다. 이에 따라 미국 투자를 대대적으로 늘려온 K-배터리 업계는 수요 변동에 따른 리스크 관리 및 대응책 마련에 긴장하고 있습니다.",
+            "tags": [
+              "#미국규제",
               "#연비규제",
-              "#K배터리",
-              "#미국시장"
+              "#K배터리"
             ],
             "source": "더구루",
             "date": "2026-10-04",
             "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9rb2VUNWlsc0xSdlVPVi1acFh5RzVld0RpODlWM0JVN3REZ3BwS1padzFQNjRPck00LWE5bW1HY1RQWnl3bDhOdVA5NVZiZlVETEEyNUZMTjNhQUVBZEE?oc=5"
           },
           {
-            "headline": "토요타, 미시간 배터리 연구센터 개소",
-            "summary": "토요타가 미국 미시간주에 5000만 달러를 투자해 배터리 연구·시험센터를 본격 개소했습니다. 북미 현지 배터리 자체 평가 및 검증 역량을 강화하여 북미 전기차 공급망을 고도화하겠다는 전략입니다.",
-            "tags": [
-              "#토요타",
-              "#배터리연구센터",
-              "#북미투자"
-            ],
-            "source": "글로벌이코노믹",
-            "date": "2026-10-03",
-            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTEZRWmxfRVR1SzlkOFEwRGNuSzBESzJYTE14ZnZ6YnR0TGozbjAwb1B2TFI5aXhUYm00WVpFYjdNWXZFdVViYXlkNS1IamgtRk5HbGRnSXkwVTBhRWRuVndtcDFwZVROQ05yR2F3TDB2cU00TDlqaUN4cGE4Qld3Zmt3VHQzcGY2?oc=5"
-          },
-          {
-            "headline": "K배터리, 美 전기차 공급량 40% 감소",
-            "summary": "올해 1~8월 한국 배터리 3사의 미국 전기차향 공급 물량이 전년 동기 대비 40% 급감한 것으로 나타났습니다. 미국 현지 전기차 수요 둔화와 정책 변화가 한국 기업들의 실적 타격으로 이어진 결과입니다.",
-            "tags": [
-              "#K배터리",
-              "#미국공급량",
-              "#전기차캐즘"
-            ],
-            "source": "지디넷코리아",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5rS1QtQzgxcXBlOGRNYTFMdjNSengzM0dIUjRtX1ItWGlIZk8zOS1TSXRia1ctd2djeEVmWEhhRm9RWVF2RXVsWVpsOHB4ZEFMU1FvS3BR?oc=5"
-          }
-        ]
-      },
-      {
-        "name": "재활용 & 자원 순환 생태계",
-        "items": [
-          {
-            "headline": "고니켈 폐기물 재활용 시장 확대",
-            "summary": "전기차 보급 확대와 각국의 재활용 의무화 규제에 힘입어 고니켈 배터리 폐기물 시장이 2035년까지 가파르게 성장할 전망입니다. 하이니켈 배터리 회수를 통한 고가 금속 자원 확보가 핵심 과제로 부상했습니다.",
+            "headline": "고니켈 폐기물 재활용 전망",
+            "summary": "전기차 보급 확대와 각국의 재활용 의무화 정책에 힘입어 고니켈 배터리 폐기물 시장이 2035년까지 급격히 성장할 전망입니다. 고가 희귀금속 회수를 통한 자원 자립과 환경 오염 방지를 위해 효율적인 폐배터리 처리 및 추출 기술의 중요성이 높아지고 있습니다.",
             "tags": [
               "#고니켈배터리",
               "#폐배터리",
-              "#재활용의무화"
+              "#재활용 market"
             ],
             "source": "IndexBox",
             "date": "2026-10-04",
             "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPLUdOa3ZjOUVKY1RseW44NzYwWHBzejYzMU5PcGJtX0dzVk9tMGZiMl9BeVVDbE9zWWxYUWNmYktTRm9uNzM1Vzg5cVF6Rmt1bGdId3J1NlY2OWJWbmcwaDZHNkpoVVRGQ1BqQ2laMkM0UmZ5ck1UYjNaZmlZeHV0UE5FNmJxNGlyZDlZM2JtaHh3YmE1MUtYVGxHY2FSSjBMWkZoa2ZYT3NaVzc3U2pOYkc5TUlMbE9iZ3J6XzlEYTRBck1ZbklueHNGcVN3QQ?oc=5"
           },
           {
-            "headline": "한국-독일, 사용후 배터리 공동연구",
-            "summary": "한국환경공단이 독일 프라운호퍼 연구소와 사용후 배터리 재활용 기술 및 자원 순환 고도화를 위한 공동 연구협약을 체결했습니다. 양국은 사용후 배터리의 성능 평가와 자원 회수 효율화에 집중할 계획입니다.",
+            "headline": "중국 1000km PHEV 공습",
+            "summary": "중국 자동차 업계가 1.5L 가솔린 엔진과 대용량 배터리를 결합해 주행거리 1,000km 이상을 구현한 PHEV(플러그인 하이브리드)를 앞세워 글로벌 시장을 공략하고 있습니다. 전기차 캐즘 국면에서 실용적인 대안으로 부상하며 시장 지형을 뒤흔들고 있습니다.",
             "tags": [
-              "#환경공단",
-              "#프라운호퍼",
-              "#사용후배터리"
+              "#PHEV",
+              "#중국전기차",
+              "#주행거리"
             ],
-            "source": "디스커버리뉴스(DISCOVERYNEWS)",
+            "source": "중앙일보",
+            "date": "2026-10-04",
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1oc3Rwb0NEbFYzN0dtWlFCbkhkNGFMeFd3QjZDUkdvbllEajBxZlJqakNuOVBzWjJMUlN6b0Z2X3hJS1l2QjRBX0tsUkZkQVlGTFlsbDZR?oc=5"
+          },
+          {
+            "headline": "한-독 배터리 재활용 연구",
+            "summary": "한국환경공단과 독일 프라운호퍼 연구소가 사용후 배터리의 순환경제 구축을 위한 공동 연구를 추진합니다. 양기관은 폐배터리 회수 및 유용한 자원 추출 기술 협력을 통해 국제 표준에 부합하는 리사이클링 생태계를 마련할 방침입니다.",
+            "tags": [
+              "#사용후배터리",
+              "#환경공단",
+              "#프라운호퍼"
+            ],
+            "source": "discoverynews.kr",
             "date": "2026-10-04",
             "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBtXy1sdG1Ha3lhOUpEOWxJYW5rX0RCSzh2Z0IzTU9Sc25nZVpWdWVKa2NrOWI3dnRnSUpxLUNqc05KRDY2cnRELVRxbWRrY1F6NU5URUxCak5RQVBJWndvTnkxaTJCTmYtYk5CdVJHNGh0Zw?oc=5"
           },
           {
-            "headline": "한-독, 배터리 재생원료 품질 표준화",
-            "summary": "한국환경공단과 프라운호퍼 연구소가 단순 재활용 공정을 넘어 회수된 재생원료의 순도와 품질을 높이는 연구에 착수했습니다. 표준화된 재생원료 품질을 확보해 글로벌 배터리 공급망에 재투입하는 것을 목표로 합니다.",
+            "headline": "전기차 vs 내연차 배터리 수명",
+            "summary": "전기차 구동용 배터리와 내연기관 시동용 배터리의 수명 특성 및 관리 방식의 차이에 대한 관심이 높아지고 있습니다. 전기차 배터리는 열관리 및 충방전 패턴 제어가 수명에 결정적인 영향을 미치므로 차별화된 BMS 기술 개발이 촉구됩니다.",
+            "tags": [
+              "#배터리수명",
+              "#BMS",
+              "#전기차특성"
+            ],
+            "source": "vietnam.vn",
+            "date": "2026-10-04",
+            "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPT3Fhei1uVUdZQ2tqS05rYUdXMlhkYmtuekwyYWU4cEtwczZOcTVlbGlxb2x3OGhuY2xWU1UxYXBJd0tOT1VGYWlSM2FDc3BDU3BlaXJoVEI4MHlYNEd3anpxbVhHUDJXcjZYTk8wY09HYlVfNWJyVUVsZ0toWGlUVGRFZW5aamM?oc=5"
+          },
+          {
+            "headline": "배터리 재생원료 품질 공동연구",
+            "summary": "한국환경공단과 독일 프라운호퍼가 단순 폐배터리 재활용을 넘어 extraction 된 재생원료의 고품질화 연구에 손을 잡았습니다. 재생 원자재의 품질 표준화를 통해 배터리 제조에 재투입할 수 있는 선순환 체계를 완성한다는 목적입니다.",
             "tags": [
               "#재생원료",
               "#품질표준화",
-              "#자원순환"
+              "#배터리재활용"
             ],
             "source": "에너지데일리",
             "date": "2026-10-03",
             "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE0tZWtVYXlUM09jbUpnY3BqZVhmSE9teHBGQmt2cEptOEZ1LWl0S1MxbDhZVHZZdnNJMXNOTnZuMktwSjVzWjFhNjRGYXRROEJWeXJVN0VTMlotTk00UWxyeHk1eWVZZHpSRmQ5SzVvcE92QQ?oc=5"
+          }
+        ]
+      },
+      {
+        "name": "안전성 및 열관리 소재",
+        "items": [
+          {
+            "headline": "아라미드 분리막 시장 급성장",
+            "summary": "전기차 화재 예방 및 배터리 안전성에 대한 요구가 강화됨에 따라 내열성이 뛰어난 아라미드 폴리머 분리막 시장이 2035년까지 장기 성장할 전망입니다. 고온 환경에서의 단열 및 절연 성능이 탁월해 차세대 안전 소재로 주목받고 있습니다.",
+            "tags": [
+              "#아라미드",
+              "#분리막",
+              "#배터리안전"
+            ],
+            "source": "IndexBox",
+            "date": "2026-10-04",
+            "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNcTh3OE5PdE1XUHp4YVpYdDdiaGdhbENVVjl1aFhkSVBQX2hsLTE1WlRtbklXZk11VGtiQkJJa2hoY29HYWFOWDVCNmt3UzU1WXJFYVdwcnJCX1NUWjZsc3Q5WG5SZGtVLUxVM2pRN0VwODdveXlDazI2akMwNXM5VzZfcklBWm5qZWxsZnBFMjl3ejlEMW5KQVVEcDFSRHBGcDdUT3RxUF9VdGhVcUFrdTZFX3BjeUxLcWlaY2Fkd1djRVVw?oc=5"
           },
           {
-            "headline": "LG전자, '배터리턴' 자원순환 캠페인",
-            "summary": "LG전자가 소형 폐배터리 1,500개 수거 시 전기차 1대분의 리튬을 추출할 수 있는 '배터리턴' 캠페인을 재가동했습니다. 폐가전 수거를 확대해 매립 제로화와 원자재 선순환 체계를 모범적으로 구축하고 있습니다.",
+            "headline": "열폭주 방지 화염차단제 개발",
+            "summary": "예선테크가 전기차 배터리의 열폭주 현상을 차단할 수 있는 화염차단제 신소재를 성공적으로 개발했습니다. 현재 주요 완성차 및 배터리 고객사와 적용 및 대체 테스트를 협의 중이며, 배터리 안전성 대책의 핵심 솔루션이 될 것으로 기대됩니다.",
             "tags": [
-              "#LG전자",
-              "#배터리턴",
-              "#리튬회수"
+              "#예선테크",
+              "#열폭주방지",
+              "#화염차단제"
             ],
-            "source": "비즈월드",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9Za2FEQUswVEFHMnMxSENrdV91SVBFNTRoNDdQWE1FU3B1cEpDM2xkX3hQYVVNN19xVlVVNGw5dVFUV0ZhTHVhQ1VBRGw3WWlGTEtJTXhLd01iSElmekprU0xwMkg4XzM0NEE?oc=5"
-          },
-          {
-            "headline": "LG전자, 폐배터리 34만 개 회수 성과",
-            "summary": "LG전자가 누적 34만 개의 폐배터리를 회수하며 전자제품 제조사를 넘어 자원 순환 ESG 경영의 실효성을 입증했습니다. 수거된 배터리는 파쇄 후 핵심 희유금속으로 재생되어 원자재 공급망 안정화에 기여합니다.",
-            "tags": [
-              "#LG전자",
-              "#ESG",
-              "#폐배터리회수"
-            ],
-            "source": "newsvalue.kr",
-            "date": "2026-10-02",
-            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB4RHlyeVpZQVhRcnpVdFdwTU5mZVBfREhaR0NYMnNHbXJWc0ZoSktuVTNLYjdVTVM0bllQN1N6NENfVkswa1BzTDdlRnFSX3ZlOFNYWV9xczl3TmY0YU1GNVZnNXlTeG81OVE?oc=5"
+            "source": "이투데이",
+            "date": "2026-10-03",
+            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1YSThKV1JnRmVnTzQyRkJ2Ni1QVmtUbnQxbkM4eU9fbXZxZlVWMXhTZ1c3Q08wVklvc1hCNUNpRE1GLWl5cE1zYTg1bGdnZ0hqbTREMkV2RWcwQ3RONVI4c0ktb2RfNi1wMkRpX3l3?oc=5"
           }
         ]
       }
     ],
-    "implications": "미국의 연비 규제 완화 움직임과 현지 전기차 수요 감소로 인해 한국 배터리 기업들의 대미 공급량이 급감하는 등 대외 악재가 가시화되고 있습니다. 동시에 중국 업체들의 점유율 확대와 PHEV 시장 공습이 가속화됨에 따라, K-배터리는 LMR, 전고체 등 원가 경쟁력과 안전성을 갖춘 차세대 폼팩터로의 조기 전환이 불가피한 시점입니다. 이에 더해 폐배터리 재생원료의 고순도 품질 표준화 및 블랙매스 금속 추출 기술 확보를 통한 자원 순환 체계 구축이 향후 원가 절감과 ESG 규제 대응의 핵심 승부처가 될 것입니다."
+    "implications": "전기차 시장의 캐즘 현상과 미 연비 규제 완화 등 거시적 불확실성이 증대되면서, 배터리 기업들은 기술 초격차 확보와 수익 구조 다변화를 동시에 추진해야 하는 과제에 직면해 있습니다. 단기적으로는 LFP 라인 전환 및 ESS·소형 배터리 등 비전기차 분야 포트폴리오를 확대해 실적 방어에 나서는 한편, 장기적으로는 전고체 배터리, 반도체 연계 공정, 아라미드 분리막 등 고안전성·고성능 차세대 기술 개발에 집중해야 합니다. 또한 글로벌 ESG 규제 강화 및 원자재 공급망 안정화를 위해 해외 기관과의 R&D 연계 및 폐배터리 재생원료 품질 표준화 등 순환경제 생태계를 조기에 완성하는 것이 향후 글로벌 시장 주도권의 핵심 열쇠가 될 것입니다."
   },
   "chinaNews": [
     {
       "title": "Global EV battery market share in January-August 2026: CATL 39.4%, BYD 15.1%",
-      "summary": "The 7 Chinese companies in the top 10 held a combined 73.3% share of the global EV battery market.",
+      "summary": "The 7 Chinese companies in the top 10 held a combined 73.3% share of the global EV battery market. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-02",
       "url": "https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/",
@@ -4144,7 +4204,7 @@
     },
     {
       "title": "Tesla beats Q3 delivery expectations but falls further behind BYD in BEV sales",
-      "summary": "Tesla delivered 486,532 vehicles globally in the third quarter, down 2.13% year-on-year but above market expectations.",
+      "summary": "Tesla delivered 486,532 vehicles globally in the third quarter, down 2.13% year-on-year but above market expectations. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-02",
       "url": "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/",
@@ -4153,7 +4213,7 @@
     },
     {
       "title": "What to expect from Chinese car brands at the Paris Auto Show 2026",
-      "summary": "CarNewsChina outlined expectations for Chinese car brands at the Paris Auto Show 2026 starting October 12.",
+      "summary": "CarNewsChina figured out what to expect from Chinese car brands at the Paris Auto Show 2026, which starts on October 12. The post What to expect from Chinese car brands at the Paris Auto Show 2026 appeared first on CarNewsChina.com .",
       "source": "CarNewsChina",
       "date": "2026-10-02",
       "url": "https://carnewschina.com/2026/10/02/what-to-expect-from-chinese-car-brands-at-the-paris-auto-show-2026/",
@@ -4161,160 +4221,156 @@
       "id": 3
     },
     {
-      "title": "Nio delivers 37,408 vehicles in September, meets Q3 guidance",
-      "summary": "Deliveries by the Nio brand rose 55.29% year-on-year in September, with Firefly setting a monthly record.",
-      "source": "CnEVPost",
-      "date": "2026-10-01",
-      "url": "https://cnevpost.com/2026/10/01/nio-sept-2026-deliveries/",
+      "title": "Volkswagen ID. Aura T6 began deliveries in China with 660 km of range",
+      "summary": "The Volkswagen ID. Aura T6 mid-size electric SUV with up to 660 km of CLTC range and a starting price of 19,375 USD began deliveries in China. The post Volkswagen ID. Aura T6 began deliveries in China with 660 km of range appeared first on CarNewsChina.com .",
+      "source": "CarNewsChina",
+      "date": "2026-10-02",
+      "url": "https://carnewschina.com/2026/10/02/volkswagen-id-aura-t6-began-deliveries-in-china-with-660-km-of-range/",
       "linkType": "rss",
       "id": 4
     },
     {
-      "title": "Leapmotor posts record September deliveries, tops 100,000 for third straight month",
-      "summary": "Leapmotor delivered 105,656 vehicles in September, bringing third-quarter deliveries to a record 310,052.",
+      "title": "Nio delivers 37,408 vehicles in September, meets Q3 guidance",
+      "summary": "Deliveries by the Nio brand rose 55.29% year-on-year in September, Firefly set a monthly record and Onvo posted a second consecutive year-on-year decline. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
-      "url": "https://cnevpost.com/2026/10/01/leapmotor-sept-2026-deliveries/",
+      "url": "https://cnevpost.com/2026/10/01/nio-sept-2026-deliveries/",
       "linkType": "rss",
       "id": 5
     },
     {
-      "title": "Xiaomi Auto September deliveries top 40,000 as Sky Nomad adds volume",
-      "summary": "Sky Nomad helped lift Xiaomi Auto's monthly deliveries to their highest level so far in 2026 in its first month on sale.",
+      "title": "Leapmotor posts record September deliveries, tops 100,000 for third straight month",
+      "summary": "Leapmotor delivered 105,656 vehicles in September, bringing third-quarter deliveries to a record 310,052. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
-      "url": "https://cnevpost.com/2026/10/01/xiaomi-auto-sept-2026-deliveries/",
+      "url": "https://cnevpost.com/2026/10/01/leapmotor-sept-2026-deliveries/",
       "linkType": "rss",
       "id": 6
     },
     {
-      "title": "리상, 9월 인도량 전년 대비 6.29% 감소한 3만 1,817대 기록",
-      "summary": "리상은 9월 인도량이 감소했으나, 3분기 전체로는 전년 동기 대비 7.24% 증가한 9만 9,964대를 전달했다.",
+      "title": "Xiaomi Auto September deliveries top 40,000 as Sky Nomad adds volume",
+      "summary": "Sky Nomad helped lift Xiaomi Auto's monthly deliveries to their highest level so far in 2026 in its first month on sale. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-10-01",
+      "url": "https://cnevpost.com/2026/10/01/xiaomi-auto-sept-2026-deliveries/",
+      "linkType": "rss",
+      "id": 7
+    },
+    {
+      "title": "Li Auto September deliveries fall 6.29% to 31,817",
+      "summary": "Li Auto delivered 99,964 vehicles in the third quarter, up 7.24% year-on-year and 1.66% from the second quarter. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/li-auto-sept-2026-deliveries/",
       "linkType": "rss",
-      "translated": true,
-      "id": 7
+      "id": 8
     },
     {
       "title": "Roundup: September 2026 deliveries by major Chinese automakers",
-      "summary": "Leapmotor and Zeekr set fresh records, while Xiaomi topped 40,000 deliveries to reach its highest monthly level this year.",
+      "summary": "Leapmotor and Zeekr set fresh records, while Xiaomi tops 40,000 deliveries to reach its highest monthly level this year. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/roundup-sept-2026-deliveries-china-automakers/",
       "linkType": "rss",
-      "id": 8
+      "id": 9
     },
     {
       "title": "Geely September sales rise 7% to 2026 high as record export streak ends",
-      "summary": "Geely Auto exported 106,685 vehicles in September, up 162% year-on-year but down 3% from August, ending 8 consecutive months of record exports.",
+      "summary": "Geely Auto exported 106,685 vehicles in September, up 162% year-on-year but down 3% from August, ending 8 consecutive months of record exports. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/geely-sept-2026-sales/",
       "linkType": "rss",
-      "id": 9
+      "id": 10
     },
     {
       "title": "Huawei, Seres sign new 5-year deal to upgrade Aito business",
-      "summary": "Huawei and Seres are deepening their partnership about 2 weeks after announcing a shift in control of the Aito brand's operations.",
+      "summary": "Huawei and Seres are deepening their partnership about 2 weeks after announcing a shift in control of the Aito brand's operations. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/huawei-seres-sign-5-year-deal-upgrade-aito/",
       "linkType": "rss",
-      "id": 10
+      "id": 11
     },
     {
       "title": "BYD September sales rise 16.98% to 463,561, hitting new high for 2026",
-      "summary": "BYD posted its fifth consecutive month of year-on-year NEV sales growth and seventh consecutive month of sequential growth.",
+      "summary": "BYD posted its fifth consecutive month of year-on-year NEV sales growth and seventh consecutive month of sequential growth. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/byd-sept-2026-sales/",
       "linkType": "rss",
-      "id": 11
+      "id": 12
     },
     {
       "title": "Zeekr plans 001 update in Q1 2027, offers incentives on current model",
-      "summary": "Zeekr is planning an update for the 001 model in Q1 2027 while offering current incentives as model deliveries fell 21.50% in the first 8 months.",
+      "summary": "October incentives for the current 001 include a 10,000 yuan insurance subsidy. The model's deliveries fell 21.50% in the first 8 months of the year. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/zeekr-plans-001-update-q1-2027-incentives-current-model/",
       "linkType": "rss",
-      "id": 12
+      "id": 13
     },
     {
       "title": "Zeekr delivers 37,216 vehicles in September, its sixth straight monthly record",
-      "summary": "Zeekr's September deliveries rose 103.85% year-on-year, extending its streak of both annual and monthly growth to 8 consecutive months.",
+      "summary": "Zeekr's September deliveries rose 103.85% year-on-year, extending its streak of both annual and monthly growth to 8 consecutive months. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/zeekr-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 13
+      "id": 14
     },
     {
       "title": "Chinese NEV sales rankings in September 2026: BYD, Geely Galaxy, Leapmotor",
-      "summary": "CarNewsChina compiled the Chinese NEV sales rankings for September 2026 based on delivery data released by new energy car makers.",
+      "summary": "CarNewsChina created the Chinese NEV sales rankings in September 2026 based on the delivery data released by new energy car makers. The post Chinese NEV sales rankings in September 2026: BYD, Geely Galaxy, Leapmotor appeared first on CarNewsChina.com .",
       "source": "CarNewsChina",
       "date": "2026-10-01",
       "url": "https://carnewschina.com/2026/10/01/chinese-nev-sales-rankings-in-september-2026-byd-leapmotor-changan-nevo/",
       "linkType": "rss",
-      "id": 14
-    },
-    {
-      "title": "BYD, 방청보 포뮬러 S 시리즈 월 판매 목표 1만 5천 대로 설정",
-      "summary": "BYD는 패스트백과 GT 스티어링 웨건으로 구성된 포뮬러 S 라인업을 통해 월 1만 5,000대 판매 달성을 기대하고 있다.",
-      "source": "CarNewsChina",
-      "date": "2026-09-30",
-      "url": "https://carnewschina.com/2026/09/30/byd-expects-formula-s-series-sales-to-reach-15000-units-monthly/",
-      "linkType": "rss",
-      "translated": true,
       "id": 15
     },
     {
-      "title": "Seres and CATL-backed Aiva unveils ME7 in Paris",
-      "summary": "Seres and CATL-backed brand Aiva unveiled its ME7 model in Paris.",
-      "source": "CarNewsChina",
-      "date": "2026-09-30",
-      "url": "https://carnewschina.com/2026/09/30/seres-and-catl-backed-aiva-unveils-me7-in-paris/",
+      "title": "GWM September sales fall 14% in steepest drop this year as domestic slump deepens",
+      "summary": "GWM sold 114,944 vehicles in September, down 13.99% year-on-year, bringing sales for the first 9 months into decline at 0.33%. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-10-01",
+      "url": "https://cnevpost.com/2026/10/01/gwm-sept-2026-sales/",
       "linkType": "rss",
       "id": 16
     },
     {
-      "title": "China NEV retail sales fall 20% in first 27 days of September as decline deepens",
-      "summary": "China's NEV retail sales totaled 827,000 in September 1-27, accounting for 65.7% of passenger car sales as market decline deepens.",
+      "title": "Huawei HIMA delivers 37,490 vehicles in September, extending year-on-year decline to fourth month",
+      "summary": "HIMA's September deliveries fell 29.15% year-on-year, with year-to-date growth slowing to 5.27%. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-30",
-      "url": "https://cnevpost.com/2026/09/30/china-nev-retail-sales-first-27-days-sept/",
+      "date": "2026-10-01",
+      "url": "https://cnevpost.com/2026/10/01/huawei-hima-sept-2026-deliveries/",
       "linkType": "rss",
       "id": 17
     },
     {
-      "title": "Aito opens pre-sales for updated M8 SUV as Seres and Huawei reshape partnership",
-      "summary": "The updated Aito M8 comes standard with Huawei's Qiankun ADS 5 and an L3-ready architecture, with pre-sales starting at 389,800 yuan.",
+      "title": "Nio ES8 delivers 10,542 vehicles in September, topping 10,000 for third straight month",
+      "summary": "The ES8 accounted for 49.45% of the Nio brand's September deliveries and 28.18% of Nio Inc's total. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-30",
-      "url": "https://cnevpost.com/2026/09/30/aito-opens-pre-sales-updated-m8-suv/",
+      "date": "2026-10-01",
+      "url": "https://cnevpost.com/2026/10/01/nio-es8-deliveries-sept-2026/",
       "linkType": "rss",
       "id": 18
     },
     {
-      "title": "BYD, 2세대 시걸 공개… 마사지 시트 및 94L 프렁크 탑재",
-      "summary": "BYD가 공개한 2세대 해치백 전기차 시걸은 운전석 마사지 시트, 앰비언트 라이트, 플로팅 디스플레이 등 대폭 개선된 편의 사양을 갖췄다.",
-      "source": "CarNewsChina",
-      "date": "2026-09-30",
-      "url": "https://carnewschina.com/2026/09/30/second-gen-byd-seagull-revealed-massaged-drivers-seat-94l-frunk/",
+      "title": "Xpeng September deliveries hit 2026 high despite slight year-on-year decline",
+      "summary": "Xpeng delivered 41,256 vehicles in September, down 0.78% year-on-year while up 5.50% from August. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-10-01",
+      "url": "https://cnevpost.com/2026/10/01/xpeng-sept-2026-deliveries/",
       "linkType": "rss",
-      "translated": true,
       "id": 19
     },
     {
-      "title": "Lynk & Co launches 20 compact electric SUV, reports over 14,663 firm orders in 1 hour",
-      "summary": "The Lynk & Co 20 is a facelifted version of the Lynk & Co Z20, with a limited-time starting price of 118,800 yuan ($17,620) in China. For details, please visit CnEVPost (cnev.co).",
+      "title": "Tesla gives Model 3 minor upgrades in China, keeps prices unchanged",
+      "summary": "All Model 3 variants currently on sale get a 16-inch central touchscreen, up from 15.4 inches, and a new optional light gray premium interior. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-09-29",
-      "url": "https://cnevpost.com/2026/09/29/lynk-co-launches-20-compact-electric-suv/",
+      "date": "2026-10-01",
+      "url": "https://cnevpost.com/2026/10/01/tesla-gives-model-3-minor-upgrades-in-china/",
       "linkType": "rss",
-      "translated": false,
       "id": 20
     }
   ],
