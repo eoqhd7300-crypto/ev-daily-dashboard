@@ -1346,6 +1346,19 @@ def generate_vehicles(client: "genai.Client", today_str: str, launch_hints: list
         return []
 
 
+def _fallback_news_summary(raw: dict) -> str:
+    """Gemini 요약 생성이 실패했을 때(API 호출 실패 또는 개별 항목에 summary가 비어있는 경우) 쓸
+    대체 요약문을 만든다. Google News RSS의 description은 흔히 "제목 텍스트 + 매체명"을 HTML만
+    제거한 형태라 실질적인 요약이 아니다 (실측 확인됨 - 화면에 제목과 거의 동일한 문구가 다음 줄에
+    그대로 중복 표시되는 버그의 원인이었음). description이 title을 그대로 포함하고 있으면(=요약이
+    아니라 제목 재탕) 사용하지 않고, title만 단독으로 반환해 중복 노출을 막는다."""
+    title = (raw.get("title") or "").strip()
+    description = (raw.get("description") or "").strip()
+    if description and _norm(title) not in _norm(description):
+        return description
+    return title
+
+
 def generate_news(client: "genai.Client") -> list:
     print("뉴스 RSS 수집 시작...")
     raw_items = collect_recent_news_raw()
@@ -1361,8 +1374,23 @@ def generate_news(client: "genai.Client") -> list:
             client,
             model=MODEL_NAME,
             contents=build_news_summary_prompt(raw_items),
+            config=types.GenerateContentConfig(
+                # 다른 브리핑/선별 호출에서 실측 확인된 문제(thinking 모델의 내부 추론 토큰이 출력
+                # 예산을 잠식해 응답이 중간에 잘려 JSON 파싱이 실패하는 현상)가 이 호출에서도 동일하게
+                # 재현되어, 요약(summary)이 비어 RSS description 그대로("제목 + 출처" 텍스트)가
+                # 노출되는 버그로 이어졌다. thinking을 끄고 max_output_tokens도 넉넉히 잡아둔다.
+                thinking_config=types.ThinkingConfig(thinking_budget=0),
+                max_output_tokens=8192,
+            ),
         )
-        summarized = extract_json(response.text)
+        finish_reason = None
+        try:
+            finish_reason = response.candidates[0].finish_reason
+        except Exception:  # noqa: BLE001 - 진단 목적의 부가 정보이므로 실패해도 무시
+            pass
+        response_text = response.text or ""
+        print(f"뉴스 선별/요약 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
+        summarized = extract_json(response_text)
         if isinstance(summarized, list):
             for entry in summarized:
                 if not isinstance(entry, dict) or not entry.get("url"):
@@ -1373,7 +1401,7 @@ def generate_news(client: "genai.Client") -> list:
                 selected.append(
                     {
                         "title": raw["title"],
-                        "summary": entry.get("summary") or raw.get("description") or raw["title"],
+                        "summary": entry.get("summary") or _fallback_news_summary(raw),
                         "source": raw["source"],
                         "date": raw["date"],
                         "url": raw["url"],
@@ -1381,7 +1409,7 @@ def generate_news(client: "genai.Client") -> list:
                     }
                 )
     except Exception as exc:  # noqa: BLE001 - 선별/요약 실패 시 키워드 기반 필터로 대체
-        print(f"뉴스 선별/요약 생성 실패, 키워드 기반 필터로 대체합니다: {exc}")
+        print(f"뉴스 선별/요약 생성 실패, 키워드 기반 필터로 대체합니다: {type(exc).__name__}: {exc}")
 
     if not selected:
         # Gemini 필터링이 실패했을 때의 최후 안전망: 키워드 기반 엔지니어 관련성 필터만 적용
@@ -1391,7 +1419,7 @@ def generate_news(client: "genai.Client") -> list:
             selected.append(
                 {
                     "title": raw["title"],
-                    "summary": raw.get("description") or raw["title"],
+                    "summary": _fallback_news_summary(raw),
                     "source": raw["source"],
                     "date": raw["date"],
                     "url": raw["url"],
@@ -1504,7 +1532,7 @@ def generate_china_news(client: "genai.Client") -> list:
                 selected.append(
                     {
                         "title": entry.get("title") or raw["title"],
-                        "summary": entry.get("summary") or raw.get("description") or raw["title"],
+                        "summary": entry.get("summary") or _fallback_news_summary(raw),
                         "source": raw["source"],
                         "date": raw["date"],
                         "url": raw["url"],
@@ -1522,7 +1550,7 @@ def generate_china_news(client: "genai.Client") -> list:
             selected.append(
                 {
                     "title": raw["title"],
-                    "summary": raw.get("description") or raw["title"],
+                    "summary": _fallback_news_summary(raw),
                     "source": raw["source"],
                     "date": raw["date"],
                     "url": raw["url"],

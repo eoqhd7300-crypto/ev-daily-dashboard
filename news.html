@@ -124,6 +124,11 @@
                 card.className = "bg-slate-50 hover:bg-slate-100/90 p-4 rounded-xl border border-slate-200 transition space-y-2";
                 const isSearchLink = item.linkType === 'search';
                 const linkLabel = isSearchLink ? '🔎 관련 기사 검색결과 보기' : '🔗 뉴스 원본 기사 열람하기';
+                // 과거(백엔드 요약 생성 실패) 데이터 중 summary가 title을 그대로 반복하는 경우가 있어
+                // (RSS description이 "제목+출처" 그대로인 경우), 그런 줄은 아예 표시하지 않는다.
+                const normalize = s => (s || '').replace(/\s+/g, '').toLowerCase();
+                const isDuplicateSummary = !item.summary || normalize(item.summary).includes(normalize(item.title));
+                const summaryHtml = isDuplicateSummary ? '' : `<p class="text-sm text-slate-600 leading-relaxed font-normal line-clamp-2">${item.summary}</p>`;
                 card.innerHTML = `
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center space-x-2 min-w-0">
@@ -132,7 +137,7 @@
                         </div>
                         <span class="text-xs font-semibold text-slate-400 flex-shrink-0">${item.date}</span>
                     </div>
-                    <p class="text-sm text-slate-600 leading-relaxed font-normal line-clamp-2">${item.summary}</p>
+                    ${summaryHtml}
                     <div class="flex justify-end pt-1">
                         <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1 text-sm font-bold text-sky-600 hover:text-sky-800 hover:underline">
                             <span>${linkLabel}</span>
