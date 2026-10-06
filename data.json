@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T15:10:28.351033+09:00",
+  "generatedAt": "2026-10-06T16:11:56.281043+09:00",
   "vehicles": [
     {
       "id": "seres_aito_m8_l3_ev",
@@ -3823,9 +3823,9 @@
       "id": 7
     },
     {
-      "title": "전기차 화재 대안으로 부각… 전고체 배터리 핵심 소재·장비주 '꿈틀' - pinpointnews.co.kr",
-      "summary": "전기차 화재 대안으로 부각… 전고체 배터리 핵심 소재·장비주 '꿈틀' - pinpointnews.co.kr",
-      "source": "pinpointnews.co.kr",
+      "title": "전기차 화재 대안으로 부각… 전고체 배터리 핵심 소재·장비주 '꿈틀' - 핀포인트뉴스",
+      "summary": "전기차 화재 대안으로 부각… 전고체 배터리 핵심 소재·장비주 '꿈틀' - 핀포인트뉴스",
+      "source": "핀포인트뉴스",
       "date": "2026-10-06",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBJc0lnM3drU2xBQm4xanF3V1ZqNGZfNTh6c3dOZjloUVNKa2c1YXFQc1pRNDV1emtPZXlDOEFCRExNVTlfWHItMElYaEdoNGRkUnFfc1R6ekhrcFVUOEFMZFVzLXF3RzB1VTdSVzNNU2prOGPSAXdBVV95cUxOc0YyVGFPS0FaYlBTZEhzOGpzcFNiOUd1ZTRldGZuV3h4RmlLZ0FuRWZ5azBDcXlnV0R6QUozMEg1TktNRmVkSDFucEVZbUN1N3czbEk0a1Z3Q2J1bFBZTWJka25meHdRM1hQclBMeUZnaUI3QzNFcw?oc=5",
       "linkType": "rss",
@@ -3877,9 +3877,9 @@
       "id": 13
     },
     {
-      "title": "부산 카페 충전하던 배터리서 불…인명피해 없어 - donga.com",
-      "summary": "부산 카페 충전하던 배터리서 불…인명피해 없어 - donga.com",
-      "source": "donga.com",
+      "title": "부산 카페 충전하던 배터리서 불…인명피해 없어 - 동아일보",
+      "summary": "부산 카페 충전하던 배터리서 불…인명피해 없어 - 동아일보",
+      "source": "동아일보",
       "date": "2026-10-06",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9lNGtSU3BKTUhvQkg2WjN5cmhfVDZxTmd5LURIZnFGdm51bWVPbTVwQTFnNGdQN2RPZVZvZmxXQzNhRG5WM2ZCWDBoZ1dVNVRvaGNObkNnN1J2dnpvS2pFTHhaOFJCT1J4NUYxZ3NxUTFOOW5WeHfSAWZBVV95cUxQcWZBTHJvZkFCVG5xZnhvcDNOUTlRc195bVlST2dNX1psY09sR1JrM2ZLRTJTbUU0aHhjUVVKTS1ab3VQal9KSF9qZUV1VXM4dzJxVzREZGJ2YWY2R0haYmhpaHo2Smc?oc=5",
       "linkType": "rss",
@@ -3944,7 +3944,7 @@
     "usdKrw": 1342.77,
     "eurKrw": 1505.17,
     "cnyKrw": 199.98,
-    "updatedAt": "2026-10-06T15:10:28.582834+09:00"
+    "updatedAt": "2026-10-06T16:11:56.443974+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
@@ -4195,7 +4195,7 @@
   "chinaNews": [
     {
       "title": "BYD puts battery cells directly in cooling liquid in new patent",
-      "summary": "BYD has filed a patent describing a battery cabinet that submerges cell modules directly in cooling liquid while keeping electrical equipment dry.",
+      "summary": "BYD puts battery cells directly in cooling liquid in new patent",
       "source": "CarNewsChina",
       "date": "2026-10-06",
       "url": "https://carnewschina.com/2026/10/06/byd-puts-battery-cells-directly-in-cooling-liquid-in-new-patent/",
@@ -4203,40 +4203,49 @@
       "id": 1
     },
     {
-      "title": "Global EV battery market share in January-August 2026: CATL 39.4%, BYD 15.1%",
-      "summary": "The top seven Chinese companies held a combined 73.3% share of the global EV battery market during the January-August 2026 period.",
-      "source": "CnEVPost",
-      "date": "2026-10-02",
-      "url": "https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/",
+      "title": "BYD Megawatt Flash Charger used as playground swing sparks infrastructure safety concerns",
+      "summary": "BYD Megawatt Flash Charger used as playground swing sparks infrastructure safety concerns",
+      "source": "CarNewsChina",
+      "date": "2026-10-05",
+      "url": "https://carnewschina.com/2026/10/05/byd-megawatt-flash-charger-used-as-playground-swing-sparks-infrastructure-safety-concerns/",
       "linkType": "rss",
       "id": 2
     },
     {
-      "title": "Tesla beats Q3 delivery expectations but falls further behind BYD in BEV sales",
-      "summary": "Tesla delivered 486,532 vehicles globally in the third quarter, which exceeded market expectations despite a 2.13% year-on-year drop.",
+      "title": "Global EV battery market share in January-August 2026: CATL 39.4%, BYD 15.1%",
+      "summary": "The 7 Chinese companies in the top 10 held a combined 73.3% share of the global EV battery market. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-02",
-      "url": "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/",
+      "url": "https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/",
       "linkType": "rss",
       "id": 3
     },
     {
-      "title": "What to expect from Chinese car brands at the Paris Auto Show 2026",
-      "summary": "An overview outlining the scheduled debuts and strategies of major Chinese automotive brands at the 2026 Paris Auto Show.",
-      "source": "CarNewsChina",
+      "title": "Tesla beats Q3 delivery expectations but falls further behind BYD in BEV sales",
+      "summary": "Tesla delivered 486,532 vehicles globally in the third quarter, down 2.13% year-on-year but above market expectations. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
       "date": "2026-10-02",
-      "url": "https://carnewschina.com/2026/10/02/what-to-expect-from-chinese-car-brands-at-the-paris-auto-show-2026/",
+      "url": "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/",
       "linkType": "rss",
       "id": 4
     },
     {
+      "title": "What to expect from Chinese car brands at the Paris Auto Show 2026",
+      "summary": "What to expect from Chinese car brands at the Paris Auto Show 2026",
+      "source": "CarNewsChina",
+      "date": "2026-10-02",
+      "url": "https://carnewschina.com/2026/10/02/what-to-expect-from-chinese-car-brands-at-the-paris-auto-show-2026/",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
       "title": "Volkswagen ID. Aura T6 began deliveries in China with 660 km of range",
-      "summary": "The Volkswagen ID. Aura T6 mid-size electric SUV with up to 660 km of CLTC range and a starting price of 19,375 USD began deliveries in China. The post Volkswagen ID. Aura T6 began deliveries in China with 660 km of range appeared first on CarNewsChina.com .",
+      "summary": "Volkswagen ID. Aura T6 began deliveries in China with 660 km of range",
       "source": "CarNewsChina",
       "date": "2026-10-02",
       "url": "https://carnewschina.com/2026/10/02/volkswagen-id-aura-t6-began-deliveries-in-china-with-660-km-of-range/",
       "linkType": "rss",
-      "id": 5
+      "id": 6
     },
     {
       "title": "Nio delivers 37,408 vehicles in September, meets Q3 guidance",
@@ -4245,7 +4254,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/nio-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 6
+      "id": 7
     },
     {
       "title": "Leapmotor posts record September deliveries, tops 100,000 for third straight month",
@@ -4254,16 +4263,16 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/leapmotor-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 7
+      "id": 8
     },
     {
       "title": "Xiaomi Auto September deliveries top 40,000 as Sky Nomad adds volume",
-      "summary": "Xiaomi Auto's monthly deliveries reached a 2026 peak of over 40,000 units in September, bolstered by the market launch of the Sky Nomad.",
+      "summary": "Sky Nomad helped lift Xiaomi Auto's monthly deliveries to their highest level so far in 2026 in its first month on sale. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/xiaomi-auto-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 8
+      "id": 9
     },
     {
       "title": "Li Auto September deliveries fall 6.29% to 31,817",
@@ -4272,16 +4281,16 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/li-auto-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 9
+      "id": 10
     },
     {
       "title": "Roundup: September 2026 deliveries by major Chinese automakers",
-      "summary": "Major Chinese automakers reported September delivery figures, highlighted by record volumes from Leapmotor and Zeekr alongside Xiaomi surpassing 40,000 units.",
+      "summary": "Leapmotor and Zeekr set fresh records, while Xiaomi tops 40,000 deliveries to reach its highest monthly level this year. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/roundup-sept-2026-deliveries-china-automakers/",
       "linkType": "rss",
-      "id": 10
+      "id": 11
     },
     {
       "title": "Geely September sales rise 7% to 2026 high as record export streak ends",
@@ -4290,25 +4299,25 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/geely-sept-2026-sales/",
       "linkType": "rss",
-      "id": 11
+      "id": 12
     },
     {
       "title": "Huawei, Seres sign new 5-year deal to upgrade Aito business",
-      "summary": "Huawei and Seres have signed a new five-year agreement to deepen their strategic partnership following recent operational shifts in the Aito brand.",
+      "summary": "Huawei and Seres are deepening their partnership about 2 weeks after announcing a shift in control of the Aito brand's operations. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/huawei-seres-sign-5-year-deal-upgrade-aito/",
       "linkType": "rss",
-      "id": 12
+      "id": 13
     },
     {
       "title": "BYD September sales rise 16.98% to 463,561, hitting new high for 2026",
-      "summary": "BYD achieved 463,561 NEV sales in September, marking its fifth consecutive month of year-on-year growth and a new monthly record for 2026.",
+      "summary": "BYD posted its fifth consecutive month of year-on-year NEV sales growth and seventh consecutive month of sequential growth. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/byd-sept-2026-sales/",
       "linkType": "rss",
-      "id": 13
+      "id": 14
     },
     {
       "title": "Zeekr plans 001 update in Q1 2027, offers incentives on current model",
@@ -4317,16 +4326,16 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/zeekr-plans-001-update-q1-2027-incentives-current-model/",
       "linkType": "rss",
-      "id": 14
+      "id": 15
     },
     {
       "title": "Zeekr delivers 37,216 vehicles in September, its sixth straight monthly record",
-      "summary": "Zeekr delivered 37,216 vehicles in September, achieving a 103.85% year-on-year increase and setting its sixth consecutive monthly sales record.",
+      "summary": "Zeekr's September deliveries rose 103.85% year-on-year, extending its streak of both annual and monthly growth to 8 consecutive months. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/zeekr-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 15
+      "id": 16
     },
     {
       "title": "Chinese NEV sales rankings in September 2026: BYD, Geely Galaxy, Leapmotor",
@@ -4335,7 +4344,7 @@
       "date": "2026-10-01",
       "url": "https://carnewschina.com/2026/10/01/chinese-nev-sales-rankings-in-september-2026-byd-leapmotor-changan-nevo/",
       "linkType": "rss",
-      "id": 16
+      "id": 17
     },
     {
       "title": "GWM September sales fall 14% in steepest drop this year as domestic slump deepens",
@@ -4344,7 +4353,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/gwm-sept-2026-sales/",
       "linkType": "rss",
-      "id": 17
+      "id": 18
     },
     {
       "title": "Huawei HIMA delivers 37,490 vehicles in September, extending year-on-year decline to fourth month",
@@ -4353,7 +4362,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/huawei-hima-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 18
+      "id": 19
     },
     {
       "title": "Nio ES8 delivers 10,542 vehicles in September, topping 10,000 for third straight month",
@@ -4361,15 +4370,6 @@
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/nio-es8-deliveries-sept-2026/",
-      "linkType": "rss",
-      "id": 19
-    },
-    {
-      "title": "Xpeng September deliveries hit 2026 high despite slight year-on-year decline",
-      "summary": "Xpeng delivered 41,256 vehicles in September, down 0.78% year-on-year while up 5.50% from August. For details, please visit CnEVPost (cnev.co).",
-      "source": "CnEVPost",
-      "date": "2026-10-01",
-      "url": "https://cnevpost.com/2026/10/01/xpeng-sept-2026-deliveries/",
       "linkType": "rss",
       "id": 20
     }
