@@ -1,0 +1,12 @@
+# 이 프로젝트는 정적 HTML/CSS/JS 대시보드입니다 (서버리스 함수 없음).
+# data.json은 GitHub Actions(update_dashboard.py)가 매일 생성/커밋한 결과를 그대로 배포합니다.
+# 아래 Python 관련 파일들은 Vercel 배포에 필요 없으며, requirements.txt가 저장소 루트에 있으면
+# Vercel이 "Python 프로젝트"로 오판해 entrypoint(app.py 등)를 찾다가 빌드가 실패하므로 제외합니다.
+requirements.txt
+update_dashboard.py
+build_teardown_data.py
+parse_cell_report_pdf.py
+_gcp_sa_key.json
+__pycache__/
+*.pyc
+.github/
