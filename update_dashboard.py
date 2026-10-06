@@ -37,11 +37,12 @@ NEWS_POOL_SIZE = 120  # 유사기사/비기술 기사 필터링 전, RSS에서 �
 # (엔지니어 관심 타겟 쿼리 추가 + 엄격한 기술 관련성 필터링으로 걸러내는 양이 늘어난 만큼,
 # 필터링 후에도 최대한 20건에 근접하게 채울 수 있도록 후보 풀을 넘리 확보한다)
 
-# China EV & 배터리 뉴스: 정보 출처를 아래 2개 사이트로 한정 (공식 RSS 피드 사용 - 웹 스크래핑 대비
+# China EV & 배터리 뉴스: 정보 출처를 아래 3개 사이트로 한정 (공식 RSS 피드 사용 - 웹 스크래핑 대비
 # UI 개편에 안전하고 봇 차단 위험이 없음)
 CHINA_NEWS_FEEDS = [
     ("CnEVPost", "https://cnevpost.com/feed/"),
     ("CarNewsChina", "https://carnewschina.com/category/electric-vehicles/feed/"),
+    ("Gasgoo", "https://autonews.gasgoo.com/api/rss?ClassId=7"),  # Automotive News - EV 카테고리 RSS
 ]
 MAX_CHINA_NEWS = 20
 CHINA_NEWS_POOL_SIZE = 40
@@ -474,8 +475,8 @@ def build_news_briefing_prompt(news_items: list) -> str:
 def build_china_news_summary_prompt(raw_items: list) -> str:
     items_json = json.dumps(raw_items, ensure_ascii=False, indent=2)
     return f"""
-아래는 CnEVPost, CarNewsChina(둘 다 중국 전기차/배터리 산업 전문 영어 매체) 공식 RSS 피드에서 수집한 실제 기사
-후보 목록입니다 (title, url, date, source, description 포함, 원문은 영어입니다).
+아래는 CnEVPost, CarNewsChina, Gasgoo(모두 중국 전기차/배터리 산업 전문 영어 매체) 공식 RSS 피드에서 수집한 실제
+기사 후보 목록입니다 (title, url, date, source, description 포함, 원문은 영어입니다).
 당신은 한국 배터리/완성차 업계 실무자를 위한 "중국 EV/배터리 산업 동향" 큐레이터입니다. 아래 기준에 따라 기사를 선별하세요
 (번역은 하지 마세요 — 영어 원문 그대로 유지해야 합니다).
 
@@ -518,7 +519,7 @@ def build_china_news_briefing_prompt(news_items: list) -> str:
         indent=2,
     )
     return f"""
-아래는 오늘 대시보드에 실릴 "중국 EV/배터리 산업 동향" 뉴스 목록입니다 (CnEVPost/CarNewsChina에서 선별 및
+아래는 오늘 대시보드에 실릴 "중국 EV/배터리 산업 동향" 뉴스 목록입니다 (CnEVPost/CarNewsChina/Gasgoo에서 선별 및
 한국어로 번역된 기사들입니다). 당신은 중국 전기차/배터리 산업 전문 애널리스트입니다. 이 기사들을 바탕으로
 "카테고리별 브리핑 리포트"를 아래 JSON 스키마에 맞춰 작성하세요.
 
@@ -667,9 +668,9 @@ def fetch_google_news_rss(query: str, max_items: int = 15) -> list:
 
 
 def fetch_generic_rss(source_name: str, url: str, max_items: int = 20) -> list:
-    """표준 WordPress RSS 2.0 피드(CnEVPost/CarNewsChina 등, source 태그 없이 title/link/pubDate/description만
-    있는 형식)에서 기사 목록을 가져온다. Google News RSS와 달리 매체명이 피드 자체에 없으므로 source_name을
-    호출부에서 직접 지정한다."""
+    """표준 RSS 2.0 피드(CnEVPost/CarNewsChina/Gasgoo 등, title/link/pubDate/description 위주 형식)에서
+    기사 목록을 가져온다. 피드 자체의 <source>/매체명 표기와 무관하게 source_name을 호출부에서 직접 지정해
+    일관된 출처명을 유지한다."""
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     try:
         with urllib.request.urlopen(req, timeout=15) as resp:
@@ -710,7 +711,7 @@ def fetch_generic_rss(source_name: str, url: str, max_items: int = 20) -> list:
 
 
 def collect_china_news_raw(pool_size: int = CHINA_NEWS_POOL_SIZE) -> list:
-    """CnEVPost/CarNewsChina 공식 RSS 피드에서만 기사를 수집한다 (정보 출처를 이 2개 사이트로 한정)."""
+    """CnEVPost/CarNewsChina/Gasgoo 공식 RSS 피드에서만 기사를 수집한다 (정보 출처를 이 3개 사이트로 한정)."""
     collected = []
     for source_name, url in CHINA_NEWS_FEEDS:
         collected.extend(fetch_generic_rss(source_name, url, max_items=pool_size))
