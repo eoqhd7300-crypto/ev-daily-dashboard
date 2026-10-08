@@ -171,6 +171,7 @@
                 <div class="flex items-center space-x-2.5 min-w-0">
                     <span class="bg-sky-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md flex-shrink-0 animate-pulse">Daily update</span>
                     <span class="text-xs sm:text-sm font-bold text-sky-200 whitespace-nowrap">📰 글로벌 EV & 배터리 최신 동향 리포트</span>
+                    <span data-stale-key="newsBriefing" class="hidden"></span>
                     <span class="text-slate-500 hidden sm:inline">|</span>
                     <span id="globalNewsSourceCite" class="text-[11px] text-slate-400 hidden sm:inline"></span>
                 </div>
@@ -190,6 +191,7 @@
                 <div class="flex items-center space-x-2.5 min-w-0">
                     <span class="bg-rose-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md flex-shrink-0 animate-pulse">Daily update</span>
                     <span class="text-xs sm:text-sm font-bold text-rose-200 whitespace-nowrap">📰 China EV & 배터리 최신 동향 리포트</span>
+                    <span data-stale-key="chinaNewsBriefing" class="hidden"></span>
                     <span class="text-slate-500 hidden sm:inline">|</span>
                     <span class="text-[11px] text-slate-400 hidden sm:inline">출처: CnEVPost · CarNewsChina · Gasgoo RSS</span>
                 </div>
@@ -209,6 +211,7 @@
                 <div class="flex items-center space-x-2.5 min-w-0">
                     <span class="bg-violet-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md flex-shrink-0">WEEKLY</span>
                     <span class="text-xs sm:text-sm font-bold text-violet-200 whitespace-nowrap">🔬 CATL·BYD·Geely 배터리 특허 동향</span>
+                    <span data-stale-key="patentTrends" class="hidden"></span>
                     <span class="text-slate-500 hidden sm:inline">|</span>
                     <span class="text-[11px] text-slate-400 hidden sm:inline">출처: Google Patents 공개 데이터셋, 미국(USPTO), 유럽(EPO), 세계지식재산기구(WIPO), 중국(CNIPA) 등 100개 이상 특허청 공개 특허 통합 수집</span>
                 </div>
@@ -226,7 +229,8 @@
         <section class="bg-gradient-to-r from-teal-950 via-emerald-950 to-slate-900 border border-teal-700/60 rounded-2xl p-4 sm:p-5 text-white shadow-sm mb-6 no-print">
             <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center space-x-2.5 min-w-0">
-                    <span class="bg-teal-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md flex-shrink-0">실무 참고용</span>
+                    <span class="bg-teal-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md flex-shrink
+                    <span data-stale-key="benchmarkingPoints" class="hidden"></span>-0">실무 참고용</span>
                     <span class="text-xs sm:text-sm font-bold text-teal-200 whitespace-nowrap">🎯 배터리 벤치마킹 포인트</span>
                 </div>
             </div>
@@ -291,6 +295,7 @@
                 <div>
                     <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
                         <span>신규 전기차(EV) 기본 사양 & 가격 정보</span>
+                        <span data-stale-key="vehicles" data-stale-theme="light" class="hidden"></span>
                         <span class="text-xs font-normal text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md">⬇️ 최신 발표순 자동 정렬</span>
                     </h2>
                     <p class="text-xs text-slate-500 mt-0.5">발표일자가 가장 최신인 차량이 상단에 우선 배치됩니다. 행을 클릭(또는 ▼ 버튼)하면 차량 정보 & 배터리 기본 정보가 바로 아래에 펼쳐집니다. 체크박스는 "기본사양비교" 비교 대상 선택용입니다.</p>
@@ -469,7 +474,8 @@
         </div>
     </div>
 
-    <!-- Application JavaScript Logic -->
+    <!-- Ap src="./stale-badge.js"></script>
+    <scriptplication JavaScript Logic -->
     <script>
         // Dynamic Date Helper (Threshold: 09:00 AM Daily)
         window.getTargetReportDate = function() {
@@ -1978,6 +1984,8 @@
                 window.renderTable();
                 window.renderTopNewsPreview();
                 window.renderChinaNewsPreview();
+                // 항목별 갱신이 정체된 카드에는 "마지막 갱신" 배지를 표시한다 (정상이면 아무것도 표시하지 않음).
+                if (typeof window.renderStaleBadges === 'function') window.renderStaleBadges(data.status);
                 window.renderPatentTrendsPreview();
                 window.renderBenchmarkingPreview();
             } catch (err) {

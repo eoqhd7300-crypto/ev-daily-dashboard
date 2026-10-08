@@ -115,6 +115,18 @@
 - `generate_content_with_retry()`: 응답 오류 메시지에 `503`/`UNAVAILABLE`/`high demand` 등 일시적 장애 신호가 있을 때만 30초 대기 후 1회 재시도하도록 공용 헬퍼를 만들어 Gemini를 호출하는 9개 지점(신차/국내뉴스/China뉴스/두 브리핑/특허트렌드/벤치마킹/스펙보강) 전체에 적용했습니다. 할당량 초과(429) 등 재시도해도 소용없는 오류는 즉시 실패 처리해 기존 fallback이 처리하도록 두어, 오류 상황을 악화시키지 않습니다.
 - 특허 트렌드 카드에서만 적용돼 있던 `thinking_config=ThinkingConfig(thinking_budget=0)`(thinking 모델의 내부 추론 토큰이 출력 예산을 잠식해 응답이 잘리는 문제 예방)을 국내/China 뉴스 브리핑 생성 호출에도 동일하게 적용했습니다.
 - 모든 실패 지점에 `finish_reason`/응답 길이/예외 타입을 남기는 진단 로그를 추가해, 다음에 장애가 재발해도 원인(할당량/서버과부하/파싱오류)을 로그만으로 구분할 수 있게 했습니다.
+- **실측 확인된 장애 2 (카드 정체)**: 글로벌 브리핑 카드가 3일, 벤치마킹 카드가 4일 이상 같은 내용으로 멈춰 있었는데, 워크플로우는 계속 "성공"으로 끝나고 있었습니다. 원인은 Gemini가 구글 뉴스의 매우 긴 리다이렉션 url을 응답에 그대로 베껴 쓰다 한 글자라도 틀리면 url 완전일치 검증에서 항목이 통째로 탈락하고, 카드 전체가 실패 처리되어 어제 값이 유지되던 것이었습니다. 이를 막기 위해 브리핑·벤치마킹·특허동향 카드와 국내·China 뉴스 선별 단계는 url 대신 짧은 정수 `id`(벤치마킹은 `sourceType`+`sourceId`)로만 원본을 참조하게 하고, `source/date/url/title`은 항상 코드가 원본에서 직접 채우도록 바꿨습니다(`_resolve_patent_item`, `_resolve_grounded_benchmarking_item`). 가짜 id와 원문에 없는 `evidenceQuote`는 여전히 코드로 폐기합니다. 실제로 10/7 실행에서는 국내 뉴스 20건의 요약이 전부 제목 반복 문구(Gemini 선별 실패 후 키워드 필터 대체)였고, 선별 단계도 같은 방식(`_resolve_selected_news`)으로 바꿨습니다. 또한 벤치마킹 호출에만 빠져 있던 `thinking_budget=0`/`max_output_tokens`를 다른 호출과 동일하게 적용했습니다.
+
+### 1-12. 항목별 갱신 상태 기록 및 정체 알림 (조용한 실패 대응)
+
+**판정: 완료 (이메일 수신은 배포 후 테스트 알림으로 확인 필요)**
+
+- **문제**: 각 단계가 실패하면 어제 데이터를 유지하도록 설계되어 있어 워크플로우는 항상 성공으로 끝나고 `generatedAt`도 매일 갱신되므로, 특정 카드/목록이 며칠째 멈춰도 겉으로 드러나지 않았습니다(1-11의 카드 정체 사례).
+- **상태 기록**: `update_dashboard.py`가 `data.json`의 `status`에 7개 항목(신차/국내·China 뉴스/두 브리핑/벤치마킹/특허동향)별로 `lastSuccessAt`(실제로 새로 생성에 성공한 시각), `lastAttemptAt`, `state`(ok/degraded/failed), `reason`(실패 원인), `staleAfterHours`를 기록합니다. 실패해서 어제 값을 유지한 항목은 `lastSuccessAt`을 갱신하지 않는 것이 핵심입니다. `degraded`는 결과는 나왔지만 품질이 떨어진 경우(예: Gemini 선별 실패로 키워드 필터 사용)입니다. 신차는 "신규 차량이 없는 날"이 정상일 수 있어 호출·파싱 성공 여부를 기준으로 판단합니다.
+- **정체 기준**: 일 단위 항목 36시간, 특허동향 9일(주 1회 갱신). 24시간이 아닌 36시간인 이유는 GitHub 스케줄 지연으로 실제 실행 간격이 24시간을 넘기는 날이 있어(실측 24시간 45분) 24시간이면 정상인데도 오탐이 나기 때문입니다. 임계값은 `data.json`에도 함께 저장해 `update_dashboard.py` 한 곳에서만 관리합니다.
+- **화면 표시**: 정체 중인 카드/목록에만 `⚠ 마지막 갱신: YYYY-MM-DD (정체 중)` 배지를 표시합니다(`stale-badge.js`, `index.html`·`news.html` 공용). 백엔드가 멈추면 `data.json`이 갱신되지 않아 서버 쪽 표시가 불가능하므로 판정은 브라우저에서 합니다. 정상일 때는 아무것도 표시하지 않고, `status`가 없는 예전 `data.json`에서도 표시하지 않습니다.
+- **알림**: `health_check.yml`(갱신 워크플로우 완료 직후 + 매일 20:30 KST 보험 점검)이 `check_health.py`를 실행해 정체를 감지하면 GitHub Issue를 만들고 저장소 소유자를 담당자로 지정·@멘션해 이메일 알림이 가도록 합니다. 같은 정체 상태로는 새 이슈/메일을 반복하지 않고(구성이 바뀔 때만 댓글), 정상 복구되면 자동으로 닫습니다. Gemini 등 외부 API를 호출하지 않아 할당량을 소모하지 않습니다.
+- **한계**: 알림과 표시만 하며 자동 수정·재실행은 하지 않습니다(원인이 매번 달라 자동 복구가 오히려 위험하고, 재실행은 API 할당량을 소모하기 때문). 헬스체크도 GitHub Actions 위에서 돌아가므로 Actions 전체 장애는 감지하지 못합니다. 이슈 알림 메일은 GitHub 계정의 알림 설정/등록 이메일을 따릅니다.
 
 ---
 
@@ -123,9 +135,10 @@
 | 통제 장치 | 구현 위치 | 설명 |
 | --- | --- | --- |
 | **출처 표기** | `index.html`(`window.buildSourceCitationText`, 뉴스/특허 카드 🔍 원문 링크), `news.html`(뉴스 목록 원문 링크), `update_dashboard.py`(`google_patent_url` 실제 BigQuery 조회값) | 뉴스·특허 항목은 실제 원문 URL을 보존해 링크 제공. **신차 스펙 데이터는 출처 표기 자체가 없음**(1-5 참고). |
-| **교차 검증** | `apply_teardown_verified_cell_makers`, `cross_check_cell_maker_via_news`/`apply_news_cross_checked_cell_makers`(`update_dashboard.py`), `_is_valid_item`(특허 URL 검증), `_is_grounded_benchmarking_item`(벤치마킹 포인트 url/evidenceQuote 원문 대조, 2026-09-18 추가) | cellMaker 필드·특허 URL·벤치마킹 포인트 항목에 한정된 실제 코드 레벨 검증. 신차의 다른 스펙 필드(배터리 용량, 출력 등)에는 교차검증 로직 없음. |
+| **교차 검증** | `apply_teardown_verified_cell_makers`, `cross_check_cell_maker_via_news`/`apply_news_cross_checked_cell_makers`(`update_dashboard.py`), `_resolve_patent_item`(특허 id 역참조 + evidenceQuote 원문 대조), `_resolve_grounded_benchmarking_item`(벤치마킹 포인트 sourceType/sourceId 역참조 + evidenceQuote 원문 대조, 2026-09-18 추가·2026-10-08 id 기반으로 개편) | cellMaker 필드·특허 URL·벤치마킹 포인트 항목에 한정된 실제 코드 레벨 검증. 신차의 다른 스펙 필드(배터리 용량, 출력 등)에는 교차검증 로직 없음. |
 | **Fallback(대체 로직)** | `generate_vehicles`/`generate_news`/`generate_china_news`/`generate_patent_trends`/`backfill_tier1_specs`(모두 try/except로 실패 시 빈 값 반환, 기존 데이터 보존), `is_engineering_relevant`(뉴스 선별 실패 시 키워드 기반 최후 안전망), `extract_json`(JSON 파싱 실패 시 정규식 기반 재시도), `merge_china_news`의 `translated` 플래그(번역 실패 시 원문 노출 + 기존 번역 데이터는 덮어쓰지 않음) | 대부분의 Gemini 호출 실패 지점에 "기존 데이터 유지" 원칙의 fallback이 구현되어 있어, 파이프라인 전체가 한 번의 실패로 멈추지 않습니다. |
 | **일시적 오류 자동 재시도** | `generate_content_with_retry()`(`update_dashboard.py`) — Gemini 호출 9개 지점 전체에 적용, `503 UNAVAILABLE` 등 서버 과부하 신호일 때만 30초 후 1회 재시도 | 실측으로 확인된 장애(China 뉴스 번역 실패의 실제 원인이 503 서버 과부하였음)를 계기로 추가. 할당량 초과(429)는 재시도하지 않고 즉시 기존 fallback으로 넘어가 상황을 악화시키지 않음. |
+| **정체 감지·알림** | `update_dashboard.py`의 `_record_status`/`_build_status`(항목별 `status` 기록), `check_health.py` + `.github/workflows/health_check.yml`(정체 시 GitHub Issue 알림), `stale-badge.js`(화면 "마지막 갱신" 배지) | 단계 실패 시 어제 데이터를 유지하는 fallback이 오히려 정체를 숨기던 문제(1-11, 1-12)를 보완. 알림·표시만 하며 자동 수정/재실행은 하지 않음. |
 | **사람 승인/개입 게이트** | (1) 코드/기능 변경 배포 워크플로우: 개발 중 모든 변경사항은 사람이 로컬에서 직접 확인한 뒤 명시적으로 승인("푸시하세요")해야만 `git push`가 실행되는 개발 프로세스로 운영됨 (2) `daily_update.yml`의 `force_patent_refresh`/`force_full_refresh` 수동 체크박스(BigQuery 쿼리 남용 및 API 중복 소비 방지) (3) `build_teardown_data.py`/`parse_cell_report_pdf.py`의 로컬 전용 실행 + 수동 `git push` 요구 | **코드/기능 변경은 사람 검토를 거치는 개발 프로세스가 확립되어 있습니다.** 반면 매일 반복되는 `data.json` 데이터 갱신(뉴스/차량/특허 텍스트 생성)은 자동 커밋되는데, 이는 의도적 설계입니다 — 매일 반복되는 갱신까지 사람이 승인해야 한다면 자동화 도입 목적(수작업 제거) 자체가 퇴색됩니다. |
 
 ---

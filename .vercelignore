@@ -4,6 +4,7 @@
 # Vercel이 "Python 프로젝트"로 오판해 entrypoint(app.py 등)를 찾다가 빌드가 실패하므로 제외합니다.
 requirements.txt
 update_dashboard.py
+check_health.py
 build_teardown_data.py
 parse_cell_report_pdf.py
 _gcp_sa_key.json

@@ -93,6 +93,7 @@
             <button id="newsTab_china" data-tab="china" onclick="window.setNewsTab('china')" class="news-tab-btn px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-sky-50 transition">
                 🌐 중국기사
             </button>
+            <span id="newsStaleBadge" class="hidden"></span>
         </div>
 
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
@@ -103,9 +104,11 @@
     </main>
 
     <!-- Application JavaScript Logic -->
+    <script src="./stale-badge.js"></script>
     <script>
         let domesticNewsData = [];
         let chinaNewsDataAll = [];
+        let dashboardStatus = {}; // data.json의 항목별 갱신 상태(정체 배지 표시용)
         let activeNewsTab = 'domestic'; // 'domestic' | 'china' - 두 기사 출처를 섞지 않고 탭으로 분리
 
         window.renderNewsList = function(newsData, badgeClass) {
@@ -162,6 +165,14 @@
 
             const titleEl = document.getElementById('newsPageTitle');
             const subtitleEl = document.getElementById('newsPageSubtitle');
+            // 현재 탭의 기사 목록(news / chinaNews)이 정체 중이면 탭 옆에 "마지막 갱신" 배지를 표시한다.
+            if (typeof window.applyStaleBadge === 'function') {
+                window.applyStaleBadge(
+                    document.getElementById('newsStaleBadge'),
+                    dashboardStatus[tab === 'china' ? 'chinaNews' : 'news'],
+                    'light'
+                );
+            }
             if (tab === 'china') {
                 if (titleEl) titleEl.innerHTML = '<span>📰 China EV 최신 기사 브리핑</span><span class="text-xs font-normal text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-md">Daily update</span>';
                 if (subtitleEl) subtitleEl.innerText = '중국 전기차/배터리 산업 관련 기사 헤드라인 요약 입니다.(오전 신규 내용 출력이 지연된 경우 오후 업데이트 내용이 나타납니다.)';
@@ -177,6 +188,7 @@
         // rendered anymore (it used to flash foreign/Chinese placeholder articles briefly before
         // being replaced by real data on every refresh) - only actual collected news is shown.
         // URL의 ?tab=china 파라미터로 진입하면(메인 페이지 China 카드의 "전체 뉴스 보기" 링크) 중국기사 탭이
+                    dashboardStatus = (data.status && typeof data.status === 'object') ? data.status : {};
         // 기본 선택된다.
         window.addEventListener('DOMContentLoaded', async () => {
             try {

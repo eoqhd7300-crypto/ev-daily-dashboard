@@ -60,6 +60,101 @@ PATENT_TREND_CATEGORY_ORDER = ["소재 & 전극", "전해질 & 전고체", "셀 
 # Google 특허 공개 데이터셋의 색인 지연(최대 5개월+)을 보완하기 위해, "이번 주에 처음 조회된 특허"를
 # 추적할 때 누적해두는 seen url 목록의 최대 길이 (무한정 늘어나지 않도록 오래된 것부터 버림).
 PATENT_SEEN_URLS_MAX = 2000
+
+# ---------------------------------------------------------------------------------------------
+# 항목별 갱신 상태 기록 (data.json의 "status")
+# 각 단계가 실패하면 어제 데이터를 유지하도록 설계되어 있어 워크플로우는 항상 "성공"으로 끝나고, generatedAt도
+# 매일 갱신되므로 이것만으로는 특정 카드의 정체를 알 수 없었다(실측: 브리핑 카드 3일, 벤치마킹 카드 4일 이상 정체).
+# 그래서 항목별로 "마지막으로 실제 갱신에 성공한 시각(lastSuccessAt)"을 따로 기록한다. 이 값은
+#  - 헬스체크 워크플로우(check_health.py)의 정체 감지 기준이자
+#  - 프론트엔드의 "마지막 갱신" 정체 배지 표시 기준이다.
+# staleAfterHours도 data.json에 함께 저장해, 임계값을 이 파일 한 곳에서만 관리한다.
+# 일 단위 항목은 24시간이 아니라 36시간: GitHub 스케줄 지연으로 실제 실행 간격이 24시간을 넘기는 날이 있어
+# (실측 24시간 45분) 24시간으로 잡으면 정상인데도 오탐이 난다. 특허동향은 주 1회(월요일) 갱신이 정상 주기라 9일.
+STATUS_STALE_AFTER_HOURS = {
+    "vehicles": 36,
+    "news": 36,
+    "chinaNews": 36,
+    "newsBriefing": 36,
+    "chinaNewsBriefing": 36,
+    "benchmarkingPoints": 36,
+    "patentTrends": 9 * 24,
+}
+# 이번 실행에서 각 항목이 어떻게 끝났는지 (state: ok | degraded | failed). 시도하지 않은 항목(예: 월요일이
+# 아닐 때의 특허동향)은 여기에 없고, _build_status()가 이전 상태를 그대로 유지한다.
+_RUN_STATUS: dict = {}
+
+
+def _record_status(key: str, state: str, reason: str = "") -> None:
+    _RUN_STATUS[key] = {"state": state, "reason": (reason or "")[:200]}
+
+
+def _fail_status(key: str, reason: str) -> None:
+    """실패를 기록하고 None을 반환한다 (generate_* 함수의 `return None` 자리에서 `return _fail_status(...)`로 사용)."""
+    _record_status(key, "failed", reason)
+    return None
+
+
+def _short_exc(exc: BaseException) -> str:
+    return f"{type(exc).__name__}: {exc}"[:200]
+
+
+def _iso_from_date(date_str: str) -> str | None:
+    try:
+        return datetime.strptime(date_str, "%Y-%m-%d").replace(tzinfo=KST).isoformat()
+    except (TypeError, ValueError):
+        return None
+
+
+def _bootstrap_last_success(key: str, data: dict) -> str | None:
+    """status 도입 이전부터 정체 중이던 항목의 마지막 성공 시각을 내용에서 추정한다. 뉴스/브리핑은 포함된 기사 중
+    가장 최신 날짜를 쓴다(브리핑이 며칠째 멈춰 있어도 즉시 정체로 인식되도록). 그 외 항목은 추정할 근거가 없어
+    None을 반환한다(프론트/헬스체크가 '확인 불가'로 취급)."""
+    if key in ("news", "chinaNews"):
+        dates = [n.get("date") for n in (data.get(key) or []) if n.get("date")]
+    elif key in ("newsBriefing", "chinaNewsBriefing"):
+        dates = [
+            it.get("date")
+            for c in ((data.get(key) or {}).get("categories") or [])
+            for it in (c.get("items") or [])
+            if it.get("date")
+        ]
+    else:
+        return None
+    return _iso_from_date(max(dates)) if dates else None
+
+
+def _build_status(existing_status: dict | None, existing_data: dict, now_kst: datetime, vehicles_added: bool = False) -> dict:
+    """이전 status와 이번 실행 결과(_RUN_STATUS)를 합쳐 data.json에 저장할 status를 만든다.
+    lastSuccessAt은 이번 실행에서 실제로 새로 생성에 성공(ok/degraded)한 항목만 갱신하고, 실패해서 어제 값을
+    유지한 항목은 이전 값을 그대로 둔다 - 이 값이 정체 감지의 핵심이다."""
+    now_iso = now_kst.isoformat()
+    result = {}
+    for key, stale_hours in STATUS_STALE_AFTER_HOURS.items():
+        prev = (existing_status or {}).get(key) or {}
+        entry = {
+            "lastSuccessAt": prev.get("lastSuccessAt"),
+            "lastAttemptAt": prev.get("lastAttemptAt"),
+            "state": prev.get("state") or "unknown",
+            "reason": prev.get("reason") or "",
+            "staleAfterHours": stale_hours,
+        }
+        run = _RUN_STATUS.get(key)
+        if run is not None:
+            entry["lastAttemptAt"] = now_iso
+            entry["state"] = run["state"]
+            entry["reason"] = run["reason"]
+            if run["state"] in ("ok", "degraded"):
+                entry["lastSuccessAt"] = now_iso
+        if not entry["lastSuccessAt"]:
+            entry["lastSuccessAt"] = _bootstrap_last_success(key, existing_data)
+        if key == "vehicles":
+            # 신차는 하루 이틀 안 늘어나는 것이 정상일 수 있어 정체 판단에는 쓰지 않고 참고용으로만 기록한다.
+            entry["lastAddedAt"] = now_iso if vehicles_added else prev.get("lastAddedAt")
+        result[key] = entry
+    return result
+
+
 BATTERY_PATENT_SQL = """
 WITH filtered_patents AS (
   SELECT
@@ -380,9 +475,25 @@ vehicles 배열의 각 항목은 반드시 아래 예시와 동일한 수준의 
 
 
 def build_news_summary_prompt(raw_items: list) -> str:
-    items_json = json.dumps(raw_items, ensure_ascii=False, indent=2)
+    # url(구글 뉴스의 매우 긴 base64류 리다이렉션 링크)을 Gemini가 그대로 베껴쓰게 하면 한 글자만 틀려도 원본과
+    # 매칭되지 않아 항목이 통째로 탈락하고(실측: 국내 뉴스 20건이 전부 탈락해 키워드 필터로 대체됨),
+    # 그래서 url 대신 짧은 정수 id로만 기사를 참조하게 하고 title/source/date/url은 코드가 id로 역참조해 채운다.
+    items_json = json.dumps(
+        [
+            {
+                "id": i,
+                "title": r.get("title", ""),
+                "source": r.get("source", ""),
+                "date": r.get("date", ""),
+                "description": r.get("description", ""),
+            }
+            for i, r in enumerate(raw_items)
+        ],
+        ensure_ascii=False,
+        indent=2,
+    )
     return f"""
-아래는 RSS로 수집한 실제 전기차/배터리 관련 뉴스 원본 후보 목록입니다 (title, url, date, source, description 포함).
+아래는 RSS로 수집한 실제 전기차/배터리 관련 뉴스 원본 후보 목록입니다 (id, title, date, source, description 포함).
 당신은 배터리/전기차 엔지니어를 위한 뉴스 큐레이터입니다. 이 목록에서 "엔지니어 관점에서 기술적으로 의미 있는 기사"만 선별하고,
 같은 사건을 다룬 유사 기사는 1건만 남긴 뒤, 선택한 기사에 한글 요약(summary)을 작성해 JSON 배열로만 응답하세요.
 
@@ -402,7 +513,8 @@ def build_news_summary_prompt(raw_items: list) -> str:
 - 같은 사건이나 같은 연구/발표(예: 특정 대학·기업의 공동 연구 결과, 리콜, 화재 사고)를 서로 다른 매체가 다른 제목/각도로
   보도한 경우, 제목이 크게 달라 보여도 같은 사건이면 가장 정보가 상세한 1건만 선택하고 나머지는 제외하세요
   (언론사가 다르다는 이유만으로 중복 포함하지 마세요. 같은 보도자료를 바탕으로 한 기사는 모두 "같은 사건"입니다).
-- title, url, date, source 값은 선택한 항목에 대해 절대 변경하지 말고 원본 그대로 유지하세요.
+- 선택한 항목은 원본 목록에 주어진 정수 id를 그대로 복사해 적으세요 (반드시 포함, 변형/지어내기 금지).
+  title/url/date/source는 작성하지 마세요 (id로만 참조하며, 포함해도 무시됩니다).
 - summary는 description 내용을 바탕으로 자연스러운 한글 뉴스 요약 문장(1~2문장)으로 작성하세요 (직역이 아니라 핵심 내용 요약).
   description이 비어있거나 정보가 부족하면 title을 근거로 합리적으로 요약하세요.
 - 최대 {MAX_NEWS}건까지, 최신순으로 선택하세요. 기준을 통과하는 기사가 적으면 그보다 적은 건수만 반환해도 됩니다.
@@ -411,9 +523,9 @@ def build_news_summary_prompt(raw_items: list) -> str:
 원본 후보 목록:
 {items_json}
 
-응답 형식 (배열, 각 원소는 아래 5개 필드만 포함, 선택된 기사만):
+응답 형식 (배열, 각 원소는 아래 2개 필드만 포함, 선택된 기사만):
 [
-  {{"title": "...", "summary": "...", "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+  {{"id": 0, "summary": "..."}}
 ]
 """
 
@@ -477,10 +589,24 @@ def build_news_briefing_prompt(news_items: list) -> str:
 
 
 def build_china_news_summary_prompt(raw_items: list) -> str:
-    items_json = json.dumps(raw_items, ensure_ascii=False, indent=2)
+    # 국내 뉴스 선별과 동일한 이유로 url 대신 정수 id로만 기사를 참조하게 하고 title/source/date/url은 코드가 채운다.
+    items_json = json.dumps(
+        [
+            {
+                "id": i,
+                "title": r.get("title", ""),
+                "source": r.get("source", ""),
+                "date": r.get("date", ""),
+                "description": r.get("description", ""),
+            }
+            for i, r in enumerate(raw_items)
+        ],
+        ensure_ascii=False,
+        indent=2,
+    )
     return f"""
 아래는 CnEVPost, CarNewsChina, Gasgoo(모두 중국 전기차/배터리 산업 전문 영어 매체) 공식 RSS 피드에서 수집한 실제
-기사 후보 목록입니다 (title, url, date, source, description 포함, 원문은 영어입니다).
+기사 후보 목록입니다 (id, title, date, source, description 포함, 원문은 영어입니다).
 당신은 한국 배터리/완성차 업계 실무자를 위한 "중국 EV/배터리 산업 동향" 큐레이터입니다. 아래 기준에 따라 기사를 선별하세요
 (번역은 하지 마세요 — 영어 원문 그대로 유지해야 합니다).
 
@@ -493,16 +619,17 @@ def build_china_news_summary_prompt(raw_items: list) -> str:
 - title/summary는 영어 원문을 그대로 유지하되, summary는 description을 바탕으로 1~2문장 영어 요약으로
   정리하세요(직역/번역 금지, 원문 표현을 최대한 그대로 활용). description이 비어있으면 title을 근거로
   합리적으로 요약하세요.
-- url, date, source 값은 선택한 항목에 대해 절대 변경하지 말고 원본 그대로 유지하세요.
+- 선택한 항목은 원본 목록에 주어진 정수 id를 그대로 복사해 적으세요 (반드시 포함, 변형/지어내기 금지).
+  title/url/date/source는 작성하지 마세요 (id로만 참조하며, 포함해도 무시됩니다).
 - 최대 {MAX_CHINA_NEWS}건까지, 최신순으로 선택하세요. 기준을 통과하는 기사가 적으면 그보다 적은 건수만 반환해도 됩니다.
 - 마크다운 코드블록이나 설명 문장 없이 순수 JSON 배열만 응답하세요.
 
 원본 후보 목록:
 {items_json}
 
-응답 형식 (배열, 각 원소는 아래 5개 필드만 포함, 선택된 기사만):
+응답 형식 (배열, 각 원소는 아래 2개 필드만 포함, 선택된 기사만):
 [
-  {{"title": "...(영어 원문)", "summary": "...(영어)", "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+  {{"id": 0, "summary": "...(영어)"}}
 ]
 """
 
@@ -825,7 +952,7 @@ def load_existing_data() -> dict:
     empty = {
         "vehicles": [], "news": [], "fx": None, "newsBriefing": None,
         "chinaNews": [], "chinaNewsBriefing": None, "patentTrends": None,
-        "benchmarkingPoints": None, "patentSeenUrls": [], "newsCandidateCount": None,
+        "benchmarkingPoints": None, "patentSeenUrls": [], "newsCandidateCount": None, "status": {},
     }
     if not os.path.exists(DATA_PATH):
         return dict(empty)
@@ -843,6 +970,7 @@ def load_existing_data() -> dict:
             "benchmarkingPoints": data.get("benchmarkingPoints"),
             "patentSeenUrls": data.get("patentSeenUrls") or [],
             "newsCandidateCount": data.get("newsCandidateCount"),
+            "status": data.get("status") or {},
         }
     except Exception:  # noqa: BLE001 - 손상된 파일이면 빈 값으로 시작
         return dict(empty)
@@ -1346,12 +1474,20 @@ def generate_vehicles(client: "genai.Client", today_str: str, launch_hints: list
             contents=build_vehicle_prompt(today_str, launch_hints, existing_names),
         )
         payload = extract_json(response.text)
+        # 응답이 형식에 맞게 파싱되면 신차가 0건이어도 "성공"이다(신규 차량이 없는 날은 정상). 파싱 실패/형식 오류는
+        # 실패로 기록한다 - 두 경우 모두 반환값은 [](기존 목록 유지)이지만 status에서는 구분된다.
+        if not isinstance(payload, dict) or not isinstance(payload.get("vehicles"), list):
+            print("차량 데이터 응답 형식이 올바르지 않아 차량 목록 갱신을 건너뜁니다.")
+            _record_status("vehicles", "failed", "응답 형식 오류(vehicles 배열 없음)")
+            return []
         vehicles = payload.get("vehicles") or []
         if not vehicles:
             print("차량 데이터 응답이 비어 있어 차량 목록 갱신을 건너뜁니다.")
+        _record_status("vehicles", "ok")
         return vehicles
     except Exception as exc:  # noqa: BLE001 - 실패해도 기존 vehicles 유지
         print(f"차량 데이터 생성 실패, 차량 목록 갱신을 건너뜁니다: {exc}")
+        _record_status("vehicles", "failed", _short_exc(exc))
         return []
 
 
@@ -1368,6 +1504,38 @@ def _fallback_news_summary(raw: dict) -> str:
     return title
 
 
+def _resolve_selected_news(summarized: object, raw_items: list) -> tuple:
+    """Gemini의 선별/요약 응답([{"id": 0, "summary": "..."}])을 id로 원본 RSS 항목에 역참조해 최종 기사 목록을 만든다.
+    url을 모델이 그대로 베껴쓰게 하면 한 글자만 틀려도 항목이 탈락하던 문제를 막기 위해(실측: 국내 뉴스가 전부 탈락해
+    키워드 필터로 대체됨) title/source/date/url은 항상 원본에서 채우고 모델 응답에서는 id와 summary만 쓴다.
+    범위를 벗어난 id와 중복 id는 건너뛴다. (선별된 기사 리스트, 제외된 항목 수)를 반환한다."""
+    selected, seen, dropped = [], set(), 0
+    if not isinstance(summarized, list):
+        return selected, dropped
+    for entry in summarized:
+        if not isinstance(entry, dict):
+            continue
+        idx = entry.get("id")
+        if isinstance(idx, str) and idx.strip().isdigit():
+            idx = int(idx.strip())
+        if isinstance(idx, bool) or not isinstance(idx, int) or not 0 <= idx < len(raw_items) or idx in seen:
+            dropped += 1
+            continue
+        seen.add(idx)
+        raw = raw_items[idx]
+        selected.append(
+            {
+                "title": raw["title"],
+                "summary": (entry.get("summary") or "").strip() or _fallback_news_summary(raw),
+                "source": raw["source"],
+                "date": raw["date"],
+                "url": raw["url"],
+                "linkType": "rss",
+            }
+        )
+    return selected, dropped
+
+
 def generate_news(client: "genai.Client") -> tuple:
     """(선별된 뉴스 리스트, RSS 후보 건수) 튜플을 반환한다. 후보 건수는 화면의 "총 N건 기사 중 20건 선별"
     표기에만 쓰이는 메타 값이며, 뉴스 선별 로직 자체와는 무관하다."""
@@ -1377,10 +1545,10 @@ def generate_news(client: "genai.Client") -> tuple:
     print(f"뉴스 RSS 수집 완료: 후보 {candidate_count}건")
     if not raw_items:
         print("RSS 뉴스 수집 실패(0건) - 뉴스 갱신을 건너뜁니다.")
+        _record_status("news", "failed", "RSS 수집 0건")
         return [], 0
-    raw_by_key = {_norm(raw["url"]): raw for raw in raw_items}
-
     selected = []
+    gemini_failure_reason = ""
     try:
         response = generate_content_with_retry(
             client,
@@ -1403,28 +1571,18 @@ def generate_news(client: "genai.Client") -> tuple:
         response_text = response.text or ""
         print(f"뉴스 선별/요약 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
         summarized = extract_json(response_text)
-        if isinstance(summarized, list):
-            for entry in summarized:
-                if not isinstance(entry, dict) or not entry.get("url"):
-                    continue
-                raw = raw_by_key.get(_norm(entry["url"]))
-                if raw is None:
-                    continue  # 모델이 원본에 없는 url을 만들어낸 경우 방어적으로 제외
-                selected.append(
-                    {
-                        "title": raw["title"],
-                        "summary": entry.get("summary") or _fallback_news_summary(raw),
-                        "source": raw["source"],
-                        "date": raw["date"],
-                        "url": raw["url"],
-                        "linkType": "rss",
-                    }
-                )
+        selected, dropped = _resolve_selected_news(summarized, raw_items)
+        if dropped:
+            print(f"뉴스 선별: 유효하지 않은 id {dropped}건 제외")
     except Exception as exc:  # noqa: BLE001 - 선별/요약 실패 시 키워드 기반 필터로 대체
         print(f"뉴스 선별/요약 생성 실패, 키워드 기반 필터로 대체합니다: {type(exc).__name__}: {exc}")
+        gemini_failure_reason = _short_exc(exc)
 
+    used_fallback = False
     if not selected:
         # Gemini 필터링이 실패했을 때의 최후 안전망: 키워드 기반 엔지니어 관련성 필터만 적용
+        used_fallback = True
+        gemini_failure_reason = gemini_failure_reason or "Gemini 응답에서 유효한 기사 0건"
         for raw in raw_items:
             if not is_engineering_relevant(raw):
                 continue
@@ -1443,14 +1601,21 @@ def generate_news(client: "genai.Client") -> tuple:
     # Gemini가 선택한 결과라도, 시장점유율/실적/소비자 팁 위주 기사가 섞여 들어올 수 있으므로
     # 제목+요약 기준으로 한 번 더 최종 필터링한다 (Gemini 판단에만 의존하지 않는 방어선).
     selected = [n for n in selected if is_engineering_relevant({"title": n["title"], "description": n.get("summary", "")})]
-    return dedup_similar_titles(selected)[:MAX_NEWS], candidate_count
+    final_news = dedup_similar_titles(selected)[:MAX_NEWS]
+    if not final_news:
+        _record_status("news", "failed", "선별 결과 0건" + (f" ({gemini_failure_reason})" if gemini_failure_reason else ""))
+    elif used_fallback:
+        _record_status("news", "degraded", f"Gemini 선별/요약 실패로 키워드 필터 사용 - 요약 품질 저하 ({gemini_failure_reason})")
+    else:
+        _record_status("news", "ok")
+    return final_news, candidate_count
 
 
 def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | None:
     """최종 확정된 뉴스 목록을 바탕으로 카테고리별 브리핑(키워드 태깅/시사점 포함)을 생성한다.
     실패 시 None을 반환하며, 호출부에서는 기존 briefing을 유지하거나 프론트가 구버전 문장형으로 대체 표시한다."""
     if not news_items:
-        return None
+        return _fail_status("newsBriefing", "입력 기사 없음")
     try:
         response = generate_content_with_retry(
             client,
@@ -1470,10 +1635,10 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
         print(f"뉴스 브리핑 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
         payload = extract_json(response_text)
         if not isinstance(payload, dict):
-            return None
+            return _fail_status("newsBriefing", "응답이 JSON 객체 형식이 아님")
         categories = payload.get("categories")
         if not isinstance(categories, list) or not categories:
-            return None
+            return _fail_status("newsBriefing", "응답에 categories 없음")
         # id(정수 인덱스) 기준으로 원본 기사를 역참조해 headline/summary/tags만 모델 응답을 신뢰하고,
         # source/date/url/title은 항상 우리 쪽 원본 데이터에서 채운다 (Gemini가 긴 url을 베껴쓰다
         # 생기는 오탈자로 전체 브리핑이 통째로 탈락하는 문제를 원천 차단).
@@ -1505,7 +1670,12 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
             if cleaned_items:
                 cleaned_categories.append({"name": cat.get("name") or "기타", "items": cleaned_items})
         if not cleaned_categories:
-            return None
+            return _fail_status("newsBriefing", "유효한 항목 0건(id 검증 실패)")
+        covered = sum(len(c["items"]) for c in cleaned_categories)
+        if covered < max(1, len(news_items) // 2):
+            _record_status("newsBriefing", "degraded", f"기사 {len(news_items)}건 중 {covered}건만 반영")
+        else:
+            _record_status("newsBriefing", "ok")
         return {
             "keyTakeaways": _as_string_list(payload.get("keyTakeaways")),
             "categories": cleaned_categories,
@@ -1513,7 +1683,7 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
         }
     except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
         print(f"뉴스 브리핑(카테고리/시사점) 생성 실패, 건너뜁니다: {type(exc).__name__}: {exc}")
-        return None
+        return _fail_status("newsBriefing", _short_exc(exc))
 
 
 def generate_china_news(client: "genai.Client") -> list:
@@ -1524,10 +1694,11 @@ def generate_china_news(client: "genai.Client") -> list:
     print(f"China EV 뉴스 RSS 수집 완료: 후보 {len(raw_items)}건")
     if not raw_items:
         print("China RSS 뉴스 수집 실패(0건) - China 뉴스 갱신을 건너뜁니다.")
+        _record_status("chinaNews", "failed", "RSS 수집 0건")
         return []
-    raw_by_key = {_norm(raw["url"]): raw for raw in raw_items}
 
     selected = []
+    gemini_failure_reason = ""
     try:
         response = generate_content_with_retry(
             client,
@@ -1549,29 +1720,19 @@ def generate_china_news(client: "genai.Client") -> list:
         response_text = response.text or ""
         print(f"China 뉴스 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
         summarized = extract_json(response_text)
-        if isinstance(summarized, list):
-            for entry in summarized:
-                if not isinstance(entry, dict) or not entry.get("url"):
-                    continue
-                raw = raw_by_key.get(_norm(entry["url"]))
-                if raw is None:
-                    continue  # 모델이 원본에 없는 url을 만들어낸 경우 방어적으로 제외
-                selected.append(
-                    {
-                        "title": entry.get("title") or raw["title"],
-                        "summary": entry.get("summary") or _fallback_news_summary(raw),
-                        "source": raw["source"],
-                        "date": raw["date"],
-                        "url": raw["url"],
-                        "linkType": "rss",
-                    }
-                )
+        selected, dropped = _resolve_selected_news(summarized, raw_items)
+        if dropped:
+            print(f"China 뉴스 선별: 유효하지 않은 id {dropped}건 제외")
     except Exception as exc:  # noqa: BLE001
         print(f"China 뉴스 선별 생성 실패: {type(exc).__name__}: {exc}")
+        gemini_failure_reason = _short_exc(exc)
 
     # 선별 호출 자체가 통째로 실패한 경우(selected가 비어있음)에는, 최신 기사가 아예 안 보이는 것보다는
     # RSS 원본을 최신순으로 그대로 노출하는 편이 낫다 (어차피 평소에도 영어 원문으로 노출되므로 체감상 차이는 적음).
+    used_fallback = False
     if not selected:
+        used_fallback = True
+        gemini_failure_reason = gemini_failure_reason or "Gemini 응답에서 유효 기사 0건"
         print("선별 결과가 없어 이번 실행분은 RSS 원문을 최신순으로 그대로 노출합니다.")
         for raw in raw_items[:MAX_CHINA_NEWS]:
             selected.append(
@@ -1586,13 +1747,20 @@ def generate_china_news(client: "genai.Client") -> list:
             )
 
     selected.sort(key=lambda n: n["date"], reverse=True)
-    return dedup_similar_titles(selected)[:MAX_CHINA_NEWS]
+    final_china_news = dedup_similar_titles(selected)[:MAX_CHINA_NEWS]
+    if not final_china_news:
+        _record_status("chinaNews", "failed", "선별 결과 0건")
+    elif used_fallback:
+        _record_status("chinaNews", "degraded", f"Gemini 선별 실패로 RSS 원문 노출 ({gemini_failure_reason})")
+    else:
+        _record_status("chinaNews", "ok")
+    return final_china_news
 
 
 def generate_china_news_briefing(client: "genai.Client", news_items: list) -> dict | None:
     """China EV/배터리 뉴스 최종 목록을 바탕으로 카테고리별 브리핑(키워드 태깅/시사점 포함)을 생성한다."""
     if not news_items:
-        return None
+        return _fail_status("chinaNewsBriefing", "입력 기사 없음")
     try:
         response = generate_content_with_retry(
             client,
@@ -1612,10 +1780,10 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
         print(f"China 뉴스 브리핑 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
         payload = extract_json(response_text)
         if not isinstance(payload, dict):
-            return None
+            return _fail_status("chinaNewsBriefing", "응답이 JSON 객체 형식이 아님")
         categories = payload.get("categories")
         if not isinstance(categories, list) or not categories:
-            return None
+            return _fail_status("chinaNewsBriefing", "응답에 categories 없음")
         # id(정수 인덱스) 기준으로 원본 기사를 역참조 - 국내 브리핑과 동일한 이유로 url 베껴쓰기 오류에
         # 의한 전체 탈락을 방지한다.
         cleaned_categories = []
@@ -1646,7 +1814,12 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
             if cleaned_items:
                 cleaned_categories.append({"name": cat.get("name") or "기타", "items": cleaned_items})
         if not cleaned_categories:
-            return None
+            return _fail_status("chinaNewsBriefing", "유효한 항목 0건(id 검증 실패)")
+        covered = sum(len(c["items"]) for c in cleaned_categories)
+        if covered < max(1, len(news_items) // 2):
+            _record_status("chinaNewsBriefing", "degraded", f"기사 {len(news_items)}건 중 {covered}건만 반영")
+        else:
+            _record_status("chinaNewsBriefing", "ok")
         return {
             "keyTakeaways": _as_string_list(payload.get("keyTakeaways")),
             "categories": cleaned_categories,
@@ -1654,7 +1827,7 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
         }
     except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
         print(f"China 뉴스 브리핑(카테고리/시사점) 생성 실패, 건너뜁니다: {type(exc).__name__}: {exc}")
-        return None
+        return _fail_status("chinaNewsBriefing", _short_exc(exc))
 
 
 def should_refresh_patent_trends(now_kst: datetime) -> bool:
@@ -1842,6 +2015,7 @@ def generate_patent_trends(client: "genai.Client", patents: list, seen_urls: lis
     (호출부에서는 브리핑이 None이면 지난주 버전을 그대로 유지한다)"""
     seen_urls = list(seen_urls or [])
     if not patents:
+        _record_status("patentTrends", "failed", "특허 조회 결과 0건 (GCP_SA_KEY_JSON 미설정 또는 BigQuery 조회 실패)")
         return None, seen_urls
     seen_url_set = {_norm(u) for u in seen_urls}
     prompt = build_patent_trend_prompt(patents)
@@ -1871,9 +2045,11 @@ def generate_patent_trends(client: "genai.Client", patents: list, seen_urls: lis
         payload = extract_json(response_text)
         if not isinstance(payload, dict):
             print("특허 트렌드 응답이 JSON 객체 형식이 아니어서 건너뜁니다.")
+            _record_status("patentTrends", "failed", "응답이 JSON 객체 형식이 아님")
             return None, seen_urls
         categories = payload.get("categories")
         if not isinstance(categories, list) or not categories:
+            _record_status("patentTrends", "failed", "응답에 categories 없음")
             return None, seen_urls
         # (A) id(정수 인덱스) 기준으로 원본 특허를 역참조한다 - 국내/China 뉴스 브리핑 카드에서 실측된
         # 문제(모델이 긴 url을 베껴쓰다 생기는 오류로 근거 검증에서 항목이 통째로 탈락)를 막기 위해,
@@ -1937,6 +2113,7 @@ def generate_patent_trends(client: "genai.Client", patents: list, seen_urls: lis
 
 
         if not categories_by_name:
+            _record_status("patentTrends", "failed", "유효한 카테고리/항목 0건(id·근거 인용문 검증 실패)")
             # 응답 자체가 파싱은 됐지만 유효한 카테고리를 하나도 만들지 못한 경우
             # (형식 오류 등) - 지난주 데이터를 덮어쓰지 않도록 실패로 처리한다.
             return None, seen_urls
@@ -1971,6 +2148,7 @@ def generate_patent_trends(client: "genai.Client", patents: list, seen_urls: lis
         if len(updated_seen) > PATENT_SEEN_URLS_MAX:
             updated_seen = updated_seen[-PATENT_SEEN_URLS_MAX:]
 
+        _record_status("patentTrends", "ok")
         return {
             "keyTakeaways": _as_string_list(payload.get("keyTakeaways")),
             "categories": final_categories,
@@ -1978,6 +2156,7 @@ def generate_patent_trends(client: "genai.Client", patents: list, seen_urls: lis
         }, updated_seen
     except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
         print(f"특허 트렌드 브리핑 생성 실패, 건너뜁니다: {exc}")
+        _record_status("patentTrends", "failed", _short_exc(exc))
         return None, seen_urls
 
 
@@ -2183,7 +2362,7 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
     실패 시 None을 반환하며, 호출부에서는 어제 버전을 그대로 유지한다."""
     if not vehicles and not news and not china_news and not (patent_trends or {}).get("categories"):
         print("벤치마킹 포인트: 근거로 쓸 데이터(신차/뉴스/China뉴스/특허)가 하나도 없어 건너뜁니다.")
-        return None
+        return _fail_status("benchmarkingPoints", "근거로 쓸 입력 데이터 없음")
     slim = _slim_benchmarking_inputs(vehicles, news, china_news, patent_trends)
     evidence_index = _build_benchmarking_evidence_index(slim)
     prompt = build_benchmarking_prompt(vehicles, news, china_news, patent_trends)
@@ -2193,7 +2372,14 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
             client,
             model=MODEL_NAME,
             contents=prompt,
-            config=types.GenerateContentConfig(temperature=0.2),
+            config=types.GenerateContentConfig(
+                temperature=0.2,
+                # 다른 카드(브리핑/특허/뉴스 선별)에서 실측 확인된 문제와 같다: thinking 모델의 내부 추론 토큰이
+                # 출력 예산을 잠식해 응답이 중간에 잘리면 JSON 파싱이 실패하고 카드가 어제 값으로 유지된다.
+                # thinking을 끄고 max_output_tokens를 명시한다 (항목 6~8개 분량이라 8192 토큰이면 충분).
+                thinking_config=types.ThinkingConfig(thinking_budget=0),
+                max_output_tokens=8192,
+            ),
         )
         finish_reason = None
         try:
@@ -2205,11 +2391,11 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
         payload = extract_json(response_text)
         if not isinstance(payload, dict):
             print(f"벤치마킹 포인트 응답이 JSON 객체 형식이 아니어서 건너뜁니다. (응답 앞부분: {response_text[:300]!r})")
-            return None
+            return _fail_status("benchmarkingPoints", f"응답이 JSON 객체 형식이 아님 (finish_reason={finish_reason})")
         categories = payload.get("categories")
         if not isinstance(categories, list) or not categories:
             print(f"벤치마킹 포인트 응답에 유효한 categories가 없어 건너뜁니다. (payload keys: {list(payload.keys())})")
-            return None
+            return _fail_status("benchmarkingPoints", "응답에 categories 없음")
         cleaned_categories = []
         total_before, total_after = 0, 0
         for cat in categories:
@@ -2233,15 +2419,16 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
             print(f"벤치마킹 포인트: 근거 검증 실패로 {total_before - total_after}건 폐기 ({total_before} -> {total_after}건)")
         if not cleaned_categories:
             print("벤치마킹 포인트: 카테고리는 있었지만 유효한 item(headline 포함 + 근거 검증 통과)이 하나도 없어 건너뜁니다.")
-            return None
+            return _fail_status("benchmarkingPoints", f"유효한 항목 0건(근거 검증 실패, 원본 {total_before}건)")
         print(f"벤치마킹 포인트 생성 완료 (카테고리 {len(cleaned_categories)}개, 총 항목 {sum(len(c['items']) for c in cleaned_categories)}건)")
+        _record_status("benchmarkingPoints", "ok")
         return {
             "keyTakeaways": _as_string_list(payload.get("keyTakeaways")),
             "categories": cleaned_categories,
         }
     except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
         print(f"벤치마킹 포인트 생성 실패, 건너뜁니다: {type(exc).__name__}: {exc}")
-        return None
+        return _fail_status("benchmarkingPoints", _short_exc(exc))
 
 
 def main() -> None:
@@ -2298,12 +2485,14 @@ def main() -> None:
         china_news = generate_china_news(client)
     except Exception as exc:  # noqa: BLE001
         print(f"China 뉴스 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        _record_status("chinaNews", "failed", _short_exc(exc))
         china_news = []
     merged_china_news = merge_china_news(existing.get("chinaNews") or [], china_news)
     try:
         china_news_briefing = generate_china_news_briefing(client, merged_china_news)
     except Exception as exc:  # noqa: BLE001
         print(f"China 뉴스 브리핑 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        _record_status("chinaNewsBriefing", "failed", _short_exc(exc))
         china_news_briefing = None
     if china_news_briefing is None:
         china_news_briefing = existing.get("chinaNewsBriefing")
@@ -2321,6 +2510,7 @@ def main() -> None:
             patent_trends = None
     except Exception as exc:  # noqa: BLE001
         print(f"특허 동향 갱신 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        _record_status("patentTrends", "failed", _short_exc(exc))
         patent_trends = None
     if patent_trends is None:
         patent_trends = existing.get("patentTrends")
@@ -2339,12 +2529,15 @@ def main() -> None:
             "benchmarkingPoints": existing.get("benchmarkingPoints"),
             "patentSeenUrls": patent_seen_urls,
             "newsCandidateCount": news_candidate_count,
+            "status": _build_status(existing.get("status"), existing, now_kst),
         }
         with open(DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
         return
 
+    names_before = {v.get("name") for v in existing["vehicles"]}
     merged_vehicles = merge_vehicles(existing["vehicles"], vehicles)
+    vehicles_added = any(v.get("name") not in names_before for v in merged_vehicles)
     merged_news = merge_news(existing["news"], news)
 
     backfilled_count = backfill_tier1_specs(client, merged_vehicles, today_str)
@@ -2367,6 +2560,7 @@ def main() -> None:
         news_briefing = generate_news_briefing(client, merged_news)
     except Exception as exc:  # noqa: BLE001
         print(f"뉴스 브리핑 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        _record_status("newsBriefing", "failed", _short_exc(exc))
         news_briefing = None
     if news_briefing is None:
         # 생성 실패 시 어제 버전을 그대로 유지해 프론트가 갑자기 구도없이 문장형으로 후퇴하는 사태를 최소화한다.
@@ -2379,6 +2573,7 @@ def main() -> None:
         benchmarking_points = generate_benchmarking_points(client, merged_vehicles, merged_news, merged_china_news, patent_trends)
     except Exception as exc:  # noqa: BLE001
         print(f"벤치마킹 포인트 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        _record_status("benchmarkingPoints", "failed", _short_exc(exc))
         benchmarking_points = None
     if benchmarking_points is None:
         benchmarking_points = existing.get("benchmarkingPoints")
@@ -2395,6 +2590,7 @@ def main() -> None:
         "benchmarkingPoints": benchmarking_points,
         "patentSeenUrls": patent_seen_urls,
         "newsCandidateCount": news_candidate_count,
+        "status": _build_status(existing.get("status"), existing, now_kst, vehicles_added),
     }
 
     with open(DATA_PATH, "w", encoding="utf-8") as f:

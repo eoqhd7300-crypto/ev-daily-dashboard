@@ -1,5 +1,6 @@
 __pycache__/
 *.pyc
+health_report.md
 .env
 
 # GCP 서비스 계정 키 (BigQuery 특허 동향 조회용) - 절대 커밋하지 않음

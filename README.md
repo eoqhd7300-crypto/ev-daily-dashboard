@@ -49,6 +49,8 @@
   - 환율 정보
 - **중복 실행 방지**: `data.json`의 `generatedAt` 날짜가 오늘 날짜와 같으면(스케줄/수동 구분 없이) API 호출 없이 실행을 건너뜁니다 — 같은 날 스케줄+수동 중복 실행으로 무료 API 할당량이 두 배로 소모되는 것을 막기 위함입니다(강제 재실행은 `force_full_refresh` 옵션으로 가능).
 - **일시적 서버 오류 재시도**: Gemini API가 `503 UNAVAILABLE`(서버 과부하) 오류를 반환하면 30초 대기 후 1회 자동 재시도합니다(할당량 초과는 재시도하지 않고 즉시 기존 데이터를 유지).
+- **항목별 갱신 상태 기록**: 각 단계가 실패하면 어제 데이터를 유지하므로 워크플로우는 항상 성공으로 끝납니다. 그래서 `data.json`의 `status`에 항목별(신차/국내·China 뉴스/두 브리핑 카드/벤치마킹/특허동향) `lastSuccessAt`(마지막으로 실제 갱신에 성공한 시각)·`state`(ok/degraded/failed)·`reason`·`staleAfterHours`(정체 기준: 일 단위 36시간, 특허동향 9일)를 따로 기록합니다.
+- **정체 표시·알림**: 기준 시간을 넘겨 갱신이 멈춘 카드/목록에는 화면에 `⚠ 마지막 갱신: YYYY-MM-DD (정체 중)` 배지가 표시되고(`stale-badge.js`), `health_check.yml`이 정체를 감지하면 GitHub Issue를 만들어 이메일로 알립니다(정상 복구 시 자동 종료). 알림·표시만 하며 자동 수정/재실행은 하지 않습니다.
 
 ## 3. 사용 기술 스택
 
@@ -69,6 +71,7 @@
 - GitHub Actions
   - `daily_update.yml`: 매일(KST 09:10) `update_dashboard.py` 실행 후 `data.json`을 자동 커밋/푸시 (수동 실행 + 특허 동향 강제 갱신/전체 강제 재실행 옵션 지원)
   - `deploy_pages.yml`: `master` 브랜치 변경 또는 위 자동 갱신 워크플로우 완료 시 GitHub Pages로 자동 배포
+  - `health_check.yml`: 갱신 워크플로우 완료 직후 및 매일 20:30(KST) `check_health.py`로 `data.json`의 항목별 갱신 상태를 점검해, 정체 시 GitHub Issue(이메일 알림)를 만들고 복구되면 자동으로 닫음 (수동 실행의 `test_alert` 옵션으로 이메일 수신 테스트 가능)
 - GitHub Pages — 정적 사이트 호스팅
 
 ### 외부 데이터 소스
@@ -86,6 +89,8 @@ EV-Daily Report by gemini/
 ├── teardown.html                 # Teardown Data 비교 + Cell Report 상세 + Excel 내보내기
 ├── spec-compare.html             # 배터리 스펙 기본 정보 비교표
 ├── data-web-source.html          # 데이터 수집 참고 웹사이트 목록
+├── check_health.py               # data.json의 항목별 갱신 상태(status) 점검 → 정체 시 알림용 리포트 생성
+├── stale-badge.js                # 정체 중인 카드/목록에 "마지막 갱신" 배지를 표시하는 공용 스크립트
 ├── update_dashboard.py           # 매일 실행되는 메인 데이터 갱신 스크립트 (data.json 생성)
 ├── build_teardown_data.py        # 로컬 전용: A2MAC1 teardown 엑셀 원본 → teardown_data.json 생성
 ├── parse_cell_report_pdf.py      # 로컬 전용: A2MAC1 Cell Report PDF → teardown_cellreport_data.json/js 생성
@@ -95,6 +100,7 @@ EV-Daily Report by gemini/
 ├── teardown_cellreport_data.js   # 위 데이터의 JS 전역변수 버전 (parse_cell_report_pdf.py 산출물)
 ├── requirements.txt              # Python 의존성 목록
 ├── .github/
+│       ├── health_check.yml      # 데이터 정체 감지 및 이메일(GitHub Issue) 알림 워크플로우
 │   └── workflows/
 │       ├── daily_update.yml      # 매일 데이터 자동 갱신 워크플로우
 │       └── deploy_pages.yml      # GitHub Pages 자동 배포 워크플로우
