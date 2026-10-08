@@ -825,7 +825,7 @@ def load_existing_data() -> dict:
     empty = {
         "vehicles": [], "news": [], "fx": None, "newsBriefing": None,
         "chinaNews": [], "chinaNewsBriefing": None, "patentTrends": None,
-        "benchmarkingPoints": None, "patentSeenUrls": [],
+        "benchmarkingPoints": None, "patentSeenUrls": [], "newsCandidateCount": None,
     }
     if not os.path.exists(DATA_PATH):
         return dict(empty)
@@ -842,6 +842,7 @@ def load_existing_data() -> dict:
             "patentTrends": data.get("patentTrends"),
             "benchmarkingPoints": data.get("benchmarkingPoints"),
             "patentSeenUrls": data.get("patentSeenUrls") or [],
+            "newsCandidateCount": data.get("newsCandidateCount"),
         }
     except Exception:  # noqa: BLE001 - 손상된 파일이면 빈 값으로 시작
         return dict(empty)
@@ -1367,13 +1368,16 @@ def _fallback_news_summary(raw: dict) -> str:
     return title
 
 
-def generate_news(client: "genai.Client") -> list:
+def generate_news(client: "genai.Client") -> tuple:
+    """(선별된 뉴스 리스트, RSS 후보 건수) 튜플을 반환한다. 후보 건수는 화면의 "총 N건 기사 중 20건 선별"
+    표기에만 쓰이는 메타 값이며, 뉴스 선별 로직 자체와는 무관하다."""
     print("뉴스 RSS 수집 시작...")
     raw_items = collect_recent_news_raw()
-    print(f"뉴스 RSS 수집 완료: 후보 {len(raw_items)}건")
+    candidate_count = len(raw_items)
+    print(f"뉴스 RSS 수집 완료: 후보 {candidate_count}건")
     if not raw_items:
         print("RSS 뉴스 수집 실패(0건) - 뉴스 갱신을 건너뜁니다.")
-        return []
+        return [], 0
     raw_by_key = {_norm(raw["url"]): raw for raw in raw_items}
 
     selected = []
@@ -1439,7 +1443,7 @@ def generate_news(client: "genai.Client") -> list:
     # Gemini가 선택한 결과라도, 시장점유율/실적/소비자 팁 위주 기사가 섞여 들어올 수 있으므로
     # 제목+요약 기준으로 한 번 더 최종 필터링한다 (Gemini 판단에만 의존하지 않는 방어선).
     selected = [n for n in selected if is_engineering_relevant({"title": n["title"], "description": n.get("summary", "")})]
-    return dedup_similar_titles(selected)[:MAX_NEWS]
+    return dedup_similar_titles(selected)[:MAX_NEWS], candidate_count
 
 
 def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | None:
@@ -2284,7 +2288,9 @@ def main() -> None:
         vehicle_launch_hints,
         [v.get("name") for v in existing.get("vehicles", []) if v.get("name")],
     )
-    news = generate_news(client)
+    news, fresh_candidate_count = generate_news(client)
+    # RSS 수집이 실패(0건)한 날에는 어제 값을 그대로 유지한다.
+    news_candidate_count = fresh_candidate_count or existing.get("newsCandidateCount")
 
     # China EV/배터리 뉴스는 국내 차량/뉴스 파이프라인과 완전히 독립적인 별도 소스(CnEVPost/CarNewsChina)이므로,
     # 여기서 오류가 나더라도 위 vehicles/news 결과 저장을 막지 않도록 별도로 격리한다.
@@ -2332,6 +2338,7 @@ def main() -> None:
             "patentTrends": patent_trends,
             "benchmarkingPoints": existing.get("benchmarkingPoints"),
             "patentSeenUrls": patent_seen_urls,
+            "newsCandidateCount": news_candidate_count,
         }
         with open(DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
@@ -2387,6 +2394,7 @@ def main() -> None:
         "patentTrends": patent_trends,
         "benchmarkingPoints": benchmarking_points,
         "patentSeenUrls": patent_seen_urls,
+        "newsCandidateCount": news_candidate_count,
     }
 
     with open(DATA_PATH, "w", encoding="utf-8") as f:
