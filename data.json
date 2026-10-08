@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T11:07:50.351128+09:00",
+  "generatedAt": "2026-10-08T14:52:17.001223+09:00",
   "vehicles": [
     {
       "id": "seres_aito_m8_l3_ev",
@@ -1292,14 +1292,14 @@
       "packInfo": "900V 스와핑 겸용 모듈러 고밀도 팩",
       "cellInfo": "CALB 46105 High-Power Cylindrical Cell",
       "chargingSafety": "3분 탈착 시 자동 커넥터 안전 점검 및 900V 수냉 내열 플레이트",
-      "trim": "Executive",
+      "trim": "Ultra-Luxury",
       "topSpeed": "220 km/h",
       "zeroToHundred": "3.6초",
-      "maxOutput": "520 kW",
+      "maxOutput": "520 kW (707 ps)",
       "maxChargePower": "600 kW",
-      "packVoltage": "900V",
-      "packType": "CTP (Swappable Pack)",
-      "cellType": "46105 Cylindrical Cell",
+      "packVoltage": "900 V",
+      "packType": "Swappable Battery Pack",
+      "cellType": "46105 Large Cylindrical",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -1311,10 +1311,10 @@
       "cellEnergy": "-",
       "cellCapacityAh": "-",
       "cellComposition": "NCM",
-      "cellDimensionsMeasured": "ø46mm × 105mm",
+      "cellDimensionsMeasured": "46mm (Dia) x 105mm (Height)",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "292 Wh/kg",
-      "specLastCheckedAt": "2026-09-24"
+      "specLastCheckedAt": "2026-10-08"
     },
     {
       "id": "volvo_ex60_spa3_2026",
@@ -1574,14 +1574,14 @@
       "packInfo": "경량화 CTP 적용 LFP 단일 모듈 팩",
       "cellInfo": "CATL High-Safety LFP Cell",
       "chargingSafety": "배터리 관리 시스템(BMS) 실시간 과충전 및 하부 충격 감지 서킷",
-      "trim": "Standard Range",
+      "trim": "Standard",
       "topSpeed": "155km/h",
       "zeroToHundred": "8.1초",
-      "maxOutput": "120 kW",
+      "maxOutput": "120 kW (163 ps)",
       "maxChargePower": "130 kW",
-      "packVoltage": "400V",
-      "packType": "Modular Pack",
-      "cellType": "LFP Prismatic Cell",
+      "packVoltage": "400 V",
+      "packType": "Standard Module-based Pack",
+      "cellType": "Prismatic LFP",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -1592,11 +1592,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "LFP",
+      "cellComposition": "LFP (Lithium Iron Phosphate)",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-24",
+      "specLastCheckedAt": "2026-10-08",
       "cellMakerCheckedAt": "2026-09-10"
     },
     {
@@ -3761,12 +3761,57 @@
   "news": [
     {
       "title": "에코프로비엠·삼성SDI, 전고체 배터리 소재 공동개발⋯2027년 양산 가능성 대비 - 엠투데이",
-      "summary": "에코프로비엠과 삼성SDI가 2027년 상용화를 목표로 전고체 배터리용 양극재 등 핵심 소재 공동 개발에 착수했습니다.",
+      "summary": "에코프로비엠과 삼성SDI가 2027년 상용화를 목표로 차세대 전고체 배터리용 양극재 등 핵심 소재 공동 개발을 추진합니다.",
       "source": "엠투데이",
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBCcDdrT1hZNF93QjdYbkFuSnRBM3oxSVNYWmR1SFRoOXJDU0djTG1TaWxxSkJSVGJFOFZXZGF1S2dDdVJ3bWZFOXJhYkVOT3Z1alJZWEZBRlRHMHlOUmJ3WHdqUDlpYlBjbE9uQ3RYTQ?oc=5",
       "linkType": "rss",
       "id": 1
+    },
+    {
+      "title": "LG엔솔, 캐나다産 리튬 정광 24만톤 확보…고성능 전기차 70만대 분량 - 조선비즈 - Chosunbiz",
+      "summary": "LG에너지솔루션이 캐나다 자원 개발 기업으로부터 리튬 정광 24만 톤을 확보하며 북미 지역 ESS 및 고성능 전기차 배터리 공급망 강화를 추진합니다.",
+      "source": "Chosunbiz",
+      "date": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxORC03VVl2ZGphS1pYYXhCcUctTjFhbEhSV3J5NGgxNnhBYXpTRkcxa3NKSlEwQWxtX3F1Q3pBamtFZVE0d0gtUUxrVGQzNUUzWkVaZ2JiN1FaSTk3MTlkQ05MMUZabWU4OG1ucDUtcjRKMWhLdWdUQmpBRXlVUXI1YktsZGzSAZgBQVVfeXFMUFlPZXVGUmo3dEgzeHFTS0NnQWpaa0NYeHdSZFM4U2NVZjdJRzdLaTJ3eDdDYTJaQUstS05JNDROaGE3eFIxT2h6cHdaV0w2Ni0ya0dsSjlKVU9UMXRoR0twdlJvRHRHQzNFSUpGQ2JTVldMMHljbDIwc1ZiZ211QWc1N0tzY25KdW16S2NKeGFWQVdHX2RVcUk?oc=5",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "케이엔에스, 안성 신공장 증설 결정…생산능력 2배로 확대 - 이데일리",
+      "summary": "케이엔에스가 안성 신공장 증설을 결정하여 배터리 부품 및 관련 설비 생산 능력을 기존 대비 2배로 확대합니다.",
+      "source": "이데일리",
+      "date": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNYVJnZ0ViemRleDVyVEtuTWJkVDE3dTVDekgzUnhSai1RZTJxeEdQSWRDcFRhRDZidzdvYzlTNnNRR1A2VGRnZzVHd2NqMUo0VEVhTElpUDlmVENpaXphQmNESXNSYmtLaWFOM09qRmZKejR2TGtfTHJiak4tUFE4dw?oc=5",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
+      "title": "포장재·배터리로 번진 환경규제…KEA, 14일 수출기업 실무 대응법 제시 - 전자신문",
+      "summary": "글로벌 환경 규제 강화에 대응해 배터리 제조 공정 및 포장재 관련 유해물질·수출 규제 대응 방안이 산업계에 제시됩니다.",
+      "source": "전자신문",
+      "date": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBialgxT1lMSTJCcmdwdGdkV2NLX0tqcG5xRFNwLUsxaVFVTzhTOUtKWGhSWll6NVM0ZmY3U0dHNl9SRW1uaWdSZDhuMEkydw?oc=5",
+      "linkType": "rss",
+      "id": 4
+    },
+    {
+      "title": "폐배터리 재활용·재사용 관련주 온기… 완성차·셀 제조사 재활용 생태계 구축 박차 - 핀포인트뉴스",
+      "summary": "완성차 및 배터리 셀 제조사들이 폐배터리 리사이클링 및 재사용 기술을 통한 차세대 배터리 순환 생태계 구축에 속도를 내고 있습니다.",
+      "source": "핀포인트뉴스",
+      "date": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9xbHhRaWtkcmJqcTlkdnpLVWU3b19vUE5ZV1A3bzVrNzhyZXZjMjZXOGVmbndVOTVXbjZhWThZYzNvX0pfVEhiRzZMOEdONXQxdzZDUVpXeEJxM0tCNnQtX29iclJtUXBOMi1oSUhvQjBZU2dDLUFn0gF3QVVfeXFMT3FseFFpa2RyYmpxOWR2ektVZTdvX29QTllXUDdvNWs3OHJldmMyNlc4ZWZud1U5NVduNmFZOFljM29fSl9USGJHNkw4R041dDF3NkNRWld4QnEzS0I2dC1fb2JyUm1RcE4yLWhJSG9CMFlTZ0MtQWc?oc=5",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
+      "title": "아이엘, 차세대 전고체배터리 기술 개발…에너지 밀도 10배 수준 확보 - MTN 머니투데이방송",
+      "summary": "아이엘이 기존 대비 에너지 밀도를 크게 향상시킨 차세대 전고체 배터리 기술 개발 성과를 발표했습니다.",
+      "source": "MTN 머니투데이방송",
+      "date": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFA2cnRaZlR2UU92ZFBXNnNiNHRMdExoTG05d3pNcllEUmlxYkVIZmowU3JuYUlnQ0tCQmZLcnRNVndNUUtxX2o2VXQ5bHJqdlRpNEpfOXhZdmctVGtYTVhNTlJkMVk?oc=5",
+      "linkType": "rss",
+      "id": 6
     },
     {
       "title": "1∼8월 비중국 전기차배터리 사용량 24%↑…중국 CATL·BYD 강세 - 연합뉴스",
@@ -3775,7 +3820,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5NbVdDX2lyQ0pvOXMxUmVPM2dYamUtT183d28zaGsxTzFQbEowbThlaUxldndfcjk5N0M5M3hMYzNSTWdmNGF6dkpTTnRCUEFVMU9wRktyUFY1bFdtclFCc9IBYEFVX3lxTE5NbVdDX2lyQ0pvOXMxUmVPM2dYamUtT183d28zaGsxTzFQbEowbThlaUxldndfcjk5N0M5M3hMYzNSTWdmNGF6dkpTTnRCUEFVMU9wRktyUFY1bFdtclFCcw?oc=5",
       "linkType": "rss",
-      "id": 2
+      "id": 7
     },
     {
       "title": "\"연 19% 질주\"… 글로벌 전기차 배터리 시장, 2027년 '1,346억 달러' 성장 전망 - 글로벌이코노믹",
@@ -3784,7 +3829,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPaGdpOWFXUFBCZUZIWHluLWpwYjFDWnBQTmhQOVlCcG1VeFBCM0N5UUNENkRaejlubUtFclJfTVJpRWQtcm1MdDJETEJNS19acEEyQzZXUTljQ1VvZHZtUWhaRHhFS0w4SlNaUmhnM2JzVy1BM0oxSWdVb2pocS1TdFJIMVhkanh6?oc=5",
       "linkType": "rss",
-      "id": 3
+      "id": 8
     },
     {
       "title": "전기차 배터리 구매 전 알아야 할 충전 관련 정보는 무엇일까요? - Vietnam.vn",
@@ -3793,7 +3838,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOX3hHQVNSaFhwN1EzckQxeW44cVVtc25DdFNUS0FTVjRpeWlhS0JTdGlzUDkxQjRVWFZRUmxVaExQalM0RlpzQjBLeG8yWHVZVmJaU2hWZUdOQjNrZVdnU19leW02dUNLNGh1VlZwemFjTjhhN1pJdkswd1FwN2FXVmtadWhnVmk5ZzJIa09WbE1SUQ?oc=5",
       "linkType": "rss",
-      "id": 4
+      "id": 9
     },
     {
       "title": "[배터리의 역습] ③지하주차장이 위험하다 - 한국재난안전뉴스",
@@ -3802,7 +3847,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5raF96M0QyWXRTTU9ydDIxLUNNb3l0SmpFWkpLUEQyVmtwOUNaMlVHUTV3Zmo4RE9TdTItZTN6czZJX1AyZlVUUDJGZkFKYmY1WkljU0pFbktwcTB0dEE?oc=5",
       "linkType": "rss",
-      "id": 5
+      "id": 10
     },
     {
       "title": "완성차·배터리, '맞춤형 R&D'로 시장 공략 가속 - 매일일보",
@@ -3811,7 +3856,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9QWVo5ZG52ZGJFZ2RSVjRfRWFJVHN3Ylp4cTF1QWpwMjhGNEt1Qy1VckRrY2lSYkxfQUgyVWFVb3A0LWFMVHpRdW5rWGFqZkRMX0VtS1BpRmpPWWhEQU9NYS1XX2s?oc=5",
       "linkType": "rss",
-      "id": 6
+      "id": 11
     },
     {
       "title": "\"배터리값 떼면 전기차 문턱 낮아질까\"... 국회가 꺼낸 소유권 분리 해법은? - 오토트리뷴",
@@ -3820,7 +3865,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBSaTBsNXBUemtEaEhvQzR4RXo4Tm9QaGtNWW44RFUyNVJDc0ZBbU52cnZfRnBXNTlaU1FkbVB1Y2U2cE10MUF2TFBIOWJnd0dLU2J2dDBXR1oyWkM0d1psMTBFaUgwRnR6dF95dk1lYmE?oc=5",
       "linkType": "rss",
-      "id": 7
+      "id": 12
     },
     {
       "title": "[솔로이코노미] 차값 낮추고 매달 구독료…배터리 빌리는 전기차, 정말 저렴할까 - 데일리팝",
@@ -3829,7 +3874,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5KM252ZnFEMjR4RzVJeXdjWkdCTkxNOWFkaHVtQ3d3MGVRcHYxdDhJS094VmJDTFg1eTFwQnRYV3UzNVppTWRVWDNpR0NReUhOREFQSFA3ZFFnVDdSUHFpTkFpSWVrZzFY?oc=5",
       "linkType": "rss",
-      "id": 8
+      "id": 13
     },
     {
       "title": "“영하 10도에서도 끄떡없다” 충북대·SK온, 겨울 약한 전기차 배터리 정면 돌파 - 청주일보",
@@ -3838,7 +3883,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5Vd1RGSW5vaS1fSUhFdl8ydzB1QS1nOGlvQ29HQXROd2JlNlp0eUdJLTJLYzI1ekZUd0hrRV9scjZLaEhtTTB0ekdxY3lGWjBhaWdHcTdzbm5JdUxrVFVSTGNwcTVmVjVPa1Jn?oc=5",
       "linkType": "rss",
-      "id": 9
+      "id": 14
     },
     {
       "title": "\"BYD 잡겠다\"며 日 최저가 경전기차 낸 스즈키… 배터리는 'BYD 제품' - 글로벌이코노믹",
@@ -3847,16 +3892,16 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOZDFTRnduYnZsN3p4aGI5NDlDbUI3emQ5c1N6cUxfZEVwcnJFb3lCbTJKWldDYnlrbnF6aHNIWG8yU21aZEt2UVRxSVZiTWFqSVdMcktHREJLQklWTndaX2JDRlptRkpSRHlMendhWW5ST0Fjb2RLNVowaGZNMm1IdmZNeWN4YVVs?oc=5",
       "linkType": "rss",
-      "id": 10
+      "id": 15
     },
     {
       "title": "전기차용 ‘스마트 제어’ 완속충전기 설치, 그리 힘든가 [질문의 기술] - 더스쿠프",
-      "summary": "전기차 화재 예방 및 충전 상태 모니터링을 위해 PLC 모듈이 탑재된 '스마트 제어' 완속충전기 보급 필요성과 기술적 제반 사항을 다룹니다.",
+      "summary": "전력 과부하 차단 및 과충전 방지 등 배터리 안전성을 높이기 위한 스마트 제어 기능 완속 충전기 보급 방안이 논의되고 있습니다.",
       "source": "더스쿠프",
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5CNWVNYU90MXN4Mzg3V2FsaWpZMVJoZl9RemdHSnhoUUd4ZXk1UlpoOGZFT3YwaEJzS1FuZ0duRzU2MkR3OThBUXZTT2lQei1RQTlnUkRJcmtNcWgtV2pEQnByWUVNUnN3dS1nUUJ3?oc=5",
       "linkType": "rss",
-      "id": 11
+      "id": 16
     },
     {
       "title": "전기차 화재 검색어 옆의 궁금증, 충전 요금을 kWh로 미리 계산하는 법 - 스페셜타임스",
@@ -3865,16 +3910,16 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1uT1dGSlZwZjByMmhKOWU3UWx3TnpNbW1qRF9xNVVpaXl0UUZVempmY0k5bGNhZkJoSnMwR3BZWS00NmlUUUVvZVphNVVoaXBuYURoY19qRUg5cTZrbUllSmgwLWtUNnN3YXlsd3hhakl3Zw?oc=5",
       "linkType": "rss",
-      "id": 12
+      "id": 17
     },
     {
       "title": "포스코, 아르헨 리튬 2공장 가동…배터리 핵심소재 자체 조달망 열렸다 - 글로벌이코노믹",
-      "summary": "포스코, 아르헨 리튬 2공장 가동…배터리 핵심소재 자체 조달망 열렸다 - 글로벌이코노믹",
+      "summary": "포스코그룹이 아르헨티나 염수 리튬 2공장을 준공하며 배터리 양극재 핵심 원소재의 자체 공급망 체계 구축을 본격화했습니다.",
       "source": "글로벌이코노믹",
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOUF9mUXRLRjM1dHY4dkdwN051bzVlX3dFREEtVmphbUJaQ2I1d0lIQU5xaWRFR1M1ZEdYX3FwR2s1bTBJZE5qTmNZVkVnbmdoWHE2WmJkS0w3M3RBSDAwbnhSODE1b1VuNGQxYVBYTVV5ZFFBS29WTDNDZ25iaF9Bc0xEUFZpZkZk?oc=5",
       "linkType": "rss",
-      "id": 13
+      "id": 18
     },
     {
       "title": "포스코홀딩스, 배터리 핵심 원료 '리튬' 생산 능력 두 배로 키운다 - www.ebn.co.kr",
@@ -3883,7 +3928,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1qZDIxc19lVVg0Nm9Jc1M1TkVBWF9DblZCb0YtTmZwVUNLem1sNmZ2ZVQ0TDRoX1NyRjl3eDk0WFdPdVFxeXpRcU5DWEFCdWdFT01yallENGF1R1J3MUFONndIcHZfSDBH?oc=5",
       "linkType": "rss",
-      "id": 14
+      "id": 19
     },
     {
       "title": "포스코홀딩스, 아르헨티나 리튬 2공장 준공 - 디일렉",
@@ -3892,51 +3937,6 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1xZjRmSU9OdUZISE9felJnQ3g3NjRUdnplY1hEMVJEY29mTHZ2ZnM5bGpSa1NZZzZYSHRmVUxRbHBBNC0zUGlRM3pqTGVzOVl1ZGtJbWlhaFFLREc3djhLQ2tlMEtsdw?oc=5",
       "linkType": "rss",
-      "id": 15
-    },
-    {
-      "title": "포스코, 아르헨티나 염수리튬 2공장 상공정 준공…연 5만톤 수산화리튬 체제 기틀 - 위키리크스한국",
-      "summary": "포스코, 아르헨티나 염수리튬 2공장 상공정 준공…연 5만톤 수산화리튬 체제 기틀 - 위키리크스한국",
-      "source": "위키리크스한국",
-      "date": "2026-10-07",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9EQVltNXk4VjlWMkRWQWdic2Y2bHlEUkJzUGhVVkNBaW81UGIxMUJhc09fTTJFRXhKRkNyd3BJTjVlTVFyZ3FPRFJRQlQzN2dqbWQ1bS12V1hZaTduZmZKZDN5NXd1XzFXZW5sdUN3WUg?oc=5",
-      "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "WiPowerOne Shows 1.5 kW Wireless Charging for Mobile Robots - 에이빙",
-      "summary": "WiPowerOne Shows 1.5 kW Wireless Charging for Mobile Robots - 에이빙",
-      "source": "에이빙",
-      "date": "2026-10-07",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4zcE1lTV92ZkFpRVhrWkdET2ZrVnRzSjZ4QXRET2JaMTRDaC1xNWNEcmR3SVJJZlBCT2F1alR1OTZ1U1BHZk5WTm5YVnJZMmZYMlQ5Y1BGdWZkbEdvWG9pTEo1dTA2RHPSAWtBVV95cUxQRmVTQkRBZkNnUEZIWVVOQjZ3VFhNeXVRWVV3UFd4TEYxa2J2WWZXOHF2M2lVckRZRk5JQlRzcVVPSGVhNGM3dVRnbWQyc2JleGZZajNoS2J4eE4yVzktOEUxY2pLMk0wbVJ5OA?oc=5",
-      "linkType": "rss",
-      "id": 17
-    },
-    {
-      "title": "‘ESS 100% 국산화’에 가려진 빈틈 [줌인IT] - IT조선",
-      "summary": "‘ESS 100% 국산화’에 가려진 빈틈 [줌인IT] - IT조선",
-      "source": "IT조선",
-      "date": "2026-10-07",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Za0RvUGhHQzYzaTgxdkpvNFJLa2N2YkNRLUtNdzVRQ1dhMElJNHZpQm9Gb05NVS1oY1VEVjNJOHVWNXdGZmtER2c0eldST19oT0FtcHhjVWEyT3BHcWhyU0QwZlFxejluSlpsQ1NOdHbSAXRBVV95cUxNRlMxRTdyUXBveWNGUnFocExXdy1HcU1mZVgyNF9EM25RUjJyaDZ6Z2RRcHVtZ2VrWGdaeExOSFVGMjFGcjNYT1REUUJDeVVNalZvdmlHTUswejRNaDM3V3A5TXE5bS02aU5pNVI5eXNSeFEzTA?oc=5",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "포스코퓨처엠, 삼성SDI에 6조원 양극재 공급 - 조선일보",
-      "summary": "포스코퓨처엠, 삼성SDI에 6조원 양극재 공급 - 조선일보",
-      "source": "조선일보",
-      "date": "2026-10-07",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOR09xNno0SndJb2VLUmNRNHNvVUV3STZUYld6c2wxcGFneHNEcEpOMGVZZGMzc3BsWEh3TTJaSUwyN2JFbXB5azhiU3pSdE00TkxmWmRHaGsxYzRpeGc4amd5NmJWOVNZc2R1T2stVEFEMWxnNkhySWx6NDJDUFk2aXRaeFBtUGR5RmhZXzlIYw?oc=5",
-      "linkType": "rss",
-      "id": 19
-    },
-    {
-      "title": "휴대폰 방전 막은 게 86배 투자대박의 비결? … ‘배터리 풍수’의 비밀 - 매일경제",
-      "summary": "휴대폰 방전 막은 게 86배 투자대박의 비결? … ‘배터리 풍수’의 비밀 - 매일경제",
-      "source": "매일경제",
-      "date": "2026-10-07",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFAyaDBrQm4yQ3FyMXdqS1k5TEJsbzdlT2Q5MFlPRFRXQjd3MW9jMTV4MXRTSGtuT3NZOTV0XzhGcHJfWjE4NlY0aFg0d3NmblJnYjRYZg?oc=5",
-      "linkType": "rss",
       "id": 20
     }
   ],
@@ -3944,7 +3944,7 @@
     "usdKrw": 1339.09,
     "eurKrw": 1499.63,
     "cnyKrw": 199.49,
-    "updatedAt": "2026-10-08T11:07:50.458624+09:00"
+    "updatedAt": "2026-10-08T14:52:17.152995+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
@@ -4195,7 +4195,7 @@
   "chinaNews": [
     {
       "title": "BYD sells 463,561 vehicles in Sept. 2026 as overseas volume jumps 153.9%",
-      "summary": "BYD sold 463,561 new vehicles in September 2026, driven by a 153.9% year-on-year surge in overseas sales reaching 179,877 units.",
+      "summary": "BYD sold 463,561 vehicles in September 2026, with cumulative January–September sales reaching 3,131,576 units. Overseas sales surged 153.9% year-on-year to 179,877 units during the month, highlighting the international market as an increasingly vital volume growth driver.",
       "source": "Gasgoo",
       "date": "2026-10-08",
       "url": "https://autonews.gasgoo.com/articles/news/byd-sells-463561-vehicles-in-sept-2026-as-overseas-volume-jumps-1539-2107803611743870977",
@@ -4204,7 +4204,7 @@
     },
     {
       "title": "BYD Da Han EV to launch October 13 with 0.197 Cd drag and 1,008 km range",
-      "summary": "BYD will launch the 5.2-meter Da Han EV featuring an ultra-low 0.197 Cd drag coefficient and a range of up to 1,008 km.",
+      "summary": "BYD will launch the 5.2-meter Da Han EV on October 13, featuring a drag coefficient of 0.197 Cd and an energy consumption of 11.5 kWh/100 km. The vehicle claims a range of up to 1,008 km.",
       "source": "CarNewsChina",
       "date": "2026-10-07",
       "url": "https://carnewschina.com/2026/10/07/byd-da-han-ev-to-launch-october-13-with-0-197-cd-drag-and-1008-km-range/",
@@ -4213,7 +4213,7 @@
     },
     {
       "title": "EU plans Chinese hybrid import curbs as test case for trade rebalancing, report says",
-      "summary": "The European Union is preparing safeguard measures targeting Chinese hybrids, potentially using tariff-rate quotas to rebalance trade.",
+      "summary": "The European Union is preparing safeguard measures targeting Chinese hybrid vehicle imports, potentially employing tariff-rate quotas to limit market entry. The move serves as a test case for broader trade rebalancing strategies.",
       "source": "CnEVPost",
       "date": "2026-10-07",
       "url": "https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/",
@@ -4222,7 +4222,7 @@
     },
     {
       "title": "Suzuki utilises BYD’s battery to launch Japan’s most affordable Kei-car EV",
-      "summary": "Suzuki has entered the Japanese EV market with the 'e-Sky' Kei-car, utilizing battery technology supplied by BYD.",
+      "summary": "Suzuki has entered Japan's EV market with the 'e-Sky' Kei-car powered by BYD batteries. The model is positioned to become Japan's most affordable electric Kei-car.",
       "source": "CarNewsChina",
       "date": "2026-10-07",
       "url": "https://carnewschina.com/2026/10/07/suzuki-utilises-byds-battery-to-launch-japans-most-affordable-kei-car-ev/",
@@ -4231,7 +4231,7 @@
     },
     {
       "title": "Li Auto plans to enter Thailand by the end of 2026 as one more RHD market",
-      "summary": "Li Auto plans to expand into Thailand by the end of 2026 as part of its strategy to target right-hand drive markets.",
+      "summary": "Li Auto plans to expand into Thailand by the end of 2026 as its latest right-hand drive (RHD) market. The move is part of the Chinese high-end EV brand's international strategy.",
       "source": "CarNewsChina",
       "date": "2026-10-07",
       "url": "https://carnewschina.com/2026/10/07/li-auto-plans-to-enter-thailand-by-the-end-of-2026-as-one-more-rhd-market/",
@@ -4239,13 +4239,22 @@
       "id": 5
     },
     {
+      "title": "Chery to turn Jetour into high-end brand in a strategy shift",
+      "summary": "Chery has announced plans to transform its Jetour brand into a high-end off-road entity. This strategic shift forms a key part of the automaker's latest 'Globalization 3.0' corporate initiative.",
+      "source": "CarNewsChina",
+      "date": "2026-10-07",
+      "url": "https://carnewschina.com/2026/10/07/chery-to-turn-jetour-into-high-end-brand-in-a-strategy-shift/",
+      "linkType": "rss",
+      "id": 6
+    },
+    {
       "title": "BYD puts battery cells directly in cooling liquid in new patent",
-      "summary": "BYD has filed a patent for a battery cabinet design that immerses cell modules directly in cooling liquid while isolating electrical components.",
+      "summary": "BYD has filed a patent for a battery cabinet design that places cell modules directly in cooling liquid while keeping electrical components dry. The immersion cooling innovation aims to optimize thermal management.",
       "source": "CarNewsChina",
       "date": "2026-10-06",
       "url": "https://carnewschina.com/2026/10/06/byd-puts-battery-cells-directly-in-cooling-liquid-in-new-patent/",
       "linkType": "rss",
-      "id": 6
+      "id": 7
     },
     {
       "title": "Leapmotor B03X crossover revealed price for Australia",
@@ -4254,16 +4263,16 @@
       "date": "2026-10-06",
       "url": "https://carnewschina.com/2026/10/06/leapmotor-b03x-crossover-revealed-price-for-australia/",
       "linkType": "rss",
-      "id": 7
+      "id": 8
     },
     {
       "title": "BYD’s Racco Kei EV jumps out of Japan, prepares for launch in Sri Lanka and Macau",
-      "summary": "BYD’s Racco Kei EV jumps out of Japan, prepares for launch in Sri Lanka and Macau",
+      "summary": "BYD is preparing to launch its Racco Kei EV in Sri Lanka and Macau as part of its expansion into right-hand drive markets outside Japan. However, a domestic release in China currently appears off the table.",
       "source": "CarNewsChina",
       "date": "2026-10-06",
       "url": "https://carnewschina.com/2026/10/06/byds-racco-kei-ev-jumps-out-of-japan-prepares-for-launch-in-sri-lanka-and-macau/",
       "linkType": "rss",
-      "id": 8
+      "id": 9
     },
     {
       "title": "BYD Megawatt Flash Charger used as playground swing sparks infrastructure safety concerns",
@@ -4272,16 +4281,16 @@
       "date": "2026-10-05",
       "url": "https://carnewschina.com/2026/10/05/byd-megawatt-flash-charger-used-as-playground-swing-sparks-infrastructure-safety-concerns/",
       "linkType": "rss",
-      "id": 9
+      "id": 10
     },
     {
       "title": "Global EV battery market share in January-August 2026: CATL 39.4%, BYD 15.1%",
-      "summary": "Seven Chinese battery manufacturers held a combined 73.3% share of the global EV battery market from January to August 2026, led by CATL and BYD.",
+      "summary": "Seven Chinese battery manufacturers secured a combined 73.3% market share in the global EV battery market during the January-August 2026 period. Market leader CATL held 39.4%, followed by BYD with 15.1%.",
       "source": "CnEVPost",
       "date": "2026-10-02",
       "url": "https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/",
       "linkType": "rss",
-      "id": 10
+      "id": 11
     },
     {
       "title": "Tesla beats Q3 delivery expectations but falls further behind BYD in BEV sales",
@@ -4290,7 +4299,7 @@
       "date": "2026-10-02",
       "url": "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/",
       "linkType": "rss",
-      "id": 11
+      "id": 12
     },
     {
       "title": "What to expect from Chinese car brands at the Paris Auto Show 2026",
@@ -4299,7 +4308,7 @@
       "date": "2026-10-02",
       "url": "https://carnewschina.com/2026/10/02/what-to-expect-from-chinese-car-brands-at-the-paris-auto-show-2026/",
       "linkType": "rss",
-      "id": 12
+      "id": 13
     },
     {
       "title": "Volkswagen ID. Aura T6 began deliveries in China with 660 km of range",
@@ -4308,7 +4317,7 @@
       "date": "2026-10-02",
       "url": "https://carnewschina.com/2026/10/02/volkswagen-id-aura-t6-began-deliveries-in-china-with-660-km-of-range/",
       "linkType": "rss",
-      "id": 13
+      "id": 14
     },
     {
       "title": "Nio delivers 37,408 vehicles in September, meets Q3 guidance",
@@ -4317,7 +4326,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/nio-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 14
+      "id": 15
     },
     {
       "title": "Leapmotor posts record September deliveries, tops 100,000 for third straight month",
@@ -4326,7 +4335,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/leapmotor-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 15
+      "id": 16
     },
     {
       "title": "Xiaomi Auto September deliveries top 40,000 as Sky Nomad adds volume",
@@ -4335,7 +4344,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/xiaomi-auto-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 16
+      "id": 17
     },
     {
       "title": "Li Auto September deliveries fall 6.29% to 31,817",
@@ -4344,16 +4353,16 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/li-auto-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 17
+      "id": 18
     },
     {
       "title": "Roundup: September 2026 deliveries by major Chinese automakers",
-      "summary": "Chinese automakers posted strong September 2026 deliveries, with Leapmotor and Zeekr reaching record levels and Xiaomi surpassing 40,000 units.",
+      "summary": "Major Chinese automakers posted strong September 2026 deliveries, with Leapmotor and Zeekr reaching record levels while Xiaomi Auto exceeded 40,000 units. The monthly figures highlight ongoing growth and competitive shifting across top Chinese EV brands.",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/roundup-sept-2026-deliveries-china-automakers/",
       "linkType": "rss",
-      "id": 18
+      "id": 19
     },
     {
       "title": "Geely September sales rise 7% to 2026 high as record export streak ends",
@@ -4362,48 +4371,65 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/geely-sept-2026-sales/",
       "linkType": "rss",
-      "id": 19
-    },
-    {
-      "title": "Huawei, Seres sign new 5-year deal to upgrade Aito business",
-      "summary": "Huawei and Seres signed a new five-year agreement to deepen their partnership and upgrade operations for the Aito brand.",
-      "source": "CnEVPost",
-      "date": "2026-10-01",
-      "url": "https://cnevpost.com/2026/10/01/huawei-seres-sign-5-year-deal-upgrade-aito/",
-      "linkType": "rss",
       "id": 20
     }
   ],
   "chinaNewsBriefing": {
     "keyTakeaways": [
-      "BYD와 CATL을 필두로 한 중국 기업들이 글로벌 배터리 및 전기차 시장에서 과반 이상의 점유율을 기록하며 독주 체제를 공고히 하고 있습니다.",
-      "샤오미, 링커앤코 등 신규 진입자 및 기존 브랜드들의 신차 효과로 9월 인도량이 사상 최대치를 경신하는 등 완성차 업계의 출하 경쟁이 격화되고 있습니다.",
-      "화웨이와 세레스의 5년 재계약 및 CATL 연합 등 완성차와 자율주행·배터리 빅테크 간 기술 동맹이 프리미엄 EV 시장을 주도하고 있습니다."
+      "중국 완성차 제조사들의 글로벌 수출 성장세가 가속화되는 가운데, 글로벌 배터리 시장 내 중국 기업들의 점유율이 73%를 넘어서며 독주 체제가 공고해지고 있습니다.",
+      "BYD와 리오토, 립모터 등 주요 중국 EV 브랜드들이 우측 핸들(RHD) 시장 및 유럽, 동남아 등 전 방위적인 해외 영토 확장에 속도를 내고 있습니다.",
+      "EU의 중국산 하이브리드 규제 움직임 등 무역 장벽 강화 속에서도 중국 기업들은 액상 침매 냉각 기술과 초고속 충전 등 독자적인 차세대 기술 혁신을 이어가고 있습니다."
     ],
     "categories": [
       {
-        "name": "완성차 인도량 및 시장 동향",
+        "name": "중국 주요 EV 브랜드 실적 및 신차 동향",
         "items": [
           {
-            "headline": "테슬라, Q3 인도량 상회에도 BYD에 밀려",
-            "summary": "테슬라의 3분기 글로벌 인도량이 전년 동기 대비 2.13% 감소한 486,532대를 기록했으나 시장 전망치는 웃돌았습니다. 하지만 순수전기차(BEV) 판매량에서 점유율을 지속적으로 확장 중인 BYD와의 격차는 더욱 벌어지는 양상을 보였습니다.",
+            "headline": "BYD 다한 EV, 1008km 주행거리 출시 예정",
+            "summary": "BYD가 오는 10월 13일 차체 길이 5.2m의 대형 전기 세단 '다한 EV'를 공식 출시합니다. 이 차량은 공기저항계수 0.197 Cd 및 100km당 11.5kWh의 뛰어난 에너지 효율을 달성하여 최대 1,008km의 압도적인 1회 충전 주행거리를 자랑합니다.",
+            "tags": [
+              "#BYD",
+              "#다한EV",
+              "#신차출시",
+              "#초장거리"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-10-07",
+            "url": "https://carnewschina.com/2026/10/07/byd-da-han-ev-to-launch-october-13-with-0-197-cd-drag-and-1008-km-range/"
+          },
+          {
+            "headline": "테슬라 인도량 상회에도 BYD에 격차 확대",
+            "summary": "테슬라의 3분기 글로벌 인도량이 486,532대로 시장 예상치를 상회했으나 전년 동기 대비 2.13% 감소했습니다. 이에 따라 순수전기차(BEV) 판매 부문에서 선두를 고수 중인 중국 BYD와의 판매 격차는 더욱 벌어지고 있습니다.",
             "tags": [
               "#테슬라",
               "#BYD",
-              "#인도량",
-              "#전기차경쟁"
+              "#3분기인도량",
+              "#BEV경쟁"
             ],
             "source": "CnEVPost",
             "date": "2026-10-02",
             "url": "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/"
           },
           {
-            "headline": "니오, 9월 3.7만 대 인도하며 Q3 목표 달성",
-            "summary": "니오(Nio) 브랜드의 9월 인도량이 전년 동기 대비 55.29% 급증한 37,408대를 기록하며 3분기 분기 목표치(Guidance)를 성공적으로 달성했습니다. 보급형 및 하브 브랜드를 포함한 파이어플라이(Firefly) 역시 월간 최고 판매 기록을 세우며 성장을 견인했습니다.",
+            "headline": "폭스바겐 ID. 아우라 T6 중국 인도 시작",
+            "summary": "폭스바겐이 중국 시장 전용 전기차 모델인 'ID. 아우라 T6'의 본격적인 고객 인도를 개시했습니다. 해당 차량은 1회 완충 시 최대 660km의 주행거리를 제공하여 현지 전기차 수요층을 적극 공략하고 있습니다.",
+            "tags": [
+              "#폭스바겐",
+              "#IDAuraT6",
+              "#중국시장",
+              "#전기차인도"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-10-02",
+            "url": "https://carnewschina.com/2026/10/02/volkswagen-id-aura-t6-began-deliveries-in-china-with-660-km-of-range/"
+          },
+          {
+            "headline": "니오 9월 인도량 55% 증가하며 목표 달성",
+            "summary": "니오(Nio) 브랜드의 9월 인도량이 전년 동기 대비 55.29% 증가한 37,408대를 기록하며 3분기 실적 가이던스를 충족했습니다. 보급형 브랜드 파이어플라이는 월간 최고 실적을 올려 성장에 기여했습니다.",
             "tags": [
               "#니오",
+              "#Nio",
               "#파이어플라이",
-              "#인도량",
               "#실적달성"
             ],
             "source": "CnEVPost",
@@ -4411,217 +4437,160 @@
             "url": "https://cnevpost.com/2026/10/01/nio-sept-2026-deliveries/"
           },
           {
-            "headline": "립모터, 3개월 연속 10만 대 돌파 및 사상 최대",
-            "summary": "립모터(Leapmotor)가 9월 한 달 동안 105,656대를 인도하며 3개월 연속 10만 대를 돌파했습니다. 이에 힘입어 3분기 총 인도량은 310,052대로 사상 최대 분기 실적을 올리며 신생 전기차 제조사 중 압도적인 성장세를 입증했습니다.",
+            "headline": "립모터 9월 인도 10만 대 돌파로 최고 기록",
+            "summary": "립모터(Leapmotor)가 9월 한 달간 105,656대를 인도하며 3개월 연속 10만 대 돌파 기록을 세웠습니다. 이에 따라 3분기 누적 인도량은 310,052대로 분기 기준 역대 최고 실적을 갱신했습니다.",
             "tags": [
               "#립모터",
-              "#신기록",
-              "#3분기실적",
-              "#중국EV"
+              "#월간실적",
+              "#3분기인도량",
+              "#사상최고"
             ],
             "source": "CnEVPost",
             "date": "2026-10-01",
             "url": "https://cnevpost.com/2026/10/01/leapmotor-sept-2026-deliveries/"
           },
           {
-            "headline": "샤오미, 신차 효과로 9월 4만 대 돌파",
-            "summary": "샤오미 오토가 신형 EV '스카이 노마드(Sky Nomad)'의 출시 첫 달 흥행에 힘입어 9월 인도량 4만 대를 돌파했습니다. 이는 2026년 들어 거둔 월간 사상 최대 실적으로, 스마트폰에 이어 전기차 시장에서도 연착륙에 성공하는 모습입니다.",
+            "headline": "샤오미 오토, 신차 효과로 9월 4만 대 달성",
+            "summary": "샤오미 오토가 신형 전기차 '스카이 노마드'의 본격적인 판매 신장에 힘입어 9월 월간 인도량 40,000대를 돌파했습니다. 이는 2026년 들어 샤오미가 기록한 가장 높은 월간 인도 실적입니다.",
             "tags": [
               "#샤오미",
+              "#샤오미오토",
               "#스카이노마드",
-              "#신차효과",
-              "#월간최대"
+              "#인도량증가"
             ],
             "source": "CnEVPost",
             "date": "2026-10-01",
             "url": "https://cnevpost.com/2026/10/01/xiaomi-auto-sept-2026-deliveries/"
           },
           {
-            "headline": "리상, 9월 감소에도 Q3 전체는 7.2% 증가",
-            "summary": "리상(Li Auto)의 9월 인도량은 전년 동기 대비 6.29% 감소한 31,817대에 그쳤습니다. 단기적인 월간 감소세에도 불구하고 3분기 누적 인도량은 전년 대비 7.24% 증가한 99,964대를 기록해 견조한 분기 실적 흐름을 유지했습니다.",
+            "headline": "리오토 3분기 인도 10만 대 육박",
+            "summary": "리오토(Li Auto)의 9월 인도량은 31,817대로 전년 동기 대비 6.29% 감소했으나, 3분기 전체 인도량은 전년 대비 7.24% 증가한 99,964대를 기록하며 지속적인 성장세를 유지했습니다.",
             "tags": [
-              "#리상",
+              "#리오토",
               "#LiAuto",
               "#3분기실적",
-              "#인도량"
+              "#월간인도량"
             ],
             "source": "CnEVPost",
             "date": "2026-10-01",
             "url": "https://cnevpost.com/2026/10/01/li-auto-sept-2026-deliveries/"
           },
           {
-            "headline": "중국 주요 완성차 9월 인도량 요약 종합",
-            "summary": "2026년 9월 중국 주요 완성차 업체들의 인도 실적 발표 결과, 립모터와 지커가 사상 최대 월간 실적을 경신했습니다. 샤오미 역시 4만 대 고지를 넘어서며 신생 EV 브랜드들이 전체 시장 수요를 강력하게 이끌고 있는 것으로 나타났습니다.",
+            "headline": "중국 완성차 업체 9월 인도량 호조세 지속",
+            "summary": "9월 중국 주요 완성차 브랜드들이 전반적으로 강한 판매 호조를 보였습니다. 립모터와 지커가 역대 최고치를 갱신하고 샤오미가 4만 대를 넘어서는 등 현지 신에너지차 시장의 경쟁이 격화되고 있습니다.",
             "tags": [
-              "#중국자동차",
+              "#중국EV",
               "#9월실적",
-              "#지커",
-              "#립모터"
+              "#시장동향",
+              "#판매호조"
             ],
             "source": "CnEVPost",
             "date": "2026-10-01",
             "url": "https://cnevpost.com/2026/10/01/roundup-sept-2026-deliveries-china-automakers/"
-          },
-          {
-            "headline": "지커, 8개월 연속 성장하며 3.7만 대 기록",
-            "summary": "지리자동차 그룹의 프리미엄 브랜드 지커(Zeekr)가 9월 37,216대를 인도해 전년 대비 103.85% 급증했습니다. 이로써 지커는 8개월 연속 전년 및 전월 대비 성장을 지속하며 6개월 연속 월간 최고 실적을 갱신했습니다.",
-            "tags": [
-              "#지커",
-              "#Zeekr",
-              "#판매기록",
-              "#지리자동차"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-10-01",
-            "url": "https://cnevpost.com/2026/10/01/zeekr-sept-2026-deliveries/"
-          },
-          {
-            "headline": "BYD, 9월 46만 대 판매로 올해 최고치 경신",
-            "summary": "BYD의 9월 신에너지차(NEV) 판매량이 전년 대비 16.98% 증가한 463,561대를 기록하며 올해 월간 최고 실적을 올려 5개월 연속 전년비 성장, 7개월 연속 전월비 성장을 기록했습니다.",
-            "tags": [
-              "#BYD",
-              "#신에너지차",
-              "#판매신기록",
-              "#중국EV"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-10-01",
-            "url": "https://cnevpost.com/2026/10/01/byd-sept-2026-sales/"
-          },
-          {
-            "headline": "중국 9월 초순 NEV 소매 20% 감소세 심화",
-            "summary": "9월 1일부터 27일까지 중국 내 신에너지차(NEV) 소매 판매량은 82만 7천 대에 그쳐 전년 대비 20% 감소했습니다. 전체 승용차 판매 중 NEV 비중은 65.7%에 달했으나 시장 내 전반적인 소비 침체 우려가 커지고 있습니다.",
-            "tags": [
-              "#중국내수",
-              "#NEV소매",
-              "#시장침체",
-              "#판매통계"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-09-30",
-            "url": "https://cnevpost.com/2026/09/30/china-nev-retail-sales-first-27-days-sept/"
           }
         ]
       },
       {
-        "name": "중국 브랜드 신차·기술 및 빅테크 협력",
+        "name": "해외 시장 진출 및 글로벌 통상 동향",
         "items": [
           {
-            "headline": "지커, 001 모델 2027년 개소식 및 인센티브",
-            "summary": "지커는 올해 8개월간 001 모델의 인도량이 21.5% 감소함에 따라 2027년 1분기 대대적인 신형 업데이트를 계획하고 있습니다. 이에 앞서 구형 모델의 재고 소진을 위해 현재 구매 고객을 대상으로 파격적인 인센티브를 제공 중입니다.",
-            "tags": [
-              "#지커001",
-              "#모델연식변경",
-              "#할인혜택",
-              "#지리"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-10-01",
-            "url": "https://cnevpost.com/2026/10/01/zeekr-plans-001-update-q1-2027-incentives-current-model/"
-          },
-          {
-            "headline": "화웨이-세레스, 아이토 사업 확대 5년 재계약",
-            "summary": "화웨이와 세레스(Seres)가 아이토(Aito) 브랜드의 운영 제어권 조정을 발표한 지 약 2주 만에 신규 5년 장기 파트너십을 체결했습니다. 양사는 이를 통해 아이토 브랜드를 고도화하고 차세대 스마트카 분야에서의 협력을 대폭 강화할 방침입니다.",
-            "tags": [
-              "#화웨이",
-              "#세레스",
-              "#아이토",
-              "#스마트카"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-10-01",
-            "url": "https://cnevpost.com/2026/10/01/huawei-seres-sign-5-year-deal-upgrade-aito/"
-          },
-          {
-            "headline": "BYD, 포뮬러 S 월 1.5만 대 판매 목표 설정",
-            "summary": "BYD가 새로운 개성파 브랜드 방청보의 포뮬러 S 시리즈에 대해 월 15,000대의 판매 목표를 수립했습니다. 패스트백과 GT 스티어링 웨건 라인업을 앞세워 틈새 프리미엄 전기차 시장을 적극 공략하겠다는 구상입니다.",
+            "headline": "BYD 9월 판매 46만 대, 해외 수출 154% 급증",
+            "summary": "BYD가 2026년 9월 한 달간 463,561대를 판매하며 1~9월 누적 판매 3,131,576대를 기록했습니다. 특히 9월 해외 판매량이 전년 동기 대비 153.9% 폭증한 179,877대에 달해 해외 시장이 핵심 성장 동력으로 자리 잡았습니다.",
             "tags": [
               "#BYD",
-              "#방청보",
-              "#포뮬러S",
-              "#GT전기차"
+              "#해외수출",
+              "#판매실적",
+              "#글로벌확장"
+            ],
+            "source": "Gasgoo",
+            "date": "2026-10-08",
+            "url": "https://autonews.gasgoo.com/articles/news/byd-sells-463561-vehicles-in-sept-2026-as-overseas-volume-jumps-1539-2107803611743870977"
+          },
+          {
+            "headline": "EU, 중국산 하이브리드 수입 제한 규제 추진",
+            "summary": "유럽연합(EU)이 중국산 하이브리드 차량 수입 증가에 대응해 관세할당제(TRQ) 등 세이프가드 조치를 준비 중인 것으로 알려졌습니다. 이는 글로벌 무역 불균형을 해소하기 위한 선제적 테스트 케이스로 해석됩니다.",
+            "tags": [
+              "#EU",
+              "#하이브리드",
+              "#수입규제",
+              "#관세할당제"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-07",
+            "url": "https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/"
+          },
+          {
+            "headline": "스즈키, BYD 배터리 탑재 최저가 경형 EV 출시",
+            "summary": "일본 스즈키가 BYD의 배터리를 공급받아 신형 경형 전기차 'e-Sky'를 일본 시장에 출시했습니다. 이 모델은 일본 내에서 가장 가격 경쟁력이 뛰어난 경형 EV로 자리매김할 전망입니다.",
+            "tags": [
+              "#스즈키",
+              "#BYD배터리",
+              "#경형EV",
+              "#일본시장"
             ],
             "source": "CarNewsChina",
-            "date": "2026-09-30",
-            "url": "https://carnewschina.com/2026/09/30/byd-expects-formula-s-series-sales-to-reach-15000-units-monthly/"
+            "date": "2026-10-07",
+            "url": "https://carnewschina.com/2026/10/07/suzuki-utilises-byds-battery-to-launch-japans-most-affordable-kei-car-ev/"
           },
           {
-            "headline": "화웨이 L3급 자율주행 탑재 아이토 M8 사전예약",
-            "summary": "세레스와 화웨이가 전 라인업에 화웨이 첸쿤(Qiankun) ADS 5 자율주행 시스템을 기본 탑재한 신형 아이토 M8 사전예약을 개시했습니다. L3 자율주행 대응 아키텍처 및 순수전기 기준 최대 830km 주행거리를 갖췄으며 389,800위안부터 시작합니다.",
+            "headline": "리오토, 2026년 말 태국 시장 진출 추진",
+            "summary": "중국 프리미엄 EV 브랜드 리오토가 2026년 말까지 태국 진출을 계획하고 있습니다. 이번 행보는 우측 핸들(RHD) 시장 공략을 위한 글로벌 영토 확장 전략의 일환으로 추진됩니다.",
             "tags": [
-              "#아이토M8",
-              "#화웨이ADS",
-              "#L3자율주행",
-              "#세레스"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-09-30",
-            "url": "https://cnevpost.com/2026/09/30/aito-opens-pre-sales-updated-m8-suv/"
-          },
-          {
-            "headline": "BYD 2세대 시걸 공개, 고급 편의사양 대거 적용",
-            "summary": "BYD가 대표 보급형 해치백 전기차인 2세대 시걸(Seagull)을 공개했습니다. 신형 모델은 운전석 마사지 시트, 앰비언트 라이트, 플로팅 디스플레이와 함께 94L 용량의 프렁크 공간까지 확보하는 등 상품성을 대폭 업그레이드했습니다.",
-            "tags": [
-              "#BYD",
-              "#시걸",
-              "#보급형EV",
-              "#2세대시걸"
+              "#리오토",
+              "#태국진출",
+              "#우측핸들",
+              "#동남아시장"
             ],
             "source": "CarNewsChina",
-            "date": "2026-09-30",
-            "url": "https://carnewschina.com/2026/09/30/second-gen-byd-seagull-revealed-massaged-drivers-seat-94l-frunk/"
+            "date": "2026-10-07",
+            "url": "https://carnewschina.com/2026/10/07/li-auto-plans-to-enter-thailand-by-the-end-of-2026-as-one-more-rhd-market/"
           },
           {
-            "headline": "링커앤코 20 출시, 1시간 만에 1.4만 대 주문",
-            "summary": "지리 그룹의 링커앤코가 소형 전기 SUV '링커앤코 20'(Z20의 페이스리프트)을 한시적 할인가 118,800위안(약 1.76만 달러)에 출시했습니다. 가성비를 앞세운 전략으로 출시 단 1시간 만에 14,663대의 확정 주문을 받으며 돌풍을 일으키고 있습니다.",
+            "headline": "체리자동차, 제투르 브랜드 고급화 전략 전환",
+            "summary": "체리자동차가 '글로벌화 3.0' 전략의 핵심으로 제투르(Jetour) 브랜드를 고급 오프로드 전용 브랜드로 전환한다고 발표했습니다. 브랜드 가치 제고를 통해 글로벌 고급차 시장 공략에 속도를 낼 방침입니다.",
             "tags": [
-              "#링커앤코",
-              "#지리자동차",
-              "#소형SUV",
-              "#사전예약"
+              "#체리자동차",
+              "#제투르",
+              "#브랜드고급화",
+              "#글로벌전략"
             ],
-            "source": "CnEVPost",
-            "date": "2026-09-29",
-            "url": "https://cnevpost.com/2026/09/29/lynk-co-launches-20-compact-electric-suv/"
+            "source": "CarNewsChina",
+            "date": "2026-10-07",
+            "url": "https://carnewschina.com/2026/10/07/chery-to-turn-jetour-into-high-end-brand-in-a-strategy-shift/"
           },
           {
-            "headline": "화웨이 ADS 5 탑재 신형 아이토 M8 사전예약 예정",
-            "summary": "화웨이와 세레스가 L3급 시스템인 첸쿤 ADS 5를 탑재한 신형 아이토 M8 SUV의 사전예약을 9월 30일 시작한다고 발표했습니다. 순수 전기차 버전은 1회 충전 시 최대 830km를 주행할 수 있어 고성능 프리미엄 시장을 겨냥합니다.",
+            "headline": "립모터 B03X 크로스오버 호주 판매가 공개",
+            "summary": "중국 립모터가 호주 시장 공략을 위해 오세아니아 진출 전략 모델인 B03X 크로스오버의 현지 판매 가격을 공식 공개하고 우측 핸들 시장 진출에 박차를 가하고 있습니다.",
             "tags": [
-              "#아이토M8",
-              "#화웨이",
-              "#자율주행",
-              "#프리미엄EV"
+              "#립모터",
+              "#B03X",
+              "#호주시장",
+              "#가격공개"
             ],
-            "source": "CnEVPost",
-            "date": "2026-09-29",
-            "url": "https://cnevpost.com/2026/09/29/aito-to-open-pre-sales-updated-m8-sept-30/"
-          }
-        ]
-      },
-      {
-        "name": "글로벌 배터리 점유율 및 해외 공략·수출",
-        "items": [
+            "source": "CarNewsChina",
+            "date": "2026-10-06",
+            "url": "https://carnewschina.com/2026/10/06/leapmotor-b03x-crossover-revealed-price-for-australia/"
+          },
           {
-            "headline": "1~8월 글로벌 배터리 CATL 39.4%·BYD 15.1%",
-            "summary": "2026년 1~8월 글로벌 EV 배터리 시장에서 CATL이 점유율 39.4%로 압도적 1위를 유지했고, BYD가 15.1%로 2위를 차지했습니다. 글로벌 탑 10에 포함된 중국 7개 배터리 기업의 합산 점유율은 73.3%에 달해 과점 체제를 공고히 했습니다.",
+            "headline": "BYD 경형 EV 라코, 스리랑카 및 마카오 진출",
+            "summary": "BYD가 일본 시장용 경형 EV '라코(Racco)'를 스리랑카와 마카오 등 해외 우측 핸들 시장으로 확대 출시합니다. 반면 중국 내수 시장 출시 계획은 현재 고려하지 않는 것으로 전해졌습니다.",
             "tags": [
-              "#CATL",
               "#BYD",
-              "#배터리점유율",
-              "#글로벌배터리"
+              "#라코",
+              "#경형전기차",
+              "#해외진출"
             ],
-            "source": "CnEVPost",
-            "date": "2026-10-02",
-            "url": "https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/"
+            "source": "CarNewsChina",
+            "date": "2026-10-06",
+            "url": "https://carnewschina.com/2026/10/06/byds-racco-kei-ev-jumps-out-of-japan-prepares-for-launch-in-sri-lanka-and-macau/"
           },
           {
-            "headline": "2026 파리모터쇼 관전 포인트 및 중국 진용",
-            "summary": "10월 12일 개막하는 2026 파리 모터쇼에 중국 신에너지차 브랜드들이 대거 참가하여 신기술과 유럽 진출 전략형 신차를 선보일 예정입니다. 현지 생산 및 유럽 맞춤형 프리미엄 라인업 공략이 관전 포인트로 짚어지고 있습니다.",
+            "headline": "2026 파리모터쇼 속 중국 브랜드 전망",
+            "summary": "2026 파리 모터쇼 개막을 앞두고 유럽 시장 공략을 강화하는 중국 자동차 브랜드들의 출전 라인업 및 신기술 발표에 대한 글로벌 업계의 관심이 한층 고조되고 있습니다.",
             "tags": [
               "#파리모터쇼",
+              "#중국브랜드",
               "#유럽진출",
-              "#중국EV",
               "#모터쇼"
             ],
             "source": "CarNewsChina",
@@ -4629,35 +4598,66 @@
             "url": "https://carnewschina.com/2026/10/02/what-to-expect-from-chinese-car-brands-at-the-paris-auto-show-2026/"
           },
           {
-            "headline": "지리, 9월 수출 감소로 8개월 연속 기록 일สิ้น",
-            "summary": "지리자동차의 9월 수출량이 106,685대로 전년 대비 162% 급증했으나 전월 대비로는 3% 줄어들며 8개월간 지속된 연속 수출 신기록 행진이 마감되었습니다. 전체 9월 판매량은 7% 증가하며 2026년 연중 최고치를 기록했습니다.",
+            "headline": "지리자동차 9월 수출 둔화 속 매출 7% 증가",
+            "summary": "지리자동차가 9월 한 달간 전년 대비 162% 증가한 106,685대를 수출했으나, 전월 대비로는 3% 감소하며 8개월간 지속된 최다 수출 신기록 행진을 마감했습니다. 전체 판매량은 전년 대비 7% 상승했습니다.",
             "tags": [
               "#지리자동차",
-              "#자동차수출",
-              "#해외진출",
-              "#실적분석"
+              "#수출동향",
+              "#판매실적",
+              "#월간성장"
             ],
             "source": "CnEVPost",
             "date": "2026-10-01",
             "url": "https://cnevpost.com/2026/10/01/geely-sept-2026-sales/"
-          },
+          }
+        ]
+      },
+      {
+        "name": "배터리·기술 혁신 및 인프라",
+        "items": [
           {
-            "headline": "세레스·CATL 합작 아이바, 파리서 ME7 최초 공개",
-            "summary": "세레스와 CATL이 합작 투자를 바탕으로 설립한 신규 EV 브랜드 아이바(Aiva)가 파리에서 첫 신형 모델 ME7을 최초 공개했습니다. 글로벌 시장 진출을 염두에 둔 프리미엄 SUV 모델로 배터리 기술과 완성차 제조 노하우가 집약되었습니다.",
+            "headline": "BYD, 셀 액상 직접 침매 냉각 배터리 특허 출원",
+            "summary": "BYD가 배터리 셀 모듈을 냉각액에 직접 침전시키는 동시 전장 부품의 건조 상태를 유지하는 차세대 배터리 캐비닛 특허를 출원했습니다. 침매 냉각 방식을 통해 배터리 열관리 효율을 극대화할 것으로 기대됩니다.",
             "tags": [
-              "#세레스",
-              "#CATL",
-              "#아이바ME7",
-              "#파리공개"
+              "#BYD",
+              "#액상냉각",
+              "#배터리특허",
+              "#열관리"
             ],
             "source": "CarNewsChina",
-            "date": "2026-09-30",
-            "url": "https://carnewschina.com/2026/09/30/seres-and-catl-backed-aiva-unveils-me7-in-paris/"
+            "date": "2026-10-06",
+            "url": "https://carnewschina.com/2026/10/06/byd-puts-battery-cells-directly-in-cooling-liquid-in-new-patent/"
+          },
+          {
+            "headline": "BYD 메가와트 급속충전기 안전성 논란 제기",
+            "summary": "BYD의 초고속 메가와트 플래시 충전기 케이블이 어린이 놀이터 그네로 부적절하게 사용되는 모습이 포착되면서, 고전압 대용량 충전 인프라의 관리 및 안전 대책에 대한 우려가 제기되고 있습니다.",
+            "tags": [
+              "#BYD",
+              "#메가와트충전",
+              "#인프라안전",
+              "#초고속충전"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-10-05",
+            "url": "https://carnewschina.com/2026/10/05/byd-megawatt-flash-charger-used-as-playground-swing-sparks-infrastructure-safety-concerns/"
+          },
+          {
+            "headline": "중국 배터리 점유율 73% 달성, CATL 1위 독주",
+            "summary": "2026년 1~8월 글로벌 EV 배터리 시장에서 중국 7개 제조사의 합산 점유율이 73.3%를 기록했습니다. CATL이 39.4%의 점유율로 독보적 1위를 유지했으며, BYD가 15.1%로 그 뒤를 이었습니다.",
+            "tags": [
+              "#CATL",
+              "#BYD",
+              "#배터리점유율",
+              "#글로벌시장"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-02",
+            "url": "https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/"
           }
         ]
       }
     ],
-    "implications": "중국 배터리 기업들의 글로벌 점유율이 73%를 돌파하고 CATL과 BYD의 독주가 심화됨에 따라 한국 배터리 3사의 글로벌 입지가 위축될 위험이 더욱 커지고 있습니다. 특히 중국 완성차 업체들이 화웨이의 L3급 자율주행 및 프리미엄 사양을 보급형 모델까지 적극 이식하며 완성차 가격 대비 성능 경쟁력을 기하급수적으로 높이고 있습니다. 한국 완성차 및 배터리 업계는 가격 경쟁력 확보를 위한 LFP 및 차세대 배터리 양산 시기를 앞당기는 동시에 소프트웨어 중심 차량(SDV) 및 자율주행 기술력 격차를 빠르게 줄여야만 글로벌 시장에서의 주도권을 지켜낼 수 있을 것입니다."
+    "implications": "중국 배터리 업체들이 글로벌 시장 점유율 73% 이상을 독식하고 BYD 등 완성차 업체들이 일본·동남아·유럽으로 세를 빠르게 확장함에 따라, 한국 배터리 3사 및 완성차 업체의 입지가 더욱 위협받고 있습니다. 특히 BYD가 일본 스즈키에 배터리를 공급하고 액상 침매 냉각 기술 특허를 출원하는 등 가격 경쟁력과 차세대 기술력을 동시에 확보하고 있어 한국 업계의 기술 차별화 전략이 시급합니다. 아울러 EU의 중국산 하이브리드 수입 규제 움직임은 반사이익의 기회가 될 수 있으므로, 한국 완성차 및 배터리 기업들은 유럽 내 권역별 맞춤형 공급망 구축 및 하이브리드·BEV 포트폴리오 다변화로 대응할 필요가 있습니다."
   },
   "patentTrends": {
     "keyTakeaways": [
@@ -4991,45 +4991,45 @@
   "status": {
     "vehicles": {
       "lastSuccessAt": null,
-      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "lastAttemptAt": "2026-10-08T14:52:17.001223+09:00",
       "state": "failed",
       "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
       "staleAfterHours": 36,
       "lastAddedAt": null
     },
     "news": {
-      "lastSuccessAt": "2026-10-08T11:07:50.351128+09:00",
-      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "lastSuccessAt": "2026-10-08T14:52:17.001223+09:00",
+      "lastAttemptAt": "2026-10-08T14:52:17.001223+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
     },
     "chinaNews": {
-      "lastSuccessAt": "2026-10-08T11:07:50.351128+09:00",
-      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "lastSuccessAt": "2026-10-08T14:52:17.001223+09:00",
+      "lastAttemptAt": "2026-10-08T14:52:17.001223+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
     },
     "newsBriefing": {
       "lastSuccessAt": "2026-10-05T00:00:00+09:00",
-      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "lastAttemptAt": "2026-10-08T14:52:17.001223+09:00",
       "state": "failed",
       "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
       "staleAfterHours": 36
     },
     "chinaNewsBriefing": {
-      "lastSuccessAt": "2026-10-02T00:00:00+09:00",
-      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
-      "state": "failed",
-      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
+      "lastSuccessAt": "2026-10-08T14:52:17.001223+09:00",
+      "lastAttemptAt": "2026-10-08T14:52:17.001223+09:00",
+      "state": "ok",
+      "reason": "",
       "staleAfterHours": 36
     },
     "benchmarkingPoints": {
       "lastSuccessAt": null,
-      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "lastAttemptAt": "2026-10-08T14:52:17.001223+09:00",
       "state": "failed",
-      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
+      "reason": "ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https",
       "staleAfterHours": 36
     },
     "patentTrends": {
