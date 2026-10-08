@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T14:45:31.515357+09:00",
+  "generatedAt": "2026-10-08T11:07:50.351128+09:00",
   "vehicles": [
     {
       "id": "seres_aito_m8_l3_ev",
@@ -3760,13 +3760,22 @@
   ],
   "news": [
     {
+      "title": "에코프로비엠·삼성SDI, 전고체 배터리 소재 공동개발⋯2027년 양산 가능성 대비 - 엠투데이",
+      "summary": "에코프로비엠과 삼성SDI가 2027년 상용화를 목표로 전고체 배터리용 양극재 등 핵심 소재 공동 개발에 착수했습니다.",
+      "source": "엠투데이",
+      "date": "2026-10-08",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBCcDdrT1hZNF93QjdYbkFuSnRBM3oxSVNYWmR1SFRoOXJDU0djTG1TaWxxSkJSVGJFOFZXZGF1S2dDdVJ3bWZFOXJhYkVOT3Z1alJZWEZBRlRHMHlOUmJ3WHdqUDlpYlBjbE9uQ3RYTQ?oc=5",
+      "linkType": "rss",
+      "id": 1
+    },
+    {
       "title": "1∼8월 비중국 전기차배터리 사용량 24%↑…중국 CATL·BYD 강세 - 연합뉴스",
       "summary": "1∼8월 비중국 전기차배터리 사용량 24%↑…중국 CATL·BYD 강세 - 연합뉴스",
       "source": "연합뉴스",
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5NbVdDX2lyQ0pvOXMxUmVPM2dYamUtT183d28zaGsxTzFQbEowbThlaUxldndfcjk5N0M5M3hMYzNSTWdmNGF6dkpTTnRCUEFVMU9wRktyUFY1bFdtclFCc9IBYEFVX3lxTE5NbVdDX2lyQ0pvOXMxUmVPM2dYamUtT183d28zaGsxTzFQbEowbThlaUxldndfcjk5N0M5M3hMYzNSTWdmNGF6dkpTTnRCUEFVMU9wRktyUFY1bFdtclFCcw?oc=5",
       "linkType": "rss",
-      "id": 1
+      "id": 2
     },
     {
       "title": "\"연 19% 질주\"… 글로벌 전기차 배터리 시장, 2027년 '1,346억 달러' 성장 전망 - 글로벌이코노믹",
@@ -3775,7 +3784,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPaGdpOWFXUFBCZUZIWHluLWpwYjFDWnBQTmhQOVlCcG1VeFBCM0N5UUNENkRaejlubUtFclJfTVJpRWQtcm1MdDJETEJNS19acEEyQzZXUTljQ1VvZHZtUWhaRHhFS0w4SlNaUmhnM2JzVy1BM0oxSWdVb2pocS1TdFJIMVhkanh6?oc=5",
       "linkType": "rss",
-      "id": 2
+      "id": 3
     },
     {
       "title": "전기차 배터리 구매 전 알아야 할 충전 관련 정보는 무엇일까요? - Vietnam.vn",
@@ -3784,7 +3793,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOX3hHQVNSaFhwN1EzckQxeW44cVVtc25DdFNUS0FTVjRpeWlhS0JTdGlzUDkxQjRVWFZRUmxVaExQalM0RlpzQjBLeG8yWHVZVmJaU2hWZUdOQjNrZVdnU19leW02dUNLNGh1VlZwemFjTjhhN1pJdkswd1FwN2FXVmtadWhnVmk5ZzJIa09WbE1SUQ?oc=5",
       "linkType": "rss",
-      "id": 3
+      "id": 4
     },
     {
       "title": "[배터리의 역습] ③지하주차장이 위험하다 - 한국재난안전뉴스",
@@ -3793,7 +3802,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5raF96M0QyWXRTTU9ydDIxLUNNb3l0SmpFWkpLUEQyVmtwOUNaMlVHUTV3Zmo4RE9TdTItZTN6czZJX1AyZlVUUDJGZkFKYmY1WkljU0pFbktwcTB0dEE?oc=5",
       "linkType": "rss",
-      "id": 4
+      "id": 5
     },
     {
       "title": "완성차·배터리, '맞춤형 R&D'로 시장 공략 가속 - 매일일보",
@@ -3802,7 +3811,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9QWVo5ZG52ZGJFZ2RSVjRfRWFJVHN3Ylp4cTF1QWpwMjhGNEt1Qy1VckRrY2lSYkxfQUgyVWFVb3A0LWFMVHpRdW5rWGFqZkRMX0VtS1BpRmpPWWhEQU9NYS1XX2s?oc=5",
       "linkType": "rss",
-      "id": 5
+      "id": 6
     },
     {
       "title": "\"배터리값 떼면 전기차 문턱 낮아질까\"... 국회가 꺼낸 소유권 분리 해법은? - 오토트리뷴",
@@ -3811,7 +3820,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBSaTBsNXBUemtEaEhvQzR4RXo4Tm9QaGtNWW44RFUyNVJDc0ZBbU52cnZfRnBXNTlaU1FkbVB1Y2U2cE10MUF2TFBIOWJnd0dLU2J2dDBXR1oyWkM0d1psMTBFaUgwRnR6dF95dk1lYmE?oc=5",
       "linkType": "rss",
-      "id": 6
+      "id": 7
     },
     {
       "title": "[솔로이코노미] 차값 낮추고 매달 구독료…배터리 빌리는 전기차, 정말 저렴할까 - 데일리팝",
@@ -3820,7 +3829,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5KM252ZnFEMjR4RzVJeXdjWkdCTkxNOWFkaHVtQ3d3MGVRcHYxdDhJS094VmJDTFg1eTFwQnRYV3UzNVppTWRVWDNpR0NReUhOREFQSFA3ZFFnVDdSUHFpTkFpSWVrZzFY?oc=5",
       "linkType": "rss",
-      "id": 7
+      "id": 8
     },
     {
       "title": "“영하 10도에서도 끄떡없다” 충북대·SK온, 겨울 약한 전기차 배터리 정면 돌파 - 청주일보",
@@ -3829,7 +3838,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5Vd1RGSW5vaS1fSUhFdl8ydzB1QS1nOGlvQ29HQXROd2JlNlp0eUdJLTJLYzI1ekZUd0hrRV9scjZLaEhtTTB0ekdxY3lGWjBhaWdHcTdzbm5JdUxrVFVSTGNwcTVmVjVPa1Jn?oc=5",
       "linkType": "rss",
-      "id": 8
+      "id": 9
     },
     {
       "title": "\"BYD 잡겠다\"며 日 최저가 경전기차 낸 스즈키… 배터리는 'BYD 제품' - 글로벌이코노믹",
@@ -3838,16 +3847,16 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOZDFTRnduYnZsN3p4aGI5NDlDbUI3emQ5c1N6cUxfZEVwcnJFb3lCbTJKWldDYnlrbnF6aHNIWG8yU21aZEt2UVRxSVZiTWFqSVdMcktHREJLQklWTndaX2JDRlptRkpSRHlMendhWW5ST0Fjb2RLNVowaGZNMm1IdmZNeWN4YVVs?oc=5",
       "linkType": "rss",
-      "id": 9
+      "id": 10
     },
     {
       "title": "전기차용 ‘스마트 제어’ 완속충전기 설치, 그리 힘든가 [질문의 기술] - 더스쿠프",
-      "summary": "전기차용 ‘스마트 제어’ 완속충전기 설치, 그리 힘든가 [질문의 기술] - 더스쿠프",
+      "summary": "전기차 화재 예방 및 충전 상태 모니터링을 위해 PLC 모듈이 탑재된 '스마트 제어' 완속충전기 보급 필요성과 기술적 제반 사항을 다룹니다.",
       "source": "더스쿠프",
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5CNWVNYU90MXN4Mzg3V2FsaWpZMVJoZl9RemdHSnhoUUd4ZXk1UlpoOGZFT3YwaEJzS1FuZ0duRzU2MkR3OThBUXZTT2lQei1RQTlnUkRJcmtNcWgtV2pEQnByWUVNUnN3dS1nUUJ3?oc=5",
       "linkType": "rss",
-      "id": 10
+      "id": 11
     },
     {
       "title": "전기차 화재 검색어 옆의 궁금증, 충전 요금을 kWh로 미리 계산하는 법 - 스페셜타임스",
@@ -3856,7 +3865,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1uT1dGSlZwZjByMmhKOWU3UWx3TnpNbW1qRF9xNVVpaXl0UUZVempmY0k5bGNhZkJoSnMwR3BZWS00NmlUUUVvZVphNVVoaXBuYURoY19qRUg5cTZrbUllSmgwLWtUNnN3YXlsd3hhakl3Zw?oc=5",
       "linkType": "rss",
-      "id": 11
+      "id": 12
     },
     {
       "title": "포스코, 아르헨 리튬 2공장 가동…배터리 핵심소재 자체 조달망 열렸다 - 글로벌이코노믹",
@@ -3865,7 +3874,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOUF9mUXRLRjM1dHY4dkdwN051bzVlX3dFREEtVmphbUJaQ2I1d0lIQU5xaWRFR1M1ZEdYX3FwR2s1bTBJZE5qTmNZVkVnbmdoWHE2WmJkS0w3M3RBSDAwbnhSODE1b1VuNGQxYVBYTVV5ZFFBS29WTDNDZ25iaF9Bc0xEUFZpZkZk?oc=5",
       "linkType": "rss",
-      "id": 12
+      "id": 13
     },
     {
       "title": "포스코홀딩스, 배터리 핵심 원료 '리튬' 생산 능력 두 배로 키운다 - www.ebn.co.kr",
@@ -3874,7 +3883,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1qZDIxc19lVVg0Nm9Jc1M1TkVBWF9DblZCb0YtTmZwVUNLem1sNmZ2ZVQ0TDRoX1NyRjl3eDk0WFdPdVFxeXpRcU5DWEFCdWdFT01yallENGF1R1J3MUFONndIcHZfSDBH?oc=5",
       "linkType": "rss",
-      "id": 13
+      "id": 14
     },
     {
       "title": "포스코홀딩스, 아르헨티나 리튬 2공장 준공 - 디일렉",
@@ -3883,7 +3892,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1xZjRmSU9OdUZISE9felJnQ3g3NjRUdnplY1hEMVJEY29mTHZ2ZnM5bGpSa1NZZzZYSHRmVUxRbHBBNC0zUGlRM3pqTGVzOVl1ZGtJbWlhaFFLREc3djhLQ2tlMEtsdw?oc=5",
       "linkType": "rss",
-      "id": 14
+      "id": 15
     },
     {
       "title": "포스코, 아르헨티나 염수리튬 2공장 상공정 준공…연 5만톤 수산화리튬 체제 기틀 - 위키리크스한국",
@@ -3892,7 +3901,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9EQVltNXk4VjlWMkRWQWdic2Y2bHlEUkJzUGhVVkNBaW81UGIxMUJhc09fTTJFRXhKRkNyd3BJTjVlTVFyZ3FPRFJRQlQzN2dqbWQ1bS12V1hZaTduZmZKZDN5NXd1XzFXZW5sdUN3WUg?oc=5",
       "linkType": "rss",
-      "id": 15
+      "id": 16
     },
     {
       "title": "WiPowerOne Shows 1.5 kW Wireless Charging for Mobile Robots - 에이빙",
@@ -3901,7 +3910,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4zcE1lTV92ZkFpRVhrWkdET2ZrVnRzSjZ4QXRET2JaMTRDaC1xNWNEcmR3SVJJZlBCT2F1alR1OTZ1U1BHZk5WTm5YVnJZMmZYMlQ5Y1BGdWZkbEdvWG9pTEo1dTA2RHPSAWtBVV95cUxQRmVTQkRBZkNnUEZIWVVOQjZ3VFhNeXVRWVV3UFd4TEYxa2J2WWZXOHF2M2lVckRZRk5JQlRzcVVPSGVhNGM3dVRnbWQyc2JleGZZajNoS2J4eE4yVzktOEUxY2pLMk0wbVJ5OA?oc=5",
       "linkType": "rss",
-      "id": 16
+      "id": 17
     },
     {
       "title": "‘ESS 100% 국산화’에 가려진 빈틈 [줌인IT] - IT조선",
@@ -3910,7 +3919,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1Za0RvUGhHQzYzaTgxdkpvNFJLa2N2YkNRLUtNdzVRQ1dhMElJNHZpQm9Gb05NVS1oY1VEVjNJOHVWNXdGZmtER2c0eldST19oT0FtcHhjVWEyT3BHcWhyU0QwZlFxejluSlpsQ1NOdHbSAXRBVV95cUxNRlMxRTdyUXBveWNGUnFocExXdy1HcU1mZVgyNF9EM25RUjJyaDZ6Z2RRcHVtZ2VrWGdaeExOSFVGMjFGcjNYT1REUUJDeVVNalZvdmlHTUswejRNaDM3V3A5TXE5bS02aU5pNVI5eXNSeFEzTA?oc=5",
       "linkType": "rss",
-      "id": 17
+      "id": 18
     },
     {
       "title": "포스코퓨처엠, 삼성SDI에 6조원 양극재 공급 - 조선일보",
@@ -3919,7 +3928,7 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOR09xNno0SndJb2VLUmNRNHNvVUV3STZUYld6c2wxcGFneHNEcEpOMGVZZGMzc3BsWEh3TTJaSUwyN2JFbXB5azhiU3pSdE00TkxmWmRHaGsxYzRpeGc4amd5NmJWOVNZc2R1T2stVEFEMWxnNkhySWx6NDJDUFk2aXRaeFBtUGR5RmhZXzlIYw?oc=5",
       "linkType": "rss",
-      "id": 18
+      "id": 19
     },
     {
       "title": "휴대폰 방전 막은 게 86배 투자대박의 비결? … ‘배터리 풍수’의 비밀 - 매일경제",
@@ -3928,23 +3937,14 @@
       "date": "2026-10-07",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFAyaDBrQm4yQ3FyMXdqS1k5TEJsbzdlT2Q5MFlPRFRXQjd3MW9jMTV4MXRTSGtuT3NZOTV0XzhGcHJfWjE4NlY0aFg0d3NmblJnYjRYZg?oc=5",
       "linkType": "rss",
-      "id": 19
-    },
-    {
-      "title": "장인화 포스코 회장 “아르헨 리튬 2공장 준공, 韓대표 자원개발 기업 도약” - 서울경제",
-      "summary": "장인화 포스코 회장 “아르헨 리튬 2공장 준공, 韓대표 자원개발 기업 도약” - 서울경제",
-      "source": "서울경제",
-      "date": "2026-10-07",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5zSnBLRHVQdmRIRXAtcktrVk1mMVViQkpCbGN4MV9MdVBtcjVCdFNGdEZOaWxsVWZRb1VxVWJaNXBxalhlVnJSTTVQdmtLYl9LTXfSAVNBVV95cUxQVW5GSGx5QjJyd0pWZVZlbmphaVRUeEQ2NVVrODFxdlNGc09IZnRTYkN4a2FRbzRGbTZOVTZFZkZfYXlBekV3ZVRQNVRNWnhZZHRvaw?oc=5",
-      "linkType": "rss",
       "id": 20
     }
   ],
   "fx": {
-    "usdKrw": 1338.92,
-    "eurKrw": 1506.54,
-    "cnyKrw": 199.48,
-    "updatedAt": "2026-10-07T14:45:31.754646+09:00"
+    "usdKrw": 1339.09,
+    "eurKrw": 1499.63,
+    "cnyKrw": 199.49,
+    "updatedAt": "2026-10-08T11:07:50.458624+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
@@ -4194,22 +4194,58 @@
   },
   "chinaNews": [
     {
-      "title": "BYD Da Han EV to launch October 13 with 0.197 Cd drag and 1,008 km range",
-      "summary": "BYD Da Han EV to launch October 13 with 0.197 Cd drag and 1,008 km range",
-      "source": "CarNewsChina",
-      "date": "2026-10-07",
-      "url": "https://carnewschina.com/2026/10/07/byd-da-han-ev-to-launch-october-13-with-0-197-cd-drag-and-1008-km-range/",
+      "title": "BYD sells 463,561 vehicles in Sept. 2026 as overseas volume jumps 153.9%",
+      "summary": "BYD sold 463,561 new vehicles in September 2026, driven by a 153.9% year-on-year surge in overseas sales reaching 179,877 units.",
+      "source": "Gasgoo",
+      "date": "2026-10-08",
+      "url": "https://autonews.gasgoo.com/articles/news/byd-sells-463561-vehicles-in-sept-2026-as-overseas-volume-jumps-1539-2107803611743870977",
       "linkType": "rss",
       "id": 1
     },
     {
+      "title": "BYD Da Han EV to launch October 13 with 0.197 Cd drag and 1,008 km range",
+      "summary": "BYD will launch the 5.2-meter Da Han EV featuring an ultra-low 0.197 Cd drag coefficient and a range of up to 1,008 km.",
+      "source": "CarNewsChina",
+      "date": "2026-10-07",
+      "url": "https://carnewschina.com/2026/10/07/byd-da-han-ev-to-launch-october-13-with-0-197-cd-drag-and-1008-km-range/",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "EU plans Chinese hybrid import curbs as test case for trade rebalancing, report says",
+      "summary": "The European Union is preparing safeguard measures targeting Chinese hybrids, potentially using tariff-rate quotas to rebalance trade.",
+      "source": "CnEVPost",
+      "date": "2026-10-07",
+      "url": "https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
+      "title": "Suzuki utilises BYD’s battery to launch Japan’s most affordable Kei-car EV",
+      "summary": "Suzuki has entered the Japanese EV market with the 'e-Sky' Kei-car, utilizing battery technology supplied by BYD.",
+      "source": "CarNewsChina",
+      "date": "2026-10-07",
+      "url": "https://carnewschina.com/2026/10/07/suzuki-utilises-byds-battery-to-launch-japans-most-affordable-kei-car-ev/",
+      "linkType": "rss",
+      "id": 4
+    },
+    {
+      "title": "Li Auto plans to enter Thailand by the end of 2026 as one more RHD market",
+      "summary": "Li Auto plans to expand into Thailand by the end of 2026 as part of its strategy to target right-hand drive markets.",
+      "source": "CarNewsChina",
+      "date": "2026-10-07",
+      "url": "https://carnewschina.com/2026/10/07/li-auto-plans-to-enter-thailand-by-the-end-of-2026-as-one-more-rhd-market/",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
       "title": "BYD puts battery cells directly in cooling liquid in new patent",
-      "summary": "BYD puts battery cells directly in cooling liquid in new patent",
+      "summary": "BYD has filed a patent for a battery cabinet design that immerses cell modules directly in cooling liquid while isolating electrical components.",
       "source": "CarNewsChina",
       "date": "2026-10-06",
       "url": "https://carnewschina.com/2026/10/06/byd-puts-battery-cells-directly-in-cooling-liquid-in-new-patent/",
       "linkType": "rss",
-      "id": 2
+      "id": 6
     },
     {
       "title": "Leapmotor B03X crossover revealed price for Australia",
@@ -4218,7 +4254,7 @@
       "date": "2026-10-06",
       "url": "https://carnewschina.com/2026/10/06/leapmotor-b03x-crossover-revealed-price-for-australia/",
       "linkType": "rss",
-      "id": 3
+      "id": 7
     },
     {
       "title": "BYD’s Racco Kei EV jumps out of Japan, prepares for launch in Sri Lanka and Macau",
@@ -4227,7 +4263,7 @@
       "date": "2026-10-06",
       "url": "https://carnewschina.com/2026/10/06/byds-racco-kei-ev-jumps-out-of-japan-prepares-for-launch-in-sri-lanka-and-macau/",
       "linkType": "rss",
-      "id": 4
+      "id": 8
     },
     {
       "title": "BYD Megawatt Flash Charger used as playground swing sparks infrastructure safety concerns",
@@ -4236,16 +4272,16 @@
       "date": "2026-10-05",
       "url": "https://carnewschina.com/2026/10/05/byd-megawatt-flash-charger-used-as-playground-swing-sparks-infrastructure-safety-concerns/",
       "linkType": "rss",
-      "id": 5
+      "id": 9
     },
     {
       "title": "Global EV battery market share in January-August 2026: CATL 39.4%, BYD 15.1%",
-      "summary": "The 7 Chinese companies in the top 10 held a combined 73.3% share of the global EV battery market. For details, please visit CnEVPost (cnev.co).",
+      "summary": "Seven Chinese battery manufacturers held a combined 73.3% share of the global EV battery market from January to August 2026, led by CATL and BYD.",
       "source": "CnEVPost",
       "date": "2026-10-02",
       "url": "https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/",
       "linkType": "rss",
-      "id": 6
+      "id": 10
     },
     {
       "title": "Tesla beats Q3 delivery expectations but falls further behind BYD in BEV sales",
@@ -4254,7 +4290,7 @@
       "date": "2026-10-02",
       "url": "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/",
       "linkType": "rss",
-      "id": 7
+      "id": 11
     },
     {
       "title": "What to expect from Chinese car brands at the Paris Auto Show 2026",
@@ -4263,7 +4299,7 @@
       "date": "2026-10-02",
       "url": "https://carnewschina.com/2026/10/02/what-to-expect-from-chinese-car-brands-at-the-paris-auto-show-2026/",
       "linkType": "rss",
-      "id": 8
+      "id": 12
     },
     {
       "title": "Volkswagen ID. Aura T6 began deliveries in China with 660 km of range",
@@ -4272,7 +4308,7 @@
       "date": "2026-10-02",
       "url": "https://carnewschina.com/2026/10/02/volkswagen-id-aura-t6-began-deliveries-in-china-with-660-km-of-range/",
       "linkType": "rss",
-      "id": 9
+      "id": 13
     },
     {
       "title": "Nio delivers 37,408 vehicles in September, meets Q3 guidance",
@@ -4281,7 +4317,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/nio-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 10
+      "id": 14
     },
     {
       "title": "Leapmotor posts record September deliveries, tops 100,000 for third straight month",
@@ -4290,7 +4326,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/leapmotor-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 11
+      "id": 15
     },
     {
       "title": "Xiaomi Auto September deliveries top 40,000 as Sky Nomad adds volume",
@@ -4299,7 +4335,7 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/xiaomi-auto-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 12
+      "id": 16
     },
     {
       "title": "Li Auto September deliveries fall 6.29% to 31,817",
@@ -4308,16 +4344,16 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/li-auto-sept-2026-deliveries/",
       "linkType": "rss",
-      "id": 13
+      "id": 17
     },
     {
       "title": "Roundup: September 2026 deliveries by major Chinese automakers",
-      "summary": "Leapmotor and Zeekr set fresh records, while Xiaomi tops 40,000 deliveries to reach its highest monthly level this year. For details, please visit CnEVPost (cnev.co).",
+      "summary": "Chinese automakers posted strong September 2026 deliveries, with Leapmotor and Zeekr reaching record levels and Xiaomi surpassing 40,000 units.",
       "source": "CnEVPost",
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/roundup-sept-2026-deliveries-china-automakers/",
       "linkType": "rss",
-      "id": 14
+      "id": 18
     },
     {
       "title": "Geely September sales rise 7% to 2026 high as record export streak ends",
@@ -4326,50 +4362,14 @@
       "date": "2026-10-01",
       "url": "https://cnevpost.com/2026/10/01/geely-sept-2026-sales/",
       "linkType": "rss",
-      "id": 15
-    },
-    {
-      "title": "Huawei, Seres sign new 5-year deal to upgrade Aito business",
-      "summary": "Huawei and Seres are deepening their partnership about 2 weeks after announcing a shift in control of the Aito brand's operations. For details, please visit CnEVPost (cnev.co).",
-      "source": "CnEVPost",
-      "date": "2026-10-01",
-      "url": "https://cnevpost.com/2026/10/01/huawei-seres-sign-5-year-deal-upgrade-aito/",
-      "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "BYD September sales rise 16.98% to 463,561, hitting new high for 2026",
-      "summary": "BYD posted its fifth consecutive month of year-on-year NEV sales growth and seventh consecutive month of sequential growth. For details, please visit CnEVPost (cnev.co).",
-      "source": "CnEVPost",
-      "date": "2026-10-01",
-      "url": "https://cnevpost.com/2026/10/01/byd-sept-2026-sales/",
-      "linkType": "rss",
-      "id": 17
-    },
-    {
-      "title": "Zeekr plans 001 update in Q1 2027, offers incentives on current model",
-      "summary": "October incentives for the current 001 include a 10,000 yuan insurance subsidy. The model's deliveries fell 21.50% in the first 8 months of the year. For details, please visit CnEVPost (cnev.co).",
-      "source": "CnEVPost",
-      "date": "2026-10-01",
-      "url": "https://cnevpost.com/2026/10/01/zeekr-plans-001-update-q1-2027-incentives-current-model/",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "Zeekr delivers 37,216 vehicles in September, its sixth straight monthly record",
-      "summary": "Zeekr's September deliveries rose 103.85% year-on-year, extending its streak of both annual and monthly growth to 8 consecutive months. For details, please visit CnEVPost (cnev.co).",
-      "source": "CnEVPost",
-      "date": "2026-10-01",
-      "url": "https://cnevpost.com/2026/10/01/zeekr-sept-2026-deliveries/",
-      "linkType": "rss",
       "id": 19
     },
     {
-      "title": "Chinese NEV sales rankings in September 2026: BYD, Geely Galaxy, Leapmotor",
-      "summary": "CarNewsChina created the Chinese NEV sales rankings in September 2026 based on the delivery data released by new energy car makers. The post Chinese NEV sales rankings in September 2026: BYD, Geely Galaxy, Leapmotor appeared first on CarNewsChina.com .",
-      "source": "CarNewsChina",
+      "title": "Huawei, Seres sign new 5-year deal to upgrade Aito business",
+      "summary": "Huawei and Seres signed a new five-year agreement to deepen their partnership and upgrade operations for the Aito brand.",
+      "source": "CnEVPost",
       "date": "2026-10-01",
-      "url": "https://carnewschina.com/2026/10/01/chinese-nev-sales-rankings-in-september-2026-byd-leapmotor-changan-nevo/",
+      "url": "https://cnevpost.com/2026/10/01/huawei-seres-sign-5-year-deal-upgrade-aito/",
       "linkType": "rss",
       "id": 20
     }
@@ -4986,5 +4986,58 @@
       }
     ]
   },
-  "patentSeenUrls": []
+  "patentSeenUrls": [],
+  "newsCandidateCount": 120,
+  "status": {
+    "vehicles": {
+      "lastSuccessAt": null,
+      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "state": "failed",
+      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
+      "staleAfterHours": 36,
+      "lastAddedAt": null
+    },
+    "news": {
+      "lastSuccessAt": "2026-10-08T11:07:50.351128+09:00",
+      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "state": "ok",
+      "reason": "",
+      "staleAfterHours": 36
+    },
+    "chinaNews": {
+      "lastSuccessAt": "2026-10-08T11:07:50.351128+09:00",
+      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "state": "ok",
+      "reason": "",
+      "staleAfterHours": 36
+    },
+    "newsBriefing": {
+      "lastSuccessAt": "2026-10-05T00:00:00+09:00",
+      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "state": "failed",
+      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
+      "staleAfterHours": 36
+    },
+    "chinaNewsBriefing": {
+      "lastSuccessAt": "2026-10-02T00:00:00+09:00",
+      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "state": "failed",
+      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
+      "staleAfterHours": 36
+    },
+    "benchmarkingPoints": {
+      "lastSuccessAt": null,
+      "lastAttemptAt": "2026-10-08T11:07:50.351128+09:00",
+      "state": "failed",
+      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
+      "staleAfterHours": 36
+    },
+    "patentTrends": {
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "state": "unknown",
+      "reason": "",
+      "staleAfterHours": 216
+    }
+  }
 }
