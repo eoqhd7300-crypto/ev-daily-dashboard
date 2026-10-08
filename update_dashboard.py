@@ -419,16 +419,19 @@ def build_news_summary_prompt(raw_items: list) -> str:
 
 
 def build_news_briefing_prompt(news_items: list) -> str:
+    # url(Google News RSS의 긴 base64류 리다이렉션 링크)를 Gemini가 그대로 베껴쓰게 하면 한 글자만 다르게 적어도
+    # 검증(url 완전일치)에서 항목이 통통 탈락해 브리핑 전체가 None으로 돌아가는 문제가 실측되어,
+    # url 대신 짧은 정수 id로만 기사를 참조하게 하고 source/date/url/title은 우리 코드에서 id로 역찾아 채운다.
     items_json = json.dumps(
         [
             {
+                "id": i,
                 "title": n.get("title", ""),
                 "summary": n.get("summary", ""),
                 "source": n.get("source", ""),
                 "date": n.get("date", ""),
-                "url": n.get("url", ""),
             }
-            for n in news_items
+            for i, n in enumerate(news_items)
         ],
         ensure_ascii=False,
         indent=2,
@@ -442,15 +445,16 @@ def build_news_briefing_prompt(news_items: list) -> str:
 1. categories: 기사들을 "기술/소재", "기업 동향/공급망", "시장/산업/규제", "안전성/열관리" 등 주제별로 2~4개 그룹으로 묶으세요.
    각 그룹 이름(name)은 기사 내용에 맞게 자유롭게 지어도 됩니다. 한 기사는 가장 적합한 그룹 하나에만 배치하세요.
 2. 각 그룹의 items는 해당 그룹에 속한 기사 각각에 대해 아래 필드를 작성하세요.
+   - id: 원본 기사 목록에 주어진 정수 id를 그대로 복사 (반드시 포함, 변형/마음대로 지어내기 금지)
    - headline: 기사 제목을 그대로 쓰지 말고, 핵심을 압축한 짧은 소제목(15자 내외)
    - summary: 문장 수 제한 없이, 띄어쓰기 포함 150~200자 수준으로 작성하세요 (원본 summary/기사 내용을
      바탕으로 배경·핵심 내용·의미까지 담아 충분히 상세하게 풀어 쓰되, 1문장으로 뭉뚱그리지 마세요).
    - tags: 이 기사의 핵심 키워드 2~4개를 "#키워드" 형태 문자열 배열로 작성 (예: "#전고체", "#LG엔솔", "#열관리")
-   - source, date, url: 입력값을 그대로 유지 (변경 금지)
+   - source/date/url/title은 작성하지 마세요 (id로만 참조하며, 포함해도 무시됩니다).
 3. keyTakeaways: 오늘 전체 기사를 관통하는 핵심 흐름 2~3개를 한 문장씩 배열로 작성하세요 (제목 나열이 아니라 종합적 인사이트).
 4. implications: "이 뉴스들이 배터리 산업에 미치는 영향"을 기본 3문장 수준으로 종합 분석하세요 (내용이 풍부하면
    최대 5문장까지 확장 가능, 2줄 요약처럼 과도하게 압축하지 마세요).
-5. 모든 기사(url 기준)를 반드시 어느 한 카테고리에는 포함시키세요 (누락 금지). 순서는 최신순을 우선하되 카테고리 응집성을 우선하세요.
+5. 모든 기사(id 기준)를 반드시 어느 한 카테고리에는 포함시키세요 (누락 금지). 순서는 최신순을 우선하되 카테고리 응집성을 우선하세요.
 6. 마크다운 코드블록이나 설명 문장 없이 순수 JSON 객체만 응답하세요.
 
 원본 기사 목록:
@@ -463,7 +467,7 @@ def build_news_briefing_prompt(news_items: list) -> str:
     {{
       "name": "...",
       "items": [
-        {{"headline": "...", "summary": "...", "tags": ["#...", "#..."], "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+        {{"id": 0, "headline": "...", "summary": "...", "tags": ["#...", "#..."]}}
       ]
     }}
   ],
@@ -504,16 +508,18 @@ def build_china_news_summary_prompt(raw_items: list) -> str:
 
 
 def build_china_news_briefing_prompt(news_items: list) -> str:
+    # 국내 브리핑과 동일한 이유로(url 완전일치 검증이 긴 링크에서 취약해 브리핑 전체가 None으로
+    # 돌아가는 문제 방지) url 대신 정수 id로만 기사를 참조하게 하고 source/date/url/title은 id로 역찾아 채운다.
     items_json = json.dumps(
         [
             {
+                "id": i,
                 "title": n.get("title", ""),
                 "summary": n.get("summary", ""),
                 "source": n.get("source", ""),
                 "date": n.get("date", ""),
-                "url": n.get("url", ""),
             }
-            for n in news_items
+            for i, n in enumerate(news_items)
         ],
         ensure_ascii=False,
         indent=2,
@@ -527,16 +533,17 @@ def build_china_news_briefing_prompt(news_items: list) -> str:
 1. categories: 기사들을 "중국 브랜드 신차/기술", "배터리·소재·공급망", "시장·정책·수출" 등 주제별로 2~4개
    그룹으로 묶으세요. 그룹 이름은 기사 내용에 맞게 자유롭게 지어도 됩니다. 한 기사는 가장 적합한 그룹 하나에만 배치하세요.
 2. 각 그룹의 items는 아래 필드를 작성:
+   - id: 원본 기사 목록에 주어진 정수 id를 그대로 복사 (반드시 포함, 변형 금지)
    - headline: 핵심을 압축한 짧은 소제목(15자 내외, 한국어)
    - summary: 문장 수 제한 없이, 띄어쓰기 포함 150~200자 수준으로 작성하세요(한국어) - 원본 summary/기사
      내용을 바탕으로 배경·핵심 내용·의미까지 담아 충분히 상세하게 풀어 쓰되, 1문장으로 뭉뚱그리지 마세요.
    - tags: 핵심 키워드 2~4개를 "#키워드" 형태 문자열 배열로 작성 (예: "#BYD", "#해외진출", "#CATL")
-   - source, date, url: 입력값을 그대로 유지 (변경 금지)
+   - source/date/url/title은 작성하지 마세요 (id로만 참조하며, 포함해도 무시됩니다).
 3. keyTakeaways: 오늘 중국 EV/배터리 산업 전체를 관통하는 핵심 흐름 2~3개를, 가능하면 한국 업계 관점의 시사점을
    담아 한 문장씩 배열로 작성하세요.
 4. implications: "이 중국 동향이 한국 배터리/완성차 업계에 미치는 영향"을 기본 3문장 수준으로 분석하세요
    (내용이 풍부하면 최대 5문장까지 확장 가능, 2줄 요약처럼 과도하게 압축하지 마세요).
-5. 모든 기사(url 기준)를 반드시 어느 한 카테고리에는 포함시키세요 (누락 금지).
+5. 모든 기사(id 기준)를 반드시 어느 한 카테고리에는 포함시키세요 (누락 금지).
 6. 마크다운 코드블록이나 설명 문장 없이 순수 JSON 객체만 응답하세요.
 
 원본 기사 목록:
@@ -549,7 +556,7 @@ def build_china_news_briefing_prompt(news_items: list) -> str:
     {{
       "name": "...",
       "items": [
-        {{"headline": "...", "summary": "...", "tags": ["#...", "#..."], "source": "...", "date": "YYYY-MM-DD", "url": "..."}}
+        {{"id": 0, "headline": "...", "summary": "...", "tags": ["#...", "#..."]}}
       ]
     }}
   ],
@@ -1463,8 +1470,9 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
         categories = payload.get("categories")
         if not isinstance(categories, list) or not categories:
             return None
-        # url 기준으로 원본 기사 존재 여부를 검증해, 모델이 지어낸 항목을 방어적으로 제거한다.
-        valid_urls = {_norm(n.get("url") or "") for n in news_items}
+        # id(정수 인덱스) 기준으로 원본 기사를 역참조해 headline/summary/tags만 모델 응답을 신뢰하고,
+        # source/date/url/title은 항상 우리 쪽 원본 데이터에서 채운다 (Gemini가 긴 url을 베껴쓰다
+        # 생기는 오탈자로 전체 브리핑이 통째로 탈락하는 문제를 원천 차단).
         cleaned_categories = []
         for cat in categories:
             if not isinstance(cat, dict):
@@ -1472,10 +1480,24 @@ def generate_news_briefing(client: "genai.Client", news_items: list) -> dict | N
             items = cat.get("items")
             if not isinstance(items, list):
                 continue
-            cleaned_items = [
-                item for item in items
-                if isinstance(item, dict) and _norm(item.get("url") or "") in valid_urls
-            ]
+            cleaned_items = []
+            for item in items:
+                if not isinstance(item, dict):
+                    continue
+                idx = item.get("id")
+                if not isinstance(idx, int) or idx < 0 or idx >= len(news_items):
+                    continue
+                src = news_items[idx]
+                cleaned_items.append(
+                    {
+                        "headline": item.get("headline") or src.get("title", ""),
+                        "summary": item.get("summary") or src.get("summary", ""),
+                        "tags": item.get("tags") if isinstance(item.get("tags"), list) else [],
+                        "source": src.get("source", ""),
+                        "date": src.get("date", ""),
+                        "url": src.get("url", ""),
+                    }
+                )
             if cleaned_items:
                 cleaned_categories.append({"name": cat.get("name") or "기타", "items": cleaned_items})
         if not cleaned_categories:
@@ -1590,7 +1612,8 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
         categories = payload.get("categories")
         if not isinstance(categories, list) or not categories:
             return None
-        valid_urls = {_norm(n.get("url") or "") for n in news_items}
+        # id(정수 인덱스) 기준으로 원본 기사를 역참조 - 국내 브리핑과 동일한 이유로 url 베껴쓰기 오류에
+        # 의한 전체 탈락을 방지한다.
         cleaned_categories = []
         for cat in categories:
             if not isinstance(cat, dict):
@@ -1598,10 +1621,24 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
             items = cat.get("items")
             if not isinstance(items, list):
                 continue
-            cleaned_items = [
-                item for item in items
-                if isinstance(item, dict) and _norm(item.get("url") or "") in valid_urls
-            ]
+            cleaned_items = []
+            for item in items:
+                if not isinstance(item, dict):
+                    continue
+                idx = item.get("id")
+                if not isinstance(idx, int) or idx < 0 or idx >= len(news_items):
+                    continue
+                src = news_items[idx]
+                cleaned_items.append(
+                    {
+                        "headline": item.get("headline") or src.get("title", ""),
+                        "summary": item.get("summary") or src.get("summary", ""),
+                        "tags": item.get("tags") if isinstance(item.get("tags"), list) else [],
+                        "source": src.get("source", ""),
+                        "date": src.get("date", ""),
+                        "url": src.get("url", ""),
+                    }
+                )
             if cleaned_items:
                 cleaned_categories.append({"name": cat.get("name") or "기타", "items": cleaned_items})
         if not cleaned_categories:
@@ -1711,9 +1748,8 @@ google_patent_url)를 정밀 분석해, 아래 규칙에 맞춰 "엔지니어링
      또한 "정량적 수치 미기재", "수치 미기재" 같은 문구도 절대 쓰지 마라 - 수치가 없으면 그냥 정성적
      설명만 서술하고 수치 언급 자체를 생략하라.
 - tags: 핵심 키워드 2~4개를 "#키워드" 형태 문자열 배열로 작성 (예: "#전고체", "#탭용접", "#CATL").
-- source: company_name 값을 그대로 사용 (예: "CATL", "BYD", "Geely").
-- date: pub_date 값을 그대로 사용 (YYYY-MM-DD, 변경 금지).
-- url: google_patent_url 값을 그대로 사용 (반드시 입력값 중에서만 선택, 지어내지 마라).
+- id: 이 항목의 근거가 된 입력 특허에 주어진 정수 id를 그대로 복사 (반드시 포함, 변형 금지).
+  source/date/url은 작성하지 마라 (id로만 참조하며 우리 코드가 원본에서 직접 채운다. 포함해도 무시됨).
 - designCriteria: "핵심 정량 수치 요약(Data Summary)" - claims(우선) 또는 abstract에 실제로 등장하는
   정량적 파라미터만 {{"group": "...", "label": "...", "value": "..."}} 객체들의 배열로 작성하라.
    * group: 파라미터 성격에 따라 아래와 같이 "동적으로" 분류하라 (아래는 예시일 뿐, 특허마다 실제
@@ -1748,8 +1784,8 @@ google_patent_url)를 정밀 분석해, 아래 규칙에 맞춰 "엔지니어링
       "name": "...",
       "items": [
         {{
-          "headline": "...", "painPoint": "...", "solution": "...",
-          "tags": ["#...", "#..."], "source": "...", "date": "YYYY-MM-DD", "url": "...",
+          "id": 0, "headline": "...", "painPoint": "...", "solution": "...",
+          "tags": ["#...", "#..."],
           "designCriteria": [{{"group": "...", "label": "...", "value": "..."}}],
           "evidenceQuote": "..."
         }}
@@ -1762,9 +1798,13 @@ google_patent_url)를 정밀 분석해, 아래 규칙에 맞춰 "엔지니어링
 
 
 def build_patent_trend_prompt(patents: list) -> str:
+    # url(google_patent_url)을 Gemini가 그대로 베껴쓰게 하면 베껴쓰기 오류로 근거 검증에서 항목이 탈락할 수 있어
+    # (국내/China 뉴스 브리핑 카드에서 실측된 문제와 동일한 원인), id로만 참조하게 하고
+    # source/date/url은 우리 코드가 id로 역찾아 채운다.
     items_json = json.dumps(
         [
             {
+                "id": i,
                 "title": p.get("title", ""),
                 "abstract": p.get("abstract", ""),
                 "claims": p.get("claims", ""),
@@ -1772,9 +1812,8 @@ def build_patent_trend_prompt(patents: list) -> str:
                 "primary_tech_category": p.get("primary_tech_category", ""),
                 "ipc_list": p.get("ipc_list", ""),
                 "pub_date": p.get("pub_date", ""),
-                "google_patent_url": p.get("google_patent_url", ""),
             }
-            for p in patents
+            for i, p in enumerate(patents)
         ],
         ensure_ascii=False,
         indent=2,
@@ -1832,31 +1871,40 @@ def generate_patent_trends(client: "genai.Client", patents: list, seen_urls: lis
         categories = payload.get("categories")
         if not isinstance(categories, list) or not categories:
             return None, seen_urls
-        valid_urls = {_norm(p.get("google_patent_url") or "") for p in patents}
-        # (A) 코드 레벨 근거 검증용 인덱스: url -> 해당 특허의 claims+abstract 원문. evidenceQuote가
-        # 실제로 이 원문 안에 있는지 대조해, 벤치마킹 포인트 카드와 동일한 방식으로 환각(예: Dv50을
-        # Dv99로 잘못 쓰는 등)을 코드 레벨에서 차단한다.
-        text_by_url = {
-            _norm(p.get("google_patent_url") or ""): f"{p.get('abstract', '')} {p.get('claims', '')}"
-            for p in patents
-        }
+        # (A) id(정수 인덱스) 기준으로 원본 특허를 역참조한다 - 국내/China 뉴스 브리핑 카드에서 실측된
+        # 문제(모델이 긴 url을 베껴쓰다 생기는 오류로 근거 검증에서 항목이 통째로 탈락)를 막기 위해,
+        # url 대신 id로만 참조하게 하고 source/date/url은 항상 우리 코드가 원본에서 직접 채운다.
+        # evidenceQuote가 실제로 해당 특허의 claims+abstract 원문 안에 있는지도 함께 대조해, 환각
+        # (예: Dv50을 Dv99로 잘못 쓰는 등)을 코드 레벨에서 차단한다.
+        patents_by_id = dict(enumerate(patents))
+        text_by_id = {i: f"{p.get('abstract', '')} {p.get('claims', '')}" for i, p in enumerate(patents)}
         discarded_for_quote = 0
 
-        def _is_valid_item(item: object) -> bool:
+        def _resolve_patent_item(item: object) -> dict | None:
             nonlocal discarded_for_quote
             if not isinstance(item, dict):
-                return False
-            url = item.get("url") or ""
-            if not url:
-                return True  # "신규 공개 특허 없음" placeholder 등 url이 없는 항목은 그대로 허용
-            key = _norm(url)
-            if key not in valid_urls:
-                return False
+                return None
+            idx = item.get("id")
+            if idx is None:
+                return item  # "신규 공개 특허 없음" placeholder 등 id가 없는 항목은 그대로 허용
+            if not isinstance(idx, int) or idx not in patents_by_id:
+                return None  # 모델이 지어낸 id -> 폐기
+            p = patents_by_id[idx]
             quote = _norm(item.get("evidenceQuote") or "")
-            if quote and quote not in _norm(text_by_url.get(key, "")):
+            if quote and quote not in _norm(text_by_id.get(idx, "")):
                 discarded_for_quote += 1
-                return False  # 인용문이 해당 특허 원문에 실제로 없음(모델의 지어낸 근거) -> 폐기
-            return True
+                return None  # 인용문이 해당 특허 원문에 실제로 없음(모델의 지어낸 근거) -> 폐기
+            return {
+                "headline": item.get("headline", ""),
+                "painPoint": item.get("painPoint", ""),
+                "solution": item.get("solution", ""),
+                "tags": item.get("tags") if isinstance(item.get("tags"), list) else [],
+                "source": p.get("company_name", ""),
+                "date": p.get("pub_date", ""),
+                "url": p.get("google_patent_url", ""),
+                "designCriteria": item.get("designCriteria") if isinstance(item.get("designCriteria"), list) else [],
+                "evidenceQuote": item.get("evidenceQuote", ""),
+            }
 
         categories_by_name: dict[str, dict] = {}
         for cat in categories:
@@ -1866,7 +1914,11 @@ def generate_patent_trends(client: "genai.Client", patents: list, seen_urls: lis
             items = cat.get("items")
             if not name or not isinstance(items, list):
                 continue
-            cleaned_items = [item for item in items if _is_valid_item(item)]
+            cleaned_items = []
+            for item in items:
+                resolved = _resolve_patent_item(item)
+                if resolved is not None:
+                    cleaned_items.append(resolved)
             # 이번 주에 처음 조회된(=seen_urls에 없던) 항목만 "신규 색인"으로 표시한다. Google 특허
             # 공개 데이터셋은 색인 지연(최대 5개월+)이 있어, pub_date가 최신이라도 "실제로 오늘 처음
             # 조회 가능해졌다"는 보장이 없기 때문이다.
@@ -1947,9 +1999,14 @@ BENCHMARKING_BANNED_PHRASES = [
 def _slim_benchmarking_inputs(vehicles: list, news: list, china_news: list, patent_trends: dict | None) -> dict:
     """벤치마킹 프롬프트에 실제로 넘기는 입력 데이터를 슬림화한다. build_benchmarking_prompt()가 프롬프트
     텍스트를 만들 때와, generate_benchmarking_points()가 응답을 사후 검증(코드 레벨 근거 대조)할 때
-    똑같은 데이터를 재사용해야 두 곳이 어긋나지 않으므로 별도 함수로 분리했다."""
+    똑같은 데이터를 재사용해야 두 곳이 어긋나지 않으므로 별도 함수로 분리했다.
+    각 소스 타입마다 0부터 시작하는 "id"를 부여한다 - Gemini가 source/date/url(특히 국내 뉴스의 긴
+    Google News 리다이렉션 링크)을 직접 베껴쓰다 한 글자라도 틀리면 근거 검증에서 탈락하는 문제가
+    실측되어(브리핑 카드와 동일 원인), url 대신 (sourceType, sourceId)만 참조하게 하고 실제
+    source/date/url은 항상 우리 코드가 id로 역참조해서 채운다."""
     slim_vehicles = [
         {
+            "id": i,
             "name": v.get("name"),
             "releaseDate": v.get("releaseDate"),
             "batterySpec": v.get("batterySpec"),
@@ -1958,15 +2015,15 @@ def _slim_benchmarking_inputs(vehicles: list, news: list, china_news: list, pate
             "rangePerformance": v.get("rangePerformance"),
             "cellComposition": v.get("cellComposition"),
         }
-        for v in (vehicles or [])[:MAX_BENCHMARKING_VEHICLES_IN_PROMPT]
+        for i, v in enumerate((vehicles or [])[:MAX_BENCHMARKING_VEHICLES_IN_PROMPT])
     ]
     slim_news = [
-        {"title": n.get("title"), "summary": n.get("summary"), "source": n.get("source"), "date": n.get("date"), "url": n.get("url")}
-        for n in (news or [])[:MAX_BENCHMARKING_NEWS_IN_PROMPT]
+        {"id": i, "title": n.get("title"), "summary": n.get("summary"), "source": n.get("source"), "date": n.get("date"), "url": n.get("url")}
+        for i, n in enumerate((news or [])[:MAX_BENCHMARKING_NEWS_IN_PROMPT])
     ]
     slim_china_news = [
-        {"title": n.get("title"), "summary": n.get("summary"), "source": n.get("source"), "date": n.get("date"), "url": n.get("url")}
-        for n in (china_news or [])[:MAX_BENCHMARKING_NEWS_IN_PROMPT]
+        {"id": i, "title": n.get("title"), "summary": n.get("summary"), "source": n.get("source"), "date": n.get("date"), "url": n.get("url")}
+        for i, n in enumerate((china_news or [])[:MAX_BENCHMARKING_NEWS_IN_PROMPT])
     ]
     slim_patents = []
     for cat in ((patent_trends or {}).get("categories") or []):
@@ -1974,6 +2031,7 @@ def _slim_benchmarking_inputs(vehicles: list, news: list, china_news: list, pate
             if not item.get("url"):
                 continue  # "신규 공개 특허 없음" placeholder 제외
             slim_patents.append({
+                "id": len(slim_patents),
                 "category": cat.get("name"), "headline": item.get("headline"),
                 "painPoint": item.get("painPoint"), "solution": item.get("solution"),
                 "source": item.get("source"), "date": item.get("date"), "url": item.get("url"),
@@ -2000,7 +2058,9 @@ def build_benchmarking_prompt(vehicles: list, news: list, china_news: list, pate
    mm, % 등)가 있으면 반드시 그 숫자를 그대로 포함하고, 수치가 없으면 whyNotable 끝에 반드시
    "(구체적 수치 미공개)"를 붙여라 - 이 둘 중 하나는 항상 명시해야 한다.
 4. 모든 항목은 반드시 입력 데이터 중 정확히 1건(뉴스 1건, 특허 1건, 또는 신차 스펙 1건)에서 파생되어야
-   하며, 그 항목의 source/date/url을 원본 그대로 유지하라 (url이 없는 신차 스펙 항목은 url을 빈 문자열로 둬라).
+   하며, 그 항목의 sourceType("vehicle" | "news" | "china_news" | "patent")과 sourceId(그 항목에 주어진
+   정수 id)를 정확히 그대로 적어라 (반드시 포함, 변형/지어내기 금지). source/date/url은 작성하지 마라
+   (sourceType+sourceId로만 참조하며, 포함해도 무시된다).
 5. internalCheckQuestion은 반드시 다음 템플릿을 따르는 구체적 질문 1개여야 한다:
    "당사 [비교할 지표명]은 [단위] 기준 얼마인지, 이 경쟁사 수치([해당 값 또는 '있으면'])와 비교 확인 필요"
    (예: "당사 급속충전 시스템은 SOC 10→80% 기준 몇 분대인지, 이 경쟁사 수치(18분)와 비교 확인 필요").
@@ -2043,7 +2103,8 @@ China 뉴스:
           "factLevel": "직접 인용" 또는 "간접 서술" 또는 "추론",
           "internalCheckQuestion": "규칙 5의 템플릿을 따르는 구체적 질문 1개",
           "tags": ["#키워드"],
-          "source": "...", "date": "YYYY-MM-DD", "url": "..."
+          "sourceType": "vehicle 또는 news 또는 china_news 또는 patent",
+          "sourceId": 0
         }}
       ]
     }}
@@ -2052,52 +2113,65 @@ China 뉴스:
 """
 
 
-def _build_benchmarking_evidence_index(slim: dict) -> tuple:
-    """(A) 코드 레벨 근거 검증용 인덱스를 만든다. 특허 트렌드 카드의 _is_valid_item()과 같은 목적으로,
-    모델이 응답에 넣은 url이 실제로 프롬프트에 넘긴 입력 데이터에 존재하는지 대조한다. 여기서는 한 걸음
-    더 나아가 evidenceQuote(원문 인용)까지 실제 원문 텍스트에 포함되어 있는지 대조해, 근거 강도를 더
-    엄격하게 검증한다."""
-    valid_urls = set()
-    text_by_url = {}
-    for n in slim["news"] + slim["china_news"]:
-        url = n.get("url")
-        if not url:
-            continue
-        key = _norm(url)
-        valid_urls.add(key)
-        text_by_url[key] = f"{n.get('title', '')} {n.get('summary', '')}"
-    for p in slim["patents"]:
-        url = p.get("url")
-        if not url:
-            continue
-        key = _norm(url)
-        valid_urls.add(key)
-        text_by_url[key] = f"{p.get('headline', '')} {p.get('painPoint', '')} {p.get('solution', '')}"
-    vehicle_fields = ("name", "batterySpec", "cellMaker", "qcPerformance", "rangePerformance", "cellComposition")
-    vehicle_text = " ".join(
-        " ".join(str(v.get(f) or "") for f in vehicle_fields)
-        for v in slim["vehicles"]
-    )
-    return valid_urls, text_by_url, vehicle_text
+def _build_benchmarking_evidence_index(slim: dict) -> dict:
+    """(A) 코드 레벨 근거 검증 및 역참조용 인덱스를 만든다. 국내/China 뉴스 브리핑 카드에서 실측된
+    것과 동일한 문제(모델이 긴 url을 베껴쓰다 한 글자라도 틀리면 근거 검증에서 탈락)를 막기 위해,
+    url이 아니라 (sourceType, sourceId) 기준으로 원본 항목을 직접 역참조한다. evidenceQuote(원문 인용)가
+    실제 원문 텍스트에 포함되어 있는지도 함께 대조해, 근거 강도를 엄격하게 검증한다."""
+    news_by_id = {n.get("id"): n for n in slim["news"] if n.get("id") is not None}
+    china_by_id = {n.get("id"): n for n in slim["china_news"] if n.get("id") is not None}
+    patent_by_id = {p.get("id"): p for p in slim["patents"] if p.get("id") is not None}
+    vehicle_by_id = {v.get("id"): v for v in slim["vehicles"] if v.get("id") is not None}
+
+    def _text_of(source_type: str, item: dict) -> str:
+        if source_type in ("news", "china_news"):
+            return f"{item.get('title', '')} {item.get('summary', '')}"
+        if source_type == "patent":
+            return f"{item.get('headline', '')} {item.get('painPoint', '')} {item.get('solution', '')}"
+        if source_type == "vehicle":
+            vehicle_fields = ("name", "batterySpec", "cellMaker", "qcPerformance", "rangePerformance", "cellComposition")
+            return " ".join(str(item.get(f) or "") for f in vehicle_fields)
+        return ""
+
+    return {
+        "news": news_by_id,
+        "china_news": china_by_id,
+        "patent": patent_by_id,
+        "vehicle": vehicle_by_id,
+        "text_of": _text_of,
+    }
 
 
-def _is_grounded_benchmarking_item(item: dict, valid_urls: set, text_by_url: dict, vehicle_text: str) -> bool:
-    """url이 있으면 입력 데이터의 url 집합에 실제로 존재하는지, evidenceQuote가 있으면 그 url의 원문
-    (또는 url이 없는 신차 스펙 항목이면 차량 스펙 텍스트) 안에 실제로 등장하는지 대조한다. url이 지어낸
-    값이면 무조건 폐기하고, evidenceQuote는 모델이 아직 채워 넣지 않은 구버전 응답과의 호환을 위해
-    값이 있을 때만 엄격히 검증한다(값 자체가 없다고 무조건 폐기하면 과도하게 결과가 줄어들 수 있음)."""
-    url = (item.get("url") or "").strip()
+def _resolve_grounded_benchmarking_item(item: dict, index: dict) -> dict | None:
+    """item의 sourceType/sourceId가 실제 입력 데이터에 존재하는지 확인하고, evidenceQuote가 해당 원문
+    안에 실제로 등장하는지 대조한다. 통과하면 source/date/url을 원본 데이터에서 직접 채운 최종 item을
+    반환하고, 실패하면 None을 반환한다 (url을 모델이 베껴쓰다 생기는 오류를 원천 차단하기 위해 모델이
+    적은 source/date/url 값은 완전히 무시한다)."""
+    source_type = item.get("sourceType")
+    source_id = item.get("sourceId")
+    by_id = index.get(source_type) if isinstance(source_type, str) else None
+    if by_id is None or not isinstance(source_id, int) or source_id not in by_id:
+        return None  # 모델이 지어낸 (sourceType, sourceId) 조합이거나 범위를 벗어남 -> 폐기
+    src = by_id[source_id]
     quote = _norm(item.get("evidenceQuote") or "")
-    if url:
-        key = _norm(url)
-        if key not in valid_urls:
-            return False  # 모델이 지어낸 url이거나 입력에 없던 근거 -> 폐기
-        if quote and quote not in _norm(text_by_url.get(key, "")):
-            return False  # 인용문이 해당 원문에 실제로 없음 -> 폐기
-        return True
-    if quote:
-        return quote in _norm(vehicle_text)  # 신차 스펙 기반 항목: 차량 스펙 텍스트 안에 인용문이 있는지 확인
-    return True
+    origin_text = _norm(index["text_of"](source_type, src))
+    if quote and quote not in origin_text:
+        return None  # 인용문이 해당 원문에 실제로 없음(모델이 지어낸 근거) -> 폐기
+    if source_type == "vehicle":
+        source, date, url = src.get("name", ""), src.get("releaseDate", ""), ""
+    else:
+        source, date, url = src.get("source", ""), src.get("date", ""), src.get("url", "")
+    return {
+        "headline": item.get("headline", ""),
+        "whyNotable": item.get("whyNotable", ""),
+        "evidenceQuote": item.get("evidenceQuote", ""),
+        "factLevel": item.get("factLevel", ""),
+        "internalCheckQuestion": item.get("internalCheckQuestion", ""),
+        "tags": item.get("tags") if isinstance(item.get("tags"), list) else [],
+        "source": source,
+        "date": date,
+        "url": url,
+    }
 
 
 def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: list, china_news: list, patent_trends: dict | None) -> dict | None:
@@ -2107,7 +2181,7 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
         print("벤치마킹 포인트: 근거로 쓸 데이터(신차/뉴스/China뉴스/특허)가 하나도 없어 건너뜁니다.")
         return None
     slim = _slim_benchmarking_inputs(vehicles, news, china_news, patent_trends)
-    valid_urls, text_by_url, vehicle_text = _build_benchmarking_evidence_index(slim)
+    evidence_index = _build_benchmarking_evidence_index(slim)
     prompt = build_benchmarking_prompt(vehicles, news, china_news, patent_trends)
     print(f"벤치마킹 포인트 프롬프트 생성 완료 (길이 {len(prompt)}자)")
     try:
@@ -2137,11 +2211,17 @@ def generate_benchmarking_points(client: "genai.Client", vehicles: list, news: l
         for cat in categories:
             if not isinstance(cat, dict):
                 continue
-            items = [item for item in (cat.get("items") or []) if isinstance(item, dict) and item.get("headline")]
-            total_before += len(items)
-            # (A) 코드 레벨 근거 검증: url이 입력 데이터에 실제로 없거나, evidenceQuote가 해당 원문에
-            # 없는 항목(모델의 지어낸 근거)은 폐기한다. 특허 트렌드 카드의 _is_valid_item()과 동일한 목적.
-            items = [item for item in items if _is_grounded_benchmarking_item(item, valid_urls, text_by_url, vehicle_text)]
+            raw_items = [item for item in (cat.get("items") or []) if isinstance(item, dict) and item.get("headline")]
+            total_before += len(raw_items)
+            # (A) 코드 레벨 근거 검증 + 재구성: sourceType/sourceId가 입력 데이터에 실제로 없거나,
+            # evidenceQuote가 해당 원문에 없는 항목(모델의 지어낸 근거)은 폐기하고, 통과한
+            # 항목은 source/date/url을 우리 코드가 직접 채운 최종 형태로 교체한다
+            # (모델이 긴 url을 베껴쓰다 생기는 오류로 전체가 탈락하던 문제를 원천 차단).
+            items = []
+            for raw_item in raw_items:
+                resolved = _resolve_grounded_benchmarking_item(raw_item, evidence_index)
+                if resolved is not None:
+                    items.append(resolved)
             total_after += len(items)
             if items:
                 cleaned_categories.append({"name": cat.get("name") or "벤치마킹 포인트", "items": items})
