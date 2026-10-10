@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T14:58:05.547433+09:00",
+  "generatedAt": "2026-10-10T14:40:43.321885+09:00",
   "vehicles": [
     {
       "id": "li_auto_2026_li_i6",
@@ -23,15 +23,15 @@
       "packInfo": "800V 5C 차체 통합 CTP 고방열 알루미늄 팩",
       "cellInfo": "CATL Shenxing 5C Supercharging LFP Cell",
       "chargingSafety": "액체 직접 분사 급속 냉각 시스템 및 하부 5중 강화 장갑",
-      "trim": "Max AWD 5C Edition",
-      "topSpeed": "180km/h",
-      "zeroToHundred": "5.1초",
-      "maxOutput": "300kW / 408ps",
-      "maxChargePower": "400kW",
+      "trim": "5C Supercharging AWD",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "5.4 s",
+      "maxOutput": "300 kW (408 ps)",
+      "maxChargePower": "400 kW",
       "packVoltage": "800V",
-      "packType": "CTP 3.0 Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "양면 직접 액체 냉각",
+      "packType": "5C Supercharging Pack",
+      "cellType": "Prismatic LFP",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -45,7 +45,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "xpeng_p7_plus_dark_knight",
@@ -69,15 +70,15 @@
       "packInfo": "800V 초박형 차체 바닥 통합 배터리 팩 (두께 109mm)",
       "cellInfo": "CALB LFP 고밀도 각형 셀",
       "chargingSafety": "차세대 충전 지능제어 BMS 및 열격리 3D 에어로젤 박막",
-      "trim": "Dark Knight Ultra Smart Driving RWD",
-      "topSpeed": "200km/h",
-      "zeroToHundred": "5.6초",
-      "maxOutput": "230kW / 313ps",
-      "maxChargePower": "230kW",
+      "trim": "Dark Knight Edition RWD",
+      "topSpeed": "200 km/h",
+      "zeroToHundred": "5.6 s",
+      "maxOutput": "230 kW (313 ps)",
+      "maxChargePower": "230 kW",
       "packVoltage": "800V",
-      "packType": "Ultra-thin 800V Structural Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "하부 일체형 냉각판",
+      "packType": "Ultra-thin LFP Pack",
+      "cellType": "Blade LFP",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -90,7 +91,8 @@
       "cellComposition": "-",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
-      "cellEnergyDensity": "-"
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "seres_aito_m8_l3_ev",
@@ -350,13 +352,13 @@
       "cellInfo": "2세대 LFP Blade Cell",
       "chargingSafety": "침투/압착 시 무화재 블레이드 구조 및 액체 냉각 일체형 팩",
       "trim": "Standard FWD",
-      "topSpeed": "140km/h",
-      "zeroToHundred": "9.5초",
+      "topSpeed": "130 km/h",
+      "zeroToHundred": "12.0 s",
       "maxOutput": "60 kW (82 ps)",
       "maxChargePower": "70 kW",
       "packVoltage": "400V",
-      "packType": "CTP (Blade)",
-      "cellType": "Blade (Prismatic)",
+      "packType": "Blade Battery Pack",
+      "cellType": "Blade LFP",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -371,7 +373,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-26",
+      "specLastCheckedAt": "2026-10-10",
       "cellMakerCheckedAt": "2026-09-26"
     },
     {
@@ -396,14 +398,14 @@
       "packInfo": "Ultra Long Range CTB Blade Battery Pack",
       "cellInfo": "2세대 High Energy Density LFP Blade Cell",
       "chargingSafety": "듀얼 건 분할 충전 제어 및 고온 방열 나노 도포 셀 기술",
-      "trim": "AWD Flagship",
-      "topSpeed": "210km/h",
-      "zeroToHundred": "3.9초",
+      "trim": "Flagship AWD",
+      "topSpeed": "210 km/h",
+      "zeroToHundred": "3.7 s",
       "maxOutput": "380 kW (517 ps)",
       "maxChargePower": "300 kW",
-      "packVoltage": "800 V",
-      "packType": "CTP (Blade)",
-      "cellType": "Blade (Prismatic)",
+      "packVoltage": "800V",
+      "packType": "CTB Pack",
+      "cellType": "Blade LFP",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -418,7 +420,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-26",
+      "specLastCheckedAt": "2026-10-10",
       "cellMakerCheckedAt": "2026-09-26"
     },
     {
@@ -444,13 +446,13 @@
       "cellInfo": "CATL Fast Charging LFP Cell",
       "chargingSafety": "골든실드 배터리 안전 제어 알고리즘 및 24시간 이상징후 셀 모니터링",
       "trim": "Single Motor FWD",
-      "topSpeed": "175km/h",
-      "zeroToHundred": "6.6초",
+      "topSpeed": "170 km/h",
+      "zeroToHundred": "6.8 s",
       "maxOutput": "200 kW (272 ps)",
       "maxChargePower": "160 kW",
       "packVoltage": "400V",
-      "packType": "CTP",
-      "cellType": "Prismatic",
+      "packType": "CTP Pack",
+      "cellType": "Prismatic LFP",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -465,7 +467,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-26",
+      "specLastCheckedAt": "2026-10-10",
       "cellMakerCheckedAt": "2026-09-26"
     },
     {
@@ -537,15 +539,15 @@
       "packInfo": "FAW 자채 개발 고안전 800V 차체통합 배터리 시스템",
       "cellInfo": "CATL 하이니켈 NCM 셀",
       "chargingSafety": "전도성 액체 누출 방지 3중 절연 테이핑 기술",
-      "trim": "820km Pro RWD",
-      "topSpeed": "190km/h",
-      "zeroToHundred": "5.8초",
-      "maxOutput": "253kW / 344ps",
-      "maxChargePower": "365kW",
+      "trim": "Executive RWD",
+      "topSpeed": "200 km/h",
+      "zeroToHundred": "5.8 s",
+      "maxOutput": "253 kW (344 ps)",
+      "maxChargePower": "365 kW",
       "packVoltage": "800V",
-      "packType": "800V High Voltage Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "FME Platform Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -559,7 +561,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "nio_flagship_es9_2026",
@@ -1335,15 +1338,15 @@
       "packInfo": "CTB 차체 통합형 4C 초고속 충전 EREV 배터리 팩",
       "cellInfo": "CATL Freevoy LFP 초고속 충전 셀",
       "chargingSafety": "AI 실시간 셀 열폭주 예측 제어 및 하부 다중 압출 빔",
-      "trim": "Max Extended Range AWD",
-      "topSpeed": "210km/h",
-      "zeroToHundred": "4.3초",
-      "maxOutput": "400kW / 544ps",
-      "maxChargePower": "220kW",
+      "trim": "EREV AWD",
+      "topSpeed": "200 km/h",
+      "zeroToHundred": "4.2 s",
+      "maxOutput": "400 kW (544 ps)",
+      "maxChargePower": "220 kW",
       "packVoltage": "800V",
-      "packType": "800V CTB Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "직접 액체 냉각 (Direct Liquid Cooling)",
+      "packType": "Freevoy Hybrid Pack",
+      "cellType": "Prismatic LFP",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -1357,7 +1360,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "tesla_model_2_standard",
@@ -2084,15 +2088,15 @@
       "packInfo": "수심 1.5m 침수 방지 IP68 및 하부 고강성 아머 팩",
       "cellInfo": "CATL 초안전 오프로드 특화 LFP 셀",
       "chargingSafety": "2m 낙하 및 강풍·폭우 극한 환경 방수 안전 인증",
-      "trim": "Zongheng Flagship 4WD",
-      "topSpeed": "190km/h",
-      "zeroToHundred": "4.2초",
-      "maxOutput": "600kW / 816ps",
-      "maxChargePower": "120kW",
+      "trim": "Quad Motor EREV AWD",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "4.6 s",
+      "maxOutput": "600 kW (816 ps)",
+      "maxChargePower": "120 kW",
       "packVoltage": "400V",
-      "packType": "Reinforced Off-Road Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "Kunpeng Hybrid Pack",
+      "cellType": "Prismatic LFP",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -2106,7 +2110,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "kia_ev2_std",
@@ -2741,13 +2746,13 @@
       "cellInfo": "High-Nickel NCM Smart Cell",
       "chargingSafety": "열전도 분리 격벽 및 BMS AI 실시간 전압 예측 시스템",
       "trim": "Single Motor RWD",
-      "topSpeed": "220km/h",
-      "zeroToHundred": "5.2초",
+      "topSpeed": "220 km/h",
+      "zeroToHundred": "5.4 s",
       "maxOutput": "300 kW (408 ps)",
       "maxChargePower": "396 kW",
-      "packVoltage": "800 V",
-      "packType": "CTP",
-      "cellType": "Prismatic",
+      "packVoltage": "800V",
+      "packType": "Quasi-Solid-State 800V Pack",
+      "cellType": "Prismatic NCM",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -2762,7 +2767,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-09-26",
+      "specLastCheckedAt": "2026-10-10",
       "cellMakerCheckedAt": "2026-09-26"
     },
     {
@@ -3726,15 +3731,15 @@
       "packInfo": "차체 프레임 보강 일체형 800V 배터리 패키지",
       "cellInfo": "SK온 하이니켈 NCM 4세대 셀",
       "chargingSafety": "지능형 BMS 과열 모니터링 및 자동 전원 차단 유닛",
-      "trim": "Electrified Executive LWB AWD",
-      "topSpeed": "225km/h",
-      "zeroToHundred": "4.8초",
-      "maxOutput": "272kW / 370ps",
-      "maxChargePower": "350kW",
+      "trim": "AWD LWB",
+      "topSpeed": "225 km/h",
+      "zeroToHundred": "4.9 s",
+      "maxOutput": "272 kW (370 ps)",
+      "maxChargePower": "350 kW",
       "packVoltage": "800V",
-      "packType": "800V Integrated Structural Pack",
-      "cellType": "파우치형 (Pouch)",
-      "coolingMethod": "하부 바닥 액체 냉각",
+      "packType": "4th Gen Pack",
+      "cellType": "Pouch",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -3748,7 +3753,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "leapmotor_b10_ev",
@@ -4054,15 +4060,15 @@
       "packInfo": "MEB 하부 모듈형 알루미늄 보호 배터리 팩",
       "cellInfo": "CATL NCM 각형 배터리 셀",
       "chargingSafety": "열폭주 방지 센서 배열 및 셀 균일 온도 액체 냉각",
-      "trim": "VZ AWD Performance",
-      "topSpeed": "180km/h",
-      "zeroToHundred": "5.6초",
-      "maxOutput": "250kW / 340ps",
-      "maxChargePower": "135kW",
+      "trim": "VZ AWD",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "5.5 s",
+      "maxOutput": "250 kW (340 ps)",
+      "maxChargePower": "135 kW",
       "packVoltage": "400V",
-      "packType": "MEB Modular Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "MEB Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -4075,7 +4081,8 @@
       "cellComposition": "-",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
-      "cellEnergyDensity": "-"
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "hyundai_ioniq_6_facelift",
@@ -4099,15 +4106,15 @@
       "packInfo": "E-GMP 4세대 알루미늄 압출재 보호 배터리 시스템",
       "cellInfo": "SK온 고에너지밀도 NCM 811 셀",
       "chargingSafety": "배터리 충전 이상 탐지 및 BMS 3단계 분리 열차단",
-      "trim": "Long Range Exclusive RWD",
-      "topSpeed": "185km/h",
-      "zeroToHundred": "7.0초",
-      "maxOutput": "168kW / 229ps",
-      "maxChargePower": "260kW",
+      "trim": "Long Range RWD",
+      "topSpeed": "185 km/h",
+      "zeroToHundred": "7.4 s",
+      "maxOutput": "168 kW (229 ps)",
+      "maxChargePower": "260 kW",
       "packVoltage": "800V",
-      "packType": "E-GMP Integrated Pack",
-      "cellType": "파우치형 (Pouch)",
-      "coolingMethod": "하부 일체형 냉각판 (Liquid Cooling)",
+      "packType": "E-GMP 4th Gen Pack",
+      "cellType": "Pouch",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -4121,7 +4128,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "smart_hashtag_5_brabus",
@@ -4145,15 +4153,15 @@
       "packInfo": "800V 전용 고방전 탄소섬유 보강 배터리 팩",
       "cellInfo": "CALB 4C 급속충전 전용 하이니켈 NCM 셀",
       "chargingSafety": "액체 액티브 쿨링 및 충전 터미널 열화상 실시간 감시",
-      "trim": "BRABUS Performance AWD",
-      "topSpeed": "210km/h",
-      "zeroToHundred": "3.2초",
-      "maxOutput": "475kW / 646ps",
-      "maxChargePower": "400kW",
+      "trim": "BRABUS Edition AWD",
+      "topSpeed": "210 km/h",
+      "zeroToHundred": "3.7 s",
+      "maxOutput": "475 kW (646 ps)",
+      "maxChargePower": "400 kW",
       "packVoltage": "800V",
-      "packType": "800V Structural Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "듀얼 채널 액체 냉각",
+      "packType": "SEA CTP Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -4166,7 +4174,8 @@
       "cellComposition": "-",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
-      "cellEnergyDensity": "-"
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "volvo_es90_electric",
@@ -4190,15 +4199,15 @@
       "packInfo": "알루미늄 가죽 프레임 보호 구조 고안전 배터리 하우징",
       "cellInfo": "CATL 차세대 NCM 고밀도 각형 셀",
       "chargingSafety": "실시간 셀 단위 모니터링 및 자동 연기 배출 밸브",
-      "trim": "Twin Motor Performance Ultra",
-      "topSpeed": "180km/h",
-      "zeroToHundred": "4.1초",
-      "maxOutput": "380kW / 517ps",
-      "maxChargePower": "250kW",
-      "packVoltage": "400V",
-      "packType": "Modular Structural Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "trim": "Twin Motor Performance AWD",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "3.9 s",
+      "maxOutput": "380 kW (517 ps)",
+      "maxChargePower": "250 kW",
+      "packVoltage": "800V",
+      "packType": "SPA2 Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -4212,7 +4221,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "bmw_i4_m50_lci_2026",
@@ -4237,14 +4247,14 @@
       "cellInfo": "CATL 하이니켈 NCM 811 셀",
       "chargingSafety": "지능형 배터리 예열 및 충전 제어 알로리즘 적용",
       "trim": "M50 xDrive LCI",
-      "topSpeed": "225km/h",
-      "zeroToHundred": "3.9초",
-      "maxOutput": "400kW / 544ps",
-      "maxChargePower": "205kW",
+      "topSpeed": "225 km/h",
+      "zeroToHundred": "3.9 s",
+      "maxOutput": "400 kW (544 ps)",
+      "maxChargePower": "205 kW",
       "packVoltage": "400V",
-      "packType": "Modular Pack",
-      "cellType": "각기둥형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "Gen5 Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -4258,7 +4268,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "byd_fangchengbao_bao3",
@@ -4282,15 +4293,15 @@
       "packInfo": "CTB (Cell-to-Body) 차체 통합형 오프로드 하부강화 팩",
       "cellInfo": "2세대 LFP Blade Cell",
       "chargingSafety": "하부 고강도 스틸 아머 및 셀 전압 1밀리초 단위 감시",
-      "trim": "AWD Performance",
-      "topSpeed": "201km/h",
-      "zeroToHundred": "4.9초",
-      "maxOutput": "310kW / 421ps",
-      "maxChargePower": "210kW",
-      "packVoltage": "550V",
-      "packType": "CTB (Cell-to-Body)",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "trim": "Dual Motor AWD",
+      "topSpeed": "201 km/h",
+      "zeroToHundred": "4.9 s",
+      "maxOutput": "310 kW (421 ps)",
+      "maxChargePower": "210 kW",
+      "packVoltage": "600V",
+      "packType": "CTB (Cell-to-Body) Pack",
+      "cellType": "Blade LFP",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -4304,7 +4315,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "mercedes_benz_g_580_eq",
@@ -4328,15 +4340,15 @@
       "packInfo": "사다리형 프레임 내장형 탄소섬유 복합소재 하부 보호 팩",
       "cellInfo": "CATL 실리콘 양극재 적용 하이니켈 NCM 셀",
       "chargingSafety": "하부 탄소섬유 컴포지트 플레이트 3m 연성 방호 케이싱",
-      "trim": "Edition 1 Quad-Motor",
-      "topSpeed": "180km/h",
-      "zeroToHundred": "4.7초",
-      "maxOutput": "432kW / 587ps",
-      "maxChargePower": "200kW",
+      "trim": "G 580 with EQ Technology",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "4.7 s",
+      "maxOutput": "432 kW (587 ps)",
+      "maxChargePower": "200 kW",
       "packVoltage": "400V",
-      "packType": "Frame Integrated Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "Frame-Integrated Pack",
+      "cellType": "Pouch",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -4350,7 +4362,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "cadillac_optiq_v_series",
@@ -4374,15 +4387,15 @@
       "packInfo": "GM Ultium 파우치 모듈식 고강성 배터리 구조",
       "cellInfo": "Ultium NCMA 파우치 셀",
       "chargingSafety": "무선 배터리 관리 시스템(wBMS) 및 실시간 열폭주 차단",
-      "trim": "V-Series AWD",
-      "topSpeed": "210km/h",
-      "zeroToHundred": "3.8초",
-      "maxOutput": "373kW / 500ps",
-      "maxChargePower": "190kW",
+      "trim": "V-Series Performance AWD",
+      "topSpeed": "210 km/h",
+      "zeroToHundred": "3.8 s",
+      "maxOutput": "373 kW (500 ps)",
+      "maxChargePower": "190 kW",
       "packVoltage": "400V",
-      "packType": "Ultium Module Pack",
-      "cellType": "파우치형 (Pouch)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "Ultium Pack",
+      "cellType": "Pouch",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -4396,7 +4409,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "jeep_recon_ev_2026",
@@ -4420,15 +4434,15 @@
       "packInfo": "하부 언더바디 스키드 플레이트 일체형 고강성 배터리 팩",
       "cellInfo": "삼성SDI 하이니켈 각형 배터리 셀",
       "chargingSafety": "오프로드 침수 방지 IP68 등급 밀폐 하우징 적용",
-      "trim": "Trailhawk AWD",
-      "topSpeed": "180km/h",
-      "zeroToHundred": "3.6초",
-      "maxOutput": "448kW / 600ps",
-      "maxChargePower": "220kW",
+      "trim": "4xE AWD",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "3.5 s",
+      "maxOutput": "448 kW (600 ps)",
+      "maxChargePower": "220 kW",
       "packVoltage": "400V",
-      "packType": "Modular Frame Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "STLA Large Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -4442,7 +4456,8 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     },
     {
       "id": "nissan_leaf_3rd_gen",
@@ -4466,15 +4481,15 @@
       "packInfo": "CMF-EV 전용 하부 일체형 고안전 팩",
       "cellInfo": "AESC 고밀도 NCM 파우치 셀",
       "chargingSafety": "배터리 수냉식 온도 제어 및 과충전 방지 2중 시스템",
-      "trim": "e-4ORCE / Standard",
-      "topSpeed": "160km/h",
-      "zeroToHundred": "7.2초",
-      "maxOutput": "160kW / 218ps",
-      "maxChargePower": "130kW",
+      "trim": "FWD 160kW",
+      "topSpeed": "160 km/h",
+      "zeroToHundred": "7.3 s",
+      "maxOutput": "160 kW (218 ps)",
+      "maxChargePower": "130 kW",
       "packVoltage": "400V",
-      "packType": "Pouch-based Pack",
-      "cellType": "파우치형 (Pouch)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "packType": "Battery Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -4488,10 +4503,20 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "cellMakerCheckedAt": "2026-10-09"
+      "cellMakerCheckedAt": "2026-10-09",
+      "specLastCheckedAt": "2026-10-10"
     }
   ],
   "news": [
+    {
+      "title": "윤충식 경기도의원 \"열폭주 막는다\" 배터리 화재예방 조례 - 뉴시스",
+      "summary": "경기도의회에서 전기차 배터리 열폭주 현상을 예방하고 화재 위험성 감소를 도모하기 위한 배터리 화재예방 조례 제정이 추진됩니다.",
+      "source": "뉴시스",
+      "date": "2026-10-10",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFA2UEVGY0xXcjg4Tk1kWExjSFRkbzVrRGJzLUtWV1VnLXJRN0RsZmJXQV9wazNMWlFSUGIzX19zOGo4S2ZlMlZEQWhPVUJuM0Z4SEVJY3piNlh2UjIwb09CZmxzTTJrNFpKRkNqeG13M2pLUDkwS2U2N9IBeEFVX3lxTFA2UEVGY0xXcjg4Tk1kWExjSFRkbzVrRGJzLUtWV1VnLXJRN0RsZmJXQV9wazNMWlFSUGIzX19zOGo4S2ZlMlZEQWhPVUJuM0Z4SEVJY3piNlh2UjIwb09CZmxzTTJrNFpKRkNqeG13M2pLUDkwS2U2Nw?oc=5",
+      "linkType": "rss",
+      "id": 1
+    },
     {
       "title": "\"CATL 1GWh 시험선 vs 韓 삼전·에코프로 연합\"… 전고체 상용화에 배터리株 반등 - 글로벌이코노믹",
       "summary": "\"CATL 1GWh 시험선 vs 韓 삼전·에코프로 연합\"… 전고체 상용화에 배터리株 반등 - 글로벌이코노믹",
@@ -4499,7 +4524,7 @@
       "date": "2026-10-09",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQcktkNktwZi0zSE9IOTBNb1B6dk9tWE1FSmJaRU5PRHFScDVuN0tHV3EyRDhqX2gtNVNvT1dtOExtQkI1a3FxMW9BaklRX3VrLVV5cUgwam14aEtOTGhnTi1FZzk1ME9TYmNOdXJ0NFhld180a0EtN0dGd2J4VTJZcWtpOGpUUlQ5?oc=5",
       "linkType": "rss",
-      "id": 1
+      "id": 2
     },
     {
       "title": "배터리 3사 해외공장서 안전 위반 잇따라…시정조치 실효성 도마 - 뉴스저널리즘",
@@ -4508,16 +4533,16 @@
       "date": "2026-10-09",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5ENmF3TDNqdGRhbXN4VGMyVG5QbTlGV3ZqZ1c4SUJNUGMyYzRFYW1VV2FBRUxNSEQ4aWhQNDdSNFZObHZyVGM1NUVvNGZTaWtvbDlMc29ydUs5cWs4TjJ1YXNmT28zaHYxRDNN?oc=5",
       "linkType": "rss",
-      "id": 2
+      "id": 3
     },
     {
       "title": "폭스바겐 ID.4 배터리 결함 리콜∙∙∙원인 못 찾아 80% 충전 제한 - 한국신용신문",
-      "summary": "폭스바겐 ID.4 배터리 결함 리콜∙∙∙원인 못 찾아 80% 충전 제한 - 한국신용신문",
+      "summary": "폭스바겐 ID.4 차량에서 배터리 결함이 발생해 리콜이 진행되고 있으나 원인을 명확히 찾지 못해 충전율을 80%로 제한 조치했습니다.",
       "source": "한국신용신문",
       "date": "2026-10-09",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9OZVlqVmFmbk8xRFRpQi1rclM0TXN4RFpoMG1KTkU4amJua3psTkE1dl9tR213WlNDVnpBQlRNcGk0a3BjdWR4VEdYZ3pZVVkySnFPQ2tHZExCRFhsUmU0bnp4YXBCNUlGbFBF?oc=5",
       "linkType": "rss",
-      "id": 3
+      "id": 4
     },
     {
       "title": "中 간펑리튬, 칠레서 리튬 재활용 사업 추진 검토 - 더구루",
@@ -4526,7 +4551,7 @@
       "date": "2026-10-09",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBua1dicURha0piZEFnT3JXb1UtWk5FQnVyU3ByVWltSWJ2dmlVMGUwTFpLbC1PNElpeEZzOUg4bFdDdnlNZ2xMdG42SlQzZjhGMVA3b1pRUlVxUUM0YnBTSVVYVQ?oc=5",
       "linkType": "rss",
-      "id": 4
+      "id": 5
     },
     {
       "title": "에코프로비엠·삼성SDI, 전고체 배터리 소재 공동개발⋯2027년 양산 가능성 대비 - 엠투데이",
@@ -4535,25 +4560,25 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBCcDdrT1hZNF93QjdYbkFuSnRBM3oxSVNYWmR1SFRoOXJDU0djTG1TaWxxSkJSVGJFOFZXZGF1S2dDdVJ3bWZFOXJhYkVOT3Z1alJZWEZBRlRHMHlOUmJ3WHdqUDlpYlBjbE9uQ3RYTQ?oc=5",
       "linkType": "rss",
-      "id": 5
+      "id": 6
     },
     {
       "title": "LG엔솔, 캐나다産 리튬 정광 24만톤 확보…고성능 전기차 70만대 분량 - 조선비즈 - Chosunbiz",
-      "summary": "LG엔솔, 캐나다産 리튬 정광 24만톤 확보…고성능 전기차 70만대 분량 - 조선비즈 - Chosunbiz",
+      "summary": "LG에너지솔루션이 캐나다 공급망을 통해 고성능 전기차 70만 대 분량에 해당하는 리튬 정광 24만 톤을 확보하여 양극재 핵심 원료 안정화에 나섰습니다.",
       "source": "Chosunbiz",
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxORC03VVl2ZGphS1pYYXhCcUctTjFhbEhSV3J5NGgxNnhBYXpTRkcxa3NKSlEwQWxtX3F1Q3pBamtFZVE0d0gtUUxrVGQzNUUzWkVaZ2JiN1FaSTk3MTlkQ05MMUZabWU4OG1ucDUtcjRKMWhLdWdUQmpBRXlVUXI1YktsZGzSAZgBQVVfeXFMUFlPZXVGUmo3dEgzeHFTS0NnQWpaa0NYeHdSZFM4U2NVZjdJRzdLaTJ3eDdDYTJaQUstS05JNDROaGE3eFIxT2h6cHdaV0w2Ni0ya0dsSjlKVU9UMXRoR0twdlJvRHRHQzNFSUpGQ2JTVldMMHljbDIwc1ZiZ211QWc1N0tzY25KdW16S2NKeGFWQVdHX2RVcUk?oc=5",
       "linkType": "rss",
-      "id": 6
+      "id": 7
     },
     {
       "title": "케이엔에스, 안성 신공장 증설 결정…생산능력 2배로 확대 - 이데일리",
-      "summary": "케이엔에스가 안성 신공장 증설을 결정하여 배터리 부품 및 관련 설비 생산 능력을 기존 대비 2배로 확대합니다.",
+      "summary": "2차전지 자동화 설비 기업 케이엔에스가 안성 신공장을 증설하여 배터리 핵심 부품 생산 능력을 기존 대비 2배로 확대합니다.",
       "source": "이데일리",
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNYVJnZ0ViemRleDVyVEtuTWJkVDE3dTVDekgzUnhSai1RZTJxeEdQSWRDcFRhRDZidzdvYzlTNnNRR1A2VGRnZzVHd2NqMUo0VEVhTElpUDlmVENpaXphQmNESXNSYmtLaWFOM09qRmZKejR2TGtfTHJiak4tUFE4dw?oc=5",
       "linkType": "rss",
-      "id": 7
+      "id": 8
     },
     {
       "title": "포장재·배터리로 번진 환경규제…KEA, 14일 수출기업 실무 대응법 제시 - 전자신문",
@@ -4562,16 +4587,16 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBialgxT1lMSTJCcmdwdGdkV2NLX0tqcG5xRFNwLUsxaVFVTzhTOUtKWGhSWll6NVM0ZmY3U0dHNl9SRW1uaWdSZDhuMEkydw?oc=5",
       "linkType": "rss",
-      "id": 8
+      "id": 9
     },
     {
       "title": "폐배터리 재활용·재사용 관련주 온기… 완성차·셀 제조사 재활용 생태계 구축 박차 - 핀포인트뉴스",
-      "summary": "폐배터리 재활용·재사용 관련주 온기… 완성차·셀 제조사 재활용 생태계 구축 박차 - 핀포인트뉴스",
+      "summary": "완성차 및 배터리 셀 제조사들이 폐배터리에서 유기 금속을 추출해 양극재 재료로 재활용하는 순환 생태계 구축 노력을 가속화하고 있습니다.",
       "source": "핀포인트뉴스",
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9xbHhRaWtkcmJqcTlkdnpLVWU3b19vUE5ZV1A3bzVrNzhyZXZjMjZXOGVmbndVOTVXbjZhWThZYzNvX0pfVEhiRzZMOEdONXQxdzZDUVpXeEJxM0tCNnQtX29iclJtUXBOMi1oSUhvQjBZU2dDLUFn0gF3QVVfeXFMT3FseFFpa2RyYmpxOWR2ektVZTdvX29QTllXUDdvNWs3OHJldmMyNlc4ZWZud1U5NVduNmFZOFljM29fSl9USGJHNkw4R041dDF3NkNRWld4QnEzS0I2dC1fb2JyUm1RcE4yLWhJSG9CMFlTZ0MtQWc?oc=5",
       "linkType": "rss",
-      "id": 9
+      "id": 10
     },
     {
       "title": "아이엘, 차세대 전고체배터리 기술 개발…에너지 밀도 10배 수준 확보 - MTN 머니투데이방송",
@@ -4580,7 +4605,7 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFA2cnRaZlR2UU92ZFBXNnNiNHRMdExoTG05d3pNcllEUmlxYkVIZmowU3JuYUlnQ0tCQmZLcnRNVndNUUtxX2o2VXQ5bHJqdlRpNEpfOXhZdmctVGtYTVhNTlJkMVk?oc=5",
       "linkType": "rss",
-      "id": 10
+      "id": 11
     },
     {
       "title": "유럽, 소형 EV 수요 대응 급급…K-전기차·배터리, EU서 기회 잡나 - 더팩트",
@@ -4589,7 +4614,7 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NZnpGWVd0ZzhIMmIxbnMzTnFCa3puR2lCRy1TTzBkMDZUVXlybHEyMDJxb3NhOGxlYkh1MnY2dlUxdzFaYW5qVFd4X25UMFAyUzZlY1dJM0hyQdIBVEFVX3lxTE9QZDBXMjE5ejZGMnc1S1hLX1ZXVXZvVnI3cnc4bDk2NERMNXRlN3p5ZWYwWmV2SWxjMThwYUtwSDZQU3VDSE9yZG1aTGVsaUdZWTNyVA?oc=5",
       "linkType": "rss",
-      "id": 11
+      "id": 12
     },
     {
       "title": "전기차·배터리·반도체 ‘과잉생산’에 칼 빼든 15개국…사실상 중국 겨냥 - 미주중앙일보",
@@ -4598,7 +4623,7 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5vNUpHOGdUTFdSTDlrWnBZLVc0LVJDbXBmNDlhbHExWkFDSlU4Z0VfNU8wUkdDYlFrSUF3VmxrZTlQNV9BMV9sQ3NQNjF4QlJSSjloZEplekVzY2xJM1ZQWGZB?oc=5",
       "linkType": "rss",
-      "id": 12
+      "id": 13
     },
     {
       "title": "중국 겨냥했나···한·미 등 15개국, 전기차·배터리 '공급과잉' 공동 대응 - 뉴스웨이",
@@ -4607,7 +4632,7 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9zVVJ2UUlUS0VibDFRaENqT0FiLVZ3UDlRaFZYZVhCM24xT0VCX1FnRmVEdmgzVk9PamlVY1VBN0ZVQ1ZwZVJoUFN3RzNvWV9GaGNjUC1zdmYtcEZCa19rekdRUFktcl8wUFE?oc=5",
       "linkType": "rss",
-      "id": 13
+      "id": 14
     },
     {
       "title": "LG엔솔, 3분기 보조금 빼고도 흑자…북미 배터리 공장 재가동 - 한겨레",
@@ -4616,7 +4641,7 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5waFZMQTRrb3Jma0ROWGRjS0JYanlLWkN2SUhnclVZZ1J1SDdYc0FWU09VZWtDcUdoYk14enROSmdVbUdpWTJJWnhWdkRtLTU0Z0V6YWF6bGJXa0p6ZUlkNi1iQ2dQR1RkS2c?oc=5",
       "linkType": "rss",
-      "id": 14
+      "id": 15
     },
     {
       "title": "LG에너지솔루션, 캐나다산 리튬 정광 24만톤 확보 - 경인뷰",
@@ -4625,7 +4650,7 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5SaTcwOHVEdDZ4XzVaU3NDeTB3TlNjd2tUV3Y3TnpkemFNVmMyT184S2lhbFI4QVVQQlRsQ2tjM0ViMmpidXZ2VUU5UlFybkdVX3lrNERkb3MxSWZBcHZoRkd3?oc=5",
       "linkType": "rss",
-      "id": 15
+      "id": 16
     },
     {
       "title": "CATL·BYD만 44.7%⋯비중국 배터리 시장도 중국계가 절반 넘었다 - 엠투데이",
@@ -4634,7 +4659,7 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5NODFUeklEemE2dzd4R20zMklqbjJGa2J5U3Rhc0c5SXRlRGJHNGZXQ0xXSW9VZHdZRGNqWFczc2YxVWlyRUxQNTFoUHREd2ROZElnalhsR1dMa2tXcTdMd0ZzNjJ1TWFQOExiUmx1Yw?oc=5",
       "linkType": "rss",
-      "id": 16
+      "id": 17
     },
     {
       "title": "美 중간선거 민주 우세 전망에… 재생에너지·배터리 업계 ‘훈풍 기대’ - 조선비즈 - Chosunbiz",
@@ -4643,7 +4668,7 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQdGVwMkQ0M3owakU1WmhRODNONV93azJhdDRyd1NVVnR6anljUzhxWVJDT01JU3hhNVRRVU5tQWZxODVVQ2pscnpLSFo4cENacmxSZVE1NnItYkxiZXhNdkhLeHR6TmRwNk5Jdk9sX1djRVlUbXFXb0Exd29UVi1IZy12WFrSAZgBQVVfeXFMTk5vZW0xVFVFN1NUMUhqeGxTeUtPTGFhUWhZUHo5N3F6UUh4RlJ4RGJ5OWhITUE1MlRFbHFoMVA3WVZGVFIzR201OUJ5amlIVG9CRkdOWU9rRmFCUXF4MkpWYXQ1VzlKUWdtR1Z2X3pSLWdyR3ltVlU3OTNVSWp4XzdkbzBoRDZ2RmFYaDhIbnlEaXAzMUctQnU?oc=5",
       "linkType": "rss",
-      "id": 17
+      "id": 18
     },
     {
       "title": "LG엔솔, 캐나다産 리튬 정광 24만톤 확보…북미 공급망 강화 - 디지틀조선TV",
@@ -4652,7 +4677,7 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNZnYyNml4U0NwUXRkNGxpOTFLR21Vb2RCZnJCa29uWnN6UVZaaHF3czU5M21YOXFLTTJmNjFpZzFldE5mczE1ZURycU9BQ1pUREJlSThBclRJdldOeXVNMlBRRGJ2U2tVMnozTWVWcUJHNE9XVzNuUW9Cdy1DN1JYN3VSQ2VjUQ?oc=5",
       "linkType": "rss",
-      "id": 18
+      "id": 19
     },
     {
       "title": "LG엔솔, 캐나다 리튬 24만t 확보 ... “전기차 70만대분 핵심 원료 수혈” - 매일경제",
@@ -4661,39 +4686,30 @@
       "date": "2026-10-08",
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE40MVRaU3kyUlI5al8xYWtoMDVmOE1FZWU4TXAxVDByVmZ0YjNsQ096M0UzWVNXd3l2ZUJzMlRGVTU1NTUyUnc?oc=5",
       "linkType": "rss",
-      "id": 19
-    },
-    {
-      "title": "[매경경영지원본부 칼럼] 전기실·배터리·가스의 통합 시나리오 플래닝 - 매일경제",
-      "summary": "[매경경영지원본부 칼럼] 전기실·배터리·가스의 통합 시나리오 플래닝 - 매일경제",
-      "source": "매일경제",
-      "date": "2026-10-08",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE55RE5nN00tNURIamdsU2hiYWdndF9UYmhsN3RtVnpPamVLemptV2VieTZxa2x6SDVva3FWWnE5WkhWNTFOaTduNUlJU0F1WHFSZFRVMmhB?oc=5",
-      "linkType": "rss",
       "id": 20
     }
   ],
   "fx": {
-    "usdKrw": 1342.34,
-    "eurKrw": 1504.44,
-    "cnyKrw": 199.89,
-    "updatedAt": "2026-10-09T14:58:05.714607+09:00"
+    "usdKrw": 1341.59,
+    "eurKrw": 1503.38,
+    "cnyKrw": 200.04,
+    "updatedAt": "2026-10-10T14:40:43.438855+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
-      "중국 CATL의 시험선 구축과 한국 삼전·에코프로 연합 등 2027년 상용화를 목표로 한 차세대 전고체 배터리 주도권 경쟁이 본격화되고 있습니다.",
-      "글로벌 15개국의 중국발 공급과잉 규제 움직임 속에서 LG엔솔의 캐나다산 리튬 확보와 같은 공급망 내재화 노력이 가속화되고 있습니다.",
-      "해외공장 안전 위반 및 완성차 결함 리콜 등 배터리 품질과 안전 관리가 산업의 핵심 리스크 관리 요인으로 부각되고 있습니다."
+      "한중 양국 기업 간 전고체 배터리 상용화 기술 경쟁이 가속화되는 가운데 원자재 확보와 폐배터리 순환 생태계 구축 움직임이 본격화되고 있습니다.",
+      "글로벌 차원에서는 중국발 공급과잉 대응과 환경 규제 강화 등 통상 규제가 가시화되며 글로벌 공급망 재편이 심화되고 있습니다.",
+      "완성차 및 셀 업체들의 안전 결함 문제와 해외 공장 안전 이슈가 부각됨에 따라 품질 관리와 지자체 차원의 화재 예방 조례 등 안전 규제 프레임이 대폭 강화되고 있습니다."
     ],
     "categories": [
       {
         "name": "차세대 기술 및 소재",
         "items": [
           {
-            "headline": "전고체 상용화 韓·中 주도권 다툼",
-            "summary": "중국 CATL이 1GWh 규모의 전고체 배터리 시험선 구축에 나선 가운데, 국내에서는 삼성전자와 에코프로 연합이 맞불을 놓으며 전고체 기술 상용화 경쟁이 가열되고 있습니다. 차세대 배터리 주도권 확보 기대감에 힘입어 관련 배터리 주가가 강한 반등세를 보이고 있습니다.",
+            "headline": "전고체 배터리 한중 주도권 경쟁",
+            "summary": "중국 CATL의 1GWh 규모 전고체 배터리 시험선 구축에 맞서 한국의 삼성SDI와 에코프로 연합이 맞대응에 나섰습니다. 양국의 차세대 배터리 상용화 경쟁이 본격화되면서 시장의 기대감이 반영되어 국내 주요 배터리 관련 주가가 반등세를 보이고 있습니다.",
             "tags": [
-              "#전고체배터리",
+              "#전고체",
               "#CATL",
               "#삼성SDI",
               "#에코프로"
@@ -4703,26 +4719,26 @@
             "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQcktkNktwZi0zSE9IOTBNb1B6dk9tWE1FSmJaRU5PRHFScDVuN0tHV3EyRDhqX2gtNVNvT1dtOExtQkI1a3FxMW9BaklRX3VrLVV5cUgwam14aEtOTGhnTi1FZzk1ME9TYmNOdXJ0NFhld180a0EtN0dGd2J4VTJZcWtpOGpUUlQ5?oc=5"
           },
           {
-            "headline": "에코프로·삼성SDI 전고체 양산 협력",
-            "summary": "에코프로비엠과 삼성SDI가 2027년 전고체 배터리 상용화를 목표로 핵심 소재인 전고체용 양극재 공동 개발에 착수했습니다. 양사는 차세대 배터리 시장의 초기 주도권을 선점하기 위해 소재 개발부터 양산 체제 구축까지 긴밀한 협력을 이어갈 계획입니다.",
+            "headline": "전고체 양극재 소재 공동개발",
+            "summary": "에코프로비엠과 삼성SDI가 2027년 전고체 배터리 상용화 시점에 맞춰 차세대 양극재 등 핵심 소재 개발을 추진합니다. 양사는 고성능 양극 소재 양산 기술을 선제적으로 확보함으로써 차세대 배터리 시장에서의 주도권을 확고히 할 계획입니다.",
             "tags": [
               "#에코프로비엠",
               "#삼성SDI",
-              "#전고체양극재",
-              "#기술협력"
+              "#양극재",
+              "#전고체"
             ],
             "source": "엠투데이",
             "date": "2026-10-08",
             "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBCcDdrT1hZNF93QjdYbkFuSnRBM3oxSVNYWmR1SFRoOXJDU0djTG1TaWxxSkJSVGJFOFZXZGF1S2dDdVJ3bWZFOXJhYkVOT3Z1alJZWEZBRlRHMHlOUmJ3WHdqUDlpYlBjbE9uQ3RYTQ?oc=5"
           },
           {
-            "headline": "아이엘, 고밀도 전고체 기술 개발",
-            "summary": "아이엘이 기존 리튬이온 배터리 대비 에너지 밀도를 대폭 향상시킨 차세대 전고체 배터리 핵심 기술 개발 성과를 공개했습니다. 이론적으로 최대 10배 수준의 성능 확보가 가능해짐에 따라 주행거리 획기적 연장을 위한 차세대 배터리 솔루션으로 주목받고 있습니다.",
+            "headline": "초고밀도 전고체 기술 개발",
+            "summary": "아이엘이 기존 리튬이온 배터리 대비 에너지 밀도를 대폭 향상시킨 차세대 전고체 배터리 기술을 발표했습니다. 이번 기술 확보를 통해 전기차의 주행거리를 획기적으로 늘리고 안전성을 확보할 수 있어 차세대 배터리 시장 진입의 발판을 마련했습니다.",
             "tags": [
               "#아이엘",
-              "#전고체기술",
+              "#전고체배터리",
               "#에너지밀도",
-              "#차세대배터리"
+              "#차세대기술"
             ],
             "source": "MTN 머니투데이방송",
             "date": "2026-10-08",
@@ -4731,16 +4747,16 @@
         ]
       },
       {
-        "name": "공급망 및 원자재 전략",
+        "name": "기업 동향 및 공급망",
         "items": [
           {
-            "headline": "간펑리튬, 칠레 폐배터리 리사이클링",
-            "summary": "중국 간펑리튬이 남미 칠레에서 폐배터리 재활용 사업 추진을 검토하며 글로벌 자원 순환 체계 구축에 나섰습니다. 리튬 자원 매장량이 풍부한 칠레 현지에서 리사이클링 거점을 확보함으로써 원자재 공급망 안정성과 가격 경쟁력을 동시에 강화하려는 전략입니다.",
+            "headline": "간펑리튬 칠레 리튬 재활용 추진",
+            "summary": "중국 간펑리튬이 남미 칠레에서 폐배터리 및 리튬 재활용 사업 검토에 착수했습니다. 이는 남미의 풍부한 리튬 자원 거점을 활용하여 배터리 원자재 순환 생태계를 구축하고 글로벌 원가 경쟁력을 더욱 강화하려는 전략적 포석으로 분석됩니다.",
             "tags": [
               "#간펑리튬",
               "#칠레",
               "#리튬재활용",
-              "#자원순환"
+              "#원자재"
             ],
             "source": "더구루",
             "date": "2026-10-09",
@@ -4748,77 +4764,90 @@
           },
           {
             "headline": "LG엔솔 캐나다 리튬 24만톤 확보",
-            "summary": "LG에너지솔루션이 캐나다에서 고성능 전기차 70만 대를 생산할 수 있는 규모인 리튬 정광 24만 톤 공급 계약을 체결했습니다. 북미 현지 광물 수급 비율을 높임으로써 인플레이션 감축법(IRA) 요건 충족 및 안정적 핵심 원재료 공급망을 구축하게 되었습니다.",
+            "summary": "LG에너지솔루션이 캐나다 광산 업체와 장기 공급 계약을 체결하고 고성능 전기차 70만 대 분량의 리튬 정광 24만 톤을 확보했습니다. 인플레이션 감축법(IRA) 요건에 부합하는 북미 원자재 공급망을 공고히 하여 핵심 원료 수급 안정성을 강화했습니다.",
             "tags": [
               "#LG에너지솔루션",
               "#리튬정광",
               "#북미공급망",
-              "#IRA대응"
+              "#IRA"
             ],
             "source": "Chosunbiz",
             "date": "2026-10-08",
             "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxORC03VVl2ZGphS1pYYXhCcUctTjFhbEhSV3J5NGgxNnhBYXpTRkcxa3NKSlEwQWxtX3F1Q3pBamtFZVE0d0gtUUxrVGQzNUUzWkVaZ2JiN1FaSTk3MTlkQ05MMUZabWU4OG1ucDUtcjRKMWhLdWdUQmpBRXlVUXI1YktsZGzSAZgBQVVfeXFMUFlPZXVGUmo3dEgzeHFTS0NnQWpaa0NYeHdSZFM4U2NVZjdJRzdLaTJ3eDdDYTJaQUstS05JNDROaGE3eFIxT2h6cHdaV0w2Ni0ya0dsSjlKVU9UMXRoR0twdlJvRHRHQzNFSUpGQ2JTVldMMHljbDIwc1ZiZ211QWc1N0tzY25KdW16S2NKeGFWQVdHX2RVcUk?oc=5"
           },
           {
-            "headline": "케이엔에스 신공장 증설 CAPA 확대",
-            "summary": "배터리 핵심 부품 장비 기업 케이엔에스가 안성 신공장 증설을 확정하며 생산 능력을 기존 대비 2배로 대폭 확대합니다. 급증하는 글로벌 배터리 부품 수요 및 완성차 제조사들의 설비 투증에 발맞춰 선제적으로 공장 규모를 늘리는 결정입니다.",
+            "headline": "케이엔에스 안성공장 증설 결정",
+            "summary": "2차전지 자동화 설비 전문 기업 케이엔에스가 생산 능력 증대를 위해 안성 신공장 증설을 결정했습니다. 이번 투자로 핵심 부품 생산 능력이 기존 대비 2배로 확대되어 급증하는 글로벌 배터리 제조사들의 설비 수요에 선제적으로 대응할 수 있게 되었습니다.",
             "tags": [
               "#케이엔에스",
-              "#공장증설",
-              "#배터리장비",
-              "#CAPA확대"
+              "#설비증설",
+              "#2차전지장비",
+              "#생산능력"
             ],
             "source": "이데일리",
             "date": "2026-10-08",
             "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNYVJnZ0ViemRleDVyVEtuTWJkVDE3dTVDekgzUnhSai1RZTJxeEdQSWRDcFRhRDZidzdvYzlTNnNRR1A2VGRnZzVHd2NqMUo0VEVhTElpUDlmVENpaXphQmNESXNSYmtLaWFOM09qRmZKejR2TGtfTHJiak4tUFE4dw?oc=5"
           },
           {
-            "headline": "폐배터리 재활용 생태계 확장",
-            "summary": "완성차 제조사와 배터리 셀 업체들이 폐배터리 재활용 및 재사용 생태계 구축에 속도를 내면서 관련 주가가 상승세를 나타내고 있습니다. 환경 규제 강화와 원자재 가격 변동성에 대응하기 위해 배터리 재활용 사업이 선택이 아닌 필수 전략으로 자리잡았습니다.",
+            "headline": "폐배터리 재활용 생태계 가속",
+            "summary": "완성차 제조사와 배터리 셀 기업들이 폐배터리에서 핵심 유기 금속을 추출해 양극재로 재활용하는 순환 생태계 구축에 속도를 내고 있습니다. 원자재 가격 변동성 리스크를 줄이고 ESG 환경 규제에 대응하기 위한 기업들의 협력이 확대되는 추세입니다.",
             "tags": [
               "#폐배터리",
               "#재활용",
-              "#원자재선순환",
-              "#배터리생태계"
+              "#순환경제",
+              "#양극재"
             ],
             "source": "핀포인트뉴스",
             "date": "2026-10-08",
             "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9xbHhRaWtkcmJqcTlkdnpLVWU3b19vUE5ZV1A3bzVrNzhyZXZjMjZXOGVmbndVOTVXbjZhWThZYzNvX0pfVEhiRzZMOEdONXQxdzZDUVpXeEJxM0tCNnQtX29iclJtUXBOMi1oSUhvQjBZU2dDLUFn0gF3QVVfeXFMT3FseFFpa2RyYmpxOWR2ektVZTdvX29QTllXUDdvNWs3OHJldmMyNlc4ZWZud1U5NVduNmFZOFljM29fSl9USGJHNkw4R041dDF3NkNRWld4QnEzS0I2dC1fb2JyUm1RcE4yLWhJSG9CMFlTZ0MtQWc?oc=5"
           },
           {
-            "headline": "LG엔솔 원자재 수급 안정화 박차",
-            "summary": "LG에너지솔루션이 캐나다산 리튬 정광 24만 톤 확보를 통해 원자재 수급 경쟁력을 한층 높였습니다. 글로벌 지정학적 리스크 속에서 비중국산 원자재 공급망을 다변화하여 북미 시장 진출을 가속화하고 대외 정책 변수 차단에 나섭니다.",
+            "headline": "LG엔솔 3분기 실적 흑자 달성",
+            "summary": "LG에너지솔루션이 미 정부 보조금(AMPC) 착시를 제외하고도 3분기 자체 영업이익 흑자를 기록했습니다. 북미 주요 배터리 공장의 가동률이 회복되고 가동이 재개됨에 따라 실적 개선세가 본격적인 궤도에 오른 것으로 평가받고 있습니다.",
             "tags": [
               "#LG에너지솔루션",
-              "#캐나다리튬",
-              "#원자재다변화",
-              "#핵심광물"
+              "#실적발표",
+              "#북미공장",
+              "#흑자전환"
+            ],
+            "source": "한겨레",
+            "date": "2026-10-08",
+            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5waFZMQTRrb3Jma0ROWGRjS0JYanlLWkN2SUhnclVZZ1J1SDdYc0FWU09VZWtDcUdoYk14enROSmdVbUdpWTJJWnhWdkRtLTU0Z0V6YWF6bGJXa0p6ZUlkNi1iQ2dQR1RkS2c?oc=5"
+          },
+          {
+            "headline": "LG엔솔 북미 리튬 수급 안정화",
+            "summary": "LG에너지솔루션이 캐나다산 리튬 정광 24만 톤을 추가로 확보하며 글로벌 원자재 네트워크를 넓혔습니다. 북미 친환경 공급망 구축을 통해 배터리 제조 원가 절감은 물론 미국 내 세제 혜택 조건 충족에 한층 유연하게 대응할 수 있을 것으로 기대됩니다.",
+            "tags": [
+              "#LG에너지솔루션",
+              "#리튬확보",
+              "#북미시장",
+              "#원자재"
             ],
             "source": "경인뷰",
             "date": "2026-10-08",
             "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5SaTcwOHVEdDZ4XzVaU3NDeTB3TlNjd2tUV3Y3TnpkemFNVmMyT184S2lhbFI4QVVQQlRsQ2tjM0ViMmpidXZ2VUU5UlFybkdVX3lrNERkb3MxSWZBcHZoRkd3?oc=5"
           },
           {
-            "headline": "LG엔솔 북미 공급망 강화 속도",
-            "summary": "LG에너지솔루션이 캐나다산 리튬 정광 수급 계약을 통해 북미지역 배터리 공급망을 더욱 견고히 강화했습니다. 현지 원자재 조달을 통해 글로벌 규제에 능동적으로 대응하고 배터리 셀 제조 비용 절감 효과도 함께 거둘 것으로 기대됩니다.",
+            "headline": "LG엔솔 북미 공급망 대폭 강화",
+            "summary": "LG에너지솔루션이 캐나다산 리튬 정광 24만 톤 확보를 통해 북미 배터리 공급망을 한층 강화했습니다. 대중국 원자재 의존도를 낮추고 북미 지역 내 원자재 조달 비중을 확대함으로써 지정학적 리스크 완화 및 IRA 요건 충족을 도모하고 있습니다.",
             "tags": [
               "#LG에너지솔루션",
               "#북미공급망",
-              "#리튬수급",
-              "#배터리소재"
+              "#리튬",
+              "#지정학적리스크"
             ],
             "source": "디지틀조선TV",
             "date": "2026-10-08",
             "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNZnYyNml4U0NwUXRkNGxpOTFLR21Vb2RCZnJCa29uWnN6UVZaaHF3czU5M21YOXFLTTJmNjFpZzFldE5mczE1ZURycU9BQ1pUREJlSThBclRJdldOeXVNMlBRRGJ2U2tVMnozTWVWcUJHNE9XVzNuUW9Cdy1DN1JYN3VSQ2VjUQ?oc=5"
           },
           {
-            "headline": "LG엔솔 EV 70만대분 원료 확충",
-            "summary": "LG에너지솔루션이 캐나다에서 전기차 70만 대 분량에 달하는 리튬 정광 24만 톤을 대규모로 확충했습니다. 미래 대량 생산 체제에 대비한 핵심 수혈을 완료함에 따라 글로벌 완성차 업체들과의 대규모 장기 공급 계약 수주전에서도 유리한 고지를 점했습니다.",
+            "headline": "LG엔솔 전기차 70만대분 리튬 수혈",
+            "summary": "LG에너지솔루션이 캐나다에서 고성능 전기차 70만 대를 생산할 수 있는 리튬 정광 24만 톤을 성공적으로 확보했습니다. 안정적인 핵심 소재 공급망 체계를 바탕으로 차세대 전기차용 고용량 배터리 양산에 더욱 박차를 가할 전망입니다.",
             "tags": [
               "#LG에너지솔루션",
-              "#전기차원료",
-              "#리튬확보",
-              "#배터리생산"
+              "#전기차배터리",
+              "#리튬정광",
+              "#수급안정"
             ],
             "source": "매일경제",
             "date": "2026-10-08",
@@ -4827,15 +4856,15 @@
         ]
       },
       {
-        "name": "글로벌 시장 및 산업 정책",
+        "name": "시장·산업 및 규제",
         "items": [
           {
-            "headline": "KEA 배터리 환경규제 대응회 개최",
-            "summary": "한국전자정보통신산업진흥회(KEA)가 포장재 및 배터리 분야로 확대되는 글로벌 환경규제에 대응하기 위해 국내 수출기업 대상 실무 세미나를 개최합니다. 지속가능성 요건 및 유해물질 규제 강화에 대응해 국내 업체들의 수출 차질을 방지하려는 취지입니다.",
+            "headline": "KEA 배터리 환경규제 대응회",
+            "summary": "한국전자정보통신산업진흥회(KEA)가 포장재 및 배터리 분야로 확대되는 글로벌 환경 규제에 맞춰 수출기업 대상 실무 대응법 설명회를 개최합니다. 탄소발자국 및 배터리 여권 도입 등 가화되는 글로벌 환경 표준에 선제적으로 대비하기 위함입니다.",
             "tags": [
               "#KEA",
               "#환경규제",
-              "#배터리규제",
+              "#배터리여권",
               "#수출대응"
             ],
             "source": "전자신문",
@@ -4843,78 +4872,65 @@
             "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBialgxT1lMSTJCcmdwdGdkV2NLX0tqcG5xRFNwLUsxaVFVTzhTOUtKWGhSWll6NVM0ZmY3U0dHNl9SRW1uaWdSZDhuMEkydw?oc=5"
           },
           {
-            "headline": "EU 소형 EV 급증과 K-배터리 기회",
-            "summary": "유럽 시장 내 소형 전기차 수요가 급증함에 따라 현지 완성차 업체들이 대응책 마련에 적극 나서고 있으며, 이에 K-배터리 기업들의 수주 확대 기회가 열리고 있습니다. 고효율·가격 경쟁력을 갖춘 배터리 제품을 바탕으로 유럽 시장 점유율 확대가 기대됩니다.",
+            "headline": "유럽 소형 EV 시장 진출 기회",
+            "summary": "유럽 시장 내 보급형 소형 전기차(EV) 수요가 급증하면서 국내 배터리 및 전기차 기업들에게 새로운 시장 개척의 기회가 열리고 있습니다. 현지 공략을 위해 LFP 및 중저가 배터리 라인업을 강화한 K-배터리의 유럽 시장 점유율 확대가 기대됩니다.",
             "tags": [
-              "#유럽EV",
-              "#소형전기차",
+              "#유럽시장",
+              "#소형EV",
               "#K배터리",
-              "#EU시장"
+              "#보급형배터리"
             ],
             "source": "더팩트",
             "date": "2026-10-08",
             "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NZnpGWVd0ZzhIMmIxbnMzTnFCa3puR2lCRy1TTzBkMDZUVXlybHEyMDJxb3NhOGxlYkh1MnY2dlUxdzFaYW5qVFd4X25UMFAyUzZlY1dJM0hyQdIBVEFVX3lxTE9QZDBXMjE5ejZGMnc1S1hLX1ZXVXZvVnI3cnc4bDk2NERMNXRlN3p5ZWYwWmV2SWxjMThwYUtwSDZQU3VDSE9yZG1aTGVsaUdZWTNyVA?oc=5"
           },
           {
-            "headline": "15개국 中 공급과잉 견제 공조",
-            "summary": "한국과 미국을 포함한 글로벌 15개국이 전기차·배터리·반도체 분야의 생산 과잉 문제에 대응하기 위해 다자간 공조에 착수했습니다. 시장 질서를 저해하는 중국산 저가 배터리 및 전기차의 과잉 공급을 견제하고 자국 산업을 보호하려는 조치로 풀이됩니다.",
+            "headline": "15개국 중국 공급과잉에 칼 빼 들어",
+            "summary": "한국과 미국을 비롯한 글로벌 15개국이 중국산 전기차·배터리·반도체 품목의 과잉생산 및 저가 공세에 대응해 공조 체제를 구축합니다. 시장 교란을 막기 위한 공동 통상 제재 및 관세 장벽이 강화될 것으로 보여 글로벌 시장 구도 변동이 예상됩니다.",
             "tags": [
               "#공급과잉",
               "#중국견제",
-              "#통상정책",
-              "#배터리산업"
+              "#통상규제",
+              "#무역장벽"
             ],
             "source": "미주중앙일보",
             "date": "2026-10-08",
             "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5vNUpHOGdUTFdSTDlrWnBZLVc0LVJDbXBmNDlhbHExWkFDSlU4Z0VfNU8wUkdDYlFrSUF3VmxrZTlQNV9BMV9sQ3NQNjF4QlJSSjloZEplekVzY2xJM1ZQWGZB?oc=5"
           },
           {
-            "headline": "한미 등 15개국 과잉생산 공동대응",
-            "summary": "한·미 등 주요 15개국이 전기차 및 배터리 산업의 공급 과잉 문제에 맞서 공동 대응 방안을 논의했습니다. 사실상 중국 정부의 보조금에 기반한 물량 공세를 막아서고 Fair Trade 환경을 조성함으로써 글로벌 배터리 공급망 정상화를 도모합니다.",
+            "headline": "한미 등 15개국 과잉생산 공동 대응",
+            "summary": "한·미 양국을 포함한 주요 15개국이 중국 중심의 전기차 및 배터리 과잉생산 문제에 대해 공동 대응 협정을 추진합니다. 정부 주도의 보조금으로 인한 가격 왜곡 현상을 바로잡고 공정한 글로벌 배터리 공급망 질서를 확립하겠다는 취지입니다.",
             "tags": [
-              "#공급망보호",
-              "#공급과잉대응",
-              "#글로벌연대",
-              "#배터리통상"
+              "#공급망공조",
+              "#중국과잉생산",
+              "#배터리통상",
+              "#한미협력"
             ],
             "source": "뉴스웨이",
             "date": "2026-10-08",
             "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9zVVJ2UUlUS0VibDFRaENqT0FiLVZ3UDlRaFZYZVhCM24xT0VCX1FnRmVEdmgzVk9PamlVY1VBN0ZVQ1ZwZVJoUFN3RzNvWV9GaGNjUC1zdmYtcEZCa19rekdRUFktcl8wUFE?oc=5"
           },
           {
-            "headline": "LG엔솔 3분기 흑자 및 공장 재가동",
-            "summary": "LG에너지솔루션이 미국 AMPC 보조금을 제외하고도 3분기 자체 영업이익 흑자를 달성하며 수익성 개선을 입증했습니다. 가동률 조정에 들어갔던 북미 주요 배터리 공장들을 다시 가동함에 따라 완성차향 배터리 출하량도 본격적으로 회복될 전망입니다.",
-            "tags": [
-              "#LG에너지솔루션",
-              "#3분기실적",
-              "#북미공장재가동",
-              "#배터리흑자"
-            ],
-            "source": "한겨레",
-            "date": "2026-10-08",
-            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5waFZMQTRrb3Jma0ROWGRjS0JYanlLWkN2SUhnclVZZ1J1SDdYc0FWU09VZWtDcUdoYk14enROSmdVbUdpWTJJWnhWdkRtLTU0Z0V6YWF6bGJXa0p6ZUlkNi1iQ2dQR1RkS2c?oc=5"
-          },
-          {
-            "headline": "중국계 비중국 배터리 점유율 과반",
-            "summary": "CATL과 BYD 두 업체의 글로벌 점유율이 44.7%에 달하는 가운데, 중국을 제외한 비중국 배터리 시장에서도 중국계 기업들의 합산 점유율이 절반을 넘어섰습니다. 가격 경쟁력을 무기로 한 중국 업체들의 거센 추격에 K-배터리의 입지가 위협받고 있습니다.",
+            "headline": "비중국 시장 중국계 점유율 50% 유박",
+            "summary": "CATL과 BYD 등 중국 주요 배터리 기업들이 비중국 글로벌 시장에서도 44.7%의 점유율을 기록하며 시장 전반을 빠르게 침투하고 있습니다. 가격 경쟁력을 앞세운 LFP 배터리를 폭스바겐 등 글로벌 완성차에 대거 공급하면서 국내 배터리 3사를 위협하고 있습니다.",
             "tags": [
               "#CATL",
               "#BYD",
-              "#배터리점유율",
-              "#중국배터리"
+              "#점유율",
+              "#비중국시장"
             ],
             "source": "엠투데이",
             "date": "2026-10-08",
             "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5NODFUeklEemE2dzd4R20zMklqbjJGa2J5U3Rhc0c5SXRlRGJHNGZXQ0xXSW9VZHdZRGNqWFczc2YxVWlyRUxQNTFoUHREd2ROZElnalhsR1dMa2tXcTdMd0ZzNjJ1TWFQOExiUmx1Yw?oc=5"
           },
           {
-            "headline": "美 중간선거 결과와 배터리 훈풍",
-            "summary": "미국 중간선거에서 민주당 우세가 전망됨에 따라 친환경 정책 유지 및 IRA 혜택 지속에 대한 기대감으로 재생에너지와 배터리 업계에 훈풍이 불고 있습니다. 정책적 불확실성이 해소되면 북미 투자를 진행 중인 한국 배터리 기업들의 수혜가 지속될 것으로 보입니다.",
+            "headline": "美 정치 지형 변화와 배터리 훈풍",
+            "summary": "미국 중간선거에서 민주당이 우세할 것이라는 전망이 나오면서 IRA 정책 유지 및 친환경 지원 정책 지속에 대한 기대감이 고조되고 있습니다. 이에 따라 미국 현지 투자를 늘려온 국내 재생에너지 및 배터리 셀·소재 업체들의 불확실성이 상당 부분 해소될 전망입니다.",
             "tags": [
               "#미국중간선거",
-              "#친환경정책",
               "#IRA",
-              "#배터리수혜"
+              "#배터리정책",
+              "#친환경기대"
             ],
             "source": "Chosunbiz",
             "date": "2026-10-08",
@@ -4923,70 +4939,106 @@
         ]
       },
       {
-        "name": "안전성 및 운영 관리",
+        "name": "안전성 및 결함 관리",
         "items": [
           {
-            "headline": "배터리 3사 해외공장 안전위반 논란",
-            "summary": "국내 배터리 3사의 해외 현지 생산 공장에서 안전 보건 위반 사례가 잇따라 적발되면서 현지 당국의 시정조치 실효성이 논란에 휩싸였습니다. 급격한 해외 공장 증설 과정에서 발생한 관리 공백을 메우기 위해 글로벌 안전보건 경영 체계 재정비가 시급한 상황입니다.",
+            "headline": "경기도 배터리 화재예방 조례",
+            "summary": "경기도의회가 최근 잇따르는 전기차 배터리 열폭주 사고를 예방하고 도민 안전을 확보하기 위해 화재예방 조례 제정에 나섰습니다. 조례안에는 충전 시설 안전 점검 강화 및 화재 진압 장비 지원 등 배터리 안전성을 높이기 위한 다각적 방안이 포함되었습니다.",
+            "tags": [
+              "#열폭주",
+              "#화재예방",
+              "#경기도의회",
+              "#배터리안전"
+            ],
+            "source": "뉴시스",
+            "date": "2026-10-10",
+            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFA2UEVGY0xXcjg4Tk1kWExjSFRkbzVrRGJzLUtWV1VnLXJRN0RsZmJXQV9wazNMWlFSUGIzX19zOGo4S2ZlMlZEQWhPVUJuM0Z4SEVJY3piNlh2UjIwb09CZmxzTTJrNFpKRkNqeG13M2pLUDkwS2U2N9IBeEFVX3lxTFA2UEVGY0xXcjg4Tk1kWExjSFRkbzVrRGJzLUtWV1VnLXJRN0RsZmJXQV9wazNMWlFSUGIzX19zOGo4S2ZlMlZEQWhPVUJuM0Z4SEVJY3piNlh2UjIwb09CZmxzTTJrNFpKRkNqeG13M2pLUDkwS2U2Nw?oc=5"
+          },
+          {
+            "headline": "배터리 3사 해외공장 안전 실태",
+            "summary": "국내 배터리 3사의 해외 생산 공장에서 노동 및 안전 법규 위반 사례가 적발되면서 실효성 있는 시정 조치 마련이 요구되고 있습니다. 현지 규제당국의 감독이 강화됨에 따라 해외 사업장의 ESG 경영 및 공정 안전 관리 체계 재정비가 시급한 과제로 떠올랐습니다.",
             "tags": [
               "#배터리3사",
               "#해외공장",
               "#안전위반",
-              "#공정관리"
+              "#안전관리"
             ],
             "source": "뉴스저널리즘",
             "date": "2026-10-09",
             "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5ENmF3TDNqdGRhbXN4VGMyVG5QbTlGV3ZqZ1c4SUJNUGMyYzRFYW1VV2FBRUxNSEQ4aWhQNDdSNFZObHZyVGM1NUVvNGZTaWtvbDlMc29ydUs5cWs4TjJ1YXNmT28zaHYxRDNN?oc=5"
           },
           {
-            "headline": "폭스바겐 ID.4 결함 충전제한 리콜",
-            "summary": "폭스바겐이 ID.4 차량의 배터리 결함으로 리콜을 실시했으나 정확한 원인을 규명하지 못해 임시조치로 최대 충전율을 80%로 제한했습니다. 배터리 셀 품질 문제 및 BMS 소프트웨어 결함 가능성이 제기되면서 소비자 불안과 함께 제조사 신뢰도에 타격을 입었습니다.",
+            "headline": "폭스바겐 ID.4 결함 충전 제한",
+            "summary": "폭스바겐의 순수 전기차 ID.4에서 배터리 모듈 결함이 발생하여 리콜이 시행 중이나 정확한 원인 규명에 난항을 겪고 있습니다. 제조사는 임시방편으로 최대 충전율을 80%로 제한 조치함에 따라 소비자 불만과 배터리 관리 시스템(BMS) 신뢰성 논란이 증폭되고 있습니다.",
             "tags": [
-              "#폭스바겐ID4",
+              "#폭스바겐",
+              "#ID4",
               "#배터리결함",
-              "#리콜",
-              "#충전제한"
+              "#리콜"
             ],
             "source": "한국신용신문",
             "date": "2026-10-09",
             "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9OZVlqVmFmbk8xRFRpQi1rclM0TXN4RFpoMG1KTkU4amJua3psTkE1dl9tR213WlNDVnpBQlRNcGk0a3BjdWR4VEdYZ3pZVVkySnFPQ2tHZExCRFhsUmU0bnp4YXBCNUlGbFBF?oc=5"
-          },
-          {
-            "headline": "전기실·배터리 통합 안전 시나리오",
-            "summary": "배터리 화재 및 설비 사고 위험성을 최소화하기 위해 전기실, 배터리 시스템, 가스 소화 설비를 연계한 통합 시나리오 플래닝 수립의 필요성이 대두되고 있습니다. 사전 위협 감지부터 사고 발생 시 초기 진화까지 일련의 대응 체계를 일체화해야 한다는 제언입니다.",
-            "tags": [
-              "#배터리안전",
-              "#화재예방",
-              "#통합안전관리",
-              "#시나리오플래닝"
-            ],
-            "source": "매일경제",
-            "date": "2026-10-08",
-            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE55RE5nN00tNURIamdsU2hiYWdndF9UYmhsN3RtVnpPamVLemptV2VieTZxa2x6SDVva3FWWnE5WkhWNTFOaTduNUlJU0F1WHFSZFRVMmhB?oc=5"
           }
         ]
       }
     ],
-    "implications": "배터리 산업은 차세대 전고체 배터리 상용화를 둘러싼 한·중 기술 패권 다툼과 함께 글로벌 통상 환경의 급변이라는 이중고에 직면해 있습니다. 미·중 갈등과 글로벌 15개국의 과잉생산 규제 움직임 속에서 LG엔솔과 같은 비중국산 핵심 광물 공급망(캐나다 리튬 등) 내재화는 기업의 생존을 결정짓는 핵심 요소가 되었습니다. 아울러 해외 공장 증설에 따른 안전 관리 부실과 폭스바겐 배터리 결함 사례에서 보듯, 양적 확장을 넘어 엄격한 품질 제어 및 통합 화재 안전 관리 체계 구축이 브랜드 신뢰도 유지에 필수적인 과제로 부각되고 있습니다."
+    "implications": "배터리 산업은 차세대 전고체 배터리 기술 선점 경쟁과 원자재(리튬) 수급 안정화를 위한 글로벌 공급망 다변화 노력이 동시에 격화되는 전환기를 맞이하고 있습니다. 동시에 비중국 시장 내 중국계 기업들의 매서운 침투와 15개국의 중국발 공급과잉 견제 등 통상 환경의 지정학적 불확실성이 증대되고 있습니다. 이에 더해 전기차 화재 및 배터리 결함 이슈로 인한 안전성 규제와 ESG 환경 기준이 대폭 강화되고 있어, 배터리 기업들은 기술 혁신뿐만 아니라 품질 관리 및 원가 절감 역량을 종합적으로 강화해야 하는 과제에 직면해 있습니다."
   },
   "chinaNews": [
     {
-      "title": "BYD humanoid robot design emerges as formal debut remains pending",
-      "summary": "Patent images show a bipedal humanoid robot designed for service, education and industrial applications. For details, please visit CnEVPost (cnev.co).",
+      "title": "BYD reaches 150,000 commercial NEV production milestone as growth focus shifts to trucks",
+      "summary": "BYD achieved a 150,000 commercial NEV production milestone with a Q3 electric semi-truck as it shifts focus toward long-haul freight transport.",
       "source": "CnEVPost",
-      "date": "2026-10-09",
-      "url": "https://cnevpost.com/2026/10/09/byd-humanoid-robot-design-emerges/",
+      "date": "2026-10-10",
+      "url": "https://cnevpost.com/2026/10/10/byd-150000-commercial-nev-production-focus-trucks/",
       "linkType": "rss",
       "id": 1
     },
     {
+      "title": "China’s busiest holiday reveals Nio’s swapping efficiency triples BYD’s Flash Charging",
+      "summary": "Data from Golden Week reveals Nio's battery swapping achieved three times the efficiency of BYD's Flash Charging during peak holiday travel.",
+      "source": "CarNewsChina",
+      "date": "2026-10-10",
+      "url": "https://carnewschina.com/2026/10/10/chinas-busiest-holiday-reveals-nios-swapping-efficiency-triples-byds-flash-charging/",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "NIO Surpasses 100 Million Charging Sessions",
+      "summary": "NIO surpassed 100 million charging sessions across its network of over 9,500 charging and swapping stations, with non-NIO users accounting for 86.67% of power delivered.",
+      "source": "Gasgoo",
+      "date": "2026-10-10",
+      "url": "https://autonews.gasgoo.com/articles/news/nio-surpasses-100-million-charging-sessions-2108542521730101249",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
+      "title": "Changan NEVO Delivers 46,507 Vehicles in September, Cumulative Sales Top 1 Million",
+      "summary": "Changan NEVO delivered 46,507 vehicles in September, reaching 1 million cumulative sales in roughly three years driven by strong performance from its SUV and sedan lineup.",
+      "source": "Gasgoo",
+      "date": "2026-10-10",
+      "url": "https://autonews.gasgoo.com/articles/news/changan-nevo-delivers-46507-vehicles-in-september-cumulative-sales-top-1-million-2108541722903932929",
+      "linkType": "rss",
+      "id": 4
+    },
+    {
+      "title": "BYD humanoid robot design emerges as formal debut remains pending",
+      "summary": "Patent images revealed a bipedal BYD humanoid robot designed for industrial, educational, and service applications.",
+      "source": "CnEVPost",
+      "date": "2026-10-09",
+      "url": "https://cnevpost.com/2026/10/09/byd-humanoid-robot-design-emerges/",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
       "title": "Li Auto to launch 2026 Li i6 on October 28, deliveries to start in early November",
-      "summary": "Li Auto will begin displaying the 2026 Li i6 at 485 stores in China on October 11, with the model set to appear at the Paris Motor Show on October 12. For details, please visit CnEVPost (cnev.co).",
+      "summary": "Li Auto plans to launch the 2026 Li i6 on October 28 with store displays beginning October 11 ahead of its Paris Motor Show debut.",
       "source": "CnEVPost",
       "date": "2026-10-09",
       "url": "https://cnevpost.com/2026/10/09/li-auto-launch-2026-li-i6-oct-28/",
       "linkType": "rss",
-      "id": 2
+      "id": 6
     },
     {
       "title": "Xpeng launches Dark Knight package for P7+ sedan, echoing Nio's design update playbook",
@@ -4995,7 +5047,7 @@
       "date": "2026-10-09",
       "url": "https://cnevpost.com/2026/10/09/xpeng-launches-dark-knight-package-for-p7-sedan-echoing-nios-design-update-playbook/",
       "linkType": "rss",
-      "id": 3
+      "id": 7
     },
     {
       "title": "BYD opens pre-orders for larger second-gen Seagull ahead of launch this year",
@@ -5004,7 +5056,7 @@
       "date": "2026-10-09",
       "url": "https://cnevpost.com/2026/10/09/byd-opens-pre-orders-second-gen-seagull/",
       "linkType": "rss",
-      "id": 4
+      "id": 8
     },
     {
       "title": "Second-gen BYD Seagull became available for pre-orders in China",
@@ -5013,16 +5065,16 @@
       "date": "2026-10-09",
       "url": "https://carnewschina.com/2026/10/09/second-gen-byd-seagull-became-available-for-pre-orders-in-china/",
       "linkType": "rss",
-      "id": 5
+      "id": 9
     },
     {
       "title": "Xpeng release invite-only Yoyo robotaxi pilot in China",
-      "summary": "Xpeng release invite-only Yoyo robotaxi pilot in China",
+      "summary": "Xpeng launched an invite-only pilot for its Yoyo robotaxi service in China, built on a GX-based platform that has completed over 2,200 internal trial rides.",
       "source": "CarNewsChina",
       "date": "2026-10-09",
       "url": "https://carnewschina.com/2026/10/08/xpeng-release-invite-only-yoyo-robotaxi-pilot-in-china/",
       "linkType": "rss",
-      "id": 6
+      "id": 10
     },
     {
       "title": "Hongqi Opens First Showroom in Indonesia, Secures 88 Orders Since Market Entry",
@@ -5031,7 +5083,7 @@
       "date": "2026-10-09",
       "url": "https://autonews.gasgoo.com/articles/news/hongqi-opens-first-showroom-in-indonesia-secures-88-orders-since-market-entry-2108192739203436545",
       "linkType": "rss",
-      "id": 7
+      "id": 11
     },
     {
       "title": "ONVO Records 33,341 Battery Swaps on October 1, Setting New Daily High",
@@ -5040,16 +5092,16 @@
       "date": "2026-10-09",
       "url": "https://autonews.gasgoo.com/articles/news/onvo-records-33341-battery-swaps-on-october-1-setting-new-daily-high-2108190891327315968",
       "linkType": "rss",
-      "id": 8
+      "id": 12
     },
     {
       "title": "XPENG G9L Begins Trial Production in Europe Ahead of Paris Motor Show Debut",
-      "summary": "Gasgoo Munich- XPENG recently announced that its new AI flagship SUV, the G9L, has completed its first European trial production at Magna's Graz plant in Austria. This marks the fourth XPENG model to undergo localized trial production at the facility, following the G6, G9, and P7+. The first European-spec G9L will depart from Graz and drive 1,324 km to Paris for its global debut at the Paris Motor Show, which opens on October 12. During the journey, the vehicle will simultaneously validate its intelligent driving system, charging capabilities, and dynamic performance—using real-world road testing to confirm reliability for the European market. Image source: XPENG Designed as a global model from the outset, the G9L officially launched in China in September. The European version, however, has undergone extensive localization to align with local regulations and driving habits. Targeted adjustments to the body structure, seat configuration, interaction system, and charging ecosystem ensure it meets both European market entry standards and user expectations. Magna's Graz plant serves as the hub for XPENG's localized European manufacturing. Leveraging Magna's established production system, XPENG has initiated trial production for multiple models locally. This approach shortens delivery cycles and allows for a faster response to European demand—a critical component of the automaker's \"In Europe, For Europe\" strategy. XPENG plans to officially unveil the European specifications and market rollout timeline for the G9L at the Paris Motor Show. With the G9L's arrival, XPENG aims to bolster its European product lineup and export the AI automotive technology it has honed in China. The start of European trial production for the G9L also signals a shift for Chinese automakers: globalization is evolving beyond simple vehicle exports to encompass full-chain localization—including product definition, manufacturing, and verification.",
+      "summary": "XPENG commenced European trial production of its G9L SUV at Magna's Graz plant in Austria ahead of its official debut at the Paris Motor Show.",
       "source": "Gasgoo",
       "date": "2026-10-09",
       "url": "https://autonews.gasgoo.com/articles/news/xpeng-g9l-begins-trial-production-in-europe-ahead-of-paris-motor-show-debut-2108190535033769985",
       "linkType": "rss",
-      "id": 9
+      "id": 13
     },
     {
       "title": "Only 5% Use In-Car Fridges: It's Time to End the NEV Feature Arms Race",
@@ -5058,7 +5110,7 @@
       "date": "2026-10-09",
       "url": "https://autonews.gasgoo.com/articles/news/only-5-use-in-car-fridges-its-time-to-end-the-nev-feature-arms-race-2108189097536745472",
       "linkType": "rss",
-      "id": 10
+      "id": 14
     },
     {
       "title": "Li Auto Delivers 31,817 Vehicles in September, Cumulative Deliveries Reach 1,833,651",
@@ -5067,7 +5119,7 @@
       "date": "2026-10-09",
       "url": "https://autonews.gasgoo.com/articles/news/li-auto-delivers-31817-vehicles-in-september-cumulative-deliveries-reach-1833651-2108187687701139457",
       "linkType": "rss",
-      "id": 11
+      "id": 15
     },
     {
       "title": "DEEPAL Sells Over 30,000 Vehicles in September, Nine-Month Sales Rise 8.59% YoY",
@@ -5076,16 +5128,16 @@
       "date": "2026-10-09",
       "url": "https://autonews.gasgoo.com/articles/news/deepal-sells-over-30000-vehicles-in-september-nine-month-sales-rise-859-yoy-2108187319172812801",
       "linkType": "rss",
-      "id": 12
+      "id": 16
     },
     {
       "title": "NIO Inc. Delivers over 37,400 Vehicles in September, YTD Deliveries Top 300,000",
-      "summary": "Gasgoo Munich- NIO Inc. delivered 37,408 vehicles in September 2026, up 7.7% from a year earlier, according to the latest data released by the company. For the first three quarters of this year, cumulative deliveries climbed 49.2% to 300,301 units. To date, NIO's total historical deliveries have reached 1,297,893 vehicles. Breaking down the performance by brand, NIO's three-brand portfolio showed strong momentum across both September and the first three quarters. The NIO brand delivered 21,318 vehicles in September, while its ONVO brand handed over 8,763 units. The FIREFLY brand, meanwhile, recorded 7,327 deliveries. During the first nine months, the NIO brand accounted for 181,988 of those deliveries, followed by ONVO with 70,191 and FIREFLY with 48,122. All three brands notched record highs for the period, signaling that NIO's multi-brand strategy—spanning different price points and market segments—is paying off. In the premium sector, the NIO brand continues to strengthen its position. On September 21, the automaker handed over its 1,000,000th vehicle, bringing its total to 1,011,597 units. Data indicates the brand's average transaction price remains firmly above 400,000 yuan, securing the top market share for vehicles priced above that threshold between January and August. On the model front, the all-new ES8 has surpassed 150,000 deliveries since its launch a year ago, leading both the large SUV segment and the 400,000-yuan class. The ES9, meanwhile, crossed the 30,000-unit mark in just 119 days, claiming the sales crown in the 500,000-yuan electric vehicle category for three consecutive months. NIO also made significant strides in September regarding its charging infrastructure and partnerships. On September 26, the company's 4,125th battery swap station went online at Sayram Lake, marking the full completion of the NIO Silk Road swap route. Spanning 3,605 kilometers from Xi'an in Shaanxi province to Khorgos in Xinjiang, the route features 33 swap stations along the way. With this corridor now open, users can drive from any swap station in the country and reach all provincial-level administrative regions in mainland China using battery swapping. On September 28, NIO signed a comprehensive strategic partnership with Zhejiang Geely Holding Group to collaborate on charging and battery swapping. The two companies will work together on technology, operations, and capital investment—including joint stakes in their respective charging and swapping entities. They also agreed to share technical standards and co-build service networks.",
+      "summary": "NIO Inc. delivered 37,408 vehicles in September across its NIO, ONVO, and FIREFLY brands while expanding its cross-country battery swap network and signing a strategic partnership with Geely.",
       "source": "Gasgoo",
       "date": "2026-10-09",
       "url": "https://autonews.gasgoo.com/articles/news/nio-inc-delivers-over-37400-vehicles-in-september-ytd-deliveries-top-300000-2108186742179192833",
       "linkType": "rss",
-      "id": 13
+      "id": 17
     },
     {
       "title": "AVATR Delivers 8,183 Vehicles in September 2026",
@@ -5094,7 +5146,7 @@
       "date": "2026-10-09",
       "url": "https://autonews.gasgoo.com/articles/news/avatr-delivers-8183-vehicles-in-september-2026-2108186399106101249",
       "linkType": "rss",
-      "id": 14
+      "id": 18
     },
     {
       "title": "ZEEKR Delivers 37,216 Vehicles in September, Up 103.85% YoY",
@@ -5103,338 +5155,282 @@
       "date": "2026-10-09",
       "url": "https://autonews.gasgoo.com/articles/news/zeekr-delivers-37216-vehicles-in-september-up-10385-yoy-2108186008469598209",
       "linkType": "rss",
-      "id": 15
-    },
-    {
-      "title": "Lynk & Co Sells 18,493 Vehicles in September as NEV Share Hits Record High",
-      "summary": "Gasgoo Munich- Lynk & Co released its September 2026 sales data on Oct. 1, reporting total sales of 18,493 units — a 9% month-on-month gain. New-energy models accounted for roughly 92.1% of the total, setting another all-time high. Since its first model launched, cumulative Lynk & Co sales have topped 1.88 million units. Image source: Lynk & Co On the product front, the all-new Lynk & Co 20 officially hit the market on Sept. 28, with a limited-time starting price of 118,800 yuan. Built on Geely's SEA architecture, the EV comes loaded with core tech: LiDAR, the Qianli Haohan H5 advanced driver-assistance system, 6C ultra fast charging, and a blowout stability control system. By making premium features standard, the model brings cutting-edge tech to the 150,000-yuan pure-electric SUV segment. Within an hour of its debut, the all-new Lynk & Co 20 had already locked in 14,663 non-refundable orders. Beyond the fresh debut, several Lynk & Co models hit milestones in September. The 10,000th Lynk & Co 07 GT was delivered on Sept. 20 — just 59 days after the model's launch. The Lynk & Co 08 EM-P, meanwhile, marked its third anniversary with nearly 200,000 cumulative global deliveries. And the Lynk & Co 06, now in its sixth year, has surpassed 300,000 global deliveries. On the technology front, Lynk & Co advanced its charging ecosystem in September. Geely unveiled its next-gen AI charging system — Geely Smart Charging — on Sept. 23. The Lynk & Co 10 and 20 will be the first to adopt it, delivering enough charge for a solid trip in 4 minutes and a full battery in 8. Globally, Geely Auto and Volvo Cars struck an agreement on Sept. 10: starting in January 2027, Volvo will serve as the exclusive distributor for Lynk & Co in Europe. Around the same time, Lynk & Co made its debut at the 2026 Turin Auto Show in Italy, showcasing two new-energy models — the Lynk & Co 08 and the Lynk & Co 02 (Lynk & Co Z20).",
-      "source": "Gasgoo",
-      "date": "2026-10-09",
-      "url": "https://autonews.gasgoo.com/articles/news/lynk-co-sells-18493-vehicles-in-september-as-nev-share-hits-record-high-2108185537948377089",
-      "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "XPENG Delivers 41,256 Vehicles in September as Global and Smart-Tech Push Accelerates",
-      "summary": "Gasgoo Munich- ﻿ XPENG delivered 41,256 new vehicles in September 2026, up 5% from the previous month, according to the latest data released by the company. That brought cumulative third-quarter deliveries to 118,390 units — a 15% quarterly increase. Image source: XPENG A Multi-Model Drive Strengthens the Portfolio On the product front, XPENG's flagship models demonstrated strong market traction in September. The XPENG G9L — positioned as a \"premium five-seat tech flagship\" — officially launched in China on September 17 with a limited-time starting price of 231,800 yuan. Sharing the same core architecture as the GX, the G9L comes standard with a chassis system rivaling million-yuan vehicles and over 100 premium tech features. It also marks the debut of XPENG's latest second-generation VLA system. Production for the XPENG MONA L03, another key model, continued to climb, with September deliveries topping 10,000 units. The vehicle has launched and begun deliveries across multiple markets, including Hong Kong, the Philippines, Australia, and Indonesia. Built as a global model from the ground up, the MONA L03 features XPENG's second-generation VLA driver-assistance system, a smart cockpit, and a \"dual-energy\" powertrain architecture. Meanwhile, the XPENG GX recorded 7,224 deliveries in September. This marks the third consecutive month of single-month sales exceeding 7,000 units since its launch, securing a spot among the top three large SUVs priced above 300,000 yuan for two months running. Smart Tech Iterates as Physical AI Takes Shape On the technology front, XPENG rolled out the new second-generation VLA update on September 22. The latest version expands on-device model parameters by 3.5 times, using architectural optimization and distillation to bring advanced capabilities to a wider range of vehicles. It also introduces a \"Master Agent\" for the entire vehicle, merging VLA and VLM capabilities. New features include voice-command navigation and vehicle control, alongside split-screen interaction and CarPlay support. In the realm of embodied intelligence, XPENG activated the world's first automated production line for advanced general-purpose humanoid robots on September 8. Later, on September 22, the company hosted its inaugural Robot Supply Chain Partner Conference, having already finalized designation agreements with suppliers and moved forward with production scheduling. XPENG robots are slated to enter mass production by the end of this year, with initial deployments planned for commercial scenarios such as company stores and industrial parks. On the charging front, XPENG operated over 4,000 proprietary charging stations as of September 30, including more than 3,510 super-fast stations. With over 22,200 charging piles, the network covers more than 430 cities. On September 15, the company put its first global X-Energy megawatt flash-charging station into operation in Hong Kong, open to drivers of all brands. Over the next three years, XPENG plans to deploy roughly 10,000 super-fast chargers across key international markets. Overall, XPENG Group is doubling down on its full-stack self-developed strategy. The goal: push more models into global markets while accelerating the large-scale deployment of physical AI across AI vehicles, Robotaxis, and humanoid robots.",
-      "source": "Gasgoo",
-      "date": "2026-10-09",
-      "url": "https://autonews.gasgoo.com/articles/news/xpeng-delivers-41256-vehicles-in-september-as-global-and-smart-tech-push-accelerates-2108185134842212353",
-      "linkType": "rss",
-      "id": 17
-    },
-    {
-      "title": "ARCFOX Sells 21,518 Vehicles in September, Q1-Q3 Deliveries Top 135,000 Units",
-      "summary": "Gasgoo Munich- ARCFOX released its latest sales figures for September and the first three quarters of 2026 on October 1. The data reveals a steady growth trajectory for both September and the year-to-date period, suggesting the brand is holding its rhythm even as competition in the new energy vehicle sector intensifies. Image source: ARCFOX Specifically, ARCFOX sold 21,518 units in September, successfully breaching the 20,000 mark. That represents a 33.87% jump from the same period last year. With market penetration rates climbing and price and product battles raging, monthly deliveries exceeding 20,000 units demonstrate that demand for ARCFOX vehicles remains resilient at the retail level. Even more telling is its cumulative performance. From January to September 2026, ARCFOX's total sales reached 135,475 units. On a year-over-year basis, that marks a 54.28% surge for the first three quarters. Overall, a tally of more than 135,000 units and growth topping 50% highlights ARCFOX's product competitiveness and channel execution in today's market. As the industry enters its traditional Q4 peak season and automakers sprint toward year-end targets, all eyes are on whether ARCFOX can sustain this momentum with its current lineup.",
-      "source": "Gasgoo",
-      "date": "2026-10-09",
-      "url": "https://autonews.gasgoo.com/articles/news/arcfox-sells-21518-vehicles-in-september-q1-q3-deliveries-top-135000-units-2108184773712633857",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "Xiaomi Auto September Deliveries Exceed 40,000 Units",
-      "summary": "Gasgoo Munich- ﻿ Xiaomi Auto delivered more than 40,000 vehicles in September 2026, the company announced on Oct. 1. Crossing that threshold signals a breakthrough in scale for the smartphone maker-turned-automaker, giving it the volume needed to compete in an increasingly cutthroat market during the second half of the year. For a cross-sector entrant in the new-energy vehicle space, breaching the 40,000-unit monthly mark is a watershed moment. Industry patterns suggest that hitting 40,000 deliveries a month means an automaker has cleared the painful capacity ramp-up phase. By this point, supply chain coordination, production-line efficiency, and the end-delivery network are typically running like clockwork. China's EV market is locked in a relentless cycle of price cuts and tech one-upmanship. That Xiaomi managed to hold its delivery base steady amid such chaos speaks to its growing organizational muscle. Its current lineup now spans multiple segments. That diversified portfolio broadens Xiaomi's reach, catering to a wider range of electric-mobility demands. Still, the challenges ahead are hard to ignore. Legacy automakers are pushing back hard with their own EV sub-brands, while leading startups keep raising the stakes on product updates and autonomous driving. The 200,000-to-300,000-yuan segment is fiercely competitive. Whether Xiaomi can convert its order backlog into sustained deliveries — and hold or surpass the 40,000-unit threshold in the months ahead — will test its production resilience and brand staying power. Meanwhile, a rapidly expanding fleet brings its own pressures. The strain on after-sales service networks, charging infrastructure, and long-term vehicle maintenance will only grow. For Xiaomi Auto, September's 40,000-plus deliveries are simply a new baseline. As the industry enters the fourth quarter — a critical stretch for year-end volume pushes — the question is whether the company can leverage its lineup and production edge to chase down an even higher annual target. We'll be watching.",
-      "source": "Gasgoo",
-      "date": "2026-10-09",
-      "url": "https://autonews.gasgoo.com/articles/news/xiaomi-auto-september-deliveries-exceed-40000-units-2108183606165204993",
-      "linkType": "rss",
       "id": 19
     },
     {
-      "title": "ONVO hits delivery milestone of 200,000 vehicles",
-      "summary": "ONVO, a smart new energy vehicle brand under NIO Inc., has delivered its 200,000th vehicle, an ONVO L90,according to a post on ONVO's WeChat account. The milestone was reached on October 8, about two years after the first ONVO L60 was delivered in 2024. The company said its delivery pace ranks among the top three new energy vehicle startups. Image Source:  ONVO Key Takeaways ONVO currently offers three models: the L60, L80 and L90, under its \"Technology for the Family\" concept. ONVO's nationwide charging and battery-swapping network supports battery swaps in three minutes. The company says its battery-swapping model separates the vehicle from the battery, with battery management provided throughout the battery's service life. ONVO says its full lineup was developed to meet five-star standards in both China and Europe. The L60 has received several five-star and top-rated test results, while the L90 has achieved five-star ratings in C-NCAP, C-GCAP and C-ICAP. The L80 and L90 share the same platform and have undergone tests including combined rough-road underbody impact and 600mm water wading, as well as rear-end and side-impact tests involving a 5-ton truck. Product lineup and space ONVO's current lineup comprises the L60, L80 and L90. Regarding specific models, the L60 offers the dimensions of a midsize SUV while providing interior space comparable to a larger SUV, with a 763-liter trunk and a 139-liter underfloor storage compartment. The L80 and L90 are both 5,145 mm long, with a wheelbase-to-length ratio of 60.4% and a space utilization rate of 81.5%. The L80 has a 240-liter front trunk and a 1,200-liter rear cargo area. With all seats occupied, the L90 provides more than 1 meter of legroom in each row, along with a 430-liter trunk, including a 106-liter underfloor compartment, and a 240-liter front trunk.",
+      "title": "Lynk & Co Sells 18,493 Vehicles in September as NEV Share Hits Record High",
+      "summary": "Lynk & Co's new energy vehicle sales reached a record 92.1% share in September, while launching the SEA-platform based Lynk & Co 20 with 6C fast charging and securing an European distribution deal with Volvo Cars.",
       "source": "Gasgoo",
       "date": "2026-10-09",
-      "url": "https://autonews.gasgoo.com/articles/news/onvo-hits-delivery-milestone-of-200000-vehicles-2108118566095507457",
+      "url": "https://autonews.gasgoo.com/articles/news/lynk-co-sells-18493-vehicles-in-september-as-nev-share-hits-record-high-2108185537948377089",
       "linkType": "rss",
       "id": 20
     }
   ],
   "chinaNewsBriefing": {
     "keyTakeaways": [
-      "중국 완성차 제조사들의 글로벌 수출 성장세가 가속화되는 가운데, 글로벌 배터리 시장 내 중국 기업들의 점유율이 73%를 넘어서며 독주 체제가 공고해지고 있습니다.",
-      "BYD와 리오토, 립모터 등 주요 중국 EV 브랜드들이 우측 핸들(RHD) 시장 및 유럽, 동남아 등 전 방위적인 해외 영토 확장에 속도를 내고 있습니다.",
-      "EU의 중국산 하이브리드 규제 움직임 등 무역 장벽 강화 속에서도 중국 기업들은 액상 침매 냉각 기술과 초고속 충전 등 독자적인 차세대 기술 혁신을 이어가고 있습니다."
+      "중국 주요 전기차 제조사들이 9월 실적 호조를 바탕으로 유럽, 동남아 등 해외 진출을 본격화하는 동시에 6C 초빠른 충전 및 배터리 스왑 생태계를 극대화하고 있습니다.",
+      "단순 옵션 경쟁(냉장고·스크린 탑재)에서 벗어나 핵심 충전 기술, 자율주행, 실용적 기본 성능 중심의 차별화로 경쟁 패러다임이 전환되고 있습니다.",
+      "중국 완성차 업체들이 상용차, 휴머노이드 로봇, 로보택시 등 전기차 플랫폼 기반의 미래 모빌리티 포트폴리오를 다각화하고 있습니다."
     ],
     "categories": [
       {
-        "name": "중국 주요 EV 브랜드 실적 및 신차 동향",
+        "name": "중국 신차 출시 및 기술 혁신",
         "items": [
           {
-            "headline": "BYD 다한 EV, 1008km 주행거리 출시 예정",
-            "summary": "BYD가 오는 10월 13일 차체 길이 5.2m의 대형 전기 세단 '다한 EV'를 공식 출시합니다. 이 차량은 공기저항계수 0.197 Cd 및 100km당 11.5kWh의 뛰어난 에너지 효율을 달성하여 최대 1,008km의 압도적인 1회 충전 주행거리를 자랑합니다.",
+            "headline": "BYD, 휴머노이드 로봇 특허 공개",
+            "summary": "BYD의 이족보행 휴머노이드 로봇 디자인 특허가 공개되었습니다. 산업 현장 및 서비스 분야 적용을 목표로 개발 중이며 완성차 제조 기술과의 시너지가 기대됩니다.",
             "tags": [
               "#BYD",
-              "#다한EV",
-              "#신차출시",
-              "#초장거리"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-10-07",
-            "url": "https://carnewschina.com/2026/10/07/byd-da-han-ev-to-launch-october-13-with-0-197-cd-drag-and-1008-km-range/"
-          },
-          {
-            "headline": "테슬라 인도량 상회에도 BYD에 격차 확대",
-            "summary": "테슬라의 3분기 글로벌 인도량이 486,532대로 시장 예상치를 상회했으나 전년 동기 대비 2.13% 감소했습니다. 이에 따라 순수전기차(BEV) 판매 부문에서 선두를 고수 중인 중국 BYD와의 판매 격차는 더욱 벌어지고 있습니다.",
-            "tags": [
-              "#테슬라",
-              "#BYD",
-              "#3분기인도량",
-              "#BEV경쟁"
+              "#휴머노이드",
+              "#로봇공학"
             ],
             "source": "CnEVPost",
-            "date": "2026-10-02",
-            "url": "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/"
+            "date": "2026-10-09",
+            "url": "https://cnevpost.com/2026/10/09/byd-humanoid-robot-design-emerges/"
           },
           {
-            "headline": "폭스바겐 ID. 아우라 T6 중국 인도 시작",
-            "summary": "폭스바겐이 중국 시장 전용 전기차 모델인 'ID. 아우라 T6'의 본격적인 고객 인도를 개시했습니다. 해당 차량은 1회 완충 시 최대 660km의 주행거리를 제공하여 현지 전기차 수요층을 적극 공략하고 있습니다.",
-            "tags": [
-              "#폭스바겐",
-              "#IDAuraT6",
-              "#중국시장",
-              "#전기차인도"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-10-02",
-            "url": "https://carnewschina.com/2026/10/02/volkswagen-id-aura-t6-began-deliveries-in-china-with-660-km-of-range/"
-          },
-          {
-            "headline": "니오 9월 인도량 55% 증가하며 목표 달성",
-            "summary": "니오(Nio) 브랜드의 9월 인도량이 전년 동기 대비 55.29% 증가한 37,408대를 기록하며 3분기 실적 가이던스를 충족했습니다. 보급형 브랜드 파이어플라이는 월간 최고 실적을 올려 성장에 기여했습니다.",
-            "tags": [
-              "#니오",
-              "#Nio",
-              "#파이어플라이",
-              "#실적달성"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-10-01",
-            "url": "https://cnevpost.com/2026/10/01/nio-sept-2026-deliveries/"
-          },
-          {
-            "headline": "립모터 9월 인도 10만 대 돌파로 최고 기록",
-            "summary": "립모터(Leapmotor)가 9월 한 달간 105,656대를 인도하며 3개월 연속 10만 대 돌파 기록을 세웠습니다. 이에 따라 3분기 누적 인도량은 310,052대로 분기 기준 역대 최고 실적을 갱신했습니다.",
-            "tags": [
-              "#립모터",
-              "#월간실적",
-              "#3분기인도량",
-              "#사상최고"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-10-01",
-            "url": "https://cnevpost.com/2026/10/01/leapmotor-sept-2026-deliveries/"
-          },
-          {
-            "headline": "샤오미 오토, 신차 효과로 9월 4만 대 달성",
-            "summary": "샤오미 오토가 신형 전기차 '스카이 노마드'의 본격적인 판매 신장에 힘입어 9월 월간 인도량 40,000대를 돌파했습니다. 이는 2026년 들어 샤오미가 기록한 가장 높은 월간 인도 실적입니다.",
-            "tags": [
-              "#샤오미",
-              "#샤오미오토",
-              "#스카이노마드",
-              "#인도량증가"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-10-01",
-            "url": "https://cnevpost.com/2026/10/01/xiaomi-auto-sept-2026-deliveries/"
-          },
-          {
-            "headline": "리오토 3분기 인도 10만 대 육박",
-            "summary": "리오토(Li Auto)의 9월 인도량은 31,817대로 전년 동기 대비 6.29% 감소했으나, 3분기 전체 인도량은 전년 대비 7.24% 증가한 99,964대를 기록하며 지속적인 성장세를 유지했습니다.",
+            "headline": "리 오토, 2026년형 Li i6 출시",
+            "summary": "리 오토가 10월 28일 2026년형 Li i6를 공식 출시하고 11월 초부터 인도에 돌입합니다. 파리 모터쇼 데뷔를 통해 유럽 시장 공략도 병행할 예정입니다.",
             "tags": [
               "#리오토",
-              "#LiAuto",
-              "#3분기실적",
-              "#월간인도량"
+              "#Lii6",
+              "#신차출시"
             ],
             "source": "CnEVPost",
-            "date": "2026-10-01",
-            "url": "https://cnevpost.com/2026/10/01/li-auto-sept-2026-deliveries/"
+            "date": "2026-10-09",
+            "url": "https://cnevpost.com/2026/10/09/li-auto-launch-2026-li-i6-oct-28/"
           },
           {
-            "headline": "중국 완성차 업체 9월 인도량 호조세 지속",
-            "summary": "9월 중국 주요 완성차 브랜드들이 전반적으로 강한 판매 호조를 보였습니다. 립모터와 지커가 역대 최고치를 갱신하고 샤오미가 4만 대를 넘어서는 등 현지 신에너지차 시장의 경쟁이 격화되고 있습니다.",
+            "headline": "샤오펑, P7+ 다크나이트 패키지 출시",
+            "summary": "샤오펑이 P7+ 세단용 다크나이트 스페셜 패키지를 한정 특가로 선보였습니다. 익스테리어 및 인테리어 디자인 강화를 통해 프리미엄 세단 시장에서의 상품성을 향상시켰습니다.",
             "tags": [
-              "#중국EV",
-              "#9월실적",
-              "#시장동향",
-              "#판매호조"
+              "#샤오펑",
+              "#P7플러스",
+              "#신차옵션"
             ],
             "source": "CnEVPost",
-            "date": "2026-10-01",
-            "url": "https://cnevpost.com/2026/10/01/roundup-sept-2026-deliveries-china-automakers/"
+            "date": "2026-10-09",
+            "url": "https://cnevpost.com/2026/10/09/xpeng-launches-dark-knight-package-for-p7-sedan-echoing-nios-design-update-playbook/"
+          },
+          {
+            "headline": "BYD, 2세대 시걸 사전예약 시작",
+            "summary": "BYD가 전장이 425mm 확장되어 실내 공간이 크게 넓어진 2세대 시걸 소형 전기차의 사전예약을 중국 시장에서 본격적으로 시작했습니다.",
+            "tags": [
+              "#BYD",
+              "#시걸",
+              "#소형EV"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-09",
+            "url": "https://cnevpost.com/2026/10/09/byd-opens-pre-orders-second-gen-seagull/"
+          },
+          {
+            "headline": "2세대 BYD 시걸, 중국 사전예약 개시",
+            "summary": "차체 크기를 키우고 상품성을 개선한 BYD의 대표 보급형 전기차 2세대 시걸 모델이 중국 현지 고객들을 대상으로 사전예약 접수에 들어갔습니다.",
+            "tags": [
+              "#BYD",
+              "#2세대시걸",
+              "#중국시장"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-10-09",
+            "url": "https://carnewschina.com/2026/10/09/second-gen-byd-seagull-became-available-for-pre-orders-in-china/"
+          },
+          {
+            "headline": "샤오펑, 요요 로보택시 시범운행",
+            "summary": "샤오펑이 자체 GX 플랫폼을 기반으로 2,200회 이상의 주행 테스트를 마친 '요요' 로보택시 서비스의 초청 고객 대상 시범 운행을 중국에서 시작했습니다.",
+            "tags": [
+              "#샤오펑",
+              "#로보택시",
+              "#자율주행"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-10-09",
+            "url": "https://carnewschina.com/2026/10/08/xpeng-release-invite-only-yoyo-robotaxi-pilot-in-china/"
+          },
+          {
+            "headline": "전기차 옵션 과열 경쟁의 종식",
+            "summary": "차량용 냉장고와 디스플레이 등 과도한 스펙 싸움에서 벗어나, 사용자가 실제 체감하는 소프트웨어 및 기본 성능에 집중해야 한다는 산업적 반성이 제기되고 있습니다.",
+            "tags": [
+              "#전기차동향",
+              "#옵션경쟁",
+              "#차량IT"
+            ],
+            "source": "Gasgoo",
+            "date": "2026-10-09",
+            "url": "https://autonews.gasgoo.com/articles/news/only-5-use-in-car-fridges-its-time-to-end-the-nev-feature-arms-race-2108189097536745472"
           }
         ]
       },
       {
-        "name": "해외 시장 진출 및 글로벌 통상 동향",
+        "name": "충전·배터리 인프라 및 상용차",
         "items": [
           {
-            "headline": "BYD 9월 판매 46만 대, 해외 수출 154% 급증",
-            "summary": "BYD가 2026년 9월 한 달간 463,561대를 판매하며 1~9월 누적 판매 3,131,576대를 기록했습니다. 특히 9월 해외 판매량이 전년 동기 대비 153.9% 폭증한 179,877대에 달해 해외 시장이 핵심 성장 동력으로 자리 잡았습니다.",
+            "headline": "BYD, 상용 NEV 15만 대 달성",
+            "summary": "BYD가 상용 신에너지차 누적 생산 15만 대를 돌파했습니다. 3분기 대형 전기 트럭을 선보이며 장거리 화물 수송 분야로 상용차 사업 영역을 대폭 확장하고 있습니다.",
             "tags": [
               "#BYD",
-              "#해외수출",
-              "#판매실적",
+              "#상용전기차",
+              "#전기트럭"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-10-10",
+            "url": "https://cnevpost.com/2026/10/10/byd-150000-commercial-nev-production-focus-trucks/"
+          },
+          {
+            "headline": "니오 배터리 교환, BYD 충전 압도",
+            "summary": "중국 황금연휴 기간 데이터 분석 결과, 니오의 배터리 스왑 시스템이 BYD의 플래시 차징 대비 최고 피크 시간대 에너지 충전 효율이 3배 높았던 것으로 나타났습니다.",
+            "tags": [
+              "#니오",
+              "#배터리스왑",
+              "#BYD"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-10-10",
+            "url": "https://carnewschina.com/2026/10/10/chinas-busiest-holiday-reveals-nios-swapping-efficiency-triples-byds-flash-charging/"
+          },
+          {
+            "headline": "니오, 누적 충전 서비스 1억 회 돌파",
+            "summary": "니오가 전국 9,500여 개 충전·스왑 네트워크를 통해 누적 충전 1억 회를 달성했습니다. 전체 전력 제공량 중 타사 브랜드 차량 비중이 86.67%에 달했습니다.",
+            "tags": [
+              "#니오",
+              "#충전인프라",
+              "#배터리스왑"
+            ],
+            "source": "Gasgoo",
+            "date": "2026-10-10",
+            "url": "https://autonews.gasgoo.com/articles/news/nio-surpasses-100-million-charging-sessions-2108542521730101249"
+          },
+          {
+            "headline": "온보, 하루 배터리 교환 3만 회 돌파",
+            "summary": "니오의 하위 브랜드 온보가 국경절 연휴 첫날 33,341건의 배터리 스왑을 기록하며 단일 일일 최고 수치를 경신했고, 니오 전체 네트워크 스왑도 역대 최고치를 기록했습니다.",
+            "tags": [
+              "#온보",
+              "#니오",
+              "#배터리스왑"
+            ],
+            "source": "Gasgoo",
+            "date": "2026-10-09",
+            "url": "https://autonews.gasgoo.com/articles/news/onvo-records-33341-battery-swaps-on-october-1-setting-new-daily-high-2108190891327315968"
+          }
+        ]
+      },
+      {
+        "name": "글로벌 수출 및 판매 실적",
+        "items": [
+          {
+            "headline": "창안 NEVO, 누적 판매 100만 대",
+            "summary": "창안자동차의 NEVO 브랜드가 SUV와 세단 라인업의 고른 호조로 9월 46,507대를 인도하며 출시 약 3년 만에 누적 판매 100만 대 고지를 달성했습니다.",
+            "tags": [
+              "#창안자동차",
+              "#NEVO",
+              "#판매실적"
+            ],
+            "source": "Gasgoo",
+            "date": "2026-10-10",
+            "url": "https://autonews.gasgoo.com/articles/news/changan-nevo-delivers-46507-vehicles-in-september-cumulative-sales-top-1-million-2108541722903932929"
+          },
+          {
+            "headline": "홍치, 인도네시아 쇼룸 첫 오픈",
+            "summary": "FAW 그룹의 프리미엄 브랜드 홍치가 인도네시아 자카르타에 첫 전시장 및 서비스 센터를 열었습니다. 진출 직후 E-HS9을 필두로 고급 수요를 흡수해 88대의 사전 주문을 확보했습니다.",
+            "tags": [
+              "#홍치",
+              "#인도네시아",
+              "#동남아진출"
+            ],
+            "source": "Gasgoo",
+            "date": "2026-10-09",
+            "url": "https://autonews.gasgoo.com/articles/news/hongqi-opens-first-showroom-in-indonesia-secures-88-orders-since-market-entry-2108192739203436545"
+          },
+          {
+            "headline": "샤오펑, 오스트리아서 G9L 시험 생산",
+            "summary": "샤오펑이 유럽 파리 모터쇼 공식 데뷔를 앞두고 오스트리아 마그나 슈타이어 그라츠 공장에서 G9L SUV의 유럽 현지 시험 생산을 본격적으로 시작했습니다.",
+            "tags": [
+              "#샤오펑",
+              "#유럽생산",
+              "#마그나"
+            ],
+            "source": "Gasgoo",
+            "date": "2026-10-09",
+            "url": "https://autonews.gasgoo.com/articles/news/xpeng-g9l-begins-trial-production-in-europe-ahead-of-paris-motor-show-debut-2108190535033769985"
+          },
+          {
+            "headline": "리 오토, 9월 3.1만 대 인도 달성",
+            "summary": "리 오토가 9월 한 달간 31,817대를 인도하며 누적 인도량 183만 대를 돌파했습니다. 주력 EREV와 신규 BEV 라인업 확장 및 유럽 시장 진출을 동시에 추진하고 있습니다.",
+            "tags": [
+              "#리오토",
+              "#EREV",
               "#글로벌확장"
             ],
             "source": "Gasgoo",
-            "date": "2026-10-08",
-            "url": "https://autonews.gasgoo.com/articles/news/byd-sells-463561-vehicles-in-sept-2026-as-overseas-volume-jumps-1539-2107803611743870977"
+            "date": "2026-10-09",
+            "url": "https://autonews.gasgoo.com/articles/news/li-auto-delivers-31817-vehicles-in-september-cumulative-deliveries-reach-1833651-2108187687701139457"
           },
           {
-            "headline": "EU, 중국산 하이브리드 수입 제한 규제 추진",
-            "summary": "유럽연합(EU)이 중국산 하이브리드 차량 수입 증가에 대응해 관세할당제(TRQ) 등 세이프가드 조치를 준비 중인 것으로 알려졌습니다. 이는 글로벌 무역 불균형을 해소하기 위한 선제적 테스트 케이스로 해석됩니다.",
+            "headline": "딥알, 9월 판매량 3만 대 돌파",
+            "summary": "창안의 딥알 브랜드가 9월 30,185대를 판매하며 올해 누적 판매량이 전년 대비 8.59% 증가했습니다. 15~20만 위안대 시장에 고급 자율주행 기술 및 가변 서스펜션을 적용해 성장을 이끌었습니다.",
             "tags": [
-              "#EU",
-              "#하이브리드",
-              "#수입규제",
-              "#관세할당제"
+              "#딥알",
+              "#창안",
+              "#기술민주화"
             ],
-            "source": "CnEVPost",
-            "date": "2026-10-07",
-            "url": "https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/"
+            "source": "Gasgoo",
+            "date": "2026-10-09",
+            "url": "https://autonews.gasgoo.com/articles/news/deepal-sells-over-30000-vehicles-in-september-nine-month-sales-rise-859-yoy-2108187319172812801"
           },
           {
-            "headline": "스즈키, BYD 배터리 탑재 최저가 경형 EV 출시",
-            "summary": "일본 스즈키가 BYD의 배터리를 공급받아 신형 경형 전기차 'e-Sky'를 일본 시장에 출시했습니다. 이 모델은 일본 내에서 가장 가격 경쟁력이 뛰어난 경형 EV로 자리매김할 전망입니다.",
+            "headline": "니오 그룹, 9월 3.7만 대 인도 기록",
+            "summary": "니오 그룹이 니오, 온보, 파이어플라이 3개 브랜드를 합산해 9월 37,408대를 인도했습니다. 연간 누적 30만 대를 넘어섰으며 지리자동차와의 인프라 협력도 강화했습니다.",
             "tags": [
-              "#스즈키",
-              "#BYD배터리",
-              "#경형EV",
-              "#일본시장"
+              "#니오",
+              "#멀티브랜드",
+              "#지리자동차"
             ],
-            "source": "CarNewsChina",
-            "date": "2026-10-07",
-            "url": "https://carnewschina.com/2026/10/07/suzuki-utilises-byds-battery-to-launch-japans-most-affordable-kei-car-ev/"
+            "source": "Gasgoo",
+            "date": "2026-10-09",
+            "url": "https://autonews.gasgoo.com/articles/news/nio-inc-delivers-over-37400-vehicles-in-september-ytd-deliveries-top-300000-2108186742179192833"
           },
           {
-            "headline": "리오토, 2026년 말 태국 시장 진출 추진",
-            "summary": "중국 프리미엄 EV 브랜드 리오토가 2026년 말까지 태국 진출을 계획하고 있습니다. 이번 행보는 우측 핸들(RHD) 시장 공략을 위한 글로벌 영토 확장 전략의 일환으로 추진됩니다.",
+            "headline": "아바타, 9월 8,183대 인도 달성",
+            "summary": "아바타가 슈팅브레이크 06T 및 플래그십 T09 등 세분화된 신차 라인업을 앞세워 9월 8,183대를 인도하며 프리미엄 전기차 시장에서의 입지를 강화하고 있습니다.",
             "tags": [
-              "#리오토",
-              "#태국진출",
-              "#우측핸들",
-              "#동남아시장"
+              "#아바타",
+              "#프리미엄EV",
+              "#라인업다각화"
             ],
-            "source": "CarNewsChina",
-            "date": "2026-10-07",
-            "url": "https://carnewschina.com/2026/10/07/li-auto-plans-to-enter-thailand-by-the-end-of-2026-as-one-more-rhd-market/"
+            "source": "Gasgoo",
+            "date": "2026-10-09",
+            "url": "https://autonews.gasgoo.com/articles/news/avatr-delivers-8183-vehicles-in-september-2026-2108186399106101249"
           },
           {
-            "headline": "체리자동차, 제투르 브랜드 고급화 전략 전환",
-            "summary": "체리자동차가 '글로벌화 3.0' 전략의 핵심으로 제투르(Jetour) 브랜드를 고급 오프로드 전용 브랜드로 전환한다고 발표했습니다. 브랜드 가치 제고를 통해 글로벌 고급차 시장 공략에 속도를 낼 방침입니다.",
+            "headline": "지커, 9월 3.7만 대 인도·103% 증가",
+            "summary": "지커가 9월 전년 대비 103.85% 급증한 37,216대를 인도하며 8개월 연속 전년 및 전월 대비 동시 성장을 기록, 올해 누적 인도량 28만 대를 돌파했습니다.",
             "tags": [
-              "#체리자동차",
-              "#제투르",
-              "#브랜드고급화",
-              "#글로벌전략"
+              "#지커",
+              "#지리",
+              "#급성장"
             ],
-            "source": "CarNewsChina",
-            "date": "2026-10-07",
-            "url": "https://carnewschina.com/2026/10/07/chery-to-turn-jetour-into-high-end-brand-in-a-strategy-shift/"
+            "source": "Gasgoo",
+            "date": "2026-10-09",
+            "url": "https://autonews.gasgoo.com/articles/news/zeekr-delivers-37216-vehicles-in-september-up-10385-yoy-2108186008469598209"
           },
           {
-            "headline": "립모터 B03X 크로스오버 호주 판매가 공개",
-            "summary": "중국 립모터가 호주 시장 공략을 위해 오세아니아 진출 전략 모델인 B03X 크로스오버의 현지 판매 가격을 공식 공개하고 우측 핸들 시장 진출에 박차를 가하고 있습니다.",
+            "headline": "링크앤코, NEV 비중 92% 돌파",
+            "summary": "링크앤코의 9월 친환경차 판매 비중이 92.1%로 역대 최고를 기록했습니다. 6C 초빠른 충전을 지원하는 SEA 플랫폼 기반 '링크앤코 20'을 선보이고 볼보를 통한 유럽 판로를 확보했습니다.",
             "tags": [
-              "#립모터",
-              "#B03X",
-              "#호주시장",
-              "#가격공개"
+              "#링크앤코",
+              "#6C초급속충전",
+              "#유럽수출"
             ],
-            "source": "CarNewsChina",
-            "date": "2026-10-06",
-            "url": "https://carnewschina.com/2026/10/06/leapmotor-b03x-crossover-revealed-price-for-australia/"
-          },
-          {
-            "headline": "BYD 경형 EV 라코, 스리랑카 및 마카오 진출",
-            "summary": "BYD가 일본 시장용 경형 EV '라코(Racco)'를 스리랑카와 마카오 등 해외 우측 핸들 시장으로 확대 출시합니다. 반면 중국 내수 시장 출시 계획은 현재 고려하지 않는 것으로 전해졌습니다.",
-            "tags": [
-              "#BYD",
-              "#라코",
-              "#경형전기차",
-              "#해외진출"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-10-06",
-            "url": "https://carnewschina.com/2026/10/06/byds-racco-kei-ev-jumps-out-of-japan-prepares-for-launch-in-sri-lanka-and-macau/"
-          },
-          {
-            "headline": "2026 파리모터쇼 속 중국 브랜드 전망",
-            "summary": "2026 파리 모터쇼 개막을 앞두고 유럽 시장 공략을 강화하는 중국 자동차 브랜드들의 출전 라인업 및 신기술 발표에 대한 글로벌 업계의 관심이 한층 고조되고 있습니다.",
-            "tags": [
-              "#파리모터쇼",
-              "#중국브랜드",
-              "#유럽진출",
-              "#모터쇼"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-10-02",
-            "url": "https://carnewschina.com/2026/10/02/what-to-expect-from-chinese-car-brands-at-the-paris-auto-show-2026/"
-          },
-          {
-            "headline": "지리자동차 9월 수출 둔화 속 매출 7% 증가",
-            "summary": "지리자동차가 9월 한 달간 전년 대비 162% 증가한 106,685대를 수출했으나, 전월 대비로는 3% 감소하며 8개월간 지속된 최다 수출 신기록 행진을 마감했습니다. 전체 판매량은 전년 대비 7% 상승했습니다.",
-            "tags": [
-              "#지리자동차",
-              "#수출동향",
-              "#판매실적",
-              "#월간성장"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-10-01",
-            "url": "https://cnevpost.com/2026/10/01/geely-sept-2026-sales/"
-          }
-        ]
-      },
-      {
-        "name": "배터리·기술 혁신 및 인프라",
-        "items": [
-          {
-            "headline": "BYD, 셀 액상 직접 침매 냉각 배터리 특허 출원",
-            "summary": "BYD가 배터리 셀 모듈을 냉각액에 직접 침전시키는 동시 전장 부품의 건조 상태를 유지하는 차세대 배터리 캐비닛 특허를 출원했습니다. 침매 냉각 방식을 통해 배터리 열관리 효율을 극대화할 것으로 기대됩니다.",
-            "tags": [
-              "#BYD",
-              "#액상냉각",
-              "#배터리특허",
-              "#열관리"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-10-06",
-            "url": "https://carnewschina.com/2026/10/06/byd-puts-battery-cells-directly-in-cooling-liquid-in-new-patent/"
-          },
-          {
-            "headline": "BYD 메가와트 급속충전기 안전성 논란 제기",
-            "summary": "BYD의 초고속 메가와트 플래시 충전기 케이블이 어린이 놀이터 그네로 부적절하게 사용되는 모습이 포착되면서, 고전압 대용량 충전 인프라의 관리 및 안전 대책에 대한 우려가 제기되고 있습니다.",
-            "tags": [
-              "#BYD",
-              "#메가와트충전",
-              "#인프라안전",
-              "#초고속충전"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-10-05",
-            "url": "https://carnewschina.com/2026/10/05/byd-megawatt-flash-charger-used-as-playground-swing-sparks-infrastructure-safety-concerns/"
-          },
-          {
-            "headline": "중국 배터리 점유율 73% 달성, CATL 1위 독주",
-            "summary": "2026년 1~8월 글로벌 EV 배터리 시장에서 중국 7개 제조사의 합산 점유율이 73.3%를 기록했습니다. CATL이 39.4%의 점유율로 독보적 1위를 유지했으며, BYD가 15.1%로 그 뒤를 이었습니다.",
-            "tags": [
-              "#CATL",
-              "#BYD",
-              "#배터리점유율",
-              "#글로벌시장"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-10-02",
-            "url": "https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/"
+            "source": "Gasgoo",
+            "date": "2026-10-09",
+            "url": "https://autonews.gasgoo.com/articles/news/lynk-co-sells-18493-vehicles-in-september-as-nev-share-hits-record-high-2108185537948377089"
           }
         ]
       }
     ],
-    "implications": "중국 배터리 업체들이 글로벌 시장 점유율 73% 이상을 독식하고 BYD 등 완성차 업체들이 일본·동남아·유럽으로 세를 빠르게 확장함에 따라, 한국 배터리 3사 및 완성차 업체의 입지가 더욱 위협받고 있습니다. 특히 BYD가 일본 스즈키에 배터리를 공급하고 액상 침매 냉각 기술 특허를 출원하는 등 가격 경쟁력과 차세대 기술력을 동시에 확보하고 있어 한국 업계의 기술 차별화 전략이 시급합니다. 아울러 EU의 중국산 하이브리드 수입 규제 움직임은 반사이익의 기회가 될 수 있으므로, 한국 완성차 및 배터리 기업들은 유럽 내 권역별 맞춤형 공급망 구축 및 하이브리드·BEV 포트폴리오 다변화로 대응할 필요가 있습니다."
+    "implications": "중국 주요 완성차 업체들이 6C 초급속 충전, 배터리 스왑 표준화, EREV 및 초저가 전기차를 앞세워 내수 점유율 확대를 넘어 유럽 현지 위탁 생산과 동남아 네트워크 구축 등 글로벌 공격 행보를 가속화하고 있습니다. 한국 배터리 및 완성차 업계는 중국 업체들의 가격 파괴 및 기술 보급화 전략에 대응하기 위해 LFP·LMFP 등 양산형 배터리의 가격 경쟁력을 확보하고 초급속 충전 생태계를 빠르게 구축해야 합니다. 또한 단순 스펙 경쟁을 넘어 고객 체감형 인포테인먼트와 자율주행 기술 강화를 통해 프리미엄 시장에서의 차별화된 가치를 제시해야 글로벌 시장 내 입지를 지킬 수 있을 것입니다."
   },
   "patentTrends": {
     "keyTakeaways": [
@@ -5638,55 +5634,51 @@
   },
   "benchmarkingPoints": {
     "keyTakeaways": [
-      "중국 완성차 및 배터리 업체들은 130kWh급 황화물계 전고체 배터리 탑재 차량과 LFP 기반 5.0C/4.5C 급속충전 스펙을 실차에 적용하며 고성능화·초급속 충전 기술 상용화를 가속화하고 있습니다.",
-      "팩 열관리 구조 통합 및 엔드 플레이트 냉각 유로 내장 등 패키징 단순화 특허를 적극 출원하며 제조 공정 단가 절감과 열폭주 안전성을 동시에 도모하고 있습니다."
+      "중국 주요 OEM 및 배터리사를 중심으로 5.0C 고배율 급속충전 LFP 스펙 도입과 전고체 배터리 실차 적용이 가속화되고 있으며, 이를 뒷받침하기 위한 셀·팩 열관리 및 제조 공정 특허 출원이 집중되고 있습니다."
     ],
     "categories": [
       {
         "name": "글로벌 신차·배터리 스펙 벤치마킹",
         "items": [
           {
-            "headline": "BYD 양왕 U7, 130 kWh 황화물계 전고체 배터리 및 4.0C 급속충전 스펙 공개",
-            "whyNotable": "BYD 자체 전고체 랩에서 개발한 130 kWh 용량의 황화물계 전고체 배터리(Solid-State Sulfide)를 탑재했습니다. Peak 4.0C(최대 400kW) 충전 속도를 지원하여 SOC 10%에서 80%까지 약 12분 만에 충전이 가능하며, CLTC 기준 1,200km 이상의 주행거리를 구현했습니다.",
-            "evidenceQuote": "130 kWh 전고체 배터리 (Solid-State Battery)",
-            "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 전고체 배터리 시스템 용량 및 충전 속도는 kWh 및 분 기준 얼마인지, 이 경쟁사 수치(130 kWh, 12분)와 비교 확인 필요",
-            "tags": [
-              "#전고체배터리",
-              "#황화물계",
-              "#BYD",
-              "#4C급속충전"
-            ],
-            "source": "양왕 U7 (BYD Yangwang U7)",
-            "date": "2026-09-23",
-            "url": ""
-          },
-          {
-            "headline": "2026 리샹 i6, CATL 80 kWh LFP 배터리로 Peak 5.0C 급속충전 구현",
-            "whyNotable": "CATL의 80 kWh LFP 배터리를 탑재하여 Peak 5.0C(최대 400kW) 급속충전 성능을 구현했습니다. SOC 10%에서 80%까지 충전 소요 시간은 약 11분으로, LFP 배터리셀 기반 고율속 충전 성능을 실체화했습니다.",
+            "headline": "리샹 i6, 80kWh LFP 배터리 탑재 및 5.0C Peak 급속충전 구현",
+            "whyNotable": "리샹 i6 신차 스펙에 따르면 CATL의 80 kWh 5C Supercharging LFP 배터리를 탑재하여 최대 400kW(5.0C Peak) 충전 출력을 구현하고, SOC 10%에서 80%까지 약 11분이 소요되는 고배율 충전 스펙을 공개했습니다.",
             "evidenceQuote": "5.0C Peak (최대 400kW) | SOC 10% → 80% (약 11분)",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 LFP 배터리 팩 급속충전 성능은 SOC 10→80% 기준 몇 분대인지, 이 경쟁사 수치(11분)와 비교 확인 필요",
+            "internalCheckQuestion": "당사 급속충전 성능은 SOC 10→80% 기준 몇 분대인지, 이 경쟁사 수치(약 11분)와 비교 확인 필요",
             "tags": [
+              "#급속충전",
               "#LFP배터리",
-              "#5C급속충전",
-              "#CATL",
-              "#리샹"
+              "#5C충전"
             ],
             "source": "2026 리샹 i6 (2026 Li Auto Li i6 EV)",
             "date": "2026-10-28",
             "url": ""
           },
           {
-            "headline": "BYD 다한 세단, 108.7 kWh 2세대 블레이드 배터리 및 듀얼 건 초급속 충전 적용",
-            "whyNotable": "BYD 자회사 FinDreams의 108.7 kWh 2세대 블레이드 배터리(LFP)를 탑재하여 CLTC 기준 최대 1,008km의 주행거리를 확보했습니다. Peak 3.0C(최대 300kW) 충전 및 듀얼 건(Dual-Gun) 초급속 충전을 지원하여 SOC 10%에서 80%까지 18분 만에 충전할 수 있습니다.",
-            "evidenceQuote": "108.7 kWh 2세대 Blade Battery (LFP)",
+            "headline": "양왕 U7, 130kWh 황화물계 전고체 배터리 탑재 및 1,200km 이상 주행거리 달성",
+            "whyNotable": "양왕 U7 신차 스펙에 따르면 FinDreams Battery 자체 전고체 랩에서 개발한 130 kWh 황화물계 전고체 배터리(Solid-State Sulfide)를 탑재했습니다. 이를 통해 CLTC 기준 1,200km 이상의 주행거리와 4.0C Peak(최대 400kW) 충전 성능을 제시했습니다.",
+            "evidenceQuote": "130 kWh 전고체 배터리 (Solid-State Battery)",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 LFP 배터리 팩 최고 주행거리는 CLTC km 기준 얼마인지, 이 경쟁사 수치(1,008km)와 비교 확인 필요",
+            "internalCheckQuestion": "당사 차세대 전고체 배터리 에너지 밀도 및 최고 용량은 얼마인지, 이 경쟁사 수치(130 kWh)와 비교 확인 필요",
             "tags": [
-              "#2세대블레이드배터리",
+              "#전고체배터리",
+              "#황화물계",
+              "#초장거리"
+            ],
+            "source": "양왕 U7 (BYD Yangwang U7)",
+            "date": "2026-09-23",
+            "url": ""
+          },
+          {
+            "headline": "비야디 다한, 108.7kWh 2세대 블레이드 배터리 및 듀얼 건 초급속 충전 적용",
+            "whyNotable": "BYD 다한 세단 스펙에 따르면 e-Platform 3.0 Evo 기반의 108.7 kWh 2세대 Blade Battery(LFP)를 적용하여 CLTC 기준 최대 1,008km 주행거리를 확보했습니다. 또한 듀얼 건(Dual-Gun) 초급속 충전을 통해 최대 300kW(3.0C Peak) 출력을 지원합니다.",
+            "evidenceQuote": "CLTC 최대 1,008km / e-Platform 3.0 Evo 기반 및 듀얼 건(Dual-Gun) 초급속 충전 지원",
+            "factLevel": "직접 인용",
+            "internalCheckQuestion": "당사 대용량 LFP 팩 기반 최대 주행거리는 CLTC 기준 얼마인지, 이 경쟁사 수치(1,008km)와 비교 확인 필요",
+            "tags": [
+              "#블레이드배터리",
               "#LFP",
-              "#BYD",
               "#듀얼건충전"
             ],
             "source": "비야디 다한 세단 (BYD Da Han EV)",
@@ -5699,52 +5691,49 @@
         "name": "특허·기술 벤치마킹",
         "items": [
           {
-            "headline": "CATL, 엔드 플레이트 내장형 열교환 유로를 적용한 배터리 케이스 특허 출원",
-            "whyNotable": "외부 쿨링 패드 설치에 따른 자재 수 증가 및 구조 복잡성 문제를 해결하기 위해 엔드 플레이트와 패널 접합부 측면에 유체 입출구 유로를 직접 통합 내장했습니다. 이를 통해 팩 내부 부품 구조를 단순화하고 열전달 효율 향상을 도모했습니다 (구체적 수치 미공개).",
-            "evidenceQuote": "엔드 플레이트와 패널 접합부 측면에 유체 유입구 및 유출구를 구비한 열교환 매체 유로를 직접 통합 형성하여 구조를 단순화합니다.",
+            "headline": "CATL, 음극 활물질 입도 제어 및 무형탄소 코팅을 통한 전극 변형 억제 특허",
+            "whyNotable": "CATL 특허(EP4725901A2)에 따르면 인조흑연 코어 표면에 무형탄소 코팅층을 형성하고 입도 분포 파라미터를 제어하는 구조가 기술되어 있습니다. 충방전 시 전극 팽창 및 입도 불균일로 인한 수명 저하 문제를 개선하고 전극 밀도와 계면 안정성을 제어하는 방안을 다룹니다.(구체적 수치 미공개)",
+            "evidenceQuote": "인조흑연 코어 표면에 무형탄소 코팅층을 형성하고 입도 분포 파라미터를 제어하여 전극 밀도와 계면 안정성을 향상시킵니다.",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 배터리 팩 쿨링 구조의 모듈/팩 부품 수량은 개 기준 얼마인지, 이 경쟁사 통합 구조 설계와 비교 확인 필요",
+            "internalCheckQuestion": "당사 음극 활물질 코팅층 구조 및 팽창 제어 수율은 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
             "tags": [
-              "#CATL",
-              "#열관리",
-              "#엔드플레이트",
-              "#팩구조"
+              "#음극재",
+              "#인조흑연",
+              "#계면안정성"
             ],
             "source": "CATL",
             "date": "2026-04-15",
-            "url": "https://patents.google.com/patent/EP4726888A1/en"
+            "url": "https://patents.google.com/patent/EP4725901A2/en"
           },
           {
-            "headline": "BYD, 유체 유로 단면적 제어로 냉매 유량을 균일화하는 팩 열교환기 기술 출원",
-            "whyNotable": "팩 내 셀 간 온도 편차와 국소 과열 문제를 해결하기 위해 첫 번째 유로의 단면적을 두 번째 유로의 단면적보다 크게 설계했습니다. 단면적 차이에 의한 유량 분배 및 집수 구조를 통해 배터리 팩 내부의 냉매 흐름 균일성을 향상시켰습니다 (구체적 수치 미공개).",
+            "headline": "BYD, 유로 단면적 차이를 활용한 배터리 팩 냉매 균일 분배 열교환기 특허",
+            "whyNotable": "BYD 특허(DE112024002817T5)에 따르면 열교환기 내 첫 번째 유로의 단면적을 두 번째 유로의 단면적보다 크게 형성한 구조가 공개되었습니다. 이를 통해 유량 분배 및 집수 유로 간 냉매 흐름을 균일하게 제어하여 셀 간 온도 편차와 국소 과열을 방지하도록 설계되었습니다.(구체적 수치 미공개)",
             "evidenceQuote": "첫 번째 유로의 단면적을 두 번째 유로의 단면적보다 크게 형성한 유량 분배 및 집수 구조를 구성하여 냉매 흐름 균일성을 확보합니다.",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 배터리 팩 냉각 유로 간 단면적 편차 및 셀 간 최대 온도 편차는 K 또는 ℃ 기준 얼마인지, 이 경쟁사 유로 구조와 비교 확인 필요",
+            "internalCheckQuestion": "당사 팩 열관리 냉각유로 유량 편차율(%)은 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
             "tags": [
-              "#BYD",
-              "#팩열관리",
+              "#열관리",
               "#열교환기",
-              "#유로설계"
+              "#유량분배"
             ],
             "source": "BYD",
             "date": "2026-04-16",
             "url": "https://patents.google.com/patent/DE112024002817T5/en"
           },
           {
-            "headline": "CATL, 인조흑연 코어 및 무형탄소 코팅 구조의 음극 활물질 특허 출원",
-            "whyNotable": "셀 충방전 시 전극 팽창 및 수명 저하를 방지하기 위해 인조흑연 코어 표면에 무형탄소 코팅층을 형성하고 입도 분포 파라미터를 제어했습니다. 이를 통해 전극 밀도 및 계면 안정성을 제어하는 기술을 명시했습니다 (구체적 수치 미공개).",
-            "evidenceQuote": "인조흑연 코어 표면에 무형탄소 코팅층을 형성하고 입도 분포 파라미터를 제어하여 전극 밀도와 계면 안정성을 향상시킵니다.",
+            "headline": "CATL, 엔드 플레이트 내장형 열교환 유로 구조를 통한 케이스 단순화 특허",
+            "whyNotable": "CATL 특허(EP4726888A1)에 따르면 외부 쿨링 패드 사용으로 인한 부품 수 증가 및 열전달 저하를 해결하기 위해 엔드 플레이트와 패널 접합부 측면에 유체 유입구 및 유출구를 구비한 열교환 매체 유로를 통합했습니다. 케이스 구조 단축 및 공간 활용성 확보를 목적으로 하고 있습니다.(구체적 수치 미공개)",
+            "evidenceQuote": "엔드 플레이트와 패널 접합부 측면에 유체 유입구 및 유출구를 구비한 열교환 매체 유로를 직접 통합 형성하여 구조를 단순화합니다.",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 음극 활물질 전극 밀도는 g/cc 기준 얼마인지, 이 경쟁사의 코팅 기법 적용 여부와 비교 확인 필요",
+            "internalCheckQuestion": "당사 팩 엔드플레이트 부품 통합도 및 부품 수 절감 비율(%)은 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
             "tags": [
-              "#CATL",
-              "#음극활물질",
-              "#인조흑연",
-              "#무형탄소코팅"
+              "#팩구조",
+              "#엔드플레이트",
+              "#통합열관리"
             ],
             "source": "CATL",
             "date": "2026-04-15",
-            "url": "https://patents.google.com/patent/EP4725901A2/en"
+            "url": "https://patents.google.com/patent/EP4726888A1/en"
           }
         ]
       },
@@ -5752,15 +5741,14 @@
         "name": "시장·공급망 동향 벤치마킹",
         "items": [
           {
-            "headline": "LG에너지솔루션, 고성능 전기차 70만 대 분량의 캐나다산 리튬 정광 24만 톤 확보",
-            "whyNotable": "LG에너지솔루션이 캐나다산 리튬 정광 24만 톤을 확보하며 북미 IRA 대응 및 배터리 공급망 안정화를 추진했습니다. 이는 고성능 전기차 약 70만 대에 탑재할 수 있는 규모입니다.",
-            "evidenceQuote": "LG엔솔, 캐나다産 리튬 정광 24만톤 확보…고성능 전기차 70만대 분량",
+            "headline": "LG에너지솔루션, 캐나다산 리튬 정광 24만 톤 확보를 통한 공급망 강화",
+            "whyNotable": "LG에너지솔루션은 캐나다 공급망을 통해 고성능 전기차 70만 대에 탑재 가능한 리튬 정광 24만 톤을 확보하여 양극재 핵심 원료 수급 안정성을 제어하고 있습니다.",
+            "evidenceQuote": "LG에너지솔루션이 캐나다 공급망을 통해 고성능 전기차 70만 대 분량에 해당하는 리튬 정광 24만 톤을 확보하여 양극재 핵심 원료 안정화에 나섰습니다.",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 북미 IRA 요건 충족 리튬 정광 수급 물량은 톤 기준 얼마인지, 이 경쟁사 확보 물량(24만 톤)과 비교 확인 필요",
+            "internalCheckQuestion": "당사 핵심 배터리 소재용 리튬 자급률(%) 및 장기 물량 확보량은 얼마인지, 이 경쟁사 수치(24만 톤)와 비교 확인 필요",
             "tags": [
-              "#LG에너지솔루션",
-              "#리튬정광",
               "#공급망",
+              "#리튬정광",
               "#원자재"
             ],
             "source": "Chosunbiz",
@@ -5776,43 +5764,43 @@
   "status": {
     "vehicles": {
       "lastSuccessAt": "2026-10-09T14:58:05.547433+09:00",
-      "lastAttemptAt": "2026-10-09T14:58:05.547433+09:00",
-      "state": "ok",
-      "reason": "",
+      "lastAttemptAt": "2026-10-10T14:40:43.321885+09:00",
+      "state": "failed",
+      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
       "staleAfterHours": 36,
       "lastAddedAt": "2026-10-09T14:58:05.547433+09:00"
     },
     "news": {
-      "lastSuccessAt": "2026-10-09T14:58:05.547433+09:00",
-      "lastAttemptAt": "2026-10-09T14:58:05.547433+09:00",
-      "state": "degraded",
-      "reason": "Gemini 선별/요약 실패로 키워드 필터 사용 - 요약 품질 저하 (ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Pleas",
+      "lastSuccessAt": "2026-10-10T14:40:43.321885+09:00",
+      "lastAttemptAt": "2026-10-10T14:40:43.321885+09:00",
+      "state": "ok",
+      "reason": "",
       "staleAfterHours": 36
     },
     "chinaNews": {
-      "lastSuccessAt": "2026-10-09T14:58:05.547433+09:00",
-      "lastAttemptAt": "2026-10-09T14:58:05.547433+09:00",
-      "state": "degraded",
-      "reason": "Gemini 선별 실패로 RSS 원문 노출 (ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again la",
+      "lastSuccessAt": "2026-10-10T14:40:43.321885+09:00",
+      "lastAttemptAt": "2026-10-10T14:40:43.321885+09:00",
+      "state": "ok",
+      "reason": "",
       "staleAfterHours": 36
     },
     "newsBriefing": {
-      "lastSuccessAt": "2026-10-09T14:58:05.547433+09:00",
-      "lastAttemptAt": "2026-10-09T14:58:05.547433+09:00",
+      "lastSuccessAt": "2026-10-10T14:40:43.321885+09:00",
+      "lastAttemptAt": "2026-10-10T14:40:43.321885+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
     },
     "chinaNewsBriefing": {
-      "lastSuccessAt": "2026-10-08T14:52:17.001223+09:00",
-      "lastAttemptAt": "2026-10-09T14:58:05.547433+09:00",
-      "state": "failed",
-      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
+      "lastSuccessAt": "2026-10-10T14:40:43.321885+09:00",
+      "lastAttemptAt": "2026-10-10T14:40:43.321885+09:00",
+      "state": "ok",
+      "reason": "",
       "staleAfterHours": 36
     },
     "benchmarkingPoints": {
-      "lastSuccessAt": "2026-10-09T14:58:05.547433+09:00",
-      "lastAttemptAt": "2026-10-09T14:58:05.547433+09:00",
+      "lastSuccessAt": "2026-10-10T14:40:43.321885+09:00",
+      "lastAttemptAt": "2026-10-10T14:40:43.321885+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
