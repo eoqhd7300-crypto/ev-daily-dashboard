@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T14:46:08.848127+09:00",
+  "generatedAt": "2026-10-13T15:40:36.878837+09:00",
   "vehicles": [
     {
       "id": "li_auto_2026_li_i6",
@@ -5213,13 +5213,130 @@
   ],
   "news": [
     {
+      "title": "인도네시아, 첫 전기차 배터리 출하… 100억 달러 규모 자원 다운스트리밍 결실 - 다나와 자동차",
+      "summary": "인도네시아, 첫 전기차 배터리 출하… 100억 달러 규모 자원 다운스트리밍 결실 - 다나와 자동차",
+      "source": "다나와 자동차",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1lWDJJc3RKaW5qREdQUEdLU1VsTzBaRkp5cFdHa0dYR1RrM1pkVU5PUVVjTm5VcDl5QnVFVXNtU0tPd0V3OVdKaWp5WUJEcm9UZENkaXc4OWFFbkJtR2xCajd4WV9iWEVOTWRrQ2ZxWm42THI4V2R5MlhZWXpOSEk?oc=5",
+      "linkType": "rss",
+      "id": 1
+    },
+    {
+      "title": "보험에 전기차 배터리 반영하려면…차량가액보다 수리 데이터부터 쌓아야 - 녹색경제신문",
+      "summary": "보험에 전기차 배터리 반영하려면…차량가액보다 수리 데이터부터 쌓아야 - 녹색경제신문",
+      "source": "녹색경제신문",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1vUFFUSDVSRXBHZ2pobVZMeEZEZWVKOFNTZDNLRHk4TlFpdlFpZ3FMSTZrVEdMeTFPRGdVQVZwdWllYzd0d1RTYzcxaTJpNTQxYy1KZEluODl0ejBGa0hfSm92bnhhdVdJ?oc=5",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "전기차 배터리, 고속도로에서 더 빨리 닳는다…주행거리 늘리는 방법 - 디지털투데이",
+      "summary": "전기차 배터리, 고속도로에서 더 빨리 닳는다…주행거리 늘리는 방법 - 디지털투데이",
+      "source": "디지털투데이",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1mM3dKWXV5RDhQRnh1NzZWN0Z5ckF1UUFXUkhtTDFDdXFCek1NS1N0dThlTGg3aFY3djdydjJfS3R0SWlHdzVjTy1mM1M3OUlPRFlxRDBkU2hMcTRlMktIV2VsdlZXX3FyLWFKTVF2ZWNfdzA?oc=5",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
+      "title": "中 하이브리드까지 막는 EU…K배터리 반등 기대 : 네이버 블로그 - Naver Blog",
+      "summary": "中 하이브리드까지 막는 EU…K배터리 반등 기대 : 네이버 블로그 - Naver Blog",
+      "source": "Naver Blog",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNS1YtS283Y1R6bGhWMFpWWnRXTkFpa0J0ZzE4TDByOU4taFluTlBaUmpXcnNNZHVxY28yNzBUUHl3ZXZETHVFMkpXdUlrenVMa05FUVlCQ0N1MTdLUzZyV0x1RWJodVotYUwzcUd5UG0zS2RDWXRSdEVwcmQzdVFxcE93M0V5M0RINUZsZVpUUQ?oc=5",
+      "linkType": "rss",
+      "id": 4
+    },
+    {
+      "title": "성동은 경상남도의원, “사용후 배터리 급증 대비, 안전관리 서둘러야” - 누리일보",
+      "summary": "성동은 경상남도의원, “사용후 배터리 급증 대비, 안전관리 서둘러야” - 누리일보",
+      "source": "누리일보",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE10cmNpTlB0RWJwS3dDMFB0ZUpVMXNMWDhsakVKVDZRM0pxZFUyaFJ5eW5YUWd6MmRuRTNyVFRrUnJ4cjlGemZ1NU1sZ2QwR3Ayc29Wcm1qOFhTdHpx?oc=5",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
+      "title": "배터리 전기차 첫 선···렉서스 '올 뉴 ES' 출시 - 스마트비즈",
+      "summary": "배터리 전기차 첫 선···렉서스 '올 뉴 ES' 출시 - 스마트비즈",
+      "source": "스마트비즈",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE10a1ljWWFHV21EX3ltclBPQWFJbEIwdV8xNU15eGxLcWZtR1ZZT0l5MUliS2s5MGdkQ0JfZm1zNzBTZEYxOTZpamxvVGtfemQycE0tSDIwSUdWc3h1SXZ3Z0l1emh4MEFHUkpyWQ?oc=5",
+      "linkType": "rss",
+      "id": 6
+    },
+    {
+      "title": "광주 배터리 공장서도 \"납 배출 약 먹었다\"… 노동청, 건강 진단 명령 - 한국일보",
+      "summary": "광주 배터리 공장서도 \"납 배출 약 먹었다\"… 노동청, 건강 진단 명령 - 한국일보",
+      "source": "한국일보",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9SMG0yVDdOajJKTE1DdWVFblFUZjUtTk1QZjNlMEhKcXRwbGdUT1luZGdFR1VQMjB5NHdsSFdfUS00c1dLWm1LYjZNcVVCcEJDUDdMUzVRVFE2dU9MVkRyc1hkaEVseFhxa2d3TDRiRDBEMEHSAXNBVV95cUxPUjBtMlQ3TmoySkxNQ3VlRW5RVGY1LU5NUGYzZTBISnF0cGxnVE9ZbmRnRUdVUDIweTR3bEhXX1EtNHNXS1ptS2I2TXFVQnBCQ1A3TFM1UVRRNnVPTFZEcnNYZGhFbHhYcWtnd0w0YkQwRDBB?oc=5",
+      "linkType": "rss",
+      "id": 7
+    },
+    {
+      "title": "[K-금융 글로벌 전략 2026] [폴란드·헝가리] 배터리 공장 따라갔던 신한은행…폴란드서 방산·원전 '새 먹거리' - 딜사이트",
+      "summary": "[K-금융 글로벌 전략 2026] [폴란드·헝가리] 배터리 공장 따라갔던 신한은행…폴란드서 방산·원전 '새 먹거리' - 딜사이트",
+      "source": "딜사이트",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBWZnE4MnNzLVdFZExEX3F5MDUwaW1mMXNrZW5Nakc1ZkZwVFlWUkw4NDNEUUxQMUhTbGJQbktuS2g0VHdnYklQUWF3TnM2UGs?oc=5",
+      "linkType": "rss",
+      "id": 8
+    },
+    {
+      "title": "“전고체 쿠페·816마력 해치백”…푸조, 미래 전기차 파리모터쇼 공개 - 매일경제",
+      "summary": "“전고체 쿠페·816마력 해치백”…푸조, 미래 전기차 파리모터쇼 공개 - 매일경제",
+      "source": "매일경제",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1QZkhtallvcE5CUTdrTHR5THZyRGlrZ08zYXNRUXVTUWhiWEJVZFNOenZGR0ZDLWVBNVNXOEpQMUJfME9DRXc?oc=5",
+      "linkType": "rss",
+      "id": 9
+    },
+    {
+      "title": "사용후 배터리 시장 성장 기대…대형주 오르고 재활용주는 희비 - 핀포인트뉴스",
+      "summary": "사용후 배터리 시장 성장 기대…대형주 오르고 재활용주는 희비 - 핀포인트뉴스",
+      "source": "핀포인트뉴스",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE96ZXdYa3l4ckVJeVlBRUR4b3ZHdXR4UUtjQUdaOWxuVm9RMWIxd2F4QTFHUkdHMU4yTUx3Ynl4LWFMcnNLcXg1UFBFc2R1cllTbVNRQWdyaVdaMF9oTHJaa2lFZGR0a2FodkRvaWdRM1VjREXSAXdBVV95cUxOMlJXVmIxNDNBem1iR3kxcmNCMV9pYmpSRFYzcENuREJSMnZpNTVjZmdOTmFuMFVWRXJTU05pMzVJUlJRWEYtZi1iZnhJMWVOUXRNNlJNYldGeU5GdUJiUWlfV3BKWlVVci1CbFBsN2ZaRHhOU3V5dw?oc=5",
+      "linkType": "rss",
+      "id": 10
+    },
+    {
+      "title": "배터리 재활용 설비와 공급망 조건 - 코리아비즈니스리뷰",
+      "summary": "배터리 재활용 설비와 공급망 조건 - 코리아비즈니스리뷰",
+      "source": "코리아비즈니스리뷰",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQNTF3ekYtd1UtQ2JLdXVkMEdEWmlLaGlhNHZMNFJpTHd4QUVPUGVPTjhxUVpQTXdhbk5tcEgwUTQ2Rmw0LTNSY2R0MzRTVnF3emM3VjZUYnJZSUVsdkdOdmVSOWpEV3RSbjFZRlZ4b3JaZUhOV0NNNXI1WG83dHZVSFlldTdDdTVIUUE?oc=5",
+      "linkType": "rss",
+      "id": 11
+    },
+    {
+      "title": "제29회 순환경제 행사 프로그램: 전자폐기물, 배터리, 플라스틱, 섬유 - 뉴스 및 통계 - IndexBox",
+      "summary": "제29회 순환경제 행사 프로그램: 전자폐기물, 배터리, 플라스틱, 섬유 - 뉴스 및 통계 - IndexBox",
+      "source": "IndexBox",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNRE9jUms4WGx2a081TzQyVjl3eDJtOGk5b1JCTUNYMHZpNVFCeVpKTkltekQ5UWVDTmxUbl9MX2YzYmVtZzJjNXI0amFhQ19sNWl3NTV5TTlvQkpaaVF5OUd3akdocmV2LXFyMmVldUJ0U0pjcjYwTEZzbkZvaWVxMEdpVEhHQ2pqcW5WeFBkbW5KZmRoMlhuTllJRnd1bEZUWlJxTnA3RDdkc1lONG1MT0wzVFZzU1VCTzk2RWtHQjZOVGREcl8zRV9aUzlTRTNZ?oc=5",
+      "linkType": "rss",
+      "id": 12
+    },
+    {
+      "title": "‘프리미엄 선점’ 삼성SDI vs ‘수익성 확보’ LG엔솔…전고체 2색 승부수 - 한국금융신문",
+      "summary": "‘프리미엄 선점’ 삼성SDI vs ‘수익성 확보’ LG엔솔…전고체 2색 승부수 - 한국금융신문",
+      "source": "한국금융신문",
+      "date": "2026-10-13",
+      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5XRmY4UGNBSjF0TXdGbnJLekZVSXdLanoxWXlYU29ha25DU2pDYVdvUzVadFRRMzNCdkRPMWZaZy1paVFZUFM3WFZGTXNSeklzVVgzMG05c0d3NzVQRU9ZZXdGUEsxN3E2U0xlWHVqZ2NBbHZlMzYxNmpOajI?oc=5",
+      "linkType": "rss",
+      "id": 13
+    },
+    {
       "title": "꿈의 LMR배터리, LG가 만들었다! 반값 전기차 현실되나? - https://www.mocar.kr/",
       "summary": "LG에너지솔루션이 가격 경쟁력과 안전성을 동시에 확보할 수 있는 차세대 LMR(리튬·망간 풍부) 배터리 개발에 성공하며 보급형 전기차 시장 진입을 가속화하고 있습니다.",
       "source": "https://www.mocar.kr/",
       "date": "2026-10-12",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1kdnNOMnlxaW1LSkdfNTJ5RmJHcFYwUnVjSUtOanhjR1ZyWndpLTZDb184a0VZQjZzcjB2VUtZaXBCelVJdXVsYU1mbUI4ZmRtX2Y2Tnc5SktOMjBpQ1RwRWlQOA?oc=5",
       "linkType": "rss",
-      "id": 1
+      "id": 14
     },
     {
       "title": "SK온 배터리 열폭주 파문…폭스바겐 ID.4 2만 2000대 리콜·충전 제한 권고 - 메디컬투데이",
@@ -5228,7 +5345,7 @@
       "date": "2026-10-12",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1mQU1iMnk0b0pZZFduUjJuYjIzOVhJbHJ4TkFJcnBYRGMwUnNRU0U4ZjFMNUlhZjl4eFNLckY5QWtBQkE2VnhlYmxweE9mZXZvUFY3SlQtN1l4NnRuRFUwMG81a3Q1MVNhR3NHSw?oc=5",
       "linkType": "rss",
-      "id": 2
+      "id": 15
     },
     {
       "title": "\"배터리 교체 없이 101km 더 달린다\"… 배터리 X 메탈스, '능동 리밸런싱' 검증 통과 - 글로벌이코노믹",
@@ -5237,7 +5354,7 @@
       "date": "2026-10-12",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNOHhFWF9YdmFSa0JGZXhJb2JGMnZzWG1LV1czemtaNUowbUp1Uk9LdGtVZks0MkJoRExTMDZaQUhiNF9GODdzdTNpaG80RU9tRFBId2JVRUt6ZjRwNGx2QVAzY0oxZTFUM2k3VTRaWmtnaVNoNGwwSjB6SXpMelhtVlBLUHpzcVJz?oc=5",
       "linkType": "rss",
-      "id": 3
+      "id": 16
     },
     {
       "title": "국내 연구진, 리튬금속배터리 수명 3배 늘린 전해액 개발 - 서울경제",
@@ -5246,7 +5363,7 @@
       "date": "2026-10-12",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9FbGpNbFRpRDBWZ2tDLTJlQXNQdGhfUDJKNDhSbTFSSEJmQW9QclhXc2JEY0pSdm4wVmd2SlNGeGtpVFBGd2FXZHB4aVI1ZENpblNz0gFTQVVfeXFMT0Vsak1sVGlEMFZna0MtMmVBc1B0aF9QMko0OFJtMVJIQmZBb1ByWFdzYkRjSlJ2bjBWZ3ZKU0Z4a2lUUEZ3YVdkcHhpUjVkQ2luU3M?oc=5",
       "linkType": "rss",
-      "id": 4
+      "id": 17
     },
     {
       "title": "엘앤에프, 양극재 국제표준 탄소발자국 검증 획득 - 서울경제",
@@ -5255,7 +5372,7 @@
       "date": "2026-10-12",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE0xSy1zZ21MZUo2NGc0T04zNDBPUUF3NWJ2WVBUMXdKbm0zVTBzNUN2LVBlc19xakcyd0dyYnduYVVSZFlQWE9EWm9Yd2x1VC1hbHfSAVNBVV95cUxQWFdOdmtMVi1uWjMwcFhjRTR1a0tubmtoSVdDRkRVbHJvUEtIc0hfaEJvY2dfNDg1eGlUa3Z4eFI0bEFDR2o0WUc1b0NmbmpMd2pBaw?oc=5",
       "linkType": "rss",
-      "id": 5
+      "id": 18
     },
     {
       "title": "열폭주 억제·냉각 성능 함께 평가해 - 중대신문",
@@ -5264,7 +5381,7 @@
       "date": "2026-10-12",
       "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5ralh6N1VPa0JocDNCcEc4T1QzanZCRTAtTi00SENJcGJGY2RaY0N1NGdZdUlpSEZjS05PQXRyMWtKM3lHR1dINC1SOFRiT1ltUW9nMG9NV182MERSQlVGeERmVTM4cUVrMy1V0gFrQVVfeXFMTmtqWHo3VU9rQmhwM0JwRzhPVDNqdkJFMC1OLTRIQ0lwYkZjZFpjQ3U0Z1l1SWlIRmNLTk9BdHIxa0ozeUdHV0g0LVI4VGJPWW1Rb2cwb01XXzYwRFJCVUZ4RGZVMzhxRWszLVU?oc=5",
       "linkType": "rss",
-      "id": 6
+      "id": 19
     },
     {
       "title": "이브이첨단소재 투자사 프롤로지움, 파리 모터쇼서 4세대 전고체 배터리 최초 공개 - NBN미디어",
@@ -5273,131 +5390,14 @@
       "date": "2026-10-12",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE43bUV5Ti05dGV0VWlsTFUzM05xNEpjTHRnY1Vrc0NqMWhDRW5PcktfZTB2djBOSW1rZlF6dmpLcVhvSFVHWjMwclJxbGhsRG5UUmNBOVV1WER1U0xxOVMtUTNQWFQ2d9IBakFVX3lxTE8xZmZuR0N0XzZpVV9VZVVCU1hIMk5RaHVYUFFLeU5kQms0WV9BTkdPVGN0eDhNTlBHRjFWczgzUmJISXR1ZlZxcThwMDlRS2xyS2U3N2VxOFp1TnRHV2djLUI0dm14M0pHd0E?oc=5",
       "linkType": "rss",
-      "id": 7
-    },
-    {
-      "title": "[인터뷰] 아이엘 고재환 센터장 \"전고체 고용량·고출력 동시 해결\" - 파이낸셜뉴스",
-      "summary": "아이엘 연구팀이 전고체 배터리 고유의 고용량·고출력 특성을 동시에 확보하는 셀 설계 및 소재 기술 개발 성과를 공유했습니다.",
-      "source": "파이낸셜뉴스",
-      "date": "2026-10-12",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE80WFZZTW1ib3ZTQjU3VzlaQmJzS3Z3cUVVcU9hckpyYTRuSGVoZnYtQzRlX0VQVGdXV3VvQlpEYUxjRThmOC1xdW5hdHV3dklsY1lHS3hVekE1QQ?oc=5",
-      "linkType": "rss",
-      "id": 8
-    },
-    {
-      "title": "“주유보다 빠르다”… 3분 만에 끝난 中 전기차 배터리 교환의 진실 - 글로벌이코노믹",
-      "summary": "중국 전기차 시장을 중심으로 급성장 중인 배터리 스왑(교환) 기술의 작동 원리와 실제 운영 효율성, 메커니즘을 분석했습니다.",
-      "source": "글로벌이코노믹",
-      "date": "2026-10-11",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPNzF5bDdBN3BsZF8wTE5Hc0dqbF91NjdOTFJNNnFhdGh5eU12eUxldjVTYkF0a0VxNXVMQno3N19ncU5lLTZQYXBRMDJ5RFFDXy1wbTJNT1lhSERDOGJwYnJVVmdYbmZzX21GcGlTalVuSElkRE1aWG5ha0JfQ3RFOWpJZ0JaVFo0?oc=5",
-      "linkType": "rss",
-      "id": 9
-    },
-    {
-      "title": "\"고성능 하이니켈보다 가격 경쟁력\"… EV 배터리, '비용 최적화'로 대전환 - 글로벌이코노믹",
-      "summary": "전기차 배터리 개발 동향이 고성능 하이니켈 양극재 위주에서 비용 최적화 및 가격 경쟁력을 고려한 화학조성으로 전환되고 있습니다.",
-      "source": "글로벌이코노믹",
-      "date": "2026-10-11",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxONUhjSWhEdXljYXdQYmt6TkdQa3pnb2xBVnpJMEN6VEw4WTBWRnVwTWxOQ0lFWFpHN2lNTmd1M2k0cXU1S2NIOUNFNnRIbGZJZ0poeElLSUpKcWI1YkVIUVRydVBDaTBQdUNmdG5xcFJnTWR1aWlLdkdKdkhiSjVXRDY2RFBKd09k?oc=5",
-      "linkType": "rss",
-      "id": 10
-    },
-    {
-      "title": "소방청, 배터리 공장 화재 현장에 '덩굴 로봇' 투입…내부 정찰 성공 - 뉴시스",
-      "summary": "소방청이 화재 위험이 크고 접근이 어려운 배터리 공장 내부 정찰을 위해 유연하게 이동 가능한 '바인(덩굴) 로봇'을 투입해 실증에 성공했습니다.",
-      "source": "뉴시스",
-      "date": "2026-10-11",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBUbVpqRlhvNi1rbVIyYkJnZGtIZ1RyM3gzeEx1ZHRaN3VoVkV5NlZ0ZHFMTHoyXzdrRkN6Y1ROWEFlUURUWUdUVkpNTnBuaGFSY0NSbTJqcVNUZ25ZWVR1N1pOWnZiT2EtdWcwanZMaDIwa210YzBtTNIBeEFVX3lxTFBUbVpqRlhvNi1rbVIyYkJnZGtIZ1RyM3gzeEx1ZHRaN3VoVkV5NlZ0ZHFMTHoyXzdrRkN6Y1ROWEFlUURUWUdUVkpNTnBuaGFSY0NSbTJqcVNUZ25ZWVR1N1pOWnZiT2EtdWcwanZMaDIwa210YzBtTA?oc=5",
-      "linkType": "rss",
-      "id": 11
-    },
-    {
-      "title": "\"바둑 두는 알파고 보며 전기 수요 대비\"...바나듐 이온 배터리로 ESS 시장 공략 - 마켓인",
-      "summary": "AI 데이터센터의 전력 수요 급증에 대응하기 위해 화재 안정성과 장수명이 장점인 바나듐 이온 배터리 기반 ESS 적용이 본격적으로 논의되고 있습니다.",
-      "source": "마켓인",
-      "date": "2026-10-11",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5ubUw4RXBsT0ZnMGJtcmZzWjRJeGxMQTJDUk1UVnRoTmZxS0FZcWg2X3VkZXktLXhPMlRHLURJd3p6ekNwZklxN3ZiUGUwT0lCR2pHX2N2OFd3QXgzQnJ1NG81akI5ZWNGZjU3emdMdVV6WUE?oc=5",
-      "linkType": "rss",
-      "id": 12
-    },
-    {
-      "title": "中창신신소재 \"전고체배터리 계면 이슈, 공급망 차원 공동 과제\" - 더구루",
-      "summary": "중국 창신신소재가 전고체 배터리 상용화의 최대 걸림돌인 계면 저항 문제 해결을 위한 자재 공급망 차원의 기술 협력 과제를 제시했습니다.",
-      "source": "더구루",
-      "date": "2026-10-11",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBwbW1HRWdJcWljTk5HVUgwdFZJM1JnaTJyZDhoQVFfaWNtUXZ3OElPbzFCeFU2M1A1OXlfZHEzQmk1Z0pPNTMwZWVkdGdab3hpZDdTV3Ywdk9UakFXakJ2a1pwUQ?oc=5",
-      "linkType": "rss",
-      "id": 13
-    },
-    {
-      "title": "삼성SDI, 전고체 배터리 2027년 양산 추진…휴머노이드 첫 적용 가능성 - 글로벌이코노믹",
-      "summary": "삼성SDI가 2027년 양산을 목표로 전고체 배터리 공정 기술을 개발 중이며, 전기차 외에 휴머노이드 로봇 등 신규 애플리케이션 적용을 검토하고 있습니다.",
-      "source": "글로벌이코노믹",
-      "date": "2026-10-11",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNVlNCSHJvdkxtR0NMVWJpeldjTlY2eUFfdEtmemhuaE11NldyZ3E5RVRnaUZGb2p1YkJadmxKampmWlFMU2FmcXBsaTdDZXEwSGxXNURwNlZMeGxZQ3JnaXNudnZ2b05jT3A1bS1Xdi15Wkg1aE11V3k4UDY1U2VkNjlOdTlBdDlI?oc=5",
-      "linkType": "rss",
-      "id": 14
-    },
-    {
-      "title": "윤충식 경기도의원 \"열폭주 막는다\" 배터리 화재예방 조례 - 뉴시스",
-      "summary": "경기도의회에서 전기차 배터리 열폭주 현상을 예방하고 화재 위험성 감소를 도모하기 위한 배터리 화재예방 조례 제정이 추진됩니다.",
-      "source": "뉴시스",
-      "date": "2026-10-10",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFA2UEVGY0xXcjg4Tk1kWExjSFRkbzVrRGJzLUtWV1VnLXJRN0RsZmJXQV9wazNMWlFSUGIzX19zOGo4S2ZlMlZEQWhPVUJuM0Z4SEVJY3piNlh2UjIwb09CZmxzTTJrNFpKRkNqeG13M2pLUDkwS2U2N9IBeEFVX3lxTFA2UEVGY0xXcjg4Tk1kWExjSFRkbzVrRGJzLUtWV1VnLXJRN0RsZmJXQV9wazNMWlFSUGIzX19zOGo4S2ZlMlZEQWhPVUJuM0Z4SEVJY3piNlh2UjIwb09CZmxzTTJrNFpKRkNqeG13M2pLUDkwS2U2Nw?oc=5",
-      "linkType": "rss",
-      "id": 15
-    },
-    {
-      "title": "폭스바겐, 미국서 ID.4 전기차 2만2524대 추가 리콜 - 글로벌이코노믹",
-      "summary": "폭스바겐이 ID.4 전기차 배터리 모듈의 화재 위험 결함 원인을 명확히 규명하지 못해 충전율을 80%로 제한하며 추가 리콜을 진행합니다.",
-      "source": "글로벌이코노믹",
-      "date": "2026-10-10",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNQ2pmSk5BZE9fQmIzbHdRRHJRaGhlcy1sYUZKSWpJQUljZnFYWHVFS083bEcydFI2M3lFTkxHdE9Ncmw5OHZxdHpkaGM4UVlYOExId3BGQWFfc0RRYVpucXRyN0RVcTF0QjR4WXl0UE91c3JrU2U5M0hNM0hMcDVWRkhsNEFJc3M?oc=5",
-      "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "배터리 열관리 펌프 커플링 시장 2035년 전망: 수랭식 채택이 성장 견인 - 뉴스 및 통계 - IndexBox",
-      "summary": "고성능 전기차의 열관리 중요성이 커짐에 따라 수랭식 냉각 방식을 지원하는 배터리 열관리 펌프 커플링 기술 채택이 증가하고 있습니다.",
-      "source": "IndexBox",
-      "date": "2026-10-10",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQQnJyWUtUREtveFNkS1ZsR1Q4ZTZkRWpzU2k2dXNoRnYzNzhiR2I1TlRCWFFjeS1lNHdJaHdSbmZzY1UxQ2VSakFaSGlBVVF6N1NGT05lWEUyaWpHbkRtVTlBX0lacmh6eUtTVnhrUXVWc1VoM2xMSGlfUGlqRDE5cDVIcnNranc4SlZYQnBlaERJSVAxUEN5ZWVLSXQ1bmd1NXp2VmtiSTVzNzAyWTB4bDhoSzJVT2lKVmtGbE1SWQ?oc=5",
-      "linkType": "rss",
-      "id": 17
-    },
-    {
-      "title": "\"CATL 1GWh 시험선 vs 韓 삼전·에코프로 연합\"… 전고체 상용화에 배터리株 반등 - 글로벌이코노믹",
-      "summary": "\"CATL 1GWh 시험선 vs 韓 삼전·에코프로 연합\"… 전고체 상용화에 배터리株 반등 - 글로벌이코노믹",
-      "source": "글로벌이코노믹",
-      "date": "2026-10-09",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQcktkNktwZi0zSE9IOTBNb1B6dk9tWE1FSmJaRU5PRHFScDVuN0tHV3EyRDhqX2gtNVNvT1dtOExtQkI1a3FxMW9BaklRX3VrLVV5cUgwam14aEtOTGhnTi1FZzk1ME9TYmNOdXJ0NFhld180a0EtN0dGd2J4VTJZcWtpOGpUUlQ5?oc=5",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "배터리 3사 해외공장서 안전 위반 잇따라…시정조치 실효성 도마 - 뉴스저널리즘",
-      "summary": "배터리 3사 해외공장서 안전 위반 잇따라…시정조치 실효성 도마 - 뉴스저널리즘",
-      "source": "뉴스저널리즘",
-      "date": "2026-10-09",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5ENmF3TDNqdGRhbXN4VGMyVG5QbTlGV3ZqZ1c4SUJNUGMyYzRFYW1VV2FBRUxNSEQ4aWhQNDdSNFZObHZyVGM1NUVvNGZTaWtvbDlMc29ydUs5cWs4TjJ1YXNmT28zaHYxRDNN?oc=5",
-      "linkType": "rss",
-      "id": 19
-    },
-    {
-      "title": "폭스바겐 ID.4 배터리 결함 리콜∙∙∙원인 못 찾아 80% 충전 제한 - 한국신용신문",
-      "summary": "폭스바겐 ID.4 차량에서 배터리 결함이 발생해 리콜이 진행되고 있으나 원인을 명확히 찾지 못해 충전율을 80%로 제한 조치했습니다.",
-      "source": "한국신용신문",
-      "date": "2026-10-09",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9OZVlqVmFmbk8xRFRpQi1rclM0TXN4RFpoMG1KTkU4amJua3psTkE1dl9tR213WlNDVnpBQlRNcGk0a3BjdWR4VEdYZ3pZVVkySnFPQ2tHZExCRFhsUmU0bnp4YXBCNUlGbFBF?oc=5",
-      "linkType": "rss",
       "id": 20
     }
   ],
   "fx": {
-    "usdKrw": 1340.71,
-    "eurKrw": 1501.97,
-    "cnyKrw": 200.1,
-    "updatedAt": "2026-10-12T14:46:09.053101+09:00"
+    "usdKrw": 1333.74,
+    "eurKrw": 1489.96,
+    "cnyKrw": 198.89,
+    "updatedAt": "2026-10-13T15:40:36.991940+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
@@ -5671,13 +5671,157 @@
   },
   "chinaNews": [
     {
+      "title": "Xiaomi Auto September deliveries hit 2026 high of 40,015, still down year-on-year",
+      "summary": "Xiaomi Auto's September deliveries rose 32.71% from August but fell 4.61% from a year earlier, marking a second consecutive year-on-year decline. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-10-13",
+      "url": "https://cnevpost.com/2026/10/13/xiaomi-auto-sept-2026-deliveries-2/",
+      "linkType": "rss",
+      "id": 1
+    },
+    {
+      "title": "Leapmotor starts B10 production in Spain, gives A05 European debut",
+      "summary": "The B10 has rolled off the assembly line at Stellantis' Zaragoza plant, marking a major milestone in Leapmotor's European localization efforts. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-10-13",
+      "url": "https://cnevpost.com/2026/10/13/leapmotor-starts-b10-production-spain-a05-european-debut/",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "Nio ES9 deliveries reach 7,706 in September, second-highest this year",
+      "summary": "ES9 deliveries rose 18.94% from August, accounting for 36.15% of Nio's main-brand deliveries. Its combined share with the ES8 climbed to 85.62%. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-10-13",
+      "url": "https://cnevpost.com/2026/10/13/nio-es9-deliveries-sept-2026/",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
+      "title": "Xpeng sets October 15 debut and pre-sales for Mona L05",
+      "summary": "The Mona L05 SUV is positioned above the Mona L03, which starts at 123,800 yuan ($18,400) in China. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-10-13",
+      "url": "https://cnevpost.com/2026/10/13/xpeng-oct-15-debut-pre-sales-mona-l05/",
+      "linkType": "rss",
+      "id": 4
+    },
+    {
+      "title": "Xpeng targets 1 million annual global sales by 2030, half from Europe",
+      "summary": "The company aims to sell 500,000 vehicles annually in Europe, with expanded local production key to achieving that goal. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-10-13",
+      "url": "https://cnevpost.com/2026/10/13/xpeng-targets-1-million-sales-2030-half-europe/",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
+      "title": "Li Auto i6 makes European debut ahead of Q1 2027 launch in Norway and Netherlands",
+      "summary": "The European version of the Li i6, named Li 6, was originally scheduled to go on sale in the fourth quarter of this year. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-10-13",
+      "url": "https://cnevpost.com/2026/10/12/li-auto-i6-european-debut/",
+      "linkType": "rss",
+      "id": 6
+    },
+    {
+      "title": "Aito confirms 2027 European entry at Paris Motor Show",
+      "summary": "Aito showcased 4 SUVs — the Aito 9, Aito 8, Aito 7 and Aito 6 — at the 2026 Paris Motor Show. For details, please visit CnEVPost (cnev.co).",
+      "source": "CnEVPost",
+      "date": "2026-10-13",
+      "url": "https://cnevpost.com/2026/10/12/aito-confirms-2027-european-entry-paris-show/",
+      "linkType": "rss",
+      "id": 7
+    },
+    {
+      "title": "Second-gen BYD Seagull arrived at dealers in China ahead of launch",
+      "summary": "Second-gen BYD Seagull arrived at dealers in China ahead of launch",
+      "source": "CarNewsChina",
+      "date": "2026-10-13",
+      "url": "https://carnewschina.com/2026/10/13/second-gen-byd-seagull-arrived-at-dealers-in-china-ahead-of-launch/",
+      "linkType": "rss",
+      "id": 8
+    },
+    {
+      "title": "BYD to deploy 100 flash chargers in Europe by the end of 2026",
+      "summary": "BYD to deploy 100 flash chargers in Europe by the end of 2026",
+      "source": "CarNewsChina",
+      "date": "2026-10-13",
+      "url": "https://carnewschina.com/2026/10/13/byd-to-deploy-100-flash-chargers-in-europe-by-the-end-of-2026/",
+      "linkType": "rss",
+      "id": 9
+    },
+    {
+      "title": "Li Auto i6 EV crossover to reach Europe as Li 6 in Q1 2027 with 8 European languages",
+      "summary": "Li Auto i6 EV crossover to reach Europe as Li 6 in Q1 2027 with 8 European languages",
+      "source": "CarNewsChina",
+      "date": "2026-10-13",
+      "url": "https://carnewschina.com/2026/10/13/li-auto-i6-ev-crossover-to-reach-europe-as-li-6-in-q1-2027-with-8-european-languages/",
+      "linkType": "rss",
+      "id": 10
+    },
+    {
+      "title": "Xpeng’s Tesla FSD rival arrives in Europe for test drives. I tried NGP for 30 minutes in chaotic Paris traffic",
+      "summary": "Xpeng’s Tesla FSD rival arrives in Europe for test drives. I tried NGP for 30 minutes in chaotic Paris traffic",
+      "source": "CarNewsChina",
+      "date": "2026-10-13",
+      "url": "https://carnewschina.com/2026/10/12/xpengs-tesla-fsd-rival-arrives-in-europe-for-test-drives-i-tried-ngp-for-30-minutes-in-chaotic-paris-traffic/",
+      "linkType": "rss",
+      "id": 11
+    },
+    {
+      "title": "XPeng Announces MONA L05 Debut, Billed as a Large Five-Seat SUV for Young Buyers",
+      "summary": "Gasgoo Munich- On October 12, XPeng officially announced the upcoming arrival of a new model in its MONA series: the MONA L05. The company is positioning the vehicle as \"the first large five-seater SUV for young people.\" Image source: XPeng According to earlier filings from the Ministry of Industry and Information Technology, the MONA L05 appeared in the 407th batch of the \"Catalogue of Road Motor Vehicle Manufacturers and Products\". This was filed on May 9, 2026. The new model measures 4,870 mm long, 1,930 mm wide, and 1,636 mm high, with a wheelbase of 2,940 mm — 50 mm longer than the XPeng G6. It features a five-seat layout. Visually, the car continues the MONA family design language with a fastback coupe SUV silhouette, a closed front face, and T-shaped headlights. The MONA L05 offers both pure electric and extended-range powertrain options. The pure electric version packs a single motor with a maximum output of 183 kW, paired with a 71.1 kWh lithium iron phosphate (LFP) battery. It provides four range variants under CLTC conditions: 615 km, 635 km, 640 km, and 660 km. The extended-range version features a 1.5-liter range extender with 70 kW maximum power, paired with a 183 kW drive motor and a 37.2 kWh battery pack. Its pure electric range comes in three versions: 237 km, 245 km, and 253 km. This marks the first time the MONA series has introduced extended-range powertrain technology. For context, the MONA series' debut model, the M03, quickly became a sales pillar for XPeng following its launch in August 2024. Full-year sales in 2025 reached 175,300 units, accounting for 40% of XPeng's total volume. As the third product in the lineup, the MONA L05 marks a strategic shift. It moves beyond the brand's early youth focus to expand into the mainstream family market.",
+      "source": "Gasgoo",
+      "date": "2026-10-13",
+      "url": "https://autonews.gasgoo.com/articles/news/xpeng-announces-mona-l05-debut-billed-as-a-large-five-seat-suv-for-young-buyers-2109614409352966144",
+      "linkType": "rss",
+      "id": 12
+    },
+    {
+      "title": "Chery Group's NEV Sales Top 130,000 in September, Exceeding 100,000 for Six Straight Months",
+      "summary": "Gasgoo Munich- Chery Group's new energy vehicle sales reached 133,310 units in September 2026, up 45.6% year-on-year, a monthly record. The company has reported sales exceeding 100,000 units for six consecutive months, with wholesale volumes ranking in the top three during this period. Data from the China Passenger Car Association shows BYD, Geely, and Chery led in NEV wholesale volumes from January to September. Chery's cumulative NEV sales totaled 858,524 units. Regarding battery technology, Chery's Rhino Battery comprises three series: the E-series for pure electric vehicles, the H-series for hybrids, and the S-series for solid-state batteries. The E-series focuses on ultra-fast charging capabilities; the H-series offers a cycle life of up to 5,000 cycles; and the S-series achieves cell energy density exceeding 400 Wh/kg, with vehicle validation scheduled for 2027. The Rhino Battery has passed all 24 safety certifications under the new national standard and 28 additional safety tests. Image Credit: Chery Chery's pure electric vehicle portfolio is gaining traction. The all-new QQ3 has maintained monthly sales above 10,000 units for six consecutive months, with an order backlog of 100,000 units. The Fulwin A9 delivered over 7,000 units in September, securing more than 20,000 orders during the month. The Fulwin T7 recorded 6,168 deliveries, with an order backlog exceeding 16,000 units. Global sales of the iCAR V23 have surpassed 100,000 units. Image Credit: Chery In overseas markets, Chery Group exported 529,337 NEVs in the first three quarters, a 136% increase accounting for approximately one-seventh of China's total NEV exports. The OMODA and JAECOO brands have collectively achieved global sales of over 1.3 million units. The JAECOO 7 led sales in the UK, while the JAECOO 5 secured segment leadership in Australia and other markets. The Zongheng G700, a luxury off-road NEV, has sold over 30,000 units globally in its first 11 months, ranking as the top-selling Chinese luxury SUV in eight countries, including Saudi Arabia. Data indicates Chery held a 5.5% global NEV market share from January to August 2026, placing it among the world's top five automotive groups.",
+      "source": "Gasgoo",
+      "date": "2026-10-13",
+      "url": "https://autonews.gasgoo.com/articles/news/chery-groups-nev-sales-top-130000-in-september-exceeding-100000-for-six-straight-months-2109613721084448769",
+      "linkType": "rss",
+      "id": 13
+    },
+    {
+      "title": "Mercedes-Benz Q3 Global Passenger-Car Sales Fall 8%, China Sales Drop 31%",
+      "summary": "Gasgoo Munich- Mercedes-Benz global passenger-car sales fell 8% to 407,200 units in the third quarter, dragged down by a sluggish performance in China. Image source: Mercedes-Benz Factor in light commercial vehicles, and Mercedes-Benz Group's global sales slipped 6% to 491,700 units for the quarter. Outside China, group sales edged up 2%, with passenger-car deliveries gaining 1%. Over the first nine months, global passenger-car sales totaled 1.244 million units — a 7% decline from a year earlier. US Passenger-Car Sales Climb 6% US passenger-car deliveries climbed 6% to 75,300 units in the third quarter. Over the first nine months, US sales gained 12%, while North American passenger-car volume advanced 4% to 83,200 units. Fresh arrivals at US dealerships in September included the new GLE, GLE Coupé, and GLS. The electric CLA, meanwhile, expanded into the US and Japanese markets. In Europe, passenger-car sales rose 5% to 168,700 units, fueled by 13% growth in Germany and a 7% uptick in the UK. Battery-electric vehicles now account for nearly a third of the brand's European passenger-car sales. China Sales Tumble 31% as Premium Models Feel the Squeeze A tough market environment and intensifying competition pushed Mercedes-Benz's China passenger-car sales down 31% to 86,800 units. The GLC and E-Class held relatively steady, however, and the electric GLC L is gradually gaining traction. The China slump dragged the brand's broader Asian passenger-car volume down 25% to 132,300 units. Premium-model sales in China dropped 21% to 53,900 units, hit by soft demand and model changeovers. The premium segment now makes up 13.2% of the automaker's global passenger-car mix. As the new S-Class rolls out, its sales outside China more than doubled from the second quarter. Core-model sales worldwide slipped 6% to 234,200 units, while entry-level volume contracted 4% to 119,200 units. EV Sales Hit Quarterly Record The electric GLC propelled Mercedes-Benz's EV sales to an all-time quarterly high, according to Mathias Geisen, the board member responsible for sales and customer experience. Third-quarter battery-electric passenger-car deliveries reached 68,400 units — a 61% annual jump and a 29% gain from the prior quarter. Electric GLC volume more than tripled compared with the second quarter, while electric CLA sales climbed 24% sequentially. Electric models accounted for a record 16.8% of global passenger-car sales in the third quarter, up 7.2 percentage points from a year earlier. Add in plug-in hybrids, and electrified vehicles made up a quarter of the brand's passenger-car deliveries. Across passenger cars and vans, group-level EV sales surged 52% to 78,100 units. Mercedes-Benz van sales edged up 1% to 84,400 units. Electric van deliveries gained 12% to 9,600 units, while large commercial van volume rose 15%. European allocation for the electric GLC, CLA, GLB, and GLA through the rest of 2026 is already sold out, Geisen noted, with orders now stretching into 2027. To keep pace with demand, plants in Bremen, Rastatt, and Kecskemét have moved to three-shift production.",
+      "source": "Gasgoo",
+      "date": "2026-10-13",
+      "url": "https://autonews.gasgoo.com/articles/news/mercedes-benz-q3-global-passenger-car-sales-fall-8-china-sales-drop-31-2109610752112816129",
+      "linkType": "rss",
+      "id": 14
+    },
+    {
+      "title": "XPeng G9L to Debut Globally at Paris Motor Show, Targeting 64 Markets",
+      "summary": "Gasgoo Munich- XPeng announced its next-generation AI flagship SUV, the G9L, will globally debut at the Paris Motor Show on Oct. 12, planning to enter 64 countries and regions. The 91st Paris Motor Show runs Oct. 12-18 at the Porte de Versailles exhibition center, where XPeng secured over 1,000 square meters in Hall 6. Image credit: XPeng Developed for global markets, the G9L completed its first European trial production run at the Magna plant in Graz, Austria — a facility also building European luxury vehicles. The first European-spec G9L off the line will drive 1,324 km across borders to the Paris Motor Show, validating its ADAS, charging performance, and overall dynamics in real time. Over a three-year global validation cycle, XPeng tested the G9L across 26 countries and regions, logging roughly 6.74 million km of road data and completing 192 crash tests. The SUV was engineered to simultaneously meet four major five-star safety standards, including Europe's E-NCAP and Australia's A-NCAP. XPeng will also use the Paris Motor Show to display its full \"physical AI\" portfolio, spanning AI-defined vehicles, humanoid robots, and flying cars. The G9L's global debut signals a deeper shift for the company — moving beyond simple vehicle exports toward a localized overseas footprint encompassing product definition, manufacturing, and validation.",
+      "source": "Gasgoo",
+      "date": "2026-10-13",
+      "url": "https://autonews.gasgoo.com/articles/news/xpeng-g9l-to-debut-globally-at-paris-motor-show-targeting-64-markets-2109610140956585985",
+      "linkType": "rss",
+      "id": 15
+    },
+    {
+      "title": "VOYAH Opens Over 500 Positions for 2026 Autumn Campus Recruitment",
+      "summary": "Gasgoo Munich- VOYAH plans to hire more than 500 graduates for its 2026 campus intake, lifting its headcount quota from a year earlier and broadening the scope of roles. Hiring for intelligent driving and smart cabin positions continues to scale up, with demand for AI-focused roles — such as large-model algorithms and world models — seeing a notable surge. The details were disclosed during the automaker' s campus recruitment anniversary event on Sept. 24. Image credit: VOYAH VOYAH' s total headcount now stands at roughly 9,500 — a climb of more than 30% from over 7,100 last year, as the workforce steadily expands. Across major recruitment platforms, the automaker currently lists more than 660 open positions, signaling sustained demand for both experienced hires and fresh graduates. This hiring pace is closely aligned with the company' s product rollout cycle. VOYAH is gearing up to launch four all-new models in 2026 — the Titan Ultra, Titan X8, Passion S, and Dreamer 9 — targeting the premium passenger-vehicle segment from 200,000 yuan to over 500,000 yuan. These upcoming models hinge on advanced intelligent driving, smart cabins, electronic chassis control, and AI algorithms. As the technology iterates, it fuels continued hiring across corresponding R&D, algorithm, and engineering roles. To develop its workforce, VOYAH has built a standardized training pipeline for new graduates — weaving together onboarding bootcamps, factory rotations, cross-department stints, and expert mentorship, all tied to staged growth assessments. For elite technical talent, the company has rolled out the “Passion Plan,” which offers annual special subsidies to PhDs. It has also partnered with 17 universities to build an industry-academia-research ecosystem and established academician workstations to secure its tech talent pipeline. The broader auto industry is largely entering a phase of cost optimization and headcount cuts, with many companies treating labor expenses as a cyclical lever to pull. VOYAH' s continued hiring and deepening of its tech talent reserves, by contrast, amount to a mid-to-long-term strategic bet on intelligent product iteration. The company is leaning on workforce expansion to underpin product and technology upgrades, forging a self-reinforcing loop across R&D, product development, and the market.",
+      "source": "Gasgoo",
+      "date": "2026-10-13",
+      "url": "https://autonews.gasgoo.com/articles/news/voyah-opens-over-500-positions-for-2026-autumn-campus-recruitment-2109608425561739265",
+      "linkType": "rss",
+      "id": 16
+    },
+    {
       "title": "China says EU hybrid trade deal allows export growth from 2025 levels",
       "summary": "China's commerce ministry announced that a trade agreement with the EU allows export growth from the 302,000 hybrid vehicles imported in 2025.",
       "source": "CnEVPost",
       "date": "2026-10-12",
       "url": "https://cnevpost.com/2026/10/12/china-eu-hybrid-trade-allows-growth/",
       "linkType": "rss",
-      "id": 1
+      "id": 17
     },
     {
       "title": "Huawei-backed Aito plans European expansion next year, report says",
@@ -5686,7 +5830,7 @@
       "date": "2026-10-12",
       "url": "https://cnevpost.com/2026/10/12/aito-plans-european-expansion-2027/",
       "linkType": "rss",
-      "id": 2
+      "id": 18
     },
     {
       "title": "China tightens rules on new car tech, limits zero-G seats, excessive screens, and headlight messaging",
@@ -5695,158 +5839,14 @@
       "date": "2026-10-12",
       "url": "https://carnewschina.com/2026/10/11/china-tightens-rules-on-new-car-tech-limits-zero-g-seats-excessive-screens-and-headlight-messaging/",
       "linkType": "rss",
-      "id": 3
-    },
-    {
-      "title": "CATL signs long-term strategic deal with Seres to expand Aito battery capacity",
-      "summary": "CATL and Seres signed a long-term strategic deal to supply batteries across Aito's lineup, with joint project capacity expected to exceed 20 GWh annually.",
-      "source": "CnEVPost",
-      "date": "2026-10-11",
-      "url": "https://cnevpost.com/2026/10/11/catl-deal-seres-expand-aito-battery-capacity/",
-      "linkType": "rss",
-      "id": 4
-    },
-    {
-      "title": "BYD Ti 7 Hits Market in Uzbekistan",
-      "summary": "BYD officially launched the Ti 7 SUV in Uzbekistan featuring its DM-p technology and all-wheel drive, alongside dynamic demonstrations of DENZA and YANGWANG models.",
-      "source": "Gasgoo",
-      "date": "2026-10-11",
-      "url": "https://autonews.gasgoo.com/articles/news/byd-ti-7-hits-market-in-uzbekistan-2108853202501201921",
-      "linkType": "rss",
-      "id": 5
-    },
-    {
-      "title": "Li Auto to launch updated Li i6 in late Oct. with six key upgrades",
-      "summary": "Li Auto unveiled the 2026 Li i6 featuring an in-house 96-kWh 5C fast-charging battery, Mach M100 chip with 1,280 TOPS, and dual zero-gravity front seats ahead of its October 28 launch.",
-      "source": "Gasgoo",
-      "date": "2026-10-11",
-      "url": "https://autonews.gasgoo.com/articles/news/li-auto-to-launch-updated-li-i6-in-late-oct-with-six-key-upgrades-2108850844106977281",
-      "linkType": "rss",
-      "id": 6
-    },
-    {
-      "title": "BYD reaches 150,000 commercial NEV production milestone as growth focus shifts to trucks",
-      "summary": "BYD hit a 150,000-unit production milestone for commercial NEVs, driven by a new electric semi-truck as it shifts focus to long-haul freight transport.",
-      "source": "CnEVPost",
-      "date": "2026-10-10",
-      "url": "https://cnevpost.com/2026/10/10/byd-150000-commercial-nev-production-focus-trucks/",
-      "linkType": "rss",
-      "id": 7
-    },
-    {
-      "title": "China’s busiest holiday reveals Nio’s swapping efficiency triples BYD’s Flash Charging",
-      "summary": "Real-world data during Golden Week demonstrated that Nio's battery swapping infrastructure achieved three times the efficiency of BYD's Flash Charging system.",
-      "source": "CarNewsChina",
-      "date": "2026-10-10",
-      "url": "https://carnewschina.com/2026/10/10/chinas-busiest-holiday-reveals-nios-swapping-efficiency-triples-byds-flash-charging/",
-      "linkType": "rss",
-      "id": 8
-    },
-    {
-      "title": "NIO Surpasses 100 Million Charging Sessions",
-      "summary": "NIO surpassed 100 million charging sessions across its power network, with over 86% of power delivered to non-NIO brand electric vehicles. The company operates over 9,500 total charging and swapping stations nationwide.",
-      "source": "Gasgoo",
-      "date": "2026-10-10",
-      "url": "https://autonews.gasgoo.com/articles/news/nio-surpasses-100-million-charging-sessions-2108542521730101249",
-      "linkType": "rss",
-      "id": 9
-    },
-    {
-      "title": "Changan NEVO Delivers 46,507 Vehicles in September, Cumulative Sales Top 1 Million",
-      "summary": "Changan NEVO delivered 46,507 vehicles in September, reaching 1 million cumulative sales in roughly three years driven by strong performance from its SUV and sedan lineup.",
-      "source": "Gasgoo",
-      "date": "2026-10-10",
-      "url": "https://autonews.gasgoo.com/articles/news/changan-nevo-delivers-46507-vehicles-in-september-cumulative-sales-top-1-million-2108541722903932929",
-      "linkType": "rss",
-      "id": 10
-    },
-    {
-      "title": "Geely Galaxy launches Cruiser 700 to take on BYD, GWM in off-road SUV market",
-      "summary": "Geely Galaxy launched the Cruiser 700 off-road SUV to compete with BYD and GWM, securing over 10,000 firm orders within the first 12 minutes.",
-      "source": "CnEVPost",
-      "date": "2026-10-10",
-      "url": "https://cnevpost.com/2026/10/10/geely-galaxy-launches-cruiser-700-suv/",
-      "linkType": "rss",
-      "id": 11
-    },
-    {
-      "title": "China's September NEV retail sales fall 12% as month-end surge narrows decline, preliminary CPCA data shows",
-      "summary": "Preliminary CPCA data indicates a 12% drop in China's September NEV retail sales, with a late month-end surge helping narrow the year-on-year decline.",
-      "source": "CnEVPost",
-      "date": "2026-10-10",
-      "url": "https://cnevpost.com/2026/10/10/china-sept-nev-retail-preliminary-cpca/",
-      "linkType": "rss",
-      "id": 12
-    },
-    {
-      "title": "China proposes tighter vehicle design rules, reiterates concealed-handle ban and targets foldable screens",
-      "summary": "China proposed stricter national vehicle design safety rules that reiterate a ban on fully concealed door handles and target foldable screen safety integration.",
-      "source": "CnEVPost",
-      "date": "2026-10-10",
-      "url": "https://cnevpost.com/2026/10/10/china-proposes-tighter-vehicle-design-rules/",
-      "linkType": "rss",
-      "id": 13
-    },
-    {
-      "title": "Xpeng completes G9L trial production in Austria ahead of Paris global premiere",
-      "summary": "Xpeng completed trial production of the G9L flagship SUV at Magna's Graz plant in Austria. The model marks Xpeng's fourth vehicle to be assembled locally in Europe ahead of its global debut.",
-      "source": "CnEVPost",
-      "date": "2026-10-10",
-      "url": "https://cnevpost.com/2026/10/10/xpeng-g9l-trial-production-austria/",
-      "linkType": "rss",
-      "id": 14
-    },
-    {
-      "title": "CATL surpasses LG Energy Solution to claim top spot in global battery patents",
-      "summary": "CATL has overtaken LG Energy Solution to secure the top rank in global battery patent filings.",
-      "source": "CarNewsChina",
-      "date": "2026-10-10",
-      "url": "https://carnewschina.com/2026/10/10/catl-surpasses-lg-energy-solution-to-claim-top-spot-in-global-battery-patents/",
-      "linkType": "rss",
-      "id": 15
-    },
-    {
-      "title": "BYD unveils design for its first self-developed humanoid robot",
-      "summary": "BYD revealed design details for its first self-developed bipedal humanoid robot through a formal patent filing.",
-      "source": "CarNewsChina",
-      "date": "2026-10-10",
-      "url": "https://carnewschina.com/2026/10/10/byd-unveils-design-for-its-first-self-developed-humanoid-robot/",
-      "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "Geely Auto will enter Canada in 2027 with a bunch of models",
-      "summary": "Geely Auto announced plans to officially enter the Canadian market in 2027 with an upcoming lineup of vehicles.",
-      "source": "CarNewsChina",
-      "date": "2026-10-10",
-      "url": "https://carnewschina.com/2026/10/09/geely-auto-will-enter-canada-in-2027-with-a-bunch-of-models/",
-      "linkType": "rss",
-      "id": 17
-    },
-    {
-      "title": "GM China sales top 358,000 in third quarter as NEV share exceeds 60%",
-      "summary": "GM delivered over 358,000 vehicles in China during Q3 2026, with NEVs accounting for a record 60% share despite lower overall sales volume. SAIC-GM-Wuling and Buick plug-in hybrids served as primary drivers of electrified sales.",
-      "source": "Gasgoo",
-      "date": "2026-10-10",
-      "url": "https://autonews.gasgoo.com/articles/news/gm-china-sales-top-358000-in-third-quarter-as-nev-share-exceeds-60-2108750229603311617",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "XPENG G9L set for global launch at Paris Motor Show 2026",
-      "summary": "XPENG announced the global launch of the G9L flagship AI SUV at the Paris Motor Show, following localized trial production at Magna's Graz plant in Austria.",
-      "source": "Gasgoo",
-      "date": "2026-10-10",
-      "url": "https://autonews.gasgoo.com/articles/news/xpeng-g9l-set-for-global-launch-at-paris-motor-show-2026-2108768159049146368",
-      "linkType": "rss",
       "id": 19
     },
     {
-      "title": "BYD humanoid robot design emerges as formal debut remains pending",
-      "summary": "Patent images revealed a bipedal BYD humanoid robot designed for industrial, educational, and service applications.",
+      "title": "China cuts NEV export tax rebates, testing profitability of automakers' overseas growth",
+      "summary": "The export VAT rebate rate for NEVs will fall from 13% to 9% starting April 1, 2027. For details, please visit CnEVPost (cnev.co).",
       "source": "CnEVPost",
-      "date": "2026-10-09",
-      "url": "https://cnevpost.com/2026/10/09/byd-humanoid-robot-design-emerges/",
+      "date": "2026-10-12",
+      "url": "https://cnevpost.com/2026/10/12/china-cuts-nev-export-tax-rebates/",
       "linkType": "rss",
       "id": 20
     }
@@ -6465,45 +6465,45 @@
   "status": {
     "vehicles": {
       "lastSuccessAt": "2026-10-11T14:35:53.911074+09:00",
-      "lastAttemptAt": "2026-10-12T14:46:08.848127+09:00",
+      "lastAttemptAt": "2026-10-13T15:40:36.878837+09:00",
       "state": "failed",
       "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
       "staleAfterHours": 36,
       "lastAddedAt": "2026-10-11T14:35:53.911074+09:00"
     },
     "news": {
-      "lastSuccessAt": "2026-10-12T14:46:08.848127+09:00",
-      "lastAttemptAt": "2026-10-12T14:46:08.848127+09:00",
-      "state": "ok",
-      "reason": "",
+      "lastSuccessAt": "2026-10-13T15:40:36.878837+09:00",
+      "lastAttemptAt": "2026-10-13T15:40:36.878837+09:00",
+      "state": "degraded",
+      "reason": "Gemini 선별/요약 실패로 키워드 필터 사용 - 요약 품질 저하 (ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Pleas",
       "staleAfterHours": 36
     },
     "chinaNews": {
-      "lastSuccessAt": "2026-10-12T14:46:08.848127+09:00",
-      "lastAttemptAt": "2026-10-12T14:46:08.848127+09:00",
-      "state": "ok",
-      "reason": "",
+      "lastSuccessAt": "2026-10-13T15:40:36.878837+09:00",
+      "lastAttemptAt": "2026-10-13T15:40:36.878837+09:00",
+      "state": "degraded",
+      "reason": "Gemini 선별 실패로 RSS 원문 노출 (ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again la",
       "staleAfterHours": 36
     },
     "newsBriefing": {
       "lastSuccessAt": "2026-10-12T14:46:08.848127+09:00",
-      "lastAttemptAt": "2026-10-12T14:46:08.848127+09:00",
-      "state": "ok",
-      "reason": "",
+      "lastAttemptAt": "2026-10-13T15:40:36.878837+09:00",
+      "state": "failed",
+      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
       "staleAfterHours": 36
     },
     "chinaNewsBriefing": {
       "lastSuccessAt": "2026-10-12T14:46:08.848127+09:00",
-      "lastAttemptAt": "2026-10-12T14:46:08.848127+09:00",
-      "state": "ok",
-      "reason": "",
+      "lastAttemptAt": "2026-10-13T15:40:36.878837+09:00",
+      "state": "failed",
+      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
       "staleAfterHours": 36
     },
     "benchmarkingPoints": {
       "lastSuccessAt": "2026-10-12T14:46:08.848127+09:00",
-      "lastAttemptAt": "2026-10-12T14:46:08.848127+09:00",
-      "state": "ok",
-      "reason": "",
+      "lastAttemptAt": "2026-10-13T15:40:36.878837+09:00",
+      "state": "failed",
+      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
       "staleAfterHours": 36
     },
     "patentTrends": {
