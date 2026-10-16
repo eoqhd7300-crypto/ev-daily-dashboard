@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스펙 트렌드 (개발중) | Daily EV & 배터리 플랫폼 대시보드</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#035485',
+                            900: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- 차트 렌더링용 (이 프로젝트 전체에서 이 페이지에만 쓰이는 신규 CDN 의존성 - 다른 페이지에는 영향 없음) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background: linear-gradient(180deg, #7dd3fc 0px, #e0f2fe 200px, #e0f2fe 100%);
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+
+    <!-- Header Navigation Bar (기존 페이지들과 동일 구성 - 현재 페이지만 강조) -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="bg-sky-600 text-white p-2 rounded-lg font-bold text-x2 flex items-center justify-center w-10 h-10 shadow-sm">
+                    <span class="animate-pulse text-2xl">⚡</span>
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-lg sm:text-xl leading-tight">Daily EV & Battery Intelligence News</h1>
+                    <p class="text-xs text-slate-500 font-medium"> by BTI Team </p>
+                </div>
+            </a>
+
+            <img src="./assets/images/mascot_road_trip.png" alt="EV 로드트립 마스코트" class="hidden md:block h-12 w-auto object-contain flex-shrink-0 select-none pointer-events-none">
+
+            <nav class="flex items-center space-x-1 sm:space-x-2 flex-wrap justify-end">
+                <a href="index.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Home</a>
+                <a href="index.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">기본사양비교</a>
+                <a href="teardown.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Teardown Data</a>
+                <a href="news.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">EV News</a>
+                <a href="data-web-source.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Data Source</a>
+                <a href="개발중.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-amber-50 text-amber-700 border border-amber-300 transition">📊 스펙 트렌드 (개발중)</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+
+        <!-- 개발중 안내 배너: Home에는 아직 연동되지 않은 시험 페이지임을 명확히 표시 -->
+        <div class="mb-5 px-3 py-2.5 bg-amber-50 border border-amber-300 rounded-xl flex items-start sm:items-center gap-2 text-amber-900">
+            <span class="text-base flex-shrink-0">🚧</span>
+            <p class="text-xs sm:text-sm font-semibold">
+                개발중 페이지입니다. Home 화면에는 아직 반영되지 않았으며, 이 페이지에서 검증 후 문제가 없으면 Home 카드로 통합할 예정입니다.
+            </p>
+        </div>
+
+        <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
+            <div>
+                <h2 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <span>📊 신차 스펙 트렌드</span>
+                </h2>
+                <p class="text-xs text-slate-500 mt-0.5">이미 수집된 신규 전기차 데이터를 발표월 기준으로 집계해, 핵심 스펙의 시간에 따른 변화 추이를 보여줍니다 (추가 API 호출 없이 기존 데이터만 재활용).</p>
+            </div>
+            <div id="specTrendSummary" class="text-xs text-slate-600 bg-white px-3 py-1.5 rounded-lg border border-slate-200"></div>
+        </div>
+
+        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-6">
+            <div class="flex items-center gap-1.5 mb-4 flex-wrap" id="metricTabs">
+                <!-- JS로 4개 지표 버튼을 렌더링 -->
+            </div>
+            <div class="relative" style="height: 360px;">
+                <canvas id="specTrendChart"></canvas>
+            </div>
+            <p id="specTrendNote" class="text-[11px] text-slate-400 mt-3 leading-relaxed"></p>
+        </section>
+
+        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
+            <h3 class="text-sm font-bold text-slate-900 mb-3">월별 집계 데이터</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs sm:text-sm text-left">
+                    <thead>
+                        <tr class="border-b border-slate-200 text-slate-500">
+                            <th class="py-2 pr-4 font-semibold">발표월</th>
+                            <th class="py-2 pr-4 font-semibold">차량 수</th>
+                            <th class="py-2 pr-4 font-semibold">배터리 용량 평균(kWh)</th>
+                            <th class="py-2 pr-4 font-semibold">주행거리 평균(km)</th>
+                            <th class="py-2 pr-4 font-semibold">최대충전출력 평균(kW)</th>
+                            <th class="py-2 pr-4 font-semibold">최고출력 평균(kW)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="specTrendTableBody" class="divide-y divide-slate-100 text-slate-800"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 아직 반영되지 않은 한계점 - 투명하게 명시 -->
+        <section class="bg-slate-50 rounded-2xl border border-slate-200 p-4 mb-10 text-xs text-slate-500 leading-relaxed">
+            <p class="font-semibold text-slate-600 mb-1">⚠️ 데이터 한계 안내</p>
+            <ul class="list-disc list-inside space-y-0.5">
+                <li>Cell/Pack 에너지밀도는 실측(Teardown) 검증이 완료된 일부 차량에만 값이 있어(현재 전체의 10% 미만) 이번 버전의 트렌드 지표에서는 제외했습니다.</li>
+                <li>0-100km/h 가속 시간은 약 44%의 차량에만 정보가 있어 신뢰도가 낮아 1차 버전에서는 제외했습니다.</li>
+                <li>한 달에 수집된 차량 수가 적으면(예: 1~2대) 평균값이 시장 전체 추세를 대표하지 못할 수 있습니다 - 아래 표의 "차량 수"를 함께 확인하세요.</li>
+                <li>모든 스펙 값은 Gemini가 생성한 데이터를 텍스트 패턴으로 추출한 것으로, 원본 발표 자료의 정확한 수치와 다를 수 있습니다.</li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        const METRICS = [
+            { key: 'batteryKwh', label: '배터리 용량 (kWh)', unit: 'kWh', color: '#0284c7', field: 'batterySpec', pattern: /([\d.]+)\s*kWh/i },
+            { key: 'rangeKm', label: '주행거리 (km)', unit: 'km', color: '#16a34a', field: 'rangePerformance', pattern: /([\d.]+)\s*km/i },
+            { key: 'maxChargeKw', label: '최대충전출력 (kW)', unit: 'kW', color: '#d97706', field: 'maxChargePower', pattern: /([\d.]+)\s*kW/i },
+            { key: 'maxOutputKw', label: '최고출력 (kW)', unit: 'kW', color: '#9333ea', field: 'maxOutput', pattern: /([\d.]+)\s*kW/i },
+        ];
+        let activeMetricKey = METRICS[0].key;
+        let monthlyAgg = []; // [{ month: 'YYYY-MM', count, batteryKwh, rangeKm, maxChargeKw, maxOutputKw }]
+        let chartInstance = null;
+
+        function extractNumber(value, pattern) {
+            if (!value || value === '-') return null;
+            const m = String(value).match(pattern);
+            return m ? parseFloat(m[1]) : null;
+        }
+
+        function aggregateByMonth(vehicles) {
+            const buckets = {}; // month -> { count, sums: {metricKey: {total, n}} }
+            vehicles.forEach(v => {
+                const date = v.releaseDate;
+                if (!date || typeof date !== 'string' || date.length < 7) return;
+                const month = date.slice(0, 7); // YYYY-MM
+                if (!buckets[month]) {
+                    buckets[month] = { month, count: 0, sums: {} };
+                    METRICS.forEach(m => { buckets[month].sums[m.key] = { total: 0, n: 0 }; });
+                }
+                buckets[month].count += 1;
+                METRICS.forEach(m => {
+                    const val = extractNumber(v[m.field], m.pattern);
+                    if (val !== null && isFinite(val)) {
+                        buckets[month].sums[m.key].total += val;
+                        buckets[month].sums[m.key].n += 1;
+                    }
+                });
+            });
+            return Object.values(buckets)
+                .map(b => {
+                    const row = { month: b.month, count: b.count };
+                    METRICS.forEach(m => {
+                        const s = b.sums[m.key];
+                        row[m.key] = s.n > 0 ? s.total / s.n : null;
+                    });
+                    return row;
+                })
+                .sort((a, b) => a.month.localeCompare(b.month));
+        }
+
+        function renderMetricTabs() {
+            const container = document.getElementById('metricTabs');
+            container.innerHTML = METRICS.map(m => `
+                <button type="button" data-metric="${m.key}"
+                    class="metric-tab-btn px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg border transition ${m.key === activeMetricKey ? 'border-sky-600 bg-sky-600 text-white shadow-xs' : 'border-slate-200 bg-white text-slate-600 hover:bg-sky-50'}">
+                    ${m.label}
+                </button>
+            `).join('');
+            container.querySelectorAll('.metric-tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    activeMetricKey = btn.dataset.metric;
+                    renderMetricTabs();
+                    renderChart();
+                });
+            });
+        }
+
+        function renderChart() {
+            const metric = METRICS.find(m => m.key === activeMetricKey);
+            const labels = monthlyAgg.map(r => r.month);
+            const values = monthlyAgg.map(r => r[metric.key] !== null ? Math.round(r[metric.key] * 10) / 10 : null);
+            const counts = monthlyAgg.map(r => r.count);
+
+            if (chartInstance) chartInstance.destroy();
+            const ctx = document.getElementById('specTrendChart').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: metric.label,
+                        data: values,
+                        borderColor: metric.color,
+                        backgroundColor: metric.color + '22',
+                        fill: true,
+                        tension: 0.3,
+                        spanGaps: true,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: (ctx) => `해당 월 수집 차량 수: ${counts[ctx.dataIndex]}대`,
+                            },
+                        },
+                    },
+                    scales: {
+                        y: {
+                            title: { display: true, text: metric.unit },
+                            beginAtZero: false,
+                        },
+                    },
+                },
+            });
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('specTrendTableBody');
+            tbody.innerHTML = monthlyAgg.map(r => `
+                <tr>
+                    <td class="py-2 pr-4 font-semibold">${r.month}</td>
+                    <td class="py-2 pr-4">${r.count}</td>
+                    <td class="py-2 pr-4">${r.batteryKwh !== null ? r.batteryKwh.toFixed(1) : '-'}</td>
+                    <td class="py-2 pr-4">${r.rangeKm !== null ? r.rangeKm.toFixed(0) : '-'}</td>
+                    <td class="py-2 pr-4">${r.maxChargeKw !== null ? r.maxChargeKw.toFixed(0) : '-'}</td>
+                    <td class="py-2 pr-4">${r.maxOutputKw !== null ? r.maxOutputKw.toFixed(0) : '-'}</td>
+                </tr>
+            `).join('');
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            let vehicles = [];
+            try {
+                const res = await fetch('./data.json', { cache: 'no-store' });
+                if (res.ok) {
+                    const data = await res.json();
+                    vehicles = Array.isArray(data.vehicles) ? data.vehicles : [];
+                }
+            } catch (err) {
+                console.warn('[스펙 트렌드] data.json을 불러오지 못했습니다.', err);
+            }
+
+            const summaryEl = document.getElementById('specTrendSummary');
+            const noteEl = document.getElementById('specTrendNote');
+
+            if (vehicles.length === 0) {
+                summaryEl.textContent = '데이터 없음';
+                noteEl.textContent = 'data.json을 불러오지 못했거나 신차 데이터가 비어 있습니다.';
+                return;
+            }
+
+            monthlyAgg = aggregateByMonth(vehicles);
+            const months = monthlyAgg.map(r => r.month);
+            summaryEl.textContent = `분석 대상: ${vehicles.length}대 / 기간: ${months[0]} ~ ${months[months.length - 1]}`;
+            noteEl.textContent = '그래프의 각 점은 해당 월에 발표된 차량들의 평균값입니다. 점에 마우스를 올리면 해당 월의 차량 수를 확인할 수 있습니다.';
+
+            renderMetricTabs();
+            renderChart();
+            renderTable();
+        });
+    </script>
+</body>
+</html>
