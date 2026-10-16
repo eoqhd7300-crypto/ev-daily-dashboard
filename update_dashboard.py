@@ -52,8 +52,14 @@ CHINA_NEWS_POOL_SIZE = 40
 # main()에서 매일이 아니라 주 1회(월요일)만 조회한다. GCP_SA_KEY_JSON 환경변수(서비스 계정 키 JSON)가
 # 없으면 이 기능 전체를 건너뛴다 (다른 무료 파이프라인에는 영향 없음).
 # claims(청구항) 필드를 함께 보내면서 응답이 finish_reason=MAX_TOKENS로 잘리는 문제가 실측 확인되어,
-# 입력 건수를 40건으로 낮춰 프롬프트/응답 크기를 줄인다.
+# Gemini에 실제로 보내는 건수(=분석 대상)는 40건으로 낮춰 프롬프트/응답 크기를 줄인다.
 MAX_PATENT_ITEMS = 40
+# BigQuery에서 실제로 조회해올 후보 풀 크기는 MAX_PATENT_ITEMS보다 훨씬 크게 잡는다 (Gemini에게는
+# 그중 이번에 "아직 보여준 적 없는" 패턴만 추려 최대 MAX_PATENT_ITEMS건만 넘긴다). LIMIT만 바뀌므로
+# BigQuery 스캔 바이트(쿼리 비용)에는 영향이 없다 - WHERE 필터링은 동일하게 적용된 뒤 상위 N건만
+# 반환받는 차이일 뿐이다. 이렇게 넓게 가져와야 "같은 상위 40건이 매주 거의 그대로 반복"되는 문제
+# (카드가 몇 달째 동일 내용으로 멈춰 있던 원인 중 하나)를 _filter_unseen_patents()로 걸러낼 여지가 생긴다.
+PATENT_QUERY_POOL_SIZE = 200
 # 특허 동향 카드는 아래 4개 기술 카테고리를 항상 이 순서로 고정 출력한다 (엔지니어가 매주 동일한 틀에서
 # 비교할 수 있도록). 해당 주에 신규 특허가 없는 카테고리는 "신규 공개 특허 없음"으로 표시한다.
 PATENT_TREND_CATEGORY_ORDER = ["소재 & 전극", "전해질 & 전고체", "셀 제조 & 공정", "팩 구조 & CTP & 열관리"]
@@ -239,7 +245,7 @@ FROM
 ORDER BY
   pub_date DESC
 LIMIT {max_items}
-""".format(max_items=MAX_PATENT_ITEMS)
+""".format(max_items=PATENT_QUERY_POOL_SIZE)
 
 # 서로 다른 매체가 동일 사건을 보도해 제목만 비슷한 "유사 기사"를 걸러내기 위한 임계값
 TITLE_DUP_SIMILARITY_THRESHOLD = 0.72
@@ -1831,13 +1837,39 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
         return _fail_status("chinaNewsBriefing", _short_exc(exc))
 
 
-def should_refresh_patent_trends(now_kst: datetime) -> bool:
+def should_refresh_patent_trends(now_kst: datetime, last_success_at: str | None = None) -> bool:
     """특허 데이터는 매일 유의미하게 바뀌지 않고 BigQuery 무료 할당량(월 1TB)도 아껴야 하므로,
-    주 1회(월요일)에만 갱신한다. FORCE_PATENT_REFRESH=true 환경변수가 설정되면(수동 강제 실행)
-    요일과 무관하게 즉시 갱신한다."""
+    기본은 주 1회(월요일)에만 갱신한다. FORCE_PATENT_REFRESH=true 환경변수가 설정되면(수동 강제 실행)
+    요일과 무관하게 즉시 갱신한다.
+    월요일 시도가 Gemini 503(서버 과부하) 등으로 실패하면, 월요일에만 재시도를 허용하는 기존 설계상
+    다음 월요일까지 통째로 한 주를 그냥 흘려보내는 문제가 실측되었다(카드가 몇 달째 동일 내용으로
+    정체). 이를 막기 위해 마지막 성공이 7일(한 주)을 넘겼으면 요일과 무관하게 매일 재시도한다 - 한 번
+    성공하면 그 뒤로는 다시 다음 월요일까지 조용히 기다린다."""
     if os.environ.get("FORCE_PATENT_REFRESH", "").strip().lower() == "true":
         return True
-    return now_kst.weekday() == 0  # 0 = Monday
+    if now_kst.weekday() == 0:  # 0 = Monday
+        return True
+    if not last_success_at:
+        return True  # 성공 이력이 없음(최초 실행 또는 계속 실패 중) -> 요일과 무관하게 매일 시도
+    try:
+        last_dt = datetime.fromisoformat(last_success_at)
+    except (TypeError, ValueError):
+        return True
+    return (now_kst - last_dt).total_seconds() > 7 * 24 * 3600
+
+
+def _filter_unseen_patents(patents: list, seen_urls: list, cap: int = MAX_PATENT_ITEMS, min_unseen: int = 8) -> list:
+    """BigQuery 후보 풀(PATENT_QUERY_POOL_SIZE건)에서 이미 지난 주들에 보여준 적 있는 특허
+    (patentSeenUrls)를 우선 제외하고, "아직 한 번도 보여준 적 없는" 특허만 Gemini에 넘긴다 - 색인
+    지연으로 상위 N건이 매주 거의 그대로라서 카드 내용이 반복되던 문제를 직접 해결한다. 신규 특허가
+    너무 적어 분석할 거리가 부족해지는 것을 막기 위해, 미노출 특허가 min_unseen건보다 적으면 이미
+    보여준 특허 중 최신 순으로 채워 넣는다(완전히 새 특허가 하나도 없는 주에도 카드가 비지 않도록)."""
+    seen_set = {_norm(u) for u in (seen_urls or [])}
+    unseen = [p for p in patents if _norm(p.get("google_patent_url") or "") not in seen_set]
+    if len(unseen) >= min_unseen:
+        return unseen[:cap]
+    already_seen = [p for p in patents if _norm(p.get("google_patent_url") or "") in seen_set]
+    return (unseen + already_seen)[:cap]
 
 
 def run_battery_patent_query() -> list:
@@ -2498,14 +2530,21 @@ def main() -> None:
     if china_news_briefing is None:
         china_news_briefing = existing.get("chinaNewsBriefing")
 
-    # 배터리 특허 동향(BigQuery, CATL/BYD/Geely): 주 1회(월요일)만 조회 + GCP_SA_KEY_JSON 없으면 자동 스킵.
+    # 배터리 특허 동향(BigQuery, CATL/BYD/Geely): 기본 주 1회(월요일)만 조회 + GCP_SA_KEY_JSON 없으면 자동 스킵.
+    # 월요일 시도가 실패해도 마지막 성공이 7일을 넘기면 요일과 무관하게 매일 재시도한다(should_refresh_patent_trends).
     # 다른 무료 파이프라인과 완전히 독립적으로 격리해, 여기서 오류가 나도 나머지 저장에는 영향 없다.
     patent_seen_urls = existing.get("patentSeenUrls") or []
+    patent_last_success_at = (existing.get("status") or {}).get("patentTrends", {}).get("lastSuccessAt")
     try:
-        if should_refresh_patent_trends(now_kst):
-            print("특허 동향 갱신 시작 (주 1회, 월요일)...")
+        if should_refresh_patent_trends(now_kst, patent_last_success_at):
+            print("특허 동향 갱신 시작...")
             patents = run_battery_patent_query()
             print(f"BigQuery 특허 조회 완료: {len(patents)}건")
+            # 색인 지연으로 상위 N건이 매주 거의 그대로라 카드 내용이 반복되던 문제를 막기 위해,
+            # 아직 한 번도 보여준 적 없는 특허를 우선 선별해 Gemini에 넘긴다.
+            unseen_count_before = sum(1 for p in patents if _norm(p.get("google_patent_url") or "") not in {_norm(u) for u in patent_seen_urls})
+            patents = _filter_unseen_patents(patents, patent_seen_urls)
+            print(f"특허 후보 중 미노출 {unseen_count_before}건 확인, Gemini 분석 대상 {len(patents)}건으로 압축")
             patent_trends, patent_seen_urls = generate_patent_trends(client, patents, patent_seen_urls)
         else:
             patent_trends = None
