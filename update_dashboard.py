@@ -1837,18 +1837,24 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
         return _fail_status("chinaNewsBriefing", _short_exc(exc))
 
 
-def should_refresh_patent_trends(now_kst: datetime, last_success_at: str | None = None) -> bool:
+def should_refresh_patent_trends(now_kst: datetime, last_success_at: str | None = None, last_failure_reason: str | None = None) -> bool:
     """특허 데이터는 매일 유의미하게 바뀌지 않고 BigQuery 무료 할당량(월 1TB)도 아껴야 하므로,
     기본은 주 1회(월요일)에만 갱신한다. FORCE_PATENT_REFRESH=true 환경변수가 설정되면(수동 강제 실행)
     요일과 무관하게 즉시 갱신한다.
-    월요일 시도가 Gemini 503(서버 과부하) 등으로 실패하면, 월요일에만 재시도를 허용하는 기존 설계상
-    다음 월요일까지 통째로 한 주를 그냥 흘려보내는 문제가 실측되었다(카드가 몇 달째 동일 내용으로
-    정체). 이를 막기 위해 마지막 성공이 7일(한 주)을 넘겼으면 요일과 무관하게 매일 재시도한다 - 한 번
-    성공하면 그 뒤로는 다시 다음 월요일까지 조용히 기다린다."""
+    월요일 시도가 Gemini 503(서버 과부하) 등 일시적 오류로 실패하면, 월요일에만 재시도를 허용하는
+    기존 설계상 다음 월요일까지 통째로 한 주를 그냥 흘려보내는 문제가 실측되었다(카드가 몇 달째 동일
+    내용으로 정체). 이를 막기 위해 마지막 성공이 7일(한 주)을 넘겼으면 요일과 무관하게 매일 재시도한다.
+    단, 실측 결과 "BigQuery 할당량 초과(quotaExceeded)"는 503과 달리 재시도해도 해결되지 않는 하드
+    리밋이라(결제 계정이 연결되지 않은 프로젝트의 Sandbox 모드 할당량), 마지막 실패 사유가 할당량
+    초과였다면 매일 재시도를 걸지 않고 원래대로 월요일까지 조용히 기다린다 - 성공 가능성 없는 시도를
+    반복해 Actions 로그만 늘리는 것을 막기 위함이다."""
     if os.environ.get("FORCE_PATENT_REFRESH", "").strip().lower() == "true":
         return True
     if now_kst.weekday() == 0:  # 0 = Monday
         return True
+    reason_lower = (last_failure_reason or "").lower()
+    if "quota" in reason_lower or "quotaexceeded" in reason_lower:
+        return False  # 하드 할당량 초과 - 매일 재시도해도 소용없으니 월요일까지 대기
     if not last_success_at:
         return True  # 성공 이력이 없음(최초 실행 또는 계속 실패 중) -> 요일과 무관하게 매일 시도
     try:
@@ -1872,13 +1878,15 @@ def _filter_unseen_patents(patents: list, seen_urls: list, cap: int = MAX_PATENT
     return (unseen + already_seen)[:cap]
 
 
-def run_battery_patent_query() -> list:
-    """BigQuery 공개 특허 데이터셋에서 CATL/BYD/Geely 배터리 관련 특허를 조회한다.
+def run_battery_patent_query() -> tuple:
+    """BigQuery 공개 특허 데이터셋에서 CATL/BYD/Geely 배터리 관련 특허를 조회한다. (특허 리스트, 실패 사유)
+    튜플을 반환한다 - 실패 사유는 status.patentTrends.reason에 그대로 기록되어, 할당량 초과처럼 재시도해도
+    소용없는 하드 오류인지 503처럼 일시적인 오류인지를 should_refresh_patent_trends()가 구분할 수 있게 한다.
     GCP_SA_KEY_JSON(서비스 계정 키 JSON 전체 내용) 환경변수가 없으면 건너뛴다."""
     sa_key_json = os.environ.get("GCP_SA_KEY_JSON")
     if not sa_key_json:
         print("GCP_SA_KEY_JSON 이 설정되지 않아 특허 동향 조회를 건너뜁니다.")
-        return []
+        return [], "GCP_SA_KEY_JSON 미설정"
     try:
         from google.cloud import bigquery
         from google.oauth2 import service_account
@@ -1908,10 +1916,10 @@ def run_battery_patent_query() -> list:
                     "google_patent_url": row["google_patent_url"] or "",
                 }
             )
-        return patents
+        return patents, None
     except Exception as exc:  # noqa: BLE001 - BigQuery 연동 실패는 이 기능만 건너뛰고 나머지 파이프라인은 유지
         print(f"BigQuery 특허 조회 실패, 건너뜁니다: {exc}")
-        return []
+        return [], _short_exc(exc)
 
 
 def build_patent_trend_system_instruction() -> str:
@@ -2038,17 +2046,20 @@ system instruction의 카테고리 규칙/항목 필드 규칙/키워드 규칙�
 """
 
 
-def generate_patent_trends(client: "genai.Client", patents: list, seen_urls: list | None = None) -> tuple:
+def generate_patent_trends(client: "genai.Client", patents: list, seen_urls: list | None = None, query_error_reason: str | None = None) -> tuple:
     """조회된 특허 목록을 바탕으로 카테고리별 기술 트렌드 브리핑을 생성한다. Google 특허 공개
     데이터셋은 실제 공개일과 무관하게 색인까지 수개월(최대 5개월+) 지연되는 것으로 알려져 있어,
     "pub_date가 최신"이라고 해서 "실제로 오늘 처음 조회 가능해진 것"이라는 보장은 없다. 이를 보완하기
     위해 seen_urls(지나간 주에 이미 조회된 publication url 년 누적 목록)와 대조해, 이번 주에 처음
     등장한(=이번 주에 새로 색인된) 항목만 "isNewlyIndexed"로 표시한다. 반환값은
     (브리핑 dict 또는 None, 갱신된 seen_urls 리스트) 튜플이며, 실패 시 seen_urls는 그대로 돌려준다
-    (호출부에서는 브리핑이 None이면 지난주 버전을 그대로 유지한다)"""
+    (호출부에서는 브리핑이 None이면 지난주 버전을 그대로 유지한다).
+    query_error_reason은 run_battery_patent_query()가 BigQuery 조회 자체에서 실패한 구체적인 사유
+    (예: "quotaExceeded" 등)로, patents가 비어있을 때 status.reason에 그대로 남겨 should_refresh_patent_trends()가
+    "재시도해도 소용없는 하드 오류"와 "일시적 오류"를 구분할 수 있게 한다."""
     seen_urls = list(seen_urls or [])
     if not patents:
-        _record_status("patentTrends", "failed", "특허 조회 결과 0건 (GCP_SA_KEY_JSON 미설정 또는 BigQuery 조회 실패)")
+        _record_status("patentTrends", "failed", query_error_reason or "특허 조회 결과 0건(원인 불명)")
         return None, seen_urls
     seen_url_set = {_norm(u) for u in seen_urls}
     prompt = build_patent_trend_prompt(patents)
@@ -2531,21 +2542,25 @@ def main() -> None:
         china_news_briefing = existing.get("chinaNewsBriefing")
 
     # 배터리 특허 동향(BigQuery, CATL/BYD/Geely): 기본 주 1회(월요일)만 조회 + GCP_SA_KEY_JSON 없으면 자동 스킵.
-    # 월요일 시도가 실패해도 마지막 성공이 7일을 넘기면 요일과 무관하게 매일 재시도한다(should_refresh_patent_trends).
+    # 월요일 시도가 503 등 일시적 오류로 실패해도 마지막 성공이 7일을 넘기면 요일과 무관하게 매일
+    # 재시도한다. 단 할당량 초과(quotaExceeded)처럼 재시도해도 소용없는 하드 리밋이었던 경우는 매일
+    # 재시도를 걸지 않는다(should_refresh_patent_trends).
     # 다른 무료 파이프라인과 완전히 독립적으로 격리해, 여기서 오류가 나도 나머지 저장에는 영향 없다.
     patent_seen_urls = existing.get("patentSeenUrls") or []
-    patent_last_success_at = (existing.get("status") or {}).get("patentTrends", {}).get("lastSuccessAt")
+    patent_prev_status = (existing.get("status") or {}).get("patentTrends") or {}
+    patent_last_success_at = patent_prev_status.get("lastSuccessAt")
+    patent_last_failure_reason = patent_prev_status.get("reason") if patent_prev_status.get("state") == "failed" else None
     try:
-        if should_refresh_patent_trends(now_kst, patent_last_success_at):
+        if should_refresh_patent_trends(now_kst, patent_last_success_at, patent_last_failure_reason):
             print("특허 동향 갱신 시작...")
-            patents = run_battery_patent_query()
-            print(f"BigQuery 특허 조회 완료: {len(patents)}건")
+            patents, patent_query_error = run_battery_patent_query()
+            print(f"BigQuery 특허 조회 완료: {len(patents)}건" + (f" (실패 사유: {patent_query_error})" if patent_query_error else ""))
             # 색인 지연으로 상위 N건이 매주 거의 그대로라 카드 내용이 반복되던 문제를 막기 위해,
             # 아직 한 번도 보여준 적 없는 특허를 우선 선별해 Gemini에 넘긴다.
             unseen_count_before = sum(1 for p in patents if _norm(p.get("google_patent_url") or "") not in {_norm(u) for u in patent_seen_urls})
             patents = _filter_unseen_patents(patents, patent_seen_urls)
             print(f"특허 후보 중 미노출 {unseen_count_before}건 확인, Gemini 분석 대상 {len(patents)}건으로 압축")
-            patent_trends, patent_seen_urls = generate_patent_trends(client, patents, patent_seen_urls)
+            patent_trends, patent_seen_urls = generate_patent_trends(client, patents, patent_seen_urls, patent_query_error)
         else:
             patent_trends = None
     except Exception as exc:  # noqa: BLE001
