@@ -90,11 +90,11 @@
 
 **판정: 완료**
 
-- `.github/workflows/daily_update.yml`: 매일 KST 09:10 자동 실행(cron) + 수동 실행(`workflow_dispatch`, 특허 강제 갱신 옵션 포함) → `update_dashboard.py` 실행 → `data.json`을 자동 커밋/푸시.
+- `.github/workflows/daily_update.yml`: 매일 KST 10:30 자동 실행(cron) + 수동 실행(`workflow_dispatch`, 특허 강제 갱신 옵션 포함) → `update_dashboard.py` 실행 → `data.json`을 자동 커밋/푸시.
 - `.github/workflows/deploy_pages.yml`: `master` 변경 또는 위 워크플로우 완료 시 GitHub Pages로 자동 배포.
 - 모든 데이터 변경 이력이 git 커밋으로 남아 **버전관리가 자동으로 지속**됩니다(원 업무의 "지속가능한 버전 관리 어려움" 문제를 직접 해결).
 - **일일 데이터 자동 갱신은 사람 승인 없이 바로 반영되도록 의도적으로 설계**되어 있습니다 — 매일 발생하는 반복 갱신까지 사람이 매번 승인해야 한다면 애초에 자동화를 도입한 목적(수작업 제거)이 퇴색되기 때문입니다. 대신 **코드/기능 변경**은 사람 리뷰 절차를 거칩니다(아래 2장 "사람 승인" 참고).
-- **추가 개선(API 중복 소비 방지)**: 스케줄(매일 09:10)과 수동 실행(`workflow_dispatch`)이 같은 날 겹치면 무료 Gemini 할당량을 이중으로 소비하게 되는 문제가 실제로 있었습니다. `data.json`의 `generatedAt` 날짜가 오늘과 같으면(수동/스케줄 어느 쪽으로 갱신했든) API 호출 없이 즉시 종료하도록 개선했습니다. 그래도 강제로 재실행해야 할 때는 `force_full_refresh` 옵션으로 이 스킵을 우회할 수 있습니다.
+- **추가 개선(API 중복 소비 방지)**: 스케줄(매일 10:30)과 수동 실행(`workflow_dispatch`)이 같은 날 겠치면 무료 Gemini 할당량을 이중으로 소비하게 되는 문제가 실제로 있었습니다. `data.json`의 `generatedAt` 날짜가 오늘과 같으면(수동/스케줄 어느 쪽으로 갱신했든) API 호출 없이 즉시 종료하도록 개선했습니다. 그래도 강제로 재실행해야 할 때는 `force_full_refresh` 옵션으로 이 스킵을 우회할 수 있습니다.
 
 ### 1-10. 배터리 벤치마킹 포인트 (계획에 없던 추가 고도화 사례)
 
@@ -112,7 +112,7 @@
 **판정: 완료**
 
 - **실측 확인된 장애**: China 뉴스 번역이 간헐적으로 실패해 원문 영어가 노출되는 문제를 진단 로그로 추적한 결과, 원인이 할당량 초과나 JSON 잘림이 아니라 `503 UNAVAILABLE`(Gemini 서버 일시적 과부하) 오류였음을 실제 로그로 확인했습니다.
-- `generate_content_with_retry()`: 응답 오류 메시지에 `503`/`UNAVAILABLE`/`high demand` 등 일시적 장애 신호가 있을 때만 30초 대기 후 1회 재시도하도록 공용 헬퍼를 만들어 Gemini를 호출하는 9개 지점(신차/국내뉴스/China뉴스/두 브리핑/특허트렌드/벤치마킹/스펙보강) 전체에 적용했습니다. 할당량 초과(429) 등 재시도해도 소용없는 오류는 즉시 실패 처리해 기존 fallback이 처리하도록 두어, 오류 상황을 악화시키지 않습니다.
+- `generate_content_with_retry()`: 응답 오류 메시지에 `503`/`UNAVAILABLE`/`high demand` 등 일시적 장애 신호가 있을 때만 60초 대기 후 최대 2회 재시도(총 3회 시도)하도록 공용 헬퍼를 만들어 Gemini를 호출하는 9개 지점(신차/국내뉴스/China뉴스/두 브리핑/특허트렌드/벤치마킹/스펙보강) 전체에 적용했습니다 (원래 30초/1회였다가, 503이 며칠씨 반복되는 것이 실측되어 강화·따라 워크플로우 `timeout-minutes`도 20→25분으로 함께 늘림). 할당량 초과(429) 등 재시도해도 소용없는 오류는 즉시 실패 처리해 기존 fallback이 처리하도록 두어, 오류 상황을 악화시키지 않습니다.
 - 특허 트렌드 카드에서만 적용돼 있던 `thinking_config=ThinkingConfig(thinking_budget=0)`(thinking 모델의 내부 추론 토큰이 출력 예산을 잠식해 응답이 잘리는 문제 예방)을 국내/China 뉴스 브리핑 생성 호출에도 동일하게 적용했습니다.
 - 모든 실패 지점에 `finish_reason`/응답 길이/예외 타입을 남기는 진단 로그를 추가해, 다음에 장애가 재발해도 원인(할당량/서버과부하/파싱오류)을 로그만으로 구분할 수 있게 했습니다.
 - **실측 확인된 장애 2 (카드 정체)**: 글로벌 브리핑 카드가 3일, 벤치마킹 카드가 4일 이상 같은 내용으로 멈춰 있었는데, 워크플로우는 계속 "성공"으로 끝나고 있었습니다. 원인은 Gemini가 구글 뉴스의 매우 긴 리다이렉션 url을 응답에 그대로 베껴 쓰다 한 글자라도 틀리면 url 완전일치 검증에서 항목이 통째로 탈락하고, 카드 전체가 실패 처리되어 어제 값이 유지되던 것이었습니다. 이를 막기 위해 브리핑·벤치마킹·특허동향 카드와 국내·China 뉴스 선별 단계는 url 대신 짧은 정수 `id`(벤치마킹은 `sourceType`+`sourceId`)로만 원본을 참조하게 하고, `source/date/url/title`은 항상 코드가 원본에서 직접 채우도록 바꿨습니다(`_resolve_patent_item`, `_resolve_grounded_benchmarking_item`). 가짜 id와 원문에 없는 `evidenceQuote`는 여전히 코드로 폐기합니다. 실제로 10/7 실행에서는 국내 뉴스 20건의 요약이 전부 제목 반복 문구(Gemini 선별 실패 후 키워드 필터 대체)였고, 선별 단계도 같은 방식(`_resolve_selected_news`)으로 바꿨습니다. 또한 벤치마킹 호출에만 빠져 있던 `thinking_budget=0`/`max_output_tokens`를 다른 호출과 동일하게 적용했습니다.
@@ -137,7 +137,7 @@
 | **출처 표기** | `index.html`(`window.buildSourceCitationText`, 뉴스/특허 카드 🔍 원문 링크), `news.html`(뉴스 목록 원문 링크), `update_dashboard.py`(`google_patent_url` 실제 BigQuery 조회값) | 뉴스·특허 항목은 실제 원문 URL을 보존해 링크 제공. **신차 스펙 데이터는 출처 표기 자체가 없음**(1-5 참고). |
 | **교차 검증** | `apply_teardown_verified_cell_makers`, `cross_check_cell_maker_via_news`/`apply_news_cross_checked_cell_makers`(`update_dashboard.py`), `_resolve_patent_item`(특허 id 역참조 + evidenceQuote 원문 대조), `_resolve_grounded_benchmarking_item`(벤치마킹 포인트 sourceType/sourceId 역참조 + evidenceQuote 원문 대조, 2026-09-18 추가·2026-10-08 id 기반으로 개편) | cellMaker 필드·특허 URL·벤치마킹 포인트 항목에 한정된 실제 코드 레벨 검증. 신차의 다른 스펙 필드(배터리 용량, 출력 등)에는 교차검증 로직 없음. |
 | **Fallback(대체 로직)** | `generate_vehicles`/`generate_news`/`generate_china_news`/`generate_patent_trends`/`backfill_tier1_specs`(모두 try/except로 실패 시 빈 값 반환, 기존 데이터 보존), `is_engineering_relevant`(뉴스 선별 실패 시 키워드 기반 최후 안전망), `extract_json`(JSON 파싱 실패 시 정규식 기반 재시도), `merge_china_news`의 `translated` 플래그(번역 실패 시 원문 노출 + 기존 번역 데이터는 덮어쓰지 않음) | 대부분의 Gemini 호출 실패 지점에 "기존 데이터 유지" 원칙의 fallback이 구현되어 있어, 파이프라인 전체가 한 번의 실패로 멈추지 않습니다. |
-| **일시적 오류 자동 재시도** | `generate_content_with_retry()`(`update_dashboard.py`) — Gemini 호출 9개 지점 전체에 적용, `503 UNAVAILABLE` 등 서버 과부하 신호일 때만 30초 후 1회 재시도 | 실측으로 확인된 장애(China 뉴스 번역 실패의 실제 원인이 503 서버 과부하였음)를 계기로 추가. 할당량 초과(429)는 재시도하지 않고 즉시 기존 fallback으로 넘어가 상황을 악화시키지 않음. |
+| **일시적 오류 자동 재시도** | `generate_content_with_retry()`(`update_dashboard.py`) — Gemini 호출 9개 지점 전체에 적용, `503 UNAVAILABLE` 등 서버 과부하 신호일 때만 60초 후 최대 2회 재시도 (10/12~10/15 503이 여러 날 반복되는 것이 실측되어 30초/1회에서 강화, 스케줄도 실제 실행이 몰리는 KST 오후 1~3시를 피해 10:30로 당김) | 실측으로 확인된 장애(China 뉴스 번역 실패의 실제 원인이 503 서버 과부하였음)를 계기로 추가. 할당량 초과(429)는 재시도하지 않고 즉시 기존 fallback으로 넘어가 상황을 악화시키지 않음. |
 | **정체 감지·알림** | `update_dashboard.py`의 `_record_status`/`_build_status`(항목별 `status` 기록), `check_health.py` + `.github/workflows/health_check.yml`(정체 시 GitHub Issue 알림), `stale-badge.js`(화면 "마지막 갱신" 배지) | 단계 실패 시 어제 데이터를 유지하는 fallback이 오히려 정체를 숨기던 문제(1-11, 1-12)를 보완. 알림·표시만 하며 자동 수정/재실행은 하지 않음. |
 | **사람 승인/개입 게이트** | (1) 코드/기능 변경 배포 워크플로우: 개발 중 모든 변경사항은 사람이 로컬에서 직접 확인한 뒤 명시적으로 승인("푸시하세요")해야만 `git push`가 실행되는 개발 프로세스로 운영됨 (2) `daily_update.yml`의 `force_patent_refresh`/`force_full_refresh` 수동 체크박스(BigQuery 쿼리 남용 및 API 중복 소비 방지) (3) `build_teardown_data.py`/`parse_cell_report_pdf.py`의 로컬 전용 실행 + 수동 `git push` 요구 | **코드/기능 변경은 사람 검토를 거치는 개발 프로세스가 확립되어 있습니다.** 반면 매일 반복되는 `data.json` 데이터 갱신(뉴스/차량/특허 텍스트 생성)은 자동 커밋되는데, 이는 의도적 설계입니다 — 매일 반복되는 갱신까지 사람이 승인해야 한다면 자동화 도입 목적(수작업 제거) 자체가 퇴색됩니다. |
 

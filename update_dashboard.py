@@ -692,14 +692,15 @@ def build_china_news_briefing_prompt(news_items: list) -> str:
 """
 
 
-def generate_content_with_retry(client: "genai.Client", max_attempts: int = 2, retry_delay_seconds: float = 30.0, **kwargs):
+def generate_content_with_retry(client: "genai.Client", max_attempts: int = 3, retry_delay_seconds: float = 60.0, **kwargs):
     """client.models.generate_content()을 그대로 호출하되, Gemini 서버가 일시적으로 과부하를 야기할 때
     나오는 일시적(transient) 오류(예: '503 UNAVAILABLE - This model is currently experiencing high
     demand')를 짧은 대기 후 자동으로 재시도한다. 실측 확인된 사례(China 뉴스 번역 실패 원인이 할당량/
     JSON 잘림이 아니라 이 503 오류였던 것)를 계기로 추가되었다. 할당량 초과(429) 등 일시적이
     아닌 오류는 재시도해도 어차피 같은 결과가 나올 가능성이 높아 바로 남기고(fail-fast), 각 호출부의
-    기존 try/except fallback이 처리하도록 둔다. 기본값은 30초 대기 후 1회만 재시도(총 2회 시도)로,
-    불필요한 반복 호출을 최소화한다."""
+    기존 try/except fallback이 처리하도록 둔다. 기본값은 60초 대기 후 최대 2회 재시도(총 3회 시도)로,
+    30초/1회 설정이 며칠 연속 503이 반복되는 상황에서 부족한 것이 실측되어 늘렸다(워크플로우
+    timeout-minutes도 함께 늘려 여러 호출이 동시에 재시도에 걸려도 중간에 강제 종료되지 않게 한다)."""
     transient_markers = ("503", "UNAVAILABLE", "overloaded", "high demand", "internal error", "500")
     last_exc = None
     for attempt in range(1, max_attempts + 1):

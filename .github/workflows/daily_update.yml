@@ -2,10 +2,12 @@ name: Daily EV Dashboard Auto Update
 
 on:
   schedule:
-    # 매일 KST 오전 9시 10분 (UTC 00:10) 자동 실행
-    # 주의: GitHub Actions는 매 정시(0분)에 예약된 워크플로우가 몰려 지연되는 경우가 많아
-    # 정시(0분)를 피해 10분으로 오프셋을 두어 실행 지연 가능성을 낮춥니다.
-    - cron: '10 0 * * *'
+    # 매일 KST 오전 10시 30분 (UTC 01:30) 자동 실행.
+    # 기존 KST 09:10 설정은 GitHub Actions 스케줄 지연으로 실제로는 거의 매일 KST 오후 1~3시에
+    # 실행되어, Gemini API가 반복적으로 503(서버 과부하)을 반환하는 시간대와 겹쳤다. 10:30으로
+    # 당겨 실제 실행 시간대를 오전~점심 쪽으로 옮겨 그 혼잡 구간을 피해본다(절대적 보장은 아님).
+    # 정시(0분)를 피해 30분으로 오프셋을 두어 실행 지연 가능성을 낮춥니다.
+    - cron: '30 1 * * *'
   workflow_dispatch: # Actions 탭에서 수동 실행 버튼 활성화
     inputs:
       force_patent_refresh:
@@ -25,7 +27,9 @@ permissions:
 jobs:
   update-data:
     runs-on: ubuntu-latest
-    timeout-minutes: 20  # RSS 수집량 증가로 실행 시간이 길어질 수 있어, 무한 행 방지용 안전장치
+    # Gemini 503 재시도 설정(60초 대기 x 최대 2회)을 늘리면서, 여러 호출이 동시에 재시도에 걸릴 때
+    # 기존 20분으로는 중간에 강제 종료될 위험이 있어 25분으로 늘렸다 (RSS 수집량 증가분 포함 안전장치).
+    timeout-minutes: 25
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
