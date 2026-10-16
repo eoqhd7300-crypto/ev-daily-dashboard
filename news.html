@@ -188,7 +188,6 @@
         // rendered anymore (it used to flash foreign/Chinese placeholder articles briefly before
         // being replaced by real data on every refresh) - only actual collected news is shown.
         // URL의 ?tab=china 파라미터로 진입하면(메인 페이지 China 카드의 "전체 뉴스 보기" 링크) 중국기사 탭이
-                    dashboardStatus = (data.status && typeof data.status === 'object') ? data.status : {};
         // 기본 선택된다.
         window.addEventListener('DOMContentLoaded', async () => {
             try {
@@ -197,6 +196,7 @@
                     const data = await res.json();
                     domesticNewsData = Array.isArray(data.news) ? data.news : [];
                     chinaNewsDataAll = Array.isArray(data.chinaNews) ? data.chinaNews : [];
+                    dashboardStatus = (data.status && typeof data.status === 'object') ? data.status : {};
                 }
             } catch (err) {
                 console.warn('[EV News] data.json을 불러오지 못했습니다.', err);
