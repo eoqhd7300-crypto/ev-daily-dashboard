@@ -418,6 +418,10 @@ def fetch_federal_register_items(term: str, max_items: int = 10) -> list:
         url_ = (doc.get("html_url") or "").strip()
         date_str = (doc.get("publication_date") or "").strip()
         abstract = _strip_html(doc.get("abstract") or "")
+        # 일부 규칙(Rule)의 abstract는 수천 자에 달해 프롬프트가 과도하게 커질 수 있어 안전하게 자른다
+        # (지금까지 실측된 값은 수백 자 수준이지만, 드물게 매우 긴 규칙 문서가 섞일 가능성에 대비).
+        if len(abstract) > 600:
+            abstract = abstract[:600] + "..."
         agencies = ", ".join(a.get("name", "") for a in (doc.get("agencies") or []) if a.get("name"))
         if not title or not url_ or not date_str:
             continue
@@ -2040,6 +2044,21 @@ title/url/date/region은 작성하지 마세요 (id로만 참조하며, 포함�
 """
 
 
+def should_refresh_regulation_radar(now_kst: datetime, last_success_at: str | None = None) -> bool:
+    """규제·정책 레이더는 법령/정책이 매일 바뀌지 않으므로 Gemini 호출을 3일 주기로 아낀다.
+    FORCE_FULL_REFRESH=true(수동 강제 실행)면 주기와 무관하게 즉시 갱신하고, 마지막 성공 이력이
+    없거나(최초 실행) 파싱에 실패해도 즉시 갱신한다."""
+    if os.environ.get("FORCE_FULL_REFRESH", "").strip().lower() == "true":
+        return True
+    if not last_success_at:
+        return True
+    try:
+        last_dt = datetime.fromisoformat(last_success_at)
+    except (TypeError, ValueError):
+        return True
+    return (now_kst - last_dt).total_seconds() >= 3 * 24 * 3600
+
+
 def generate_regulation_radar(client: "genai.Client", raw_items: list) -> list | None:
     """원본 규제·정책 후보 목록에서 Gemini가 실제로 관련 있는 항목만 선별·요약한다 (id 기반 그라운딩,
     region/url/source/date는 코드가 원본에서 직접 채움). 실패 시 None을 반환하며, 호출부에서는 어제
@@ -2849,10 +2868,17 @@ def main() -> None:
 
     # 글로벌 배터리 규제·정책 레이더(신규가치/리스크/컴플라이언스): 다른 무료 파이프라인과 완전히 독립적이므로,
     # 여기서 오류가 나더라도 위 vehicles/news/china_news/patent 결과 저장을 막지 않도록 격리한다.
+    # 규제·정책은 매일 바뀌지 않으므로 Gemini 호출을 3일 주기로만 수행한다(should_refresh_regulation_radar).
+    regulation_prev_status = (existing.get("status") or {}).get("regulationRadar") or {}
+    regulation_last_success_at = regulation_prev_status.get("lastSuccessAt")
     try:
-        regulation_raw = collect_regulation_raw()
-        print(f"규제·정책 레이더 원본 수집 완료: 후보 {len(regulation_raw)}건")
-        regulation_radar = generate_regulation_radar(client, regulation_raw)
+        if should_refresh_regulation_radar(now_kst, regulation_last_success_at):
+            regulation_raw = collect_regulation_raw()
+            print(f"규제·정책 레이더 원본 수집 완료: 후보 {len(regulation_raw)}건")
+            regulation_radar = generate_regulation_radar(client, regulation_raw)
+        else:
+            print("규제·정책 레이더: 마지막 갱신이 3일 이내라 이번 실행은 건너뜁니다 (Gemini 호출 절약).")
+            regulation_radar = None
     except Exception as exc:  # noqa: BLE001
         print(f"규제·정책 레이더 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
         _record_status("regulationRadar", "failed", _short_exc(exc))
