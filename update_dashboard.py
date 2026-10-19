@@ -440,8 +440,8 @@ def fetch_federal_register_items(term: str, max_items: int = 10) -> list:
 
 
 def _is_regulation_relevant(item: dict) -> bool:
-    """배터리/전기차와 무관한 규제 뉴스(예: 항공기 정비 지침, 일반 시장 전망 기사)를 걸러내는
-    1차 키워드 필터. Gemini 선별 전에 노이즈를 줄인다."""
+    """배터리/전기차와 무관한 규제 뉴스(예: 항공기 정비 지침, 일반 시장 전망 기사), 그리고 휴대폰·노트북 등 소비자
+    가전 배터리 규제(차량 맥락이 없는 건)를 걸러내는 1차 키워드 필터. Gemini 선별 전에 노이즈를 줄인다."""
     text = f"{item.get('title', '')} {item.get('description', '')}".lower()
     battery_kw = [
         "battery", "batteries", "배터리", "이차전지", "전지", "电池", "锂电",
@@ -451,6 +451,20 @@ def _is_regulation_relevant(item: dict) -> bool:
         return False
     if item.get("sourceKind") == "official":
         return True  # Federal Register 검색어 자체가 이미 배터리 규제 범위로 한정됨
+
+    # "전기차/xEV" 초점이 아니라 휴대폰·노트북 등 소비자 가전 배터리 규제만 다루는 기사(예: "EU 배터리
+    # 탈착화 의무화, 갤럭시·아이폰에 영향")는 차량 맥락 키워드가 함께 없으면 제외한다.
+    consumer_electronics_kw = [
+        "smartphone", "스마트폰", "휴대폰", "갤럭시", "galaxy", "아이폰", "iphone",
+        "노트북", "laptop", "태블릿", "tablet", "가전", "이어폰", "웨어러블", "wearable",
+    ]
+    vehicle_context_kw = [
+        "electric vehicle", "ev", "xev", "전기차", "자동차", "완성차", "vehicle",
+        "차량", "new energy vehicle", "nev", "新能源汽车", "汽车",
+    ]
+    if any(k in text for k in consumer_electronics_kw) and not any(k in text for k in vehicle_context_kw):
+        return False
+
     policy_kw = [
         "regulation", "regulat", "policy", "정책", "법령", "법안", "法规", "政策",
         "tariff", "관세", "세액공제", "credit", "standard", "기준", "标准",
@@ -2005,19 +2019,22 @@ def build_regulation_prompt(raw_items: list) -> str:
     )
     status_options = ", ".join(REGULATION_STATUS_OPTIONS)
     return f"""
-아래는 미국(Federal Register 공식 API)과 EU/중국/한국(뉴스 검색)에서 수집한 "배터리/전기차 관련 규제·정책"
-원본 후보 목록입니다 (id, region, sourceKind, title, date, description 포함). 당신은 배터리 산업
-컴플라이언스 담당자를 위한 규제 레이더 큐레이터입니다.
+아래는 미국(Federal Register 공식 API)과 EU/중국/한국(뉴스 검색)에서 수집한 "전기차(xEV)용 배터리 관련
+규제·정책" 원본 후보 목록입니다 (id, region, sourceKind, title, date, description 포함). 당신은 배터리
+산업 컴플라이언스 담당자를 위한 규제 레이더 큐레이터입니다.
 
 **가장 중요한 규칙: 이 데이터는 컴플라이언스 참고용이므로, description에 실제로 적혀 있지 않은 내용은
 절대 만들어내지 마세요. 당신이 알고 있는 일반 지식(예: "EU 배터리 규정은 2027년부터 시행된다" 같은
 배경지식)을 근거 없이 추가하지 마세요. description에 없는 정보는 비워두거나 null로 두세요.**
 
 선별 기준:
-- 포함: 배터리/전기차/이차전지와 직접 관련된 법령·규정·보조금·관세·인증·수출통제·재활용 의무 등
-  실제 "규제·정책" 내용이 있는 항목만 선택하세요.
+- 포함: **전기차(EV/하이브리드/PHEV/EREV 등 xEV)용 배터리**와 직접 관련된 법령·규정·보조금·관세·인증·
+  수출통제·재활용 의무 등 실제 "규제·정책" 내용이 있는 항목만 선택하세요.
 - 제외: 배터리가 단순히 언급만 되고 본질적으로 무관한 규제(예: 항공기 정비, 폭발물 보관 규정),
   구체적 정책 내용 없는 단순 시장 전망/판매 실적 기사는 제외하세요.
+- **중요: 스마트폰·노트북·태블릿 등 소비자 가전(consumer electronics) 배터리에만 해당하는 규제는
+  제외하세요** (예: "EU 배터리 규정의 휴대폰 배터리 탈착화 의무화가 갤럭시/아이폰에 미치는 영향"은
+  전기차와 무관하므로 제외). 같은 법령이라도 차량용 배터리에 적용되는 내용을 다루는 기사만 포함하세요.
 - 같은 사건을 다룬 중복 기사는 가장 정보가 상세한 1건만 남기세요.
 
 각 선택 항목에 아래 필드를 작성하세요 (id는 원본 목록의 정수 id를 그대로 복사, 변형/지어내기 금지):

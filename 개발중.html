@@ -118,7 +118,7 @@
             <div class="mt-5 pt-4 border-t border-slate-100">
                 <p class="text-xs font-semibold text-slate-500 mb-2">📌 데이터 기반 시사점</p>
                 <ul id="insightsList" class="text-xs sm:text-sm text-slate-700 leading-relaxed space-y-1.5 list-disc list-inside"></ul>
-                <p class="text-[11px] text-slate-400 mt-2">위 문장은 Gemini가 아니라 현재 표시된 데이터(발표일 전반부 vs 후반부 평균 비교)를 코드로 직접 계산해 자동 생성한 것입니다 - 표본이 적은 구간은 비교에서 제외됩니다.</p>
+                <p class="text-[11px] text-slate-400 mt-2">위 문장은 AI가 아니라 현재 표시된 데이터(발표일 전반부 vs 후반부 평균 비교)를 코드로 직접 계산해 자동 생성한 것입니다 - 표본이 적은 구간은 비교에서 제외됩니다.</p>
             </div>
         </section>
 
@@ -131,7 +131,7 @@
                 <li>배터리 조성/셀 폼팩터는 전용 필드가 아니라 스펙 텍스트(batterySpec/cellInfo/cellType)에서 키워드로 추출한 값입니다 - 조성은 약 94%(142대 중 8대 미상), 폼팩터는 약 99%(142대 중 1대 미상) 차량에서 분류되며, 나머지는 "미상"으로 표시됩니다.</li>
                 <li>"차량 종류"(BEV/PHEV/EREV 등) 구분은 포함하지 않았습니다 - 이 데이터셋은 신규 전기차 수집용으로 설계되어 있어 96%가 이미 순수 BEV이고 PHEV/HEV 등은 극소수(5대)뿐이라 분석 가치가 낮습니다 (실제 차량 종류가 섞인 데이터는 Teardown Data 페이지의 76대 실측 데이터셋입니다).</li>
                 <li>"QC성능 - 급속충전 시간"은 qcPerformance 텍스트에서 "N분" 패턴을 추출한 값으로(142대 중 141대, 약 99% 추출), 수치가 작을수록 빠른 충전을 의미합니다. 대부분(142대 중 130대)은 SOC 10%→80% 기준이지만 일부(5대)는 15%→80% 또는 30%→80% 등 다른 구간 기준이라 완전히 동일한 조건의 비교는 아닙니다.</li>
-                <li>모든 스펙 값은 Gemini가 생성한 데이터를 텍스트 패턴으로 추출한 것으로, 원본 발표 자료의 정확한 수치와 다를 수 있습니다.</li>
+                <li>모든 스펙 값은 AI가 생성한 데이터를 텍스트 패턴으로 추출한 것으로, 원본 발표 자료의 정확한 수치와 다를 수 있습니다.</li>
             </ul>
         </section>
         </div>
@@ -150,7 +150,7 @@
 
             <!-- 데이터 출처 안내 - JS가 라이브/프로토타입 여부에 따라 내용을 갱신함 -->
             <div id="regulationSourceBanner" class="mb-5 px-3 py-2.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs sm:text-sm leading-relaxed">
-                ⚠️ 이 탭은 <strong>Gemini 자동 수집이 아닌 정적 큐레이션 프로토타입</strong> 데이터입니다. 시행일·상태는 일반적으로 알려진 입법 일정 기준의 근사치이며, 실제 공식 자료로 재확인하기 전까지는 참고용으로만 활용해 주세요. 검증이 완료되면 Gemini 기반 자동 갱신으로 전환할 예정입니다.
+                ⚠️ 이 탭은 <strong>AI 자동 수집이 아닌 정적 큐레이션 프로토타입</strong> 데이터입니다. 시행일·상태는 일반적으로 알려진 입법 일정 기준의 근사치이며, 실제 공식 자료로 재확인하기 전까지는 참고용으로만 활용해 주세요. 검증이 완료되면 AI 기반 자동 갱신으로 전환할 예정입니다.
             </div>
 
             <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-6">
@@ -616,10 +616,10 @@
             if (!bannerEl) return;
             if (liveRegulationItems && liveRegulationItems.length > 0) {
                 bannerEl.className = 'mb-5 px-3 py-2.5 bg-sky-50 border border-sky-200 rounded-xl text-sky-800 text-xs sm:text-sm leading-relaxed';
-                bannerEl.innerHTML = '✅ 이 데이터는 <strong>미국 Federal Register 공식 API</strong>와 <strong>EU·중국·한국 뉴스 RSS</strong>에서 수집한 원문을 Gemini가 선별·요약한 것입니다(id 기반 그라운딩 - 원문에 없는 내용은 추가하지 않도록 제약). 다만 Gemini 요약 과정에서 오류가 있을 수 있어, 중요한 의사결정 전에는 아래 카드의 원문 링크를 직접 확인해 주세요.';
+                bannerEl.innerHTML = '✅ 이 데이터는 <strong>미국 Federal Register 공식 API</strong>와 <strong>EU·중국·한국 뉴스 RSS</strong>에서 수집한 원문을 AI가 선별·요약한 것입니다(id 기반 그라운딩 - 원문에 없는 내용은 추가하지 않도록 제약). 다만 AI 요약 과정에서 오류가 있을 수 있어, 중요한 의사결정 전에는 아래 카드의 원문 링크를 직접 확인해 주세요.';
             } else {
                 bannerEl.className = 'mb-5 px-3 py-2.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs sm:text-sm leading-relaxed';
-                bannerEl.innerHTML = '⚠️ 이 탭은 <strong>Gemini 자동 수집이 아닌 정적 큐레이션 프로토타입</strong> 데이터입니다(백엔드 파이프라인이 아직 실행되지 않았거나 결과가 없습니다). 시행일·상태는 일반적으로 알려진 입법 일정 기준의 근사치이며, 실제 공식 자료로 재확인하기 전까지는 참고용으로만 활용해 주세요.';
+                bannerEl.innerHTML = '⚠️ 이 탭은 <strong>AI 자동 수집이 아닌 정적 큐레이션 프로토타입</strong> 데이터입니다(백엔드 파이프라인이 아직 실행되지 않았거나 결과가 없습니다). 시행일·상태는 일반적으로 알려진 입법 일정 기준의 근사치이며, 실제 공식 자료로 재확인하기 전까지는 참고용으로만 활용해 주세요.';
             }
         }
 
