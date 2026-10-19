@@ -22,7 +22,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from difflib import SequenceMatcher
 from email.utils import parsedate_to_datetime
-from urllib.parse import quote_plus
+from urllib.parse import quote_plus, urlencode
 
 from google import genai
 from google.genai import types
@@ -85,6 +85,9 @@ STATUS_STALE_AFTER_HOURS = {
     "chinaNewsBriefing": 36,
     "benchmarkingPoints": 36,
     "patentTrends": 9 * 24,
+    # 규제·정책 뉴스는 다른 카드처럼 매일 새 건이 나오는 영역이 아니라(입법은 수주·수개월 단위로 진행) 임계값을 느슨하게(14일) 잡아
+    # 정상적인 날에도 "정체" 오택이 나지 않도록 한다.
+    "regulationRadar": 14 * 24,
 }
 # 이번 실행에서 각 항목이 어떻게 끝났는지 (state: ok | degraded | failed). 시도하지 않은 항목(예: 월요일이
 # 아닐 때의 특허동향)은 여기에 없고, _build_status()가 이전 상태를 그대로 유지한다.
@@ -346,6 +349,141 @@ def _is_excluded_source(source: str, source_domain: str = "") -> bool:
     (EXCLUDED_SOURCE_NAMES) 매칭뿐 아니라 도메인/이름에 남은 sports./star. 패턴도 함께 검사한다."""
     combined = f"{source} {source_domain}".lower()
     return source in EXCLUDED_SOURCE_NAMES or bool(re.search(r"(?:^|[./])(sports|star)\.", combined))
+
+
+# ---------------------------------------------------------------------------------------------
+# 글로벌 배터리 규제·정책 레이더 (신규가치/리스크/컴플라이언스 관점)
+# 미국은 Federal Register 공식 API(무료, 키 불필요, 정부 원문 그라운딩)를 1차 소스로 쓰고, EU/중국/한국은
+# 이에 준하는 실시간 공개 API/RSS가 마땅치 않아 Google News RSS(지역·언어별 쿼리)로 수집한다.
+# 두 경우 모두 Gemini는 "주어진 원문 후보 중에서 실제로 관련 있는 것만 선별 + 한글 요약"만 수행하고,
+# region/url/source/date는 항상 코드가 원본에서 직접 채운다 (컴플라이언스 데이터는 사실 오류 비용이
+# 크므로, 국내/China 뉴스 브리핑과 동일한 id 기반 그라운딩 원칙을 그대로 적용한다).
+MAX_REGULATION_ITEMS = 20
+REGULATION_POOL_SIZE = 60
+REGULATION_STATUS_OPTIONS = ["시행중", "시행예정", "단계적 시행", "단계적 축소", "매년 개정", "논의중"]
+REGULATION_IMPACT_OPTIONS = ["상", "중", "하"]
+
+# 미국: Federal Register 공식 검색 API에 넘길 쿼리어 (배터리/전기차 규제 범위로 한정).
+FEDERAL_REGISTER_QUERIES = [
+    "electric vehicle battery",
+    "lithium-ion battery",
+    "battery critical minerals",
+    "clean vehicle tax credit battery",
+    "battery recycling",
+]
+
+# EU/중국/한국: 공식 실시간 피드가 마땅치 않아 Google News RSS를 지역·언어별로 조회한다.
+# 각 튜플은 (검색어, hl, gl, ceid) - fetch_google_news_rss의 로케일 파라미터와 동일한 의미.
+REGULATION_NEWS_QUERIES = {
+    "EU": [
+        ("EU battery regulation", "en", "US", "US:en"),
+        ("EU battery passport critical raw materials", "en", "US", "US:en"),
+    ],
+    "CN": [
+        ("动力电池 政策 法规", "zh-CN", "CN", "CN:zh-Hans"),
+        ("新能源汽车 补贴 政策", "zh-CN", "CN", "CN:zh-Hans"),
+    ],
+    "KR": [
+        ("배터리 규제 정책", "ko", "KR", "KR:ko"),
+        ("전기차 보조금 배터리 인증", "ko", "KR", "KR:ko"),
+    ],
+}
+
+
+def fetch_federal_register_items(term: str, max_items: int = 10) -> list:
+    """미국 Federal Register 공식 검색 API(federalregister.gov, 무료/키 불필요)에서 규칙·고시를 검색한다.
+    정부가 직접 제공하는 구조화된 원문이므로 뉴스 매체를 거치지 않은 1차 소스로 취급한다."""
+    query = urlencode(
+        [
+            ("conditions[term]", term),
+            ("conditions[type][]", "RULE"),
+            ("conditions[type][]", "PRORULE"),
+            ("conditions[type][]", "NOTICE"),
+            ("order", "newest"),
+            ("per_page", str(max_items)),
+        ]
+    )
+    url = f"https://www.federalregister.gov/api/v1/documents.json?{query}"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            payload = json.loads(resp.read())
+    except Exception as exc:  # noqa: BLE001
+        print(f"Federal Register API 조회 실패 ({term}): {exc}")
+        return []
+
+    items = []
+    for doc in (payload.get("results") or [])[:max_items]:
+        title = (doc.get("title") or "").strip()
+        url_ = (doc.get("html_url") or "").strip()
+        date_str = (doc.get("publication_date") or "").strip()
+        abstract = _strip_html(doc.get("abstract") or "")
+        agencies = ", ".join(a.get("name", "") for a in (doc.get("agencies") or []) if a.get("name"))
+        if not title or not url_ or not date_str:
+            continue
+        items.append(
+            {
+                "title": title,
+                "url": url_,
+                "date": date_str,
+                "source": "Federal Register" + (f" ({agencies})" if agencies else ""),
+                "description": abstract,
+                "region": "US",
+                "sourceKind": "official",
+            }
+        )
+    return items
+
+
+def _is_regulation_relevant(item: dict) -> bool:
+    """배터리/전기차와 무관한 규제 뉴스(예: 항공기 정비 지침, 일반 시장 전망 기사)를 걸러내는
+    1차 키워드 필터. Gemini 선별 전에 노이즈를 줄인다."""
+    text = f"{item.get('title', '')} {item.get('description', '')}".lower()
+    battery_kw = [
+        "battery", "batteries", "배터리", "이차전지", "전지", "电池", "锂电",
+        "electric vehicle", "전기차", "新能源", "lithium", "리튬",
+    ]
+    if not any(k in text for k in battery_kw):
+        return False
+    if item.get("sourceKind") == "official":
+        return True  # Federal Register 검색어 자체가 이미 배터리 규제 범위로 한정됨
+    policy_kw = [
+        "regulation", "regulat", "policy", "정책", "법령", "법안", "法规", "政策",
+        "tariff", "관세", "세액공제", "credit", "standard", "기준", "标准",
+        "subsidy", "보조금", "补贴", "certif", "인증", "export control", "수출통제",
+        "recall", "recycl", "재활용", "回收", "compliance", "의무화",
+    ]
+    return any(k in text for k in policy_kw)
+
+
+def collect_regulation_raw(pool_size: int = REGULATION_POOL_SIZE) -> list:
+    """미국(Federal Register 공식 API)과 EU/중국/한국(Google News RSS)에서 배터리·전기차 규제·정책
+    원본 후보를 모은다. region(EU/US/CN/KR)과 sourceKind(official/news)는 Gemini에게 맡기지 않고
+    코드가 직접 태깅한다 (오분류를 원천 차단)."""
+    collected = []
+    for term in FEDERAL_REGISTER_QUERIES:
+        collected.extend(fetch_federal_register_items(term, max_items=10))
+
+    for region, queries in REGULATION_NEWS_QUERIES.items():
+        for query, hl, gl, ceid in queries:
+            for item in fetch_google_news_rss(query, max_items=10, hl=hl, gl=gl, ceid=ceid):
+                tagged = dict(item)
+                tagged["region"] = region
+                tagged["sourceKind"] = "news"
+                collected.append(tagged)
+
+    relevant = [it for it in collected if _is_regulation_relevant(it)]
+
+    seen = set()
+    deduped = []
+    for item in relevant:
+        key = _norm(item["url"])
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        deduped.append(item)
+    deduped.sort(key=lambda x: x["date"], reverse=True)
+    return dedup_similar_titles(deduped)[:pool_size]
 
 
 # "OO년 O월 배터리 사용량/점유율 순위" 류의 SNE Research 시장리포트는 거의 매달 수십개 매체가
@@ -755,9 +893,11 @@ def _strip_html(text: str) -> str:
     return html.unescape(re.sub(r"\s+", " ", text)).strip()
 
 
-def fetch_google_news_rss(query: str, max_items: int = 15) -> list:
-    """Google News RSS(무료, API 키 불필요)에서 실제 기사 목록을 가져온다."""
-    url = f"https://news.google.com/rss/search?q={quote_plus(query)}&hl=ko&gl=KR&ceid=KR:ko"
+def fetch_google_news_rss(query: str, max_items: int = 15, hl: str = "ko", gl: str = "KR", ceid: str = "KR:ko") -> list:
+    """Google News RSS(무료, API 키 불필요)에서 실제 기사 목록을 가져온다. hl/gl/ceid로 로케일을 바꿀 수
+    있다(기본값은 한국어/한국 - 기존 호출부와 동일하게 동작). 글로벌 배터리 규제 레이더가 EU/중국 지역
+    뉴스를 각 지역 언어로 조회할 때 이 파라미터를 사용한다."""
+    url = f"https://news.google.com/rss/search?q={quote_plus(query)}&hl={hl}&gl={gl}&ceid={ceid}"
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     try:
         with urllib.request.urlopen(req, timeout=15) as resp:
@@ -960,6 +1100,7 @@ def load_existing_data() -> dict:
         "vehicles": [], "news": [], "fx": None, "newsBriefing": None,
         "chinaNews": [], "chinaNewsBriefing": None, "patentTrends": None,
         "benchmarkingPoints": None, "patentSeenUrls": [], "newsCandidateCount": None, "status": {},
+        "regulationRadar": [],
     }
     if not os.path.exists(DATA_PATH):
         return dict(empty)
@@ -978,6 +1119,7 @@ def load_existing_data() -> dict:
             "patentSeenUrls": data.get("patentSeenUrls") or [],
             "newsCandidateCount": data.get("newsCandidateCount"),
             "status": data.get("status") or {},
+            "regulationRadar": data.get("regulationRadar") or [],
         }
     except Exception:  # noqa: BLE001 - 손상된 파일이면 빈 값으로 시작
         return dict(empty)
@@ -1837,6 +1979,141 @@ def generate_china_news_briefing(client: "genai.Client", news_items: list) -> di
         return _fail_status("chinaNewsBriefing", _short_exc(exc))
 
 
+def build_regulation_prompt(raw_items: list) -> str:
+    # url(뉴스 매체 링크)과 region을 Gemini에게 다시 쓰게 하면 오탈자/오분류 위험이 있으므로, id로만
+    # 참조하게 하고 title/url/source/date/region은 코드가 원본에서 직접 채운다 (다른 브리핑과 동일한
+    # id 기반 그라운딩 원칙). 컴플라이언스 데이터는 사실 오류 비용이 커서 "원문에 없는 내용 생성 금지"를
+    # 특히 강하게 명시한다.
+    items_json = json.dumps(
+        [
+            {
+                "id": i,
+                "region": r.get("region", ""),
+                "sourceKind": r.get("sourceKind", ""),
+                "title": r.get("title", ""),
+                "date": r.get("date", ""),
+                "description": r.get("description", ""),
+            }
+            for i, r in enumerate(raw_items)
+        ],
+        ensure_ascii=False,
+        indent=2,
+    )
+    status_options = ", ".join(REGULATION_STATUS_OPTIONS)
+    return f"""
+아래는 미국(Federal Register 공식 API)과 EU/중국/한국(뉴스 검색)에서 수집한 "배터리/전기차 관련 규제·정책"
+원본 후보 목록입니다 (id, region, sourceKind, title, date, description 포함). 당신은 배터리 산업
+컴플라이언스 담당자를 위한 규제 레이더 큐레이터입니다.
+
+**가장 중요한 규칙: 이 데이터는 컴플라이언스 참고용이므로, description에 실제로 적혀 있지 않은 내용은
+절대 만들어내지 마세요. 당신이 알고 있는 일반 지식(예: "EU 배터리 규정은 2027년부터 시행된다" 같은
+배경지식)을 근거 없이 추가하지 마세요. description에 없는 정보는 비워두거나 null로 두세요.**
+
+선별 기준:
+- 포함: 배터리/전기차/이차전지와 직접 관련된 법령·규정·보조금·관세·인증·수출통제·재활용 의무 등
+  실제 "규제·정책" 내용이 있는 항목만 선택하세요.
+- 제외: 배터리가 단순히 언급만 되고 본질적으로 무관한 규제(예: 항공기 정비, 폭발물 보관 규정),
+  구체적 정책 내용 없는 단순 시장 전망/판매 실적 기사는 제외하세요.
+- 같은 사건을 다룬 중복 기사는 가장 정보가 상세한 1건만 남기세요.
+
+각 선택 항목에 아래 필드를 작성하세요 (id는 원본 목록의 정수 id를 그대로 복사, 변형/지어내기 금지):
+- "status": 반드시 다음 중 하나 - {status_options}
+  (description 내용 기준으로 가장 가까운 상태를 고르세요. 판단 근거가 불충분하면 "논의중"으로 두세요.)
+- "effectiveDate": description에 시행일/발효일이 "명시적으로" 적혀 있는 경우만 "YYYY-MM" 형식으로 작성.
+  명시되어 있지 않으면 반드시 null (날짜 추측 금지).
+- "category": 2~8자의 짧은 카테고리명 (예: "보조금/세제", "공급망/통상", "인증/안전", "환경/재활용", "수출입/통상" 등)
+- "impact": 배터리 업계에 대한 영향도 - "상"/"중"/"하" 중 하나
+- "summary": description 내용만 근거로 한 한글 요약 1~2문장 (추측 금지, 원문에 없는 수치·날짜 언급 금지)
+
+title/url/date/region은 작성하지 마세요 (id로만 참조하며, 포함해도 무시됩니다).
+
+원본 후보 목록:
+{items_json}
+
+최대 {MAX_REGULATION_ITEMS}건까지 선택하세요. 기준을 통과하는 항목이 적으면 그보다 적은 건수만 반환해도 됩니다.
+마크다운 코드블록이나 설명 문장 없이 순수 JSON 배열만 응답하세요.
+
+응답 형식 (배열):
+[
+  {{"id": 0, "status": "...", "effectiveDate": "YYYY-MM 또는 null", "category": "...", "impact": "...", "summary": "..."}}
+]
+"""
+
+
+def generate_regulation_radar(client: "genai.Client", raw_items: list) -> list | None:
+    """원본 규제·정책 후보 목록에서 Gemini가 실제로 관련 있는 항목만 선별·요약한다 (id 기반 그라운딩,
+    region/url/source/date는 코드가 원본에서 직접 채움). 실패 시 None을 반환하며, 호출부에서는 어제
+    버전을 그대로 유지한다."""
+    if not raw_items:
+        return _fail_status("regulationRadar", "수집된 원본 후보 없음")
+    try:
+        response = generate_content_with_retry(
+            client,
+            model=MODEL_NAME,
+            contents=build_regulation_prompt(raw_items),
+            config=types.GenerateContentConfig(
+                thinking_config=types.ThinkingConfig(thinking_budget=0),
+                max_output_tokens=8192,
+            ),
+        )
+        finish_reason = None
+        try:
+            finish_reason = response.candidates[0].finish_reason
+        except Exception:  # noqa: BLE001 - 진단 목적의 부가 정보이므로 실패해도 무시
+            pass
+        response_text = response.text or ""
+        print(f"규제·정책 레이더 응답 수신 완료 (finish_reason={finish_reason}, 응답 길이 {len(response_text)}자)")
+        payload = extract_json(response_text)
+        if not isinstance(payload, list):
+            return _fail_status("regulationRadar", f"응답이 JSON 배열 형식이 아님 (finish_reason={finish_reason})")
+
+        cleaned = []
+        for entry in payload:
+            if not isinstance(entry, dict):
+                continue
+            idx = entry.get("id")
+            if not isinstance(idx, int) or idx < 0 or idx >= len(raw_items):
+                continue
+            summary = entry.get("summary")
+            if not isinstance(summary, str) or not summary.strip():
+                continue
+            src = raw_items[idx]
+            status = entry.get("status") if entry.get("status") in REGULATION_STATUS_OPTIONS else "논의중"
+            impact = entry.get("impact") if entry.get("impact") in REGULATION_IMPACT_OPTIONS else "중"
+            effective_date = entry.get("effectiveDate")
+            if not (isinstance(effective_date, str) and re.fullmatch(r"\d{4}-\d{2}", effective_date)):
+                effective_date = None
+            category = entry.get("category")
+            if not isinstance(category, str) or not category.strip():
+                category = "기타"
+            cleaned.append(
+                {
+                    "id": f"{src.get('region', 'XX')}-{idx}",
+                    "region": src.get("region", ""),
+                    "sourceKind": src.get("sourceKind", "news"),
+                    "title": src.get("title", ""),
+                    "url": src.get("url", ""),
+                    "source": src.get("source", ""),
+                    "date": src.get("date", ""),
+                    "status": status,
+                    "effectiveDate": effective_date,
+                    "category": category,
+                    "impact": impact,
+                    "summary": summary.strip(),
+                }
+            )
+        if not cleaned:
+            return _fail_status("regulationRadar", "유효한 항목 0건(id 검증 실패)")
+        cleaned.sort(key=lambda x: x["date"], reverse=True)
+        cleaned = cleaned[:MAX_REGULATION_ITEMS]
+        print(f"규제·정책 레이더 생성 완료 ({len(cleaned)}건)")
+        _record_status("regulationRadar", "ok")
+        return cleaned
+    except Exception as exc:  # noqa: BLE001 - 실패해도 파이프라인은 계속 진행
+        print(f"규제·정책 레이더 생성 실패, 건너뜁니다: {type(exc).__name__}: {exc}")
+        return _fail_status("regulationRadar", _short_exc(exc))
+
+
 def should_refresh_patent_trends(now_kst: datetime, last_success_at: str | None = None, last_failure_reason: str | None = None) -> bool:
     """특허 데이터는 매일 유의미하게 바뀌지 않고 BigQuery 무료 할당량(월 1TB)도 아껴야 하므로,
     기본은 주 1회(월요일)에만 갱신한다. FORCE_PATENT_REFRESH=true 환경변수가 설정되면(수동 강제 실행)
@@ -2570,6 +2847,19 @@ def main() -> None:
     if patent_trends is None:
         patent_trends = existing.get("patentTrends")
 
+    # 글로벌 배터리 규제·정책 레이더(신규가치/리스크/컴플라이언스): 다른 무료 파이프라인과 완전히 독립적이므로,
+    # 여기서 오류가 나더라도 위 vehicles/news/china_news/patent 결과 저장을 막지 않도록 격리한다.
+    try:
+        regulation_raw = collect_regulation_raw()
+        print(f"규제·정책 레이더 원본 수집 완료: 후보 {len(regulation_raw)}건")
+        regulation_radar = generate_regulation_radar(client, regulation_raw)
+    except Exception as exc:  # noqa: BLE001
+        print(f"규제·정책 레이더 생성 단계에서 예상치 못한 오류, 건너뜁니다: {exc}")
+        _record_status("regulationRadar", "failed", _short_exc(exc))
+        regulation_radar = None
+    if regulation_radar is None:
+        regulation_radar = existing.get("regulationRadar")
+
     if not vehicles and not news:
         print("신규로 생성/수집된 차량/뉴스 데이터가 없어 해당 항목은 건너뛰지만, 환율/China 뉴스 정보는 갱신합니다.")
         output = {
@@ -2584,6 +2874,7 @@ def main() -> None:
             "benchmarkingPoints": existing.get("benchmarkingPoints"),
             "patentSeenUrls": patent_seen_urls,
             "newsCandidateCount": news_candidate_count,
+            "regulationRadar": regulation_radar,
             "status": _build_status(existing.get("status"), existing, now_kst),
         }
         with open(DATA_PATH, "w", encoding="utf-8") as f:
@@ -2645,6 +2936,7 @@ def main() -> None:
         "benchmarkingPoints": benchmarking_points,
         "patentSeenUrls": patent_seen_urls,
         "newsCandidateCount": news_candidate_count,
+        "regulationRadar": regulation_radar,
         "status": _build_status(existing.get("status"), existing, now_kst, vehicles_added),
     }
 

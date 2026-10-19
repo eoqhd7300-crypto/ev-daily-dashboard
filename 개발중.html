@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>스펙 트렌드 (개발중) | Daily EV & 배터리 플랫폼 대시보드</title>
+    <title>신규가치 레이더 (개발중) | Daily EV & 배터리 플랫폼 대시보드</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -58,7 +58,7 @@
                 <a href="teardown.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Teardown Data</a>
                 <a href="news.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">EV News</a>
                 <a href="data-web-source.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Data Source</a>
-                <a href="개발중.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-amber-50 text-amber-700 border border-amber-300 transition">📊 스펙 트렌드 (개발중)</a>
+                <a href="개발중.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-amber-50 text-amber-700 border border-amber-300 transition">🧪 개발중 (스펙 트렌드·규제 레이더)</a>
             </nav>
         </div>
     </header>
@@ -73,7 +73,10 @@
                 개발중 페이지입니다. Home 화면에는 아직 반영되지 않았으며, 이 페이지에서 검증 후 문제가 없으면 Home 카드로 통합할 예정입니다.
             </p>
         </div>
+        <!-- 페이지 상단 탭 전환: 신차 스펙 트렌드 / 글로벌 배터리 규제·정책 레이더 -->
+        <div class="flex items-center gap-1.5 flex-wrap mb-6" id="pageTabs"></div>
 
+        <div id="tabPanelSpecTrend">
         <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
             <div>
                 <h2 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
@@ -131,6 +134,39 @@
                 <li>모든 스펙 값은 Gemini가 생성한 데이터를 텍스트 패턴으로 추출한 것으로, 원본 발표 자료의 정확한 수치와 다를 수 있습니다.</li>
             </ul>
         </section>
+        </div>
+        <!-- /tabPanelSpecTrend -->
+
+        <div id="tabPanelRegulation" class="hidden">
+            <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+                        <span>🌍 글로벌 배터리 규제·정책 레이더</span>
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-0.5">신규가치 / 리스크 / 컴플라이언스 관점에서 EU·미국·중국·한국 4개 권역의 배터리 관련 규제·정책 동향을 타임라인과 카드로 정리합니다.</p>
+                </div>
+                <div id="regulationSummary" class="text-xs text-slate-600 bg-white px-3 py-1.5 rounded-lg border border-slate-200"></div>
+            </div>
+
+            <!-- 데이터 출처 안내 - JS가 라이브/프로토타입 여부에 따라 내용을 갱신함 -->
+            <div id="regulationSourceBanner" class="mb-5 px-3 py-2.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs sm:text-sm leading-relaxed">
+                ⚠️ 이 탭은 <strong>Gemini 자동 수집이 아닌 정적 큐레이션 프로토타입</strong> 데이터입니다. 시행일·상태는 일반적으로 알려진 입법 일정 기준의 근사치이며, 실제 공식 자료로 재확인하기 전까지는 참고용으로만 활용해 주세요. 검증이 완료되면 Gemini 기반 자동 갱신으로 전환할 예정입니다.
+            </div>
+
+            <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-6">
+                <div class="flex items-center gap-1.5 flex-wrap mb-4" id="regionTabs"></div>
+                <div class="relative" style="height: 420px;">
+                    <canvas id="regulationTimelineChart"></canvas>
+                </div>
+                <p id="regulationNote" class="text-[11px] text-slate-400 mt-3 leading-relaxed"></p>
+            </section>
+
+            <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-10">
+                <h3 class="text-sm font-bold text-slate-900 mb-3">규제·정책 상세 카드</h3>
+                <div id="regulationCards" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+            </section>
+        </div>
+        <!-- /tabPanelRegulation -->
     </main>
 
     <script>
@@ -480,17 +516,224 @@
             listEl.innerHTML = sentences.map(s => `<li>${s}</li>`).join('');
         }
 
+        // ===================== 글로벌 배터리 규제·정책 레이더 =====================
+        // 주의: 아래 REGULATIONS 배열은 Gemini/실시간 수집이 아니라 수동으로 작성한
+        // 정적 큐레이션 프로토타입 데이터입니다. 시행일/상태는 일반적으로 알려진 입법
+        // 일정 기준의 근사치이며, 실제 반영 전 공식 자료로 반드시 재확인이 필요합니다.
+        const REGION_LABELS = { EU: '🇪🇺 EU', US: '🇺🇸 미국', CN: '🇨🇳 중국', KR: '🇰🇷 한국' };
+        const REGION_COLORS = { EU: '#2563eb', US: '#dc2626', CN: '#d97706', KR: '#059669' };
+        const STATUS_STYLE = {
+            '시행중': 'bg-emerald-100 text-emerald-700',
+            '단계적 시행': 'bg-sky-100 text-sky-700',
+            '시행예정': 'bg-amber-100 text-amber-700',
+            '단계적 축소': 'bg-sky-100 text-sky-700',
+            '매년 개정': 'bg-violet-100 text-violet-700',
+            '논의중': 'bg-slate-100 text-slate-600',
+        };
+
+        const REGULATIONS = [
+            // ---- EU ----
+            { id: 'eu-1', region: 'EU', title: 'EU 배터리 규정(Regulation (EU) 2023/1542) - 탄소발자국 신고 의무', status: '단계적 시행', effectiveDate: '2026-08', category: '환경/탄소', impact: '상', summary: 'EV·산업용 배터리에 대해 제조 단계 탄소발자국 산정·신고를 의무화하는 조항으로, 추후 등급제 및 최대 한도 규제로 이어질 예정이다.' },
+            { id: 'eu-2', region: 'EU', title: 'EU 디지털 배터리 여권(Battery Passport) 의무화', status: '시행예정', effectiveDate: '2027-02', category: '추적성/공급망', impact: '상', summary: '2kWh 초과 EV·산업용·LMT 배터리에 대해 원자재 출처, 재활용 함량, 이력 정보를 담은 디지털 여권 발급을 의무화한다.' },
+            { id: 'eu-3', region: 'EU', title: 'EU 핵심원자재법(Critical Raw Materials Act) 역내 비중 목표', status: '시행중', effectiveDate: '2030-01', category: '공급망/자원안보', impact: '상', summary: '2030년까지 역내 채굴 10%·가공 40%·재활용 25% 비중 확보를 목표로 하며, 특정국 의존도를 65% 이하로 제한하는 공급망 다변화 정책이다.' },
+            { id: 'eu-4', region: 'EU', title: 'EU 배터리 재활용 원료 함량 의무(코발트/리튬/니켈/납)', status: '시행예정', effectiveDate: '2031-08', category: '환경/재활용', impact: '중', summary: '신규 배터리 제조 시 재활용 원료를 일정 비율 이상 포함하도록 의무화하며, 2036년부터 비율이 추가로 상향된다.' },
+            { id: 'eu-5', region: 'EU', title: 'EU CBAM(탄소국경조정제도) 배터리 소재 확대 검토', status: '논의중', effectiveDate: null, category: '통상/관세', impact: '중', summary: '철강·알루미늄 중심이던 탄소국경세를 배터리 소재(전구체 등)로 확대 적용하는 방안이 논의되고 있다.' },
+
+            // ---- US ----
+            { id: 'us-1', region: 'US', title: 'IRA 30D 청정차량 세액공제 - 배터리 부품/핵심광물 원산지 요건', status: '단계적 시행', effectiveDate: '2024-01', category: '보조금/세제', impact: '상', summary: '세액공제를 받으려면 배터리 부품 및 핵심광물의 일정 비율을 북미 또는 FTA 체결국에서 조달해야 하며, 비율 요건이 매년 강화된다.' },
+            { id: 'us-2', region: 'US', title: 'IRA FEOC(외국우려기업) 공급망 배제 규정', status: '시행중', effectiveDate: '2025-01', category: '공급망/통상', impact: '상', summary: '중국 등 외국우려기업이 생산한 배터리 부품(2024년~)과 핵심광물(2025년~)을 사용한 차량은 세액공제 대상에서 제외된다.' },
+            { id: 'us-3', region: 'US', title: 'IRA 45X 첨단제조생산 세액공제', status: '시행중', effectiveDate: '2023-01', category: '보조금/세제', impact: '상', summary: '배터리 셀·모듈·전극재 등을 미국 내에서 생산할 경우 생산량에 비례한 세액공제를 지원해 역내 제조 투자를 유도한다.' },
+            { id: 'us-4', region: 'US', title: '중국산 배터리·소재 추가 관세(Section 301 등)', status: '시행중', effectiveDate: null, category: '통상/관세', impact: '상', summary: '중국산 리튬이온 배터리 및 관련 소재에 대한 추가 관세가 적용되고 있으며, 품목과 세율은 통상 협상 상황에 따라 변동되어 왔다.' },
+
+            // ---- CN ----
+            { id: 'cn-1', region: 'CN', title: '신에너지차 더블크레딧제(NEV 더블포인트)', status: '시행중', effectiveDate: null, category: '보조금/쿼터', impact: '상', summary: '완성차 업체에 연비크레딧과 신에너지차 크레딧 확보 의무를 부과하는 제도로, 매년 기준 비율이 개정되며 배터리 업계 수요에 직접 영향을 준다.' },
+            { id: 'cn-2', region: 'CN', title: '동력전지 회수이용 관리방법(배터리 재활용 의무)', status: '시행중', effectiveDate: null, category: '환경/재활용', impact: '중', summary: '완성차·배터리 제조사에 폐배터리 회수·이력관리·재활용 책임을 부과하는 관리 체계로, 지속적으로 세부 기준이 보완되고 있다.' },
+            { id: 'cn-3', region: 'CN', title: '흑연 등 배터리 소재 수출통제', status: '시행중', effectiveDate: '2023-12', category: '통상/수출입', impact: '상', summary: '배터리 음극재의 핵심 원료인 흑연 등 특정 품목에 대해 수출 허가제를 도입해 해외 공급망에 영향을 미치고 있다.' },
+            { id: 'cn-4', region: 'CN', title: 'NEV 구매세 감면 단계적 축소', status: '단계적 축소', effectiveDate: '2026-01', category: '보조금/세제', impact: '중', summary: '신에너지차 구매세 전액 면제 혜택이 단계적으로 축소되는 일정이 예고되어 있어, 내수 수요 둔화 가능성이 거론된다.' },
+
+            // ---- KR ----
+            { id: 'kr-1', region: 'KR', title: '전기차 배터리 안전성 인증제 의무화', status: '시행중', effectiveDate: '2024-02', category: '인증/안전', impact: '상', summary: '국내 출시 전기차에 대해 배터리 안전성 인증을 의무화한 제도로, BMS·배터리관리 이력 제출 등이 요구된다.' },
+            { id: 'kr-2', region: 'KR', title: '배터리 이력관리제(배터리 ID 추적 시스템)', status: '시행예정', effectiveDate: '2026-01', category: '추적성/공급망', impact: '중', summary: '배터리 생산부터 폐기까지 이력을 추적할 수 있는 ID 체계를 단계적으로 도입하는 방안으로, 세부 일정은 변경될 수 있다.' },
+            { id: 'kr-3', region: 'KR', title: '전기차 보조금 개편(배터리 안전·성능 연계)', status: '매년 개정', effectiveDate: null, category: '보조금/세제', impact: '중', summary: '배터리 안전성, 에너지밀도, 재활용 가치 등을 반영해 보조금 지급 기준이 매년 개편되고 있다.' },
+            { id: 'kr-4', region: 'KR', title: 'K-배터리 공급망·소재 산업지원 정책', status: '논의중', effectiveDate: null, category: '산업지원', impact: '중', summary: '국내 배터리 소재·부품 공급망 내재화와 차세대 배터리(전고체 등) 기술 경쟁력 확보를 위한 지원 방안이 추진되고 있다.' },
+        ];
+
+        let activeRegionKey = 'ALL';
+        let regulationChartInstance = null;
+        let liveRegulationItems = null; // data.json의 regulationRadar(Gemini 자동 수집) - 있으면 이것을, 없으면 정적 REGULATIONS를 사용
+        const REGIONS = [
+            { key: 'ALL', label: '전체' },
+            { key: 'EU', label: REGION_LABELS.EU },
+            { key: 'US', label: REGION_LABELS.US },
+            { key: 'CN', label: REGION_LABELS.CN },
+            { key: 'KR', label: REGION_LABELS.KR },
+        ];
+
+        function regulationSourceItems() {
+            return (liveRegulationItems && liveRegulationItems.length > 0) ? liveRegulationItems : REGULATIONS;
+        }
+
+        function filteredRegulations() {
+            const source = regulationSourceItems();
+            return activeRegionKey === 'ALL' ? source : source.filter(r => r.region === activeRegionKey);
+        }
+
+        // data.json에 regulationRadar(Gemini 자동 수집·요약 결과)가 있는지에 따라 안내 배너 내용을 바꾼다.
+        function updateRegulationSourceBanner() {
+            const bannerEl = document.getElementById('regulationSourceBanner');
+            if (!bannerEl) return;
+            if (liveRegulationItems && liveRegulationItems.length > 0) {
+                bannerEl.className = 'mb-5 px-3 py-2.5 bg-sky-50 border border-sky-200 rounded-xl text-sky-800 text-xs sm:text-sm leading-relaxed';
+                bannerEl.innerHTML = '✅ 이 데이터는 <strong>미국 Federal Register 공식 API</strong>와 <strong>EU·중국·한국 뉴스 RSS</strong>에서 수집한 원문을 Gemini가 선별·요약한 것입니다(id 기반 그라운딩 - 원문에 없는 내용은 추가하지 않도록 제약). 다만 Gemini 요약 과정에서 오류가 있을 수 있어, 중요한 의사결정 전에는 아래 카드의 원문 링크를 직접 확인해 주세요.';
+            } else {
+                bannerEl.className = 'mb-5 px-3 py-2.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs sm:text-sm leading-relaxed';
+                bannerEl.innerHTML = '⚠️ 이 탭은 <strong>Gemini 자동 수집이 아닌 정적 큐레이션 프로토타입</strong> 데이터입니다(백엔드 파이프라인이 아직 실행되지 않았거나 결과가 없습니다). 시행일·상태는 일반적으로 알려진 입법 일정 기준의 근사치이며, 실제 공식 자료로 재확인하기 전까지는 참고용으로만 활용해 주세요.';
+            }
+        }
+
+        function renderRegionTabs() {
+            renderTabs('regionTabs', REGIONS, activeRegionKey, (key) => {
+                activeRegionKey = key;
+                renderRegionTabs();
+                renderRegulationTimeline();
+                renderRegulationCards();
+            });
+        }
+
+        // "YYYY-MM" 문자열을 연 단위 소수(예: 2026-08 → 2026.58)로 변환 - Chart.js 시간축
+        // 어댑터 없이도 선형(linear) x축에서 날짜 간격을 비례적으로 표현하기 위함.
+        function dateToNumeric(yyyyMm) {
+            if (!yyyyMm) return null;
+            const [y, m] = yyyyMm.split('-').map(Number);
+            return y + ((m || 1) - 1) / 12;
+        }
+
+        function renderRegulationTimeline() {
+            const items = filteredRegulations();
+            const chartable = items
+                .filter(it => it.effectiveDate)
+                .slice()
+                .sort((a, b) => dateToNumeric(a.effectiveDate) - dateToNumeric(b.effectiveDate));
+
+            const labels = chartable.map(it => `[${REGION_LABELS[it.region]}] ${it.title}`);
+            const values = chartable.map(it => {
+                const v = dateToNumeric(it.effectiveDate);
+                return [v - 0.15, v + 0.15];
+            });
+            const colors = chartable.map(it => REGION_COLORS[it.region]);
+
+            if (regulationChartInstance) regulationChartInstance.destroy();
+            const ctx = document.getElementById('regulationTimelineChart').getContext('2d');
+            regulationChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: colors,
+                        borderWidth: 0,
+                        categoryPercentage: 0.6,
+                        barPercentage: 0.6,
+                    }],
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                title: (chartItems) => chartable[chartItems[0].dataIndex].title,
+                                label: (chartItem) => {
+                                    const it = chartable[chartItem.dataIndex];
+                                    return `${REGION_LABELS[it.region]} · ${it.status} · 시행(예정): ${it.effectiveDate}`;
+                                },
+                                afterLabel: (chartItem) => chartable[chartItem.dataIndex].summary,
+                            },
+                        },
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            title: { display: true, text: '시행(예정) 시점(연도)' },
+                            ticks: { callback: (val) => `${Math.floor(val)}` },
+                        },
+                        y: {
+                            ticks: { font: { size: 9 }, autoSkip: false },
+                        },
+                    },
+                },
+            });
+
+            const noteEl = document.getElementById('regulationNote');
+            const undated = items.length - chartable.length;
+            noteEl.textContent = `타임라인에는 시행(예정) 시점이 확인된 ${chartable.length}건만 표시됩니다` +
+                (undated > 0 ? ` (일정 미정/상시 운용 ${undated}건은 아래 카드에서 확인하세요).` : '.');
+        }
+
+        function renderRegulationCards() {
+            const items = filteredRegulations().slice().sort((a, b) => (a.effectiveDate || '9999') > (b.effectiveDate || '9999') ? 1 : -1);
+            const container = document.getElementById('regulationCards');
+            container.innerHTML = items.map(it => `
+                <div class="border border-slate-200 rounded-xl p-4 hover:shadow-sm transition">
+                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                        <span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full" style="background:${REGION_COLORS[it.region]}1a; color:${REGION_COLORS[it.region]}">
+                            ${REGION_LABELS[it.region]}
+                        </span>
+                        <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full ${STATUS_STYLE[it.status] || 'bg-slate-100 text-slate-600'}">${it.status}</span>
+                    </div>
+                    <h4 class="text-sm font-bold text-slate-900 mb-1 leading-snug">${it.title}</h4>
+                    <p class="text-[11px] text-slate-400 mb-1.5">${it.effectiveDate ? `시행(예정)일: ${it.effectiveDate}` : '시행 일정: 미정/상시 운용'} · ${it.category} · 영향도 ${it.impact}</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">${it.summary}</p>
+                    ${it.url ? `<a href="${it.url}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-sky-600 hover:underline mt-1.5 inline-block">원문 보기 ↗</a>` : ''}
+                </div>
+            `).join('');
+
+            const summaryEl = document.getElementById('regulationSummary');
+            if (summaryEl) {
+                summaryEl.textContent = `표시 중: ${items.length}건 (전체 ${regulationSourceItems().length}건)`;
+            }
+        }
+
+        // ===================== 상단 페이지 탭(신차 스펙 트렌드 / 규제·정책 레이더) =====================
+        const PAGE_TABS = [
+            { key: 'specTrend', label: '📊 신차 스펙 트렌드' },
+            { key: 'regulation', label: '🌍 글로벌 배터리 규제·정책 레이더' },
+        ];
+        let activePageTabKey = PAGE_TABS[0].key;
+
+        function renderPageTabs() {
+            renderTabs('pageTabs', PAGE_TABS, activePageTabKey, switchPageTab);
+        }
+
+        function switchPageTab(key) {
+            activePageTabKey = key;
+            renderPageTabs();
+            document.getElementById('tabPanelSpecTrend').classList.toggle('hidden', key !== 'specTrend');
+            document.getElementById('tabPanelRegulation').classList.toggle('hidden', key !== 'regulation');
+            if (key === 'regulation') {
+                renderRegionTabs();
+                renderRegulationTimeline();
+                renderRegulationCards();
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', async () => {
+            renderPageTabs();
+
             let vehicles = [];
             try {
                 const res = await fetch('./data.json', { cache: 'no-store' });
                 if (res.ok) {
                     const data = await res.json();
                     vehicles = Array.isArray(data.vehicles) ? data.vehicles : [];
+                    liveRegulationItems = Array.isArray(data.regulationRadar) ? data.regulationRadar : [];
                 }
             } catch (err) {
                 console.warn('[스펙 트렌드] data.json을 불러오지 못했습니다.', err);
             }
+            updateRegulationSourceBanner();
 
             const summaryEl = document.getElementById('specTrendSummary');
 
