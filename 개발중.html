@@ -127,6 +127,7 @@
                 <li>0-100km/h 가속 시간은 약 44%의 차량에만 정보가 있어 신뢰도가 낮아 1차 버전에서는 제외했습니다.</li>
                 <li>배터리 조성/셀 폼팩터는 전용 필드가 아니라 스펙 텍스트(batterySpec/cellInfo/cellType)에서 키워드로 추출한 값입니다 - 조성은 약 94%(142대 중 8대 미상), 폼팩터는 약 99%(142대 중 1대 미상) 차량에서 분류되며, 나머지는 "미상"으로 표시됩니다.</li>
                 <li>"차량 종류"(BEV/PHEV/EREV 등) 구분은 포함하지 않았습니다 - 이 데이터셋은 신규 전기차 수집용으로 설계되어 있어 96%가 이미 순수 BEV이고 PHEV/HEV 등은 극소수(5대)뿐이라 분석 가치가 낮습니다 (실제 차량 종류가 섞인 데이터는 Teardown Data 페이지의 76대 실측 데이터셋입니다).</li>
+                <li>"QC성능 - 급속충전 시간"은 qcPerformance 텍스트에서 "N분" 패턴을 추출한 값으로(142대 중 141대, 약 99% 추출), 수치가 작을수록 빠른 충전을 의미합니다. 대부분(142대 중 130대)은 SOC 10%→80% 기준이지만 일부(5대)는 15%→80% 또는 30%→80% 등 다른 구간 기준이라 완전히 동일한 조건의 비교는 아닙니다.</li>
                 <li>모든 스펙 값은 Gemini가 생성한 데이터를 텍스트 패턴으로 추출한 것으로, 원본 발표 자료의 정확한 수치와 다를 수 있습니다.</li>
             </ul>
         </section>
@@ -138,6 +139,7 @@
             { key: 'rangeKm', label: '주행거리 (km)', unit: 'km', field: 'rangePerformance', pattern: /([\d.]+)\s*km/i },
             { key: 'maxChargeKw', label: '최대충전출력 (kW)', unit: 'kW', field: 'maxChargePower', pattern: /([\d.]+)\s*kW/i },
             { key: 'maxOutputKw', label: '최고출력 (kW)', unit: 'kW', field: 'maxOutput', pattern: /([\d.]+)\s*kW/i },
+            { key: 'qcTimeMin', label: 'QC성능 - 급속충전 시간 (분)', unit: '분', field: 'qcPerformance', pattern: /([\d.]+)\s*분/i },
         ];
         // 조성/폼팩터는 전용 필드가 아니라 스펙 텍스트에서 키워드로 추출한다(순서가 중요 - 더 구체적인
         // 키워드를 먼저 검사해야 "LMFP"가 "LFP"로, "반고체"가 "전고체"로 잘못 분류되는 것을 막는다).
@@ -412,6 +414,34 @@
                 }
             }
 
+            // 7-1. QC성능(급속충전 시간) 전체 추세 - 전체 차량 기준, 수치가 작을수록 빠른 충전
+            const [qcBefore, qcAfter] = splitHalves(vehicleRows);
+            const qcBeforeAvg = avgOf(qcBefore, 'qcTimeMin');
+            const qcAfterAvg = avgOf(qcAfter, 'qcTimeMin');
+            if (qcBeforeAvg !== null && qcAfterAvg !== null) {
+                const qcDiff = qcAfterAvg - qcBeforeAvg;
+                const qcPct = qcBeforeAvg !== 0 ? Math.abs(qcDiff / qcBeforeAvg * 100) : 0;
+                if (Math.abs(qcDiff) < qcBeforeAvg * 0.02) {
+                    sentences.push(`전체 차량의 평균 급속충전 시간(10→80% 기준)은 초반 ${qcBeforeAvg.toFixed(1)}분, 최근 ${qcAfterAvg.toFixed(1)}분으로 큰 변화 없이 유지되고 있다.`);
+                } else {
+                    const qcDir = qcDiff < 0 ? '단축(빨라짐)' : '증가(느려짐)';
+                    sentences.push(`전체 차량의 평균 급속충전 시간(10→80% 기준)은 초반 ${qcBeforeAvg.toFixed(1)}분에서 최근 ${qcAfterAvg.toFixed(1)}분으로 ${qcDir}되었다(${qcPct.toFixed(0)}%).`);
+                }
+            }
+
+            // 7-2. QC성능(급속충전 시간) LFP vs NCM 최근 구간 비교 - 수치가 작을수록 빠른 충전
+            if (lfpRecent.length >= MIN_SAMPLE_FOR_TREND && ncmRecent.length >= MIN_SAMPLE_FOR_TREND) {
+                const lfpQc = avgOf(lfpRecent, 'qcTimeMin');
+                const ncmQc = avgOf(ncmRecent, 'qcTimeMin');
+                if (lfpQc !== null && ncmQc !== null) {
+                    const faster = lfpQc < ncmQc ? 'LFP' : 'NCM';
+                    const slower = lfpQc < ncmQc ? 'NCM' : 'LFP';
+                    const fasterVal = Math.min(lfpQc, ncmQc);
+                    const slowerVal = Math.max(lfpQc, ncmQc);
+                    sentences.push(`급속충전 시간(10→80%)은 최근 발표 차량 기준 ${faster}(${fasterVal.toFixed(1)}분)가 ${slower}(${slowerVal.toFixed(1)}분)보다 짧아 더 빠르게 충전된다.`);
+                }
+            }
+
             // 8. 폼팩터 비중의 시간에 따른 변화(각형 비중 전반부 vs 후반부)
             const [formBefore, formAfter] = splitHalves(vehicleRows);
             if (formBefore.length >= MIN_SAMPLE_FOR_TREND && formAfter.length >= MIN_SAMPLE_FOR_TREND) {
@@ -437,7 +467,7 @@
                 sentences.push(`조성 ${unknownChem}대, 폼팩터 ${unknownForm}대는 스펙 텍스트에서 분류 키워드를 찾지 못해 "미상"으로 분류되어 위 비교에서 제외되었다.`);
             }
 
-            return sentences.slice(0, 12);
+            return sentences.slice(0, 14);
         }
 
         function renderInsights() {
