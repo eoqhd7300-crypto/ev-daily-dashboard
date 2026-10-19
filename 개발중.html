@@ -112,6 +112,11 @@
                     <div id="formFactorSummaryTable" class="text-xs sm:text-sm"></div>
                 </div>
             </div>
+            <div class="mt-5 pt-4 border-t border-slate-100">
+                <p class="text-xs font-semibold text-slate-500 mb-2">📌 데이터 기반 시사점</p>
+                <ul id="insightsList" class="text-xs sm:text-sm text-slate-700 leading-relaxed space-y-1.5 list-disc list-inside"></ul>
+                <p class="text-[11px] text-slate-400 mt-2">위 문장은 Gemini가 아니라 현재 표시된 데이터(발표일 전반부 vs 후반부 평균 비교)를 코드로 직접 계산해 자동 생성한 것입니다 - 표본이 적은 구간은 비교에서 제외됩니다.</p>
+            </div>
         </section>
 
         <!-- 아직 반영되지 않은 한계점 - 투명하게 명시 -->
@@ -309,6 +314,142 @@
             document.getElementById('formFactorSummaryTable').innerHTML = renderRows(countBy('formFactor'), (k) => FORM_FACTOR_COLORS[k] || UNKNOWN_COLOR);
         }
 
+        // ------------------------------------------------------------------------------------
+        // 데이터 기반 시사점: Gemini 호출 없이, 이미 화면에 표시된 vehicleRows만으로 코드가 직접
+        // 계산한다. 발표일 기준으로 정렬된 데이터를 "전반부/후반부"로 절반 나눠 비교해 "시간에 따라
+        // 어떻게 변했는가"를 본다 - 표본이 너무 적은(절반 기준 3대 미만) 조합은 추세 판단에서 제외해
+        // 근거 없는 단정을 피한다.
+        const MIN_SAMPLE_FOR_TREND = 3;
+
+        function avgOf(rows, metricKey) {
+            const vals = rows.map(r => r.metrics[metricKey]).filter(v => v !== null && isFinite(v));
+            return vals.length > 0 ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+        }
+
+        function splitHalves(rows) {
+            const mid = Math.floor(rows.length / 2);
+            return [rows.slice(0, mid), rows.slice(mid)];
+        }
+
+        function describeChange(before, after, unit, { biggerIsBetter = true } = {}) {
+            if (before === null || after === null) return null;
+            const diff = after - before;
+            const pct = before !== 0 ? Math.abs(diff / before * 100) : 0;
+            const dir = diff > 0 ? '증가' : diff < 0 ? '감소' : '변화 없음';
+            if (Math.abs(diff) < before * 0.02) {
+                return `초반 ${before.toFixed(1)}${unit} 대비 최근 ${after.toFixed(1)}${unit}로 큰 변화 없이 유지되고 있다`;
+            }
+            return `초반 ${before.toFixed(1)}${unit}에서 최근 ${after.toFixed(1)}${unit}로 ${dir}했다(${pct.toFixed(0)}%)`;
+        }
+
+        function generateInsights() {
+            const sentences = [];
+            const total = vehicleRows.length;
+            const chemCounts = {};
+            const formCounts = {};
+            vehicleRows.forEach(v => {
+                chemCounts[v.chemistry] = (chemCounts[v.chemistry] || 0) + 1;
+                formCounts[v.formFactor] = (formCounts[v.formFactor] || 0) + 1;
+            });
+            const topChem = Object.entries(chemCounts).sort((a, b) => b[1] - a[1]);
+            const topForm = Object.entries(formCounts).sort((a, b) => b[1] - a[1]);
+
+            // 1. 전체 조성 분포
+            if (topChem.length > 0) {
+                const [name, count] = topChem[0];
+                sentences.push(`전체 ${total}대 중 ${name} 조성이 ${count}대(${Math.round(count * 100 / total)}%)로 가장 많이 채택되고 있다.`);
+            }
+            // 2. 전체 폼팩터 분포
+            if (topForm.length > 0) {
+                const [name, count] = topForm[0];
+                sentences.push(`셀 폼팩터는 ${name}이 ${count}대(${Math.round(count * 100 / total)}%)로 압도적인 비중을 차지한다.`);
+            }
+
+            const lfpRows = vehicleRows.filter(v => v.chemistry === 'LFP');
+            const ncmRows = vehicleRows.filter(v => v.chemistry === 'NCM');
+
+            // 3~5. LFP/NCM 각각의 시간에 따른 지표 변화(전반부 vs 후반부)
+            [
+                { rows: lfpRows, label: 'LFP' },
+                { rows: ncmRows, label: 'NCM' },
+            ].forEach(({ rows, label }) => {
+                const [before, after] = splitHalves(rows);
+                if (before.length < MIN_SAMPLE_FOR_TREND || after.length < MIN_SAMPLE_FOR_TREND) return;
+                METRICS.slice(0, 2).forEach(m => {
+                    const change = describeChange(avgOf(before, m.key), avgOf(after, m.key), ' ' + m.unit);
+                    if (change) sentences.push(`${label} 탑재 차량의 평균 ${m.label}은 ${change}.`);
+                });
+            });
+
+            // 6. 최근 구간 기준 LFP vs NCM 격차 비교(배터리 용량, 주행거리)
+            const [, lfpRecent] = splitHalves(lfpRows);
+            const [, ncmRecent] = splitHalves(ncmRows);
+            if (lfpRecent.length >= MIN_SAMPLE_FOR_TREND && ncmRecent.length >= MIN_SAMPLE_FOR_TREND) {
+                METRICS.slice(0, 2).forEach(m => {
+                    const lfpAvg = avgOf(lfpRecent, m.key);
+                    const ncmAvg = avgOf(ncmRecent, m.key);
+                    if (lfpAvg === null || ncmAvg === null) return;
+                    const gap = Math.abs(ncmAvg - lfpAvg);
+                    const leader = ncmAvg > lfpAvg ? 'NCM' : 'LFP';
+                    const trailer = ncmAvg > lfpAvg ? 'LFP' : 'NCM';
+                    sentences.push(`최근 발표 차량 기준 ${m.label}은 ${leader}가 ${trailer}보다 평균 ${gap.toFixed(1)} ${m.unit} 더 높다.`);
+                });
+            }
+
+            // 7. 충전 성능(최대충전출력) LFP vs NCM 최근 구간 비교 - "LFP도 급속충전 경쟁에 합류했는가"
+            if (lfpRecent.length >= MIN_SAMPLE_FOR_TREND && ncmRecent.length >= MIN_SAMPLE_FOR_TREND) {
+                const chargeMetric = METRICS.find(m => m.key === 'maxChargeKw');
+                const lfpCharge = avgOf(lfpRecent, 'maxChargeKw');
+                const ncmCharge = avgOf(ncmRecent, 'maxChargeKw');
+                if (lfpCharge !== null && ncmCharge !== null) {
+                    const diffPct = Math.abs(lfpCharge - ncmCharge) / Math.max(lfpCharge, ncmCharge) * 100;
+                    if (diffPct < 15) {
+                        sentences.push(`최대충전출력은 LFP(${lfpCharge.toFixed(0)}kW)와 NCM(${ncmCharge.toFixed(0)}kW)의 격차가 15% 이내로 좁혀져, LFP도 급속충전 경쟁에 본격 합류한 것으로 보인다.`);
+                    } else {
+                        const leader = lfpCharge > ncmCharge ? 'LFP' : 'NCM';
+                        sentences.push(`최대충전출력은 아직 ${leader}가 더 앞서 있어(${Math.max(lfpCharge, ncmCharge).toFixed(0)}kW vs ${Math.min(lfpCharge, ncmCharge).toFixed(0)}kW) 조성 간 격차가 남아있다.`);
+                    }
+                }
+            }
+
+            // 8. 폼팩터 비중의 시간에 따른 변화(각형 비중 전반부 vs 후반부)
+            const [formBefore, formAfter] = splitHalves(vehicleRows);
+            if (formBefore.length >= MIN_SAMPLE_FOR_TREND && formAfter.length >= MIN_SAMPLE_FOR_TREND) {
+                const shareOf = (rows, name) => rows.filter(r => r.formFactor === name).length * 100 / rows.length;
+                const topFormName = topForm[0][0];
+                const before = shareOf(formBefore, topFormName);
+                const after = shareOf(formAfter, topFormName);
+                const dir = after - before > 2 ? '늘었다' : (before - after > 2 ? '줄었다' : '비슷한 수준을 유지했다');
+                sentences.push(`${topFormName} 폼팩터의 비중은 초반 ${before.toFixed(0)}%에서 최근 ${after.toFixed(0)}%로 ${dir}.`);
+            }
+
+            // 9. 소량 신흥 조성(전고체/LMFP/나트륨 등) 안내
+            const emergingNames = ['전고체', '반고체', 'LMFP', '나트륨', 'Na-ion'];
+            const emergingCount = vehicleRows.filter(v => emergingNames.includes(v.chemistry)).length;
+            if (emergingCount > 0) {
+                sentences.push(`전고체/반고체/LMFP/나트륨이온 등 차세대 조성은 현재 ${emergingCount}대(${Math.round(emergingCount * 100 / total)}%)에 불과해 아직 초기 단계이며, 표본이 적어 추세로 단정하기는 이르다.`);
+            }
+
+            // 10. 미상 비중 안내(투명성)
+            const unknownChem = chemCounts['미상'] || 0;
+            const unknownForm = formCounts['미상'] || 0;
+            if (unknownChem > 0 || unknownForm > 0) {
+                sentences.push(`조성 ${unknownChem}대, 폼팩터 ${unknownForm}대는 스펙 텍스트에서 분류 키워드를 찾지 못해 "미상"으로 분류되어 위 비교에서 제외되었다.`);
+            }
+
+            return sentences.slice(0, 12);
+        }
+
+        function renderInsights() {
+            const listEl = document.getElementById('insightsList');
+            const sentences = generateInsights();
+            if (sentences.length === 0) {
+                listEl.innerHTML = '<li>표본이 부족해 시사점을 계산할 수 없습니다.</li>';
+                return;
+            }
+            listEl.innerHTML = sentences.map(s => `<li>${s}</li>`).join('');
+        }
+
         window.addEventListener('DOMContentLoaded', async () => {
             let vehicles = [];
             try {
@@ -347,6 +488,7 @@
             renderChart();
             renderLegend();
             renderSummaryTables();
+            renderInsights();
         });
     </script>
 </body>
