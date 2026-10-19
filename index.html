@@ -722,6 +722,19 @@
             return `${yy}/${mm} ${isPlanned ? '출시예정' : '출시'}`;
         };
 
+        // timeline이 "예정"인데 예정 월의 말일이 이미 지났는지 판단한다(코드 계산만으로 판단 - Gemini 재물음 없음).
+        // "실제로 출시되었다"고 단정하는 것이 아니라(연기되는 경우가 흔해 사실이 아닐 수 있음), "재확인이 필요하다"는 플래그만 띄운다.
+        // "Q4", "상반기", "초" 같은 모호한 표현은 월 단위로 특정할 수 없어 판단하지 않는다(확실히 파싱되는 "YYYY년 MM월" 형식만 대상).
+        window.isLaunchOverdue = function(v) {
+            if (!/예정/.test(v.timeline || '')) return false;
+            const m = (v.timeline || '').match(/(\d{4})\s*년\s*(\d{1,2})\s*월/);
+            if (!m) return false;
+            const year = parseInt(m[1], 10);
+            const month = parseInt(m[2], 10);
+            const targetMonthEnd = new Date(year, month, 0, 23, 59, 59); // month(1~12)에 day=0 → 해당 월의 마지막날
+            return new Date() > targetMonthEnd;
+        };
+
         // Filter vehicles based on active period selection & Always Sort Newest First (Descending)
         window.getFilteredVehicles = function() {
             let result = vehicles;
@@ -1386,6 +1399,7 @@
                     tr.onclick = () => window.toggleRowExpand(v.id);
                     const nameParts = window.splitParenLine(v.name);
                     const launchShort = window.formatLaunchShort(v);
+                    const launchOverdue = window.isLaunchOverdue(v);
                     tr.innerHTML = `
                         <td class="p-3 text-center">
                             <input type="checkbox" ${v.selected ? 'checked' : ''} onclick="event.stopPropagation()" onchange="window.toggleVehicleSelection('${v.id}')" class="w-4 h-4 text-sky-600 rounded border-slate-300 focus:ring-sky-500 cursor-pointer">
@@ -1396,7 +1410,7 @@
                         </td>
                         <td class="p-3 text-xs font-semibold text-slate-600 text-center">
                             <div class="whitespace-nowrap"><span class="px-2 py-0.5 rounded bg-slate-100">${v.releaseDate || window.formatDateISO(activeReportDate)}</span></div>
-                            <div class="whitespace-nowrap text-slate-500 font-medium mt-1">${launchShort}</div>
+                            <div class="whitespace-nowrap text-slate-500 font-medium mt-1">${launchShort}${launchOverdue ? ` <span class="text-rose-600 font-bold" title="예정 시점이 지났습니다 - 실제 출시 여부 재확인이 필요합니다">⏰확인필요</span>` : ''}</div>
                         </td>
                         <td class="p-3 text-slate-600 text-center"><span title="${v.type}" class="inline-block max-w-[140px] truncate align-bottom px-2 py-0.5 rounded bg-sky-50 text-sky-700 text-xs font-medium">${v.type}</span></td>
                         <td class="p-3 text-center">
@@ -1490,7 +1504,7 @@
                                 <h3 class="text-lg font-extrabold text-slate-900">${v.name}</h3>
                                 <span class="text-xs font-semibold px-2 py-0.5 bg-slate-100 text-slate-600 rounded">발표: ${v.releaseDate || window.formatDateISO(activeReportDate)}</span>
                             </div>
-                            <p class="text-xs text-slate-500 mt-1 font-medium">제조사: ${v.brand} | 차종: ${v.type} | 출시예정: ${v.timeline}</p>
+                            <p class="text-xs text-slate-500 mt-1 font-medium">제조사: ${v.brand} | 차종: ${v.type} | 출시예정: ${v.timeline}${window.isLaunchOverdue(v) ? ` <span class="text-rose-600 font-bold">⏰ 예정 시점 경과 - 실제 출시 여부 재확인 필요</span>` : ''}</p>
                         </div>
                         <div class="text-left sm:text-right">
                             <span class="text-lg font-black text-sky-700">${window.formatKrwPriceDisplay(v.priceKRW)}</span>
