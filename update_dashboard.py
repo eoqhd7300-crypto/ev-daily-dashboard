@@ -2045,6 +2045,8 @@ def build_regulation_prompt(raw_items: list) -> str:
 - "category": 2~8자의 짧은 카테고리명 (예: "보조금/세제", "공급망/통상", "인증/안전", "환경/재활용", "수출입/통상" 등)
 - "impact": 배터리 업계에 대한 영향도 - "상"/"중"/"하" 중 하나
 - "summary": description 내용만 근거로 한 한글 요약 1~2문장 (추측 금지, 원문에 없는 수치·날짜 언급 금지)
+- "titleKo": title을 한글로 번역한 문장 (title이 이미 한글이면 그대로 복사). 원문에 없는 내용을 추가하지
+  말고 "번역"만 하세요 - 의역/요약이 아니라 제목의 의미를 그대로 옮긴 번역이어야 합니다.
 
 title/url/date/region은 작성하지 마세요 (id로만 참조하며, 포함해도 무시됩니다).
 
@@ -2122,12 +2124,16 @@ def generate_regulation_radar(client: "genai.Client", raw_items: list) -> list |
             category = entry.get("category")
             if not isinstance(category, str) or not category.strip():
                 category = "기타"
+            title_ko = entry.get("titleKo")
+            if not isinstance(title_ko, str) or not title_ko.strip():
+                title_ko = None
             cleaned.append(
                 {
                     "id": f"{src.get('region', 'XX')}-{idx}",
                     "region": src.get("region", ""),
                     "sourceKind": src.get("sourceKind", "news"),
                     "title": src.get("title", ""),
+                    "titleKo": title_ko,
                     "url": src.get("url", ""),
                     "source": src.get("source", ""),
                     "date": src.get("date", ""),

@@ -749,7 +749,8 @@
                         </span>
                         <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full ${STATUS_STYLE[it.status] || 'bg-slate-100 text-slate-600'}">${it.status}</span>
                     </div>
-                    <h4 class="text-sm font-bold text-slate-900 mb-1 leading-snug">${it.title}</h4>
+                    <h4 class="text-sm font-bold text-slate-900 mb-1 leading-snug">${it.titleKo || it.title}</h4>
+                    ${it.titleKo && it.titleKo !== it.title ? `<p class="text-[11px] text-slate-400 mb-1 leading-snug">원문: ${it.title} <span class="text-slate-300">(AI 번역)</span></p>` : ''}
                     <p class="text-[11px] text-slate-400 mb-1.5">${it.effectiveDate ? `시행(예정)일: ${it.effectiveDate}` : '시행 일정: 미정/상시 운용'} · ${it.category} · 영향도 ${it.impact}</p>
                     <p class="text-xs text-slate-600 leading-relaxed">${it.summary}</p>
                     ${it.url ? `<a href="${it.url}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-sky-600 hover:underline mt-1.5 inline-block">원문 보기 ↗</a>` : ''}
