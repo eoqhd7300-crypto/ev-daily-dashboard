@@ -79,37 +79,38 @@
                 <h2 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
                     <span>📊 신차 스펙 트렌드</span>
                 </h2>
-                <p class="text-xs text-slate-500 mt-0.5">이미 수집된 신규 전기차 데이터를 발표월 기준으로 집계해, 핵심 스펙의 시간에 따른 변화 추이를 보여줍니다 (추가 API 호출 없이 기존 데이터만 재활용).</p>
+                <p class="text-xs text-slate-500 mt-0.5">이미 수집된 신규 전기차 데이터를 발표일 순서대로 차량 1대당 막대 1개로 표시합니다(월별 평균이 아닌 개별 값 그대로 - 표본이 적은 달에 생기는 왜곡을 피하기 위함). 막대 색상은 배터리 조성 또는 셀 폼팩터로 구분할 수 있습니다.</p>
             </div>
             <div id="specTrendSummary" class="text-xs text-slate-600 bg-white px-3 py-1.5 rounded-lg border border-slate-200"></div>
         </div>
 
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-6">
-            <div class="flex items-center gap-1.5 mb-4 flex-wrap" id="metricTabs">
-                <!-- JS로 4개 지표 버튼을 렌더링 -->
+            <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+                <div class="flex items-center gap-1.5 flex-wrap" id="metricTabs">
+                    <!-- JS로 4개 지표 버튼을 렌더링 -->
+                </div>
+                <div class="flex items-center gap-1.5 flex-wrap" id="colorModeTabs">
+                    <!-- JS로 색상 기준(조성/폼팩터) 버튼을 렌더링 -->
+                </div>
             </div>
-            <div class="relative" style="height: 360px;">
+            <div class="relative" style="height: 420px;">
                 <canvas id="specTrendChart"></canvas>
             </div>
+            <div id="specTrendLegend" class="flex items-center flex-wrap gap-x-4 gap-y-1.5 mt-4 pt-3 border-t border-slate-100"></div>
             <p id="specTrendNote" class="text-[11px] text-slate-400 mt-3 leading-relaxed"></p>
         </section>
 
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-8">
-            <h3 class="text-sm font-bold text-slate-900 mb-3">월별 집계 데이터</h3>
-            <div class="overflow-x-auto">
-                <table class="w-full text-xs sm:text-sm text-left">
-                    <thead>
-                        <tr class="border-b border-slate-200 text-slate-500">
-                            <th class="py-2 pr-4 font-semibold">발표월</th>
-                            <th class="py-2 pr-4 font-semibold">차량 수</th>
-                            <th class="py-2 pr-4 font-semibold">배터리 용량 평균(kWh)</th>
-                            <th class="py-2 pr-4 font-semibold">주행거리 평균(km)</th>
-                            <th class="py-2 pr-4 font-semibold">최대충전출력 평균(kW)</th>
-                            <th class="py-2 pr-4 font-semibold">최고출력 평균(kW)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="specTrendTableBody" class="divide-y divide-slate-100 text-slate-800"></tbody>
-                </table>
+            <h3 class="text-sm font-bold text-slate-900 mb-3">조성 · 폼팩터별 분포 요약</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 mb-2">배터리 조성</p>
+                    <div id="chemistrySummaryTable" class="text-xs sm:text-sm"></div>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 mb-2">셀 폼팩터</p>
+                    <div id="formFactorSummaryTable" class="text-xs sm:text-sm"></div>
+                </div>
             </div>
         </section>
 
@@ -119,7 +120,8 @@
             <ul class="list-disc list-inside space-y-0.5">
                 <li>Cell/Pack 에너지밀도는 실측(Teardown) 검증이 완료된 일부 차량에만 값이 있어(현재 전체의 10% 미만) 이번 버전의 트렌드 지표에서는 제외했습니다.</li>
                 <li>0-100km/h 가속 시간은 약 44%의 차량에만 정보가 있어 신뢰도가 낮아 1차 버전에서는 제외했습니다.</li>
-                <li>한 달에 수집된 차량 수가 적으면(예: 1~2대) 평균값이 시장 전체 추세를 대표하지 못할 수 있습니다 - 아래 표의 "차량 수"를 함께 확인하세요.</li>
+                <li>배터리 조성/셀 폼팩터는 전용 필드가 아니라 스펙 텍스트(batterySpec/cellInfo/cellType)에서 키워드로 추출한 값입니다 - 조성은 약 94%(142대 중 8대 미상), 폼팩터는 약 99%(142대 중 1대 미상) 차량에서 분류되며, 나머지는 "미상"으로 표시됩니다.</li>
+                <li>"차량 종류"(BEV/PHEV/EREV 등) 구분은 포함하지 않았습니다 - 이 데이터셋은 신규 전기차 수집용으로 설계되어 있어 96%가 이미 순수 BEV이고 PHEV/HEV 등은 극소수(5대)뿐이라 분석 가치가 낮습니다 (실제 차량 종류가 섞인 데이터는 Teardown Data 페이지의 76대 실측 데이터셋입니다).</li>
                 <li>모든 스펙 값은 Gemini가 생성한 데이터를 텍스트 패턴으로 추출한 것으로, 원본 발표 자료의 정확한 수치와 다를 수 있습니다.</li>
             </ul>
         </section>
@@ -127,14 +129,30 @@
 
     <script>
         const METRICS = [
-            { key: 'batteryKwh', label: '배터리 용량 (kWh)', unit: 'kWh', color: '#0284c7', field: 'batterySpec', pattern: /([\d.]+)\s*kWh/i },
-            { key: 'rangeKm', label: '주행거리 (km)', unit: 'km', color: '#16a34a', field: 'rangePerformance', pattern: /([\d.]+)\s*km/i },
-            { key: 'maxChargeKw', label: '최대충전출력 (kW)', unit: 'kW', color: '#d97706', field: 'maxChargePower', pattern: /([\d.]+)\s*kW/i },
-            { key: 'maxOutputKw', label: '최고출력 (kW)', unit: 'kW', color: '#9333ea', field: 'maxOutput', pattern: /([\d.]+)\s*kW/i },
+            { key: 'batteryKwh', label: '배터리 용량 (kWh)', unit: 'kWh', field: 'batterySpec', pattern: /([\d.]+)\s*kWh/i },
+            { key: 'rangeKm', label: '주행거리 (km)', unit: 'km', field: 'rangePerformance', pattern: /([\d.]+)\s*km/i },
+            { key: 'maxChargeKw', label: '최대충전출력 (kW)', unit: 'kW', field: 'maxChargePower', pattern: /([\d.]+)\s*kW/i },
+            { key: 'maxOutputKw', label: '최고출력 (kW)', unit: 'kW', field: 'maxOutput', pattern: /([\d.]+)\s*kW/i },
         ];
-        let activeMetricKey = METRICS[0].key;
-        let monthlyAgg = []; // [{ month: 'YYYY-MM', count, batteryKwh, rangeKm, maxChargeKw, maxOutputKw }]
-        let chartInstance = null;
+        // 조성/폼팩터는 전용 필드가 아니라 스펙 텍스트에서 키워드로 추출한다(순서가 중요 - 더 구체적인
+        // 키워드를 먼저 검사해야 "LMFP"가 "LFP"로, "반고체"가 "전고체"로 잘못 분류되는 것을 막는다).
+        const CHEMISTRY_RULES = [
+            { key: 'LMFP', color: '#0d9488' },
+            { key: '전고체', color: '#7c3aed' },
+            { key: '반고체', color: '#a855f7' },
+            { key: '나트륨', color: '#64748b' },
+            { key: 'Na-ion', color: '#64748b' },
+            { key: 'NCA', color: '#dc2626' },
+            { key: 'NCM', color: '#d97706' },
+            { key: 'LFP', color: '#0284c7' },
+        ];
+        const UNKNOWN_COLOR = '#cbd5e1';
+        const FORM_FACTOR_COLORS = {
+            '각형': '#0284c7',
+            '파우치': '#16a34a',
+            '원통형': '#d97706',
+            '미상': UNKNOWN_COLOR,
+        };
 
         function extractNumber(value, pattern) {
             if (!value || value === '-') return null;
@@ -142,76 +160,88 @@
             return m ? parseFloat(m[1]) : null;
         }
 
-        function aggregateByMonth(vehicles) {
-            const buckets = {}; // month -> { count, sums: {metricKey: {total, n}} }
-            vehicles.forEach(v => {
-                const date = v.releaseDate;
-                if (!date || typeof date !== 'string' || date.length < 7) return;
-                const month = date.slice(0, 7); // YYYY-MM
-                if (!buckets[month]) {
-                    buckets[month] = { month, count: 0, sums: {} };
-                    METRICS.forEach(m => { buckets[month].sums[m.key] = { total: 0, n: 0 }; });
-                }
-                buckets[month].count += 1;
-                METRICS.forEach(m => {
-                    const val = extractNumber(v[m.field], m.pattern);
-                    if (val !== null && isFinite(val)) {
-                        buckets[month].sums[m.key].total += val;
-                        buckets[month].sums[m.key].n += 1;
-                    }
-                });
+        function classifyChemistry(v) {
+            const blob = `${v.batterySpec || ''} ${v.cellInfo || ''} ${v.cellType || ''}`;
+            const hit = CHEMISTRY_RULES.find(r => blob.toLowerCase().includes(r.key.toLowerCase()));
+            return hit ? hit.key : '미상';
+        }
+
+        function classifyFormFactor(v) {
+            const blob = `${v.cellType || ''}`.toLowerCase();
+            if (!blob || blob === '-') return '미상';
+            if (blob.includes('cylindric')) return '원통형';
+            if (blob.includes('pouch')) return '파우치';
+            if (blob.includes('prismatic') || blob.includes('blade')) return '각형';
+            return '미상';
+        }
+
+        function chemistryColor(key) {
+            const hit = CHEMISTRY_RULES.find(r => r.key === key);
+            return hit ? hit.color : UNKNOWN_COLOR;
+        }
+
+        const COLOR_MODES = [
+            { key: 'chemistry', label: '배터리 조성별 색상', classify: classifyChemistry, color: chemistryColor },
+            { key: 'formFactor', label: '셀 폼팩터별 색상', classify: classifyFormFactor, color: (k) => FORM_FACTOR_COLORS[k] || UNKNOWN_COLOR },
+        ];
+
+        let activeMetricKey = METRICS[0].key;
+        let activeColorModeKey = COLOR_MODES[0].key;
+        let vehicleRows = []; // 발표일 순 정렬된 전체 차량 + 분류 결과
+        let chartInstance = null;
+
+        function renderTabs(containerId, items, activeKey, onPick) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = items.map(it => `
+                <button type="button" data-key="${it.key}"
+                    class="tab-btn px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg border transition ${it.key === activeKey ? 'border-sky-600 bg-sky-600 text-white shadow-xs' : 'border-slate-200 bg-white text-slate-600 hover:bg-sky-50'}">
+                    ${it.label}
+                </button>
+            `).join('');
+            container.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => onPick(btn.dataset.key));
             });
-            return Object.values(buckets)
-                .map(b => {
-                    const row = { month: b.month, count: b.count };
-                    METRICS.forEach(m => {
-                        const s = b.sums[m.key];
-                        row[m.key] = s.n > 0 ? s.total / s.n : null;
-                    });
-                    return row;
-                })
-                .sort((a, b) => a.month.localeCompare(b.month));
         }
 
         function renderMetricTabs() {
-            const container = document.getElementById('metricTabs');
-            container.innerHTML = METRICS.map(m => `
-                <button type="button" data-metric="${m.key}"
-                    class="metric-tab-btn px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg border transition ${m.key === activeMetricKey ? 'border-sky-600 bg-sky-600 text-white shadow-xs' : 'border-slate-200 bg-white text-slate-600 hover:bg-sky-50'}">
-                    ${m.label}
-                </button>
-            `).join('');
-            container.querySelectorAll('.metric-tab-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    activeMetricKey = btn.dataset.metric;
-                    renderMetricTabs();
-                    renderChart();
-                });
+            renderTabs('metricTabs', METRICS, activeMetricKey, (key) => {
+                activeMetricKey = key;
+                renderMetricTabs();
+                renderChart();
+            });
+        }
+
+        function renderColorModeTabs() {
+            renderTabs('colorModeTabs', COLOR_MODES, activeColorModeKey, (key) => {
+                activeColorModeKey = key;
+                renderColorModeTabs();
+                renderChart();
+                renderLegend();
             });
         }
 
         function renderChart() {
             const metric = METRICS.find(m => m.key === activeMetricKey);
-            const labels = monthlyAgg.map(r => r.month);
-            const values = monthlyAgg.map(r => r[metric.key] !== null ? Math.round(r[metric.key] * 10) / 10 : null);
-            const counts = monthlyAgg.map(r => r.count);
+            const colorMode = COLOR_MODES.find(c => c.key === activeColorModeKey);
+
+            const filtered = vehicleRows.filter(v => v.metrics[metric.key] !== null);
+            const labels = filtered.map(v => v.releaseDate);
+            const values = filtered.map(v => v.metrics[metric.key]);
+            const colors = filtered.map(v => colorMode.color(v[colorMode.key]));
 
             if (chartInstance) chartInstance.destroy();
             const ctx = document.getElementById('specTrendChart').getContext('2d');
             chartInstance = new Chart(ctx, {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels,
                     datasets: [{
                         label: metric.label,
                         data: values,
-                        borderColor: metric.color,
-                        backgroundColor: metric.color + '22',
-                        fill: true,
-                        tension: 0.3,
-                        spanGaps: true,
-                        pointRadius: 4,
-                        pointHoverRadius: 6,
+                        backgroundColor: colors,
+                        borderWidth: 0,
+                        categoryPercentage: 0.9,
+                        barPercentage: 0.9,
                     }],
                 },
                 options: {
@@ -221,32 +251,62 @@
                         legend: { display: false },
                         tooltip: {
                             callbacks: {
-                                afterLabel: (ctx) => `해당 월 수집 차량 수: ${counts[ctx.dataIndex]}대`,
+                                title: (items) => filtered[items[0].dataIndex].name,
+                                label: (item) => `${metric.label}: ${item.parsed.y} ${metric.unit}`,
+                                afterLabel: (item) => {
+                                    const v = filtered[item.dataIndex];
+                                    return [`발표일: ${v.releaseDate}`, `조성: ${v.chemistry}`, `폼팩터: ${v.formFactor}`];
+                                },
                             },
                         },
                     },
                     scales: {
+                        x: {
+                            ticks: { autoSkip: true, maxRotation: 90, minRotation: 0, font: { size: 9 } },
+                        },
                         y: {
                             title: { display: true, text: metric.unit },
-                            beginAtZero: false,
+                            beginAtZero: true,
                         },
                     },
                 },
             });
+
+            const noteEl = document.getElementById('specTrendNote');
+            noteEl.textContent = `차량 ${filtered.length}대 표시 중(전체 ${vehicleRows.length}대 중 "${metric.label}" 값이 확인된 차량만). 막대에 마우스를 올리면 차량명/발표일/조성/폼팩터를 확인할 수 있습니다.`;
         }
 
-        function renderTable() {
-            const tbody = document.getElementById('specTrendTableBody');
-            tbody.innerHTML = monthlyAgg.map(r => `
-                <tr>
-                    <td class="py-2 pr-4 font-semibold">${r.month}</td>
-                    <td class="py-2 pr-4">${r.count}</td>
-                    <td class="py-2 pr-4">${r.batteryKwh !== null ? r.batteryKwh.toFixed(1) : '-'}</td>
-                    <td class="py-2 pr-4">${r.rangeKm !== null ? r.rangeKm.toFixed(0) : '-'}</td>
-                    <td class="py-2 pr-4">${r.maxChargeKw !== null ? r.maxChargeKw.toFixed(0) : '-'}</td>
-                    <td class="py-2 pr-4">${r.maxOutputKw !== null ? r.maxOutputKw.toFixed(0) : '-'}</td>
-                </tr>
+        function renderLegend() {
+            const colorMode = COLOR_MODES.find(c => c.key === activeColorModeKey);
+            const keys = colorMode.key === 'chemistry'
+                ? [...CHEMISTRY_RULES.map(r => r.key), '미상']
+                : ['각형', '파우치', '원통형', '미상'];
+            const present = new Set(vehicleRows.map(v => v[colorMode.key]));
+            const legendEl = document.getElementById('specTrendLegend');
+            legendEl.innerHTML = keys.filter(k => present.has(k)).map(k => `
+                <span class="inline-flex items-center gap-1.5 text-xs text-slate-600">
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:${colorMode.color(k)}"></span>${k}
+                </span>
             `).join('');
+        }
+
+        function renderSummaryTables() {
+            const countBy = (key) => {
+                const counts = {};
+                vehicleRows.forEach(v => { counts[v[key]] = (counts[v[key]] || 0) + 1; });
+                return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+            };
+            const renderRows = (entries, colorFn) => entries.map(([label, count]) => `
+                <div class="flex items-center justify-between py-1 border-b border-slate-50 last:border-0">
+                    <span class="inline-flex items-center gap-1.5">
+                        <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background:${colorFn(label)}"></span>${label}
+                    </span>
+                    <span class="font-semibold text-slate-700">${count}대 (${Math.round(count * 100 / vehicleRows.length)}%)</span>
+                </div>
+            `).join('');
+
+            document.getElementById('chemistrySummaryTable').innerHTML = renderRows(countBy('chemistry'), chemistryColor);
+            document.getElementById('formFactorSummaryTable').innerHTML = renderRows(countBy('formFactor'), (k) => FORM_FACTOR_COLORS[k] || UNKNOWN_COLOR);
         }
 
         window.addEventListener('DOMContentLoaded', async () => {
@@ -262,22 +322,31 @@
             }
 
             const summaryEl = document.getElementById('specTrendSummary');
-            const noteEl = document.getElementById('specTrendNote');
 
             if (vehicles.length === 0) {
                 summaryEl.textContent = '데이터 없음';
-                noteEl.textContent = 'data.json을 불러오지 못했거나 신차 데이터가 비어 있습니다.';
+                document.getElementById('specTrendNote').textContent = 'data.json을 불러오지 못했거나 신차 데이터가 비어 있습니다.';
                 return;
             }
 
-            monthlyAgg = aggregateByMonth(vehicles);
-            const months = monthlyAgg.map(r => r.month);
-            summaryEl.textContent = `분석 대상: ${vehicles.length}대 / 기간: ${months[0]} ~ ${months[months.length - 1]}`;
-            noteEl.textContent = '그래프의 각 점은 해당 월에 발표된 차량들의 평균값입니다. 점에 마우스를 올리면 해당 월의 차량 수를 확인할 수 있습니다.';
+            vehicleRows = vehicles
+                .filter(v => v.releaseDate)
+                .map(v => ({
+                    name: v.name || '(이름 없음)',
+                    releaseDate: v.releaseDate,
+                    chemistry: classifyChemistry(v),
+                    formFactor: classifyFormFactor(v),
+                    metrics: Object.fromEntries(METRICS.map(m => [m.key, extractNumber(v[m.field], m.pattern)])),
+                }))
+                .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
+
+            summaryEl.textContent = `분석 대상: ${vehicleRows.length}대 / 기간: ${vehicleRows[0].releaseDate} ~ ${vehicleRows[vehicleRows.length - 1].releaseDate}`;
 
             renderMetricTabs();
+            renderColorModeTabs();
             renderChart();
-            renderTable();
+            renderLegend();
+            renderSummaryTables();
         });
     </script>
 </body>
