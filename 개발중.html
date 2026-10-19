@@ -655,22 +655,30 @@
 
         function renderRegulationTimeline() {
             const items = filteredRegulations();
-            const chartable = items
-                .filter(it => it.effectiveDate)
-                .slice()
-                .sort((a, b) => dateToNumeric(a.effectiveDate) - dateToNumeric(b.effectiveDate));
+            // 실제 운영 데이터에서는 "논의중"/"시행중" 등 진행형 항목의 경우 원문에 명확한 시행월이
+            // 없어 effectiveDate가 비어 있는 경우가 많다(뉴스 기반 항목 특성상 흔함). effectiveDate가
+            // 없는 항목을 차트에서 통째로 제외하면 해당 지역 필터를 선택했을 때 차트가 텅 비어 "필터가
+            // 고장난 것처럼" 보이는 문제가 있어, 기사 수집일(date, 커버리지 100%)을 "참고용" 위치로
+            // 대신 사용하고 옅은 색상 + "(참고용 보도일)" 표시로 실제 시행일과 명확히 구분한다.
+            const withPosition = items
+                .map(it => {
+                    const hasEffectiveDate = !!it.effectiveDate;
+                    const posKey = hasEffectiveDate ? it.effectiveDate : (it.date ? it.date.slice(0, 7) : null);
+                    return { it, posValue: posKey ? dateToNumeric(posKey) : null, isFallback: !hasEffectiveDate };
+                })
+                .filter(x => x.posValue !== null)
+                .sort((a, b) => a.posValue - b.posValue);
 
-            const labels = chartable.map(it => `[${REGION_LABELS[it.region]}] ${it.title}`);
-            const values = chartable.map(it => {
-                const v = dateToNumeric(it.effectiveDate);
-                return [v - 0.15, v + 0.15];
-            });
-            const colors = chartable.map(it => REGION_COLORS[it.region]);
+            const chartable = withPosition.map(x => x.it);
+            const labels = withPosition.map(x => `[${REGION_LABELS[x.it.region]}]${x.isFallback ? ' (참고용 보도일)' : ''} ${x.it.title}`);
+            const values = withPosition.map(x => [x.posValue - 0.15, x.posValue + 0.15]);
+            // 참고용(보도일 기준) 막대는 실제 시행일 막대와 구분되도록 옅게(알파 50%) 표시한다.
+            const colors = withPosition.map(x => REGION_COLORS[x.it.region] + (x.isFallback ? '70' : ''));
 
             // Chart.js 'bar' 차트는 값 축(x)이 기본적으로 0부터 시작해(beginAtZero 기본 동작) 실제
             // 연도(2024~2031 등)가 그래프 오른쪽 끝에 몰려 보이는 문제가 있었다. 실제 데이터 범위에
             // 여유(10%, 최소 0.5년)만 둔 min/max를 직접 지정해 "현실적인" 축을 사용한다.
-            const allValues = chartable.map(it => dateToNumeric(it.effectiveDate));
+            const allValues = withPosition.map(x => x.posValue);
             const minYear = allValues.length > 0 ? Math.min(...allValues) : 2024;
             const maxYear = allValues.length > 0 ? Math.max(...allValues) : 2031;
             const yearPadding = Math.max(0.5, (maxYear - minYear) * 0.1);
@@ -700,7 +708,8 @@
                                 title: (chartItems) => chartable[chartItems[0].dataIndex].title,
                                 label: (chartItem) => {
                                     const it = chartable[chartItem.dataIndex];
-                                    return `${REGION_LABELS[it.region]} · ${it.status} · 시행(예정): ${it.effectiveDate}`;
+                                    const dateLabel = it.effectiveDate ? `시행(예정): ${it.effectiveDate}` : `시행일 미정 - 보도일(${it.date}) 기준 참고 표시`;
+                                    return `${REGION_LABELS[it.region]} · ${it.status} · ${dateLabel}`;
                                 },
                                 afterLabel: (chartItem) => chartable[chartItem.dataIndex].summary,
                             },
@@ -712,7 +721,7 @@
                             beginAtZero: false,
                             min: Math.floor(minYear - yearPadding),
                             max: Math.ceil(maxYear + yearPadding),
-                            title: { display: true, text: '시행(예정) 시점(연도)' },
+                            title: { display: true, text: '시행(예정)/참고용 보도일 시점(연도)' },
                             ticks: { callback: (val) => `${Math.floor(val)}` },
                         },
                         y: {
@@ -723,9 +732,10 @@
             });
 
             const noteEl = document.getElementById('regulationNote');
-            const undated = items.length - chartable.length;
-            noteEl.textContent = `타임라인에는 시행(예정) 시점이 확인된 ${chartable.length}건만 표시됩니다` +
-                (undated > 0 ? ` (일정 미정/상시 운용 ${undated}건은 아래 카드에서 확인하세요).` : '.');
+            const fallbackCount = withPosition.filter(x => x.isFallback).length;
+            const excludedCount = items.length - withPosition.length;
+            noteEl.textContent = `참고용 막대(연한 색, ${fallbackCount}건)는 실제 시행일이 아닌 기사 보도일 기준입니다 - 진행형(논의중/상시운영) 정책은 특정 시행월이 없는 것이 정상입니다.` +
+                (excludedCount > 0 ? ` (날짜 정보가 전혀 없는 ${excludedCount}건은 아래 카드에서만 확인할 수 있습니다.)` : '');
         }
 
         function renderRegulationCards() {
