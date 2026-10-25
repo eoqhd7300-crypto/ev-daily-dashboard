@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T15:02:14.646798+09:00",
+  "generatedAt": "2026-10-25T15:20:04.658037+09:00",
   "vehicles": [
     {
       "id": "li_auto_2026_li_i6",
@@ -49,6 +49,100 @@
       "specLastCheckedAt": "2026-10-24"
     },
     {
+      "id": "byd_yangwang_hu_limousine",
+      "selected": true,
+      "releaseDate": "2026-10-25",
+      "name": "BYD Yangwang HU Flagship Limousine (비야디 양왕 HU 플래그십 리무진)",
+      "brand": "BYD (비야디 / 仰望 Yangwang)",
+      "type": "초럭셔리 대형 전동 리무진",
+      "timeline": "2026년 11월 출시예정",
+      "priceLocal": "¥1,680,000 RMB",
+      "priceKRW": "약 3억 3,800만 원",
+      "batterySpec": "135 kWh Blade Battery (LFP)",
+      "cellMaker": "FinDreams (BYD 자회사)",
+      "packMaker": "FinDreams Battery (BYD 자체)",
+      "qcPerformance": "4.5C Peak (최대 500kW 듀얼 충전) | SOC 10% → 80% (약 12분)",
+      "rangePerformance": "CLTC 720km / e4 쿼드 모터 독립 제어 (합산 960kW/1,300ps), DiSus-Z 무선 자성 액티브 서스펜션 장착",
+      "overview": "전장 5.5미터급 초대형 전동 리무진으로 두바이 중동 프리미어 무대 데뷔 예정인 양왕 브랜드 최상위 VIP 리무진 세단.",
+      "adMessage": "The Apex of Luxury Mobility - Yangwang HU",
+      "dimensions": "5,500mm × 2,000mm × 1,530mm / WB: 3,450mm",
+      "powertrain": "Quad Motor AWD (e4 4모터 합산 최고출력 960kW / 1,300ps, 최대토크 1,680Nm)",
+      "packInfo": "CTB Ultra-High Strength Blade Cell Pack",
+      "cellInfo": "2nd-Gen Ultra-High Energy LFP Blade Cell",
+      "chargingSafety": "듀얼 건(Dual-gun) 동시 500kW 수냉 고속 충전 및 셀 불연성 테스트 검증",
+      "trim": "Flagship Limousine e4",
+      "topSpeed": "250 km/h",
+      "zeroToHundred": "3.0 sec",
+      "maxOutput": "960 kW (1,300 ps)",
+      "maxChargePower": "500 kW",
+      "packVoltage": "800V",
+      "packType": "CTB Ultra Power Blade Pack",
+      "cellType": "Prismatic (Blade)",
+      "coolingMethod": "Dual-Loop Liquid Cooling / Direct Refrigerant",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "LFP High-C-Rate",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
+    },
+    {
+      "id": "byd_denza_n8_2027",
+      "selected": true,
+      "releaseDate": "2026-10-24",
+      "name": "BYD Denza N8 2027 Luxury Cabin Edition (비야디 덴자 N8 럭셔리 캐빈 에디션)",
+      "brand": "BYD (비야디 / 腾势 Denza)",
+      "type": "중대형 전동 SUV",
+      "timeline": "2026년 10월 출시",
+      "priceLocal": "¥319,800 RMB",
+      "priceKRW": "약 6,440만 원",
+      "batterySpec": "108.8 kWh Blade Battery (LFP)",
+      "cellMaker": "FinDreams (BYD 자회사)",
+      "packMaker": "FinDreams Battery (BYD 자체)",
+      "qcPerformance": "3.0C Peak (최대 230kW) | SOC 10% → 80% (약 19분)",
+      "rangePerformance": "CLTC 640km / 듀얼모터 AWD 최고출력 380kW(517ps), 4가지 내장 커스텀 테마 인테리어 및 감응형 e-통합 섀시",
+      "overview": "새로운 4가지 내장 컬러 구성과 승차감 개선 소프트웨어가 적용된 덴자 브랜드의 대표 프리미엄 family 크로스오버.",
+      "adMessage": "Four Cabin Colors, Infinity Comfort - Denza N8",
+      "dimensions": "4,949mm × 1,950mm × 1,725mm / WB: 2,830mm",
+      "powertrain": "Dual Motor AWD (합산 최고출력 380kW / 517ps, 최대토크 680Nm)",
+      "packInfo": "BYD CTB LFP 하이브리드 바닥 셀 결합 팩",
+      "cellInfo": "BYD 2nd-Gen High-Density LFP Blade Cell",
+      "chargingSafety": "침수 및 충돌 모듈 절연 자동 분리 기술 안전 인증",
+      "trim": "Luxury Cabin AWD",
+      "topSpeed": "210 km/h",
+      "zeroToHundred": "4.3 sec",
+      "maxOutput": "380 kW (517 ps)",
+      "maxChargePower": "230 kW",
+      "packVoltage": "700V",
+      "packType": "Blade Battery Pack (CTB)",
+      "cellType": "Prismatic (Blade)",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "150 Ah",
+      "cellComposition": "LFP",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
+    },
+    {
       "id": "byd_seal_07_2nd_gen_devialet",
       "selected": true,
       "releaseDate": "2026-10-23",
@@ -94,6 +188,53 @@
       "cellEnergyDensity": "-",
       "specLastCheckedAt": "2026-10-24",
       "cellMakerCheckedAt": "2026-10-24"
+    },
+    {
+      "id": "arcfox_alpha_s5_2027-2",
+      "selected": true,
+      "releaseDate": "2026-10-23",
+      "name": "Arcfox Alpha S5 2027 LiDAR Edition (아크폭스 알파 S5 2027 라이다 에디션)",
+      "brand": "Arcfox (북기아크폭스 / 极狐)",
+      "type": "중형 전동 쿠페 세단",
+      "timeline": "2026년 11월 출시예정",
+      "priceLocal": "¥128,800 RMB",
+      "priceKRW": "약 2,590만 원",
+      "batterySpec": "79.2 kWh NCM 800V Battery",
+      "cellMaker": "CATL (닝더시대)",
+      "packMaker": "BAIC BluePark (북기블루박)",
+      "qcPerformance": "3.8C Peak (최대 300kW) | SOC 10% → 80% (약 15분)",
+      "rangePerformance": "CLTC 708km / 싱글모터 RWD 200kW(272ps), 표준 센서형 루프 라이다 및 고급 고속 NOA 내비게이션 주행 탑재",
+      "overview": "1만 8천 달러대 가성비 시작가에 루프 LiDAR를 기본 탑재해 자율주행 보조 시스템 수혜 폭을 늘린 2027년형 전기 세단.",
+      "adMessage": "Standard LiDAR, Intelligent Electric Drive - Alpha S5",
+      "dimensions": "4,820mm × 1,930mm × 1,480mm / WB: 2,900mm",
+      "powertrain": "Single Motor RWD (최고출력 200kW / 272ps, 최대토크 360Nm)",
+      "packInfo": "800V 고전압 초간편 구조 팩",
+      "cellInfo": "CATL NCM Ultra Fast Charging Cell",
+      "chargingSafety": "열 확산 방지 공기 간격 제어 팩 및 BMS 고주파 절연 진단",
+      "trim": "708 MAX LiDAR Edition",
+      "topSpeed": "200 km/h",
+      "zeroToHundred": "6.8 sec",
+      "maxOutput": "200 kW (272 ps)",
+      "maxChargePower": "300 kW",
+      "packVoltage": "800V",
+      "packType": "CTP High-Voltage Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "NCM",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
     },
     {
       "id": "byd_seal_07_2nd_gen_2026",
@@ -1928,6 +2069,53 @@
       "cellMakerCheckedAt": "2026-10-11"
     },
     {
+      "id": "rivian_r2_dual_motor",
+      "selected": true,
+      "releaseDate": "2026-09-15",
+      "name": "Rivian R2 Dual-Motor Performance (리비안 R2 듀얼모터 퍼포먼스)",
+      "brand": "Rivian (리비안)",
+      "type": "중형 전동 SUV",
+      "timeline": "2027년 02월 출시예정",
+      "priceLocal": "$54,000 USD",
+      "priceKRW": "약 7,450만 원",
+      "batterySpec": "85 kWh 4695 Cylindrical Cell Battery",
+      "cellMaker": "LG Energy Solution (LG에너지솔루션)",
+      "packMaker": "Rivian Automotive (리비안)",
+      "qcPerformance": "3.2C Peak (최대 270kW) | SOC 10% → 80% (약 20분)",
+      "rangePerformance": "EPA 330마일(약 531km) / 듀얼모터 AWD 490kW(666ps) 최고출력, 4695 대형 원통형 셀 기반 고출력 지원",
+      "overview": "리비안의 2세대 콤팩트 오프로드 SUV 플랫폼을 기반으로 4695 원통형 배터리를 채용해 우수한 주행범위와 퍼포먼스를 완성.",
+      "adMessage": "Adventure Redefined - Rivian R2 Dual-Motor",
+      "dimensions": "4,715mm × 1,905mm × 1,700mm / WB: 2,935mm",
+      "powertrain": "Dual Motor AWD (합산 최고출력 490kW / 666ps, 최대토크 820Nm)",
+      "packInfo": "4695 구조적 셀 패키징 하부 충격 방지 아머 팩",
+      "cellInfo": "4695 Nickel-Rich Cylindrical Cell",
+      "chargingSafety": "오프로드 주행 시 돌출 암석 충격 완화 듀얼 알루미늄 판 샌드위치 구조",
+      "trim": "Dual-Motor Performance AWD",
+      "topSpeed": "200 km/h",
+      "zeroToHundred": "3.5 sec",
+      "maxOutput": "490 kW (666 ps)",
+      "maxChargePower": "270 kW",
+      "packVoltage": "400V",
+      "packType": "Structural Pack (4695)",
+      "cellType": "Cylindrical (4695)",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "NCM High-Nickel",
+      "cellDimensionsMeasured": "46mm x 95mm",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
+    },
+    {
       "id": "lexus_es350e_8th_gen",
       "selected": true,
       "releaseDate": "2026-09-14",
@@ -2934,14 +3122,14 @@
       "packInfo": "수심 1.5m 침수 방지 IP68 및 하부 고강성 아머 팩",
       "cellInfo": "CATL 초안전 오프로드 특화 LFP 셀",
       "chargingSafety": "2m 낙하 및 강풍·폭우 극한 환경 방수 안전 인증",
-      "trim": "Quad Motor EREV AWD",
+      "trim": "EREV Quad-Motor Edition",
       "topSpeed": "180 km/h",
-      "zeroToHundred": "4.6 s",
+      "zeroToHundred": "4.6 sec",
       "maxOutput": "600 kW (816 ps)",
       "maxChargePower": "120 kW",
       "packVoltage": "400V",
-      "packType": "Kunpeng Hybrid Pack",
-      "cellType": "Prismatic LFP",
+      "packType": "Off-Road Reinforced Pack",
+      "cellType": "Prismatic",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -2952,12 +3140,12 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "LFP",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
       "cellMakerCheckedAt": "2026-10-09",
-      "specLastCheckedAt": "2026-10-10"
+      "specLastCheckedAt": "2026-10-25"
     },
     {
       "id": "kia_ev2_std",
@@ -3075,15 +3263,15 @@
       "packInfo": "SDA 디지털 개방형 플랫폼 Golden Shield 배터리 팩",
       "cellInfo": "CATL LFP High-Safety Cell",
       "chargingSafety": "배터리 진동 모니터링 센서 및 셀 고밀도 절연 겔 도포",
-      "trim": "701km Max RWD",
-      "topSpeed": "201km/h",
-      "zeroToHundred": "6.7초",
-      "maxOutput": "252kW / 343ps",
-      "maxChargePower": "240kW",
+      "trim": "Ultra Long Range RWD",
+      "topSpeed": "201 km/h",
+      "zeroToHundred": "6.7 sec",
+      "maxOutput": "252 kW (343 ps)",
+      "maxChargePower": "240 kW",
       "packVoltage": "800V",
-      "packType": "CTP (Cell-to-Pack)",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Cooling Plate)",
+      "packType": "Golden Shield Battery Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -3097,7 +3285,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-10",
+      "specLastCheckedAt": "2026-10-25",
       "cellMakerCheckedAt": "2026-09-26"
     },
     {
@@ -3779,14 +3967,14 @@
       "packInfo": "800V Hurricane Ultra Fast Charge Battery Pack",
       "cellInfo": "High-Nickel NCM Smart Cell",
       "chargingSafety": "열전도 분리 격벽 및 BMS AI 실시간 전압 예측 시스템",
-      "trim": "Single Motor RWD",
+      "trim": "Max Long Range RWD",
       "topSpeed": "220 km/h",
-      "zeroToHundred": "5.4 s",
+      "zeroToHundred": "5.4 sec",
       "maxOutput": "300 kW (408 ps)",
       "maxChargePower": "396 kW",
-      "packVoltage": "800V",
-      "packType": "Quasi-Solid-State 800V Pack",
-      "cellType": "Prismatic NCM",
+      "packVoltage": "875V",
+      "packType": "Hurricane 800V Semi-Solid CTP Pack",
+      "cellType": "Prismatic",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -3797,12 +3985,59 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "Semi-Solid / NCM",
+      "cellComposition": "NCM Semi-Solid",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-10",
+      "specLastCheckedAt": "2026-10-25",
       "cellMakerCheckedAt": "2026-09-26"
+    },
+    {
+      "id": "lexus_hz_300e",
+      "selected": true,
+      "releaseDate": "2026-08-19",
+      "name": "Lexus HZ 300e Electric SUV (렉서스 HZ 300e 순수전기 SUV)",
+      "brand": "Lexus (렉서스)",
+      "type": "준중형 럭셔리 전동 SUV",
+      "timeline": "2026년 12월 출시예정",
+      "priceLocal": "¥6,800,000 JPY",
+      "priceKRW": "약 6,120만 원",
+      "batterySpec": "71.4 kWh Bipolar LFP Battery",
+      "cellMaker": "Prime Planet Energy & Solutions (PPES)",
+      "packMaker": "Toyota Motor (토요타)",
+      "qcPerformance": "2.5C Peak (최대 180kW) | SOC 10% → 80% (약 26분)",
+      "rangePerformance": "WLTC 480km / DIRECT4 사륜구동 옵션, 이식형 차세대 가변 스티어-바이-와이어 핸들 및 야마하 튜닝 음향 시스템",
+      "overview": "토요타그룹의 차세대 바이폴라 LFP 배터리를 도입하여 원가절감과 높은 열안전성을 선사하는 렉서스 브랜드의 전용 EV 라인업.",
+      "adMessage": "Silent Luxury Empowered - All-New Lexus HZ",
+      "dimensions": "4,690mm × 1,860mm × 1,620mm / WB: 2,850mm",
+      "powertrain": "Single Motor FWD (최고출력 150kW / 204ps, 최대토크 266Nm)",
+      "packInfo": "바이폴라 전지 수평 배치 저상형 안전 팩",
+      "cellInfo": "Bipolar LFP Cell (쌍극형 LFP 셀)",
+      "chargingSafety": "배터리 수명 90% 10년 보장 및 4중 절연 유체 모니터링",
+      "trim": "Standard FWD",
+      "topSpeed": "160 km/h",
+      "zeroToHundred": "7.2 sec",
+      "maxOutput": "150 kW (204 ps)",
+      "maxChargePower": "180 kW",
+      "packVoltage": "400V",
+      "packType": "Bipolar LFP Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "Bipolar LFP",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
     },
     {
       "id": "xiaomi_su7_ultra",
@@ -5355,6 +5590,53 @@
       "specLastCheckedAt": "2026-10-20"
     },
     {
+      "id": "polestar_7_cuv",
+      "selected": true,
+      "releaseDate": "2026-07-08",
+      "name": "Polestar 7 Compact CUV (폴스타 7 컴팩트 전동 CUV)",
+      "brand": "Polestar (폴스타)",
+      "type": "준중형 럭셔리 크로스오버",
+      "timeline": "2027년 01월 출시예정",
+      "priceLocal": "€48,000 EUR",
+      "priceKRW": "약 7,100만 원",
+      "batterySpec": "78 kWh High-Density NCM Battery",
+      "cellMaker": "SK On (SK온)",
+      "packMaker": "Polestar (폴스타)",
+      "qcPerformance": "3.2C Peak (최대 250kW) | SOC 10% → 80% (약 22분)",
+      "rangePerformance": "WLTP 560km / 후륜구동 220kW 싱글모터, 스칸디나비안 미니멀리즘 디자인 및 안드로이드 오토모티브 OS 탑재",
+      "overview": "유럽 시장을 주력 표적으로 삼은 폴스타의 엔트리 럭셔리 크로스오버로, 친환경 지속가능 소재와 고효율 800V 구동계를 차용.",
+      "adMessage": "Pure Design. Electric Performance - Polestar 7",
+      "dimensions": "4,580mm × 1,890mm × 1,560mm / WB: 2,780mm",
+      "powertrain": "Single Motor RWD (최고출력 220kW / 299ps, 최대토크 420Nm)",
+      "packInfo": "800V 차세대 경량화 알루미늄 프레임 팩",
+      "cellInfo": "SK온 NCM 9/ 1/ 1 파우치 셀",
+      "chargingSafety": "차량 측면 충돌 보호 통합 세이드 구조 팩 설계",
+      "trim": "Long Range Single Motor",
+      "topSpeed": "200 km/h",
+      "zeroToHundred": "6.0 sec",
+      "maxOutput": "220 kW (299 ps)",
+      "maxChargePower": "250 kW",
+      "packVoltage": "800V",
+      "packType": "SEA Structural Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "NCM",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
+    },
+    {
       "id": "mg_cyberster_trophy_2026",
       "selected": true,
       "releaseDate": "2026-07-08",
@@ -5848,27 +6130,27 @@
       "chargingSafety": "열폭주 방지 센서 배열 및 셀 균일 온도 액체 냉각",
       "trim": "VZ AWD",
       "topSpeed": "180 km/h",
-      "zeroToHundred": "5.5 s",
+      "zeroToHundred": "5.5 sec",
       "maxOutput": "250 kW (340 ps)",
       "maxChargePower": "135 kW",
       "packVoltage": "400V",
-      "packType": "MEB Pack",
-      "cellType": "Prismatic",
+      "packType": "MEB Modular Battery Pack",
+      "cellType": "Pouch",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
-      "packWeight": "-",
+      "packWeight": "493 kg",
       "packMinusCellWeight": "-",
       "cellToPackWeightRatio": "-",
-      "packEnergyDensity": "-",
-      "cellConfiguration": "-",
+      "packEnergyDensity": "156 Wh/kg",
+      "cellConfiguration": "12 Modules",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "NCM 712",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-10"
+      "specLastCheckedAt": "2026-10-25"
     },
     {
       "id": "gm_chevrolet_blazer_ev_ss_lmr_2026",
@@ -5916,6 +6198,53 @@
       "cellEnergyDensity": "-",
       "specLastCheckedAt": "2026-10-23",
       "cellMakerCheckedAt": "2026-10-23"
+    },
+    {
+      "id": "tesla_cybertruck_eu",
+      "selected": true,
+      "releaseDate": "2026-06-11",
+      "name": "Tesla Cybertruck Dual Motor Europe Spec (테슬라 사이버트럭 듀얼모터 유럽형)",
+      "brand": "Tesla (테슬라)",
+      "type": "대형 전동 픽업트럭",
+      "timeline": "2026년 11월 출시예정",
+      "priceLocal": "€89,900 EUR",
+      "priceKRW": "약 1억 3,300만 원",
+      "batterySpec": "123 kWh 4680 Cybercell Battery",
+      "cellMaker": "Tesla Inc. (테슬라)",
+      "packMaker": "Tesla Inc. (테슬라)",
+      "qcPerformance": "2.8C Peak (최대 350kW) | SOC 10% → 80% (약 27분)",
+      "rangePerformance": "WLTP 520km / 듀얼모터 AWD 최고출력 447kW(608ps), 보행자 보호 보위 및 CCS2 타입 호환 조향 섀시 수정",
+      "overview": "유럽 충돌 안전 규격 및 충전 표준을 충족하도록 전면 범퍼 패널 구조와 4680 구조용 배터리 팩을 개선한 유럽 사양 사이버트럭.",
+      "adMessage": "Built for Any Planet - Cybertruck Europe",
+      "dimensions": "5,682mm × 2,030mm × 1,790mm / WB: 3,635mm",
+      "powertrain": "Dual Motor AWD (합산 최고출력 447kW / 608ps, 최대토크 10,080Nm 바퀴 토크)",
+      "packInfo": "4680 셀 기반 구조체 팩 (Structural Battery Pack)",
+      "cellInfo": "Tesla 4680 Second-Gen Dry Cathode Cell",
+      "chargingSafety": "건식 극판 4680 셀 내부 압력 릴리프 밸브 및 바닥 티타늄 아머",
+      "trim": "Dual Motor AWD (EU Spec)",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "4.3 sec",
+      "maxOutput": "447 kW (608 ps)",
+      "maxChargePower": "350 kW",
+      "packVoltage": "800V",
+      "packType": "Structural Pack (4680)",
+      "cellType": "Cylindrical (4680)",
+      "coolingMethod": "Liquid Cooling (Snake Tube)",
+      "packCapacityAh": "150 Ah",
+      "packDimensions": "-",
+      "packWeight": "703 kg",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "175 Wh/kg",
+      "cellConfiguration": "1360 Cells (4S/340P parallel-series structure)",
+      "cellEnergy": "90.4 Wh",
+      "cellCapacityAh": "24.5 Ah",
+      "cellComposition": "NCM 811",
+      "cellDimensionsMeasured": "46mm x 80mm",
+      "cellWeightMeasured": "355g",
+      "cellEnergyDensity": "255 Wh/kg",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
     },
     {
       "id": "byd_sealion_05_ev",
@@ -6035,11 +6364,11 @@
       "chargingSafety": "배터리 충전 이상 탐지 및 BMS 3단계 분리 열차단",
       "trim": "Long Range RWD",
       "topSpeed": "185 km/h",
-      "zeroToHundred": "7.4 s",
+      "zeroToHundred": "7.0 sec",
       "maxOutput": "168 kW (229 ps)",
       "maxChargePower": "260 kW",
       "packVoltage": "800V",
-      "packType": "E-GMP 4th Gen Pack",
+      "packType": "E-GMP 4th-Gen Modular Pack",
       "cellType": "Pouch",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
@@ -6051,12 +6380,59 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "NCM High-Nickel",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
       "cellMakerCheckedAt": "2026-10-09",
-      "specLastCheckedAt": "2026-10-10"
+      "specLastCheckedAt": "2026-10-25"
+    },
+    {
+      "id": "hyundai_ioniq_6_n",
+      "selected": true,
+      "releaseDate": "2026-05-22",
+      "name": "Hyundai Ioniq 6 N Performance (현대 아이오닉 6 N)",
+      "brand": "Hyundai (현대자동차)",
+      "type": "고성능 중형 전동 스포츠 세단",
+      "timeline": "2026년 09월 출시",
+      "priceLocal": "₩84,500,000 KRW",
+      "priceKRW": "8,450만 원",
+      "batterySpec": "84 kWh NCM 4세대 고출력 배터리",
+      "cellMaker": "SK On (SK온)",
+      "packMaker": "Hyundai Mobis (현대모비스)",
+      "qcPerformance": "4.1C Peak (최대 350kW) | SOC 10% → 80% (약 18분)",
+      "rangePerformance": "복합 415km / N 그린 부스트 작동 시 최고출력 478kW(650ps), N e-Shift 및 서킷 가변 냉각 시스템 장착",
+      "overview": "RN22e 컨셉트카의 기술력을 이어받아 강력한 다운포스와 800V 초고속 급속 충전 시스템을 탑재한 현대 N 브랜드 최초의 고성능 전기 세단.",
+      "adMessage": "Never Just Drive - All-New Ioniq 6 N",
+      "dimensions": "4,875mm × 1,880mm × 1,490mm / WB: 2,950mm",
+      "powertrain": "Dual Motor AWD (N Grin Boost 시 최고출력 478kW / 650ps, 최대토크 770Nm)",
+      "packInfo": "E-GMP 서킷 레이스 특화 고출력 수냉 강화 팩",
+      "cellInfo": "High-Power NCM Pouch Cell",
+      "chargingSafety": "트랙 주행 시 프리콘디셔닝 배터리 직접 유체 냉각 제어",
+      "trim": "N Track Pack AWD",
+      "topSpeed": "260km/h",
+      "zeroToHundred": "3.2초",
+      "maxOutput": "478kW / 650ps",
+      "maxChargePower": "350kW",
+      "packVoltage": "800V",
+      "packType": "CTP (Cell-to-Pack)",
+      "cellType": "파우치형 (Pouch)",
+      "coolingMethod": "액체 냉각 (Cooling Plate)",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "NCM 811",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-17",
+      "cellMakerCheckedAt": "2026-10-17"
     },
     {
       "id": "genesis_g70_electrified_2026",
@@ -6576,6 +6952,53 @@
       "cellMakerCheckedAt": "2026-10-24"
     },
     {
+      "id": "chevy_bolt_euv_lmr",
+      "selected": true,
+      "releaseDate": "2026-04-22",
+      "name": "GM Chevrolet Bolt EUV LMR Platform Edition (쉐보레 볼트 EUV LMR 배터리 에디션)",
+      "brand": "Chevrolet (쉐보레 / GM)",
+      "type": "소형 전동 CUV",
+      "timeline": "2026년 10월 출시",
+      "priceLocal": "$27,500 USD",
+      "priceKRW": "약 3,790만 원",
+      "batterySpec": "65 kWh LMR (Lithium Manganese-Rich) Battery",
+      "cellMaker": "LG Energy Solution (LG에너지솔루션)",
+      "packMaker": "General Motors (제너럴 모터스)",
+      "qcPerformance": "2.3C Peak (최대 150kW) | SOC 10% → 80% (약 25분)",
+      "rangePerformance": "EPA 300마일(약 482km) / 싱글모터 FWD 156kW(212ps), 차세대 가성비 LMR 플랫폼 최초 탑재",
+      "overview": "GM의 4세대 전동화 기술인 리튬 망간 리치(LMR) 배터리를 탑재해 제조 원가를 낮추면서도 높은 주행거리를 확보한 국민 EV.",
+      "adMessage": "Everyday Mobility Reimagined - All-New Bolt EUV LMR",
+      "dimensions": "4,305mm × 1,770mm × 1,615mm / WB: 2,675mm",
+      "powertrain": "Single Motor FWD (최고출력 156kW / 212ps, 최대토크 360Nm)",
+      "packInfo": "4세대 가성비 LMR 구조 저원가 고강성 패키지",
+      "cellInfo": "LMR (Lithium Manganese-Rich) Pouch Cell",
+      "chargingSafety": "GM 얼티엄 서멀 가드 셀 분리막 및 저발열 화학 조성",
+      "trim": "LMR Platform Edition FWD",
+      "topSpeed": "160 km/h",
+      "zeroToHundred": "7.0 sec",
+      "maxOutput": "156 kW (212 ps)",
+      "maxChargePower": "150 kW",
+      "packVoltage": "400V",
+      "packType": "Ultium-derived LMR Pack",
+      "cellType": "Pouch",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "LMR (Lithium Manganese-Rich)",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
+    },
+    {
       "id": "smart_hashtag_5_brabus",
       "selected": true,
       "releaseDate": "2026-04-20",
@@ -6669,35 +7092,35 @@
       "cellMakerCheckedAt": "2026-10-19"
     },
     {
-      "id": "hyundai_ioniq6_n_2026",
+      "id": "mercedes_cla_shooting_brake_ev",
       "selected": true,
-      "releaseDate": "2026-04-12",
-      "name": "Hyundai Ioniq 6 N Performance (현대 아이오닉 6 N)",
-      "brand": "Hyundai (현대자동차)",
-      "type": "고성능 전기 스트림라이너 세단",
-      "timeline": "2026년 08월 한국 및 글로벌 출시 예정",
-      "priceLocal": "8,400만 원",
-      "priceKRW": "약 8,400만 원",
-      "batterySpec": "84 kWh 4세대 High-Capacity Pack (NCM 811)",
-      "cellMaker": "SK On (SK온)",
-      "packMaker": "Hyundai Mobis (현대모비스)",
-      "qcPerformance": "4.0C Peak (최대 350kW) | SOC 10% → 80% (약 18분)",
-      "rangePerformance": "한국 복합 430km / 듀얼모터 AWD 478kW (650ps, N Grin Boost 시), 전자식 차폐 제한 장치(e-LSD)",
-      "overview": "RN22e 콘셉트카의 기술력을 계승한 현대 N 브랜드를 대표하는 차세대 고성능 패스트백 세단입니다.",
-      "adMessage": "Never Just Drive - High-Performance Electric Streamliner",
-      "dimensions": "4,855mm × 1,880mm × 1,495mm / WB: 2,950mm",
-      "powertrain": "Dual Motor AWD (부스트 시 478kW / 650ps, 최대토크 770Nm)",
-      "packInfo": "800V E-GMP N 전용 트랙 내구성 강화 배터리 팩",
-      "cellInfo": "High-Nickel NCM 파우치 셀",
-      "chargingSafety": "트랙 다이내믹 프리콘디셔닝 thermal management 모듈",
-      "trim": "N Performance AWD",
-      "topSpeed": "260 km/h",
-      "zeroToHundred": "3.2초",
-      "maxOutput": "478 kW (650 ps)",
-      "maxChargePower": "350 kW",
+      "releaseDate": "2026-04-14",
+      "name": "Mercedes-Benz CLA Shooting Brake EV (메르세데스-벤츠 CLA 슈팅브레이크 EV)",
+      "brand": "Mercedes-Benz (메르세데스-벤츠)",
+      "type": "준중형 프리미엄 전동 왜건",
+      "timeline": "2026년 09월 출시",
+      "priceLocal": "€56,000 EUR",
+      "priceKRW": "약 8,300만 원",
+      "batterySpec": "85 kWh MMA Platform Battery (NCM)",
+      "cellMaker": "ACC (Automotive Cells Company)",
+      "packMaker": "Mercedes-Benz (메르세데스-벤츠)",
+      "qcPerformance": "3.5C Peak (최대 300kW) | SOC 10% → 80% (약 16분)",
+      "rangePerformance": "WLTP 720km / 후륜구동 200kW 모터 및 2단 변속기 적용, 800V 고전압 고효율 시스템",
+      "overview": "MMA 모듈러 플랫폼을 적용한 첫 럭셔리 왜건 모델로 Vision EQXX 기술을 계승해 100km당 12kWh 미만의 고효율 주행 달성.",
+      "adMessage": "Elegance Meets Efficiency - CLA Shooting Brake EV",
+      "dimensions": "4,740mm × 1,860mm × 1,440mm / WB: 2,810mm",
+      "powertrain": "Single Motor RWD with 2-Speed Transmission (최고출력 200kW / 272ps, 최대토크 400Nm)",
+      "packInfo": "MMA 차세대 실리콘 옥사이드 음극 800V CTP 팩",
+      "cellInfo": "NCM 811 High Density Anode Cell",
+      "chargingSafety": "벤츠 지능형 셀 셀프 힐링 모니터링 및 실시간 열 확산 금지 플레이트",
+      "trim": "MMA 250+ Shooting Brake",
+      "topSpeed": "210 km/h",
+      "zeroToHundred": "6.2 sec",
+      "maxOutput": "200 kW (272 ps)",
+      "maxChargePower": "300 kW",
       "packVoltage": "800V",
-      "packType": "E-GMP Pack",
-      "cellType": "Pouch",
+      "packType": "MMA High-Voltage Integrated Pack",
+      "cellType": "Prismatic",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
@@ -6708,12 +7131,12 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM 811",
+      "cellComposition": "NCM",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-17",
-      "cellMakerCheckedAt": "2026-10-17"
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
     },
     {
       "id": "nio_3rd_gen_es8_ev",
@@ -7467,6 +7890,53 @@
       "cellMakerCheckedAt": "2026-10-11"
     },
     {
+      "id": "geely_galaxy_e5_global",
+      "selected": true,
+      "releaseDate": "2026-03-05",
+      "name": "Geely Galaxy E5 Global Edition (지리 은하 E5 글로벌 에디션)",
+      "brand": "Geely (지리자동차 / 吉利)",
+      "type": "준중형 전동 SUV",
+      "timeline": "2026년 06월 출시",
+      "priceLocal": "€31,900 EUR",
+      "priceKRW": "약 4,730만 원",
+      "batterySpec": "60.22 kWh Aegis Short Blade Battery (LFP)",
+      "cellMaker": "SVOLT (스볼트 / 蜂巢能源)",
+      "packMaker": "Geely Auto (지리자동차)",
+      "qcPerformance": "3.0C Peak (최대 160kW) | SOC 10% → 80% (약 20분)",
+      "rangePerformance": "WLTP 430km / 전륜구동 160kW 모터, Flyme Auto 인포테인먼트 시스템 및 고강성 쇼트 블레이드 안전 셀 탑재",
+      "overview": "유럽 및 글로벌 규격에 맞춰 세팅된 지리의 핵심 소형-준중형 SUV로, 자체 개발한 숏 블레이드 LFP 배터리를 장착.",
+      "adMessage": "Everyday Premium EV - Geely Galaxy E5",
+      "dimensions": "4,615mm × 1,901mm × 1,670mm / WB: 2,750mm",
+      "powertrain": "Single Motor FWD (최고출력 160kW / 218ps, 최대토크 320Nm)",
+      "packInfo": "GEA 전용 CTB(Cell-to-Body) 안전 안티 바텀 차단 팩",
+      "cellInfo": "Aegis Short Blade LFP Cell",
+      "chargingSafety": "관통 시험 통과 숏 블레이드 구조 및 하부 방탄 등급 실드 덮개",
+      "trim": "Global Edition FWD",
+      "topSpeed": "175 km/h",
+      "zeroToHundred": "6.9 sec",
+      "maxOutput": "160 kW (218 ps)",
+      "maxChargePower": "160 kW",
+      "packVoltage": "400V",
+      "packType": "CTB (Cell-to-Body) Short Blade Pack",
+      "cellType": "Prismatic (Short Blade)",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "LFP",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
+    },
+    {
       "id": "cupra_born_vz_performance",
       "selected": true,
       "releaseDate": "2026-02-24",
@@ -7937,6 +8407,53 @@
       "specLastCheckedAt": "2026-10-22"
     },
     {
+      "id": "cadillac_escalade_iql",
+      "selected": true,
+      "releaseDate": "2026-02-10",
+      "name": "Cadillac Escalade IQL (캐딜락 에스컬레이드 IQL 롱휠베이스)",
+      "brand": "Cadillac (캐딜락)",
+      "type": "초대형 럭셔리 전동 SUV",
+      "timeline": "2026년 08월 출시",
+      "priceLocal": "$145,000 USD",
+      "priceKRW": "약 2억 0,000만 원",
+      "batterySpec": "205 kWh Ultium Battery Pack (NCMA)",
+      "cellMaker": "Ultium Cells LLC (LG에너지솔루션-GM 합작사)",
+      "packMaker": "General Motors (제너럴 모터스)",
+      "qcPerformance": "1.7C Peak (최대 350kW) | SOC 10% → 80% (약 35분)",
+      "rangePerformance": "EPA 460마일(약 740km) / 듀얼모터 560kW(760ps) 최고출력, 4륜 조향 후륜 서스펜션 및 슈퍼크루즈 내장",
+      "overview": "휠베이스를 대폭 확장하여 3열 탑승객의 공간 편의성을 극대화하고 205kWh 대용량 얼티엄 팩을 장착한 초대형 EV flagship.",
+      "adMessage": "Iconic Presence Extended - Escalade IQL",
+      "dimensions": "5,790mm × 2,060mm × 1,935mm / WB: 3,460mm",
+      "powertrain": "Dual Motor eAWD (합산 최고출력 560kW / 760ps, 최대토크 1,064Nm Velocity Max)",
+      "packInfo": "GM 얼티엄 듀얼 레이어 24모듈 구조 고전압 팩",
+      "cellInfo": "NCMA 파우치형 대형 셀",
+      "chargingSafety": "모듈별 20중 하우징 샌드위치 플레이트 보호",
+      "trim": "IQL Long Wheelbase eAWD",
+      "topSpeed": "210 km/h",
+      "zeroToHundred": "4.4 sec",
+      "maxOutput": "560 kW (760 ps)",
+      "maxChargePower": "350 kW",
+      "packVoltage": "800V",
+      "packType": "Ultium 24-Module Pack",
+      "cellType": "Pouch",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "24 Modules (Double Stack)",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "NCMA",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
+    },
+    {
       "id": "baic_beijing_eu5_plus_swap_2026",
       "selected": true,
       "releaseDate": "2026-01-28",
@@ -8217,6 +8734,53 @@
       "cellEnergyDensity": "-",
       "cellMakerCheckedAt": "2026-10-21",
       "specLastCheckedAt": "2026-10-22"
+    },
+    {
+      "id": "audi_rs_q6_etron",
+      "selected": true,
+      "releaseDate": "2026-01-18",
+      "name": "Audi RS Q6 e-tron Sportback (아우디 RS Q6 이트론 스포트백)",
+      "brand": "Audi (아우디)",
+      "type": "고성능 준대형 전기 쿠페형 SUV",
+      "timeline": "2026년 05월 출시",
+      "priceLocal": "€105,000 EUR",
+      "priceKRW": "약 1억 5,600만 원",
+      "batterySpec": "100 kWh PPE Platform NCM Battery",
+      "cellMaker": "CATL (닝더시대)",
+      "packMaker": "Audi AG (아우디)",
+      "qcPerformance": "3.7C Peak (최대 270kW) | SOC 10% → 80% (약 21분)",
+      "rangePerformance": "WLTP 590km / 콰트로 듀얼모터 380kW(부스트 430kW) 최고출력, 800V 아키텍처 지원",
+      "overview": "포르쉐와 공동 개발한 PPE 플랫폼을 바탕으로 RS 전용 튜닝 서스펜션과 고성능 차체 제어를 적용한 전기 쿠페 SUV.",
+      "adMessage": "Pure RS Dynamics - The All-Electric RS Q6 e-tron Sportback",
+      "dimensions": "4,771mm × 1,965mm × 1,648mm / WB: 2,899mm",
+      "powertrain": "Quattro Dual Motor AWD (최고출력 430kW / 585ps Launch Control, 최대토크 850Nm)",
+      "packInfo": "800V PPE 고강성 통합 바닥재 배터리 팩",
+      "cellInfo": "NCM 811 고전압 셀",
+      "chargingSafety": "고속 충전 시 냉매 능동 순환 차단 및 세밀 제어 온도 관리",
+      "trim": "RS Sportback Quattro",
+      "topSpeed": "240 km/h",
+      "zeroToHundred": "3.7 sec",
+      "maxOutput": "430 kW (585 ps)",
+      "maxChargePower": "270 kW",
+      "packVoltage": "800V",
+      "packType": "PPE Platform Structural Pack",
+      "cellType": "Prismatic",
+      "coolingMethod": "Direct Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "12 Modules",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "NCM 811",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
     },
     {
       "id": "audi_e5_sportback_ev",
@@ -8640,6 +9204,53 @@
       "cellEnergyDensity": "-",
       "specLastCheckedAt": "2026-10-16",
       "cellMakerCheckedAt": "2026-10-16"
+    },
+    {
+      "id": "aito_m8_ev",
+      "selected": true,
+      "releaseDate": "2025-12-20",
+      "name": "AITO 问界 M8 Pure EV (화웨이-세레스 아이토 M8 순수전기)",
+      "brand": "AITO (화웨이-세레스 / 赛力斯)",
+      "type": "대형 스마트 SUV",
+      "timeline": "2026년 02월 출시",
+      "priceLocal": "¥389,800 RMB",
+      "priceKRW": "약 7,850만 원",
+      "batterySpec": "100 kWh Qilin Battery (NCM)",
+      "cellMaker": "CATL (닝더시대)",
+      "packMaker": "CATL (닝더시대)",
+      "qcPerformance": "4.0C Peak (최대 320kW) | SOC 10% → 80% (약 15분)",
+      "rangePerformance": "CLTC 705km / 듀얼모터 AWD 390kW 최고출력, 화웨이 ADS 4.0 자율주행 알고리즘 및 에어 서스펜션 기본 적용",
+      "overview": "화웨이의 최신 자율주행 기술과 기린 3.0 배터리 모듈을 결합하여 긴 실주행거리와 안락한 주행감을 제공하는 대형 SUV.",
+      "adMessage": "HUAWEI HarmonySpace Flagship Electric SUV",
+      "dimensions": "5,080mm × 1,995mm × 1,800mm / WB: 3,010mm",
+      "powertrain": "Dual Motor AWD (합산 최고출력 390kW / 530ps, 최대토크 673Nm)",
+      "packInfo": "CATL Qilin CTP 3.0 수평 수냉 구조 패키지",
+      "cellInfo": "NCM High-Nickel Cell",
+      "chargingSafety": "셀 간 차열재 및 화웨이 주간/야간 실시간 BMS 모니터링 시스템",
+      "trim": "Ultra EV AWD",
+      "topSpeed": "210 km/h",
+      "zeroToHundred": "4.5 sec",
+      "maxOutput": "390 kW (530 ps)",
+      "maxChargePower": "320 kW",
+      "packVoltage": "800V",
+      "packType": "CATL Qilin CTP 3.0",
+      "cellType": "Prismatic",
+      "coolingMethod": "Integrated Liquid Cooling Plate",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "NCM",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
     },
     {
       "id": "mercedes_benz_g_580_eq",
@@ -9158,6 +9769,53 @@
       "cellMakerCheckedAt": "2026-10-24"
     },
     {
+      "id": "genesis_eg80_black",
+      "selected": true,
+      "releaseDate": "2025-11-28",
+      "name": "Genesis Electrified G80 Black (제네시스 G80 전동화 블랙 에디션)",
+      "brand": "Genesis (제네시스)",
+      "type": "대형 럭셔리 전동 세단",
+      "timeline": "2025년 12월 출시",
+      "priceLocal": "₩98,600,000 KRW",
+      "priceKRW": "9,860만 원",
+      "batterySpec": "95.4 kWh NCM 4세대 배터리",
+      "cellMaker": "SK On (SK온)",
+      "packMaker": "Hyundai Mobis (현대모비스)",
+      "qcPerformance": "3.8C Peak (최대 350kW) | SOC 10% → 80% (약 19분)",
+      "rangePerformance": "복합 475km (19인치 휠) / 듀얼모터 AWD 최고출력 272kW, 초고속 800V 멀티 충전 및 능동형 노면소음 제어 지원",
+      "overview": "다크 크롬 그릴과 휠, 익스테리어 전체에 블랙 디테일을 강조한 롱휠베이스 기반의 제네시스 최상위 럭셔리 전동화 세단.",
+      "adMessage": "Athletic Elegance in Dark - Electrified G80 Black",
+      "dimensions": "5,135mm × 1,930mm × 1,470mm / WB: 3,140mm",
+      "powertrain": "Dual Motor AWD (합산 최고출력 272kW / 370ps, 최대토크 700Nm)",
+      "packInfo": "800V 고전압 하우징 강성 보강 팩",
+      "cellInfo": "고비율 니켈 SK온 4세대 High-Nickel Pouch Cell",
+      "chargingSafety": "3단계 배터리 실시간 절연 모니터링 및 소화가스 분사 밸브 내장",
+      "trim": "Black Edition AWD",
+      "topSpeed": "240 km/h",
+      "zeroToHundred": "4.9 sec",
+      "maxOutput": "272 kW (370 ps)",
+      "maxChargePower": "350 kW",
+      "packVoltage": "800V",
+      "packType": "E-GMP Modular Pack",
+      "cellType": "Pouch",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "NCM 811",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
+    },
+    {
       "id": "jeep_recon_ev_2026",
       "selected": true,
       "releaseDate": "2025-11-25",
@@ -9626,17 +10284,136 @@
       "cellEnergyDensity": "-",
       "specLastCheckedAt": "2026-10-16",
       "cellMakerCheckedAt": "2026-10-16"
+    },
+    {
+      "id": "kia_ev4_sedan_us",
+      "selected": true,
+      "releaseDate": "2025-11-15",
+      "name": "Kia EV4 Sedan (기아 EV4 북미형 세단)",
+      "brand": "Kia (기아)",
+      "type": "준중형 전동 세단",
+      "timeline": "2026년 03월 출시",
+      "priceLocal": "$38,500 USD",
+      "priceKRW": "약 5,310만 원",
+      "batterySpec": "81.4 kWh NCM 삼원계 배터리",
+      "cellMaker": "HLIB (현대-LG에너지솔루션 인도네시아)",
+      "packMaker": "Hyundai Mobis (현대모비스)",
+      "qcPerformance": "2.8C Peak (최대 150kW) | SOC 10% → 80% (약 31분)",
+      "rangePerformance": "EPA 기준 305마일(약 490km) / 전륜구동 싱글모터 150kW(204ps) 최고출력 및 V2L 외부 전력 공급 지원",
+      "overview": "E-GMP 플랫폼 기반 초슬림 에어로 세단 디자인을 채택하여 고효율 롱레인지 공기저항계수 0.23Cd를 달성한 도심 및 장거리 겸용 세단.",
+      "adMessage": "Design Driven Efficiency - All-Electric Kia EV4",
+      "dimensions": "4,720mm × 1,840mm × 1,490mm / WB: 2,820mm",
+      "powertrain": "Single Motor FWD (최고출력 150kW / 204ps, 최대토크 283Nm)",
+      "packInfo": "E-GMP 표준 400V 고밀도 알루미늄 하우징 모듈형 패키지",
+      "cellInfo": "NCM 811 파우치형 고에너지밀도 셀",
+      "chargingSafety": "배터리 온열 관리 및 급속 충전 시 열폭주 전지 차단 시스템 적용",
+      "trim": "Long Range FWD",
+      "topSpeed": "185 km/h",
+      "zeroToHundred": "7.5 sec",
+      "maxOutput": "150 kW (204 ps)",
+      "maxChargePower": "150 kW",
+      "packVoltage": "400V",
+      "packType": "E-GMP Integrated Pack",
+      "cellType": "Pouch",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "-",
+      "packDimensions": "-",
+      "packWeight": "-",
+      "packMinusCellWeight": "-",
+      "cellToPackWeightRatio": "-",
+      "packEnergyDensity": "-",
+      "cellConfiguration": "-",
+      "cellEnergy": "-",
+      "cellCapacityAh": "-",
+      "cellComposition": "NCM",
+      "cellDimensionsMeasured": "-",
+      "cellWeightMeasured": "-",
+      "cellEnergyDensity": "-",
+      "specLastCheckedAt": "2026-10-25",
+      "cellMakerCheckedAt": "2026-10-25"
     }
   ],
   "news": [
     {
+      "title": "한밭대 연구진, 차세대 배터리 수명 늘릴 신기술 개발 - 투데이에너지",
+      "summary": "한밭대학교 연구진이 차세대 배터리의 수명을 연장할 수 있는 신기술을 개발했습니다.",
+      "source": "투데이에너지",
+      "date": "2026-10-25",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE95WmVoTFlDbXVHeC1MV3k3dGl5VG5VbEpSSml4VlhaVmFSd1ZxUEJ2ZUZhV2FlelRJdUFaeTc4MVFfLWp6Tk5BOUtxWDdDQUNQZmhwMFpUaFRndlNqaW5yaVc1QlhqV1JOclJxOQ?oc=5",
+      "linkType": "rss",
+      "id": 1
+    },
+    {
+      "title": "영하 30도에도 배터리 용량 97% 유지…도넛랩 극저온 시험 - 글로벌이코노믹",
+      "summary": "도넛랩이 극저온 성능 시험을 통해 영하 30도의 환경에서도 배터리 용량을 97% 수준으로 유지하는 기술을 선보였습니다.",
+      "source": "글로벌이코노믹",
+      "date": "2026-10-25",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOS1JDZFRtWVZVLVRwcHUxM05qN1FyQzlkZkN2bEhmR29kU0dGS3MzVXFQenVhT2VDM0x5Ri1FMWhURXVKQk5oTm05WnRQOUNPVlZPckpZZ0lfcmFabUdUamdKeTVGWVFubmhIdGxLSm1ONHUzTlNySnd3QnBmZUx2TnpLV0RuNjNw?oc=5",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "중국 차세대 중저가 전기차용 배터리 LMFP 상용화 시동, K배터리 3사 추격 발등에 불 - 비즈니스포스트",
+      "summary": "중국 차세대 중저가 전기차용 LMFP(리튬·망간·철·인산염) 배터리가 상용화 단계에 진입하며 시장 변화를 이끌고 있습니다.",
+      "source": "비즈니스포스트",
+      "date": "2026-10-25",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBVRzBlTDc4cHZ3eng4MklzNzlvbmxmTWhEeEQyRy1SWjVfLUUwSUljeW53YnpkSElFYjlzdXoybU9uOG1jNVlGMTZJbDllODY3Q296YlQ1aU12d1p6QXdoYXo2cWxDaF9xU194TTY5MDFieWM?oc=5",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
+      "title": "\"발화 전 30초 내 감지\" 충남도의회, AI로 전기차·산업현장 화재 잡는다 - 아산뉴스",
+      "summary": "AI 기반 모니터링 시스템을 활용해 발화 전 30초 이내에 전기차 및 산업현장의 화재 징후를 감지하는 기술이 추진됩니다.",
+      "source": "아산뉴스",
+      "date": "2026-10-25",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBaYlR2bWc2eWFsOGNQU01QYXBXWUxya1l4VUZ6STc5ZnNJMl9hZnVqeFFxRWxnbmM0MzhJYWd2RmdsWS0xTzZlUWxIT2hQVlJ0aW1Mb0NBTzdoN3p2Yy1ZcTdzS1RxLTFvbVFMQlJyeGNpVHJMenU3RzJjUQ?oc=5",
+      "linkType": "rss",
+      "id": 4
+    },
+    {
+      "title": "삼성SDI, 헝가리 공장 환경오염 논란에 '정면돌파'…실시간 대기질 공개 - 더구루",
+      "summary": "삼성SDI가 헝가리 배터리 생산 공장의 실시간 대기질 데이터를 공개하며 제조 환경 관리 및 환경 이슈에 대응하고 있습니다.",
+      "source": "더구루",
+      "date": "2026-10-25",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBVaVFJNEgzSmtsV2JWYUttWkJRT05Fd0U1ei1sX01NU1A3QkdVRUppZ2thcVhOUTN1ZU90VkxqNXZTdVpwODI1UVc0UEpTMU5DS1gwN2pENHhVelgwWlE?oc=5",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
+      "title": "\"리튬이온 '열 폭주' 막는다\"…배터리 안전성 핵심 연구 공개 | - 하이테크정보",
+      "summary": "리튬이온 배터리의 열 폭주 현상을 방지하기 위한 안전성 강화 핵심 연구 결과가 공개되었습니다.",
+      "source": "하이테크정보",
+      "date": "2026-10-25",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9yc2pMQ0dMYXdndVhpLVkxUk1KaEFjLVFtODVoeFJoUVMyQUZCRzZ6WERYTlA0OXl3UE9IdkZiaWE4RFVuVzhsa2xQU0F4eDVUWm9MNnlQdXpJOVVqN2RYcl9DcEpFUWVKUldYZQ?oc=5",
+      "linkType": "rss",
+      "id": 6
+    },
+    {
+      "title": "전고체 배터리 대중화 '2030년대 중반' 전망 나와, 삼성SDI 내년 양산 목표 실효성 주목 - 비즈니스포스트",
+      "summary": "전고체 배터리의 본격적인 대중화 시점을 2030년대 중반으로 전망하는 분석과 양산 실효성이 점검되었습니다.",
+      "source": "비즈니스포스트",
+      "date": "2026-10-25",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE81ZV9pMnUwMC0zQms5WUl6Mkd2YVh5dkFMTVpYUlRzSmNRTjBtTXpOSi1WeFFjTUEzWXZQeGNwWThjQTQwVUVnbEZuN1p3ZndLb1ZJWWo3OHczakZDMi0zRnNBa09EU2FMcmwwYjFfZHBHaFk?oc=5",
+      "linkType": "rss",
+      "id": 7
+    },
+    {
+      "title": "[배터리 대전환]② 삼성SDI, 전고체 핵심 소재 확보 총력…양산 체제 구축 속도 - 아시아타임즈",
+      "summary": "삼성SDI가 전고체 배터리 상용화를 위한 핵심 소재 확보와 양산 체제 구축을 지속 추진하고 있습니다.",
+      "source": "아시아타임즈",
+      "date": "2026-10-24",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBqTFFPVlg3czFRR01OQndVR3BoRklRRGM4Xzg2eW8yOGpBRzNzUE5OS0UtQU8tZWI0MURBX2lzV1poLWN3NnZuajVZYjhfT0pKaVN1eG1BSThJUXNOcVE?oc=5",
+      "linkType": "rss",
+      "id": 8
+    },
+    {
       "title": "\"LFP 잡을 LMR 배터리 올인\"… GM, 4세대 전기차 플랫폼 전격 공개 - 글로벌이코노믹",
-      "summary": "GM이 기존 LFP 배터리의 한계를 극복하기 위해 망간 비중을 높인 LMR 배터리를 4세대 전기차 전용 플랫폼에 전격 적용합니다.",
+      "summary": "GM이 LFP의 대안으로 LMR(리튬·망간 풍부) 배터리를 적용한 4세대 전기차 전용 플랫폼을 공개했습니다.",
       "source": "글로벌이코노믹",
       "date": "2026-10-23",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTjNSdE5Jd2YwR0dBV2pYQ2hCMnhnZWxmd0RqclVlWmFISkV0MVdrMVg3Q3FCa3JsQkpfbXdZYkwwV1hwbzJPakpqaGFNbkJZMUIzT0lHazNXU0JRcXZYbWZnbUxpUFRJQnpNOTFNM21FbHVRSF9Oc3dJdnEybG1ZblVUYjlFS3Jo?oc=5",
       "linkType": "rss",
-      "id": 1
+      "id": 9
     },
     {
       "title": "LG엔솔 폴란드 공장, EU 혁신기금 지원 대상 선정…9GWh 규모 LFP 배터리 라인 구축 By The Guru - Investing.com 한국어",
@@ -9645,16 +10422,16 @@
       "date": "2026-10-23",
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1KSnVtUUdNSWhnUEJOUTZSY2FYVmdWRDFhcmVkb21lV3kxcWhNZzdtcDliS1pQanloUVRXR055X1Bsb0hpYzVVb1lLODBxR21OWVQzMDhYUExPa2ZINFItZno2MHhxT21IMnpaQnQ2UXE?oc=5",
       "linkType": "rss",
-      "id": 2
+      "id": 10
     },
     {
       "title": "LG엔솔, 中 난징 9공장 본격 가동…테슬라향 원통형 2170 증산 속도 - 지디넷코리아",
-      "summary": "LG에너지솔루션이 중국 난징 9공장을 본격 가동하여 테슬라 공급용 원통형 2170 배터리 셀 증산에 착수했습니다.",
+      "summary": "LG에너지솔루션이 중국 난징 9공장을 본격 가동하며 테슬라 공급용 원통형 2170 배터리 셀 생산량을 확대합니다.",
       "source": "지디넷코리아",
       "date": "2026-10-23",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1DYTRNRFl1S0pCVEtBRVp6MnRPWkNaSzBUNGozRnh4b2lkT3NQb1Fsc1lxTUtGdFBUcjJRUkFDdEpHekU5aFdzcHZacFVZbGNzRDBnTm9B?oc=5",
       "linkType": "rss",
-      "id": 3
+      "id": 11
     },
     {
       "title": "한화파워, 1700TEU급 배터리 추진 컨테이너선 설계 승인 획득 - 이데일리",
@@ -9663,7 +10440,7 @@
       "date": "2026-10-23",
       "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNSTNFUWNoQmlNdURBQmlwcS1QbHpWZnFYcVRFY2k2b0EzejhXM1p6Zmp5YzdIcW5Hb1VnNDBDSGNnc0FrMUlnSHczTE9SRDgzZkhBWUJhLTVQLW1GZmtXYU95OU5KMmFkcUJmMUZieVFnRDFHWVpiREM3S3NlbTBfaQ?oc=5",
       "linkType": "rss",
-      "id": 4
+      "id": 12
     },
     {
       "title": "용인특례시, 1000도 넘는 '열폭주'… 배터리 화재 대응법 눈앞에서 시연 - 경기타임스 e",
@@ -9672,25 +10449,25 @@
       "date": "2026-10-23",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBEa3QxTFM4WE9oMjJoRm1sZXZXeFg1U0VsY3REc2t3VzNqUXNWSWJOZ2lSV3JyR3dWdEJwT19yamRacTJPdFVzQV9WRF9SMGZKemZEZVBuUG5PbDJJTlNBVW9kckF6ZnA3N3o2Zg?oc=5",
       "linkType": "rss",
-      "id": 5
+      "id": 13
     },
     {
       "title": "퀀텀스케이프, 100MWh 생산라인 구축 계획 발표...AI 인프라·방산 시장 '정조준' - 더구루",
-      "summary": "전고체 배터리 기업 퀀텀스케이프가 AI 인프라 및 방산 분야를 겨냥한 100MWh 규모의 생산라인 구축 계획을 발표했습니다.",
+      "summary": "퀀텀스케이프가 100MWh 규모의 차세대 전고체 배터리 생산 인프라 구축 계획을 발표했습니다.",
       "source": "더구루",
       "date": "2026-10-23",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1heXl3RG1jMjVVR2tWOTlNeDROeWltd1VSNS1LZkFtbFhWeEJ0LU5qbDY4Wl9iRHY3MEZIUFR1VWFwUGlFYlliT0p3MFgtcDVrMUVKaGVrekg4cEhMNlg5LU1oRQ?oc=5",
       "linkType": "rss",
-      "id": 6
+      "id": 14
     },
     {
       "title": "\"500회 충·방전에도 안정적\"···GIST, 리튬금속 배터리 보호막 개발 - 헬로디디",
-      "summary": "GIST 연구진이 500회 이상의 충·방전 수명 평가에서도 안정적인 성능을 유지하는 리튬금속 배터리용 신규 보호막 기술을 개발했습니다.",
+      "summary": "GIST 연구진이 500회 이상의 충·방전 주기에서도 안정성을 유지하는 리튬금속 배터리용 계면 보호막 기술을 개발했습니다.",
       "source": "헬로디디",
       "date": "2026-10-23",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1tN1JHcU9LR0VrbDJHb2lLUjBhd1lOUTVzdXNrX3ZRZVlzQmE3RllUeWJfcmV5Y3VtcHU0c01IeEJHSGZSX2RWRHBPZXZsQ2lER3dWTE5sVkZBMzNiSjdYOHV6emJ4VXlBVFE?oc=5",
       "linkType": "rss",
-      "id": 7
+      "id": 15
     },
     {
       "title": "[배터리 대전환]① 삼성SDI, 전고체 ‘기술’서 ‘양산’으로…2027년 하반기 승부수 - 아시아타임즈",
@@ -9699,7 +10476,7 @@
       "date": "2026-10-23",
       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBCMWJnWWtTSVNsYjRjWmlMdDJMUDRQNC1mOUU4eU9RdTByQ0Q1OFo4SFQtWHF6eGhtLWdzbDdOTlFULWdWNEFjRTZOcmM0VElFMk9vWkt1TUhJRDA2R0E?oc=5",
       "linkType": "rss",
-      "id": 8
+      "id": 16
     },
     {
       "title": "[2026 KSFPE EXPO] “배터리 구멍 내 진압한다”… 중경기술(주), 전기차 화재 배터리 천공 장비 - 소방방재신문",
@@ -9708,403 +10485,311 @@
       "date": "2026-10-23",
       "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFBfVnFMNjJSM1M1WnZCNVpxMWJrVlBIbFJQRTZvSExmbDVscE9QeGhpYzFMTHBSOEJRcmZDMnZGZmFwODVU?oc=5",
       "linkType": "rss",
-      "id": 9
-    },
-    {
-      "title": "토탈에너지스 자회사 '사프트', 佛 최초 전고체 배터리 생산 역량 확보 - 더구루",
-      "summary": "토탈에너지스 자회사 사프트(Saft)가 프랑스 최초로 전고체 배터리 생산 인프라 및 파일럿 역량을 확보했습니다.",
-      "source": "더구루",
-      "date": "2026-10-22",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBsVmxIejZidl9LLW9SRXFlUDRCN0R5dE90b3ZIOGY3QXpvRkxUWk1ERThITjJKUTNyeXJOSERVaDdJUXFwT2diSjk3NG9UMXBYVlJSWEVUQVE4WEtKTlFnT2hyYw?oc=5",
-      "linkType": "rss",
-      "id": 10
-    },
-    {
-      "title": "자비스, 글로벌 2차전지 제조사에 34억 X-ray 검사장비 공급 - www.dt.co.kr",
-      "summary": "자비스가 배터리 제조 공정에서 내부 불량을 정밀 검출하는 34억 원 규모의 2차전지 X-ray 비파괴 검사장비 공급 계약을 체결했습니다.",
-      "source": "www.dt.co.kr",
-      "date": "2026-10-22",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBrY3Axb0pqU1BRMFFQdnVnR2xfRmNSR0ZLQW9xY19FTkZGeDFLUkU4bnhMZlNDRG9hLXBETFBUZDNYSzJmcC1HeUlEX0h1dw?oc=5",
-      "linkType": "rss",
-      "id": 11
-    },
-    {
-      "title": "토요타, 美 미시간에 5,000만 달러 규모 '다중 경로' 배터리 연구소 가동 - 글로벌이코노믹",
-      "summary": "토요타가 미국 미시간에 5,000만 달러 규모의 연구소를 가동하여 다양한 배터리 기술 및 셀 화학 조성을 연구합니다.",
-      "source": "글로벌이코노믹",
-      "date": "2026-10-22",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQWWJ3UE9SYV9oanNlZm92TW1vR3AwQlVKVnpTOGNtZGpJQkl5N2tJUGVFc3ZXNkhDdGg4MGF6Sng4enRTaEtUTUV0dGlnMk5SMGF2aU1QN0M5eml3T2pTVXBDWENUZEwxRm12RXVWcko3dkp3c1RwZTh4bXF5ZUNEVW95R0trZmty?oc=5",
-      "linkType": "rss",
-      "id": 12
-    },
-    {
-      "title": "고려대학교 원왕연 교수팀, 폐배터리 재활용 공정별 경제성·환경성 분석…맞춤형 전략 제시 - 한국강사신문",
-      "summary": "고려대학교 연구팀이 폐배터리 재활용 공정별 경제성과 환경성을 분석하여 최적의 친환경 리사이클링 공정 전략을 제시했습니다.",
-      "source": "한국강사신문",
-      "date": "2026-10-22",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFAweU9QbnV0NThzeG1pTmp4SUo2aGFHZnV5WnJrc3k4SnVCVGt1SHdOY2x4SjdST2RzUVljNVQ3NmMtbWZ5VDdmalpfTlhXWW9NdkJGSHZjZ3ZRSU5QZTQtdVdLdXVVelZzVVAtcDVOSFY?oc=5",
-      "linkType": "rss",
-      "id": 13
-    },
-    {
-      "title": "전기차 화재, 불길 번지기 전에 잡는다… 세이프 온 ‘조기감지 기술’ 주목 - 비즈체크",
-      "summary": "세이프온이 배터리 셀의 열폭주 전조 증상을 실시간 모니터링하여 전기차 화재를 조기에 감지하는 기술을 도입했습니다.",
-      "source": "비즈체크",
-      "date": "2026-10-22",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE43OUNpQTRod3U1c2oyWDlqd1VkbTBBeC15RGZWS0UtV25veXA5dENScUlnSVlpeHdaYUlPS0VFRHA2cEJsUnc3SjJsVzdiUkt1ZWhEOWdQU3VDZ0pHeW9XeWpjSk4tYndvdElXZENGMA?oc=5",
-      "linkType": "rss",
-      "id": 14
-    },
-    {
-      "title": "하나기술, 인도 아그라타스 배터리 장비 내달 출하 - 디일렉",
-      "summary": "하나기술이 인도 아그라타스향 배터리 제조 공정 장비 출하를 출하할 예정입니다.",
-      "source": "디일렉",
-      "date": "2026-10-22",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBBU3ZJNkJuTGVwRDJyUlRvQldYYTNqdnJ6WVNHaERHNmlNemUtTWVtQzlaVEo3bGE5Yjc2VE56RGhvbnNLUUFjQnZ5eWhDeEJhSTlUUDdnbmhSb2JkQ2VOSGJmLXF3QQ?oc=5",
-      "linkType": "rss",
-      "id": 15
-    },
-    {
-      "title": "주원, DIFA 2026서 AI 가스센서 ‘SHEVIO’ 공개… “배터리 열폭주 전조 가스 조기 감지 기술 제시!” - 에이빙",
-      "summary": "주원이 DIFA 2026에서 배터리 열폭주 전 발생되는 가스를 조기에 감지하는 AI 가스센서 'SHEVIO'를 공개했습니다.",
-      "source": "에이빙",
-      "date": "2026-10-22",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5LOTlFdFRULWppRjdlS1pPX0dlOEx5M0FMNWJUblAxTjF4dTJDc3duTFEtRjVHM3Z0X0VoQVEyYXN1V2M3NDhIRzR0am5qeDd5Nnc3VDZOdU44QlQ2ZlpVRk0tNzdpOVBWZ2VN0gFrQVVfeXFMTks5OUV0VFQtamlGN2VLWk9fR2U4THkzQUw1YlRuUDFOMXh1MkNzd25MUS1GNUczdnRfRWhBUTJhc3VXYzc0OEhHNHRqbmp4N3k2dzdUNk51TjhCVDZmWlVGTS03N2k5UFZnZU0?oc=5",
-      "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "Redwood Materials와 Rivian, 전기차 배터리 재활용 협력 확대 - Mezha.net",
-      "summary": "레드우드 머티리얼즈와 리비안이 폐배터리 수거 및 블랙매스 리사이클링 협력을 확대합니다.",
-      "source": "Mezha.net",
-      "date": "2026-10-22",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOeElrYnZLSnBGamlDTE1QVjhCVmdUc3V4VzY5WTZ5SzVIcXdTVHcyQjdmS1BpSFBjV0ZaaTFLeDFhRl9uUm81LTcyd0hmRUFORlFROW9aYTRfTzlubHdXSlhWbXZZZF96dGxaSk5qX1ZRbU52dW0yUlVyYlJfTGpuRC1ZS2RWQlFQTFprTkMyWnp2TTU3TUFMb0EyN3A?oc=5",
-      "linkType": "rss",
       "id": 17
     },
     {
-      "title": "한자연, 고성능 전기차 시험 인프라 본격 가동 - www.dt.co.kr",
-      "summary": "한국자동차연구원이 고출력 전기차의 배터리 및 파워트레인 성능을 실증 평가할 수 있는 고성능 전기차 시험 인프라 운영을 시작했습니다.",
-      "source": "www.dt.co.kr",
-      "date": "2026-10-22",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5GazNXY2pBYWJkaTc3bWFLcm1BX21iLW11V0xvNnE2VDcwS0xqWllFTHV1NjdfLTVJTTR1MHZiQ0VRdENITTQya2Q4N0h5Zw?oc=5",
+      "title": "자비스, 글로벌 배터리 제조사에 파우치형 X-ray 이물검사장비 10억원 공급 - 조선비즈 - Chosunbiz",
+      "summary": "자비스가 파우치형 배터리 셀 내부의 이물을 정밀 검사하는 X-ray 검사 장비를 글로벌 제조사에 공급합니다.",
+      "source": "Chosunbiz",
+      "date": "2026-10-23",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPS01RM3FvSW9iYjBQQmd3eE9EVlRTQXQ4N2VvSXRuN2hxTExUSEpmX3BXajVTSmR0Sk94VjF4S3ZLR0ZKcnNVU1l6UFQwNjhlZkhTMlpQeldxRmhBcUJ4MWtIdnF3Z2RRWjlqdTVLTU5jSlcwQUd5NXhaSGl4SHRVS3RaN3F0bFUzSDlfRtIBoAFBVV95cUxQOXdJTUJ2NU9QdUFqaTBoNDAySDlIU3lFeFFCZElhRW9PbXE0ejhMVWpmVTJZaUtQeVpwSzFzT21HRnhiS19pc0FvbERGS0NhWTVhMkdULUk4RFRhb2ZHWktCNW9URm9SaXcwSmUtc3Q4dnFtVkxWNjhVbFRwY3FDemhmQlRHa1BMYUJWeWw4WFE3d0o4Ukw2VjZDeDlRRE5w?oc=5",
       "linkType": "rss",
       "id": 18
     },
     {
-      "title": "[중국 특징주] 화웨이 자율주행 사업부·CATL...전기차 배터리 교체 자동화 시스템 개발 - 뉴스핌",
-      "summary": "CATL과 화웨이 자율주행 사업부가 협력하여 전기차 배터리 패키지를 신속하게 교체할 수 있는 자동화 시스템을 개발 중입니다.",
-      "source": "뉴스핌",
-      "date": "2026-10-21",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBPbnJ6TExzR1o5TlNMTTBmb3cyOS1EbndQWDRPU1Z6WkRBY1RFTmpYLUU5cUVZNExfQXRNU3lLYVI3ZEFRaEp2R0taTWZxZTVqS0ZPYTVXOTJGQ2tN?oc=5",
+      "title": "그래핀 복합 시트 소재 시장 2035년 전망: 전자·전기차 열관리 수요가 성장 견인 - 뉴스 및 통계 - IndexBox",
+      "summary": "전기차 모듈 및 전자 장비의 방열 관리를 위한 그래핀 복합 시트 소재 수요 증가와 기술 전망이 다루어졌습니다.",
+      "source": "IndexBox",
+      "date": "2026-10-23",
+      "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNeFgwdzdYdEFKR05abUxpYWNMNUxxZWNaWjBITktIUkZlaGRtb3JPVGxPekFua3JhSGlwNmtXR1QtbEE5N2o3RjFpb1JyNzEtRHI4UHF6Ny0wZEFlVmRra1UyWXJBU2xicU0wbHNXT1B5Nk03UHlZZWk3aGlZRkNOTmlZVHk4eTdwbGRvSjVWMllFcTh5QUFPLU1STVdsNUV6eU1GTU5uNWJjdXdDcmpTM2ppbTQyUHF3Wmh6UVlrNkw2SkNiYy1fdTdPRC04S29qcnRMeHd2WGI2TWp4RzdqQ29yLU14a1VLb2VYeTJVcUtKZUYzM2t4ZXp5d3lkNGtPUGZJ?oc=5",
       "linkType": "rss",
       "id": 19
     },
     {
-      "title": "벤츠 CLA, 시속 56km 측면 충돌시험…탑승 공간·전기차 배터리 보호 - 모터매거진",
-      "summary": "메르세데스-벤츠가 CLA 측면 충돌 시험을 통해 충돌 시 배터리 팩 구조 안전성과 탑승 공간 보호 성능을 검증했습니다.",
-      "source": "모터매거진",
-      "date": "2026-10-21",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ja3BESDdyMjhMLV9RNnRtRmx6UEpGSkV3Y2ZSOGpvNTBSX180MVRYaEFIaWhJX0pUcDk4NnZNZzA3VUc5VmViblRHbE1HNmxwTXBfUnhTRkRXUWtrUkpjdkF3RWt3cktPY1VzOQ?oc=5",
+      "title": "회수 리튬 화합물 시장 2035년 전망: 순환 공급망이 성장 견인 - 뉴스 및 통계 - IndexBox",
+      "summary": "폐배터리 리사이클링 과정에서 회수되는 리튬 화합물 추출 및 순환 공급망 관련 기술 동향이 제시되었습니다.",
+      "source": "IndexBox",
+      "date": "2026-10-23",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQREpILUhwN0pKRjFlTU43SUpNTTh0YWdRR0E2NzZrXzNMQ1ZRb2cwa2hrOWdtcy0wQkItR3ZLVUItd3ltRTVHaDdIT1BDcHdPRnJubzU4cEhBQzdHb1pCTkwzUFJGblBOdERJUFRtREVTMDNxcHFiYkN5bE16UXV1XzUwMEx4ZGVBNGhNcDBFMDVSY0EwZWpkcE9DTDVlQ0ZWR0NJV08wb0d4bVlOVkJucENWczNzMzRVdXJsRTdXNkhPalA3MFM5TnNUbHQtRDRtREZJZUdialBVbmMtY25Taw?oc=5",
       "linkType": "rss",
       "id": 20
     }
   ],
   "fx": {
-    "usdKrw": 1324.7,
-    "eurKrw": 1483.79,
-    "cnyKrw": 198.16,
-    "updatedAt": "2026-10-24T15:02:14.788208+09:00"
+    "usdKrw": 1324.82,
+    "eurKrw": 1484.18,
+    "cnyKrw": 198.05,
+    "updatedAt": "2026-10-25T15:20:04.768852+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
-      "차세대 배터리 양산 주도권을 잡기 위해 전고체 및 LMR 등 신규 폼팩터/소재 개발과 파이롯 라인 구축이 본격화되고 있습니다.",
-      "글로벌 주요 기업들은 유럽, 인도, 미국 등 지역별 생산 기반 확대와 더불어 폐배터리 리사이클링 및 비파괴 검사진단 장비 투자를 늘리고 있습니다.",
-      "전기차 화재 위험성 극복을 위한 AI 기반 열폭주 전조 감지 가스센서와 배터리 팩 천공 진압 기술 등 차세대 안전 및 대응 기술 개발이 고도화되고 있습니다."
+      "중국발 LMFP와 GM의 LMR 등 양산성과 가격 경쟁력을 갖춘 차세대 폼팩터 배터리 기술 경쟁이 격화되고 있습니다.",
+      "삼성SDI와 퀀텀스케이프를 중심으로 전고체 배터리의 R&D 단계가 대량 양산 인프라 및 핵심 소재 확보 단계로 본격 전환되고 있습니다.",
+      "AI 기반 조기 감지, 배터리 팩 천공 진압, 그래핀 방열 소재 등 화재 안전성 극대화를 위한 다층적 기술 대응이 가속화되고 있습니다."
     ],
     "categories": [
       {
-        "name": "차세대 기술 및 배터리 소재",
+        "name": "차세대 배터리 및 셀 기술",
         "items": [
           {
-            "headline": "GM, LMR 배터리 탑재 플랫폼 전격 공개",
-            "summary": "GM이 기존 LFP 배터리가 가진 에너지 밀도의 한계를 극복하기 위해 망간 함량을 대폭 높인 LMR 배터리를 4세대 전기차 전용 플랫폼에 채택했습니다. 이는 차세대 저비용·고효율 소재 주도권을 확보하기 위한 전략적 행보로 평가받습니다.",
+            "headline": "차세대 배터리 수명 연장 기술",
+            "summary": "한밭대학교 연구진이 차세대 배터리의 핵심 한계로 지적되던 수명 감소 문제를 해결할 수 있는 혁신적 신기술을 개발했습니다. 이번 연구는 열화 현상을 억제하여 셀의 충·방전 수명을 크게 늘리는 데 초점을 맞추었습니다.",
             "tags": [
-              "#LMR배터리",
+              "#차세대배터리",
+              "#수명연장",
+              "#한밭대"
+            ],
+            "source": "투데이에너지",
+            "date": "2026-10-25",
+            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE95WmVoTFlDbXVHeC1MV3k3dGl5VG5VbEpSSml4VlhaVmFSd1ZxUEJ2ZUZhV2FlelRJdUFaeTc4MVFfLWp6Tk5BOUtxWDdDQUNQZmhwMFpUaFRndlNqaW5yaVc1QlhqV1JOclJxOQ?oc=5"
+          },
+          {
+            "headline": "극저온 배터리 성능 방어 성공",
+            "summary": "도넛랩이 극저온 환경 시험을 실시하여 영하 30도의 혹한 속에서도 배터리 초기 용량의 97%를 유지하는 데 성공했습니다. 이는 겨울철 전기차의 급격한 주행거리 감소 문제를 획기적으로 극복할 가능성을 보여줍니다.",
+            "tags": [
+              "#도넛랩",
+              "#극저온배터리",
+              "#저온성능"
+            ],
+            "source": "글로벌이코노믹",
+            "date": "2026-10-25",
+            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOS1JDZFRtWVZVLVRwcHUxM05qN1FyQzlkZkN2bEhmR29kU0dGS3MzVXFQenVhT2VDM0x5Ri1FMWhURXVKQk5oTm05WnRQOUNPVlZPckpZZ0lfcmFabUdUamdKeTVGWVFubmhIdGxLSm1ONHUzTlNySnd3QnBmZUx2TnpLV0RuNjNw?oc=5"
+          },
+          {
+            "headline": "중국 LMFP 상용화 추격전",
+            "summary": "중국 배터리 기업들이 에너지 밀도를 높인 중저가 LMFP 배터리의 양산 및 상용화 단계에 본격 진입했습니다. 이에 따라 가격과 성능을 모두 잡으려는 국내 K-배터리 3사의 경쟁력 확보에 비상이 걸렸습니다.",
+            "tags": [
+              "#LMFP",
+              "#중저가배터리",
+              "#K배터리"
+            ],
+            "source": "비즈니스포스트",
+            "date": "2026-10-25",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBVRzBlTDc4cHZ3eng4MklzNzlvbmxmTWhEeEQyRy1SWjVfLUUwSUljeW53YnpkSElFYjlzdXoybU9uOG1jNVlGMTZJbDllODY3Q296YlQ1aU12d1p6QXdoYXo2cWxDaF9xU194TTY5MDFieWM?oc=5"
+          },
+          {
+            "headline": "전고체 대중화 시점 전망 논의",
+            "summary": "전고체 배터리의 대중화 시점이 2030년대 중반이 될 것이라는 시장 전망이 나오면서 업계의 관심이 쏠리고 있습니다. 이에 따라 내년부터 시범 양산을 추진하는 삼성SDI의 초기 양산성 검증이 주요 분수령이 될 전망입니다.",
+            "tags": [
+              "#전고체배터리",
+              "#상용화전망",
+              "#삼성SDI"
+            ],
+            "source": "비즈니스포스트",
+            "date": "2026-10-25",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE81ZV9pMnUwMC0zQms5WUl6Mkd2YVh5dkFMTVpYUlRzSmNRTjBtTXpOSi1WeFFjTUEzWXZQeGNwWThjQTQwVUVnbEZuN1p3ZndLb1ZJWWo3OHczakZDMi0zRnNBa09EU2FMcmwwYjFfZHBHaFk?oc=5"
+          },
+          {
+            "headline": "삼성SDI 전고체 소재 확보 총력",
+            "summary": "삼성SDI가 전고체 배터리 상용화를 가속화하기 위해 고전도성 전해질 등 핵심 소재 공급망 확보에 박차를 가하고 있습니다. 독자적인 소재 공급망 구축을 통해 초기 시장 선점과 가격 경쟁력을 확보한다는 전략입니다.",
+            "tags": [
+              "#삼성SDI",
+              "#전고체소재",
+              "#공급망 구축"
+            ],
+            "source": "아시아타임즈",
+            "date": "2026-10-24",
+            "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBqTFFPVlg3czFRR01OQndVR3BoRklRRGM4Xzg2eW8yOGpBRzNzUE5OS0UtQU8tZWI0MURBX2lzV1poLWN3NnZuajVZYjhfT0pKaVN1eG1BSThJUXNOcVE?oc=5"
+          },
+          {
+            "headline": "GM LMR 배터리 플랫폼 공개",
+            "summary": "GM이 LFP 배터리의 대안으로 망간 비중을 높인 LMR 배터리를 채택한 4세대 전기차 전용 플랫폼을 전격 공개했습니다. 가격 경쟁력과 에너지 밀도를 동시에 확보하여 시장 점유율을 대폭 확대하려는 전략으로 풀이됩니다.",
+            "tags": [
               "#GM",
-              "#4세대플랫폼",
-              "#양극재"
+              "#LMR배터리",
+              "#4세대플랫폼"
             ],
             "source": "글로벌이코노믹",
             "date": "2026-10-23",
             "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTjNSdE5Jd2YwR0dBV2pYQ2hCMnhnZWxmd0RqclVlWmFISkV0MVdrMVg3Q3FCa3JsQkpfbXdZYkwwV1hwbzJPakpqaGFNbkJZMUIzT0lHazNXU0JRcXZYbWZnbUxpUFRJQnpNOTFNM21FbHVRSF9Oc3dJdnEybG1ZblVUYjlFS3Jo?oc=5"
           },
           {
-            "headline": "퀀텀스케이프, 전고체 100MWh 라인 구축",
-            "summary": "전고체 배터리 기업 퀀텀스케이프가 AI 인프라 및 방산 분야 등 고신뢰성 시장을 겨냥해 100MWh 규모의 생산라인 구축 계획을 발표했습니다. 신시장 선점을 위한 차세대 배터리 스케일업이 본격화되는 양상입니다.",
+            "headline": "퀀텀스케이프 전고체 인프라 구축",
+            "summary": "퀀텀스케이프가 100MWh 규모의 전고체 배터리 파일럿 생산 인프라 구축 계획을 밝히며 상용화에 속도를 내고 있습니다. 전기차뿐만 아니라 고성능이 요구되는 AI 인프라 및 방산 시장 진출을 목표로 설정했습니다.",
             "tags": [
               "#퀀텀스케이프",
               "#전고체배터리",
-              "#AI인프라",
-              "#방산"
+              "#방산인프라"
             ],
             "source": "더구루",
             "date": "2026-10-23",
             "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1heXl3RG1jMjVVR2tWOTlNeDROeWltd1VSNS1LZkFtbFhWeEJ0LU5qbDY4Wl9iRHY3MEZIUFR1VWFwUGlFYlliT0p3MFgtcDVrMUVKaGVrekg4cEhMNlg5LU1oRQ?oc=5"
           },
           {
-            "headline": "GIST, 리튬금속 배터리 보호막 기술 개발",
-            "summary": "GIST 연구진이 500회 이상의 연속 충·방전 수명 평가에서도 뛰어난 성능과 안정성을 유지하는 리튬금속 배터리용 신규 보호막 기술을 구현했습니다. 이는 덴드라이트 형성을 억제해 차세대 리튬금속 배터리의 상용화를 앞당길 핵심 기술입니다.",
+            "headline": "리튬금속 계면 보호막 개발",
+            "summary": "GIST 연구진이 리튬금속 배터리의 덴드라이트 형성을 억제하는 고성능 계면 보호막 기술을 개발하는 데 성공했습니다. 500회 이상의 연속 충·방전 평가에서도 뛰어난 용량 유지율과 안정성을 입증했습니다.",
             "tags": [
               "#GIST",
               "#리튬금속배터리",
-              "#음극보호막",
-              "#수명개선"
+              "#덴드라이트"
             ],
             "source": "헬로디디",
             "date": "2026-10-23",
             "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1tN1JHcU9LR0VrbDJHb2lLUjBhd1lOUTVzdXNrX3ZRZVlzQmE3RllUeWJfcmV5Y3VtcHU0c01IeEJHSGZSX2RWRHBPZXZsQ2lER3dWTE5sVkZBMzNiSjdYOHV6emJ4VXlBVFE?oc=5"
           },
           {
-            "headline": "삼성SDI, 2027년 전고체 배터리 양산 승부수",
-            "summary": "삼성SDI가 전고체 배터리 상용화를 목표로 셀 설계 및 공정 고도화 작업에 속도를 내며 2027년 하반기 양산 체제 전환을 공식화했습니다. 기술 검증 단계를 넘어 본격적인 대량 양산 및 시장 점유율 확대를 노리고 있습니다.",
+            "headline": "삼성SDI 전고체 2027 양산",
+            "summary": "삼성SDI가 전고체 배터리 연구 개발 단계를 넘어 양산 체제로의 전환을 본격적으로 가속화하고 있습니다. 셀 구조 최적화와 공정 기술 고도화를 거쳐 2027년 하반기 상용화 승부수를 던질 계획입니다.",
             "tags": [
               "#삼성SDI",
-              "#전고체배터리",
-              "#2027양산",
-              "#차세대배터리"
+              "#전고체양산",
+              "#2027년"
             ],
             "source": "아시아타임즈",
             "date": "2026-10-23",
             "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBCMWJnWWtTSVNsYjRjWmlMdDJMUDRQNC1mOUU4eU9RdTByQ0Q1OFo4SFQtWHF6eGhtLWdzbDdOTlFULWdWNEFjRTZOcmM0VElFMk9vWkt1TUhJRDA2R0E?oc=5"
-          },
-          {
-            "headline": "사프트, 佛 최초 전고체 배터리 역량 확보",
-            "summary": "토탈에너지스의 배터리 자회사 사프트가 프랑스 최초로 전고체 배터리 생산 인프라 및 파일럿 제조 역량을 공식 확보했습니다. 이를 바탕으로 유럽 내 차세대 배터리 자립도 향상과 기술 공급망 강화에 기여할 것으로 기대됩니다.",
-            "tags": [
-              "#사프트",
-              "#전고체배터리",
-              "#프랑스",
-              "#파일럿라인"
-            ],
-            "source": "더구루",
-            "date": "2026-10-22",
-            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBsVmxIejZidl9LLW9SRXFlUDRCN0R5dE90b3ZIOGY3QXpvRkxUWk1ERThITjJKUTNyeXJOSERVaDdJUXFwT2diSjk3NG9UMXBYVlJSWEVUQVE4WEtKTlFnT2hyYw?oc=5"
-          },
-          {
-            "headline": "토요타, 美 배터리 다중연구소 본격 가동",
-            "summary": "토요타가 미국 미시간에 5,000만 달러 규모의 연구소를 가동하며 다양한 배터리 기술과 셀 화학 조성 연구를 추진합니다. 단일 배터리에 집중하기보다 멀티 파워트레인 기조에 맞춘 다중 경로 기술 전략을 구체화하고 있습니다.",
-            "tags": [
-              "#토요타",
-              "#배터리연구소",
-              "#다중경로",
-              "#셀케미스트리"
-            ],
-            "source": "글로벌이코노믹",
-            "date": "2026-10-22",
-            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQWWJ3UE9SYV9oanNlZm92TW1vR3AwQlVKVnpTOGNtZGpJQkl5N2tJUGVFc3ZXNkhDdGg4MGF6Sng4enRTaEtUTUV0dGlnMk5SMGF2aU1QN0M5eml3T2pTVXBDWENUZEwxRm12RXVWcko3dkp3c1RwZTh4bXF5ZUNEVW95R0trZmty?oc=5"
           }
         ]
       },
       {
-        "name": "기업 동향, 생산장비 및 재활용",
+        "name": "기업 동향 및 산업 생태계",
         "items": [
           {
-            "headline": "LG엔솔, EU 지원받아 폴란드 LFP 라인 구축",
-            "summary": "LG에너지솔루션 폴란드 공장이 EU 혁신기금 지원 사업 대상에 선정되어 9GWh 규모의 LFP 배터리 생산라인 공정 전환을 본격 추진합니다. 유럽 내 저가형 LFP 수요 증가에 대응한 맞춤형 과제입니다.",
+            "headline": "삼성SDI 대기질 데이터 공개",
+            "summary": "삼성SDI가 헝가리 괴드 공장을 둘러싼 현지 환경오염 논란을 해소하기 위해 실시간 대기질 데이터를 전면 공개했습니다. 투명한 ESG 경영을 실천하고 유럽 내 공장 생산 기반의 안정성을 다지기 위한 조치입니다.",
+            "tags": [
+              "#삼성SDI",
+              "#헝가리공장",
+              "#ESG경영"
+            ],
+            "source": "더구루",
+            "date": "2026-10-25",
+            "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBVaVFJNEgzSmtsV2JWYUttWkJRT05Fd0U1ei1sX01NU1A3QkdVRUppZ2thcVhOUTN1ZU90VkxqNXZTdVpwODI1UVc0UEpTMU5DS1gwN2pENHhVelgwWlE?oc=5"
+          },
+          {
+            "headline": "LG엔솔 EU 기금 지원 선정",
+            "summary": "LG에너지솔루션의 폴란드 공장이 EU 혁신기금 지원 사업 대상에 최종 선정되어 9GWh 규모의 LFP 라인 전환을 추진합니다. 이번 자금 지원을 바탕으로 유럽 내 저가형 배터리 현지 생산 체제를 조기 완성할 예정입니다.",
             "tags": [
               "#LG에너지솔루션",
               "#EU혁신기금",
-              "#LFP배터리",
-              "#폴란드공장"
+              "#LFP배터리"
             ],
             "source": "Investing.com 한국어",
             "date": "2026-10-23",
             "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1KSnVtUUdNSWhnUEJOUTZSY2FYVmdWRDFhcmVkb21lV3kxcWhNZzdtcDliS1pQanloUVRXR055X1Bsb0hpYzVVb1lLODBxR21OWVQzMDhYUExPa2ZINFItZno2MHhxT21IMnpaQnQ2UXE?oc=5"
           },
           {
-            "headline": "LG엔솔 난징 9공장 가동, 테슬라향 2170 증산",
-            "summary": "LG에너지솔루션이 중국 난징 9공장을 본격적으로 가동하며 테슬라 공급용 원통형 2170 배터리 셀 증산에 속도를 내고 있습니다. 테슬라의 글로벌 생산 확대에 맞춰 안정적인 공급망을 계속 확보해 나가고 있습니다.",
+            "headline": "LG엔솔 난징 테슬라 라인 가동",
+            "summary": "LG에너지솔루션이 중국 난징 9공장을 본격 가동하며 테슬라향 원통형 2170 배터리 공급 물량을 대폭 확대합니다. 핵심 고객사 수요에 적극 대응하며 원통형 배터리 시장에서의 지배력을 강화하고 있습니다.",
             "tags": [
               "#LG에너지솔루션",
               "#난징공장",
-              "#원통형2170",
-              "#테슬라"
+              "#원통형2170"
             ],
             "source": "지디넷코리아",
             "date": "2026-10-23",
             "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1DYTRNRFl1S0pCVEtBRVp6MnRPWkNaSzBUNGozRnh4b2lkT3NQb1Fsc1lxTUtGdFBUcjJRUkFDdEpHekU5aFdzcHZacFVZbGNzRDBnTm9B?oc=5"
           },
           {
-            "headline": "한화파워, 배터리 추진 컨테이너선 AIP 획득",
-            "summary": "한화파워시스템이 1700TEU급 배터리 추진 컨테이너선 설계에 대한 기본 승인(AIP)을 획득하며 선박 전동화 시장에 출사표를 던졌습니다. 해운 분야 탈탄소화 흐름에 발맞춰 대형 선박용 배터리 시스템 기술력을 입증했습니다.",
+            "headline": "배터리 추진선 기본 승인 획득",
+            "summary": "한화파워시스템이 1700TEU급 대형 컨테이너선에 적용 가능한 배터리 추진 시스템 설계의 AIP 승인을 받았습니다. 친환경 해운 규제 강화에 대응해 선박 탈탄소화 시장에 본격 진출하는 교두보를 마련했습니다.",
             "tags": [
-              "#한화파워시스템",
+              "#한화파워",
               "#배터리추진선",
-              "#AIP승인",
-              "#해운탈탄소"
+              "#친환경선박"
             ],
             "source": "이데일리",
             "date": "2026-10-23",
             "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNSTNFUWNoQmlNdURBQmlwcS1QbHpWZnFYcVRFY2k2b0EzejhXM1p6Zmp5YzdIcW5Hb1VnNDBDSGNnc0FrMUlnSHczTE9SRDgzZkhBWUJhLTVQLW1GZmtXYU95OU5KMmFkcUJmMUZieVFnRDFHWVpiREM3S3NlbTBfaQ?oc=5"
           },
           {
-            "headline": "자비스, 34억 규모 X-ray 검사장비 공급",
-            "summary": "자비스가 글로벌 2차전지 제조사와 34억 원 규모의 X-ray 비파괴 검사장비 공급 계약을 체결했습니다. 배터리 셀 내부 불량을 고정밀로 정밀 검출하여 대량 양산 공정에서의 수율 향상과 품질 안전성을 크게 극대화합니다.",
+            "headline": "자비스 X-ray 검사장비 공급",
+            "summary": "자비스가 글로벌 배터리 제조사와 10억원 규모의 파우치형 배터리 전용 X-ray 이물 검사 장비 공급 계약을 체결했습니다. 고도화된 정밀 검사를 통해 셀 수율을 높이고 화재 유발 원인을 사전 차단하게 됩니다.",
             "tags": [
               "#자비스",
               "#Xray검사",
-              "#비파괴검사",
-              "#배터리장비"
+              "#셀수율"
             ],
-            "source": "www.dt.co.kr",
-            "date": "2026-10-22",
-            "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBrY3Axb0pqU1BRMFFQdnVnR2xfRmNSR0ZLQW9xY19FTkZGeDFLUkU4bnhMZlNDRG9hLXBETFBUZDNYSzJmcC1HeUlEX0h1dw?oc=5"
+            "source": "Chosunbiz",
+            "date": "2026-10-23",
+            "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPS01RM3FvSW9iYjBQQmd3eE9EVlRTQXQ4N2VvSXRuN2hxTExUSEpmX3BXajVTSmR0Sk94VjF4S3ZLR0ZKcnNVU1l6UFQwNjhlZkhTMlpQeldxRmhBcUJ4MWtIdnF3Z2RRWjlqdTVLTU5jSlcwQUd5NXhaSGl4SHRVS3RaN3F0bFUzSDlfRtIBoAFBVV95cUxQOXdJTUJ2NU9QdUFqaTBoNDAySDlIU3lFeFFCZElhRW9PbXE0ejhMVWpmVTJZaUtQeVpwSzFzT21HRnhiS19pc0FvbERGS0NhWTVhMkdULUk4RFRhb2ZHWktCNW9URm9SaXcwSmUtc3Q4dnFtVkxWNjhVbFRwY3FDemhmQlRHa1BMYUJWeWw4WFE3d0o4Ukw2VjZDeDlRRE5w?oc=5"
           },
           {
-            "headline": "고려대, 폐배터리 재활용 공정 경제성 분석",
-            "summary": "고려대학교 원왕연 교수 연구팀이 폐배터리 재활용 공정별 경제성과 환경성을 정밀 분석하여 최적의 친환경 리사이클링 공정 전략을 제안했습니다. 향후 친환경적이고 수익성 높은 리사이클링 공정 설계의 기준이 될 전망입니다.",
+            "headline": "회수 리튬 순환 공급망 전망",
+            "summary": "폐배터리 리사이클링을 통해 추출되는 회수 리튬 화합물 시장이 2035년까지 고속 성장할 것이라는 분석이 나왔습니다. 자원 순환형 공급망 구축과 환경 규제 대응이 리사이클링 시장 성장의 주 동력으로 작용하고 있습니다.",
             "tags": [
-              "#폐배터리",
-              "#리사이클링",
-              "#고려대학교",
-              "#친환경공정"
+              "#리튬회수",
+              "#배터리재활용",
+              "#순환경제"
             ],
-            "source": "한국강사신문",
-            "date": "2026-10-22",
-            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFAweU9QbnV0NThzeG1pTmp4SUo2aGFHZnV5WnJrc3k4SnVCVGt1SHdOY2x4SjdST2RzUVljNVQ3NmMtbWZ5VDdmalpfTlhXWW9NdkJGSHZjZ3ZRSU5QZTQtdVdLdXVVelZzVVAtcDVOSFY?oc=5"
-          },
-          {
-            "headline": "하나기술, 인도 아그라타스향 장비 출하 예정",
-            "summary": "하나기술이 인도 배터리 제조사인 아그라타스를 대상으로 한 배터리 제조 공정 장비의 출하를 앞두고 있습니다. 신흥 전기차 시장으로 떠오르는 인도 시장에서 국내 배터리 장비 업체들의 영토 확장이 지속되고 있습니다.",
-            "tags": [
-              "#하나기술",
-              "#아그라타스",
-              "#인도배터리",
-              "#공정장비"
-            ],
-            "source": "디일렉",
-            "date": "2026-10-22",
-            "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBBU3ZJNkJuTGVwRDJyUlRvQldYYTNqdnJ6WVNHaERHNmlNemUtTWVtQzlaVEo3bGE5Yjc2VE56RGhvbnNLUUFjQnZ5eWhDeEJhSTlUUDdnbmhSb2JkQ2VOSGJmLXF3QQ?oc=5"
-          },
-          {
-            "headline": "레드우드-리비안, 배터리 재활용 협력 확대",
-            "summary": "레드우드 머티리얼즈와 리비안이 폐배터리 수거 및 블랙매스 리사이클링 협력을 대폭 확대하기로 합의했습니다. 전기차 생산부터 폐배터리 회수, 재활용으로 이어지는 북미 중심의 순환경제 체제 구축이 가속화되고 있습니다.",
-            "tags": [
-              "#레드우드",
-              "#리비안",
-              "#폐배터리재활용",
-              "#블랙매스"
-            ],
-            "source": "Mezha.net",
-            "date": "2026-10-22",
-            "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOeElrYnZLSnBGamlDTE1QVjhCVmdUc3V4VzY5WTZ5SzVIcXdTVHcyQjdmS1BpSFBjV0ZaaTFLeDFhRl9uUm81LTcyd0hmRUFORlFROW9aYTRfTzlubHdXSlhWbXZZZF96dGxaSk5qX1ZRbU52dW0yUlVyYlJfTGpuRC1ZS2RWQlFQTFprTkMyWnp2TTU3TUFMb0EyN3A?oc=5"
-          },
-          {
-            "headline": "한자연, 고성능 전기차 시험 인프라 가동",
-            "summary": "한국자동차연구원이 고출력 전기차의 배터리와 파워트레인 성능을 정밀 실증 평가할 수 있는 고성능 시험 인프라 운영에 착수했습니다. 고성능 전기차 개발에 필수적인 검증 체계를 다져 국내 기술 경쟁력을 한층 높입니다.",
-            "tags": [
-              "#한국자동차연구원",
-              "#전기차시험인프라",
-              "#고출력배터리",
-              "#파워트레인"
-            ],
-            "source": "www.dt.co.kr",
-            "date": "2026-10-22",
-            "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5GazNXY2pBYWJkaTc3bWFLcm1BX21iLW11V0xvNnE2VDcwS0xqWllFTHV1NjdfLTVJTTR1MHZiQ0VRdENITTQya2Q4N0h5Zw?oc=5"
-          },
-          {
-            "headline": "CATL-화웨이, 배터리 자동 교체 시스템 개발",
-            "summary": "CATL과 화웨이 자율주행 사업부가 협업하여 전기차 배터리 패키지를 신속하고 자동으로 교체할 수 있는 시스템을 개발하고 있습니다. 충전 시간 단축 요구에 맞춰 배터리 스와핑 시장의 기술 표준화를 주도하려는 시도입니다.",
-            "tags": [
-              "#CATL",
-              "#화웨이",
-              "#배터리스와핑",
-              "#자동교체"
-            ],
-            "source": "뉴스핌",
-            "date": "2026-10-21",
-            "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBPbnJ6TExzR1o5TlNMTTBmb3cyOS1EbndQWDRPU1Z6WkRBY1RFTmpYLUU5cUVZNExfQXRNU3lLYVI3ZEFRaEp2R0taTWZxZTVqS0ZPYTVXOTJGQ2tN?oc=5"
+            "source": "IndexBox",
+            "date": "2026-10-23",
+            "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQREpILUhwN0pKRjFlTU43SUpNTTh0YWdRR0E2NzZrXzNMQ1ZRb2cwa2hrOWdtcy0wQkItR3ZLVUItd3ltRTVHaDdIT1BDcHdPRnJubzU4cEhBQzdHb1pCTkwzUFJGblBOdERJUFRtREVTMDNxcHFiYkN5bE16UXV1XzUwMEx4ZGVBNGhNcDBFMDVSY0EwZWpkcE9DTDVlQ0ZWR0NJV08wb0d4bVlOVkJucENWczNzMzRVdXJsRTdXNkhPalA3MFM5TnNUbHQtRDRtREZJZUdialBVbmMtY25Taw?oc=5"
           }
         ]
       },
       {
-        "name": "안전성, 열관리 및 평가",
+        "name": "안전성 및 방열·화재 대응 기술",
         "items": [
           {
-            "headline": "용인시, 1000도 열폭주 시연 및 대응 훈련",
-            "summary": "용인특례시에서 1,000도가 넘는 리튬이온 배터리의 열폭주 현상을 시연하고, 신속한 진화 및 대응을 위한 화재 교육 훈련을 수행했습니다. 지자체 차원에서 배터리 화재 위험성에 대비한 진화 가이드라인을 고도화하고 있습니다.",
+            "headline": "AI 기반 화재 30초 내 감지",
+            "summary": "충남도의회가 전기차 및 산업 현장의 배터리 화재를 예방하기 위해 AI 조기 감지 모니터링 시스템 도입을 추진합니다. 발화 전 이상 징후를 30초 이내에 감지해 대형 화재로의 번짐을 사전 차단할 것으로 기대됩니다.",
+            "tags": [
+              "#AI화재감지",
+              "#전기차안전",
+              "#충남도의회"
+            ],
+            "source": "아산뉴스",
+            "date": "2026-10-25",
+            "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBaYlR2bWc2eWFsOGNQU01QYXBXWUxya1l4VUZ6STc5ZnNJMl9hZnVqeFFxRWxnbmM0MzhJYWd2RmdsWS0xTzZlUWxIT2hQVlJ0aW1Mb0NBTzdoN3p2Yy1ZcTdzS1RxLTFvbVFMQlJyeGNpVHJMenU3RzJjUQ?oc=5"
+          },
+          {
+            "headline": "리튬이온 열 폭주 차단 연구",
+            "summary": "리튬이온 배터리의 치명적인 약점인 열 폭주 현상을 근본적으로 방지하기 위한 핵심 안전성 연구 결과가 발표되었습니다. 셀 내부 단락 및 열 전도를 제어하는 기술을 통해 안전성을 한 단계 높였습니다.",
             "tags": [
               "#열폭주",
-              "#배터리화재",
-              "#용인시",
-              "#화재진화"
+              "#배터리안전성",
+              "#리튬이온"
+            ],
+            "source": "하이테크정보",
+            "date": "2026-10-25",
+            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9yc2pMQ0dMYXdndVhpLVkxUk1KaEFjLVFtODVoeFJoUVMyQUZCRzZ6WERYTlA0OXl3UE9IdkZiaWE4RFVuVzhsa2xQU0F4eDVUWm9MNnlQdXpJOVVqN2RYcl9DcEpFUWVKUldYZQ?oc=5"
+          },
+          {
+            "headline": "1000도 열폭주 진화 시연",
+            "summary": "용인특례시에서 1,000도 이상 치솟는 전기차 배터리 열폭주 현상을 실제 시연하고 최신 진화 기술 훈련을 수행했습니다. 소방대원과 지자체의 신속한 대응 체계를 구축하여 시민 불안감을 해소하려는 목적입니다.",
+            "tags": [
+              "#열폭주시연",
+              "#용인특례시",
+              "#배터리화재"
             ],
             "source": "경기타임스 e",
             "date": "2026-10-23",
             "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBEa3QxTFM4WE9oMjJoRm1sZXZXeFg1U0VsY3REc2t3VzNqUXNWSWJOZ2lSV3JyR3dWdEJwT19yamRacTJPdFVzQV9WRF9SMGZKemZEZVBuUG5PbDJJTlNBVW9kckF6ZnA3N3o2Zg?oc=5"
           },
           {
-            "headline": "중경기술, 배터리 팩 천공형 진압 장비 공개",
-            "summary": "중경기술이 전기차 화재 발생 시 배터리 팩 내부로 소화 약제를 직접 주입해 화재를 진압하는 천공형 장비를 선보였습니다. 셀 내부의 열폭주 지점에 소화수를 직접 투입함으로써 화재 진압 시간을 대폭 단축할 수 있습니다.",
+            "headline": "배터리 팩 천공 진압 장비",
+            "summary": "중경기술이 전기차 화재 발생 시 배터리 하부 팩에 직접 구멍을 뚫고 소화제를 내부 주입하는 천공 장비를 선보였습니다. 셀 내부로 약제가 직접 투입되어 열폭주 진압 시간을 크게 단축할 수 있습니다.",
             "tags": [
               "#중경기술",
-              "#천공진압",
-              "#배터리화재",
-              "#소화장비"
+              "#배터리천공",
+              "#화재진압"
             ],
             "source": "소방방재신문",
             "date": "2026-10-23",
             "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFBfVnFMNjJSM1M1WnZCNVpxMWJrVlBIbFJQRTZvSExmbDVscE9QeGhpYzFMTHBSOEJRcmZDMnZGZmFwODVU?oc=5"
           },
           {
-            "headline": "세이프온, 배터리 열폭주 조기감지 기술 도입",
-            "summary": "세이프온이 배터리 셀의 열폭주 전조 증상을 실시간 모니터링하여 전기차 화재를 미연에 감지하는 모니터링 기술을 선보였습니다. 이상 징후 발생 시 선제적 대응을 가능하게 하여 화재 대형화를 예방하는 데 초점을 맞추고 있습니다.",
+            "headline": "그래핀 방열 시트 시장 성장",
+            "summary": "전기차 모듈과 전자 장비의 발열을 효과적으로 제어하기 위한 그래핀 복합 시트 소재 시장이 2035년까지 크게 확대될 전망입니다. 고출력 배터리의 열관리 요구 수준이 높아짐에 따라 방열 소재 가치가 상승하고 있습니다.",
             "tags": [
-              "#세이프온",
-              "#조기감지",
-              "#열폭주모니터링",
-              "#전기차안전"
+              "#그래핀시트",
+              "#배터리열관리",
+              "#방열소재"
             ],
-            "source": "비즈체크",
-            "date": "2026-10-22",
-            "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE43OUNpQTRod3U1c2oyWDlqd1VkbTBBeC15RGZWS0UtV25veXA5dENScUlnSVlpeHdaYUlPS0VFRHA2cEJsUnc3SjJsVzdiUkt1ZWhEOWdQU3VDZ0pHeW9XeWpjSk4tYndvdElXZENGMA?oc=5"
-          },
-          {
-            "headline": "주원, DIFA서 AI 가스센서 SHEVIO 공개",
-            "summary": "주원이 DIFA 2026에서 배터리 열폭주 직전 발생하는 미세 오프가스를 정밀 측정하는 AI 가스센서 'SHEVIO'를 공개했습니다. 인공지능 기반 분석을 통해 화재 발생 전 조기 경보를 울려 안전성을 획기적으로 개선합니다.",
-            "tags": [
-              "#주원",
-              "#SHEVIO",
-              "#AI가스센서",
-              "#오프가스감지"
-            ],
-            "source": "에이빙",
-            "date": "2026-10-22",
-            "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5LOTlFdFRULWppRjdlS1pPX0dlOEx5M0FMNWJUblAxTjF4dTJDc3duTFEtRjVHM3Z0X0VoQVEyYXN1V2M3NDhIRzR0am5qeDd5Nnc3VDZOdU44QlQ2ZlpVRk0tNzdpOVBWZ2VN0gFrQVVfeXFMTks5OUV0VFQtamlGN2VLWk9fR2U4THkzQUw1YlRuUDFOMXh1MkNzd25MUS1GNUczdnRfRWhBUTJhc3VXYzc0OEhHNHRqbmp4N3k2dzdUNk51TjhCVDZmWlVGTS03N2k5UFZnZU0?oc=5"
-          },
-          {
-            "headline": "벤츠 CLA, 충돌 시험서 배터리 안전성 검증",
-            "summary": "메르세데스-벤츠가 CLA 모델의 시속 56km 측면 충돌 시험을 시행하여 충격 시 배터리 팩의 구조적 안전성과 탑승객 보호 성능을 확인했습니다. 차량 설계 단계부터 배터리 보호 프레임을 최적화하여 충돌 화재 위험을 낮췄습니다.",
-            "tags": [
-              "#메르세데스벤츠",
-              "#측면충돌시험",
-              "#배터리팩안전",
-              "#차량설계"
-            ],
-            "source": "모터매거진",
-            "date": "2026-10-21",
-            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ja3BESDdyMjhMLV9RNnRtRmx6UEpGSkV3Y2ZSOGpvNTBSX180MVRYaEFIaWhJX0pUcDk4NnZNZzA3VUc5VmViblRHbE1HNmxwTXBfUnhTRkRXUWtrUkpjdkF3RWt3cktPY1VzOQ?oc=5"
+            "source": "IndexBox",
+            "date": "2026-10-23",
+            "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNeFgwdzdYdEFKR05abUxpYWNMNUxxZWNaWjBITktIUkZlaGRtb3JPVGxPekFua3JhSGlwNmtXR1QtbEE5N2o3RjFpb1JyNzEtRHI4UHF6Ny0wZEFlVmRra1UyWXJBU2xicU0wbHNXT1B5Nk03UHlZZWk3aGlZRkNOTmlZVHk4eTdwbGRvSjVWMllFcTh5QUFPLU1STVdsNUV6eU1GTU5uNWJjdXdDcmpTM2ppbTQyUHF3Wmh6UVlrNkw2SkNiYy1fdTdPRC04S29qcnRMeHd2WGI2TWp4RzdqQ29yLU14a1VLb2VYeTJVcUtKZUYzM2t4ZXp5d3lkNGtPUGZJ?oc=5"
           }
         ]
       }
     ],
-    "implications": "배터리 산업은 가격 경쟁력 강화를 위한 LFP·LMR 확산과 함께 상용화 단계에 진입한 전고체 배터리 중심의 차세대 기술 확보전이 격화되고 있습니다. 한편, 최근 잇따른 안전성 이슈에 대응하기 위해 AI 기반 오프가스 감지 센서, 배터리 팩 천공 진압 장비, 비파괴 X-ray 검사 등 사전 차단 및 사후 진화 기술이 고도화되는 추세입니다. 나아가 유럽·북미 시장을 중심으로 폐배터리 리사이클링 및 배터리 스와핑 시스템 표준화 투자가 확대되면서 글로벌 배터리 벨류체인은 양산성과 안전성, 그리고 순환경제를 아우르는 종합 솔루션 경쟁 체제로 진화하고 있습니다."
+    "implications": "최근 배터리 기술 트렌드는 가격 경쟁력을 극대화한 LMFP·LMR 개발과 글로벌 완성차업체의 포트폴리오 다변화 전략에 맞춰 빠르게 변화하고 있습니다. 동반하여 전고체 배터리는 단순 기술 실증을 넘어 파일럿 라인 증설과 소재 공급망 확보 등 실질적인 2027~2030년 양산 단계로 진입하고 있습니다. 또한 전기차 대중화의 최대 걸림돌인 화재 위험성 극복을 위해 AI 감지, 천공 진압, 그래핀 열관리 소재 등 사전·사후 방어 솔루션 도입이 산업계 전반으로 확산되는 추세입니다."
   },
   "chinaNews": [
     {
       "title": "Li Auto’s new i6 SUV achieves 811 km & 11.8 kWh/100km in range test without CATL’s help",
-      "summary": "Li Auto's new i6 SUV features an in-house developed 5C battery manufactured by CALB and Sunwoda, achieving 811 km of range without relying on CATL.",
+      "summary": "Li Auto's new i6 SUV achieved an 811 km range and an energy efficiency of 11.8 kWh/100km in range testing, utilizing an in-house developed 5C battery manufactured by CALB and Sunwoda.",
       "source": "CarNewsChina",
       "date": "2026-10-24",
       "url": "https://carnewschina.com/2026/10/23/li-autos-new-i6-suv-achieves-811-km-11-8-kwh-100km-in-range-test-without-catls-help/",
@@ -10113,7 +10798,7 @@
     },
     {
       "title": "Jetta M6 Hits the Market: 35-Year \"National Icon\" Pivots to New Energy",
-      "summary": "FAW-Volkswagen's Jetta brand launched the M6, its first localized pure-electric sedan priced under 100,000 yuan, integrating Horizon Journey 6M chips to bring urban NOA to the entry-level NEV segment.",
+      "summary": "FAW-Volkswagen Jetta has launched its first localized electric sedan, the M6, featuring German manufacturing standards paired with Horizon Journey 6M chip-powered NOA driver assistance at an entry-level price.",
       "source": "Gasgoo",
       "date": "2026-10-24",
       "url": "https://autonews.gasgoo.com/articles/news/jetta-m6-hits-the-market-35-year-national-icon-pivots-to-new-energy-2113800941484261376",
@@ -10122,7 +10807,7 @@
     },
     {
       "title": "Nearly 2027: Is In-House Battery Development Still Worth Debating?",
-      "summary": "The ongoing debate over automaker in-house battery development highlights strategic shifts toward mastering cell design, pack architecture, and supply chain control while relying on specialized cell manufacturers for volume production.",
+      "summary": "The debate over automaker in-house battery development intensifies as OEMs like Li Auto pursue proprietary cell design and integration while relying on supply chain partners for volume manufacturing.",
       "source": "Gasgoo",
       "date": "2026-10-24",
       "url": "https://autonews.gasgoo.com/articles/news/nearly-2027-is-in-house-battery-development-still-worth-debating-2113799711001292801",
@@ -10131,12 +10816,30 @@
     },
     {
       "title": "Battery Swapping: Is It Finally Getting Sweet?",
-      "summary": "China's battery swapping sector is accelerating as major players like Geely, CATL, and Huawei's Yinwang collaborate to unify standards and expand networks across passenger and heavy-truck segments.",
+      "summary": "China's battery swapping sector is entering a growth phase with expanded player participation, including NIO-Geely partnerships, CATL's shared networks, and the Huawei ecosystem's entry.",
       "source": "Gasgoo",
       "date": "2026-10-24",
       "url": "https://autonews.gasgoo.com/articles/news/battery-swapping-is-it-finally-getting-sweet-2113791943469051904",
       "linkType": "rss",
       "id": 4
+    },
+    {
+      "title": "China has about 15 million passenger cars with NOA as driver assistance adoption expands",
+      "summary": "About 61 million passenger cars in China were equipped with L2 driver assistance features as of August 2026, with approximately 15 million featuring Navigation on Autopilot (NOA).",
+      "source": "CnEVPost",
+      "date": "2026-10-24",
+      "url": "https://cnevpost.com/2026/10/24/china-15-million-cars-with-noa/",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
+      "title": "CATL confirms Qilin Battery powers Nio Firefly with 560 km range",
+      "summary": "CATL has confirmed that its Qilin Battery powers the Nio Firefly, enabling a CLTC range of 560 km with its 60-kWh capacity version.",
+      "source": "CnEVPost",
+      "date": "2026-10-24",
+      "url": "https://cnevpost.com/2026/10/24/catl-qilin-battery-nio-firefly-60-kwh/",
+      "linkType": "rss",
+      "id": 6
     },
     {
       "title": "Nio Firefly launches larger 60-kWh battery pack, extending range to 560 km",
@@ -10145,7 +10848,7 @@
       "date": "2026-10-23",
       "url": "https://cnevpost.com/2026/10/23/nio-firefly-launches-60-kwh-battery-pack/",
       "linkType": "rss",
-      "id": 5
+      "id": 7
     },
     {
       "title": "Why drive straight?  Voyah Taishan filmed “crab-walking” at highway speeds",
@@ -10154,7 +10857,7 @@
       "date": "2026-10-23",
       "url": "https://carnewschina.com/2026/10/23/why-drive-straight-voyah-taishan-filmed-crab-walking-at-highway-speeds/",
       "linkType": "rss",
-      "id": 6
+      "id": 8
     },
     {
       "title": "CATL and BAIC forge strategic partnership to target 1 million battery-swapping EVs",
@@ -10163,7 +10866,7 @@
       "date": "2026-10-23",
       "url": "https://carnewschina.com/2026/10/23/catl-and-baic-forge-strategic-partnership-to-target-1-million-battery-swapping-evs/",
       "linkType": "rss",
-      "id": 7
+      "id": 9
     },
     {
       "title": "Chery challenges BYD, Geely, Huawei with 1.44MW charger, promises 500km in 5 minutes",
@@ -10172,52 +10875,52 @@
       "date": "2026-10-23",
       "url": "https://carnewschina.com/2026/10/22/chery-challenges-byd-geely-huawei-with-1-44mw-charger-promises-500km-in-5-minutes/",
       "linkType": "rss",
-      "id": 8
+      "id": 10
     },
     {
       "title": "CPCA forecasts weak China NEV retail sales in October as peak season falters",
-      "summary": "CPCA forecasts October China NEV retail sales at 1.07 million units, reflecting a 16.5% year-on-year drop as the traditional peak season slows down.",
+      "summary": "The China Passenger Car Association (CPCA) forecasts October NEV retail sales in China to fall 16.5% year-on-year to 1.07 million units.",
       "source": "CnEVPost",
       "date": "2026-10-23",
       "url": "https://cnevpost.com/2026/10/23/cpca-forecasts-weak-china-nev-retail-oct-2026/",
       "linkType": "rss",
-      "id": 9
+      "id": 11
     },
     {
       "title": "Chery considers local production in Canada, plans sales launch in 2027",
-      "summary": "Chery is evaluating idle plant capacity and potential investor partnerships to pursue local EV production in Canada targeting a 2027 sales debut.",
+      "summary": "Chery is evaluating local production options and partnerships in Canada as it prepares for an official sales launch targeted for 2027.",
       "source": "CnEVPost",
       "date": "2026-10-23",
       "url": "https://cnevpost.com/2026/10/23/chery-considers-local-production-canada/",
       "linkType": "rss",
-      "id": 10
+      "id": 12
     },
     {
       "title": "Arcfox opens pre-sales for 2027 Alpha S5 with standard LiDAR, starting at about $18,130",
-      "summary": "Arcfox opened pre-sales for its 2027 Alpha S5 sedan starting at 121,800 yuan, featuring standard LiDAR and a CLTC range of up to 750 km.",
+      "summary": "Arcfox has opened pre-sales for the 2027 Alpha S5 sedan, featuring standard LiDAR and up to 750 km of CLTC range at a starting price of around $18,130.",
       "source": "CnEVPost",
       "date": "2026-10-23",
       "url": "https://cnevpost.com/2026/10/23/arcfox-pre-sales-2027-alpha-s5/",
       "linkType": "rss",
-      "id": 11
+      "id": 13
     },
     {
       "title": "BYD's third-gen Qin Plus to launch on October 27 with larger dimensions",
-      "summary": "BYD is preparing to launch its third-generation Qin Plus sedan with expanded dimensions and roof-mounted LiDAR for enhanced driver-assistance capabilities.",
+      "summary": "BYD's third-generation Qin Plus sedan has grown in length to 4,840 mm and will incorporate roof-mounted LiDAR in its updated configuration.",
       "source": "CnEVPost",
       "date": "2026-10-23",
       "url": "https://cnevpost.com/2026/10/23/byd-3rd-gen-qin-plus-launch-oct-27/",
       "linkType": "rss",
-      "id": 12
+      "id": 14
     },
     {
       "title": "Pony AI enters Central Asia with inDrive robotaxi pilot in Kazakhstan",
-      "summary": "Pony AI has partnered with inDrive to launch a robotaxi pilot service in Astana, Kazakhstan, marking its entry into the Central Asian market.",
+      "summary": "Pony AI is expanding its robotaxi deployment into Central Asia through a pilot program with inDrive starting in Astana, Kazakhstan.",
       "source": "CnEVPost",
       "date": "2026-10-23",
       "url": "https://cnevpost.com/2026/10/23/pony-ai-enters-central-asia-robotaxi-pilot-kazakhstan/",
       "linkType": "rss",
-      "id": 13
+      "id": 15
     },
     {
       "title": "BYD Yangwang’s 5.5-meter flagship limousine spied ahead of UAE debut",
@@ -10226,16 +10929,25 @@
       "date": "2026-10-23",
       "url": "https://carnewschina.com/2026/10/23/byd-yangwangs-5-5-meter-flagship-limousine-spied-ahead-of-uae-debut/",
       "linkType": "rss",
-      "id": 14
+      "id": 16
+    },
+    {
+      "title": "XPeng Maintains MSCI ESG AAA Rating for Fourth Consecutive Year",
+      "summary": "XPeng maintained its top-tier AAA ESG rating from MSCI for four consecutive years while improving its S&P Global Corporate Sustainability Assessment score.",
+      "source": "Gasgoo",
+      "date": "2026-10-23",
+      "url": "https://autonews.gasgoo.com/articles/news/xpeng-maintains-msci-esg-aaa-rating-for-fourth-consecutive-year-2113284933090676737",
+      "linkType": "rss",
+      "id": 17
     },
     {
       "title": "China advances second batch of Level 3 approvals after Changan and BAIC",
-      "summary": "China's Ministry of Industry and Information Technology is progressing work on the second batch of Level 3 autonomous driving approvals following initial approvals for Changan and BAIC.",
+      "summary": "China's MIIT is advancing a second batch of Level 3 autonomous driving vehicle approvals following initial pilot inclusions for Changan and BAIC.",
       "source": "CnEVPost",
       "date": "2026-10-22",
       "url": "https://cnevpost.com/2026/10/22/china-advances-2nd-batch-level-3-approvals/",
       "linkType": "rss",
-      "id": 15
+      "id": 18
     },
     {
       "title": "CATL expands battery-swapping footprint with Huawei",
@@ -10244,41 +10956,14 @@
       "date": "2026-10-22",
       "url": "https://carnewschina.com/2026/10/22/catl-expands-battery-swapping-footprint-with-huawei/",
       "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "A second battery plant on the way? CATL and Chery establish another joint venture",
-      "summary": "CATL and Chery established a second joint venture in 2026 with 1 billion yuan in capital to expand joint power battery manufacturing and technical services in Anhui.",
-      "source": "Gasgoo",
-      "date": "2026-10-22",
-      "url": "https://autonews.gasgoo.com/articles/news/a-second-battery-plant-on-the-way-catl-and-chery-establish-another-joint-venture-2112937415525675009",
-      "linkType": "rss",
-      "id": 17
-    },
-    {
-      "title": "Gotion High-Tech launches new-generation CTB rear-integrated heavy truck product",
-      "summary": "Gotion High-Tech released a new CTB rear-integrated battery system for heavy trucks, cutting chassis weight and integrating cell-to-bracket architecture to enhance payload capacity.",
-      "source": "Gasgoo",
-      "date": "2026-10-22",
-      "url": "https://autonews.gasgoo.com/articles/news/gotion-high-tech-launches-new-generation-ctb-rear-integrated-heavy-truck-product-2112936623511064577",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "FAW-Volkswagen ID. AURA T6 First-Month Report: 33,022 Locked Orders, LiDAR Versions Account for Over 90%",
-      "summary": "FAW-Volkswagen secured 33,022 locked orders in the first month for its ID. AURA T6 EV, with over 90% of buyers selecting the LiDAR-equipped smart driving trim.",
-      "source": "Gasgoo",
-      "date": "2026-10-22",
-      "url": "https://autonews.gasgoo.com/articles/news/faw-volkswagen-id-aura-t6-first-month-report-33022-locked-orders-lidar-versions-account-for-over-90-2112935660394008577",
-      "linkType": "rss",
       "id": 19
     },
     {
-      "title": "New AMG GT High-Performance SUV Debuts Globally",
-      "summary": "Mercedes-AMG unveiled its AMG.EA-based electric SUV featuring three axial-flux motors, an 800V high-voltage system, and peak charging power up to 710 kW.",
+      "title": "A second battery plant on the way? CATL and Chery establish another joint venture",
+      "summary": "CATL and Chery have established their second joint venture of the year in Anhui, CATL Chery (Wuhu) New Energy Technology, focused on power battery manufacturing and R&D.",
       "source": "Gasgoo",
       "date": "2026-10-22",
-      "url": "https://autonews.gasgoo.com/articles/news/new-amg-gt-high-performance-suv-debuts-globally-2112933637095309313",
+      "url": "https://autonews.gasgoo.com/articles/news/a-second-battery-plant-on-the-way-catl-and-chery-establish-another-joint-venture-2112937415525675009",
       "linkType": "rss",
       "id": 20
     }
@@ -10769,58 +11454,55 @@
   },
   "benchmarkingPoints": {
     "keyTakeaways": [
-      "중국 완성차 및 배터리 기업들은 LFP/NCM 기반 5C급 초고속 충전 기술과 메가와트급 충전 인프라 상용화를 가속화하고 있으며, 배터리 교환(스왑) 생태계 구축 및 양극재/팩 구조 개선을 위한 특허 출원도 활발히 진행되고 있습니다."
+      "중국 완성차 및 배터리 업계는 5C급 초고속 충전 LFP/NCM 배터리와 LMFP 상용화를 가속화하고 있으며, 팩 열교환 유로 통합 등 구조적 단순화를 통한 원가 및 공간 효율성 확보에 집중하고 있습니다."
     ],
     "categories": [
       {
         "name": "글로벌 신차·배터리 스펙 벤치마킹",
         "items": [
           {
-            "headline": "리샹 i8, CATL 97.5kWh NCM 배터리 탑재하여 5.2C 최고 충전 성능 및 10.5분 초고속 충전 달성",
-            "whyNotable": "리샹 i8 순수전기 플래그십은 CATL의 97.5 kWh NCM 5C Supercharging Battery를 탑재하여 Peak 5.2C(최대 500kW)의 출력을 지원하며, SOC 10%에서 80%까지 충전하는 데 약 10.5분이 소요됩니다. 5C 초고속 충전 네트워킹 전용 기술이 적용되어 CLTC 기준 720km의 주행거리를 확보했습니다.",
-            "evidenceQuote": "97.5 kWh 5C Supercharging Battery (NCM)",
+            "headline": "리샹 i8, 5.2C Peak 출력을 통한 10.5분 급속충전 스펙 구현",
+            "whyNotable": "97.5 kWh NCM 배터리를 탑재하여 Peak 5.2C(최대 500kW) 성능을 바탕으로 SOC 10%에서 80%까지 충전 시간을 10.5분으로 단축했습니다. CLTC 기준 720km 주행거리를 확보함과 동시에 초고속 충전 성능을 극대화했습니다.",
+            "evidenceQuote": "5.2C Peak (최대 500kW) | SOC 10% → 80% (약 10.5분)",
             "factLevel": "직접 인용",
             "internalCheckQuestion": "당사 급속충전 시스템은 SOC 10→80% 기준 몇 분대인지, 이 경쟁사 수치(약 10.5분)와 비교 확인 필요",
             "tags": [
               "#5C초고속충전",
-              "#NCM",
-              "#CATL",
-              "#리샹"
+              "#NCM배터리",
+              "#급속충전"
             ],
             "source": "Li Auto Li i8 EV (리샹 i8 순수전기 플래그십)",
             "date": "2026-10-19",
             "url": ""
           },
           {
-            "headline": "CATL, 600kWh LFP 시스템 탑재 상용 EV용 1MW 메가와트급 충전 사양 공개",
-            "whyNotable": "CATL 텍트랜스 II 대형 상용 EV는 600 kWh Tectrans Heavy-Duty LFP 시스템을 탑재하여 4.0C Peak(최대 800kW) 성능으로 SOC 10%에서 80%까지 약 12분 만에 충전이 가능합니다. 메가와트급(1MW) 초고속 충전 및 듀얼 에너텍 모듈이 탑재되어 500km 이상의 주행거리를 제공합니다.",
+            "headline": "CATL 텍트랜스 II, 대형 상용 EV 전용 600 kWh LFP 시스템 상용화",
+            "whyNotable": "600 kWh 대용량 LFP 시스템을 적용하여 4.0C Peak(최대 800kW) 충전 성능으로 SOC 10%에서 80%까지 12분 만에 충전이 가능합니다. 메가와트급(1MW) 초고속 충전을 지원하며 주행거리 500km 이상을 달성했습니다.",
             "evidenceQuote": "4.0C Peak (최대 800kW) | SOC 10% → 80% (약 12분)",
             "factLevel": "직접 인용",
             "internalCheckQuestion": "당사 상용 EV 배터리 시스템의 최대 충전 출력은 kW 기준 얼마인지, 이 경쟁사 수치(최대 800kW)와 비교 확인 필요",
             "tags": [
               "#상용EV",
-              "#메가와트충전",
-              "#LFP",
-              "#CATL"
+              "#LFP배터리",
+              "#800kW충전"
             ],
             "source": "CATL 텍트랜스 II 대형 상용 EV (CATL Tectrans II Heavy Duty EV)",
             "date": "2026-10-20",
             "url": ""
           },
           {
-            "headline": "BYD 2세대 씰 07, 80.6kWh 2세대 블레이드 배터리 적용 및 4.0C 급속충전 달성",
-            "whyNotable": "BYD 2세대 씰 07 드비알레 에디션은 80.6 kWh 2세대 Blade Battery(800V)를 탑재하고 FinDreams 셀을 적용하여 4.0C Peak(최대 310kW) 출력을 구현했습니다. 이를 통해 SOC 10%에서 80%까지 약 11분 만에 충전이 가능하며 CLTC EV 기준 705km 주행거리를 확보했습니다.",
-            "evidenceQuote": "80.6 kWh 2세대 Blade Battery (800V)",
+            "headline": "BYD 양왕 HU, 135 kWh Blade Battery 기반 듀얼 충전 시스템 탑재",
+            "whyNotable": "135 kWh LFP Blade Battery를 탑재하여 4.5C Peak 및 최대 500kW 듀얼 충전을 지원함으로써 SOC 10%에서 80%까지 12분 만에 충전을 완료합니다. CLTC 기준 720km 주행거리와 960kW 합산 출력을 갖추었습니다.",
+            "evidenceQuote": "4.5C Peak (최대 500kW 듀얼 충전) | SOC 10% → 80% (약 12분)",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 LFP 팩 시스템의 최대 C-rate는 C 기준 얼마인지, 이 경쟁사 수치(4.0C Peak)와 비교 확인 필요",
+            "internalCheckQuestion": "당사 대용량 배터리 패키징의 급속충전 속도는 SOC 10→80% 기준 몇 분대인지, 이 경쟁사 수치(약 12분)와 비교 확인 필요",
             "tags": [
               "#BladeBattery",
-              "#800V",
-              "#LFP",
-              "#BYD"
+              "#듀얼충전",
+              "#LFP"
             ],
-            "source": "BYD 2nd-Gen Seal 07 Devialet Edition (비야디 2세대 씰 07 드비알레 에디션)",
-            "date": "2026-10-23",
+            "source": "BYD Yangwang HU Flagship Limousine (비야디 양왕 HU 플래그십 리무진)",
+            "date": "2026-10-25",
             "url": ""
           }
         ]
@@ -10829,36 +11511,49 @@
         "name": "특허·기술 벤치마킹",
         "items": [
           {
-            "headline": "CATL, 망간 용출 제어 및 고전압 구조 안정성을 높인 LMFP 양극재 특허 출원",
-            "whyNotable": "CATL은 망간계 양극 소재의 고전압 충방전 시 발생하는 망간 용출과 낮은 전자 전도도 문제를 해결하기 위해 복합 리튬 망간 철 산화물 기술을 특허 출원했습니다. 망간 철 산화물 소재의 조성 및 표면 특성을 개선하여 고전압 환경에서의 구조적 안정성과 전도성을 확보하는 기술을 제시했습니다 (구체적 수치 미공개).",
-            "evidenceQuote": "망간 철 산화물 소재의 조성 및 표면 특성을 개선하여 고전압 환경에서의 구조적 안정성과 전도성을 확보합니다.",
-            "factLevel": "간접 서술",
-            "internalCheckQuestion": "당사 LMFP 양극재 고전압 사이클 수명 특성은 기준 사이클 대비 연장률 % 기준 얼마인지, 이 경쟁사 기술 적용 여부와 비교 확인 필요",
-            "tags": [
-              "#LMFP",
-              "#고전압양극재",
-              "#CATL",
-              "#특허"
-            ],
-            "source": "CATL",
-            "date": "2026-04-15",
-            "url": "https://patents.google.com/patent/EP4492497B1/en"
-          },
-          {
-            "headline": "CATL, 엔드 플레이트 내장 열교환 유로 구조로 팩 공간 효율 개선 특허 출원",
-            "whyNotable": "CATL은 외부 쿨링 패드 사용 시 발생하던 부품 수 증가와 열전달 효율 저하 문제를 개선하기 위해 엔드 플레이트 상에 열교환 유로를 직접 내장하는 기술을 출원했습니다. 엔드 플레이트와 패널 접합부 측면에 유체 유입구 및 유출구를 구비한 유로를 통합 형성하여 케이스 구조를 단순화했습니다 (구체적 수치 미공개).",
+            "headline": "CATL, 배터리 케이스 엔드 플레이트 내장형 열교환 유로 기술 출원",
+            "whyNotable": "엔드 플레이트와 패널 접합부 측면에 유체 유입구 및 유출구를 구비한 열교환 매체 유로를 직접 통합 형성했습니다. 외부 쿨링 패드 제거를 통해 팩 내부 부품 자재 수를 줄이고 구조 단순화 및 공간 활용성을 개선하는 방식입니다 (구체적 수치 미공개).",
             "evidenceQuote": "엔드 플레이트와 패널 접합부 측면에 유체 유입구 및 유출구를 구비한 열교환 매체 유로를 직접 통합 형성하여 구조를 단순화합니다.",
             "factLevel": "간접 서술",
-            "internalCheckQuestion": "당사 배터리 팩 엔드 플레이트의 열교환 유로 통합 적용 여부 및 부품 수 감소율은 % 기준 얼마인지, 이 경쟁사 구조와 비교 확인 필요",
+            "internalCheckQuestion": "당사 배터리 팩 케이스의 단위 부피당 열교환 효율은 W/K 기준 얼마인지, 이 경쟁사 구조(엔드 플레이트 유로 통합)와 비교 확인 필요",
             "tags": [
               "#열관리",
-              "#엔드플레이트",
               "#팩구조",
-              "#CATL"
+              "#엔드플레이트"
             ],
             "source": "CATL",
             "date": "2026-04-15",
             "url": "https://patents.google.com/patent/EP4726888A1/en"
+          },
+          {
+            "headline": "BYD, 유로 단면적 차등을 통한 팩 내부 냉매 균일 분배 기술 출원",
+            "whyNotable": "첫 번째 유로의 단면적을 두 번째 유로보다 크게 형성하여 유량 분배 및 집수 구조를 최적화했습니다. 유체 유로의 단면적 차이를 제어함으로써 배터리 팩 내부 셀 간의 온도 편차와 국소 과열 문제를 해소하는 냉각 기술입니다 (구체적 수치 미공개).",
+            "evidenceQuote": "첫 번째 유로의 단면적을 두 번째 유로의 단면적보다 크게 형성한 유량 분배 및 집수 구조를 구성하여 냉매 흐름 균일성을 확보합니다.",
+            "factLevel": "간접 서술",
+            "internalCheckQuestion": "당사 배터리 팩 내부 셀 간 최고 편차 온도는 ℃ 기준 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
+            "tags": [
+              "#냉각유로",
+              "#유량분배",
+              "#열관리"
+            ],
+            "source": "BYD",
+            "date": "2026-04-16",
+            "url": "https://patents.google.com/patent/DE112024002817T5/en"
+          },
+          {
+            "headline": "도넛랩, 영하 30도 극저온 환경 내 배터리 용량 97% 유지 기술 시연",
+            "whyNotable": "극저온 성능 시험 결과, 영하 30도의 환경 조건에서도 배터리 용량을 97% 수준으로 유지하는 기술을 구현했습니다. 저온 방전 효율 저하 문제를 극복하기 위한 셀 및 패키징 레벨 기술 검증이 필요한 대목입니다.",
+            "evidenceQuote": "도넛랩이 극저온 성능 시험을 통해 영하 30도의 환경에서도 배터리 용량을 97% 수준으로 유지하는 기술을 선보였습니다.",
+            "factLevel": "직접 인용",
+            "internalCheckQuestion": "당사 배터리의 영하 30도 극저온 방전 용량 유지율은 % 기준 얼마인지, 이 경쟁사 수치(97%)와 비교 확인 필요",
+            "tags": [
+              "#극저온",
+              "#저온용량유지",
+              "#배터리성능"
+            ],
+            "source": "글로벌이코노믹",
+            "date": "2026-10-25",
+            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOS1JDZFRtWVZVLVRwcHUxM05qN1FyQzlkZkN2bEhmR29kU0dGS3MzVXFQenVhT2VDM0x5Ri1FMWhURXVKQk5oTm05WnRQOUNPVlZPckpZZ0lfcmFabUdUamdKeTVGWVFubmhIdGxLSm1ONHUzTlNySnd3QnBmZUx2TnpLV0RuNjNw?oc=5"
           }
         ]
       },
@@ -10866,36 +11561,34 @@
         "name": "시장·공급망 동향 벤치마킹",
         "items": [
           {
-            "headline": "체리자동차, 5분 만에 500km 충전 가능한 1.44MW 초고속 충전기 공개",
-            "whyNotable": "Chery는 5분 충전으로 500km의 주행거리를 확보할 수 있는 1.44MW 급 초고속 충전기를 선보였습니다. 이는 초고속 충전 인프라 분야에서 BYD, Geely, Huawei 등과의 경쟁을 가속화하는 기술격차 확보 전략으로 분석됩니다.",
-            "evidenceQuote": "Chery introduced a 1.44MW ultra-fast charger capable of adding 500 km of range in 5 minutes",
+            "headline": "리샹 i6, 내재화된 5C 배터리 셀 설계 및 외주 생산을 통한 811km 주행 달성",
+            "whyNotable": "Li Auto는 자체 개발한 5C 배터리를 CALB 및 Sunwoda를 통해 위탁 생산하여 신형 i6 SUV에 적용했습니다. 주행거리 시험에서 811 km를 기록하였으며, 11.8 kWh/100km의 전비를 달성했습니다.",
+            "evidenceQuote": "Li Auto's new i6 SUV achieved an 811 km range and an energy efficiency of 11.8 kWh/100km in range testing, utilizing an in-house developed 5C battery manufactured by CALB and Sunwoda.",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 대응 초고속 충전 시스템의 최고 출력 및 5분 충전 시 주행거리는 km 기준 얼마인지, 이 경쟁사 수치(1.44MW, 5분 500km)와 비교 확인 필요",
+            "internalCheckQuestion": "당사 준중형/중형 EV SUV의 전비는 kWh/100km 기준 얼마인지, 이 경쟁사 수치(11.8 kWh/100km)와 비교 확인 필요",
             "tags": [
-              "#1.44MW",
-              "#초고속충전",
-              "#Chery",
-              "#충전인프라"
+              "#배터리내재화",
+              "#전비",
+              "#5C배터리"
             ],
             "source": "CarNewsChina",
-            "date": "2026-10-23",
-            "url": "https://carnewschina.com/2026/10/22/chery-challenges-byd-geely-huawei-with-1-44mw-charger-promises-500km-in-5-minutes/"
+            "date": "2026-10-24",
+            "url": "https://carnewschina.com/2026/10/23/li-autos-new-i6-suv-achieves-811-km-11-8-kwh-100km-in-range-test-without-catls-help/"
           },
           {
-            "headline": "CATL-BAIC, 100만 대 규모 배터리 교환형 EV 확대를 위한 전략적 파트너십 체결",
-            "whyNotable": "BAIC Group과 CATL은 표준화된 배터리 네트워크 및 차종 공유를 통해 100만 대 규모의 배터리 교환형(Battery-Swapping) 전기차 보급을 목표로 전략적 제휴를 맺었습니다. 배터리 스왑 생태계의 표준화 및 신차 스펙 연계가 촉진되고 있습니다.",
-            "evidenceQuote": "BAIC Group and CATL entered a strategic partnership to scale battery-swapping electric vehicles, targeting 1 million units through shared battery networks and standardized models.",
+            "headline": "중국 차세대 중저가 EV 시장 대상 LMFP 배터리 상용화 본격화",
+            "whyNotable": "리튬·망간·철·인산염(LMFP) 배터리가 중국 내 차세대 중저가 전기차용으로 상용화 단계에 진입하고 있습니다. 기존 LFP 대비 에너지 밀도를 높인 소재 특성을 바탕으로 양산 적용 범위를 넓혀가고 있습니다 (구체적 수치 미공개).",
+            "evidenceQuote": "중국 차세대 중저가 전기차용 LMFP(리튬·망간·철·인산염) 배터리가 상용화 단계에 진입하며 시장 변화를 이끌고 있습니다.",
             "factLevel": "간접 서술",
-            "internalCheckQuestion": "당사 배터리 스왑 관련 차종 개발 계획 및 목표 보급 대수는 대 기준 얼마인지, 이 경쟁사 목표 수치(100만 대)와 비교 확인 필요",
+            "internalCheckQuestion": "당사 LMFP 양산 배터리의 에너지 밀도는 Wh/kg 기준 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
             "tags": [
-              "#배터리스왑",
-              "#CATL",
-              "#BAIC",
-              "#표준화"
+              "#LMFP",
+              "#중저가EV",
+              "#상용화"
             ],
-            "source": "CarNewsChina",
-            "date": "2026-10-23",
-            "url": "https://carnewschina.com/2026/10/23/catl-and-baic-forge-strategic-partnership-to-target-1-million-battery-swapping-evs/"
+            "source": "비즈니스포스트",
+            "date": "2026-10-25",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBVRzBlTDc4cHZ3eng4MklzNzlvbmxmTWhEeEQyRy1SWjVfLUUwSUljeW53YnpkSElFYjlzdXoybU9uOG1jNVlGMTZJbDllODY3Q296YlQ1aU12d1p6QXdoYXo2cWxDaF9xU194TTY5MDFieWM?oc=5"
           }
         ]
       }
@@ -10982,44 +11675,44 @@
   ],
   "status": {
     "vehicles": {
-      "lastSuccessAt": "2026-10-24T15:02:14.646798+09:00",
-      "lastAttemptAt": "2026-10-24T15:02:14.646798+09:00",
+      "lastSuccessAt": "2026-10-25T15:20:04.658037+09:00",
+      "lastAttemptAt": "2026-10-25T15:20:04.658037+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36,
-      "lastAddedAt": "2026-10-24T15:02:14.646798+09:00"
+      "lastAddedAt": "2026-10-25T15:20:04.658037+09:00"
     },
     "news": {
-      "lastSuccessAt": "2026-10-24T15:02:14.646798+09:00",
-      "lastAttemptAt": "2026-10-24T15:02:14.646798+09:00",
+      "lastSuccessAt": "2026-10-25T15:20:04.658037+09:00",
+      "lastAttemptAt": "2026-10-25T15:20:04.658037+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
     },
     "chinaNews": {
-      "lastSuccessAt": "2026-10-24T15:02:14.646798+09:00",
-      "lastAttemptAt": "2026-10-24T15:02:14.646798+09:00",
+      "lastSuccessAt": "2026-10-25T15:20:04.658037+09:00",
+      "lastAttemptAt": "2026-10-25T15:20:04.658037+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
     },
     "newsBriefing": {
-      "lastSuccessAt": "2026-10-24T15:02:14.646798+09:00",
-      "lastAttemptAt": "2026-10-24T15:02:14.646798+09:00",
+      "lastSuccessAt": "2026-10-25T15:20:04.658037+09:00",
+      "lastAttemptAt": "2026-10-25T15:20:04.658037+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
     },
     "chinaNewsBriefing": {
       "lastSuccessAt": "2026-10-24T15:02:14.646798+09:00",
-      "lastAttemptAt": "2026-10-24T15:02:14.646798+09:00",
-      "state": "ok",
-      "reason": "",
+      "lastAttemptAt": "2026-10-25T15:20:04.658037+09:00",
+      "state": "failed",
+      "reason": "JSONDecodeError: Expecting value: line 15 column 27 (char 578)",
       "staleAfterHours": 36
     },
     "benchmarkingPoints": {
-      "lastSuccessAt": "2026-10-24T15:02:14.646798+09:00",
-      "lastAttemptAt": "2026-10-24T15:02:14.646798+09:00",
+      "lastSuccessAt": "2026-10-25T15:20:04.658037+09:00",
+      "lastAttemptAt": "2026-10-25T15:20:04.658037+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
