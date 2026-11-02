@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D 부품 뷰어 | Daily EV & 배터리 플랫폼 대시보드</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#035485',
+                            900: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background: linear-gradient(180deg, #7dd3fc 0px, #e0f2fe 200px, #e0f2fe 100%);
+            color: #0f172a;
+        }
+        .tree-node-row:hover { background: #f1f5f9; }
+        .tree-children { margin-left: 13px; border-left: 1px dashed #cbd5e1; padding-left: 8px; }
+    </style>
+    <!-- 브라우저 ES Module 전용 CDN (빌드 단계 없이 바로 import) -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+        "fflate": "https://cdn.jsdelivr.net/npm/fflate@0.8.2/+esm"
+      }
+    }
+    </script>
+</head>
+<body class="min-h-screen pb-16">
+
+    <!-- Header Navigation Bar (동일 구성, 현재 페이지인 3D 부품 뷰어만 강조) -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="bg-sky-600 text-white p-2 rounded-lg font-bold text-x2 flex items-center justify-center w-10 h-10 shadow-sm">
+                    <span class="animate-pulse text-2xl">⚡</span>
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-lg sm:text-xl leading-tight">Daily EV & Battery Intelligence News</h1>
+                    <p class="text-xs text-slate-500 font-medium"> by BTI Team </p>
+                </div>
+            </a>
+
+            <img src="./assets/images/mascot_road_trip.png" alt="EV 로드트립 마스코트" class="hidden md:block h-12 w-auto object-contain flex-shrink-0 select-none pointer-events-none">
+
+            <nav class="flex items-center space-x-1 sm:space-x-2 flex-wrap justify-end">
+                <a href="index.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Home</a>
+                <a href="spec-compare.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">기본사양비교</a>
+                <a href="teardown.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Teardown Data</a>
+                <a href="news.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">EV News</a>
+                <a href="data-web-source.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition">Data Source</a>
+                <a href="개발중.html" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-amber-700 bg-amber-50 border border-amber-200 hover:bg-amber-100 transition">🧪 개발중 (스펙 트렌드·규제 레이더)</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+
+        <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
+            <div>
+                <h2 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <span>🧩 3D 부품 뷰어 (STL Assembly Viewer)</span>
+                </h2>
+                <p class="text-xs text-slate-500 mt-0.5 max-w-3xl">로컬 PC에 있는 A2MAC1 STL Pack(ZIP 또는 압축 해제된 폴더)을 선택하면, 브라우저 안에서만 읽어 부품 트리와 3D 형상을 보여줍니다. <b>선택한 파일은 서버로 전송/업로드되지 않으며, 저장소에도 커밋되지 않습니다.</b></p>
+            </div>
+            <a href="teardown.html" class="text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition flex items-center gap-1 whitespace-nowrap">
+                <span>◀ Teardown Data로 돌아가기</span>
+            </a>
+        </div>
+
+        <!-- Source selection card -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 mb-5">
+            <div class="flex flex-wrap items-center gap-3">
+                <label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-sky-600 text-white text-xs sm:text-sm font-semibold cursor-pointer hover:bg-sky-700 transition">
+                    <span>📦 모델 ZIP 파일 선택</span>
+                    <input id="zipInput" type="file" accept=".zip" class="hidden">
+                </label>
+                <label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 text-slate-700 text-xs sm:text-sm font-semibold cursor-pointer hover:bg-slate-200 transition border border-slate-200">
+                    <span>📁 압축 해제된 폴더 선택</span>
+                    <input id="folderInput" type="file" webkitdirectory directory multiple class="hidden">
+                </label>
+                <span id="sourceStatus" class="text-xs text-slate-500">아직 선택된 파일이 없습니다.</span>
+                <div class="flex-1"></div>
+                <button id="clearSceneBtn" class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-rose-200 text-rose-600 hover:bg-rose-50 transition">🗑 모두 비우기</button>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-2">※ ZIP/폴더 루트에 <code class="px-1 bg-slate-100 rounded">hierarchy.json</code>과 <code class="px-1 bg-slate-100 rounded">.stl</code> 파일들이 함께 있어야 합니다(A2MAC1 STL Pack 기본 구조). ZIP 모드는 선택 시 전체 파일을 브라우저 메모리로 한 번 읽어들이고(체크한 부품만 압축 해제), 폴더 모드는 체크한 부품만 그때그때 디스크에서 읽어 메모리 사용이 더 적습니다.</p>
+        </div>
+
+        <div id="loadingBanner" class="hidden bg-sky-50 border border-sky-200 text-sky-800 text-xs font-semibold rounded-xl px-4 py-2 mb-4">⏳ 처리 중입니다...</div>
+
+        <!-- Tree + Viewer workspace -->
+        <div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-4">
+            <!-- Tree panel -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-3 flex flex-col" style="height:70vh;">
+                <div class="flex items-center justify-between mb-2 px-1">
+                    <span class="text-xs font-bold text-slate-700">부품 트리</span>
+                    <div class="flex items-center gap-1">
+                        <button id="expandAllBtn" class="text-[10px] px-2 py-1 rounded border border-slate-200 text-slate-500 hover:bg-slate-50">전체 펼치기</button>
+                        <button id="collapseAllBtn" class="text-[10px] px-2 py-1 rounded border border-slate-200 text-slate-500 hover:bg-slate-50">접기</button>
+                    </div>
+                </div>
+                <div id="treeLegend" class="flex flex-wrap gap-1 px-1 mb-2"></div>
+                <div id="treeRoot" class="flex-1 overflow-auto text-xs text-slate-700 px-1">
+                    <p class="text-slate-400 text-[11px] p-2">ZIP 또는 폴더를 선택하면 여기에 부품 트리가 표시됩니다.</p>
+                </div>
+            </div>
+
+            <!-- Viewer panel -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col" style="height:70vh;">
+                <div class="flex items-center justify-between px-3 py-2 border-b border-slate-100 flex-wrap gap-2">
+                    <div class="flex items-center gap-3 text-[11px] text-slate-500">
+                        <span>로드된 파트: <b id="statParts">0</b></span>
+                        <span>삼각형: <b id="statTris">0</b></span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <button id="fitViewBtn" class="text-[10px] px-2 py-1 rounded border border-slate-200 text-slate-600 hover:bg-slate-50">🔍 전체 보기</button>
+                        <button id="wireframeBtn" class="text-[10px] px-2 py-1 rounded border border-slate-200 text-slate-600 hover:bg-slate-50">🔲 와이어프레임</button>
+                    </div>
+                </div>
+                <div id="viewerCanvasWrap" class="flex-1 relative bg-slate-100">
+                    <canvas id="viewerCanvas" class="w-full h-full block"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- 구조적 벤치마킹 체크포인트 -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 mt-4">
+            <div class="mb-3">
+                <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">🧪 구조적 벤치마킹 체크포인트</h3>
+                <p class="text-[11px] text-slate-400 mt-0.5">같은 폴더의 <code class="px-1 bg-slate-100 rounded">teardown_data.json</code>과 STL의 partCode를 자동 대조해 차량을 추천하고, 실측값 기반 체크포인트를 계산합니다. <b>자사 제품 값은 이 화면 세션에서만 임시로 쓰이며 저장되지 않습니다.</b></p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 mb-3 text-xs">
+                <span id="vehicleMatchStatus" class="text-slate-500">ZIP 또는 폴더를 먼저 선택해주세요.</span>
+                <select id="vehicleOverrideSelect" class="hidden text-xs border border-slate-200 rounded-lg px-2 py-1 max-w-[260px]"></select>
+                <button id="generateCheckpointsBtn" disabled class="ml-auto px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-900 transition">🔍 체크포인트 생성</button>
+            </div>
+            <div id="checkpointsResults" class="overflow-x-auto">
+                <p class="text-slate-400 text-[11px] p-2">아직 생성된 체크포인트가 없습니다.</p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="./assembly-viewer.js"></script>
+</body>
+</html>
