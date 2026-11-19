@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T17:40:29.988149+09:00",
+  "generatedAt": "2026-11-19T17:56:22.265125+09:00",
   "vehicles": [
     {
       "id": "denza_z9_gt_india_spec",
@@ -1150,29 +1150,29 @@
       "packInfo": "CTB (Cell-to-Body) 안전 하부 일체형 LFP 블레이드 팩",
       "cellInfo": "2세대 High-Safety LFP Blade Cell",
       "chargingSafety": "셀 단위 다중 스틸 아머 방호 및 고속 충전 열관리 오토 시스템",
-      "trim": "AWD Performance Dual Chamber Air Suspension",
+      "trim": "Flagship AWD Dual-Chamber Air Suspension Edition",
       "topSpeed": "200 km/h",
-      "zeroToHundred": "3.9 s",
+      "zeroToHundred": "3.9 sec",
       "maxOutput": "508 kW (691 ps)",
       "maxChargePower": "250 kW",
-      "packVoltage": "700V",
-      "packType": "CTP Blade Pack",
-      "cellType": "Blade LFP",
-      "coolingMethod": "Direct Liquid Cooling",
+      "packVoltage": "700V - 800V Architecture",
+      "packType": "Blade Battery Pack (CTB)",
+      "cellType": "Prismatic Blade LFP",
+      "coolingMethod": "Liquid Cooling / Direct Refrigerant Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
       "packMinusCellWeight": "-",
       "cellToPackWeightRatio": "-",
-      "packEnergyDensity": "-",
+      "packEnergyDensity": "150 Wh/kg",
       "cellConfiguration": "-",
       "cellEnergy": "-",
-      "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellCapacityAh": "138 Ah",
+      "cellComposition": "LiFePO4 (LFP)",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-30"
     },
     {
@@ -1385,15 +1385,15 @@
       "packInfo": "Inpow Magazine Battery 2.0 고안전 알루미늄 배터리 팩",
       "cellInfo": "Inpow High-Safety LFP Cell",
       "chargingSafety": "Magazine Battery 2.0 관통 침수 무화재 파열 방지 구조",
-      "trim": "Thailand Edition FWD",
+      "trim": "Inpow Thailand Plant Edition",
       "topSpeed": "160 km/h",
-      "zeroToHundred": "7.9 s",
+      "zeroToHundred": "7.9 sec",
       "maxOutput": "150 kW (204 ps)",
       "maxChargePower": "200 kW",
-      "packVoltage": "400V",
-      "packType": "Magazine Battery Pack (CTP)",
+      "packVoltage": "400V High-Voltage System",
+      "packType": "Magazine Battery Pack 2.0 (CTP)",
       "cellType": "Prismatic LFP",
-      "coolingMethod": "Liquid cooling",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -1403,11 +1403,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "LFP",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-30"
     },
     {
@@ -2466,15 +2466,15 @@
       "packInfo": "하부 하체 방호 강화형 섀시 통합형 팩",
       "cellInfo": "CATL LFP High Reliability Cell",
       "chargingSafety": "유럽 ECE R100 안전 인증 및 충돌 시 자동 전원 차단 시스템",
-      "trim": "Off-road AWD",
-      "topSpeed": "170 km/h",
-      "zeroToHundred": "5.5 s",
+      "trim": "Off-road AWD Flagship",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "4.8 sec",
       "maxOutput": "300 kW (408 ps)",
       "maxChargePower": "150 kW",
-      "packVoltage": "400V",
-      "packType": "Pack / CTP",
+      "packVoltage": "400V Architecture",
+      "packType": "Rugged Underbody CTP Pack",
       "cellType": "Prismatic LFP",
-      "coolingMethod": "Liquid cooling",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -2488,7 +2488,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-16"
     },
     {
@@ -2513,15 +2513,15 @@
       "packInfo": "CTC (Cell-to-Chassis) 모듈리스 팩",
       "cellInfo": "SVOLT Short Blade LFP Cell",
       "chargingSafety": "실시간 배터리 셀 이상 감지 AI 알로리즘 탑재",
-      "trim": "Sporty FWD",
-      "topSpeed": "150 km/h",
-      "zeroToHundred": "8.5 s",
+      "trim": "Sporty Package FWD",
+      "topSpeed": "160 km/h",
+      "zeroToHundred": "7.2 sec",
       "maxOutput": "130 kW (177 ps)",
       "maxChargePower": "120 kW",
-      "packVoltage": "400V",
-      "packType": "CTC (Cell-to-Chassis)",
+      "packVoltage": "400V System",
+      "packType": "CTC 2.0 Pack",
       "cellType": "Prismatic LFP",
-      "coolingMethod": "Liquid cooling",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -2535,7 +2535,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-16"
     },
     {
@@ -2889,15 +2889,15 @@
       "packInfo": "800V 풀 실리콘 카바이드(SiC) CTP 3.0 팩",
       "cellInfo": "CATL Freevoy Ultra-Fast Cell",
       "chargingSafety": "열확산 방지 내화 단열재 및 IP68 완전 방수",
-      "trim": "RWD Pure EV Huawei ADS 5.0",
+      "trim": "Huawei ADS 5.0 Ultra RWD",
       "topSpeed": "200 km/h",
-      "zeroToHundred": "6.2 s",
+      "zeroToHundred": "5.9 sec",
       "maxOutput": "252 kW (343 ps)",
       "maxChargePower": "240 kW",
-      "packVoltage": "800V",
-      "packType": "CATL Freevoy CTP",
-      "cellType": "Prismatic Hybrid LFP/NCM",
-      "coolingMethod": "Liquid cooling",
+      "packVoltage": "800V High-Voltage Architecture",
+      "packType": "CATL Freevoy CTP Pack",
+      "cellType": "Prismatic Ultra-Fast LFP/NCM Hybrid",
+      "coolingMethod": "Direct Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -2907,11 +2907,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM/LFP Hybrid",
+      "cellComposition": "LFP / Freevoy Sodium-Lithium hybrid",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-16"
     },
     {
@@ -3359,16 +3359,16 @@
       "packInfo": "e-Platform 3.0 소형 CTP/CTB 블레이드 배터리",
       "cellInfo": "LFP Blade Cell",
       "chargingSafety": "셀 침형 관통 시험 충족 및 열차단 복합재 구조",
-      "trim": "Long Range FWD",
+      "trim": "420km Long Range Edition",
       "topSpeed": "160 km/h",
-      "zeroToHundred": "7.9 s",
+      "zeroToHundred": "7.9 sec",
       "maxOutput": "130 kW (177 ps)",
       "maxChargePower": "85 kW",
-      "packVoltage": "400V",
-      "packType": "CTB (Cell-to-Body)",
-      "cellType": "Blade LFP",
-      "coolingMethod": "Direct Liquid Cooling",
-      "packCapacityAh": "112 Ah",
+      "packVoltage": "400V Architecture",
+      "packType": "CTB (Cell-to-Body) Blade Pack",
+      "cellType": "Prismatic Blade LFP",
+      "coolingMethod": "Direct Refrigerant Cooling",
+      "packCapacityAh": "135 Ah",
       "packDimensions": "-",
       "packWeight": "320 kg",
       "packMinusCellWeight": "-",
@@ -3376,12 +3376,12 @@
       "packEnergyDensity": "140 Wh/kg",
       "cellConfiguration": "126S1P",
       "cellEnergy": "-",
-      "cellCapacityAh": "112 Ah",
-      "cellComposition": "LFP",
+      "cellCapacityAh": "135 Ah",
+      "cellComposition": "LiFePO4 (LFP)",
       "cellDimensionsMeasured": "960mm x 90mm x 14mm",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-09-17"
     },
     {
@@ -3547,15 +3547,15 @@
       "packInfo": "앰버(Amber) 안전 기술 적용 800V 고전압 팩",
       "cellInfo": "High Safety NCM Prismatic Cell",
       "chargingSafety": "열전기 분리 안전 격조 및 차체 일체형 압출 알루미늄 가드 rail",
-      "trim": "Flagship EV AWD",
+      "trim": "Huawei Qiankun Flagship EV AWD",
       "topSpeed": "200 km/h",
-      "zeroToHundred": "5.8 s",
+      "zeroToHundred": "5.9 sec",
       "maxOutput": "430 kW (585 ps)",
       "maxChargePower": "260 kW",
-      "packVoltage": "800V",
-      "packType": "CTP Pack",
+      "packVoltage": "800V High Voltage System",
+      "packType": "Amber Battery CTP Pack",
       "cellType": "Prismatic NCM",
-      "coolingMethod": "Liquid cooling",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -3569,7 +3569,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-09-17"
     },
     {
@@ -5425,15 +5425,15 @@
       "packInfo": "CTC 2.0 고강성 바디 통합형 대용량 팩",
       "cellInfo": "High Energy Density NCM Cell",
       "chargingSafety": "하부 바닥 충격 방지 강화 구조 및 액체 다중 순환 서멀 제어",
-      "trim": "First-Class Flagship AWD",
-      "topSpeed": "200 km/h",
-      "zeroToHundred": "4.8 s",
+      "trim": "First-Class EV AWD",
+      "topSpeed": "190 km/h",
+      "zeroToHundred": "5.2 sec",
       "maxOutput": "400 kW (544 ps)",
       "maxChargePower": "250 kW",
-      "packVoltage": "800V",
-      "packType": "CTC (Cell-to-Chassis)",
+      "packVoltage": "800V CTC Architecture",
+      "packType": "CTC (Cell-to-Chassis) Pack",
       "cellType": "Prismatic NMC",
-      "coolingMethod": "Liquid cooling",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -5447,7 +5447,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-16"
     },
     {
@@ -6363,29 +6363,29 @@
       "packInfo": "CTB (Cell-to-Body) 안전 승인 팩 구조",
       "cellInfo": "2세대 Ultra-Fast Charge Blade Cell",
       "chargingSafety": "BYD 오토노머스 서멀 매니지먼트 및 못 관통 시험 통과 안전성",
-      "trim": "Global AWD Performance",
-      "topSpeed": "200 km/h",
-      "zeroToHundred": "4.3 s",
+      "trim": "Global Flagship Flash-Charge AWD",
+      "topSpeed": "210 km/h",
+      "zeroToHundred": "4.3 sec",
       "maxOutput": "380 kW (517 ps)",
       "maxChargePower": "280 kW",
-      "packVoltage": "800V",
-      "packType": "CTB Blade Pack",
-      "cellType": "Blade LFP",
-      "coolingMethod": "Direct Liquid Cooling",
+      "packVoltage": "800V High-Voltage System",
+      "packType": "2nd-Gen CTB Blade Pack",
+      "cellType": "Prismatic Blade LFP",
+      "coolingMethod": "Direct Refrigerant Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
       "packMinusCellWeight": "-",
       "cellToPackWeightRatio": "-",
-      "packEnergyDensity": "-",
+      "packEnergyDensity": "160 Wh/kg",
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "LFP",
+      "cellComposition": "LiFePO4 (LFP)",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-16"
     },
     {
@@ -6833,15 +6833,15 @@
       "packInfo": "알루미늄 모듈러 고강성 프레임 LFP 배터리 팩",
       "cellInfo": "CATL Fast-Charging LFP Cell",
       "chargingSafety": "지능형 핫스팟 실시간 모니터링 BMS 기술",
-      "trim": "Max AWD LiDAR",
-      "topSpeed": "180km/h",
-      "zeroToHundred": "5.4초",
-      "maxOutput": "300kW / 408ps",
-      "maxChargePower": "130kW",
-      "packVoltage": "400V",
-      "packType": "Modular Pack",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "액체 냉각 (Liquid Cooling)",
+      "trim": "i9 Ultra EREV AWD",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "5.4 sec",
+      "maxOutput": "300 kW (408 ps)",
+      "maxChargePower": "130 kW",
+      "packVoltage": "400V System",
+      "packType": "CATL Ultra-Fast CTP Pack",
+      "cellType": "Prismatic LFP",
+      "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -6851,11 +6851,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM",
+      "cellComposition": "LFP",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-09-17"
     },
     {
@@ -6975,15 +6975,15 @@
       "packInfo": "MEB+ 고강성 하부 내충격 알루미늄 프레임 팩",
       "cellInfo": "CATL High Reliability NCM Cell",
       "chargingSafety": "폭스바겐 글로벌 표준 500여 항목 배터리 시험 통과",
-      "trim": "RWD Pure EV",
+      "trim": "Pro RWD",
       "topSpeed": "160 km/h",
-      "zeroToHundred": "7.2 s",
+      "zeroToHundred": "7.8 sec",
       "maxOutput": "170 kW (231 ps)",
       "maxChargePower": "175 kW",
-      "packVoltage": "400V",
-      "packType": "Modular Pack (MEB+)",
+      "packVoltage": "400V System",
+      "packType": "MEB+ Modular Battery Pack",
       "cellType": "Prismatic NCM",
-      "coolingMethod": "Liquid cooling",
+      "coolingMethod": "Liquid Cooling with Heat Pump Integration",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -6993,11 +6993,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM",
+      "cellComposition": "NCM811",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-16"
     },
     {
@@ -7822,13 +7822,13 @@
       "chargingSafety": "스마트 온도 예열 및 셀 고온 감지 화재 예방 BMS",
       "trim": "Long Range Single Motor",
       "topSpeed": "180 km/h",
-      "zeroToHundred": "7.8 s",
+      "zeroToHundred": "7.8 sec",
       "maxOutput": "220 kW (299 ps)",
       "maxChargePower": "250 kW",
-      "packVoltage": "400V",
-      "packType": "Modular Pack",
+      "packVoltage": "400V Architecture",
+      "packType": "CATL Modular Pack",
       "cellType": "Prismatic NCM",
-      "coolingMethod": "Liquid cooling",
+      "coolingMethod": "Liquid Cooling with Heat Pump",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -7838,11 +7838,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "NCM811",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-30"
     },
     {
@@ -8760,21 +8760,21 @@
       "packInfo": "CATL 기린(Qilin) 3.0 CTP 초고밀도 안전 팩",
       "cellInfo": "CATL High Energy NCM Cell",
       "chargingSafety": "화웨이 iDVP 수냉 결합 차세대 열 폭주 차단 시스템",
-      "trim": "Flagship EV AWD",
-      "topSpeed": "210 km/h",
-      "zeroToHundred": "4.2 s",
+      "trim": "Ultra Flagship AWD",
+      "topSpeed": "220 km/h",
+      "zeroToHundred": "3.8 sec",
       "maxOutput": "390 kW (530 ps)",
       "maxChargePower": "320 kW",
-      "packVoltage": "800V",
-      "packType": "CATL Qilin CTP",
+      "packVoltage": "800V High-Voltage Architecture",
+      "packType": "CATL Qilin CTP 3.0 Pack",
       "cellType": "Prismatic NCM",
-      "coolingMethod": "Liquid cooling",
+      "coolingMethod": "Multi-surface Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
       "packMinusCellWeight": "-",
       "cellToPackWeightRatio": "-",
-      "packEnergyDensity": "-",
+      "packEnergyDensity": "255 Wh/kg",
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
@@ -8782,7 +8782,7 @@
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-16"
     },
     {
@@ -8995,13 +8995,13 @@
       "packInfo": "자율주행 상용 특화 듀얼 리던던시 BMS 배터리 팩",
       "cellInfo": "CALB Prismatic LFP Cell",
       "chargingSafety": "24시간 무인 모니터링 BMS 및 이중 기계식 안전 릴레이",
-      "trim": "L4 Autonomous Robotaxi",
+      "trim": "L4 Robotaxi Edition",
       "topSpeed": "160 km/h",
-      "zeroToHundred": "7.8 s",
+      "zeroToHundred": "7.5 sec",
       "maxOutput": "140 kW (190 ps)",
       "maxChargePower": "180 kW",
-      "packVoltage": "400V Class",
-      "packType": "CTP Pack",
+      "packVoltage": "400V",
+      "packType": "LFP CTP Pack",
       "cellType": "Prismatic LFP",
       "coolingMethod": "Liquid Cooling",
       "packCapacityAh": "-",
@@ -9013,11 +9013,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "LFP",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-29",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-29"
     },
     {
@@ -10074,15 +10074,15 @@
       "packInfo": "e-Platform 3.0 Evo 기반 CTB 전용 팩",
       "cellInfo": "2세대 High Safety LFP Blade Cell",
       "chargingSafety": "듀얼 건(Dual Gun) 동시 급속 충전 지원 및 차체 일체형 배터리 빔",
-      "trim": "Ultra AWD 6-Seater",
-      "topSpeed": "230km/h",
-      "zeroToHundred": "3.8초",
-      "maxOutput": "710kW / 965ps",
-      "maxChargePower": "300kW",
-      "packVoltage": "800V",
-      "packType": "CTB (Cell-to-Body)",
-      "cellType": "각형 (Prismatic)",
-      "coolingMethod": "하부 및 측면 매니폴드 액냉 플레이트",
+      "trim": "Z9S Ultra Tri-Motor AWD",
+      "topSpeed": "240 km/h",
+      "zeroToHundred": "3.4 sec",
+      "maxOutput": "710 kW (965 ps)",
+      "maxChargePower": "300 kW",
+      "packVoltage": "800V e3 Architecture",
+      "packType": "CTB 2nd-Gen Blade Pack",
+      "cellType": "Prismatic Blade LFP",
+      "coolingMethod": "Direct Liquid Refrigerant Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -10092,11 +10092,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "LFP",
+      "cellComposition": "LiFePO4 (LFP)",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-09-17"
     },
     {
@@ -10262,29 +10262,29 @@
       "packInfo": "차체 하전부 직접 보강 통합 알루미늄 배터리 팩",
       "cellInfo": "CATL High-Energy NCM Prismatic Cell",
       "chargingSafety": "다중 열차단 구조 및 차세대 능동형 셀 온도를 제어하는 BMS",
-      "trim": "eDrive40 M Sport LCI",
+      "trim": "M Sport LCI",
       "topSpeed": "190 km/h",
-      "zeroToHundred": "5.7 s",
+      "zeroToHundred": "5.7 sec",
       "maxOutput": "250 kW (340 ps)",
       "maxChargePower": "205 kW",
-      "packVoltage": "400V",
-      "packType": "Modular Pack",
+      "packVoltage": "400V System (399V nominal)",
+      "packType": "Gen5 Module Battery Pack",
       "cellType": "Prismatic NCM811",
-      "coolingMethod": "Liquid cooling",
-      "packCapacityAh": "-",
+      "coolingMethod": "Liquid Cooling with Heat Pump",
+      "packCapacityAh": "210.6 Ah",
       "packDimensions": "-",
-      "packWeight": "-",
+      "packWeight": "550 kg",
       "packMinusCellWeight": "-",
       "cellToPackWeightRatio": "-",
-      "packEnergyDensity": "-",
-      "cellConfiguration": "-",
+      "packEnergyDensity": "152 Wh/kg",
+      "cellConfiguration": "108S2P",
       "cellEnergy": "-",
-      "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellCapacityAh": "105.3 Ah",
+      "cellComposition": "NCM811",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-30"
     },
     {
@@ -10682,29 +10682,29 @@
       "packInfo": "CTB (Cell-to-Body) 안전 모노코크 배터리 구조",
       "cellInfo": "2세대 High-Safety LFP Blade Cell",
       "chargingSafety": "모듈리스 샌드위치 알루미늄 방열 및 수분 관통 안전성 검증",
-      "trim": "AWD Flagship MPV",
-      "topSpeed": "190 km/h",
-      "zeroToHundred": "5.9 s",
+      "trim": "Seal 08 MPV AWD Flagship",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "6.8 sec",
       "maxOutput": "230 kW (313 ps)",
       "maxChargePower": "220 kW",
-      "packVoltage": "700V",
-      "packType": "CTP (Cell-to-Pack)",
-      "cellType": "Blade LFP",
-      "coolingMethod": "Direct Liquid Cooling",
+      "packVoltage": "800V High Voltage System",
+      "packType": "CTB Blade Battery Pack",
+      "cellType": "Prismatic Blade LFP",
+      "coolingMethod": "Direct Refrigerant Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
       "packMinusCellWeight": "-",
       "cellToPackWeightRatio": "-",
-      "packEnergyDensity": "-",
+      "packEnergyDensity": "150 Wh/kg",
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "LiFePO4 (LFP)",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-30",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-30"
     },
     {
@@ -12466,15 +12466,15 @@
       "packInfo": "Pack-to-Chassis (P2C) 800V 고전압 배터리 하강형 팩",
       "cellInfo": "4695 원통형 NCM 셀",
       "chargingSafety": "배기 밸브 내장 셀 커버 및 개별 셀 열전달 차단 재킷",
-      "trim": "iX3 eDrive40 Neue Klasse",
-      "topSpeed": "200km/h",
-      "zeroToHundred": "5.9초",
-      "maxOutput": "240kW / 326ps",
-      "maxChargePower": "300kW",
+      "trim": "Neue Klasse eDrive40",
+      "topSpeed": "200 km/h",
+      "zeroToHundred": "5.6 sec",
+      "maxOutput": "240 kW (326 ps)",
+      "maxChargePower": "300 kW",
       "packVoltage": "800V",
-      "packType": "Cell-to-Chassis (CTC)",
-      "cellType": "원통형 (Cylindrical 4695)",
-      "coolingMethod": "하단 듀얼 채널 냉각판",
+      "packType": "Gen6 Pack-to-Chassis Cylindrical",
+      "cellType": "Cylindrical 46mm (4695/46120)",
+      "coolingMethod": "Direct Liquid Cooling",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -12484,11 +12484,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM",
+      "cellComposition": "NCM High-Nickel",
       "cellDimensionsMeasured": "46mm diameter",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-29",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-09-08"
     },
     {
@@ -14393,16 +14393,16 @@
       "packInfo": "하전압 모듈 분리형 고밀도 차체 하부 내장 팩",
       "cellInfo": "High-Nickel NCM 파우치 셀",
       "chargingSafety": "3중 수냉식 제어열 관리 시스템 및 충전 열폭주 예방 알림",
-      "trim": "GT-Line AWD",
-      "topSpeed": "180km/h",
-      "zeroToHundred": "5.8초",
-      "maxOutput": "235kW / 319ps",
-      "maxChargePower": "135kW",
+      "trim": "GT AWD",
+      "topSpeed": "180 km/h",
+      "zeroToHundred": "5.7 sec",
+      "maxOutput": "235 kW (319 ps)",
+      "maxChargePower": "135 kW",
       "packVoltage": "400V",
-      "packType": "Modular Pack",
-      "cellType": "파우치형 (Pouch)",
-      "coolingMethod": "액체 냉각 (Cooling Plate)",
-      "packCapacityAh": "-",
+      "packType": "Cell-to-Pack (CTP) Advanced Module",
+      "cellType": "Pouch NCM",
+      "coolingMethod": "Liquid Cooling",
+      "packCapacityAh": "151 Ah",
       "packDimensions": "-",
       "packWeight": "-",
       "packMinusCellWeight": "-",
@@ -14411,11 +14411,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "NCM",
+      "cellComposition": "NCM811",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-29"
+      "specLastCheckedAt": "2026-11-19"
     },
     {
       "id": "bmw_ix2_edrive20_2026",
@@ -16836,15 +16836,15 @@
       "packInfo": "초경량 모듈형 LFP 배터리 팩",
       "cellInfo": "Gotion LFP Prismatic Cell",
       "chargingSafety": "IP68 등급 방수방진 및 하부 강성 스틸 가드 적용",
-      "trim": "Standard 5-Door",
+      "trim": "5-Door City Commuter",
       "topSpeed": "100 km/h",
       "zeroToHundred": "-",
       "maxOutput": "30 kW (41 ps)",
       "maxChargePower": "22 kW",
-      "packVoltage": "400V Class",
-      "packType": "CTP Pack",
+      "packVoltage": "120V - 160V System",
+      "packType": "Compact LFP Pack",
       "cellType": "Prismatic LFP",
-      "coolingMethod": "Air Cooling",
+      "coolingMethod": "Air Cooling / Passive Liquid",
       "packCapacityAh": "-",
       "packDimensions": "-",
       "packWeight": "-",
@@ -16854,11 +16854,11 @@
       "cellConfiguration": "-",
       "cellEnergy": "-",
       "cellCapacityAh": "-",
-      "cellComposition": "-",
+      "cellComposition": "LFP",
       "cellDimensionsMeasured": "-",
       "cellWeightMeasured": "-",
       "cellEnergyDensity": "-",
-      "specLastCheckedAt": "2026-10-29",
+      "specLastCheckedAt": "2026-11-19",
       "cellMakerCheckedAt": "2026-10-29"
     },
     {
@@ -17099,471 +17099,540 @@
   ],
   "news": [
     {
-      "title": "포스코그룹, 세계 최대 전기차 배터리 기업에 리튬 장기 공급 - 연합인포맥스",
-      "summary": "포스코그룹, 세계 최대 전기차 배터리 기업에 리튬 장기 공급 - 연합인포맥스",
-      "source": "연합인포맥스",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1iQUVJY3ZXSHZUNmIzRjR4OTh1OGY4Rzc0SlFiWWZnVFpmb19CQ3RNalluTmtkRy1CZ2RfN3BYTWVod3VuWG5VS19CdVY3aVE2MXZDZEhwYzNUU1ZMS0JRNnB1YjkxVGZXeF9pamYxQXk?oc=5",
+      "title": "포드, CATL 기술로 美 전기차 배터리 생산 개시…2027년 신차 투입 - 마켓인",
+      "summary": "포드, CATL 기술로 美 전기차 배터리 생산 개시…2027년 신차 투입 - 마켓인",
+      "source": "마켓인",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE4wc0dwYWQzUkZxVVQ5YU1uS1dRWlhDTW1xZndQRTlKNTVzNkhBa3lweVVDd1RncG9pVzFzSUZKTVB4eXA1OHRuOXhzdUlSUXNnRk1acGZjUW1XbmtrY0xQQzM1RkZmSUtJczZ0ZDdvLTk2cWs?oc=5",
       "linkType": "rss",
       "id": 1
     },
     {
-      "title": "피트인, 인니 상용 전기차 배터리 교체 인프라 진출…동남아 첫 시험대 - 동행일보",
-      "summary": "피트인, 인니 상용 전기차 배터리 교체 인프라 진출…동남아 첫 시험대 - 동행일보",
-      "source": "동행일보",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9PYWxiUGtvOXRuQlZVMkliQklGSFVKU3gwOFZpTVlTc2JPTVRtcWxORWFpcjhNZFVzLXlUV0EwZXk1elYwNlUwM1Y2eHNpNGl5NGhGMmxaU20wQjhTZE9tWXI3OWN1VTJH?oc=5",
+      "title": "포드, 중국 기술로 미국에서 전기차 배터리 셀 생산 시작 - Investing.com 한국어",
+      "summary": "포드, 중국 기술로 미국에서 전기차 배터리 셀 생산 시작 - Investing.com 한국어",
+      "source": "Investing.com 한국어",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE14cGtBWURyZHAzUWRnNzg4S3ltRnJlN3d1ang1QTlDdkhNR1l6ZzlsRENoeEVoZTJtaDVDME56eUJ4TGE1M0ExUjZGTFpIU1FDYUp0NDJXS2VLTzRQVUZxdk04MW5iQ1ZrNGNGWnQ2elo?oc=5",
       "linkType": "rss",
       "id": 2
     },
     {
-      "title": "포스코그룹, 세계 최대 배터리社 CATL에 리튬 공급…中 시장 공략 가속 - 철강금속신문",
-      "summary": "포스코그룹, 세계 최대 배터리社 CATL에 리튬 공급…中 시장 공략 가속 - 철강금속신문",
-      "source": "철강금속신문",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1lcV9KWlBoYnAxX2ctcmpvcGRRM29OOVV5NGxWeWZkRldFR0RzWE9jdFlYSGQ0OEExNmZtOEpMRmt5Z2V3Y0pHZXZDSXRCOGJScF9XZENOM0VZTlFRVHU2MmY0YkNCbll2aUE?oc=5",
+      "title": "포스코그룹, 글로벌 배터리 1위 CATL과 장기 파트너십…中 리튬 시장 공략 가속 - 더나은미래",
+      "summary": "포스코그룹, 글로벌 배터리 1위 CATL과 장기 파트너십…中 리튬 시장 공략 가속 - 더나은미래",
+      "source": "더나은미래",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9fZVBYQmItUW1hZmw0ZzQtekVUcVlSQlpOVG0xeGNYU25HZlNBUDRpVkxXVU5raHFybW0yM2pQTTgxUWl3RFcyOU5UQkhETTJuemc?oc=5",
       "linkType": "rss",
       "id": 3
     },
     {
-      "title": "전기차 충전 판도 흔드는 ‘배터리 교환’…CATL, 니오 아성에 도전장 - ESG경제",
-      "summary": "전기차 충전 판도 흔드는 ‘배터리 교환’…CATL, 니오 아성에 도전장 - ESG경제",
-      "source": "ESG경제",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBLVWt1NGNROHFGMi1YY2tEZkhCbk50N0dBVDk3cERTNVI0ejd6ZjQ2SGtCb25mY1pHTGVXSkVvMDU5cGF6WDNoT3lkajNfYUdmNXR3Y3hxd0c5c3Y0NUEtZ3M0V05td0sxYUo5cQ?oc=5",
+      "title": "글로벌 전기차·배터리 공급망 재편… 중국 의존도·기술경쟁이 핵심 변수 - 에너지프로슈머",
+      "summary": "글로벌 전기차·배터리 공급망 재편… 중국 의존도·기술경쟁이 핵심 변수 - 에너지프로슈머",
+      "source": "에너지프로슈머",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9kbHVxbGtuUzZ3aUdNUXZwY2lsdk5HSERtaHhHQmFSeWdiTjJSNHJWRGJuVGZCUnUwelduNDhGRElFR0E4bzE0YkU4TG4?oc=5",
       "linkType": "rss",
       "id": 4
     },
     {
-      "title": "ESS 잘나가니 '본진' 전기차는 중국산 차지…K배터리 전열 재정비 - 머니투데이 - 머니투데이",
-      "summary": "ESS 잘나가니 '본진' 전기차는 중국산 차지…K배터리 전열 재정비 - 머니투데이 - 머니투데이",
-      "source": "머니투데이",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBmWXRPc2xxLU9KLVlzdVhzX29yRzAtT1JOT2pwcHJ5NjdXcnhiQnY2NnllRWl5UXJWdVZkWnNQNU1JMV9XY1Job2xwODhMV2U2QXVLeTNKOWg3MmluYVI5TnZid1BfU29JZG9HWNIBckFVX3lxTFBYc1NyTkVlTWU5SEJmSVBBRnNIY1hRbVhBcXJ5dkhmVDVIV1dSdWZBTWd6Q2R4MmdFS1FScUZrQ19fVnFZMUp3d3Y1bFRtUWFvOWNVRk01VEF6SUdJUFU0QlgxSElrWUlDQkdJMkg1S21SZw?oc=5",
+      "title": "포스코그룹, 세계 최대 배터리 기업 중국 CATL과 3년 리튬 장기공급계약… 글로벌 시장 입지 강화 - 경북신문",
+      "summary": "포스코그룹, 세계 최대 배터리 기업 중국 CATL과 3년 리튬 장기공급계약… 글로벌 시장 입지 강화 - 경북신문",
+      "source": "경북신문",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9FQVBNYUlsSlkzQ1ZuU1ZmOFBHdTdjWEJYZ29wcnFKX2lyWVFFTHJyTFcxQmZ3SVg1aVozaXdPLXlzUjIzVVZtMjM3QVowUEVleVNxTU9zSHk?oc=5",
       "linkType": "rss",
       "id": 5
     },
     {
-      "title": "포스코그룹, 중국 CATL과 3년간 리튬 공급계약 - 연합뉴스",
-      "summary": "포스코그룹, 중국 CATL과 3년간 리튬 공급계약 - 연합뉴스",
-      "source": "연합뉴스",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9JYWY4VExiTGVJWWFZcm9mMXlSUm5zNTU1YjFUd2xhWWZWWVdCazJpLUt2YTN6X01fNHJmQ3ZuZ1I2eU1sUzU1N0xRUHVNa005T3VWMzQtNXRWMHPSAWBBVV95cUxPMHZaZHVqdzdkZ29yM3NBUmpDSUxmaVpVQWl1bC1qY01oc3ByQUVKNTJIY2doYjN2Uk1wVXozbkFBWWxLTkJBMGJBbV9ab0R4dUp4U1VSS2VnTGtnUTYyeWY?oc=5",
+      "title": "포드, '中 CATL 기술 적용' 미국산 각형 LFP 배터리 첫 출하 - 더구루",
+      "summary": "포드, '中 CATL 기술 적용' 미국산 각형 LFP 배터리 첫 출하 - 더구루",
+      "source": "더구루",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBpVFpyTFNvcUUxMC1HVmpSVENIMXRWanVld3BGdzlkNXk4YXZMZGFqbGtueDhBT3gyblY5MElTbC1YZXFlWno3QVNMbS0yVWx4SDZwNkU1QWY3d0k0RlFpSG9tYw?oc=5",
       "linkType": "rss",
       "id": 6
     },
     {
-      "title": "포스코, CATL에 2028년까지 전기차 배터리용 리튬 공급 - 파이낸셜포스트",
-      "summary": "포스코, CATL에 2028년까지 전기차 배터리용 리튬 공급 - 파이낸셜포스트",
-      "source": "파이낸셜포스트",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9mZ1dWRC00NEgzdm5LXzdza25XeW94VkdrNzdVUkxhM1pnMURpY3RrZ3d2Vmp6aUpQbkxoMHFnOWU4bnBOYTBOWlUtRjR2RU1yZ0lzQUlDenZ3WUQ4LVhJblVKd0NFQnZfem10OURGYXVKc3A0?oc=5",
+      "title": "포스코, 세계 1위 중국 배터리사에 리튬 3년간 공급 - 부산일보",
+      "summary": "포스코, 세계 1위 중국 배터리사에 리튬 3년간 공급 - 부산일보",
+      "source": "부산일보",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9FUWhWa0NUMUpmTDJEaDBncVYyWHRuOGJYQ2dPdzNKMGQ1Z3JOanZLaWpYcm4yNFBmXy1BWjdXRE5Oa3RXRDFwa2duUHRUX1p4QWxpekZUQWo2VXE4ZmRBblpyUGQ0dEdsTFVvV3lCSi1TT3B0?oc=5",
       "linkType": "rss",
       "id": 7
     },
     {
-      "title": "포스코그룹, 中 CATL과 리튬 장기공급계약…2028년까지 - 페로타임즈",
-      "summary": "포스코그룹, 中 CATL과 리튬 장기공급계약…2028년까지 - 페로타임즈",
-      "source": "페로타임즈",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5ubVQ0TEprdDFiYWJZT2YtdzlURUQyanB5dm5ISzd1UHp0T3FPb0lYZlBqSVVHT1lhMDNWM2FFTDJIdExpVXRoaFpjRmJyQWNPNEwwZmFhZC1pbE13MGRpdHZBZVNyb1F3YzRYUQ?oc=5",
+      "title": "중국이 97% 쥔 배터리 흑연…美 스타트업, 전기차 4300대분 생산 도전 - 디지털투데이",
+      "summary": "중국이 97% 쥔 배터리 흑연…美 스타트업, 전기차 4300대분 생산 도전 - 디지털투데이",
+      "source": "디지털투데이",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1EdVFmLWsxeDNUUlg0YW91cm0zczNiMEJYRG9Bcl82RDlsMnFGM2MyWmVJeS1zNFdNamJ0bHQzVVFscVd2U1l4MUFUYzB0XzZXN2xSeHdrclhOSkdsM1g1TTBCbExBRGxnRzlFT3FQa2lRUk0?oc=5",
       "linkType": "rss",
       "id": 8
     },
     {
-      "title": "포스코, 中 CATL에 3년간 리튬 공급…글로벌 판로 확대 가속 - 조세일보",
-      "summary": "포스코, 中 CATL에 3년간 리튬 공급…글로벌 판로 확대 가속 - 조세일보",
-      "source": "조세일보",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9pbjFDUkdDaDFQb1R2TUxJeTFKS09sb1F5N3RPeE1OTVoxbEV5LWdBTS1VajJacjVHeGVnanZaX1plTGJUSnJHTnRZYWtaNXpndEw2TEg0WFVzNWNqX3BFVUx2YnEwWHJIVm1PTEo3TQ?oc=5",
+      "title": "장인화 ‘리튬 승부수’ 결실…포스코, 세계 1위 CATL 3년 고객으로 확보 - 에너지경제신문",
+      "summary": "장인화 ‘리튬 승부수’ 결실…포스코, 세계 1위 CATL 3년 고객으로 확보 - 에너지경제신문",
+      "source": "에너지경제신문",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5mSGs4QWpzZVRhb1F4NC1vUXQyaGNKRm1KbnByQ251NE9TM09FRlFWaWNwekFyUGN0OHlDY21hc2hlLW5yUkdHV3FrN0F1Rnl2V0VqZTI0VUJuU0U?oc=5",
       "linkType": "rss",
       "id": 9
     },
     {
-      "title": "포스코그룹, '배터리 1위' 中 CATL에 리튬 공급 - 지디넷코리아",
-      "summary": "포스코그룹, '배터리 1위' 中 CATL에 리튬 공급 - 지디넷코리아",
-      "source": "지디넷코리아",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBMMzdFdUFfbFgxYl9Bc0t4ai1YeXBzZEhlRWJwQlNhTm9sMXAtTm1ZVk9VTXdjdE5YSkYwU1pwOEFURGltaXBrSmhDN2huUTk4MFgtYWp3?oc=5",
+      "title": "캐나다 모멘트 에너지, 폐배터리 재사용 상업·산업용 BESS '노바' 출시 - 글로벌이코노믹",
+      "summary": "캐나다 모멘트 에너지, 폐배터리 재사용 상업·산업용 BESS '노바' 출시 - 글로벌이코노믹",
+      "source": "글로벌이코노믹",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQa2ZQSEZyR1FzeDFuMkcwUUUyNjQ5SEFVb0MyVENJWDdUNl9oaUNDUk5tdkc4c08xRGZVeTQ3ZC0tQ1h2WGdQMlRnd2x1N3pZZlNOVXQ5SDJTNGRrdzlra2huTFNqLTNLNU9Nd2pIV2FhRlE0RXZGdTNDWkg3bDBfOWdESnNWNXJn?oc=5",
       "linkType": "rss",
       "id": 10
     },
     {
-      "title": "배터리 세계 1위 중국 CATL도 포스코 리튬 쓴다⋯ 3년 장기공급 잭팟 - 브릿지경제",
-      "summary": "배터리 세계 1위 중국 CATL도 포스코 리튬 쓴다⋯ 3년 장기공급 잭팟 - 브릿지경제",
-      "source": "브릿지경제",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBUMmpYOGF2NmlOb3otRjd6SXVjcVd0MzQ0RDY3Ql9DREduY1lwd1hIcnZlQ2VKcjYwNEpmU1M5Q3pvSkZwcHRub3ZhN1ZMY1R5alNiVUNkMnlLUQ?oc=5",
+      "title": "삼성SDI, 북미 ESS 수주 확대…EV 라인 전환해 LFP 생산 늘린다 - 더트래커",
+      "summary": "삼성SDI, 북미 ESS 수주 확대…EV 라인 전환해 LFP 생산 늘린다 - 더트래커",
+      "source": "더트래커",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9FdWZGR1VEazNUZ0dTMXdZcEJFaFRqTno4NGdLVzNvTjJKMXdFWFRXdWRMQ25WUm52LWZpclhtX0dMb2FaRXJXVkNOU3FOSG9sQWoyR292eFY?oc=5",
       "linkType": "rss",
       "id": 11
     },
     {
-      "title": "포스코그룹, 세계 최대 배터리사 중국 CATL과 리튬 장기공급계약 체결 - 매일산업뉴스",
-      "summary": "포스코그룹, 세계 최대 배터리사 중국 CATL과 리튬 장기공급계약 체결 - 매일산업뉴스",
-      "source": "매일산업뉴스",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE05T0Qyc0FHWk5Gbzh3MUowdjFtRm1YbU9MN3FPek1taHhsWVlLMURIbGNJaGRPQkdMNmVXSnF1dkxYbld5THpHdmotMzVDdHVXUkZzRy14UldEWWRTY0l3elVNSQ?oc=5",
+      "title": "전기차 화재안심보험, 주변 재산피해 보장…발화 차량·인명피해 제외 - 보험매일",
+      "summary": "전기차 화재안심보험, 주변 재산피해 보장…발화 차량·인명피해 제외 - 보험매일",
+      "source": "보험매일",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1GRjBlWHJ2VUl2REVBZHJXcnJTNEt3bndCQ3NLYnRJRFBTS09mQW5ybnlHc3ZEVkxraFctY25WY2tZTEJTQVRuX0tBVlNEaXpKSHZCeG9RdWJhdWpGWmE4ZktsSVhvRUdG?oc=5",
       "linkType": "rss",
       "id": 12
     },
     {
-      "title": "포스코그룹, CATL에 리튬 3년간 공급…중국 배터리 시장 공략 확대 - 더트래커",
-      "summary": "포스코그룹, CATL에 리튬 3년간 공급…중국 배터리 시장 공략 확대 - 더트래커",
-      "source": "더트래커",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1RNi1uT2J3TmVJdmI0R1lKVGtKUi1RUUhRR3FBMDM0dmdELUdDd19sYlZLQV9yQUxXS3BHNUwxOFhfQlhWTnlORV9UOW14WWdtUEVFNXF2OE4?oc=5",
+      "title": "포드(F.N), CATL 기술 적용 배터리 첫 생산…중형 전기 픽업트럭에 탑재 - 알파경제",
+      "summary": "포드(F.N), CATL 기술 적용 배터리 첫 생산…중형 전기 픽업트럭에 탑재 - 알파경제",
+      "source": "알파경제",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1tWjlLQVJLZDlENGFPQ0FyUTl3NUVvX2w1dllLUnVEaUxhdkpEbzZOc1EyYTA0YlI2MENZeWgyRV9NSXZFQTJRT0VlS1M5OTRxRU9UcTlCcWVPTldnY0Foa2x0cUI1VDlxUFQwMWdB?oc=5",
       "linkType": "rss",
       "id": 13
     },
     {
-      "title": "배터리 화재 경고 다음 날…아우디 e-트론, 네덜란드서 충전 중 '활활' - 더구루",
-      "summary": "배터리 화재 경고 다음 날…아우디 e-트론, 네덜란드서 충전 중 '활활' - 더구루",
-      "source": "더구루",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBpOXF6LUc4aTZlbmJudlpXcGRqLUFCdndfT1NvbHZTQ1gzM0k0UlR5YWJwNnZXZDBVNWJ2dWtmWk1jV2swMlNIQnk4eTR3MEhLVHd4Y3E0M01Vc3ZfanRGQ3FaNA?oc=5",
+      "title": "중국 CATL 기술 빌려 美서 만든다…포드, LFP 배터리 생산 돌입 - 디지털투데이",
+      "summary": "중국 CATL 기술 빌려 美서 만든다…포드, LFP 배터리 생산 돌입 - 디지털투데이",
+      "source": "디지털투데이",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBWcGZUclBpb3owbmlJRndoY0tudlVYVldKekZkSnVtNjF5Y09PSVJ6VmNMVmhPY2FTNDN0STFrMWlDYmc3c2ZnVlJpQm9jRnpsOVlWMUpCc0F0dV9MbmlYVmRaTlhOZGxMLXJyN1ozZ3NRN2M?oc=5",
       "linkType": "rss",
       "id": 14
     },
     {
-      "title": "[헬로AX] 배터리 공장서 자재 나르는 로봇들, 사람은 무엇을 할까? - 헬로티",
-      "summary": "[헬로AX] 배터리 공장서 자재 나르는 로봇들, 사람은 무엇을 할까? - 헬로티",
-      "source": "헬로티",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE04UndreEF2Mzh6RHY1OElkZWk4SEFTelBmak5TdW44ZjY2RzRxOWIyNGtCMncwUFBxM2tpZTh3R1p5LVJuNnVJWEVHZkNRRmQyWU5aWGlYR1pwSmR0V2Vj?oc=5",
+      "title": "中 빈자리 파고든 韓 배터리...LG엔솔·삼성SDI, 美 ESS 판 굳히기 경쟁 - 아시아에이",
+      "summary": "中 빈자리 파고든 韓 배터리...LG엔솔·삼성SDI, 美 ESS 판 굳히기 경쟁 - 아시아에이",
+      "source": "아시아에이",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5lU2poTHJ0VVlyWUplWjk4RjRHUkVadEdhZ09sNXdoYlBZUEF2SUVRdGdrUHhBTkpFZ1JIVW5kR1BoRGJzS2xGb2RBMkRIR0RzQUE1b2NFcU8zWjg5UG1uak56dHVJV3FlNmfSAW5BVV95cUxQUXU4X05RbmkxWS1DdVdPd0paUmZPRE1DQ2U1d0x6TDM4cEVDQXl0bUl3aG5JZHNubDVfZlBORnRUczNWWGtNZFpucmhLTWxLVXUwQVBscmlySEVkQVJqbjljRHlvRmM4VDdjdEs0UQ?oc=5",
       "linkType": "rss",
       "id": 15
     },
     {
-      "title": "이훈성 넥스트스타 에너지 CEO \"한·캐나다 융합이 경쟁력…윈저서 글로벌 배터리 비전 실현\" - 더구루",
-      "summary": "이훈성 넥스트스타 에너지 CEO \"한·캐나다 융합이 경쟁력…윈저서 글로벌 배터리 비전 실현\" - 더구루",
-      "source": "더구루",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1qOEhhMzZPVzFGZGFuNzBVdkJYN2pOU0hXTHRLbkJ3MWpGNkxDbzdLTjRPWU9xLTlpeTMwRVpFZURWdjVTakppc2JlQm5DQk4yRVQ5amdLb2Rma3NJVmd6aWNhdw?oc=5",
+      "title": "포드, Fathom 전기 트럭용 LFP 배터리 셀 미시간에서 생산 개시 - 뉴스 및 통계 - IndexBox",
+      "summary": "포드, Fathom 전기 트럭용 LFP 배터리 셀 미시간에서 생산 개시 - 뉴스 및 통계 - IndexBox",
+      "source": "IndexBox",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPaFRYRGdOa3p3clFiTFpOczRRUmhfZzR2SWg1aW9JTXp1WVdoVFJlTWVsM0NtdmdMbmZYNWdlall2eWN4MEFJeWlOa1Z5MTllTS1WUDhncXh3VnRXWjZzZ2hrenFtU1ptZ25yM0dRZUdHTVFqcG0wekVrenF1ZzB3RHVudEtyUzREVFFVRjkydEVpSmtqRFd1ZFpHck9FekNmdUU4eGxJZ2JOMTBDdWJB?oc=5",
       "linkType": "rss",
       "id": 16
     },
     {
-      "title": "배터리 넘어 반도체로…장비·인프라 기업들 신시장 공략 - 전자신문",
-      "summary": "배터리 넘어 반도체로…장비·인프라 기업들 신시장 공략 - 전자신문",
-      "source": "전자신문",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8xY0gwTXo0RnhzZ1l6dkxsVkpYVW1KNkhFVzAxQ1R5dVZ4WGIyRTJ1OHRLdUtZcWdJM0tiakVweFpCTWYzMGFNZEUzdGQ5dw?oc=5",
+      "title": "현대차·기아, 꿈의 배터리 '건식 기술' 美 특허 확보…고에너지밀도 승부수 - 더구루",
+      "summary": "현대차·기아, 꿈의 배터리 '건식 기술' 美 특허 확보…고에너지밀도 승부수 - 더구루",
+      "source": "더구루",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9IZTlDV1Jjc2JaRFIwX3lySnZMSVdZLVVoUjUySEFYaXVtaTZEd3o0TG81bElJdjRnNG1lYm1ZVkZTSm55UG1BTGM4aU1CemNNbTAyX3l6RmNUMU4xQXdhRXFUNA?oc=5",
       "linkType": "rss",
       "id": 17
     },
     {
-      "title": "美 ESS 시장 20% 성장…LG엔솔 가동률 회복 탄력 - 한국아이닷컴",
-      "summary": "美 ESS 시장 20% 성장…LG엔솔 가동률 회복 탄력 - 한국아이닷컴",
-      "source": "한국아이닷컴",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE93eEI2dENvYkV3aWQ3WDRsSVBBM0ZxQkhxTGRwVTd4dW5wdmpGRlZWVVRVNnBvMHpZdHdlREw2UmVScGZaeXlfOGx5dWZxLUJmVWVxN29MZzhZZHB4QUdWM3VuNE9lRmpmLVhZ0gFvQVVfeXFMTVQ3Qm5scURHMk1wVG5zSkpxYUFuNFZqUlpET041SXYyNkRVZUxFUVZZeVA2VE1zYWVLejBFVHNiMTJ6djZ1VHVnWTVOa0pmZjk5SzVmYUpGZS04Uy1NV01MaUNzNXZfdl8wWi01R2g0?oc=5",
+      "title": "K배터리 소재사에 손내민 中배터리…韓·美·유럽과 합종연횡 나서는 중국 - 중앙일보",
+      "summary": "K배터리 소재사에 손내민 中배터리…韓·美·유럽과 합종연횡 나서는 중국 - 중앙일보",
+      "source": "중앙일보",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9CYjh5Nk9MemRYWkFCbFI0UXJZUWZUMlVnV2FPZVpwRzk1NEI1YlhvLTJpeFplV1Y3aU9RVVB1bS1ZcHg3bktYaHZURnNtMmxMcHVlbDBB?oc=5",
       "linkType": "rss",
       "id": 18
     },
     {
-      "title": "외면받던 폐배터리 찌꺼기, 돈 되는 자원으로 - 동아일보",
-      "summary": "외면받던 폐배터리 찌꺼기, 돈 되는 자원으로 - 동아일보",
+      "title": "포스코그룹, 中 CATL과 리튬 장기공급 계약 - 동아일보",
+      "summary": "포스코그룹, 中 CATL과 리튬 장기공급 계약 - 동아일보",
       "source": "동아일보",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBDSk5BNjdjd19DcTBiZEF6dmtFZkY1YmxKX0hnQzU5X2wtbTIwUlhKeFo5V3pvY0ZxTVhNTTdhbmM2MmVCY3E5WVBXSXQzRTZGWUNRY21ITGlfTnZYdk42ODFPVUhpeFQ0YkQ0enB4ZnVpSkZoMFHSAWZBVV95cUxQR01hdThOUmFwY0lURGFqYnpmRFhuTXNPOVR2bU5sT29QdGxTYjZXd0xPNzQya2dtVzI2WHl4OTZ2VUpUeER6QkhkN1lBSjJTWmRvdW5CdjFpaEdYZlZGVG5HZFhja2c?oc=5",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE4xa0l0Q1VMdlpITTBaVlh4ZDZ0eXluRWZ4OXNBX0R1RDBsX1NsVWplU0lPVFFjUFFxXzA0eWZvdm1ybXRxdXJrOVRvenhMOTlQN2V5OW1qYlpYUzY1dkg1QUJUancyY09BSkgxWjRYTXVpaXd3UlHSAWZBVV95cUxPS1BjSEJWbU5rbWJuV0xoTGNhSEUwNnJLdy1ZWXEtNmJJVjVfOHJxMVVrS1VOM2V3ZHdBOGlra3dBYTYzOVJoU3ZUT3NOVk1nVlJqV2F1c3V6QjlwdkcxQzRzWmJNUFE?oc=5",
       "linkType": "rss",
       "id": 19
     },
     {
-      "title": "“LFP 폐배터리서 리튬 추출…수익성 입증할 것” - 매일경제 마켓",
-      "summary": "“LFP 폐배터리서 리튬 추출…수익성 입증할 것” - 매일경제 마켓",
-      "source": "매일경제 마켓",
-      "date": "2026-11-18",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5rV2J5bmR5OVJOQnFLTHRfOVJJVnYzVmh1eU5KU2hLbHVHVVhQSUtIOTJLVk5Na0FRYUdjbkoyRjBCUE5hQ3FJY3pRUkFmZWxSZGc?oc=5",
+      "title": "국방부·국표원, 군용 소형드론 배터리 국가표준 만든다 - Chosunbiz",
+      "summary": "국방부·국표원, 군용 소형드론 배터리 국가표준 만든다 - Chosunbiz",
+      "source": "Chosunbiz",
+      "date": "2026-11-19",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOTG16eDg2QTQ1ajZEU2ctUlRGT09rX0hpV0k0cHcwcEh0TU5XQ0tyaktXVzN1Y3lvcXVuTWZWQy1FMmVPWlN4LVpTYUtfTl95Z2lpTEtPY083NVh4Y1VRS2RyenZxMWdOTkdMUzNEX2l0MVBBdExUOWJyelBYX2IzWGVYMFVZQQ?oc=5",
       "linkType": "rss",
       "id": 20
     }
   ],
   "fx": {
-    "usdKrw": 1335.36,
-    "eurKrw": 1468.7,
-    "cnyKrw": 199.91,
-    "updatedAt": "2026-11-18T17:40:30.181685+09:00"
+    "usdKrw": 1332.22,
+    "eurKrw": 1461.96,
+    "cnyKrw": 199.41,
+    "updatedAt": "2026-11-19T17:56:22.369214+09:00"
   },
   "newsBriefing": {
     "keyTakeaways": [
-      "포스코그룹이 글로벌 1위 배터리 기업인 중국 CATL과 3년 리튬 장기공급 계약을 체결하며 원소재 공급망 경쟁력을 입증했습니다.",
-      "전기차 캐즘 속에서 ESS 시장의 급성장과 배터리 교환 인프라 확산 등 새로운 시장 기회가 주목받고 있습니다.",
-      "LFP 폐배터리 재활용 기술 및 공장 자동화 로봇 도입 등 원가 절감과 기술 고도화를 위한 노력이 가속화되고 있습니다."
+      "포드가 미국 미시간 공장에서 중국 CATL 기술 라이선스를 기반으로 LFP 배터리 생산을 시작하며 북미 전기차 공급망 재편이 본격화되었습니다.",
+      "포스코그룹이 글로벌 1위 CATL과 3년 리튬 공급 계약을 맺고 K-배터리와 중국 간 양극재 및 원소재 합종연횡이 강화되고 있습니다.",
+      "한국 배터리 기업들은 미국 시장 내 중국 산 ESS 제품 규제 가능성에 발맞춰 기존 EV 라인을 LFP ESS 라인으로 전환하며 북미 수주 확대에 집중하고 있습니다."
     ],
     "categories": [
       {
-        "name": "글로벌 공급망 & 원소재",
+        "name": "글로벌 기술 라이선싱 & 공급망 전략",
         "items": [
           {
-            "headline": "포스코, 글로벌 1위 배터리사 리튬 공급",
-            "summary": "포스코그룹이 세계 최대 전기차 배터리 제조업체에 핵심 소재인 리튬을 장기 공급하는 계약을 체결했습니다. 이를 통해 원소재 공급망에서의 입지를 공고히 하고 글로벌 배터리 공급망 내 영향력을 크게 확대할 것으로 기대됩니다.",
+            "headline": "포드, CATL 기술 라이선스로 미 배터리 생산",
+            "summary": "포드가 중국 CATL의 기술을 이전받아 미국 현지에서 전기차용 배터리 양산을 시작했습니다. 2027년 출시될 신형 전기차에 해당 배터리를 투입할 예정이며, 북미 규제를 회피하면서도 기술력을 확보하려는 파트너십 전략의 대표적 사례로 평가받고 있습니다.",
+            "tags": [
+              "#포드",
+              "#CATL",
+              "#LFP배터리",
+              "#북미생산"
+            ],
+            "source": "마켓인",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE4wc0dwYWQzUkZxVVQ5YU1uS1dRWlhDTW1xZndQRTlKNTVzNkhBa3lweVVDd1RncG9pVzFzSUZKTVB4eXA1OHRuOXhzdUlSUXNnRk1acGZjUW1XbmtrY0xQQzM1RkZmSUtJczZ0ZDdvLTk2cWs?oc=5"
+          },
+          {
+            "headline": "포드, 미 현지서 중국 기술 LFP 셀 양산",
+            "summary": "포드가 미국 내 공장에서 중국 완성형 배터리 셀 기술을 도입하여 전기차용 배터리 셀 생산을 본격화했습니다. 이는 미국 인플레이션 감축법(IRA) 국면 속에서 라이선스 계약을 통해 가격 경쟁력 높은 LFP 셀을 국산화하려는 행보입니다.",
+            "tags": [
+              "#포드",
+              "#배터리셀",
+              "#중국기술",
+              "#LFP"
+            ],
+            "source": "Investing.com 한국어",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE14cGtBWURyZHAzUWRnNzg4S3ltRnJlN3d1ang1QTlDdkhNR1l6ZzlsRENoeEVoZTJtaDVDME56eUJ4TGE1M0ExUjZGTFpIU1FDYUp0NDJXS2VLTzRQVUZxdk04MW5iQ1ZrNGNGWnQ2elo?oc=5"
+          },
+          {
+            "headline": "전기차·배터리 공급망 재편과 글로벌 변수",
+            "summary": "글로벌 전기차 및 배터리 산업이 중국 의존도를 낮추는 동시에 기술 경쟁력을 확보하기 위한 공급망 재편 단계에 진입했습니다. 기술 라이선싱과 소재 다양화가 핵심 변수로 부상하며 기업들의 국적을 초월한 전략적 선택이 늘어나는 추세입니다.",
+            "tags": [
+              "#공급망재편",
+              "#중국의존도",
+              "#기술경쟁",
+              "#배터리산업"
+            ],
+            "source": "에너지프로슈머",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9kbHVxbGtuUzZ3aUdNUXZwY2lsdk5HSERtaHhHQmFSeWdiTjJSNHJWRGJuVGZCUnUwelduNDhGRElFR0E4bzE0YkU4TG4?oc=5"
+          },
+          {
+            "headline": "포드, CATL 기술 기반 미국산 각형 LFP 출하",
+            "summary": "포드가 중국 CATL 기술을 적용하여 미시간 공장에서 만든 미국산 각형 LFP 배터리 셀의 첫 양산 및 출하를 진행했습니다. 이를 통해 전기차 라인업의 원가 절감과 안전성 강화를 동시에 달성하려는 목표를 세우고 있습니다.",
+            "tags": [
+              "#포드",
+              "#각형배터리",
+              "#LFP",
+              "#CATL"
+            ],
+            "source": "더구루",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBpVFpyTFNvcUUxMC1HVmpSVENIMXRWanVld3BGdzlkNXk4YXZMZGFqbGtueDhBT3gyblY5MElTbC1YZXFlWno3QVNMbS0yVWx4SDZwNkU1QWY3d0k0RlFpSG9tYw?oc=5"
+          },
+          {
+            "headline": "포드, CATL 기술 적용 배터리 전기 트럭 탑재",
+            "summary": "포드가 CATL의 기술 솔루션을 적용해 생산한 첫 배터리 제품을 차세대 중형 전기 픽업트럭에 탑재하기로 결정했습니다. 픽업트럭 시장에서의 가격 경쟁력 확보와 가성비 높은 배터리 공급이 핵심 목적입니다.",
+            "tags": [
+              "#포드",
+              "#전기픽업트럭",
+              "#CATL기술",
+              "#배터리양산"
+            ],
+            "source": "알파경제",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1tWjlLQVJLZDlENGFPQ0FyUTl3NUVvX2w1dllLUnVEaUxhdkpEbzZOc1EyYTA0YlI2MENZeWgyRV9NSXZFQTJRT0VlS1M5OTRxRU9UcTlCcWVPTldnY0Foa2x0cUI1VDlxUFQwMWdB?oc=5"
+          },
+          {
+            "headline": "포드, 중국 기술 도입 미 LFP 배터리 돌입",
+            "summary": "포드가 중국 기술 이전을 활용한 미국 현지 LFP 배터리 생산 체제 구축을 완충하고 본격적인 생산에 돌입했습니다. 미-중 갈등 국면에서도 기술 제휴를 통한 실리 추구형 생산 모델이 가동되기 시작했습니다.",
+            "tags": [
+              "#포드",
+              "#LFP배터리",
+              "#미국생산",
+              "#기술제휴"
+            ],
+            "source": "디지털투데이",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBWcGZUclBpb3owbmlJRndoY0tudlVYVldKekZkSnVtNjF5Y09PSVJ6VmNMVmhPY2FTNDN0STFrMWlDYmc3c2ZnVlJpQm9jRnpsOVlWMUpCc0F0dV9MbmlYVmRaTlhOZGxMLXJyN1ozZ3NRN2M?oc=5"
+          },
+          {
+            "headline": "포드, 미시간서 전기 트럭용 LFP 생산 개시",
+            "summary": "포드가 미국 미시간주 생산 인프라를 통해 Fathom 전기 트럭 라인업에 들어갈 LFP 배터리 셀 양산을 개시했습니다. 현지 생산을 통한 물류비 절감과 정책적 혜택 수혜를 동시에 노리는 전략입니다.",
+            "tags": [
+              "#포드",
+              "#미시간공장",
+              "#전기트럭",
+              "#LFP셀"
+            ],
+            "source": "IndexBox",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPaFRYRGdOa3p3clFiTFpOczRRUmhfZzR2SWg1aW9JTXp1WVdoVFJlTWVsM0NtdmdMbmZYNWdlall2eWN4MEFJeWlOa1Z5MTllTS1WUDhncXh3VnRXWjZzZ2hrenFtU1ptZ25yM0dRZUdHTVFqcG0wekVrenF1ZzB3RHVudEtyUzREVFFVRjkydEVpSmtqRFd1ZFpHck9FekNmdUU4eGxJZ2JOMTBDdWJB?oc=5"
+          },
+          {
+            "headline": "中 배터리 기업, 韓 배터리 소재사와 합종연횡",
+            "summary": "중국 주요 배터리 기업들이 한국의 양극재 및 음극재 소재 기업들과의 전략적 협력을 대폭 확대하고 있습니다. 글로벌 통상 규제를 우회하고 안정적인 원소재 자급망을 확보하기 위해 한·미·유럽 시장에서의 동맹 관계가 다양해지고 있습니다.",
+            "tags": [
+              "#배터리합종연횡",
+              "#K배터리",
+              "#중국배터리",
+              "#소재협력"
+            ],
+            "source": "중앙일보",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9CYjh5Nk9MemRYWkFCbFI0UXJZUWZUMlVnV2FPZVpwRzk1NEI1YlhvLTJpeFplV1Y3aU9RVVB1bS1ZcHg3bktYaHZURnNtMmxMcHVlbDBB?oc=5"
+          }
+        ]
+      },
+      {
+        "name": "원소재 & 미래 배터리 기술",
+        "items": [
+          {
+            "headline": "포스코그룹-CATL, 리튬 공급 장기 파트너십",
+            "summary": "포스코그룹이 세계 최대 배터리 제조업체인 중국 CATL과 장기 리튬 공급 파트너십을 체결했습니다. 이를 통해 포스코는 글로벌 리튬 자산 상업화를 촉진하고 중국 및 글로벌 시장 내 소재 공급 입지를 공고히 할 전망입니다.",
+            "tags": [
+              "#포스코",
+              "#CATL",
+              "#리튬공급",
+              "#배터리소재"
+            ],
+            "source": "더나은미래",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9fZVBYQmItUW1hZmw0ZzQtekVUcVlSQlpOVG0xeGNYU25HZlNBUDRpVkxXVU5raHFybW0yM2pQTTgxUWl3RFcyOU5UQkhETTJuemc?oc=5"
+          },
+          {
+            "headline": "포스코, CATL과 3년 리튬 장기공급 계약",
+            "summary": "포스코그룹이 중국 CATL에 3년 동안 배터리용 리튬을 공급하는 대형 계약을 확정 지었습니다. 수산화리튬 및 탄산리튬 수급 안정성을 기반으로 포스코의 글로벌 이차전지 소재 사업 성과가 구체화되고 있습니다.",
+            "tags": [
+              "#포스코그룹",
+              "#CATL",
+              "#수산화리튬",
+              "#장기계약"
+            ],
+            "source": "경북신문",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9FQVBNYUlsSlkzQ1ZuU1ZmOFBHdTdjWEJYZ29wcnFKX2lyWVFFTHJyTFcxQmZ3SVg1aVozaXdPLXlzUjIzVVZtMjM3QVowUEVleVNxTU9zSHk?oc=5"
+          },
+          {
+            "headline": "포스코, CATL에 3년간 핵심 리튬 원료 공급",
+            "summary": "포스코가 글로벌 배터리 시장 1위 기업인 CATL에 향후 3년간 리튬 원료를 공급하며 핵심 원자재 공급사로서의 지위를 인정받았습니다. 남미 아르헨티나 염수 및 오스트레일리아 광산 기반 리튬 사업이 본격적인 결실을 맺고 있습니다.",
             "tags": [
               "#포스코",
               "#리튬",
-              "#공급망"
+              "#CATL",
+              "#원자재 공급망"
             ],
-            "source": "연합인포맥스",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1iQUVJY3ZXSHZUNmIzRjR4OTh1OGY4Rzc0SlFiWWZnVFpmb19CQ3RNalluTmtkRy1CZ2RfN3BYTWVod3VuWG5VS19CdVY3aVE2MXZDZEhwYzNUU1ZMS0JRNnB1YjkxVGZXeF9pamYxQXk?oc=5"
+            "source": "부산일보",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9FUWhWa0NUMUpmTDJEaDBncVYyWHRuOGJYQ2dPdzNKMGQ1Z3JOanZLaWpYcm4yNFBmXy1BWjdXRE5Oa3RXRDFwa2duUHRUX1p4QWxpekZUQWo2VXE4ZmRBblpyUGQ0dEdsTFVvV3lCSi1TT3B0?oc=5"
           },
           {
-            "headline": "포스코, CATL과 리튬 계약으로 中 공략",
-            "summary": "포스코그룹이 세계 최대 배터리 기업인 중국 CATL에 리튬을 공급하며 중국 시장 공략을 가속화합니다. 이번 계약은 한국 원소재 기업이 중국의 핵심 배터리 공급망에 성공적으로 진입했다는 점에서 중요한 의미를 가집니다.",
+            "headline": "美 스타트업, 중국 독점 배터리 흑연 탈피 도전",
+            "summary": "중국이 전 세계 공급망의 97% 이상을 점유하고 있는 음극재용 흑연 시장에서 미국 스타트업이 자국산 대체 생산에 도전하고 있습니다. 전기차 4300대 분량의 흑연 공급을 시작으로 공급망 내 중 탈중국화를 목표로 하고 있습니다.",
+            "tags": [
+              "#흑연",
+              "#음극재",
+              "#공급망독립",
+              "#미국스타트업"
+            ],
+            "source": "디지털투데이",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1EdVFmLWsxeDNUUlg0YW91cm0zczNiMEJYRG9Bcl82RDlsMnFGM2MyWmVJeS1zNFdNamJ0bHQzVVFscVd2U1l4MUFUYzB0XzZXN2xSeHdrclhOSkdsM1g1TTBCbExBRGxnRzlFT3FQa2lRUk0?oc=5"
+          },
+          {
+            "headline": "포스코, CATL 3년 수주 성공하며 리튬 결실",
+            "summary": "포스코 장인화 회장의 리튬 사업 승부수가 글로벌 1위 배터리사 CATL과의 3년 장기 계약으로 이어졌습니다. 포스코는 이번 계약을 기반으로 이차전지 풀밸류체인 구축 전략을 한층 더 강화하게 되었습니다.",
             "tags": [
               "#포스코",
-              "#CATL",
-              "#중국시장"
+              "#장인화",
+              "#리튬사업",
+              "#CATL수주"
             ],
-            "source": "철강금속신문",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1lcV9KWlBoYnAxX2ctcmpvcGRRM29OOVV5NGxWeWZkRldFR0RzWE9jdFlYSGQ0OEExNmZtOEpMRmt5Z2V3Y0pHZXZDSXRCOGJScF9XZENOM0VZTlFRVHU2MmY0YkNCbll2aUE?oc=5"
+            "source": "에너지경제신문",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5mSGs4QWpzZVRhb1F4NC1vUXQyaGNKRm1KbnByQ251NE9TM09FRlFWaWNwekFyUGN0OHlDY21hc2hlLW5yUkdHV3FrN0F1Rnl2V0VqZTI0VUJuU0U?oc=5"
           },
           {
-            "headline": "포스코-CATL, 3년 리튬 공급계약 체결",
-            "summary": "포스코그룹이 중국 CATL과 3년간의 수산화리튬 공급 계약을 맺었습니다. 고품질 배터리용 리튬을 안정적으로 공급함으로써 양사 간의 전략적 협력 관계가 더욱 강화될 전망입니다.",
+            "headline": "현대차·기아, 전극 건식 공정 美 특허 취득",
+            "summary": "현대자동차와 기아가 차세대 배터리 제조의 핵심인 '건식 전극 제조 기술'에 대한 미국 특허를 획득했습니다. 유기용매를 쓰지 않아 건조 공정을 줄이고 에너지 밀도를 끌어올리는 차세대 생산 기술 주도권을 확보했습니다.",
             "tags": [
-              "#포스코",
-              "#CATL",
-              "#장기계약"
-            ],
-            "source": "연합뉴스",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9JYWY4VExiTGVJWWFZcm9mMXlSUm5zNTU1YjFUd2xhWWZWWVdCazJpLUt2YTN6X01fNHJmQ3ZuZ1I2eU1sUzU1N0xRUHVNa005T3VWMzQtNXRWMHPSAWBBVV95cUxPMHZaZHVqdzdkZ29yM3NBUmpDSUxmaVpVQWl1bC1qY01oc3ByQUVKNTJIY2doYjN2Uk1wVXozbkFBWWxLTkJBMGJBbV9ab0R4dUp4U1VSS2VnTGtnUTYyeWY?oc=5"
-          },
-          {
-            "headline": "포스코, 2028년까지 CATL 리튬 공급",
-            "summary": "포스코가 CATL에 2028년까지 배터리급 리튬을 장기 공급하기로 합의했습니다. 이번 장기 계약을 통해 포스코는 안정적인 판매처를 확보하고 리튬 사업의 수익성을 한층 높일 수 있게 되었습니다.",
-            "tags": [
-              "#포스코",
-              "#CATL",
-              "#수산화리튬"
-            ],
-            "source": "파이낸셜포스트",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9mZ1dWRC00NEgzdm5LXzdza25XeW94VkdrNzdVUkxhM1pnMURpY3RrZ3d2Vmp6aUpQbkxoMHFnOWU4bnBOYTBOWlUtRjR2RU1yZ0lzQUlDenZ3WUQ4LVhJblVKd0NFQnZfem10OURGYXVKc3A0?oc=5"
-          },
-          {
-            "headline": "포스코, 中 CATL과 리튬 장기계약 훈풍",
-            "summary": "포스코그룹이 2028년까지 중국 CATL에 배터리용 리튬을 공급하는 장기 계약을 체결했습니다. 글로벌 이차전지 소재 시장에서 포스코의 품질 경쟁력과 공급 안정성이 다시 한번 입증되었습니다.",
-            "tags": [
-              "#포스코",
-              "#리튬공급",
-              "#이차전지소재"
-            ],
-            "source": "페로타임즈",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5ubVQ0TEprdDFiYWJZT2YtdzlURUQyanB5dm5ISzd1UHp0T3FPb0lYZlBqSVVHT1lhMDNWM2FFTDJIdExpVXRoaFpjRmJyQWNPNEwwZmFhZC1pbE13MGRpdHZBZVNyb1F3YzRYUQ?oc=5"
-          },
-          {
-            "headline": "포스코, CATL 공급으로 판로 확대",
-            "summary": "포스코가 중국 CATL과 3년 리튬 공급 계약을 맺고 글로벌 소재 판로 확대를 가속화합니다. 이번 성과는 북미 및 유럽 시장에 이어 중국 거점 배터리 제조사까지 고객사로 다변화한 성과입니다.",
-            "tags": [
-              "#포스코",
-              "#CATL",
-              "#판로확대"
-            ],
-            "source": "조세일보",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9pbjFDUkdDaDFQb1R2TUxJeTFKS09sb1F5N3RPeE1OTVoxbEV5LWdBTS1VajJacjVHeGVnanZaX1plTGJUSnJHTnRZYWtaNXpndEw2TEg0WFVzNWNqX3BFVUx2YnEwWHJIVm1PTEo3TQ?oc=5"
-          },
-          {
-            "headline": "포스코그룹, 배터리 1위 CATL 잡았다",
-            "summary": "포스코그룹이 글로벌 배터리 1위 기업인 중국 CATL에 리튬을 공급합니다. 원자재 시장의 불확실성 속에서도 대규모 공급 계약을 성사시키며 배터리 소재 기업으로서의 위상을 재확인했습니다.",
-            "tags": [
-              "#포스코",
-              "#CATL",
-              "#배터리소재"
-            ],
-            "source": "지디넷코리아",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBMMzdFdUFfbFgxYl9Bc0t4ai1YeXBzZEhlRWJwQlNhTm9sMXAtTm1ZVk9VTXdjdE5YSkYwU1pwOEFURGltaXBrSmhDN2huUTk4MFgtYWp3?oc=5"
-          },
-          {
-            "headline": "CATL, 포스코 리튬 3년 장기 수급",
-            "summary": "세계 1위 배터리사 CATL이 포스코의 리튬을 3년간 장기 수급하기로 했습니다. 이번 계약은 양사의 소재 수급 안정성을 확보하고 글로벌 배터리 밸류체인 내 협력을 한층 제고할 것입니다.",
-            "tags": [
-              "#CATL",
-              "#포스코",
-              "#리튬수급"
-            ],
-            "source": "브릿지경제",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBUMmpYOGF2NmlOb3otRjd6SXVjcVd0MzQ0RDY3Ql9DREduY1lwd1hIcnZlQ2VKcjYwNEpmU1M5Q3pvSkZwcHRub3ZhN1ZMY1R5alNiVUNkMnlLUQ?oc=5"
-          },
-          {
-            "headline": "포스코, CATL과 대규모 리튬 계약",
-            "summary": "포스코그룹이 중국 CATL과 배터리용 리튬 장기공급 계약을 체결했습니다. 이차전지 원소재 사업 가동이 본격화됨에 따라 포스코의 리튬 사업 부문 매출 성장이 기대됩니다.",
-            "tags": [
-              "#포스코",
-              "#CATL",
-              "#장기공급"
-            ],
-            "source": "매일산업뉴스",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE05T0Qyc0FHWk5Gbzh3MUowdjFtRm1YbU9MN3FPek1taHhsWVlLMURIbGNJaGRPQkdMNmVXSnF1dkxYbld5THpHdmotMzVDdHVXUkZzRy14UldEWWRTY0l3elVNSQ?oc=5"
-          },
-          {
-            "headline": "포스코, CATL 손잡고 中 시장 확대",
-            "summary": "포스코그룹이 CATL에 3년간 리튬을 공급하며 중국 배터리 시장 내 입지를 더욱 강화합니다. 이번 협력은 글로벌 리튬 자원 개발 성과가 본격적인 매출로 이어지는 계기가 될 것입니다.",
-            "tags": [
-              "#포스코",
-              "#CATL",
-              "#중국배터리"
-            ],
-            "source": "더트래커",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1RNi1uT2J3TmVJdmI0R1lKVGtKUi1RUUhRR3FBMDM0dmdELUdDd19sYlZLQV9yQUxXS3BHNUwxOFhfQlhWTnlORV9UOW14WWdtUEVFNXF2OE4?oc=5"
-          }
-        ]
-      },
-      {
-        "name": "시장 동향 & 인프라 혁신",
-        "items": [
-          {
-            "headline": "피트인, 인니 배터리 교체 시장 진출",
-            "summary": "피트인이 인도네시아 상용 전기차 배터리 교체 인프라 시장에 진출하며 동남아 시장 공략에 나섭니다. 충전 시간 단축이 중요한 상용차 시장에서 배터리 교체 방식이 새로운 대안으로 부상하고 있습니다.",
-            "tags": [
-              "#피트인",
-              "#배터리교체",
-              "#인도네시아"
-            ],
-            "source": "동행일보",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9PYWxiUGtvOXRuQlZVMkliQklGSFVKU3gwOFZpTVlTc2JPTVRtcWxORWFpcjhNZFVzLXlUV0EwZXk1elYwNlUwM1Y2eHNpNGl5NGhGMmxaU20wQjhTZE9tWXI3OWN1VTJH?oc=5"
-          },
-          {
-            "headline": "CATL, 배터리 교환 시장 본격 진입",
-            "summary": "CATL이 배터리 교환 서비스 시장에 본격 진출하며 기존 니오(NIO) 중심의 시장 구도에 도전장을 내밀었습니다. 표준화된 배터리 스왑 인프라가 전기차 충전 패러다임을 바꿀지 주목됩니다.",
-            "tags": [
-              "#CATL",
-              "#배터리스왑",
-              "#충전인프라"
-            ],
-            "source": "ESG경제",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBLVWt1NGNROHFGMi1YY2tEZkhCbk50N0dBVDk3cERTNVI0ejd6ZjQ2SGtCb25mY1pHTGVXSkVvMDU5cGF6WDNoT3lkajNfYUdmNXR3Y3hxd0c5c3Y0NUEtZ3M0V05td0sxYUo5cQ?oc=5"
-          },
-          {
-            "headline": "ESS 호조 속 K배터리 전열 재정비",
-            "summary": "북미 ESS 시장 성장으로 국내 배터리 업계가 숨통을 트고 있으나, 내수 전기차 시장은 중국산 배터리 침투가 확대되고 있습니다. K배터리 기업들은 기술 차별화와 포트폴리오 다변화로 전열을 정비 중입니다.",
-            "tags": [
-              "#ESS",
-              "#K배터리",
-              "#전기차시장"
-            ],
-            "source": "머니투데이",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBmWXRPc2xxLU9KLVlzdVhzX29yRzAtT1JOT2pwcHJ5NjdXcnhiQnY2NnllRWl5UXJWdVZkWnNQNU1JMV9XY1Job2xwODhMV2U2QXVLeTNKOWg3MmluYVI5TnZid1BfU29JZG9HWNIBckFVX3lxTFBYc1NyTkVlTWU5SEJmSVBBRnNIY1hRbVhBcXJ5dkhmVDVIV1dSdWZBTWd6Q2R4MmdFS1FScUZrQ19fVnFZMUp3d3Y1bFRtUWFvOWNVRk01VEF6SUdJUFU0QlgxSElrWUlDQkdJMkg1S21SZw?oc=5"
-          },
-          {
-            "headline": "美 ESS 성장으로 LG엔솔 가동률 회복",
-            "summary": "미국 ESS 시장이 연 20% 이상 급성장함에 따라 LG에너지솔루션의 현지 공장 가동률이 빠른 회복세를 보이고 있습니다. 전기차 수요 둔화를 ESS 부문이 보완하며 실적 반등을 이끌고 있습니다.",
-            "tags": [
-              "#LG엔솔",
-              "#ESS",
-              "#가동률회복"
-            ],
-            "source": "한국아이닷컴",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE93eEI2dENvYkV3aWQ3WDRsSVBBM0ZxQkhxTGRwVTd4dW5wdmpGRlZWVVRVNnBvMHpZdHdlREw2UmVScGZaeXlfOGx5dWZxLUJmVWVxN29MZzhZZHB4QUdWM3VuNE9lRmpmLVhZ0gFvQVVfeXFMTVQ3Qm5scURHMk1wVG5zSkpxYUFuNFZqUlpET041SXYyNkRVZUxFUVZZeVA2VE1zYWVLejBFVHNiMTJ6djZ1VHVnWTVOa0pmZjk5SzVmYUpGZS04Uy1NV01MaUNzNXZfdl8wWi01R2g0?oc=5"
-          }
-        ]
-      },
-      {
-        "name": "기업 전략 & 공정 혁신",
-        "items": [
-          {
-            "headline": "배터리 공장 자동화와 로봇의 도입",
-            "summary": "배터리 제조 공장에 자율주행 물류로봇(AMR) 도입이 확대되면서 공정 효율성과 안전성이 대폭 향상되고 있습니다. 작업자는 고부가가치 관리 업무에 집중하는 제조 혁신이 이루어지고 있습니다.",
-            "tags": [
-              "#스마트팩토리",
-              "#물류로봇",
-              "#공정자동화"
-            ],
-            "source": "헬로티",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE04UndreEF2Mzh6RHY1OElkZWk4SEFTelBmak5TdW44ZjY2RzRxOWIyNGtCMncwUFBxM2tpZTh3R1p5LVJuNnVJWEVHZkNRRmQyWU5aWGlYR1pwSmR0V2Vj?oc=5"
-          },
-          {
-            "headline": "넥스트스타, 한·캐나다 배터리 합작",
-            "summary": "LG엔솔과 스텔란티스의 북미 합작법인 넥스트스타 에너지가 한국의 기술력과 캐나다의 인프라를 결합해 경쟁력을 강화합니다. 캐나다 윈저 공장을 거점으로 글로벌 배터리 시장 영향력을 확대할 계획입니다.",
-            "tags": [
-              "#넥스트스타",
-              "#LG엔솔",
-              "#북미공장"
+              "#현대차기아",
+              "#건식공정",
+              "#배터리특허",
+              "#차세대배터리"
             ],
             "source": "더구루",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1qOEhhMzZPVzFGZGFuNzBVdkJYN2pOU0hXTHRLbkJ3MWpGNkxDbzdLTjRPWU9xLTlpeTMwRVpFZURWdjVTakppc2JlQm5DQk4yRVQ5amdLb2Rma3NJVmd6aWNhdw?oc=5"
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9IZTlDV1Jjc2JaRFIwX3lySnZMSVdZLVVoUjUySEFYaXVtaTZEd3o0TG81bElJdjRnNG1lYm1ZVkZTSm55UG1BTGM4aU1CemNNbTAyX3l6RmNUMU4xQXdhRXFUNA?oc=5"
           },
           {
-            "headline": "배터리 장비사, 반도체 신시장 개척",
-            "summary": "전기차 캐즘 여파로 배터리 장비 및 인프라 기업들이 반도체 장비 분야로 사업 영역을 확장하고 있습니다. 보유한 정밀 공정 및 장비 기술력을 바탕으로 신성장 동력을 확보하려는 전략입니다.",
+            "headline": "포스코, 中 CATL과 대규모 리튬 계약 확정",
+            "summary": "포스코그룹이 중국 CATL과의 리튬 장기 계약을 공식화하며 글로벌 원소재 시장에서의 영향력을 증명했습니다. 이번 공급 계약은 배터리 소재 공급망 내 한국 기업의 협상력을 높이는 계기가 될 것으로 분석됩니다.",
             "tags": [
-              "#배터리장비",
-              "#반도체",
-              "#사업다각화"
-            ],
-            "source": "전자신문",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8xY0gwTXo0RnhzZ1l6dkxsVkpYVW1KNkhFVzAxQ1R5dVZ4WGIyRTJ1OHRLdUtZcWdJM0tiakVweFpCTWYzMGFNZEUzdGQ5dw?oc=5"
-          }
-        ]
-      },
-      {
-        "name": "안전성 & 폐배터리 리사이클링",
-        "items": [
-          {
-            "headline": "아우디 e-트론 충전 중 화재 발생",
-            "summary": "네덜란드에서 아우디 e-트론 전기차가 충전 중 화재가 발생하는 사고가 일어났습니다. 배터리 화재 위험에 대한 경고 직후 발생한 사고여서 전기차 배터리 열관리 및 안전 시스템 향상이 시급해졌습니다.",
-            "tags": [
-              "#배터리화재",
-              "#전기차안전",
-              "#열관리"
-            ],
-            "source": "더구루",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBpOXF6LUc4aTZlbmJudlpXcGRqLUFCdndfT1NvbHZTQ1gzM0k0UlR5YWJwNnZXZDBVNWJ2dWtmWk1jV2swMlNIQnk4eTR3MEhLVHd4Y3E0M01Vc3ZfanRGQ3FaNA?oc=5"
-          },
-          {
-            "headline": "폐배터리 부산물, 고가 자원 재탄생",
-            "summary": "그동안 버려지던 폐배터리 재활용 잔재물에서 유가금속을 고순도로 추출하는 기술이 개발되었습니다. 방치되던 부산물이 고부가가치 자원으로 전환되면서 친환경 리사이클링 생태계가 강화되고 있습니다.",
-            "tags": [
-              "#폐배터리",
-              "#재활용",
-              "#유가금속"
+              "#포스코",
+              "#CATL",
+              "#리튬계약",
+              "#배터리원소재"
             ],
             "source": "동아일보",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBDSk5BNjdjd19DcTBiZEF6dmtFZkY1YmxKX0hnQzU5X2wtbTIwUlhKeFo5V3pvY0ZxTVhNTTdhbmM2MmVCY3E5WVBXSXQzRTZGWUNRY21ITGlfTnZYdk42ODFPVUhpeFQ0YkQ0enB4ZnVpSkZoMFHSAWZBVV95cUxQR01hdThOUmFwY0lURGFqYnpmRFhuTXNPOVR2bU5sT29QdGxTYjZXd0xPNzQya2dtVzI2WHl4OTZ2VUpUeER6QkhkN1lBSjJTWmRvdW5CdjFpaEdYZlZGVG5HZFhja2c?oc=5"
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE4xa0l0Q1VMdlpITTBaVlh4ZDZ0eXluRWZ4OXNBX0R1RDBsX1NsVWplU0lPVFFjUFFxXzA0eWZvdm1ybXRxdXJrOVRvenhMOTlQN2V5OW1qYlpYUzY1dkg1QUJUancyY09BSkgxWjRYTXVpaXd3UlHSAWZBVV95cUxPS1BjSEJWbU5rbWJuV0xoTGNhSEUwNnJLdy1ZWXEtNmJJVjVfOHJxMVVrS1VOM2V3ZHdBOGlra3dBYTYzOVJoU3ZUT3NOVk1nVlJqV2F1c3V6QjlwdkcxQzRzWmJNUFE?oc=5"
+          }
+        ]
+      },
+      {
+        "name": "ESS, 재활용 및 시장 정책",
+        "items": [
+          {
+            "headline": "모멘트 에너지, 폐배터리 재사용 BESS 출시",
+            "summary": "캐나다 배터리 기업 모멘트 에너지가 전기차 폐배터리를 재활용하여 상업 및 산업용으로 활용 가능한 BESS '노바(NOVA)'를 공식 선보였습니다. 재사용 배터리를 통한 순환 경제 구현과 ESS 원가 절감이 기대됩니다.",
+            "tags": [
+              "#폐배터리",
+              "#BESS",
+              "#모멘트에너지",
+              "#재활용"
+            ],
+            "source": "글로벌이코노믹",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQa2ZQSEZyR1FzeDFuMkcwUUUyNjQ5SEFVb0MyVENJWDdUNl9oaUNDUk5tdkc4c08xRGZVeTQ3ZC0tQ1h2WGdQMlRnd2x1N3pZZlNOVXQ5SDJTNGRrdzlra2huTFNqLTNLNU9Nd2pIV2FhRlE0RXZGdTNDWkg3bDBfOWdESnNWNXJn?oc=5"
           },
           {
-            "headline": "LFP 폐배터서 리튬 추출 수익성 입증",
-            "summary": "저가형 LFP 배터리에서도 효율적으로 리튬을 추출해 경제성을 확보할 수 있는 리사이클링 공정이 입증되었습니다. LFP 전기차 보급 확대에 발맞춰 LFP 재활용 시장의 상업 가치가 급상승하고 있습니다.",
+            "headline": "삼성SDI, EV 라인 전환으로 북미 ESS 공략",
+            "summary": "삼성SDI가 북미 지역의 ESS 수요 급증에 대응하기 위해 기존 전기차(EV) 배터리 생산 라인의 일부를 LFP ESS 라인으로 전격 전환합니다. 현지 수주를 늘리고 시장 점유율을 높이기 위한 고강도 체질 개선입니다.",
             "tags": [
-              "#LFP배터리",
-              "#리튬추출",
-              "#폐배터리"
+              "#삼성SDI",
+              "#ESS",
+              "#라인전환",
+              "#LFP배터리"
             ],
-            "source": "매일경제 마켓",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5rV2J5bmR5OVJOQnFLTHRfOVJJVnYzVmh1eU5KU2hLbHVHVVhQSUtIOTJLVk5Na0FRYUdjbkoyRjBCUE5hQ3FJY3pRUkFmZWxSZGc?oc=5"
+            "source": "더트래커",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9FdWZGR1VEazNUZ0dTMXdZcEJFaFRqTno4NGdLVzNvTjJKMXdFWFRXdWRMQ25WUm52LWZpclhtX0dMb2FaRXJXVkNOU3FOSG9sQWoyR292eFY?oc=5"
+          },
+          {
+            "headline": "전기차 화재안심보험 출시 및 보장 범위 확정",
+            "summary": "전기차 화재 발생 시 주변 재산 피해를 보장하는 '전기차 화재안심보험' 상품이 새로 선보였습니다. 다만 발화 차량 자체의 손해와 인명 피해는 보상 대상에서 제외되어 보장 한계에 대한 다각도 논의가 이어지고 있습니다.",
+            "tags": [
+              "#전기차화재",
+              "#화재보험",
+              "#재산피해보상",
+              "#안전정책"
+            ],
+            "source": "보험매일",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1GRjBlWHJ2VUl2REVBZHJXcnJTNEt3bndCQ3NLYnRJRFBTS09mQW5ybnlHc3ZEVkxraFctY25WY2tZTEJTQVRuX0tBVlNEaXpKSHZCeG9RdWJhdWpGWmE4ZktsSVhvRUdG?oc=5"
+          },
+          {
+            "headline": "K-배터리, 미국 ESS 시장서 중국 빈자리 공략",
+            "summary": "LG에너지솔루션과 삼성SDI 등 국내 주요 배터리 3사가 미국의 대중국 제재 강화 기류를 활용해 북미 ESS 시장 공략을 강화하고 있습니다. 현지 LFP ESS 인프라 구축을 늘려 시장 주도권을 굳히겠다는 전략입니다.",
+            "tags": [
+              "#K배터리",
+              "#LG에너지솔루션",
+              "#삼성SDI",
+              "#미국ESS"
+            ],
+            "source": "아시아에이",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5lU2poTHJ0VVlyWUplWjk4RjRHUkVadEdhZ09sNXdoYlBZUEF2SUVRdGdrUHhBTkpFZ1JIVW5kR1BoRGJzS2xGb2RBMkRIR0RzQUE1b2NFcU8zWjg5UG1uak56dHVJV3FlNmfSAW5BVV95cUxQUXU4X05RbmkxWS1DdVdPd0paUmZPRE1DQ2U1d0x6TDM4cEVDQXl0bUl3aG5JZHNubDVfZlBORnRUczNWWGtNZFpucmhLTWxLVXUwQVBscmlySEVkQVJqbjljRHlvRmM4VDdjdEs0UQ?oc=5"
+          },
+          {
+            "headline": "국방부·국표원, 군용 드론 배터리 표준 제정",
+            "summary": "국방부와 국가기술표준원이 군용 소형 드론에 들어가는 배터리의 국가 표준(KS) 제정에 나섰습니다. 군사적 신뢰성과 호환성을 높이고 국내 드론 배터리 산업의 표준화 기준을 마련하기 위한 조치입니다.",
+            "tags": [
+              "#드론배터리",
+              "#국가표준",
+              "#국방부",
+              "#국표원"
+            ],
+            "source": "Chosunbiz",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOTG16eDg2QTQ1ajZEU2ctUlRGT09rX0hpV0k0cHcwcEh0TU5XQ0tyaktXVzN1Y3lvcXVuTWZWQy1FMmVPWlN4LVpTYUtfTl95Z2lpTEtPY083NVh4Y1VRS2RyenZxMWdOTkdMUzNEX2l0MVBBdExUOWJyelBYX2IzWGVYMFVZQQ?oc=5"
           }
         ]
       }
     ],
-    "implications": "포스코와 CATL의 리튬 장기계약은 한국 소재 기업이 글로벌 밸류체인에서 핵심 원소재 공급사로서 경쟁력을 인정받았음을 의미합니다. 동시에 전기차 수요 둔화(캐즘)를 극복하기 위해 ESS 시장 진출, 배터리 교환 인프라 도입, 공장 자동화 및 사업 다각화 등 다각적인 생태계 체질 개선이 진행되고 있습니다. 또한 충전 중 화재 이슈로 인한 안전성 제고 요구와 LFP 폐배터리 재활용 기술의 상용화는 향후 배터리 산업의 지속가능성과 기술 표준을 좌우할 핵심 변수가 될 것입니다."
+    "implications": "미국의 IRA 정책 및 규제 속에서도 완제품 완성차업체(OEM)들은 가격 경쟁력을 확보하기 위해 중국 배터리 기업의 기술 라이선싱(LFP 등)을 적극 받아들이는 실리 전략을 펼치고 있습니다. 이와 동시에 K-배터리 기업 및 소재사들은 리튬 등 핵심 원자재 영역에서 중국 1위 기업과 장기 파트너십을 맺는 한편, 미국 ESS 시장 내 대중국 제재의 반사이익을 극대화하기 위해 라인 전환과 LFP 투자를 가속화하는 이중화 전략을 취하고 있습니다. 차세대 시장 선점을 위한 건식 전극 공정 특허 확보와 폐배터리 기반 BESS, 군용 표준화 작업 등 배터리 벨류체인 전반의 고도화가 빠르게 전개될 것입니다."
   },
   "chinaNews": [
     {
+      "title": "China's October power battery installations hit record 99.4 GWh as LFP share reaches 86.9%",
+      "summary": "China's power battery installations rose 18.2% year-on-year in October to a record 99.4 GWh, with LFP batteries accounting for an 86.9% market share.",
+      "source": "CnEVPost",
+      "date": "2026-11-19",
+      "url": "https://cnevpost.com/2026/11/19/china-oct-2026-power-battery-installations/",
+      "linkType": "rss",
+      "id": 1
+    },
+    {
+      "title": "Top battery makers' share in China in October 2026: CATL 40.00%, BYD 21.36%",
+      "summary": "CATL continued to lead China's power battery market in October 2026 with a 40.00% share, though its gap with second-place BYD (21.36%) narrowed for the fifth consecutive month.",
+      "source": "CnEVPost",
+      "date": "2026-11-19",
+      "url": "https://cnevpost.com/2026/11/19/top-battery-makers-share-china-oct-2026/",
+      "linkType": "rss",
+      "id": 2
+    },
+    {
+      "title": "Xpeng to hold 2026 AI Day on November 25 with focus on physical AI and robotics",
+      "summary": "Xpeng will hold its 2026 AI Day on November 25, focusing on physical AI, humanoid robotics, and showcasing how its Turing AI transforms the vehicle experience.",
+      "source": "CnEVPost",
+      "date": "2026-11-19",
+      "url": "https://cnevpost.com/2026/11/19/xpeng-to-hold-2026-ai-day-nov-25/",
+      "linkType": "rss",
+      "id": 3
+    },
+    {
+      "title": "Zeekr sets November 27 launch for 2027 7X as it refreshes core SUV lineup",
+      "summary": "The 2027 Zeekr 7X will officially launch on November 27 at the Guangzhou Auto Show, featuring a 900-volt architecture across the lineup and a new 85-kWh battery option.",
+      "source": "CnEVPost",
+      "date": "2026-11-19",
+      "url": "https://cnevpost.com/2026/11/19/zeekr-sets-nov-27-launch-2027-7x/",
+      "linkType": "rss",
+      "id": 4
+    },
+    {
+      "title": "Ford ships first in-house LFP battery cells using CATL tech in push for affordable EVs",
+      "summary": "Ford has begun shipping its first in-house LFP battery cells produced at its Michigan plant using licensed CATL technology to support affordable EV development.",
+      "source": "CnEVPost",
+      "date": "2026-11-19",
+      "url": "https://cnevpost.com/2026/11/19/ford-ships-lfp-battery-cells-using-catl-tech/",
+      "linkType": "rss",
+      "id": 5
+    },
+    {
+      "title": "Beyond the Car: How Infrastructure Shapes the EV Revolution",
+      "summary": "Infrastructure development, including high-power charging and battery swapping networks from NIO and CATL, is actively shaping China's EV ecosystem and business models.",
+      "source": "Gasgoo",
+      "date": "2026-11-19",
+      "url": "https://autonews.gasgoo.com/articles/news/beyond-the-car-how-infrastructure-shapes-the-ev-revolution-2121930881375318017",
+      "linkType": "rss",
+      "id": 6
+    },
+    {
       "title": "BAIC Motor plans to sell battery swap assets as parent expands partnership with CATL",
-      "summary": "BAIC Motor aims to free up capital through the sale, while its parent is working with CATL to bring more models onto the battery maker's swap network. For details, please visit CnEVPost (cnev.co).",
+      "summary": "BAIC Motor plans to sell its battery-swapping assets to free up capital while its parent company expands cooperation with CATL's Choco-Swap network.",
       "source": "CnEVPost",
       "date": "2026-11-18",
       "url": "https://cnevpost.com/2026/11/18/baic-motor-to-sell-battery-swap-assets/",
       "linkType": "rss",
-      "id": 1
+      "id": 7
     },
     {
       "title": "BYD marks its 32nd anniversary, from making batteries in Shenzhen to building cars overseas",
@@ -17572,7 +17641,7 @@
       "date": "2026-11-18",
       "url": "https://cnevpost.com/2026/11/18/byd-marks-32nd-anniversary/",
       "linkType": "rss",
-      "id": 2
+      "id": 8
     },
     {
       "title": "Dongfeng's Voyah gains independent production qualification, strengthening operational autonomy",
@@ -17581,16 +17650,16 @@
       "date": "2026-11-18",
       "url": "https://cnevpost.com/2026/11/18/voyah-gains-independent-production-qualification/",
       "linkType": "rss",
-      "id": 3
+      "id": 9
     },
     {
       "title": "Xpeng’s first station wagon spied with L-series styling ahead of Q1 2027 debut",
-      "summary": "Xpeng’s first station wagon spied with L-series styling ahead of Q1 2027 debut",
+      "summary": "Xpeng's first electric station wagon featuring L-series styling was spotted testing in China ahead of its expected global debut in Q1 2027.",
       "source": "CarNewsChina",
       "date": "2026-11-18",
       "url": "https://carnewschina.com/2026/11/18/xpengs-first-station-wagon-spied-with-l-series-styling-ahead-of-q1-2027-debut/",
       "linkType": "rss",
-      "id": 4
+      "id": 10
     },
     {
       "title": "Mass production of the Mercedes-Benz VLE minivan began in China",
@@ -17599,16 +17668,16 @@
       "date": "2026-11-18",
       "url": "https://carnewschina.com/2026/11/18/mass-production-of-the-mercedes-benz-vle-minivan-began-in-china/",
       "linkType": "rss",
-      "id": 5
+      "id": 11
     },
     {
       "title": "The first Chinese automaker began L3 autopilot tests on highways",
-      "summary": "The first Chinese automaker began L3 autopilot tests on highways",
+      "summary": "The first Chinese automaker has officially commenced Level 3 autonomous driving tests on intercity highways at speeds up to 120 km/h.",
       "source": "CarNewsChina",
       "date": "2026-11-18",
       "url": "https://carnewschina.com/2026/11/18/the-first-chinese-automaker-began-l3-autopilot-tests-on-highways/",
       "linkType": "rss",
-      "id": 6
+      "id": 12
     },
     {
       "title": "Dongfeng’s Voyah gets its own production license as China’s carmaker permits become scarce",
@@ -17617,7 +17686,7 @@
       "date": "2026-11-18",
       "url": "https://carnewschina.com/2026/11/18/dongfengs-voyah-gets-its-own-production-license-as-chinas-carmaker-permits-become-scarce/",
       "linkType": "rss",
-      "id": 7
+      "id": 13
     },
     {
       "title": "BAIC trades its own swap stations for a place in CATL’s Choco-Swap Network",
@@ -17626,233 +17695,297 @@
       "date": "2026-11-18",
       "url": "https://carnewschina.com/2026/11/18/baic-trades-its-own-swap-stations-for-a-place-in-catls-choco-swap-network/",
       "linkType": "rss",
-      "id": 8
+      "id": 14
     },
     {
       "title": "Geely Galaxy Releases Official Images of First Large Five-Seat Flagship SUV, Launching in Q4",
-      "summary": "Gasgoo Munich- Geely Galaxy on Wednesday released the first official images of the M8, a large five-seat flagship SUV. Built under Geely's global strategy, the model is positioned to challenge market standards with features exceeding its class. The M8 features a blue-silver dual-tone finish, straight side lines, and large aerodynamic wheels. The design emphasizes a luxurious appearance. Image Credit: Geely Dimensions are a key attribute. The M8 has a length of 5,205mm and a wheelbase of 3,030mm, placing it in the C-class flagship segment. Its size addresses the space constraints typical of five-seat SUVs. Interior details and specifications are undisclosed. The M8 is positioned as a large five-seater with improved cabin comfort and intelligent features. Geely confirmed the M8 will launch in the fourth quarter. Geely aims to provide a new option for families seeking premium mobility with the M8, utilizing its dimensions and high-end specifications.",
+      "summary": "Geely Galaxy released official images of its M8 large five-seat flagship SUV, which measures 5,205mm in length and is set for a Q4 launch.",
       "source": "Gasgoo",
       "date": "2026-11-18",
       "url": "https://autonews.gasgoo.com/articles/news/geely-galaxy-releases-official-images-of-first-large-five-seat-flagship-suv-launching-in-q4-2122954341614530561",
       "linkType": "rss",
-      "id": 9
+      "id": 15
     },
     {
       "title": "First Locally Produced New Class BMW iX3 Starts Production in Shenyang",
-      "summary": "BMW China announced on November 16 that production of the first locally built New Class BMW iX3 has officially kicked off at its Shenyang base. The model hits the market on November 25, with customer deliveries set to follow. Image Source: BMW China \"Starting production of the New Class BMW iX3 in China marks a significant milestone as we bring BMW's vision for future mobility to life here,\" said Dr. Milan Nedeljković, member of the Board of Management of BMW AG for Production. \"In the coming months, we will roll out additional models, further expanding our portfolio for Chinese customers.\" The New Class represents the core of BMW Group's electrification strategy, with its first mass-produced model, the BMW iX3, debuting globally at the IAA Mobility in Munich this September. Pre-orders for the domestic version opened in August at the Chengdu Motor Show, with a nationwide fixed price: the 30L starts at 269,900 yuan, the 40L xDrive at 299,900 yuan, and the 50L xDrive at 339,900 yuan. On the equipment front, the new model comes standard with nearly 40 features, including Highway and Urban Pilot Assist Pro, ventilated and heated front seats, heated rear seats, a heated steering wheel, and a Harman/Kardon sound system. For intelligent driving, it features an end-to-end driver assistance system co-developed with Momenta, covering both highway and urban scenarios. The infotainment system integrates a BMW AI personal assistant powered by Alibaba's large language model. Powering the vehicle is a full 800-volt architecture paired with BMW’s sixth-generation batteries. Buyers can choose between three options: a 77 kWh lithium iron phosphate (LFP) battery, or 86.9 kWh and 113.4 kWh large cylindrical cells. These deliver a CLTC range of 630 km, 702 km, and 919 km respectively, with energy consumption ranging from 13.0 to 13.6 kWh per 100 km. Charging speeds are brisk: the 30L model takes roughly 22 minutes to go from 10% to 80%, while the 40L and 50L trims need about 21 minutes. Notably, the 50L version can regain up to 418 km of range in just 10 minutes. Local production serves as the pivot for BMW’s electrification shift in China. The automaker plans to introduce nearly 20 new BMW models featuring New Class technology to the Chinese market by 2027.",
+      "summary": "BMW has officially started local production of the New Class BMW iX3 in Shenyang, featuring an 800-volt architecture, BMW's 6th-gen batteries, and Momenta-powered intelligent driving.",
       "source": "Gasgoo",
       "date": "2026-11-18",
       "url": "https://autonews.gasgoo.com/articles/news/first-locally-produced-new-class-bmw-ix3-starts-production-in-shenyang-2122950812803969025",
       "linkType": "rss",
-      "id": 10
+      "id": 16
     },
     {
       "title": "Jetour Global Traveler EV Global Pre-sales, Traveler 7 C-DM Huawei Qiankun Intelligent Driving Edition Launches",
-      "summary": "On November 16, the 2026 Jetour Global Travel+ Conference kicked off at the automaker’s Kaifeng base under the theme \"Travel, See the World.\" During the event, Jetour reviewed the progress of its Travel+ strategy over the past eight years and outlined its global expansion plans. At the same time, the brand kicked off global pre-sales for its first pure-electric \"boxy\" model, the Global Traveler EV, while simultaneously launching the all-new Traveler 7 C-DM Huawei Qiankun Intelligent Driving Edition. With these moves, Jetour has rounded out a three-pronged product matrix—Traveler, Freelander, and Global Traveler—achieving full coverage across internal combustion, hybrid, and electric powertrains. Travel+ Strategy at Eight Years: 2.62 Million Users, Top Seller in 16 Nations Jetour established \"Travel+\" as its core brand strategy back in 2018. Li Xueyong, executive vice president of Chery Automobile Co., Ltd., highlighted the results at the conference: over eight years, the brand has amassed 2.62 million users. It ranks first among Chinese SUV brands in 16 countries and leads the \"boxy\" segment in 13. Notably, Jetour holds the top spot in exports of boxy-style vehicles among all Chinese brands. Li Xueyong, Executive Vice President of Chery Automobile Co., Ltd. Centered on this strategy, Jetour aims to \"build global cars with a travel industry mindset, and build a travel ecosystem with an automotive mindset.\" On the product front, it has deployed four travel-specific technologies focusing on off-roading, space, intelligence, and health. On the ecosystem front, it has accumulated over 10,000 travel goods, 600-plus travel benefits, and more than 3,000 global travel stations to cover service needs along the way. Meanwhile, Jetour is fostering a \"travel culture,\" weaving global exploration, public welfare, and culture into the Travel + DNA—making travel more than just a drive, but a shareable lifestyle. As Li Xueyong put it: \"Jetour builds cars with a travel mindset, defines travel through automotive product capabilities, and connects the world through travel culture.\" Global Traveler EV Pre-sales Open; Product Matrix Solidified Among the two key models highlighted during the conference, the Global Traveler EV is positioned as a \"global multi-faceted new box\" targeting urban youth, with pre-sale prices starting at 99,900 yuan. The all-new Traveler 7 C-DM Huawei Qiankun Intelligent Driving Edition starts at 184,900 yuan, making it the only model in the 200,000-yuan class to feature Huawei Qiankun Intelligent Driving ADS 5. Global Traveler EV marks Jetour's first pure-electric model. Its styling was jointly developed by design teams from China, South Korea, the U.S., France, and Italy, adopting a \"Square and Round\" design language. The \"Star Ring\" headlights offer a high-beam range exceeding 150 meters. With a 2,735 mm wheelbase and 85.5% lateral space utilization, it features a 150-liter washable front trunk and creates a flat 2.5-meter space when the rear seats are folded. Qi Subin, assistant to the president of Chery Automobile and general manager of Jetour's domestic marketing center, noted that the Global Traveler EV is more than just a pretty face—real substance is required to claim the title of \"global multi-faceted new box.\" Qi Subin, Assistant to the President of Chery Automobile Co., Ltd. and General Manager of Jetour Domestic Marketing Center In terms of power and chassis, the Global Traveler EV is built on a native rear-wheel-drive platform with a 50:50 front-rear weight distribution and a chassis tuned by IDIADA. It features electric XWD four-wheel drive and a \"7+X\" one-touch off-road mode, powered by a 16-in-1 Chery Kunpeng super electric drive system spinning at up to 24,000 rpm. This delivers 4,650 Nm of wheel-end torque and 275 kW of combined power. These capabilities have been validated across city streets, mountain roads, unpaved surfaces, and camping scenarios. On the intelligent front, the Falcon 500+ driver assistance system covers high-speed NOA, city NOA, and full-scenario smart parking, achieving a parking success rate of over 95%. The cockpit is powered by a Qualcomm Snapdragon 8775 integrated chip, integrating both iFlytek and Doubao large language models. For energy, the Global Traveler EV comes standard with a 65 kWh Rhino battery, offering a CLTC range of 550 km and energy consumption as low as 13.5 kWh per 100 km, alongside a drag coefficient of 0.32 Cd. Safety-wise, the Rhino battery employs three layers of protection—material, structural, and cloud-based smart control—with material standards exceeding national norms. The \"Rock Body 2.0\" consists of 80% high-strength steel and uses hot-formed steel for integrated door rings. Jetour offers a lifetime warranty on the entire vehicle and its three-electric system. All-new Traveler 7 C-DM Huawei Qiankun Intelligent Driving Edition is the sole model in the 200,000-yuan boxy segment equipped with Huawei Qiankun Intelligent Driving ADS 5. The exterior retains the classic boxy silhouette, featuring PPG-customized nine-layer paint and body proportions consistent with the Traveler series. Power and off-road capabilities are driven by a three-motor true four-wheel-drive system generating 575 kW and 835 Nm. The body combines an embedded longitudinal beam with a cage structure, boasting a torsional stiffness of 33,000 Nm/deg and seven airbags. The XWD full-time intelligent 4WD can identify road conditions in 0.01 seconds, make decisions in 0.02 seconds, and execute in 0.07 seconds, also offering a \"7+X\" one-touch off-road mode. Regarding space and outdoor functionality, folding the second-row seats creates a flat 2-meter space. It supports 6.6 kW vehicle-to-load (V2L) power output and is equipped with a 23-speaker \"Sound of Boya\" audio system. The CATL 45.12 kWh \"three-proof\" battery provides 251 km of pure electric range and a comprehensive range of 1,400 km. For intelligent driving, the vehicle uses an intra-cabin laser vision Limera \"single-lens dual-mode\" optical path solution, stably detecting 30-cm obstacles from 115 meters away. Relying on Huawei's WEWA 2.0 architecture and a proprietary large model, it delivers 60 EFLOPS of computing power, backed by over 10 billion kilometers of training data. The algorithm iterates every four days, and the average takeover distance for high-speed NCA exceeds 1,500 kilometers. As the pioneer of the boxy segment, the Jetour Traveler has been sold in 100 countries and regions, accumulating 620,000 units sold and surpassing 10,000 monthly sales for 32 consecutive months. Notably, the global Traveler 7 garnered over 18,000 orders in its first month on the market. By all accounts, Jetour hasn't treated \"travel\" as a mere slogan but broken it down into tangible realities: the car must handle mountain trails and fit into campsites; it needs off-road capability as well as family comfort and safety; it requires hard specs on paper and practical support like roadside stations and gear along the way. The Global Traveler EV extends this path to pure electrics, while the Traveler 7 C-DM brings high-end intelligent driving to off-roading. The paths differ, but the judgment is the same—the next stage of competition for Chinese automakers isn't just about powertrain choice, but understanding lifestyle. The 2.62 million users are just a milestone footnote. More significant is how a Chinese brand spent eight years turning \"travel\" from a marketing concept into a verifiable product, ecosystem, and culture. Jetour indicated it will continue expanding its models and ecosystem around travel scenarios. As for where the next stop lies, the answer is still being written on the road. (Note: All images are from Jetour Auto)",
+      "summary": "Jetour launched pre-sales for its first pure-electric boxy SUV, the Global Traveler EV, and introduced the Traveler 7 C-DM equipped with Huawei's Qiankun ADS 5 intelligent driving system.",
       "source": "Gasgoo",
       "date": "2026-11-18",
       "url": "https://autonews.gasgoo.com/articles/news/jetour-global-traveler-ev-global-pre-sales-traveler-7-c-dm-huawei-qiankun-intelligent-driving-edition-launches-2122950687398473728",
       "linkType": "rss",
-      "id": 11
+      "id": 17
     },
     {
       "title": "New Arcfox Alpha S5 launches with LiDAR standard across all trims, starting from 115,800 yuan",
-      "summary": "On November 16, Gasgoo reported that the 2027 Arcfox Alpha S5 officially launched. It offers three trims priced between 115,800 and 138,800 yuan after subsidies. Standard features include rear-wheel drive, CATL batteries, and a 192-line LiDAR sensor. Range starts at 650 kilometers and reaches 750 kilometers. This combination challenges competitors in the 120,000 yuan pure-electric sedan market. Image source: Arcfox The exterior retains the wide, low proportions of a coupe. It measures 4,886mm long with a 2,900mm wheelbase, placing it at the B-segment's upper limit. Features include frameless mirrors and a smart active wing covering 3,430 cm². A \"Champion Red\" paint option is available. A 148-liter front trunk addresses cargo space limitations common in sloping-roof designs. Image source: Arcfox Autonomous driving hardware consists of a 192-line LiDAR, three millimeter-wave radars, and 12 ultrasonic sensors. It also features seven high-definition cameras. A Qualcomm Snapdragon 8775A platform powers the system, integrating cockpit, parking, and driving functions. The vehicle supports Urban NOA, highway NOA, and intelligent parking. Functions include 13 urban, six highway, and eight parking capabilities. A Zhuoyu-developed inertial binocular system enhances positioning in tunnels and low-connectivity areas. It uses visual cues and the IMU instead of satellite signals. An end-to-end 4.0 model manages decision-making. This system targets human-like lane changes and acceleration. Image source: Arcfox The cabin features upgrades in software and comfort. The Yuanjing AI system integrates Doubao and Alibaba's Qianwen agents. Users can order food via voice commands. An HMI 4.0 interface provides 3D visualization for clearer control. The front passenger seat reclines up to 128 degrees and includes infrared heating. A 19-speaker, 7.1.4-channel audio system synchronizes with seat haptics and ambient lighting. A 68-inch AR-HUD displays navigation and driver-assist data. Image source: Arcfox Charging performance supports the range specifications. The battery capacity reaches 74.4 kWh. This delivers a CLTC range starting at 650 kilometers and peaking at 750 kilometers. Fast charging from 30% to 80% takes 8.9 minutes. A 15-minute charge adds 560 kilometers of range. A heat pump system maintains 92% battery energy retention at temperatures as low as -7°C. The chassis uses a rear-drive layout. The motor has a peak output of 227 kW. This enables 0-100 km/h acceleration in 5.9 seconds. FSD variable damping shocks adapt to road conditions. Magna-tuned suspension balances daily comfort with cornering support. Four-piston calipers pair with One-Box brake-by-wire technology. This results in a 35.3-meter stopping distance. The vehicle passed the moose test at 82.8 km/h. Image source: Arcfox Safety features include a body structure made of 81.6% high-strength steel and aluminum. It achieves a torsional rigidity of 51,897 N·m/deg. The cabin maintains low formaldehyde and benzene levels. It is equipped with an antibacterial, anti-mold filter and ultraviolet sterilization. Active safety includes AEB, FCW, door-open warning, and rear cross-traffic braking. A future OTA update will enable AES (Automatic Emergency Steering). This system steers around obstacles when braking is insufficient. The Alpha S5 has accumulated nearly 100,000 sales. It consistently ranks at the top of the B-segment pure-electric sedan charts. The 2027 model lowers the entry barrier by including LiDAR, Urban NOA, rear-wheel drive, and CATL batteries in the 110,000-yuan price range. Hardware is now competitive across the board. Key factors for success will be software stability and delivery performance.",
+      "summary": "The 2027 Arcfox Alpha S5 launched with a 192-line LiDAR standard across all trims, CATL batteries, and Snapdragon 8775A platform to support Urban NOA.",
       "source": "Gasgoo",
       "date": "2026-11-18",
       "url": "https://autonews.gasgoo.com/articles/news/new-arcfox-alpha-s5-launches-with-lidar-standard-across-all-trims-starting-from-115800-yuan-2122950507966160897",
       "linkType": "rss",
-      "id": 12
+      "id": 18
     },
     {
       "title": "China Issues Guidelines on Integrated Scrappage of NEVs and Their Batteries",
-      "summary": "Gasgoo Munich- Xinhua reported that the Ministry of Commerce and eight other departments have recently issued the \"Opinions on Deepening the Construction of the Renewable Resources Recycling System and Promoting the High-Quality Development of the Recycling Industry\" (No. 206 [2026]). The document outlines 16 key tasks focusing on typical recycling models, the dismantling of solid waste from the \"new three\" sectors, and the quality upgrade of the recycling industry. Image source: Ministry of Commerce For new energy vehicles, the guidelines call for strengthening the recycling of used power batteries and revising the \"Implementation Rules for the Management of the Recycling of Scrapped Motor Vehicles.\" The aim is to promote the recycling and dismantling of NEVs under an \"integrated vehicle-battery\" scrappage model. The concept of \"integrated vehicle-battery\" is not new. Order No. 73, the \"Interim Measures for the Management of Recycling and Comprehensive Utilization of Waste Power Batteries for New Energy Vehicles,\" took effect on April 1, 2026. Article 21 explicitly states that if a scrapped NEV is missing its power battery, it is considered an incomplete vehicle. This revision to the implementation rules is designed to plug exactly that gap. Wang Peng, director of the Department of Energy Conservation and Comprehensive Utilization at the Ministry of Industry and Information Technology, clarified: \"This regulation does not apply to battery-swapping models. Relevant authorities are currently studying specific management measures for new models like battery swapping.\" As a result, battery-swapping automakers such as NIO are not currently bound by these constraints. The \"digital ID\" system also has a legal basis. Article 12 of Order No. 73 already established this framework, with detailed measures to be stipulated separately. It uses battery codes as a carrier to link information across every stage of the full lifecycle. While battery-swapping models with separated batteries are temporarily exempt, models with integrated batteries must fulfill delivery obligations upon scrappage. Consequently, recycling and dismantling workflows will need to be adjusted.",
+      "summary": "China's Ministry of Commerce and other departments issued guidelines requiring an integrated vehicle-battery scrappage model to strengthen the recycling management of end-of-life NEVs and power batteries.",
       "source": "Gasgoo",
       "date": "2026-11-18",
       "url": "https://autonews.gasgoo.com/articles/news/china-issues-guidelines-on-integrated-scrappage-of-nevs-and-their-batteries-2122947062555140097",
       "linkType": "rss",
-      "id": 13
-    },
-    {
-      "title": "China Ministry of Commerce Promotes China-ASEAN NEV Cooperation",
-      "summary": "Gasgoo Munich- On November 16, the Ministry of Commerce announced China and the Association of Southeast Asian Nations (ASEAN) will jointly strengthen cooperation in new energy vehicles and other key sectors. The statement comes as economic and trade cooperation between China and ASEAN continues to deepen. In October 2025, the protocol upgrading the China-ASEAN Free Trade Area to version 3.0 was officially signed, introducing new arrangements for rules of origin, digital trade, and the green economy. Notably, new energy vehicles were listed as a priority area for collaboration. Image Credit: Federation of Thai Industries ASEAN is a critical market for Chinese auto exports. Thailand, Indonesia, and Malaysia together host the bulk of Chinese automakers' overseas production capacity, with major players including BYD, SAIC CP, and Great Wall Motor having established manufacturing bases in the region. In terms of product mix, Chinese automakers are focusing on battery electric and plug-in hybrid models in ASEAN, with prices largely clustered between 100,000 and 200,000 yuan. That positions them in direct competition with internal combustion engine vehicles—a segment long dominated by Japanese brands. Japanese brands, however, have deep roots in the region. Toyota and Honda have spent over half a century building their sales and after-sales networks in Thailand and Indonesia. For Chinese automakers, the breakthrough lies in the cost advantages of electrified products and localized manufacturing. Energy policies across ASEAN nations are still evolving. As subsidies phase out and localization requirements intensify simultaneously, Chinese automakers are being forced to strike a delicate balance between capacity expansion and cost control. The Ministry of Commerce's latest remarks signal that cooperation on new energy vehicles is elevating from a corporate level to a bilateral mechanism. For Chinese automakers already manufacturing in ASEAN, this policy alignment is expected to lower tariffs and market access costs—while also opening up opportunities for future vehicle and parts supply chains.",
-      "source": "Gasgoo",
-      "date": "2026-11-18",
-      "url": "https://autonews.gasgoo.com/articles/news/china-ministry-of-commerce-promotes-china-asean-nev-cooperation-2122946267117957121",
-      "linkType": "rss",
-      "id": 14
-    },
-    {
-      "title": "Li Auto Refutes Power Battery Recall",
-      "summary": "Gasgoo Munich- On November 16, Li Auto's legal department issued a statement clarifying that a recently circulated notice regarding a power battery recall is false. The statement confirms that the alleged \"power battery recall\" and the promised \"4,000 yuan compensation\" are fabricated. The attached website is a phishing portal, and the QR codes and so-called \"online customer service\" links have no connection to Li Auto's official channels. Image Source: Li Auto Legal Department Li Auto has warned owners not to click on suspicious links or scan QR codes. The company advised against sharing personal, vehicle, or verification code information with these websites or supposed support agents, and strongly urged users not to transfer money as requested. Image Source: Li Auto Legal Department The circulating notice uses language like \"failure to implement the recall promptly means the user bears full responsibility for safety risks\" to manufacture urgency. This tactic is designed to rush owners into action, featuring a fabricated compensation amount and a fake processing portal. This marks the third time in recent weeks that Li Auto has had to publicly refute such rumors. Meanwhile, several automakers, including NIO, have issued similar warnings, alerting users to scams conducted under the guise of \"vehicle recalls\" or \"airbag recalls.\" According to owner feedback, these fake notices are spreading primarily via text messages and social media forwards. They often include screenshots of counterfeit official pages and QR codes, making them difficult for average users to distinguish from the real thing. Recall notices naturally carry a sense of urgency, which can cloud owners' judgment. Under current regulations, recall announcements are released by the State Administration for Market Regulation and synchronized through automakers' official channels. Crucially, recall repairs are free and never involve compensation transfers. Any notice containing links or requesting bank details and verification codes can be deemed a scam. Li Auto stated that it will cooperate with relevant authorities to address these counterfeiting operations.",
-      "source": "Gasgoo",
-      "date": "2026-11-18",
-      "url": "https://autonews.gasgoo.com/articles/news/li-auto-refutes-power-battery-recall-2122941129842151425",
-      "linkType": "rss",
-      "id": 15
-    },
-    {
-      "title": "DENZA enters India with Z9 GT, D9 flagship models launched",
-      "summary": "Gasgoo Munich- BYD's  premium  brand DENZA said on November 17 that it had entered India four days earlier, launching the DENZA Z9 GT and DENZA D9 in the market. Image source: DENZA Key Takeaways · DENZA is pursuing a two-model strategy: the Z9 GT targets customers seeking performance and technology, while the D9 is positioned as a luxury electric MPV for family and business use. Image source: DENZA · Zhang Jie, deputy general manager of BYD's Asia-Pacific auto sales division and general manager of BYD India, said luxury EV choices in India remain limited and cited growing demand for electric MPVs among affluent customers. · DENZA plans to establish localized service and aftersales networks in India covering vehicle purchase, ownership and maintenance. Market positioning DENZA described its India entry as an important step in its South Asian market development and said the two models would expand the range of luxury EVs available in the country. The company said its subsequent work in India would focus on customer needs and the use of technology to enhance the luxury mobility experience.",
-      "source": "Gasgoo",
-      "date": "2026-11-18",
-      "url": "https://autonews.gasgoo.com/articles/news/denza-enters-india-with-z9-gt-d9-flagship-models-launched-2122883299458080769",
-      "linkType": "rss",
-      "id": 16
-    },
-    {
-      "title": "Li Auto CEO says Mach M100 chips will gradually be offered to outside customers as robotics firms show interest",
-      "summary": "Li Xiang said several robotics companies have asked about purchasing Mach M100 chips. For details, please visit CnEVPost (cnev.co).",
-      "source": "CnEVPost",
-      "date": "2026-11-17",
-      "url": "https://cnevpost.com/2026/11/17/li-auto-mach-m100-chips-will-be-offered-to-outside-customers/",
-      "linkType": "rss",
-      "id": 17
-    },
-    {
-      "title": "Elon Musk says he will visit China, renewing hopes for full FSD roll-out",
-      "summary": "​​Musk said he will be in China, with some social media users urging him to push for a full FSD roll-out in the country. For details, please visit CnEVPost (cnev.co).",
-      "source": "CnEVPost",
-      "date": "2026-11-17",
-      "url": "https://cnevpost.com/2026/11/17/elon-musk-visit-china-renewing-hopes-fsd/",
-      "linkType": "rss",
-      "id": 18
-    },
-    {
-      "title": "Nio reports financial rumors to police as Hong Kong shares hover near record low",
-      "summary": "Nio cited cash reserves of 56.7 billion yuan at the end of the second quarter and delivery growth in the first 10 months to address concerns. For details, please visit CnEVPost (cnev.co).",
-      "source": "CnEVPost",
-      "date": "2026-11-17",
-      "url": "https://cnevpost.com/2026/11/17/nio-reports-financial-rumors-to-police/",
-      "linkType": "rss",
       "id": 19
     },
     {
-      "title": "Geely Galaxy releases more M8 images ahead of Q4 launch of flagship 5-seat SUV",
-      "summary": "The plug-in hybrid SUV features a 5-seat layout and shares the same dimensions as the 6-seat M9. For details, please visit CnEVPost (cnev.co).",
-      "source": "CnEVPost",
-      "date": "2026-11-17",
-      "url": "https://cnevpost.com/2026/11/17/geely-galaxy-m8-more-images/",
+      "title": "China Ministry of Commerce Promotes China-ASEAN NEV Cooperation",
+      "summary": "China and ASEAN are expanding economic cooperation in the new energy vehicle sector, promoting localized manufacturing and supply chain integration across Southeast Asia.",
+      "source": "Gasgoo",
+      "date": "2026-11-18",
+      "url": "https://autonews.gasgoo.com/articles/news/china-ministry-of-commerce-promotes-china-asean-nev-cooperation-2122946267117957121",
       "linkType": "rss",
       "id": 20
     }
   ],
   "chinaNewsBriefing": {
     "keyTakeaways": [
-      "중국 완성차 제조사들이 L3 자율주행 시험과 라이다(LiDAR) 기본 탑재 등 고도화된 지능형 기술을 10만 위안대 대중적인 가격대까지 급격히 대중화하고 있습니다.",
-      "배터리 스왑 표준 확산, 폐배터리와 차체의 일체형 재활용 규제 강화 등 전기차 전주기(Life-cycle) 생태계의 제도적 정비가 가속화되고 있습니다.",
-      "중국 전기차 기업들이 아세안 및 인도 등 신흥 프리미엄 및 친환경 시장으로 진출을 가속화하며 글로벌 영토 확장을 적극 추진하고 있습니다."
+      "중국 내 LFP 배터리 점유율이 87%에 육박하며 시장을 완전히 압도하는 가운데, CATL 기술 라이선싱 기반의 포드 미국 생산 등 글로벌 공급망 침투가 가속화되고 있습니다.",
+      "중국 완성차 업체들이 라이다(LiDAR) 기본 탑재, 900V 고전압 시스템, 피지컬 AI 및 휴머노이드 로봇 기술을 결합하며 전기차의 스마트화 및 차세대 기술 경쟁을 고도화하고 있습니다.",
+      "충전·배터리 스와핑 등 인프라의 표준화 재편과 함께 폐배터리 일체형 재활용 지침 마련 및 아세안 지역 연계 등 중국 EV 생태계 전반의 제도적 확장세가 두드러집니다."
     ],
     "categories": [
       {
-        "name": "중국 브랜드 신차 및 지능형 기술 동향",
+        "name": "중국 브랜드 신차·지능화 기술 동향",
         "items": [
           {
-            "headline": "샤오펑, 첫 스테이션 왜건 스파이샷 포착",
-            "summary": "샤오펑의 첫 번째 스테이션 왜건 모델이 L-시리즈 스타일링을 적용한 채 포착되었습니다. 해당 신차는 2027년 1분기 공식 데뷔를 앞두고 있으며, 브랜드의 라인업 다변화를 가속화할 전망입니다.",
+            "headline": "샤오펑, AI 데이서 피지컬 AI 및 로보틱스 공개 예정",
+            "summary": "샤오펑이 오는 11월 25일 '2026 AI Day'를 개최하고 피지컬 AI와 휴머노이드 로봇 기술을 대거 선보입니다. 자사의 튜링 AI 시스템이 차량 탑승 체험과 미래 모빌리티 생태계를 어떻게 혁신하는지 집중 조명할 계획입니다.",
             "tags": [
               "#샤오펑",
-              "#신차",
+              "#피지컬AI",
+              "#휴머노이드",
+              "#자율주행"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-11-19",
+            "url": "https://cnevpost.com/2026/11/19/xpeng-to-hold-2026-ai-day-nov-25/"
+          },
+          {
+            "headline": "지커, 900V 아키텍처 탑재 2027년형 7X SUV 출시",
+            "summary": "지커가 광저우 모터쇼에서 2027년형 7X SUV를 공식 출시합니다. 전 트림에 900V 고전압 시스템을 적용하고 새로운 85kWh 배터리 옵션을 추가하는 등 핵심 SUV 라인업의 상품성을 대폭 강화했습니다.",
+            "tags": [
+              "#지커",
+              "#900V",
+              "#전기SUV",
+              "#광저우모터쇼"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-11-19",
+            "url": "https://cnevpost.com/2026/11/19/zeekr-sets-nov-27-launch-2027-7x/"
+          },
+          {
+            "headline": "BYD 창립 32주년, 글로벌 완성차 제조사로 우뚝",
+            "summary": "선전의 임대 공장에서 배터리 제조업체로 시작한 BYD가 창립 32주년을 맞았습니다. 2003년 완성차 사업 인수 합병을 거쳐 현재는 글로벌 전기차 시장을 선도하는 해외 생산 체제 구축 단계로 발전했습니다.",
+            "tags": [
+              "#BYD",
+              "#창립32주년",
+              "#글로벌확장",
               "#전기차"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-11-18",
+            "url": "https://cnevpost.com/2026/11/18/byd-marks-32nd-anniversary/"
+          },
+          {
+            "headline": "보야, 독자 자동차 생산 자격 획득으로 독자성 강화",
+            "summary": "동펑자동차 산하 프리미엄 브랜드 보야가 중국 신규 승인 완성차 제조업체 목록에 이름을 올렸습니다. 이를 통해 독자적인 생산 라이선스를 확보하고 R&D 및 품질 관리 시스템 고도화에 박차를 가합니다.",
+            "tags": [
+              "#보야",
+              "#동펑",
+              "#생산라이선스",
+              "#자율성"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-11-18",
+            "url": "https://cnevpost.com/2026/11/18/voyah-gains-independent-production-qualification/"
+          },
+          {
+            "headline": "샤오펑, L-시리즈 스타일링 전동 왜건 포착",
+            "summary": "샤오펑의 첫 번째 순수 전기 스테이션왜건이 테스트 도중 스파이샷으로 포착되었습니다. 자사 L-시리즈 디자인 요소를 반영한 패밀리룩을 갖추었으며, 2027년 1분기 글로벌 시장 데뷔를 목표로 개발 중입니다.",
+            "tags": [
+              "#샤오펑",
+              "#전기왜건",
+              "#L시리즈",
+              "#글로벌데뷔"
             ],
             "source": "CarNewsChina",
             "date": "2026-11-18",
             "url": "https://carnewschina.com/2026/11/18/xpengs-first-station-wagon-spied-with-l-series-styling-ahead-of-q1-2027-debut/"
           },
           {
-            "headline": "중국 완성차 최초 도로 L3 자율주행 시험",
-            "summary": "중국 완성차 업체가 중국 최초로 고속도로에서 L3 단계 자율주행 실증 테스트를 시작했습니다. 이는 중국 내 자율주행 상용화 및 상위 단계 지능형 운전 보조 기술 법제화의 중요한 전환점이 될 것으로 보입니다.",
+            "headline": "중국 완성차, 최고 120km/h 고속도로 L3 자율주행 시험",
+            "summary": "중국 완성차 업체가 시외 고속도로 구간에서 최고 시속 120km에 달하는 레벨 3 자율주행 도로 시험을 본격 시작했습니다. 이는 일반 도로 실증을 통해 L3 자율주행 상용화 시대를 당기는 분기점이 될 전망입니다.",
             "tags": [
               "#L3자율주행",
-              "#자율주행",
-              "#기술혁신"
+              "#고속도로테스트",
+              "#중국완성차",
+              "#지능화"
             ],
             "source": "CarNewsChina",
             "date": "2026-11-18",
             "url": "https://carnewschina.com/2026/11/18/the-first-chinese-automaker-began-l3-autopilot-tests-on-highways/"
           },
           {
-            "headline": "지리 은하, 대형 SUV M8 공식 이미지 공개",
-            "summary": "지리 자동차의 프리미엄 브랜드 은하(Galaxy)가 플래그십 대형 5인승 SUV M8의 공식 이미지를 공개했습니다. 전장 5,205mm의 거대한 차체와 고급스러운 실내 공간을 갖추고 4분기 출시를 앞두고 있습니다.",
+            "headline": "보야, 희소해진 중국 승인 생산 라이선스 최종 확보",
+            "summary": "중국 내 신규 완성차 허가권 발급이 매우 엄격해지는 상황에서 동펑의 보야가 독자 생산 자격을 최종 획득했습니다. 외부 위탁 생산 의존도를 낮추고 모기업으로부터 완벽한 독자 경영권을 확보하게 되었습니다.",
             "tags": [
-              "#지리자동차",
-              "#플래그십SUV",
-              "#M8"
+              "#보야",
+              "#생산허가",
+              "#독자경영",
+              "#중국완성차"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-11-18",
+            "url": "https://carnewschina.com/2026/11/18/dongfengs-voyah-gets-its-own-production-license-as-chinas-carmaker-permits-become-scarce/"
+          },
+          {
+            "headline": "지리 은하, 플래그십 대형 5인승 SUV M8 이미지 공개",
+            "summary": "지리자동차의 프리미엄 브랜드 은하(Galaxy)가 대형 플래그십 SUV M8의 공식 이미지를 공개했습니다. 전장 5,205mm의 거대한 차체를 자랑하며 올 4분기 시장에 공식 출시될 예정입니다.",
+            "tags": [
+              "#지리은하",
+              "#M8",
+              "#대형SUV",
+              "#신차출시"
             ],
             "source": "Gasgoo",
             "date": "2026-11-18",
             "url": "https://autonews.gasgoo.com/articles/news/geely-galaxy-releases-official-images-of-first-large-five-seat-flagship-suv-launching-in-q4-2122954341614530561"
           },
           {
-            "headline": "제투어, 글로벌 트래블러 EV 예약 판매 개시",
-            "summary": "체리자동차의 제투어가 박스형 전기 SUV 트래블러 EV 글로벌 사전판매와 화웨이 첸쿤 자율주행을 탑재한 트래블러 7 C-DM을 선보였습니다. 오프로드 성능과 최첨단 스마트 생태계를 결합하여 오프로드 시장을 공략합니다.",
+            "headline": "제투어, 세계 최초 전동 SUV 및 화웨이 ADS 탑재 모델 출시",
+            "summary": "체리자동차 산하 제투어가 박시 스타일 순수전기 SUV '글로벌 트래블러 EV' 글로벌 사전계약을 시작했습니다. 더불어 화웨이 첸쿤 ADS 5 자율주행 시스템을 탑재한 트래블러 7 C-DM도 함께 선보였습니다.",
             "tags": [
               "#제투어",
-              "#화웨이",
-              "#오프로드EV"
+              "#체리자동차",
+              "#화웨이ADS",
+              "#전기SUV"
             ],
             "source": "Gasgoo",
             "date": "2026-11-18",
             "url": "https://autonews.gasgoo.com/articles/news/jetour-global-traveler-ev-global-pre-sales-traveler-7-c-dm-huawei-qiankun-intelligent-driving-edition-launches-2122950687398473728"
           },
           {
-            "headline": "신형 아크폭스 알파 S5 출시, 라이다 기본 적용",
-            "summary": "북기극후(Arcfox)가 2027년형 알파 S5를 11만 5,800위안부터 출시했습니다. 전 트림에 192라인 라이다와 CATL 배터리가 기본 탑재되었으며, 최고 750km 주행거리와 8.9분 급속 충전을 지원해 파격적인 가성비를 선보였습니다.",
+            "headline": "아크폭스 알파 S5, 라이다 기본 탑재해 상용화 가속",
+            "summary": "2027년형 아크폭스 알파 S5가 전 트림 192라인 라이다를 기본으로 탑재하고 출시되었습니다. 스냅드래곤 8775A 플랫폼과 CATL 배터리를 장착해 합리적인 가격대에서 도심 NOA 기능을 구현합니다.",
             "tags": [
               "#아크폭스",
-              "#라이다",
-              "#가성비EV"
+              "#라이다기본화",
+              "#도심NOA",
+              "#CATL"
             ],
             "source": "Gasgoo",
             "date": "2026-11-18",
             "url": "https://autonews.gasgoo.com/articles/news/new-arcfox-alpha-s5-launches-with-lidar-standard-across-all-trims-starting-from-115800-yuan-2122950507966160897"
-          },
-          {
-            "headline": "리샹, 마하 M100 칩 로봇 업체에 공급 검토",
-            "summary": "리샹(Li Auto)의 리샹 CEO는 자체 개발한 마하 M100 칩을 로보틱스 기업 등 외부 고객사에게 단계적으로 제공할 계획이라고 밝혔습니다. 자율주행을 넘어 로봇 산업으로 사업 영역 확장을 모색하고 있습니다.",
-            "tags": [
-              "#리샹",
-              "#자체칩",
-              "#로보틱스"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-11-17",
-            "url": "https://cnevpost.com/2026/11/17/li-auto-mach-m100-chips-will-be-offered-to-outside-customers/"
-          },
-          {
-            "headline": "지리 은하 M8 플래그십 추가 티저 공개",
-            "summary": "지리 은하가 4분기 출시 예정인 플래그십 5인승 플러그인 하이브리드 SUV M8의 추가 이미지를 선보였습니다. 6인승 M9과 동일한 차체 크기를 기반으로 여유로운 공간감을 제공할 예정입니다.",
-            "tags": [
-              "#지리은하",
-              "#PHEV",
-              "#M8"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-11-17",
-            "url": "https://cnevpost.com/2026/11/17/geely-galaxy-m8-more-images/"
           }
         ]
       },
       {
-        "name": "배터리·공급망·인프라 및 합작 동향",
+        "name": "배터리·소재·충전 인프라 생태계",
         "items": [
           {
-            "headline": "BAIC 모터, 배터리 스왑 자산 매각 추진",
-            "summary": "베이징자동차(BAIC) 모터가 배터리 교환 사업 자산을 매각해 자금을 확보할 계획입니다. 모기업은 매각 후 CATL의 배터리 스왑 네트워크(Choco-Swap)에 합류하여 협력을 확대할 예정입니다.",
+            "headline": "중국 10월 배터리 탑재량 99.4GWh 역대 최대, LFP 86.9%",
+            "summary": "중국의 10월 동력 배터리 설치량이 전년 동기 대비 18.2% 증가하며 역대 최대치인 99.4GWh를 기록했습니다. 가격 경쟁력을 갖춘 LFP 배터리가 전체 점유율의 86.9%를 차지하며 시장을 지배했습니다.",
+            "tags": [
+              "#배터리탑재량",
+              "#LFP배터리",
+              "#중국배터리",
+              "#사상최대"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-11-19",
+            "url": "https://cnevpost.com/2026/11/19/china-oct-2026-power-battery-installations/"
+          },
+          {
+            "headline": "10월 중국 배터리 점유율 CATL 40%, BYD 21.4%",
+            "summary": "10월 중국 배터리 시장에서 CATL이 40.00%의 점유율로 선두를 유지했으나, 2위 BYD(21.36%)와의 점유율 격차가 5개월 연속 축소되었습니다. 양사의 점유율 합계는 전체 시장의 60% 이상을 차지합니다.",
+            "tags": [
+              "#CATL",
+              "#BYD",
+              "#배터리점유율",
+              "#양강구도"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-11-19",
+            "url": "https://cnevpost.com/2026/11/19/top-battery-makers-share-china-oct-2026/"
+          },
+          {
+            "headline": "포드, CATL 기술 라이선스 활용 자사 LFP 배터리 출하",
+            "summary": "포드가 미시간 공장에서 CATL의 기술 라이선스를 활용해 자체 생산한 첫 LFP 배터리 셀 출하를 시작했습니다. 보급형 전기차 라인업 확대를 본격화하며 북미 시장에서의 원가 경쟁력 확보에 나섰습니다.",
+            "tags": [
+              "#포드",
+              "#CATL",
+              "#LFP배터리",
+              "#기술라이선스"
+            ],
+            "source": "CnEVPost",
+            "date": "2026-11-19",
+            "url": "https://cnevpost.com/2026/11/19/ford-ships-lfp-battery-cells-using-catl-tech/"
+          },
+          {
+            "headline": "충전·스왑 인프라, 중국 EV 비즈니스 모델 재편 주도",
+            "summary": "초고속 충전소 및 배터리 스와핑 네트워크 구축이 중국 전기차 생태계를 주도하고 있습니다. 니오와 CATL 등 주요 기업이 주도하는 인프라 확장이 완성차의 가치와 이용자 편의성을 적극적으로 변화시키고 있습니다.",
+            "tags": [
+              "#배터리스왑",
+              "#충전인프라",
+              "#CATL",
+              "#니오"
+            ],
+            "source": "Gasgoo",
+            "date": "2026-11-19",
+            "url": "https://autonews.gasgoo.com/articles/news/beyond-the-car-how-infrastructure-shapes-the-ev-revolution-2121930881375318017"
+          },
+          {
+            "headline": "베이징자동차, 스왑 자산 매각 후 CATL 네트워크 합류",
+            "summary": "BAIC 모터가 자금 유동성 확보를 위해 자체 배터리 스왑 자산을 매각하기로 결정했습니다. 대신 모기업 차원에서 CATL의 초코 스왑(Choco-Swap) 얼라이언스에 참여해 서비스 효율성을 대폭 끌어올립니다.",
             "tags": [
               "#BAIC",
               "#CATL",
-              "#배터리스왑"
+              "#초코스왑",
+              "#배터리스와핑"
             ],
             "source": "CnEVPost",
             "date": "2026-11-18",
             "url": "https://cnevpost.com/2026/11/18/baic-motor-to-sell-battery-swap-assets/"
           },
           {
-            "headline": "벤츠 VLE 미니밴 중국 현지 양산 개시",
-            "summary": "메르세데스-벤츠가 순수 전기 미니밴 모델인 VLE의 중국 현지 양산을 본격적으로 시작했습니다. 글로벌 완성차 업체의 중국 내 전기차 생산 거점 활용 전략이 지속되고 있음을 보여줍니다.",
+            "headline": "BAIC, 자체 스왑소 정리하고 CATL 초코스왑과 연대",
+            "summary": "BAIC가 인프라 중복 투자를 피하기 위해 독자적인 배터리 스왑 교환소를 매각하고 CATL 범용 스왑 플랫폼으로 갈아탔습니다. 스왑 시장이 민간 주도에서 표준 배터리 공용망으로 급격히 재편되는 양상입니다.",
             "tags": [
-              "#벤츠",
+              "#BAIC",
+              "#CATL",
+              "#배터리스왑",
+              "#표준화"
+            ],
+            "source": "CarNewsChina",
+            "date": "2026-11-18",
+            "url": "https://carnewschina.com/2026/11/18/baic-trades-its-own-swap-stations-for-a-place-in-catls-choco-swap-network/"
+          }
+        ]
+      },
+      {
+        "name": "글로벌 생산·정책 및 교역 동향",
+        "items": [
+          {
+            "headline": "메르세데스-벤츠 VLE 미니밴, 중국 현지 양산 개시",
+            "summary": "메르세데스-벤츠의 전용 전기 미니밴 VLE 모델이 중국 현지 생산 공장에서 본격적인 양산에 돌입했습니다. 중국 프리미엄 MPV 및 미니밴 수요를 겨냥한 현지화 라인업 강화 전략의 일환입니다.",
+            "tags": [
+              "#메르세데스벤츠",
+              "#VLE",
               "#중국양산",
               "#전기미니밴"
             ],
@@ -17861,146 +17994,48 @@
             "url": "https://carnewschina.com/2026/11/18/mass-production-of-the-mercedes-benz-vle-minivan-began-in-china/"
           },
           {
-            "headline": "BAIC, 자체 교환소 대신 CATL 네트워크 선택",
-            "summary": "BAIC가 자체적으로 운영하던 배터리 교환소를 매각하고 CATL의 '초코 스왑(Choco-Swap)' 네트워크에 참여하기로 결정했습니다. 배터리 스왑 시장이 CATL 중심의 표준화로 재편되는 양상입니다.",
-            "tags": [
-              "#BAIC",
-              "#CATL",
-              "#초코스왑"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-11-18",
-            "url": "https://carnewschina.com/2026/11/18/baic-trades-its-own-swap-stations-for-a-place-in-catls-choco-swap-network/"
-          },
-          {
-            "headline": "BMW, 신형 iX3 심양 공장서 생산 시작",
-            "summary": "BMW가 중국 심양 공장에서 차세대 '노이에 클라세' 기반 신형 iX3의 현지 생산을 시작했습니다. 800V 시스템과 Momenta 공동 개발 자율주행, 대형 원통형 배터리 등을 적용해 중국 전기차 시장 공략을 강화합니다.",
+            "headline": "BMW, 심양 공 서 노이에 클라세 iX3 생산 시작",
+            "summary": "BMW가 심양 공장에서 차세대 전기차 노이에 클라세(New Class) iX3의 현지 양산을 시작했습니다. 800V 아키텍처, 6세대 배터리, 모멘타 기반 자율주행 시스템을 통합 탑재해 시장에 대응합니다.",
             "tags": [
               "#BMW",
+              "#iX3",
               "#노이에클라세",
-              "#iX3"
+              "#중국생산"
             ],
             "source": "Gasgoo",
             "date": "2026-11-18",
             "url": "https://autonews.gasgoo.com/articles/news/first-locally-produced-new-class-bmw-ix3-starts-production-in-shenyang-2122950812803969025"
           },
           {
-            "headline": "중국 정부, 차량-배터리 일체형 폐차 지침 발표",
-            "summary": "중국 상무부 등 9개 부처가 신에너지차 폐차 시 차체와 배터리를 일체형으로 수거·해체하도록 하는 관리 규정 개정안을 발표했습니다. 다만 배터리 분리형인 배터리 스왑 차종은 이번 규제 대상에서 일시 제외됩니다.",
+            "headline": "중국 정부, 차-배터리 일체형 스크랩 지침 마련",
+            "summary": "중국 상무부 등 관계 부처가 폐차되는 신에너지차와 동력 배터리를 통합 관리하는 폐기 지침을 발표했습니다. 배터리 순환 생태계를 확립하고 자원 재활용 효율화를 체계화하는 정책적 규제 기반입니다.",
             "tags": [
+              "#중국상무부",
               "#배터리재활용",
-              "#폐차규정",
-              "#친환경정책"
+              "#폐차지침",
+              "#순환경제"
             ],
             "source": "Gasgoo",
             "date": "2026-11-18",
             "url": "https://autonews.gasgoo.com/articles/news/china-issues-guidelines-on-integrated-scrappage-of-nevs-and-their-batteries-2122947062555140097"
-          }
-        ]
-      },
-      {
-        "name": "글로벌 확장·시장 이슈 및 산업 정책",
-        "items": [
-          {
-            "headline": "BYD 창립 32주년, 글로벌 완성차로 도약",
-            "summary": "선전의 차고지 배터리 제조업체로 시작한 BYD가 창립 32주년을 맞이했습니다. 2003년 자동차 산업 진출 이후 현재는 글로벌 시장으로 공장을 확장하며 전세계 전기차 시장을 선도하고 있습니다.",
-            "tags": [
-              "#BYD",
-              "#기업동향",
-              "#글로벌확장"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-11-18",
-            "url": "https://cnevpost.com/2026/11/18/byd-marks-32nd-anniversary/"
           },
           {
-            "headline": "동풍 보야, 독자 자동차 생산 자격 획득",
-            "summary": "동풍자동차의 하이엔드 브랜드 보야(Voyah)가 중국 정부의 최신 차량 제조업체 승인 목록에 포함되며 독자적인 생산 자격을 획득했습니다. 이를 통해 연구개발 및 생산 운영의 자율성이 대폭 강화될 전망입니다.",
+            "headline": "중국 상무부, 아세안 신에너지차 공급망 협력 강화",
+            "summary": "중국 상무부가 동남아시아 아세안(ASEAN) 국가들과의 신에너지차 분야 경제 협력을 확대하고 있습니다. 현지 생산기지 구축과 부품 공급망 통합을 추진해 동남아 시장 지배력을 끌어올리고 있습니다.",
             "tags": [
-              "#동풍보야",
-              "#생산자격",
-              "#독립운영"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-11-18",
-            "url": "https://cnevpost.com/2026/11/18/voyah-gains-independent-production-qualification/"
-          },
-          {
-            "headline": "동풍 보야, 라이선스 희소성 속 독립 라이선스 취득",
-            "summary": "중국 내 자동차 생산 허가 라이선스 발급이 매우 엄격해진 가운데, 동풍 보야가 독자 생산 라이선스를 획득했습니다. 제조 승인 규제가 강화되는 시장 상황 속에서 큰 상징성을 갖습니다.",
-            "tags": [
-              "#보야",
-              "#생산허가",
-              "#중국정책"
-            ],
-            "source": "CarNewsChina",
-            "date": "2026-11-18",
-            "url": "https://carnewschina.com/2026/11/18/dongfengs-voyah-gets-its-own-production-license-as-chinas-carmaker-permits-become-scarce/"
-          },
-          {
-            "headline": "중국 상무부, 아세안 신에너지차 협력 강화",
-            "summary": "중국 상무부가 아세안(ASEAN)과의 FTA 3.0 체결을 계기로 신에너지차 분야 협력을 민간에서 정부 간 메커니즘으로 격상합니다. 태국, 인도네시아 등 진출 기업의 관세 및 현지화 부담이 완화될 것으로 기대됩니다.",
-            "tags": [
-              "#아세안",
               "#중국상무부",
-              "#수출협력"
+              "#아세안",
+              "#신에너지차",
+              "#공급망통합"
             ],
             "source": "Gasgoo",
             "date": "2026-11-18",
             "url": "https://autonews.gasgoo.com/articles/news/china-ministry-of-commerce-promotes-china-asean-nev-cooperation-2122946267117957121"
-          },
-          {
-            "headline": "리샹, 배터리 리콜 관련 피싱 루머 반박",
-            "summary": "리샹이 최근 유포된 '배터리 리콜 및 4,000위안 보상금 지급' 통지문은 허위 피싱 사기라고 공식 발표했습니다. 완성차 업계를 겨냥한 리콜 빙자 피싱 범죄에 대해 법적 대응 및 강경 조치를 예고했습니다.",
-            "tags": [
-              "#리샹",
-              "#피싱주의",
-              "#보안기능"
-            ],
-            "source": "Gasgoo",
-            "date": "2026-11-18",
-            "url": "https://autonews.gasgoo.com/articles/news/li-auto-refutes-power-battery-recall-2122941129842151425"
-          },
-          {
-            "headline": "덴자, Z9 GT·D9 앞세워 인도 시장 진출",
-            "summary": "BYD의 럭셔리 브랜드 덴자(DENZA)가 Z9 GT와 D9 모델을 출시하며 인도 시장에 공식 진출했습니다. 현지 신흥 부유층을 겨냥해 럭셔리 전기 MPV 및 고성능 세단 시장을 집중 공략할 계획입니다.",
-            "tags": [
-              "#덴자",
-              "#인도시장",
-              "#럭셔리EV"
-            ],
-            "source": "Gasgoo",
-            "date": "2026-11-18",
-            "url": "https://autonews.gasgoo.com/articles/news/denza-enters-india-with-z9-gt-d9-flagship-models-launched-2122883299458080769"
-          },
-          {
-            "headline": "일론 머스크 방중 소식에 FSD 도입 기대감 재조명",
-            "summary": "테슬라 CEO 일론 머스크가 중국 방문 계획을 언급하면서, 중국 시장 내 테슬라의 FSD(Full Self-Driving) 완전 승인 및 전면 도입에 대한 현지 소비자들과 업계의 기대감이 다시 고조되고 있습니다.",
-            "tags": [
-              "#테슬라",
-              "#일론머스크",
-              "#FSD"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-11-17",
-            "url": "https://cnevpost.com/2026/11/17/elon-musk-visit-china-renewing-hopes-fsd/"
-          },
-          {
-            "headline": "니오, 자금난 루머에 경찰 수사 의뢰",
-            "summary": "니오(Nio)가 최근 주가 약세 속에 악의적으로 유포된 자금 악화 루머에 대해 경찰 수사를 의뢰했습니다. 니오는 2분기 기준 567억 위안의 충분한 현금 보유고와 인도량 성장세를 강조하며 파산설을 일축했습니다.",
-            "tags": [
-              "#니오",
-              "#기업동향",
-              "#루머대응"
-            ],
-            "source": "CnEVPost",
-            "date": "2026-11-17",
-            "url": "https://cnevpost.com/2026/11/17/nio-reports-financial-rumors-to-police/"
           }
         ]
       }
     ],
-    "implications": "중국 전기차 제조업체들이 라이다(LiDAR), 800V 고전압 시스템, L3 자율주행 소프트웨어 등 고급 기술을 10만~20만 위안(한화 약 2~4천만 원)대 대중형 차종까지 대거 기본 적용하면서 가격 대비 성능 격차를 크게 벌리고 있습니다. 이에 대응하여 BMW, 벤츠 등 글로벌 OEM도 중국 현지 R&D와 파트너십을 통해 제품력을 극대화하고 있어, 한국 완성차 및 배터리 기업들은 글로벌 및 내수 시장에서 강력한 가격 경쟁력과 기술 고도화라는 이중고에 직면하고 있습니다. 한편 CATL 중심의 배터리 스왑 표준화와 중국 정부의 폐배터리·차체 일체형 폐차 지침 등은 배터리 전주기 생태계 주도권을 중국이 가져가는 양상을 보여주므로, 국내 배터리 업계 역시 글로벌 배터리 순환 생태계 규제 및 서비스화(BaaS) 표준 경쟁에 대한 신속한 대응책 마련이 시급합니다."
+    "implications": "중국 시장 내 LFP 배터리 비중이 87%에 도달하고 CATL의 기술 라이선스를 통한 북미 침투가 본격화되면서, 삼원계(NCM) 중심의 한국 배터리 기업들은 보급형 LFP 라인업 양산 시점을 대폭 앞당겨야 하는 압박을 받고 있습니다. 또한 중국 완성차 업체들이 라이다(LiDAR) 기본 탑재 및 도심 NOA를 10만 위안대 보급형 차량까지 확대함에 따라 한국 완성차 업계 역시 지능화 소프트웨어(SDV) 및 가격 경쟁력 제고가 시급합니다. 아울러 중국 배터리 기업들이 스와핑 표준화망을 결성하고 아세안 공급망을 적극 흡수하고 있어, 한국 기업들의 신흥 시장 점유율 방어 및 폐배터리 재활용 생태계 주도권 확보를 위한 민관 합동 전략이 절실한 시점입니다."
   },
   "patentTrends": {
     "keyTakeaways": [
@@ -18296,96 +18331,57 @@
   },
   "benchmarkingPoints": {
     "keyTakeaways": [
-      "중국 완성차 및 배터리 기업들은 5.0C~8.0C 수준의 초고속 급속충전 팩 기술을 실차에 적극 탑재하고 있으며, CATL을 중심으로 한 배터리 교환(Swap) 네트워크 플랫폼 통합과 원소재 장기 공급망 확보가 병행되고 있습니다."
+      "중국 시장 내 LFP 배터리 점유율이 86.9%로 극대화된 가운데, 5C~8C급 초고속 충전 LFP 팩 및 CTP/셀 구조 특허 기술 상용화가 신차 스펙과 지적재산권 전반에서 가속화되고 있습니다.",
+      "동시에 CATL 등 중국 주요 배터리사의 해외 라이선싱 생산, 원소재 장기 계약 체결을 통한 파트너십 확장이 공급망 전반에 걸쳐 강화되는 양상입니다."
     ],
     "categories": [
-      {
-        "name": "글로벌 신차·배터리 스펙 벤치마킹",
-        "items": [
-          {
-            "headline": "BYD, 8.0C Peak 및 최대 1,000kW 초고속 충전 대응 메가와트 블레이드 배터리 실증",
-            "whyNotable": "120.0 kWh 용량의 LFP 메가와트 블레이드 배터리를 탑재하고 8.0C Peak(최대 1,000kW) 성능을 달성하여 SOC 10%에서 80%까지 충전을 약 5분 만에 완료하는 기술을 선보였습니다. 1,000kW 메가와트 자동 플러그인 로봇 기반의 실증 시험용 플랫폼으로 초고속 급속충전 성능 구현 포인트를 확인할 필요가 있습니다.",
-            "evidenceQuote": "8.0C Peak (최대 1,000kW) | SOC 10% → 80% (약 5분)",
-            "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 급속충전 시스템 성능은 SOC 10→80% 기준 몇 분대인지, 이 경쟁사 수치(약 5분)와 비교 확인 필요",
-            "tags": [
-              "#BYD",
-              "#8C충전",
-              "#1000kW",
-              "#초고속충전"
-            ],
-            "source": "비야디 로보틱 1000kW 자율충전 시범 플랫폼 (BYD 1000kW Robotic Charger EV)",
-            "date": "2026-11-09",
-            "url": ""
-          },
-          {
-            "headline": "CATL 5C Shenxing 배터리 기반 11분 완충 급속충전 팩 적용",
-            "whyNotable": "100.0 kWh 용량의 5C Shenxing LFP 배터리를 적용하여 5.0C Peak(최대 450kW) 출력 및 SOC 10%에서 80%까지 약 11분의 급속충전 성능을 확보했습니다. CLTC 기준 700km 주행거리와 520kW 듀얼모터 파워트레인을 결합하여 고성능 EV 시장을 공략하고 있습니다.",
-            "evidenceQuote": "5.0C Peak (최대 450kW) | SOC 10% → 80% (약 11분)",
-            "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 고전압 팩 급속충전 출력은 Peak 기준 몇 kW인지, 이 경쟁사 수치(최대 450kW)와 비교 확인 필요",
-            "tags": [
-              "#CATL",
-              "#Shenxing",
-              "#5C충전",
-              "#450kW"
-            ],
-            "source": "尊界 마에스트로 SUV 서브브랜드 플래그십 (Maextro SUV Sub-Brand Flagship EV)",
-            "date": "2026-11-09",
-            "url": ""
-          },
-          {
-            "headline": "CATL 800V 5C 배터리 팩 적용으로 10분 충전 시 400km 주행거리 확보",
-            "whyNotable": "77.3 kWh 용량의 800V 5C 앰퍼렉스 기술 배터리 팩을 통해 5.0C Peak(최대 400kW) 성능 및 SOC 20%에서 80%까지 약 10분의 충전 시간을 구현했습니다. 10분 충전만으로 CLTC 기준 400km 주행이 가능한 충전 효율성을 제시하고 있습니다.",
-            "evidenceQuote": "5.0C Peak (최대 400kW) | 10분 충전으로 400km 주행 가능 (SOC 20% → 80% 약 10분)",
-            "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 800V 시스템 10분 급속충전 시 주행거리는 km 기준 얼마인지, 이 경쟁사 수치(400km)와 비교 확인 필요",
-            "tags": [
-              "#CATL",
-              "#800V",
-              "#5C충전",
-              "#400kW"
-            ],
-            "source": "보야 지음 2027 화웨이 ADS 업그레이드 에디션 (Voyah 2027 Zhiyin SUV)",
-            "date": "2026-11-13",
-            "url": ""
-          }
-        ]
-      },
       {
         "name": "특허·기술 벤치마킹",
         "items": [
           {
-            "headline": "1000V 고전압 환경 대응 팩 케이스 열전도성 절연 코팅 기술",
-            "whyNotable": "CATL은 고전압 배터리 팩 내 표면 전위 차로 인한 누설 전류 및 아크 발생 위험을 방지하고 열 방출을 향상시키는 특허를 출원했습니다. 케이스 내측 표면에 특정 열전도율과 높은 절연 저항을 동시 만족하는 절연 코팅층을 형성하는 구조 기술입니다.",
+            "headline": "CATL, 1000V 고전압 팩 환경을 위한 열전도성 절연 코팅층 특허 출원",
+            "whyNotable": "1000V 고전압 환경에서 케이스 표면 전위 차로 인한 누설 전류 및 아크 발생 문제 해결을 목표로 제시하고 있습니다. 케이스 내측 표면에 특정 열전도율과 높은 절연 저항 범위를 만족하는 열전도성 절연 코팅층을 형성하는 기술적 구성을 포함하고 있습니다.",
             "evidenceQuote": "케이스 내측 표면에 특정 열전도율과 높은 절연 저항 범위를 만족하는 열전도성 절연 코팅층을 형성하여 절연 특성과 열 방출 특성을 극대화합니다.",
-            "factLevel": "간접 서술",
-            "internalCheckQuestion": "당사 1000V 고전압 팩 하우징 절연 저항 및 열전도율 설계치는 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
+            "factLevel": "직접 인용",
+            "internalCheckQuestion": "당사 고전압 배터리 팩 케이스의 절연 저항 사양은 1000V 환경 기준 얼마인지, 이 경쟁사 특허 기술(열전도성 절연 코팅층)과 비교 확인 필요",
             "tags": [
-              "#CATL",
-              "#1000V",
-              "#팩절연",
-              "#열방출"
+              "#1000V절연",
+              "#열전도성코팅",
+              "#팩안전성"
             ],
             "source": "CATL",
             "date": "2026-09-10",
             "url": "https://patents.google.com/patent/US2026269358A1/en"
           },
           {
-            "headline": "권회체 내부 삽입형 이중 가열 부품 기반 젤리롤 정밀 열압착 공정",
-            "whyNotable": "전극과 분리막 권회 시 발생할 수 있는 젤리롤 내부 주름 및 평평도 저하 문제를 해결하기 위해 내부 가열 장치를 도입했습니다. 권원 맨드렐 중앙 홈을 통해 가열 부품을 내부에 직접 삽입하고 외부 가압 부품과 대향시켜 양면 성형을 수행하는 제조 장치 기술입니다.",
+            "headline": "CATL, 젤리롤 중앙 이중 가열/가압 부품을 이용한 정밀 열압착 공정 특허 출원",
+            "whyNotable": "권회체 전극 조립체 제작 시 젤리롤 내부 열 전달 불균일로 인한 주름 발생 및 평평도 저하 현상을 해결하기 위한 제조 장치 기술입니다. 권원 맨드렐 중앙 피오프 홈으로 가열 부품을 직접 삽입해 내·외부 동시 가압 성형 구조를 취하고 있습니다.",
             "evidenceQuote": "권원 맨드렐 중앙의 피오프 홈을 통해 가열 부품을 내부로 직접 삽입하고 가압 부품과 대향시켜 권회체를 내부와 외부에서 동시에 가압 및 성형합니다.",
-            "factLevel": "간접 서술",
-            "internalCheckQuestion": "당사 젤리롤 열압착 공정의 내부/외부 가열 방식 및 온도 균일도는 얼마인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
+            "factLevel": "직접 인용",
+            "internalCheckQuestion": "당사 권회형 셀 제조 공정 시 젤리롤 내부와 외부의 열압착 온도 편차는 몇 ℃ 수준인지, 이 경쟁사 정밀 열압착 기술 성과와 비교 확인 필요",
             "tags": [
-              "#CATL",
-              "#열압착공정",
-              "#젤리롤",
-              "#셀제조"
+              "#권회체열압착",
+              "#젤리롤성형",
+              "#셀제조공정"
             ],
             "source": "CATL",
             "date": "2026-09-10",
             "url": "https://patents.google.com/patent/US2026269302A1/en"
+          },
+          {
+            "headline": "CATL, 블레이드/각형 셀 공간 효율 및 변형 억제를 위한 폼팩터 비례식 정의 특허 출원",
+            "whyNotable": "대형 셀의 변형 및 두께 팽창에 따른 케이스 파손과 불필요한 여분 공간 문제를 해결하고자 하는 기술입니다. 케이스 벽 사이 거리(D1)와 외표면적(S) 간 비례 관계(S/D1^2)를 정의하여 용량 밀도와 기계적 구조 강도를 제어합니다.",
+            "evidenceQuote": "제1 케이스 벽과 제2 케이스 벽 사이의 거리(D1)와 제2 케이스 벽의 외표면적(S) 간 비례 관계(S/D1^2)를 정밀 정의하여 기계적 강도와 팩 용적율을 상호 최적화합니다.",
+            "factLevel": "직접 인용",
+            "internalCheckQuestion": "당사 대형 각형/블레이드 셀 설계의 팽창 제어용 폼팩터 용적 효율성 지수(S/D1^2 비례식 등)는 기준 얼마인지, 이 경쟁사 비례 설계 기준과 비교 확인 필요",
+            "tags": [
+              "#대형셀폼팩터",
+              "#팩용적율",
+              "#팽창제어"
+            ],
+            "source": "CATL",
+            "date": "2026-09-10",
+            "url": "https://patents.google.com/patent/US2026269380A1/en"
           }
         ]
       },
@@ -18393,36 +18389,34 @@
         "name": "시장·공급망 동향 벤치마킹",
         "items": [
           {
-            "headline": "BAIC의 자산 매각 및 CATL Choco-Swap 배터리 교환 네트워크 합류",
-            "whyNotable": "BAIC Motor가 자체 배터리 교환 자산을 매각하여 자금을 확보하고, 모회사를 통해 CATL의 Choco-Swap 배터리 교환 네트워크에 참여하는 협력을 확대하고 있습니다. 독자 인프라 구축 대신 플랫폼 기업과의 네트워크 통합을 추진하는 전략 변화를 보여줍니다.",
-            "evidenceQuote": "BAIC Motor aims to free up capital through the sale, while its parent is working with CATL to bring more models onto the battery maker's swap network.",
-            "factLevel": "간접 서술",
-            "internalCheckQuestion": "당사 배터리 교환(Swap) 대응 플랫폼 개발 검토 수준은 어디까지인지, 이 경쟁사 수치(있으면)와 비교 확인 필요",
+            "headline": "포드, CATL 라이선스 기술 적용 미시간 공장산 각형 LFP 배터리 셀 첫 출하",
+            "whyNotable": "포드가 미시간 공장에서 CATL 라이선스 기술을 활용해 생산한 각형 LFP 배터리 셀의 첫 출하를 시작했습니다. 이는 해외 완성차 업체의 중국 기술 라이선싱 기반 글로벌 생산체제 구축 동향을 보여줍니다.",
+            "evidenceQuote": "포드, '中 CATL 기술 적용' 미국산 각형 LFP 배터리 첫 출하",
+            "factLevel": "직접 인용",
+            "internalCheckQuestion": "당사 각형 LFP 배터리 셀 양산 로드맵 및 생산 원가는 kWh당 얼마인지, 이 경쟁사 기술 출하 스펙 및 구조와 비교 확인 필요",
             "tags": [
-              "#BAIC",
-              "#CATL",
-              "#ChocoSwap",
-              "#배터리교환"
+              "#LFP기술라이선스",
+              "#각형LFP",
+              "#북미생산기지"
             ],
-            "source": "CnEVPost",
-            "date": "2026-11-18",
-            "url": "https://cnevpost.com/2026/11/18/baic-motor-to-sell-battery-swap-assets/"
+            "source": "더구루",
+            "date": "2026-11-19",
+            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBpVFpyTFNvcUUxMC1HVmpSVENIMXRWanVld3BGdzlkNXk4YXZMZGFqbGtueDhBT3gyblY5MElTbC1YZXFlWno3QVNMbS0yVWx4SDZwNkU1QWY3d0k0RlFpSG9tYw?oc=5"
           },
           {
-            "headline": "포스코그룹-CATL 간 2028년까지 배터리용 리튬 장기 공급 계약 체결",
-            "whyNotable": "포스코그룹이 글로벌 배터리 업체인 CATL과 2028년까지 3년간 배터리용 리튬을 장기 공급하는 계약을 체결했습니다. 양극재 및 배터리 공급망 내 원소재의 장기적 수급 안정성을 확보하는 핵심 거래입니다.",
-            "evidenceQuote": "포스코그룹, 中 CATL과 리튬 장기공급계약…2028년까지",
+            "headline": "중국 10월 동력 배터리 탑재량 99.4 GWh 기록 및 LFP 점유율 86.9% 달성",
+            "whyNotable": "2026년 10월 중국 내 동력 배터리 설치량이 전년 동기 대비 18.2% 증가한 99.4 GWh를 기록했습니다. 특히 전체 탑재량 중 LFP 배터리의 비중이 86.9%에 도달하여 시장 내 LFP 플랫폼의 주류화 정착 현상을 구체적 수치로 증명합니다.",
+            "evidenceQuote": "China's power battery installations rose 18.2% year-on-year in October to a record 99.4 GWh, with LFP batteries accounting for an 86.9% market share.",
             "factLevel": "직접 인용",
-            "internalCheckQuestion": "당사 배터리용 수산화/탄산리튬의 장기 공급계약 확보 기간은 몇 년 기준인지, 이 경쟁사 수치(2028년까지)와 비교 확인 필요",
+            "internalCheckQuestion": "당사 글로벌 시장 출하 팩 중 LFP 배터리 적용 비중은 % 기준 얼마인지, 이 중국 시장 점유율 수치(86.9%)와 비교 확인 필요",
             "tags": [
-              "#포스코",
-              "#CATL",
-              "#리튬 supplychain",
-              "#장기계약"
+              "#LFP시장점유율",
+              "#중국배터리탑재량",
+              "#99.4GWh"
             ],
-            "source": "페로타임즈",
-            "date": "2026-11-18",
-            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5ubVQ0TEprdDFiYWJZT2YtdzlURUQyanB5dm5ISzd1UHp0T3FPb0lYZlBqSVVHT1lhMDNWM2FFTDJIdExpVXRoaFpjRmJyQWNPNEwwZmFhZC1pbE13MGRpdHZBZVNyb1F3YzRYUQ?oc=5"
+            "source": "CnEVPost",
+            "date": "2026-11-19",
+            "url": "https://cnevpost.com/2026/11/19/china-oct-2026-power-battery-installations/"
           }
         ]
       }
@@ -18553,56 +18547,41 @@
   "newsCandidateCount": 120,
   "regulationRadar": [
     {
-      "id": "EU-0",
-      "region": "EU",
+      "id": "CN-0",
+      "region": "CN",
       "sourceKind": "news",
-      "title": "Korea sends trade chief to Hungary to support battery firms amid tightening regulations - Batteries News",
-      "titleKo": "한국, 규제 강화 속 배터리 기업 지원 위해 헝가리에 통상 수장 파견 - 배터리 뉴스",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQUG1JaUlySEtyOVVxLUFTRXJMTGZEdHAzbG8tWkJNeXZWZzItdkk2bkd3dU9xNDJnLU81ZFhkSGxlRVFWYkFCYWU5OHNmdDZvTnlWdVVsSEdSWEY5TGtsbTd0Y1BjSnhRTmJpUnNmNHFwb3R6ZERST1VMTW9BVHdnMHpqZXJadW0ybm1JeWI3aHZTYmxKSFk0ZUZqLVUwVmw0UzMzQl9RUXdwWTlJUFMwNzNFSHE?oc=5",
-      "source": "Batteries News",
-      "date": "2026-11-16",
-      "status": "논의중",
-      "effectiveDate": null,
-      "category": "통상/규제",
-      "impact": "중",
-      "summary": "규제 강화에 대응해 한국 통상 당국자가 현지 진출 배터리 기업들을 지원하기 위해 헝가리를 방문했습니다."
-    },
-    {
-      "id": "EU-2",
-      "region": "EU",
-      "sourceKind": "news",
-      "title": "The EU Batteries Regulation explained: what changes before February 2027. Industry blog in Forkliftaction News - Forkliftaction",
-      "titleKo": "EU 배터리 규정 설명: 2027년 2월 전까지 변경되는 사항. 지게차작동 뉴스 산업 블로그 - Forkliftaction",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOTXRQYjBXWDNfcTFpX3BIYmR4RzdWWHlZaTRhNDVTQUVnT0x3VkYwYWpTTVdMZVRzMklJMkRGUi04ekdlSUtidHZRWkxWbzdDY1BKYXh2c0lsUU0tLThZaGxGc2RYSTRrakNmTFRKbzE3bFpjY2FQWFRNeUNzWERTWTVPbnRIRVNhS2lrY3M1ZUFSUktjTTFhblpWLTVkUlZzTXkyTnJ0RURVbEgxSjl1NkFYcjNWb2k1SUlDSw?oc=5",
-      "source": "Forkliftaction",
-      "date": "2026-11-12",
-      "status": "시행예정",
-      "effectiveDate": "2027-02",
-      "category": "환경/규제",
-      "impact": "상",
-      "summary": "2027년 2월 이전에 변경되는 EU 배터리 규정의 주요 내용과 이에 따른 산업 영향에 대해 설명합니다."
-    },
-    {
-      "id": "EU-3",
-      "region": "EU",
-      "sourceKind": "news",
-      "title": "Battery Passport: Recyclers and Repurposers, Now Is the Time to Speak Up - Batteries News",
-      "titleKo": "배터리 패스포트: 재활용 및 재사용 업체, 지금 목소리를 내야 할 때 - 배터리 뉴스",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOS2dnY1EyYUFvTVFaV1VKalZkN2NMd1VneWlOOUVobTFfTTYxY3JITmIzbzNGdDNXSG9JbldPSkItbVhPenBaMEh4SDdySm5wX09hSnlvcVB0blBGYmhMdzg1LXkxeGJkV01PQXdIdUwyR3VkTHRQWlRpLVl5eWVYNGluclNWSEo4XzFVZXhlUnI1TUdqeC0wX05uYUpjUQ?oc=5",
-      "source": "Batteries News",
-      "date": "2026-11-12",
-      "status": "논의중",
+      "title": "商务部等9部门加强废旧动力电池回收处理 电池回收行业迎政策东风 - 财联社电报",
+      "titleKo": "상무부 등 9개 부처 폐동력 배터리 회수 처리 강화, 배터리 회수 업계 정책 훈풍 맞아 - 재련사 전보",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9kb3RsWlR1QTF5d29ta2o3QVNjRk8yYzg4aGZ4V3hvb2dvMkhnYWNiUVNnY1pyS2JhaWl5X182Ym9MNEFITHc?oc=5",
+      "source": "财联社电报",
+      "date": "2026-11-18",
+      "status": "시행중",
       "effectiveDate": null,
       "category": "환경/재활용",
       "impact": "중",
-      "summary": "배터리 패스포트 도입에 따라 재활용 및 재사용 업계의 의견 수렴과 참여 필요성을 다룹니다."
+      "summary": "상무부 등 9개 부처가 폐동력 배터리 회수 및 처리 강화를 추진하여 배터리 재활용 산업이 정책적 지원을 받게 되었습니다."
+    },
+    {
+      "id": "CN-2",
+      "region": "CN",
+      "sourceKind": "news",
+      "title": "【中经社信号】政策发力推进生态优化 动力电池回收格局或加速重构 - 中国金融信息网",
+      "titleKo": "【중경사 신호】 정책 발효로 생태 최적화 추진, 동력 배터리 회수 구도 가속 재편 가능성 - 중국금융정보망",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1TamNaazIwZ2ZaQUZyZXRTc3psS1l6SWZ6Vy01M2tUMnhJVmF0Ykd5UmNoWnR0WTRSSGdWZHpsNHhOTktjajhyOVVXMGZtVTZ5a2V2aU1ZZjdpaEd4SE8yNXZfdTdQb3pXU0E?oc=5",
+      "source": "中国金融信息网",
+      "date": "2026-11-17",
+      "status": "시행중",
+      "effectiveDate": null,
+      "category": "환경/재활용",
+      "impact": "중",
+      "summary": "정책 추진에 따라 생태계 최적화가 진행되면서 동력 배터리 회수 시장 구조의 재편이 가속화될 것으로 전망됩니다."
     },
     {
       "id": "KR-4",
       "region": "KR",
       "sourceKind": "news",
       "title": "【데일리 ESG 정책 브리핑】ESS·폐배터리 규제 18건 개선 - 임팩트온",
-      "titleKo": "【데일리 ESG 정책 브리핑】ESS·폐배터리 규제 18건 개선 - 임팩트온",
+      "titleKo": "【데일리 ESG 정책 브리핑】 ESS·폐배터리 규제 18건 개선 - 임팩트온",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5hSDNwTm9WbkhtSDJxTlhfN0dfVGpmb0V4V2pzbkV4NlFqdkxYUl93QzIwak5sX1lyQTNkZXpVMFJ0NF90eVhIbHgwRGJuSUFTbnVWbkJfRW1IXy15TkNWN1c3aV9HS1VrOHc?oc=5",
       "source": "임팩트온",
       "date": "2026-11-03",
@@ -18610,7 +18589,7 @@
       "effectiveDate": null,
       "category": "환경/재활용",
       "impact": "중",
-      "summary": "ESS 및 폐배터리와 관련된 규제 18건이 개선되었습니다."
+      "summary": "ESS 및 폐배터리 관련 규제 18건에 대한 개선이 추진됩니다."
     },
     {
       "id": "KR-5",
@@ -18625,179 +18604,59 @@
       "effectiveDate": null,
       "category": "환경/재활용",
       "impact": "중",
-      "summary": "ESS 및 폐배터리 관련 규제를 정비하여 이차전지 산업의 경쟁력 강화를 지원합니다."
+      "summary": "ESS 및 폐배터리 규제를 정비하여 이차전지 산업의 경쟁력 강화를 지원합니다."
     },
     {
       "id": "EU-6",
       "region": "EU",
       "sourceKind": "news",
+      "title": "EU Battery Regulation 2027: Article 11 Requirements - TÜV SÜD",
+      "titleKo": "EU 배터리 규정 2027: 제11조 요구사항 - TÜV SÜD",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPT1lnbE9TMkZ3RE9pdWRnOG9aa0Qwek82YnJiWVY5b1ZmUXl5bFZ3Nl9MTjNjOXNpVHBPYnBIWmpGSkRvMzV5bGJKX1lydExRbXU0WUdEbU9xMFlqeFl5dmhnR1g5R1RRSjJNLWRwY2RDRTM1cDhPSEpNYXozUElGS3dLWG5zczlyMUcya0EwMU5tVVVqcnJ0WGxoN2d1SnctOTdhVXJFTjJJeGVnSlNHbFdLOTRteHpXQ2NjTy1RWQ?oc=5",
+      "source": "TÜV SÜD",
+      "date": "2026-10-15",
+      "status": "시행예정",
+      "effectiveDate": "2027-01",
+      "category": "인증/안전",
+      "impact": "상",
+      "summary": "2027년 EU 배터리 규정의 제11조 요구사항에 관한 내용을 다룹니다."
+    },
+    {
+      "id": "EU-7",
+      "region": "EU",
+      "sourceKind": "news",
       "title": "Why the EU Digital Product Passport Will Reshape Compliance for Battery Manufacturers in 2027 - Z2Data",
-      "titleKo": "EU 디지털 제품 패스포트가 2027년 배터리 제조업체의 컴플라이언스를 재편하는 이유 - Z2Data",
+      "titleKo": "EU 디지털 제품 여권이 2027년 배터리 제조업체의 컴플라이언스를 재편하는 이유 - Z2Data",
       "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxONmgybWh3WVp6YzRIcmFsY1FiMnNUTWQxOTMtYzZkUWNiYmxmSzRNaURJV2dHOFdoYjBEOVdNT3FKY3Fkc1ZkTGFrRWxXVFdHN1BPWVprVWlnYmdGdmdxUFhZZTY4MmdHSkZYV3NuQ3FBclZ2RGR5S2lBNGZVRGNmZmdnNW02X1lZVW1nQzZuVEdUS1A4Y3REV2p2dkJ5VUZGNDJtNGVtY0VxYnB5MUhpWENwNjE4c2k4a2lrNVZqdnY4akxa?oc=5",
       "source": "Z2Data",
       "date": "2026-10-14",
       "status": "시행예정",
-      "effectiveDate": null,
-      "category": "환경/규제",
-      "impact": "상",
-      "summary": "2027년 도입될 EU 디지털 제품 패스포트가 배터리 제조사의 컴플라이언스 체계를 어떻게 변화시키는지 분석합니다."
-    },
-    {
-      "id": "EU-8",
-      "region": "EU",
-      "sourceKind": "news",
-      "title": "Three years on: how much has the EU Batteries Regulation changed the BESS market? - Energy-Storage.News",
-      "titleKo": "3년 경과: EU 배터리 규정은 BESS 시장을 얼마나 변화시켰는가? - Energy-Storage.News",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNMk1tR3l2aEtla3BjaFBOalhZVTcwZDVBRzFNdkNzMVNZMWQwekxpVmszTDcwRHgyTWRQZ2d5VHZFTjFqNWN0ckZZRlhwb0dRM0lnQnI0ZkJRX3JBR3QxNjA4elVtVVR6elJ0VjZBclMxTWVwVlBrY1hYTG9XS1BwMUYwMWhsR0x2N2NYd0IwVURKV04tZUZwRU15TDQ0bXRaVWs2TzBFRlQzMmdNRGpYSG93?oc=5",
-      "source": "Energy-Storage.News",
-      "date": "2026-09-01",
-      "status": "시행중",
-      "effectiveDate": null,
-      "category": "환경/규제",
-      "impact": "중",
-      "summary": "EU 배터리 규정 시행 3년 차를 맞아 BESS 시장에 미친 변화와 영향을 점검합니다."
-    },
-    {
-      "id": "KR-9",
-      "region": "KR",
-      "sourceKind": "news",
-      "title": "중국 전기차 배터리 안전 규제 강화의 파장 - 한국공공정책신문",
-      "titleKo": "중국 전기차 배터리 안전 규제 강화의 파장 - 한국공공정책신문",
-      "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1sc21VVU1RVXllSFFHZDRFb2MtaVE0Q1g1V2RHSm9qeHgtX1NsckhNTTNJT2RLbW9ZRkZSVElHRENJLXM?oc=5",
-      "source": "한국공공정책신문",
-      "date": "2026-07-06",
-      "status": "논의중",
-      "effectiveDate": null,
+      "effectiveDate": "2027-01",
       "category": "인증/안전",
       "impact": "상",
-      "summary": "중국의 전기차 배터리 안전 규제 강화가 관련 산업계에 미치는 파장을 다룹니다."
+      "summary": "2027년 EU 디지털 제품 여권 도입이 배터리 제조업체의 규정 준수 방식에 미치는 영향에 대해 다룹니다."
     },
     {
-      "id": "KR-10",
-      "region": "KR",
-      "sourceKind": "news",
-      "title": "中 전기차 '지커 7X' 국내인증 통과 - 한국경제",
-      "titleKo": "中 전기차 '지커 7X' 국내인증 통과 - 한국경제",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFAwWmVRcmFQRjFtX2xXSlVMSjQ5RUpYdHdob19sQXZsQUltdHlfU0NBZkxsVlI5VXpLRlFLTmFrVDUyWm1TV1A4eTVHUkt6RHlpV0phaTZSQVVudw?oc=5",
-      "source": "한국경제",
-      "date": "2026-05-29",
-      "status": "시행중",
-      "effectiveDate": null,
-      "category": "인증/안전",
-      "impact": "중",
-      "summary": "중국 전기차 지커 7X 모델이 국내 안전 및 차량 인증을 통과했습니다."
-    },
-    {
-      "id": "KR-11",
-      "region": "KR",
-      "sourceKind": "news",
-      "title": "기후부 \"60점 못 넘으면 전기차 보조금 0원\"…테슬라·BYD 투자 시험대 - KB Think",
-      "titleKo": "기후부 \"60점 못 넘으면 전기차 보조금 0원\"…테슬라·BYD 투자 시험대 - KB Think",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9KNXBxNGJxR0JZcy1MX1FvWW1hd205RnQwWVBVdjBkN3NvT2ZGSWExUWZ5X0NoUGNYQ0RuSlVwUzB2ZHFqR21QYkpRVWp0YlZNV0ZONlFteUFtNlh0UUtwc3NnYUx2dmlrc0dmRGU4YXAwdw?oc=5",
-      "source": "KB Think",
-      "date": "2026-05-13",
-      "status": "논의중",
-      "effectiveDate": null,
-      "category": "보조금/세제",
-      "impact": "상",
-      "summary": "기후부가 평가 점수 60점을 넘지 못하는 전기차에 보조금을 지급하지 않기로 결정함에 따라 주요 외산 브랜드들의 투자에 시험대가 되고 있습니다."
-    },
-    {
-      "id": "EU-13",
-      "region": "EU",
-      "sourceKind": "news",
-      "title": "The Real Stakes for Compliance Professionals With the EU Battery Regulation - Z2Data",
-      "titleKo": "EU 배터리 규정과 관련해 컴플라이언스 전문가들이 직면한 실제 문제들 - Z2Data",
-      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZkxGN005dnd0dGEwdHo2cUwzWHRCYkxYcTRIeGRKNmNhTGp1VzZNQkZ1U2xDamE4c2RKeFQxa0RxN2RaaEZJejVzSWJYVk41VkFmYmhKTGNzb3hhbDJHSzFhVXRoNVJ1T09hM0hWVUpwZTZvZ2RuekVPTlE5SnJOaklVMFNnTVY5Mk85RE5reXF0eWI0QVdPNVlBb0E1SjRDOGlESG9Mc2lNRno0?oc=5",
-      "source": "Z2Data",
-      "date": "2026-03-24",
-      "status": "시행중",
-      "effectiveDate": null,
-      "category": "환경/규제",
-      "impact": "중",
-      "summary": "EU 배터리 규정 준수를 위해 컴플라이언스 담당자가 실질적으로 직면한 과제와 규제적 영향을 다룹니다."
-    },
-    {
-      "id": "EU-14",
-      "region": "EU",
-      "sourceKind": "news",
-      "title": "How transparency and regulation are reshaping the European battery economy - www.bestmag.co.uk",
-      "titleKo": "투명성과 규제가 유럽 배터리 경제를 재편하는 방식 - www.bestmag.co.uk",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOUk5IM0lXcXM4SkNZU2FrRDRkNHBUOHJjOHFyUGR1blhsTFhRMi0tNjllZkdwN0ZLZmlBY1IzRG9HcHZwdnkyOV9GaXNRS0R2Y0pweTBmQktHUW5pcXVQU1lGVjF6d1RYMEc5Yms3T3d6cS1ObEdZLWtYOXZiUE5pNGplUVFLWXJ5NnNndFlQVmI2R1U?oc=5",
-      "source": "www.bestmag.co.uk",
-      "date": "2026-02-06",
-      "status": "시행중",
-      "effectiveDate": null,
-      "category": "환경/규제",
-      "impact": "중",
-      "summary": "투명성 강화 및 규제 도입이 유럽 배터리 산업 생태계를 재편하는 과정을 다룹니다."
-    },
-    {
-      "id": "CN-15",
+      "id": "CN-11",
       "region": "CN",
       "sourceKind": "news",
       "title": "废旧动力电池综合利用红线划定（政策解读） - 人民日报",
-      "titleKo": "폐동력배터리 종합이용 마지노선 설정 (정책 해설) - 인민일보",
+      "titleKo": "폐동력 배터리 종합 이용 레드라인 설정 (정책 해석) - 인민일보",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE52Rmd2dTNCTzNZdkNheDhQQzlJVjh2UGRhQy0ycENUa1c1QzFpYU1JTGxRd092MHdQbExZZEp2UVZvZG56X0d1QjZrY2NxUEN1a1VxT3BwNWFUYXVTdW1HOGxFNnQ2Z1RRZW5XZ05EMWY1V1ZXY29uVHBVX29EalU?oc=5",
       "source": "人民日报",
       "date": "2026-01-17",
       "status": "시행중",
       "effectiveDate": null,
       "category": "환경/재활용",
-      "impact": "상",
-      "summary": "폐배터리(동력 배터리)의 종합 이용에 관한 정책적 기준과 마지노선에 대한 정책 해설입니다."
-    },
-    {
-      "id": "KR-16",
-      "region": "KR",
-      "sourceKind": "news",
-      "title": "‘내연차량을 전기차로 전환’ 제이엠웨이브, 컨버전 포터 안전인증 완료 시장활성화 기대감 - 전기신문",
-      "titleKo": "‘내연차량을 전기차로 전환’ 제이엠웨이브, 컨버전 포터 안전인증 완료 시장활성화 기대감 - 전기신문",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBUWU9IV01SUWlTRmVsQ09RZjAxdjNaMWNXQ1pvc3NtRElaODRmUURDdUVRVDNsNVZDM3NiNHQ2SEZxbkZJVWQwWWpRc3dBeVdCV1c1Y1l1WU4zb281aXF5ZS0wVEZkLWpUSEpyaNIBcEFVX3lxTE1hUEp6a3VfcXFXSVRzZ3RjUXFRd09oTkltLTBRMV9vLWlpdmFCdGs2UUtXWWh6OTRGMTVUWEdPc3lxLW5IdjNtY1RXSDczckFhdkhiMndKUGhVaWRKZUw0Y29sc0JXMHRJN1dXMUdDUUU?oc=5",
-      "source": "전기신문",
-      "date": "2025-10-25",
-      "status": "시행중",
-      "effectiveDate": null,
-      "category": "인증/안전",
       "impact": "중",
-      "summary": "내연기관 차량의 전기차 개조(컨버전 포터)에 대한 안전인증이 완료되어 시장 활성화가 기대됩니다."
+      "summary": "폐동력 배터리의 종합 이용에 대한 정책 가이드라인 및 기준선(레드라인)을 설정했습니다."
     },
     {
-      "id": "EU-17",
-      "region": "EU",
-      "sourceKind": "news",
-      "title": "BATRAW Project: Building Europe’s battery recycling future - Innovation News Network",
-      "titleKo": "BATRAW 프로젝트: 유럽 배터리 재활용의 미래 구축 - 혁신 뉴스 네트워크",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPTjRwbURGdXVOU1RLS3hXN1Rfcm9mT1RuWDBYcVppME5jSlBHLUVTaDNUS250UlQ5RmdVSjExYUdFYWxaeWMyX2RxSDBEd29rczR5Zm5nTTJWNmt6VW9FckQtb2hwRTFIcmdDbmJVUWMwU0NCcGpuU0pqZDA2SjFfZkJRME1Sa2Y0R1QyT0hUZVI2Q3pETG9FRUNxeTBUMEx1ZjZJ?oc=5",
-      "source": "Innovation News Network",
-      "date": "2025-08-04",
-      "status": "논의중",
-      "effectiveDate": null,
-      "category": "환경/재활용",
-      "impact": "중",
-      "summary": "유럽 내 배터리 재활용 기반을 구축하기 위한 BATRAW 프로젝트의 내용을 소개합니다."
-    },
-    {
-      "id": "KR-20",
-      "region": "KR",
-      "sourceKind": "news",
-      "title": "전기차 배터리 안전성, 정부가 직접 인증… 이달부터 시행 - 디일렉",
-      "titleKo": "전기차 배터리 안전성, 정부가 직접 인증… 이달부터 시행 - 디일렉",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE83dWdnR2c1OWw5cUxrWWJ5azU5ODJySTBGbWZvYzVDRUFTWWxMblJHOUdZU3JRUmNHb1hjOTE0Ti1JcDdBMEJyZ1gxSFJ0dzRlQU42MUc5MTl4Rl84RTRwUE5OOVA0QQ?oc=5",
-      "source": "디일렉",
-      "date": "2025-02-17",
-      "status": "시행중",
-      "effectiveDate": null,
-      "category": "인증/안전",
-      "impact": "상",
-      "summary": "전기차 배터리 안전성을 정부가 직접 검증하고 인증하는 제도가 해당 월부터 시행됩니다."
-    },
-    {
-      "id": "CN-21",
+      "id": "CN-16",
       "region": "CN",
       "sourceKind": "news",
       "title": "循环经济时代下新能源汽车动力电池回收行业法律合规要点 - Lexology",
-      "titleKo": "순환 경제 시대 신에너지 자동차 동력 배터리 재활용 산업의 법률 합규 요점 - Lexology",
+      "titleKo": "순환 경제 시대 신에너지 자동차 동력 배터리 회수 산업 법률 합규 핵심 포인트 - Lexology",
       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOZl95NTA3Ym5lX3R0T2p2MVMwaUhXNVhrekd4ZEYxV0E5NWFrTjM1ZEh6bWdOTHN4djV3aGNxSEJTaTRpNnJfb3MtbmRkV2t6Nl9DVldiSXJkUmxpXzg0SW9SdDBoVHJKR0VoT1ZkSHZ3WW1EY3pMTXBUWkRPeHFoV3BkTkJ3dDYzWENV?oc=5",
       "source": "Lexology",
       "date": "2024-11-24",
@@ -18805,25 +18664,40 @@
       "effectiveDate": null,
       "category": "환경/재활용",
       "impact": "중",
-      "summary": "순환 경제 시대의 신에너지 자동차 동력 배터리 재활용 산업에 대한 법률 준수 요점을 안내합니다."
+      "summary": "순환 경제 시대에서 신에너지 자동차 동력 배터리 회수 산업의 법률 합규(컴플라이언스) 핵심 포인트를 설명합니다."
+    },
+    {
+      "id": "CN-18",
+      "region": "CN",
+      "sourceKind": "news",
+      "title": "补贴退场，新能源汽车如何“续航”？ - 人民日报",
+      "titleKo": "보조금 퇴장, 신에너지 자동차 어떻게 '지속 운행'할 것인가? - 인민일보",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9PbmktX01hWkNVVEJvTE9jSDRxcm9jeTZ3MFdsMmRhUzRZc1M5TkhyREhYZXpNdlFIYXdFOVFnTmc0NHNOTGt2NUVGRUxVNG8yaXZsdVA3ZFRiWk83a2Q2VW8xYkp5MEUwN042bVVlSlJwemhVRFhuVXNBbw?oc=5",
+      "source": "人民日报",
+      "date": "2023-02-21",
+      "status": "단계적 축소",
+      "effectiveDate": null,
+      "category": "보조금/세제",
+      "impact": "중",
+      "summary": "신에너지 자동차 보조금 폐지 이후의 지속 대응 방안에 대해 다룹니다."
+    },
+    {
+      "id": "CN-19",
+      "region": "CN",
+      "sourceKind": "news",
+      "title": "苗圩：新能源汽车补贴政策退出影响可控 - 财新网",
+      "titleKo": "묘위: 신에너지 자동차 보조금 정책 퇴출 영향 통제 가능 - 재신망",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5IYnQ3OWU3aWNzUWg2eHpGb21Wa2UwRk9meTkxQmlVMXVxWmVQMWxJVnhSV281cXBVR3ROeFJmbFZpUWR5b2NISWQ3eEt4Sms0b2FtR25wdjQ0c1V0?oc=5",
+      "source": "财新网",
+      "date": "2023-02-17",
+      "status": "단계적 축소",
+      "effectiveDate": null,
+      "category": "보조금/세제",
+      "impact": "중",
+      "summary": "신에너지 자동차 보조금 정책 폐지로 인한 영향이 통제 가능한 수준이라고 분석합니다."
     },
     {
       "id": "CN-24",
-      "region": "CN",
-      "sourceKind": "news",
-      "title": "中国境内外动力电池回收投资法律要点 - Lexology",
-      "titleKo": "중국 국내외 동력 배터리 재활용 투자 법률 요점 - Lexology",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOMDgyc1QzV3F4SkVDbEVINk1OQTdxN1lyR2VLdVI0aHpOY0c1OFc3dUc4ME95RE03XzlvcDV1NXRBVVYwOVY5bGp6RU1TR1YxdVJXUnljcmR5SlFCeVVvNGpmQWVmOVdtVjBtemlLNnJQbTAwaTh0azdYRkVuVmVLYU5IWmpmSXhuUTdj?oc=5",
-      "source": "Lexology",
-      "date": "2023-02-20",
-      "status": "시행중",
-      "effectiveDate": null,
-      "category": "환경/재활용",
-      "impact": "중",
-      "summary": "중국 국내외 동력 배터리 재활용 투자의 법적 컴플라이언스 고려 사항을 다룹니다."
-    },
-    {
-      "id": "CN-27",
       "region": "CN",
       "sourceKind": "news",
       "title": "退坡10%，2020年新能源汽车补贴政策公布 - 观察者网",
@@ -18834,65 +18708,110 @@
       "status": "단계적 축소",
       "effectiveDate": null,
       "category": "보조금/세제",
-      "impact": "상",
-      "summary": "신에너지 자동차 보조금이 10% 축소되는 내용이 포함된 2020년 보조금 정책이 발표되었습니다."
+      "impact": "중",
+      "summary": "보조금이 10% 축소되는 2020년 신에너지 자동차 보조금 정책이 발표되었습니다."
     },
     {
-      "id": "KR-30",
-      "region": "KR",
+      "id": "CN-25",
+      "region": "CN",
       "sourceKind": "news",
-      "title": "中 전기차 배터리 인증기준 40배 올려 - 매일건설신문",
-      "titleKo": "中 전기차 배터리 인증기준 40배 올려 - 매일건설신문",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQQ2ZTcnVDZXlXdlZycDVPUERzcWdjWjhFX0wwQ3l5dWFXVDN4aHRZSEZzaFJjMThCWFF4cnYzaFY2UWIxVndIWFB1Zm9oM0pJYzBGZTJwTTZwRnI4Tm9PV3c3aVA1WWg2SGxTVzQtWHVMMHQwN0Jobm1FZi03Zy1adm12WHNzQlJMRzhRR0tWY0pLMUc0RTJZQkxyX21FRnZ1TVVtVmVzdW1WOFVaUDJQc2hXaWh0NXFYWkhrcThDVjlONjBjV1lhR1dn?oc=5",
-      "source": "매일건설신문",
-      "date": "2016-11-24",
+      "title": "《深圳市2019-2020年新能源汽车推广应用财政补贴实施细则》政策解读 - 深圳政府在线",
+      "titleKo": "《선전시 2019-2020년 신에너지 자동차 보급 응용 재정 보조금 실시 세칙》 정책 해석 - 선전정부온라인",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9DZGdMd2NSWXZIN1NoazZ0bEk1amFlUFdYa2NZdWc5R0l1b28xUW5waFF2VzkxVDZaLWkzQi1BcGgzZTRjS0w1TmhoOU1BWkhLeVdEeXZrODQ2a291WDhmSHAzVGJRNWM?oc=5",
+      "source": "深圳政府在线",
+      "date": "2020-03-13",
       "status": "시행중",
       "effectiveDate": null,
-      "category": "인증/안전",
-      "impact": "상",
-      "summary": "중국 정부가 전기차 배터리의 인증 기준을 기존 대비 40배 상향 조정했습니다."
+      "category": "보조금/세제",
+      "impact": "중",
+      "summary": "선전시의 2019-2020년 신에너지 자동차 보급 응용 재정 보조금 실시 세칙에 대한 정책 해설입니다."
+    },
+    {
+      "id": "CN-26",
+      "region": "CN",
+      "sourceKind": "news",
+      "title": "一文看懂补贴政策驱动下的新能源“十年” - 中国汽车工业协会",
+      "titleKo": "글 하나로 읽는 보조금 정책 주도 하의 신에너지 '10년' - 중국자동차공업협회",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1LVklIZzV1WUotY183T2JFdlFfRjJ5SE5rcTM3aEpfeDBic1JWOVhSdUdReF91LVNDTW0tMEVBeFhtVDN6VkM4cU0xR255elJTRXpKZlN1WE1tUQ?oc=5",
+      "source": "中国汽车工业协会",
+      "date": "2018-12-03",
+      "status": "시행중",
+      "effectiveDate": null,
+      "category": "보조금/세제",
+      "impact": "중",
+      "summary": "보조금 정책 변화에 따라 추진되어 온 신에너지 자동차 산업 10년의 과정을 정리합니다."
+    },
+    {
+      "id": "KR-27",
+      "region": "KR",
+      "sourceKind": "news",
+      "title": "韓배터리 단 中전기버스, 우리 정부 보조금 첫 획득…中정부와 딴판 - 전자신문",
+      "titleKo": "韓배터리 단 中전기버스, 우리 정부 보조금 첫 획득…中정부와 딴판 - 전자신문",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5XU3g1OVpEeWo2VDR0ZjdDZ1lacm9RQXFvdFpaM3M1Y3hjTjhzM2p1VHo0LTMzTTZaMGducnk2djM4dnZfdmE3S3hzeTNkQQ?oc=5",
+      "source": "전자신문",
+      "date": "2017-04-03",
+      "status": "시행중",
+      "effectiveDate": null,
+      "category": "보조금/세제",
+      "impact": "중",
+      "summary": "한국산 배터리를 탑재한 중국산 전기버스가 한국 정부의 보조금을 최초로 획득했습니다."
+    },
+    {
+      "id": "CN-28",
+      "region": "CN",
+      "sourceKind": "news",
+      "title": "补贴并非万全之策，中国需要什么样的新能源汽车激励政策？ - International Council on Clean Transportation",
+      "titleKo": "보조금이 만능책은 아니다, 중국에 필요한 신에너지 자동차 인센티브 정책은 무엇인가? - International Council on Clean Transportation",
+      "url": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxNRVRFSmY2Y041akp0S0c2SlhiRzZNR0h6bk9BajNieW4xSnFWYWI4b1pxaHdIOHlDU0NfX1AxRlQxYkx1Q2xId2Y1SFZlWXJlWFBMVUVHRjBPbVRVaUFNSDI3OTdPQ1I2QmxFVmp1RmdndVYwcjBrZ3V5d25RWDBEZDRaYm8xdnhSTlRBMjU1N0VkX2pPX1hJa3hUSW1PazFFUl9LTWd6a01ydHA5YlBaUEF4UDdKSFN3UlNYaDRoc21EUFQwM1NJdFliSDYyVXowRnhBbmI1VHlsaFZmREU3OXc1Yy1OYU5zWXc0RzFsWjJGdzZqbl80RlIxOU9Sc0I3TllFamF3a015MnMyVFc0aW42T3lRR3RTaS1GVTBvLUt5c2Q2dFRfX1M2YWprMFI3RWVCa0l5UjVCZXo1ZDRpQw?oc=5",
+      "source": "International Council on Clean Transportation",
+      "date": "2014-05-07",
+      "status": "논의중",
+      "effectiveDate": null,
+      "category": "보조금/세제",
+      "impact": "중",
+      "summary": "중국 신에너지 자동차 시장에 필요한 효과적인 인센티브 정책 방안에 대해 분석합니다."
     }
   ],
   "status": {
     "vehicles": {
       "lastSuccessAt": "2026-11-18T17:40:29.988149+09:00",
-      "lastAttemptAt": "2026-11-18T17:40:29.988149+09:00",
-      "state": "ok",
-      "reason": "",
+      "lastAttemptAt": "2026-11-19T17:56:22.265125+09:00",
+      "state": "failed",
+      "reason": "ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAIL",
       "staleAfterHours": 36,
       "lastAddedAt": "2026-11-18T17:40:29.988149+09:00"
     },
     "news": {
-      "lastSuccessAt": "2026-11-18T17:40:29.988149+09:00",
-      "lastAttemptAt": "2026-11-18T17:40:29.988149+09:00",
+      "lastSuccessAt": "2026-11-19T17:56:22.265125+09:00",
+      "lastAttemptAt": "2026-11-19T17:56:22.265125+09:00",
       "state": "degraded",
       "reason": "Gemini 선별/요약 실패로 키워드 필터 사용 - 요약 품질 저하 (ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Pleas",
       "staleAfterHours": 36
     },
     "chinaNews": {
-      "lastSuccessAt": "2026-11-18T17:40:29.988149+09:00",
-      "lastAttemptAt": "2026-11-18T17:40:29.988149+09:00",
-      "state": "degraded",
-      "reason": "Gemini 선별 실패로 RSS 원문 노출 (ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again la",
+      "lastSuccessAt": "2026-11-19T17:56:22.265125+09:00",
+      "lastAttemptAt": "2026-11-19T17:56:22.265125+09:00",
+      "state": "ok",
+      "reason": "",
       "staleAfterHours": 36
     },
     "newsBriefing": {
-      "lastSuccessAt": "2026-11-18T17:40:29.988149+09:00",
-      "lastAttemptAt": "2026-11-18T17:40:29.988149+09:00",
+      "lastSuccessAt": "2026-11-19T17:56:22.265125+09:00",
+      "lastAttemptAt": "2026-11-19T17:56:22.265125+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
     },
     "chinaNewsBriefing": {
-      "lastSuccessAt": "2026-11-18T17:40:29.988149+09:00",
-      "lastAttemptAt": "2026-11-18T17:40:29.988149+09:00",
+      "lastSuccessAt": "2026-11-19T17:56:22.265125+09:00",
+      "lastAttemptAt": "2026-11-19T17:56:22.265125+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
     },
     "benchmarkingPoints": {
-      "lastSuccessAt": "2026-11-18T17:40:29.988149+09:00",
-      "lastAttemptAt": "2026-11-18T17:40:29.988149+09:00",
+      "lastSuccessAt": "2026-11-19T17:56:22.265125+09:00",
+      "lastAttemptAt": "2026-11-19T17:56:22.265125+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 36
@@ -18905,8 +18824,8 @@
       "staleAfterHours": 216
     },
     "regulationRadar": {
-      "lastSuccessAt": "2026-11-16T17:06:12.485616+09:00",
-      "lastAttemptAt": "2026-11-16T17:06:12.485616+09:00",
+      "lastSuccessAt": "2026-11-19T17:56:22.265125+09:00",
+      "lastAttemptAt": "2026-11-19T17:56:22.265125+09:00",
       "state": "ok",
       "reason": "",
       "staleAfterHours": 336
